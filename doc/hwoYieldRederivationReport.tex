@@ -32,14 +32,14 @@ $\eta = 0.0439^{+0.0256}_{-0.0163}$ against
 $0.217^{+0.126}_{-0.080}$ for the canonical box, a ratio of
 $0.203^{+0.017}_{-0.017}$ that is independent of the overall
 normalisation. The full survey optimization gives a \emph{yield} ratio of
-$0.278^{+0.028}_{-0.027}$, materially larger than the occurrence ratio,
+$0.285^{+0.028}_{-0.027}$, materially larger than the occurrence ratio,
 because a smaller expected detection count frees characterization time and because truncating
 the outer habitable zone preferentially removes the faintest, most expensive planets. The
-baseline 6\,m design yields a median of 5.8 exoEarth candidates under the redefined
+baseline 6\,m design yields a median of 5.9 exoEarth candidates under the redefined
 selection, against 20.7 canonically, and the probability of reaching the 25-planet
-goal falls from 33.0\% to 0.04\%. An out-of-sample test against the published
+goal falls from 33.4\% to 0.05\%. An out-of-sample test against the published
 aperture scaling (Sec.~\ref{sec:aperture}) both supports and qualifies this: the 6\,m design
-point is reproduced independently, but the yield here grows as $D^{1.14}$ against a
+point is reproduced independently, but the yield here grows as $D^{1.11}$ against a
 published $\sim D^{1.9}$, so the model under-responds to changes in sensitivity and the ratio
 above is more likely an over-estimate than an under-estimate.
 \end{abstract}
@@ -200,12 +200,12 @@ and misreported as a coronagraph modelling error.
 The parametrized coronagraph stands in for simulated maps, so a single scalar throughput factor
 absorbs the residual mismatch, fitted by bisection against the 22.5 exoEarth candidates that
 Stark et al.\ (2024) report for the baseline 6\,m design (Figure~\ref{fig:calibration}). The
-fitted factor is 0.581 --- the model needs roughly 1.72 times \emph{less}
+fitted factor is 0.585 --- the model needs roughly 1.71 times \emph{less}
 throughput than the parametrization assumes.
 
 \textbf{The calibrated yield is not evidence of anything.} It is tuned to 22.5 by construction
 and will always agree. Only two things about the calibration carry information: that the
-\emph{uncalibrated} prediction was already 24.53 against a published 22.5, and that the
+\emph{uncalibrated} prediction was already 24.64 against a published 22.5, and that the
 factor needed is within a factor of two of unity. The curve in Figure~\ref{fig:calibration} is
 also shallow --- a 42\% cut in throughput costs under 10\% of the yield --- because the survey is
 partly limited by the inner working angle and the noise floor rather than by photons. A weak
@@ -215,7 +215,7 @@ lever cannot manufacture agreement that was not already close.
 \centering
 \includegraphics[width=0.62\textwidth]{figCalibration.pdf}
 \caption{Modelled yield against the coronagraph throughput calibration factor. The published
-22.5-candidate value is met at a factor of 0.581, and the curve is shallow: a 42\%
+22.5-candidate value is met at a factor of 0.585, and the curve is shallow: a 42\%
 reduction in throughput costs under 10\% of the yield.}
 \label{fig:calibration}
 \end{figure}
@@ -230,9 +230,9 @@ reduction in throughput costs under 10\% of the yield.}
 \textbf{Quantity} & \textbf{Published} & \textbf{Here} & \textbf{Status} \\
 \midrule
 $\eta_\oplus$, SAG13 over the canonical box & 0.24 & 0.2404 & Independent \\
-Expected yield, 6\,m, \emph{before} calibration & 22.5 & 24.53 & Independent \\
-$P_{25}$ including $\sigma_{\eta_\oplus}$, 6\,m & 32\% & 33.0\% & Independent \\
-Expected yield, 6\,m, after calibration & 22.5 & 22.50 & \textbf{Tuned (not evidence)} \\
+Expected yield, 6\,m, \emph{before} calibration & 22.5 & 24.64 & Independent \\
+$P_{25}$ including $\sigma_{\eta_\oplus}$, 6\,m & 32\% & 33.4\% & Independent \\
+Expected yield, 6\,m, after calibration & 22.5 & 22.49 & \textbf{Tuned (not evidence)} \\
 \bottomrule
 \end{tabular}
 \caption{Comparisons against values stated in the text of Stark et al.\ (2024). The first three
@@ -273,11 +273,11 @@ are out-of-sample predictions.
 \toprule
 & \textbf{6\,m} & \textbf{7\,m} & \textbf{8\,m} & \textbf{9\,m} \\
 \midrule
-$P_{25}$ including $\sigma_{\eta_\oplus}$, this work & \multicolumn{4}{c}{33 / 47 / 64 / 76 \%} \\
+$P_{25}$ including $\sigma_{\eta_\oplus}$, this work & \multicolumn{4}{c}{33 / 47 / 63 / 75 \%} \\
 $P_{25}$ including $\sigma_{\eta_\oplus}$, published & \multicolumn{4}{c}{32 / 53 / 67 / 78 \%} \\
-$P_{25}$ excluding $\sigma_{\eta_\oplus}$, this work & \multicolumn{4}{c}{32 / 60 / 87 / 97 \%} \\
+$P_{25}$ excluding $\sigma_{\eta_\oplus}$, this work & \multicolumn{4}{c}{32 / 59 / 85 / 97 \%} \\
 $P_{25}$ excluding $\sigma_{\eta_\oplus}$, published & \multicolumn{4}{c}{6 / 49 / 89 / 100 \%} \\
-Expected yield at $\eta = 0.24$, this work & \multicolumn{4}{c}{22.4 / 25.9 / 30.5 / 35.5} \\
+Expected yield at $\eta = 0.24$, this work & \multicolumn{4}{c}{22.4 / 25.9 / 30.2 / 35.0} \\
 \bottomrule
 \end{tabular}
 \caption{The aperture-scaling comparison. Published values at 7, 8 and 9\,m are read off Fig.~15
@@ -297,7 +297,7 @@ published band at 6\,m and leaves it by 8\,m.}
 \end{figure}
 
 \textbf{The including-$\sigma_{\eta_\oplus}$ curve agrees}, with a maximum residual of
-5.6 percentage points, comparable to the reading error on the published points.
+6.2 percentage points, comparable to the reading error on the published points.
 Taken alone that looks like a success. It is not, and the second curve shows why.
 
 \textbf{The excluding-$\sigma_{\eta_\oplus}$ curve fails}, by 26 percentage points at 6\,m. That
@@ -311,7 +311,7 @@ destroys the others (15 / 40 / 69\% against 49 / 89 / 99.5\%).
 The residual, once chased, is a genuine deficiency in this rederivation:
 
 \begin{quote}
-\textbf{The yield here grows as $D^{1.14}$, while the published yield grows as
+\textbf{The yield here grows as $D^{1.11}$, while the published yield grows as
 $\sim D^{1.9}$.}
 \end{quote}
 
@@ -327,7 +327,7 @@ here at 6.1\,m --- present, but displaced. And the agreement of the
 including-$\sigma_{\eta_\oplus}$ curve is much less informative than it first appears: the
 $\eta_\oplus$ posterior is broad enough to dominate $P_{25}$ and wash out the aperture
 dependence, so that curve is largely insensitive to the very scaling that is wrong. The 32\%
-$\rightarrow$ 33.0\% agreement reported in Section~4.3 remains true and remains
+$\rightarrow$ 33.4\% agreement reported in Section~4.3 remains true and remains
 independent, but it should be read as a check at 6\,m rather than as evidence that the model
 extrapolates.
 
@@ -337,16 +337,58 @@ between two planet selections at one fixed aperture, where the model is calibrat
 response to changing sensitivity, and the redefined box changes effective sensitivity by
 truncating the outer habitable zone --- the same axis. If the model under-responds to losing
 inner-working-angle-accessible targets in the same way it under-responds to gaining them, the
-yield ratio of 0.278 is likely an \emph{over}-estimate. Resolving the aperture scaling
+yield ratio of 0.285 is likely an \emph{over}-estimate. Resolving the aperture scaling
 should therefore come before this number is used for anything load-bearing.
+
+\subsection{Chasing the cause}
+
+The failure was pursued rather than recorded. Four hypotheses; two rejected outright, one a real
+bug that was not the cause, one a partial explanation.
+
+\begin{enumerate}
+\item \textbf{The target-screening cap. Rejected.} Lifting it from 1500 to 6500 stars changes
+the 9\,m yield by 1.3\%.
+
+\item \textbf{A uniform yield bias from the unmodelled uncertainty sources. Rejected.} Applying
+Stark's own published factor ($17.3/22.5$) repairs the 6\,m point and destroys the others.
+
+\item \textbf{A real screening bug, found by building Fig.~11 --- but not the cause.} Stark's
+Fig.~11 selects targets out to $L \approx 20\,L_\odot$. This pipeline's screen admitted nothing
+above 4.6\,$L_\odot$, discarding 536 stars, because it tested an
+\emph{Earth-sized planet at quadrature} against the noise floor instead of the brightest planet
+the selection box allows. The correct bound --- largest radius in the box, inner habitable-zone
+edge, full phase --- admits up to 31\,$L_\odot$. Since the discarded stars are
+luminous ones with wide habitable zones, exactly the distant targets a larger aperture should
+unlock, this looked like the answer. It was not: fixing it moved the exponent by 0.01. The bug
+was real and is fixed; the luminous stars it had been discarding turn out to be poor targets on
+their own merits.
+
+\item \textbf{Characterization budgeting. About half the deficit.} Characterization consumes
+37\% of the science budget at 6\,m and 45\% at 9\,m, so a growing share of
+each aperture increment is spent following up detections rather than finding them. Removing the
+characterization burden entirely raises the exponent from $D^{1.16}$ to
+$D^{1.54}$, against a published $\sim D^{1.9}$.
+\end{enumerate}
+
+So roughly half the shortfall is the characterization coupling and half remains unexplained.
+Two observations bear on the remainder. The survey's growth comes almost entirely from observing
+more stars (218 at 6\,m, 338 at 9\,m) rather than from higher completeness
+per star, which is flat near 0.44 at both apertures. And the leading untested suspect is the
+characterization time itself: \texttt{fTauCharS} is the median over every planet \emph{detectable}
+around a star, whereas the planets actually detected in a short allocation are the brightest
+ones, whose characterization is correspondingly cheaper. If so the burden is systematically
+overcharged, which would depress the yield at every aperture and bite hardest where detections
+are most numerous. That is a hypothesis, not a finding.
+
+The diagnostics are kept as \texttt{explorations/diagnoseTargetSelection.py},
+\texttt{diagnoseTimeBudgetSplit.py} and \texttt{testCrossingUnderStarkBias.py}.
 
 \subsection{Further checks, still not run}
 
 \begin{enumerate}
-\item \textbf{Per-target habitable-zone completeness --- Fig.~11.} Plot the final column of
-\texttt{faComp} against \texttt{faDistancePc} from \texttt{completeness.npz}. Given the scaling
-failure above, this is now the most informative remaining check: it would show whether the
-deficiency is in how many distant targets become accessible, which is the leading suspect.
+\item \textbf{The characterization-time statistic.} Recompute \texttt{fTauCharS} over planets
+actually detected within the allocated exposure rather than over all detectable planets, and
+re-measure the exponent. This is the leading untested suspect for the unexplained half.
 \item \textbf{Sensitivity derivatives --- Stark et al.\ (2019),
 \texttt{yield\_sensitivity} panels.} Yield derivatives with respect to inner working angle,
 contrast and throughput. These bear directly on the same question.
@@ -380,7 +422,7 @@ is recorded alongside it.
 \begin{itemize}
 \item The 7, 8 and 9\,m points of Fig.~15 missing by more than $\sim$10 percentage points with
 the 6\,m calibration frozen. \textbf{Mixed, and the criterion was badly posed.} The
-including-$\sigma_{\eta_\oplus}$ curve passes at 5.6 points; the
+including-$\sigma_{\eta_\oplus}$ curve passes at 6.2 points; the
 excluding-$\sigma_{\eta_\oplus}$ curve fails at 26 points. Writing the criterion without naming
 the curve was a mistake, because the two differ in exactly the way that mattered: the passing
 curve is the one insensitive to the quantity being tested.
@@ -432,8 +474,8 @@ shape parameters $\alpha$ and $\beta$.}
 \includegraphics[width=\textwidth]{figCompleteness.pdf}
 \caption{Left: completeness against exposure time for the three best targets under both box
 definitions. Right: the distribution of reachable completeness. The redefined box gives
-\emph{higher} peak completeness (0.944 versus 0.927) but reaches far
-fewer stars (818 versus 1,054) --- the two competing effects of truncating the
+\emph{higher} peak completeness (0.946 versus 0.929) but reaches far
+fewer stars (1,066 versus 1,280) --- the two competing effects of truncating the
 outer habitable zone.}
 \end{figure}
 
@@ -461,16 +503,16 @@ Habitable zone (scaled AU) & 0.95--1.67 & 0.96--1.20 \\
 Planet selection & $R \leq 1.4\,R_\oplus$ & $0.5$--$2\,M_\oplus$, $R=M^{0.27}$ \\
 Occurrence $\eta$ & $0.217^{+0.126}_{-0.080}$ &
   $0.0439^{+0.0256}_{-0.0163}$ \\
-Stars with non-zero completeness & 1,054 & 818 \\
-Peak completeness & 0.927 & 0.944 \\
-Median expected yield & 20.7 & 5.8 \\
-Mean expected yield & 21.8 & 6.2 \\
-90\% interval & 9.7--38.2 & 2.4--11.8 \\
-$P(\geq 25$ candidates$)$ & 33.0\% & 0.04\% \\
+Stars with non-zero completeness & 1,280 & 1,066 \\
+Peak completeness & 0.929 & 0.946 \\
+Median expected yield & 20.7 & 5.9 \\
+Mean expected yield & 21.8 & 6.4 \\
+90\% interval & 9.8--38.3 & 2.5--12.1 \\
+$P(\geq 25$ candidates$)$ & 33.4\% & 0.05\% \\
 \bottomrule
 \end{tabular}
 \caption{Headline results for the baseline 6\,m LUVOIR-B-like design. The survey uses
-204 stars from a screened pool of 1,500.}
+219 stars from a screened pool of 1,500.}
 \end{table}
 
 \subsection{The central number}
@@ -481,7 +523,7 @@ zone contributes a factor of about $0.32$ and the mass selection a further $0.63
 habitable zone dominates, because it cuts the log-period width to roughly 40\% and because
 $\beta > 0$ weights the outer habitable zone more heavily.
 
-The \emph{yield} ratio is $0.278^{+0.028}_{-0.027}$ --- about 38\% larger
+The \emph{yield} ratio is $0.285^{+0.028}_{-0.027}$ --- about 38\% larger
 than the occurrence ratio. Three effects account for the difference, and they do not all point
 the same way:
 
@@ -494,7 +536,7 @@ closest to the noise floor. These are the expensive ones, so removing them raise
 completeness. This raises the ratio.
 \item \textbf{Distant targets are lost.} For stars beyond roughly 10--15~pc, only the outer
 habitable zone clears the inner working angle at all, so truncation removes those stars from the
-survey entirely --- 818 stars remain reachable against 1,054. This lowers the
+survey entirely --- 1,066 stars remain reachable against 1,280. This lowers the
 ratio.
 \end{enumerate}
 
@@ -505,9 +547,9 @@ optimization.
 
 \subsection{What it means for HWO}
 
-Under the redefined selection the baseline 6\,m design delivers a median of 5.8
-exoEarth candidates, with a 90\% interval of 2.4--11.8. The probability of
-reaching the Astro2020 benchmark of 25 falls from 33.0\% to 0.04\%: not reduced,
+Under the redefined selection the baseline 6\,m design delivers a median of 5.9
+exoEarth candidates, with a 90\% interval of 2.5--12.1. The probability of
+reaching the Astro2020 benchmark of 25 falls from 33.4\% to 0.05\%: not reduced,
 but effectively eliminated. If the habitable zone really is as narrow as $0.96$--$1.20$~AU and
 the sample of interest really is $0.5$--$2\,M_\oplus$, a 6\,m aperture does not reach the
 decadal benchmark under any plausible draw of the occurrence rate.
@@ -517,14 +559,14 @@ decadal benchmark under any plausible draw of the occurrence rate.
 These are the things a reader should weigh before using these numbers.
 
 \begin{itemize}
-\item \textbf{The yield does not scale correctly with aperture.} Measured $D^{1.14}$
+\item \textbf{The yield does not scale correctly with aperture.} Measured $D^{1.11}$
 against a published $\sim D^{1.9}$ (Sec.~\ref{sec:aperture}). The cause is not identified; the
 target-screening cap and a uniform yield bias were both tested and rejected. Nothing in this
 report should be extrapolated in aperture, and the headline ratio should be treated as an upper
 bound until this is resolved.
 \item \textbf{The coronagraph is parametrized, not simulated.} $\Upsilon_c$ and $\zeta$ are
 smooth functions of separation fitted to three published anchors, not the two-dimensional maps
-AYO interpolates. The calibration factor of 0.581 bounds the resulting error on the
+AYO interpolates. The calibration factor of 0.585 bounds the resulting error on the
 absolute scale; ratios between boxes, computed within the same implementation, are considerably
 more robust than either absolute yield.
 \item \textbf{The target catalog is a reconstruction.} It reproduces HPIC's construction and

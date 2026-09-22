@@ -9,24 +9,39 @@ from . import optimizer as opt
 F_REARTH_AU = 4.25875e-5
 
 
+def fnMaxPlanetRadius(dictBox):
+    """Largest planet radius the selection box admits, in Earth radii."""
+    if dictBox["sRadiusMode"] == "canonical":
+        return dictBox["fRadiusMaxEarth"]
+    return dictBox["fMassHiEarth"] ** dictBox["fMassRadiusExponent"]
+
+
 def fdfScreenTargets(dfCatalog, dictMission, dictBandPrimary, fMinEeidLamD, iMaxStars,
-                     fTeffMin, fTeffMax):
+                     fTeffMin, fTeffMax, dictBox):
     """Drop stars whose habitable zone can never yield a detection, then keep the best iMaxStars.
 
-    Two physical screens: the Earth-equivalent insolation distance must subtend enough of the
-    diffraction scale for the coronagraph to pass light, and an Earth analogue at quadrature must
-    sit above the post-processing noise floor. Both are necessary conditions, so nothing that
-    could have contributed is removed.
+    Two necessary conditions. The Earth-equivalent insolation distance must subtend enough of the
+    diffraction scale for the coronagraph to pass light, and the BRIGHTEST planet the selection
+    box admits must sit above the post-processing noise floor.
+
+    "Brightest" is load-bearing and was got wrong once: screening on an Earth-sized planet at
+    quadrature rejected every star above ~4.6 Lsun, whereas Stark et al. (2024) Fig. 11 selects
+    targets out to ~20 Lsun. Luminous stars have wide habitable zones and are exactly the distant
+    targets a larger aperture unlocks, so discarding them suppressed the yield's growth with
+    telescope diameter. The bound here takes the largest radius in the box, the inner habitable
+    zone edge, and full phase, so a star is dropped only when no planet in the box could ever be
+    detected around it.
     """
     dfOut = dfCatalog[(dfCatalog["fTeffK"] >= fTeffMin) &
                       (dfCatalog["fTeffK"] <= fTeffMax)].copy()
     fLamD = cg.fnLambdaOverDArcsec(dictBandPrimary["fLambdaM"], dictMission["fDiameterM"])
     dfOut["fEeidLamD"] = dfOut["fEeidArcsec"] / fLamD
-    faFluxRatio = dictMission["fGeometricAlbedo"] * (1.0 / np.pi) * \
-        (F_REARTH_AU / dfOut["fEeidAu"]) ** 2
-    dfOut["fEeidDeltaMag"] = -2.5 * np.log10(faFluxRatio)
+    faSemiMajorMin = dictBox["fHzInnerAu"] * dfOut["fEeidAu"]
+    faFluxRatio = dictMission["fGeometricAlbedo"] * \
+        (fnMaxPlanetRadius(dictBox) * F_REARTH_AU / faSemiMajorMin) ** 2
+    dfOut["fBrightestDeltaMag"] = -2.5 * np.log10(faFluxRatio)
     dfOut = dfOut[(dfOut["fEeidLamD"] >= fMinEeidLamD) &
-                  (dfOut["fEeidDeltaMag"] <= dictMission["fNoiseFloorDeltaMag"])]
+                  (dfOut["fBrightestDeltaMag"] <= dictMission["fNoiseFloorDeltaMag"])]
     return dfOut.sort_values("fEeidLamD", ascending=False).head(iMaxStars).reset_index(drop=True)
 
 

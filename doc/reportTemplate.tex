@@ -340,13 +340,55 @@ inner-working-angle-accessible targets in the same way it under-responds to gain
 yield ratio of @@YRATIO@@ is likely an \emph{over}-estimate. Resolving the aperture scaling
 should therefore come before this number is used for anything load-bearing.
 
+\subsection{Chasing the cause}
+
+The failure was pursued rather than recorded. Four hypotheses; two rejected outright, one a real
+bug that was not the cause, one a partial explanation.
+
+\begin{enumerate}
+\item \textbf{The target-screening cap. Rejected.} Lifting it from 1500 to 6500 stars changes
+the 9\,m yield by 1.3\%.
+
+\item \textbf{A uniform yield bias from the unmodelled uncertainty sources. Rejected.} Applying
+Stark's own published factor ($17.3/22.5$) repairs the 6\,m point and destroys the others.
+
+\item \textbf{A real screening bug, found by building Fig.~11 --- but not the cause.} Stark's
+Fig.~11 selects targets out to $L \approx 20\,L_\odot$. This pipeline's screen admitted nothing
+above @@SCREENLMAX@@\,$L_\odot$, discarding @@SCREENLOST@@ stars, because it tested an
+\emph{Earth-sized planet at quadrature} against the noise floor instead of the brightest planet
+the selection box allows. The correct bound --- largest radius in the box, inner habitable-zone
+edge, full phase --- admits up to @@SCREENLMAXOK@@\,$L_\odot$. Since the discarded stars are
+luminous ones with wide habitable zones, exactly the distant targets a larger aperture should
+unlock, this looked like the answer. It was not: fixing it moved the exponent by 0.01. The bug
+was real and is fixed; the luminous stars it had been discarding turn out to be poor targets on
+their own merits.
+
+\item \textbf{Characterization budgeting. About half the deficit.} Characterization consumes
+@@CHARFRAC6@@\% of the science budget at 6\,m and @@CHARFRAC9@@\% at 9\,m, so a growing share of
+each aperture increment is spent following up detections rather than finding them. Removing the
+characterization burden entirely raises the exponent from $D^{@@EXPWITHCHAR@@}$ to
+$D^{@@EXPNOCHAR@@}$, against a published $\sim D^{1.9}$.
+\end{enumerate}
+
+So roughly half the shortfall is the characterization coupling and half remains unexplained.
+Two observations bear on the remainder. The survey's growth comes almost entirely from observing
+more stars (@@STARSUSED6@@ at 6\,m, @@STARSUSED9@@ at 9\,m) rather than from higher completeness
+per star, which is flat near 0.44 at both apertures. And the leading untested suspect is the
+characterization time itself: \texttt{fTauCharS} is the median over every planet \emph{detectable}
+around a star, whereas the planets actually detected in a short allocation are the brightest
+ones, whose characterization is correspondingly cheaper. If so the burden is systematically
+overcharged, which would depress the yield at every aperture and bite hardest where detections
+are most numerous. That is a hypothesis, not a finding.
+
+The diagnostics are kept as \texttt{explorations/diagnoseTargetSelection.py},
+\texttt{diagnoseTimeBudgetSplit.py} and \texttt{testCrossingUnderStarkBias.py}.
+
 \subsection{Further checks, still not run}
 
 \begin{enumerate}
-\item \textbf{Per-target habitable-zone completeness --- Fig.~11.} Plot the final column of
-\texttt{faComp} against \texttt{faDistancePc} from \texttt{completeness.npz}. Given the scaling
-failure above, this is now the most informative remaining check: it would show whether the
-deficiency is in how many distant targets become accessible, which is the leading suspect.
+\item \textbf{The characterization-time statistic.} Recompute \texttt{fTauCharS} over planets
+actually detected within the allocated exposure rather than over all detectable planets, and
+re-measure the exponent. This is the leading untested suspect for the unexplained half.
 \item \textbf{Sensitivity derivatives --- Stark et al.\ (2019),
 \texttt{yield\_sensitivity} panels.} Yield derivatives with respect to inner working angle,
 contrast and throughput. These bear directly on the same question.

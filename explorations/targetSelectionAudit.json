@@ -1,0 +1,10 @@
+{
+  "iCatalog": 8709,
+  "iRejectedByScreenAsWritten": 585,
+  "iRejectedByCorrectBound": 49,
+  "iLostWrongly": 536,
+  "fMaxLuminosityAdmittedAsWritten": 4.589399,
+  "fMaxLuminosityAdmittedCorrect": 30.83103925526563,
+  "fLuminosityCutAsWritten": 4.603300955679556,
+  "iLostWronglyWithinTwentyPc": 40
+}

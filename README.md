@@ -14,26 +14,28 @@ against the canonical HabEx/LUVOIR exoEarth-candidate box (0.95–1.67 AU, R ≤
 | | Canonical box | Redefined box |
 |---|---|---|
 | Occurrence η | 0.217 (+0.126/−0.080) | 0.0439 (+0.0256/−0.0163) |
-| Median expected yield (6 m) | 20.7 | 5.8 |
-| P(≥ 25 candidates) | 33.0% | 0.04% |
+| Median expected yield (6 m) | 20.7 | 5.9 |
+| P(≥ 25 candidates) | 33.4% | 0.05% |
 
 Occurrence ratio **0.203 (+0.017/−0.017)**; yield ratio **0.278 (+0.028/−0.027)**. The yield
 ratio exceeds the occurrence ratio because fewer expected detections free characterization time,
 and because truncating the outer habitable zone preferentially removes the faintest planets.
 
 **Validation, and a known failure.** At 6 m the model holds up: before any calibration it
-predicts 24.5 candidates against Stark's published 22.5 (9%), and marginalised over the
-occurrence posterior it gives P(≥25) = 33.0% against a published 32% — neither tuned to.
+predicts 24.6 candidates against Stark's published 22.5 (9%), and marginalised over the
+occurrence posterior it gives P(≥25) = 33.4% against a published 32% — neither tuned to.
 
 But the out-of-sample aperture test (Stark et al. 2024 Fig. 15, calibration frozen at 6 m)
-exposes a real deficiency: **yield here grows as D^1.14 against a published ~D^1.9**. The
+exposes a real deficiency: **yield here grows as D^1.11 against a published ~D^1.9**. The
 P(≥25) curve including σ_η⊕ agrees to within 6 points, but only because the broad η posterior
-washes out the aperture dependence; the excluding-σ curve misses by 26 points at 6 m. Two
-candidate causes were tested and rejected (the target-screening cap, and a uniform yield bias).
-The cause is not identified.
+washes out the aperture dependence; the excluding-σ curve misses by 26 points at 6 m. Chasing it found a real screening bug (the noise-floor screen tested a typical planet rather
+than the brightest the box allows, discarding 536 luminous stars — now fixed, but
+not the cause), rejected two other hypotheses, and traced about half the shortfall to
+characterization budgeting: removing that burden raises the exponent to D^1.54. The remaining
+half is unexplained.
 
 Consequence: nothing here should be extrapolated in aperture, and because the redefined box
-changes sensitivity along the same axis the model under-responds to, **the yield ratio of 0.278
+changes sensitivity along the same axis the model under-responds to, **the yield ratio of 0.285
 should be treated as an upper bound.** See Section 4 of the report.
 
 The full write-up, including limitations, is `doc/hwoYieldRederivationReport.pdf`.

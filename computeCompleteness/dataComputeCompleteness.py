@@ -55,7 +55,8 @@ def main():
                                     dictParams["dictMission"],
                                     dictParams["dictBands"]["listBandsDetection"][0],
                                     dictArgs["min_eeid_lamd"], dictArgs["max_stars"],
-                                    dictArgs["teff_min"], dictArgs["teff_max"])
+                                    dictArgs["teff_min"], dictArgs["teff_max"],
+                                    dictParams["dictBoxes"][listBoxNames[0]])
     faTauGridS = np.logspace(1.0, np.log10(dictParams["dictMission"]["fExposureLimitS"]),
                              dictArgs["num_tau_points"])
     dictArrays = {"faTauGridS": faTauGridS,

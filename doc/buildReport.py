@@ -23,7 +23,10 @@ def fdictLoadResults(sRepoRoot):
         "survey": "optimizeSurvey/surveyResult.json",
         "posterior": "sampleOccurrencePosterior/occurrencePosteriorSummary.json",
         "prediction": "predictRedefinedYield/yieldPrediction.json",
-        "aperture": "compareApertureScaling/apertureScaling.json",
+        "aperture": "CompareApertureScaling/apertureScaling.json",
+        "budget": "explorations/timeBudgetSplit.json",
+        "budgetNoChar": "explorations/timeBudgetSplitNoChar.json",
+        "screen": "explorations/targetSelectionAudit.json",
     }
     dictOut = {}
     for sKey, sRel in dictPaths.items():
@@ -38,6 +41,10 @@ def fdictSubstitutions(dictResults):
     dictPost, dictPred = dictResults["posterior"], dictResults["prediction"]
     dictSurvey, dictComp = dictResults["survey"], dictResults["completeness"]
     dictAp = dictResults["aperture"]
+    dictBud, dictNoChar = dictResults["budget"]["listRows"], dictResults["budgetNoChar"]["listRows"]
+    dictScr = dictResults["screen"]
+    fExpWith = math.log(dictBud[1]["fYield"] / dictBud[0]["fYield"]) / math.log(1.5)
+    fExpNo = math.log(dictNoChar[1]["fYield"] / dictNoChar[0]["fYield"]) / math.log(1.5)
     dictCanon = dictPred["dictByBox"]["canonical"]["dictDistribution"]
     dictRedef = dictPred["dictByBox"]["redefined"]["dictDistribution"]
     dictEtaC, dictEtaR = dictPost["dictEtaByBox"]["canonical"], dictPost["dictEtaByBox"]["redefined"]
@@ -95,6 +102,15 @@ def fdictSubstitutions(dictResults):
         "APCROSSPUB": f"{dictAp['fCrossingDiameterPublishedM']:.1f}",
         "APYIELDS": " / ".join(f"{dictAp['dictByDiameter'][s]['fExpectedYieldAtBaselineEta']:.1f}"
                                for s in ("6", "7", "8", "9")),
+        "SCREENLOST": f"{dictScr['iLostWrongly']:,}",
+        "SCREENLMAX": f"{dictScr['fMaxLuminosityAdmittedAsWritten']:.1f}",
+        "SCREENLMAXOK": f"{dictScr['fMaxLuminosityAdmittedCorrect']:.0f}",
+        "EXPWITHCHAR": f"{fExpWith:.2f}",
+        "EXPNOCHAR": f"{fExpNo:.2f}",
+        "CHARFRAC6": f"{100*dictBud[0]['fCharFraction']:.0f}",
+        "CHARFRAC9": f"{100*dictBud[1]['fCharFraction']:.0f}",
+        "STARSUSED6": f"{dictBud[0]['iStarsUsed']}",
+        "STARSUSED9": f"{dictBud[1]['iStarsUsed']}",
         "APEXPONENT": f"{math.log(dictAp['dictByDiameter']['9']['fExpectedYieldAtBaselineEta'] / dictAp['dictByDiameter']['6']['fExpectedYieldAtBaselineEta']) / math.log(1.5):.2f}",
         "ETASAG13": "0.2404",
         "CALFACTORINV": f"{1.0/dictCal['fCalibratedThroughputFactor']:.2f}",

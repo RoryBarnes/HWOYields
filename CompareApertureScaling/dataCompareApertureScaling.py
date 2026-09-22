@@ -42,7 +42,8 @@ def fdictYieldCurveAtDiameter(dfCatalog, dictParams, fDiameterM, faTauGridS, faE
     dfTargets = sv.fdfScreenTargets(dfCatalog, dictParams["dictMission"],
                                     dictParams["dictBands"]["listBandsDetection"][0],
                                     dictArgs["min_eeid_lamd"], dictArgs["max_stars"],
-                                    dictArgs["teff_min"], dictArgs["teff_max"])
+                                    dictArgs["teff_min"], dictArgs["teff_max"],
+                                    dictParams["dictBoxes"]["canonical"])
     dictTable = sv.fdictCompletenessTable(dfTargets, dictParams,
                                           dictParams["dictBoxes"]["canonical"], faTauGridS,
                                           dictArgs["num_planets"], dictArgs["seed"])

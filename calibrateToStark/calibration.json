@@ -1,67 +1,67 @@
 {
   "fTargetYield": 22.5,
   "iStarsScreened": 1500,
-  "fCalibratedThroughputFactor": 0.580761385587706,
-  "fCalibratedYield": 22.503800000000002,
-  "fRelativeError": 0.00016888888888896898,
+  "fCalibratedThroughputFactor": 0.5848106303081663,
+  "fCalibratedYield": 22.4904,
+  "fRelativeError": 0.00042666666666661967,
   "bCalibrationGatePassed": true,
-  "fUncalibratedYield": 24.527200000000008,
+  "fUncalibratedYield": 24.637199999999996,
   "listTrace": [
     {
       "fCalibration": 1.0,
-      "fYield": 24.527200000000008
+      "fYield": 24.637199999999996
     },
     {
       "fCalibration": 0.22360679774997896,
-      "fYield": 17.185199999999995
+      "fYield": 17.144400000000015
     },
     {
       "fCalibration": 0.4728708045015879,
-      "fYield": 21.20580000000001
+      "fYield": 21.25119999999999
     },
     {
       "fCalibration": 0.6876560219336321,
-      "fYield": 23.109400000000022
+      "fYield": 23.138200000000012
     },
     {
       "fCalibration": 0.5702389466812295,
-      "fYield": 22.367200000000004
+      "fYield": 22.35620000000001
     },
     {
       "fCalibration": 0.6262014417313639,
-      "fYield": 22.543600000000012
+      "fYield": 22.67699999999999
     },
     {
       "fCalibration": 0.5975654362018944,
-      "fYield": 22.639200000000027
+      "fYield": 22.541199999999993
     },
     {
       "fCalibration": 0.5837423103672353,
-      "fYield": 22.5776
+      "fYield": 22.46220000000001
     },
     {
-      "fCalibration": 0.5769511246172241,
-      "fYield": 22.451
+      "fCalibration": 0.5906134339177349,
+      "fYield": 22.528
     },
     {
-      "fCalibration": 0.5803367836463867,
-      "fYield": 22.4834
+      "fCalibration": 0.5871678213671667,
+      "fYield": 22.546399999999995
     },
     {
-      "fCalibration": 0.582037056274626,
-      "fYield": 22.537200000000002
+      "fCalibration": 0.5854525605189255,
+      "fYield": 22.518599999999996
     },
     {
-      "fCalibration": 0.5811862981879626,
-      "fYield": 22.5128
+      "fCalibration": 0.584596810021857,
+      "fYield": 22.486400000000003
     },
     {
-      "fCalibration": 0.580761385587706,
-      "fYield": 22.503800000000002
+      "fCalibration": 0.5850245288007093,
+      "fYield": 22.5134
     },
     {
-      "fCalibration": 0.5805490457988784,
-      "fYield": 22.5264
+      "fCalibration": 0.5848106303081663,
+      "fYield": 22.4904
     }
   ]
 }
