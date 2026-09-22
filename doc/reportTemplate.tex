@@ -429,12 +429,26 @@ $A_G = 0.2$ for every planet and every exozodi at 3 zodis, so it produces the \e
 distribution. Multiplying by Stark's own factor gives a mean of @@BIASMEAN@@ against his $\sim$21
 --- agreement to a few percent --- and moves the peak from 17.9 to 13.3 against his $\sim$10.
 
-The residual peak offset is informative about what a uniform factor cannot capture. Albedo
-uncertainty is a \emph{distribution}, not a scale factor: drawing a low albedo does not merely
-dim a planet, it can push it below the $\Delta\mathrm{mag} = 26.5$ noise floor, where it stops
-counting entirely. That removes weight from the middle of the distribution and piles it at low
-yields, which is exactly the difference in shape that remains. Modelling the albedo distribution
-is the next correction, and it is not yet done.
+\textbf{The albedo distribution has now been modelled, and it does not close the gap.} Following
+Stark et al.\ (2024) Sec.~3.2, the survey is optimized assuming $A_G = 0.2$, and the yield is then
+read from the same planets --- same orbits, radii and phases --- with albedos drawn uniformly on
+$0.08 < A_G < 0.32$, the distribution Stark adopts. The mechanism is the right one: a
+darker-than-planned planet needs a longer exposure than the fixed plan allocates, and can fail
+the noise floor or the two-month cap outright, while a brighter one adds little because the
+exposure was already sufficient.
+
+The direction is right and the magnitude is not. Stark reports that this distribution reduces the
+expected yield by about 12\%, from 22.5 to 19.8. Here it reduces it by 2.4\%, and the peak of the
+realized-yield distribution does not move down. So the albedo distribution is not the explanation
+for the peak offset either, and the offset remains open.
+
+One difference in method is worth recording as the likely cause. Stark tests a drawn planet
+against the \emph{minimum flux actually detected during that visit} and the minimum separation
+along the same orbit segment, using quantities AYO saves per visit. This implementation instead
+re-derives the exposure time the drawn planet would need and compares it with the allocation,
+which is the same idea applied to a whole orbit rather than to the segment a visit covers. If the
+per-visit segment is the operative constraint, this version is systematically too forgiving to
+dark planets, which is the direction of the discrepancy.
 
 \textbf{A consequence for Section~4.3.} The $P_{25}$ comparison there is therefore not
 like-for-like: this pipeline's @@CANONP25@@\% is an unbiased-distribution number and Stark's 32\%

@@ -1,10 +1,10 @@
 {
   "iStateSchemaVersion": 3,
-  "sLastUpdated": "2026-09-22T05:11:04Z",
+  "sLastUpdated": "2026-09-22T15:21:53Z",
   "dictWorkflowState": {
     ".vaibify/projects/hwoYieldRederivation.json": {
       "iStateSchemaVersion": 3,
-      "sLastUpdated": "2026-09-22T05:11:04Z",
+      "sLastUpdated": "2026-09-22T15:21:53Z",
       "dictStepState": {
         "buildtargetcatalog": {
           "dictVerification": {
@@ -26,10 +26,14 @@
         },
         "modelcoronagraph": {
           "dictVerification": {
-            "sUnitTest": "passed",
-            "sIntegrity": "passed",
-            "sQualitative": "passed",
-            "sQuantitative": "passed"
+            "sUnitTest": "untested",
+            "sIntegrity": "untested",
+            "sQualitative": "untested",
+            "sQuantitative": "untested",
+            "listModifiedFiles": [
+              "modelCoronagraph/coronagraphCurves.csv",
+              "modelCoronagraph/missionParameters.json"
+            ]
           },
           "dictRunStats": {
             "fWallClock": 3.2,
@@ -57,14 +61,14 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "7d8a0e41375106231b290b1d7ef2dfadc179c4f081bd41402e2557aab3d018e5"
+            "dictVerification": "36963bee2e94a7ab8705fff024c2ccf817305c3882bdf4c67f47af1448a9356e"
           }
         },
         "computecompleteness": {
           "dictVerification": {
-            "sUnitTest": "untested",
+            "sUnitTest": "passed",
             "sIntegrity": "passed",
-            "sQualitative": "untested",
+            "sQualitative": "passed",
             "sQuantitative": "passed"
           },
           "dictRunStats": {
@@ -75,13 +79,13 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "51db4049d72658671ccba17c164be6aad1324ad4efc07cc01b94494e5bc2a4e6"
+            "dictVerification": "c465ae9286b3e407dbd53662937f950ca2a03e53b027fa130af47bad759e31c7"
           }
         },
         "optimizesurvey": {
           "dictVerification": {
-            "sUnitTest": "passed",
-            "sIntegrity": "passed",
+            "sUnitTest": "untested",
+            "sIntegrity": "untested",
             "sQualitative": "passed",
             "sQuantitative": "passed"
           },
@@ -93,15 +97,16 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "b99e7a146ba30c0b5dda34a2db1225bfd2e86cf98fc74d3b505a7f359d3628c4"
+            "dictVerification": "f9aa3394b5d7a573bb41db6dcc311cffe7d8a63e86091fe3f9add25d13f37bec"
           }
         },
         "sampleoccurrenceposterior": {
           "dictVerification": {
-            "sUnitTest": "passed",
-            "sIntegrity": "passed",
-            "sQualitative": "passed",
-            "sQuantitative": "passed"
+            "sUnitTest": "untested",
+            "sIntegrity": "untested",
+            "sQualitative": "untested",
+            "sQuantitative": "untested",
+            "bUpstreamModified": true
           },
           "dictRunStats": {
             "fWallClock": 6.1,
@@ -129,20 +134,20 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "f9dedeee4d80e77528e469320ef2c23f6dbdcc9239a76cb3030edecb602fa371"
+            "dictVerification": "c98dd32dfadead4a1f917644c2db7c7172f2adbdb5f0b5a6712b7a04bf348165"
           }
         },
         "compareaperturescaling": {
           "dictVerification": {
-            "sUnitTest": "passed",
+            "sUnitTest": "untested",
             "sUser": "untested",
             "sQualitative": "passed",
-            "sQuantitative": "passed",
+            "sQuantitative": "untested",
             "sIntegrity": "passed"
           },
           "dictRunStats": {},
           "dictDefinitionProducers": {
-            "dictVerification": "0cc199b638ebff0cba6c08c0215c458eb69b94163bc6069e38a2b0cc62fe9823"
+            "dictVerification": "cab09ec26d94c4a6755a3f4bedc4976d8bef8ae6a1b306b489110bab1af078d7"
           }
         }
       },

@@ -76,6 +76,8 @@ def main():
                                             dictArgs["num_planets"], dictArgs["seed"])
         dictArrays[f"faComp_{sBoxName}"] = dictAll["faComp"]
         dictArrays[f"faTauChar_{sBoxName}"] = dictAll["faTauChar"]
+        dictArrays[f"faTauCharMean_{sBoxName}"] = dictAll["faTauCharMean"]
+        dictArrays[f"faCompAlbedo_{sBoxName}"] = dictAll["faCompAlbedo"]
         faMax = dictAll["faComp"][:, -1]
         dictSummary["dictByBox"][sBoxName] = {
             "fMaxCompletenessBest": float(np.max(faMax)) if len(faMax) else 0.0,

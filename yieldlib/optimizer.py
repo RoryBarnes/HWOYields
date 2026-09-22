@@ -45,12 +45,16 @@ def fdictStarCostCurve(dictStar, fEtaEarth, dictMission):
     elif np.isfinite(dictStar["fTauCharS"]):
         faCost = faCost + fEtaEarth * faComp * (fMult * dictStar["fTauCharS"] + fOverhead)
     faHull = faUpperConcaveHull(faCost, faComp)
-    return dict(faCost=faCost[faHull], faComp=faComp[faHull])
+    faYieldCurve = dictStar.get("faCompYield")
+    faCompYield = (faComp if faYieldCurve is None
+                   else np.concatenate(([0.0], np.asarray(faYieldCurve))))
+    return dict(faCost=faCost[faHull], faComp=faComp[faHull],
+                faCompYield=faCompYield[faHull])
 
 
 def fdictAllocateAtSlope(listCurves, fSlope):
     """Pick each star's envelope vertex where the marginal return first falls below fSlope."""
-    fTotalTime, fTotalComp, iStarsUsed = 0.0, 0.0, 0
+    fTotalTime, fTotalComp, fTotalYield, iStarsUsed = 0.0, 0.0, 0.0, 0
     for dictCurve in listCurves:
         faCost, faComp = dictCurve["faCost"], dictCurve["faComp"]
         faSlopes = np.diff(faComp) / np.diff(faCost)
@@ -58,8 +62,10 @@ def fdictAllocateAtSlope(listCurves, fSlope):
         if iVertex > 0:
             fTotalTime += faCost[iVertex]
             fTotalComp += faComp[iVertex]
+            fTotalYield += dictCurve["faCompYield"][iVertex]
             iStarsUsed += 1
-    return dict(fTotalTimeS=fTotalTime, fSummedCompleteness=fTotalComp, iStarsUsed=iStarsUsed)
+    return dict(fTotalTimeS=fTotalTime, fSummedCompleteness=fTotalComp,
+                fSummedCompletenessYield=fTotalYield, iStarsUsed=iStarsUsed)
 
 
 def fdictOptimizeSurvey(listStars, fEtaEarth, dictMission, iBisectionSteps=80):
@@ -67,7 +73,8 @@ def fdictOptimizeSurvey(listStars, fEtaEarth, dictMission, iBisectionSteps=80):
     listCurves = [fdictStarCostCurve(s, fEtaEarth, dictMission) for s in listStars]
     listCurves = [c for c in listCurves if len(c["faCost"]) > 1]
     if not listCurves:
-        return dict(fYield=0.0, fSummedCompleteness=0.0, iStarsUsed=0, fTotalTimeS=0.0)
+        return dict(fYield=0.0, fYieldPlanning=0.0, fSummedCompleteness=0.0,
+                    fSummedCompletenessYield=0.0, iStarsUsed=0, fTotalTimeS=0.0)
     fLo, fHi = 1e-30, 1.0
     for _ in range(iBisectionSteps):
         fMid = np.sqrt(fLo * fHi)
@@ -77,6 +84,7 @@ def fdictOptimizeSurvey(listStars, fEtaEarth, dictMission, iBisectionSteps=80):
         else:
             fHi = fMid
     dictFinal = fdictAllocateAtSlope(listCurves, fHi)
-    dictFinal["fYield"] = fEtaEarth * dictFinal["fSummedCompleteness"]
+    dictFinal["fYieldPlanning"] = fEtaEarth * dictFinal["fSummedCompleteness"]
+    dictFinal["fYield"] = fEtaEarth * dictFinal["fSummedCompletenessYield"]
     dictFinal["fSlope"] = fHi
     return dictFinal

@@ -48,6 +48,10 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
         "fWavefrontMultiplier": 1.1,
         "fExposureLimitS": 60.0 * 86400.0,
         "fThroughputCalibration": 1.0,
+        "dictAlbedoDistribution": {"fMin": 0.08, "fMax": 0.32,
+                                   "sSource": "Stark et al. 2024 Sec. 3.2: the adopted uniform "
+                                              "distribution, mean 0.20, quoted as reducing the "
+                                              "expected yield by about 12 percent"},
     }
 
 

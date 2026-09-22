@@ -55,6 +55,7 @@ def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlane
         dictParams["dictBands"].get("listBandsCharacterization")
     faComp = np.zeros((len(dfTargets), len(faTauGridS)))
     faTauCharMean = np.zeros((len(dfTargets), len(faTauGridS)))
+    faCompAlbedo = np.zeros((len(dfTargets), len(faTauGridS)))
     faTauChar = np.zeros(len(dfTargets))
     for i, dictRow in enumerate(dfTargets.to_dict("records")):
         dictResult = cp.fdictStarCompleteness(dictRow, dictBox, listBandsDet, dictBandChar,
@@ -63,13 +64,16 @@ def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlane
                                               iSeed + i)
         faComp[i] = dictResult["faComp"]
         faTauCharMean[i] = dictResult["faTauCharMeanS"]
+        faCompAlbedo[i] = dictResult["faCompAlbedo"]
         faTauChar[i] = dictResult["fTauCharS"]
-    return dict(faComp=faComp, faTauChar=faTauChar, faTauCharMean=faTauCharMean)
+    return dict(faComp=faComp, faTauChar=faTauChar, faTauCharMean=faTauCharMean,
+                faCompAlbedo=faCompAlbedo)
 
 
 def flistStarsFromTable(dictTable, faTauGridS):
     """Package a completeness table into the per-star dicts the optimizer expects."""
     return [dict(faTauGridS=faTauGridS, faComp=dictTable["faComp"][i],
+                 faCompYield=dictTable["faCompAlbedo"][i],
                  faTauCharMeanS=dictTable["faTauCharMean"][i],
                  fTauCharS=float(dictTable["faTauChar"][i]))
             for i in range(dictTable["faComp"].shape[0])]
@@ -77,10 +81,15 @@ def flistStarsFromTable(dictTable, faTauGridS):
 
 def fnYieldForCalibration(dfTargets, dictParams, dictBox, faTauGridS, iNumPlanets, iSeed,
                           fEtaEarth, fCalibration):
-    """Expected EEC yield at one value of the throughput calibration factor."""
+    """Expected EEC yield at one throughput calibration factor, at the PLANNING albedo.
+
+    Stark et al. (2024) obtain 22.5 from a single AYO run with every EEC at A_G = 0.2, so the
+    calibration must be fitted against that number rather than against the albedo-drawn yield,
+    which is lower by construction.
+    """
     dictParams["dictMission"]["fThroughputCalibration"] = fCalibration
     dictTable = fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS,
                                        iNumPlanets, iSeed)
     listStars = flistStarsFromTable(dictTable, faTauGridS)
     return float(opt.fdictOptimizeSurvey(listStars, fEtaEarth,
-                                         dictParams["dictMission"])["fYield"])
+                                         dictParams["dictMission"])["fYieldPlanning"])

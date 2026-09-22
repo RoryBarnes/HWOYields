@@ -33,7 +33,8 @@ def fdictInjectPlanets(dictBox, fEeidAu, iNumPlanets, fAlpha, fBeta, rng):
     faCosInc = 2.0 * faU3 - 1.0
     faTheta = 2.0 * np.pi * faU4
     return dict(faAxisAu=faAxisScaled * fEeidAu, faAxisScaled=faAxisScaled,
-                faRadiusEarth=faRadius, faCosInc=faCosInc, faTheta=faTheta)
+                faRadiusEarth=faRadius, faCosInc=faCosInc, faTheta=faTheta,
+                faAlbedo=rng.uniform(0.0, 1.0, iNumPlanets))
 
 
 def fdictProjectOrbits(dictPlanets):
@@ -65,7 +66,9 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     fStarFlux = float(ph.faStellarPhotonFlux(dictBand["fLambdaM"], dictStar["fTeffK"],
                                              dictStar["fRadiusRsun"], dictStar["fDistancePc"]))
     fStarRate = fStarFlux * fBandwidthM * fArea * fThroughput
-    faFluxRatio = dictMission["fGeometricAlbedo"] * dictGeom["faPhase"] * \
+    faAlbedo = dictPlanets.get("faAlbedoDrawn")
+    faAlbedo = dictMission["fGeometricAlbedo"] if faAlbedo is None else faAlbedo
+    faFluxRatio = faAlbedo * dictGeom["faPhase"] * \
         (dictPlanets["faRadiusEarth"] * F_REARTH_AU / dictPlanets["faAxisAu"]) ** 2
     fOmega = ph.fnPhotometricApertureSolidAngle(dictBand["fLambdaM"], dictMission["fDiameterM"],
                                                 dictMission["fApertureRadiusLamD"])
@@ -130,6 +133,15 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
                           faTauGridS, iNumPlanets, fAlpha, fBeta, iSeed):
     """Completeness C(tau) on a shared time grid for one star, with its characterization cost.
 
+    Two curves are returned. faComp assumes the planning albedo A_G = 0.2 and is what the
+    optimizer allocates against. faCompAlbedo re-evaluates the SAME planets -- same orbits, same
+    radii, same phases -- with albedos drawn from the adopted distribution, and is what the yield
+    is read from. This follows Stark et al. (2024) Sec. 3.2: AYO designs the survey assuming
+    A_G = 0.2, and the albedo draw then asks which planets that fixed plan would actually have
+    caught. The asymmetry matters: a brighter-than-expected planet adds little because the
+    exposure was already sufficient, while a darker one can fall below the noise floor and be
+    lost entirely.
+
     C(tau) is the fraction of ALL injected EECs that COUNT within tau. A planet counts only if
     it can be both detected and spectrally characterized inside the two-month cap: Stark et al.
     (2019) require both times to be under two months and state that "any planets that did not
@@ -158,7 +170,27 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
     faTauDet = np.where(bCounts, faTauDet, np.inf)
     faDetSorted = np.sort(faTauDet[np.isfinite(faTauDet)])
     faComp = np.searchsorted(faDetSorted, faTauGridS, side="right") / float(iNumPlanets)
-    return dict(faComp=faComp,
+    faCompAlbedo = faComp
+    dictAlbedoRange = dictMission.get("dictAlbedoDistribution")
+    if dictAlbedoRange:
+        dictPlanets["faAlbedoDrawn"] = (
+            dictAlbedoRange["fMin"] + dictPlanets["faAlbedo"] *
+            (dictAlbedoRange["fMax"] - dictAlbedoRange["fMin"]))
+        listRatesAlb = [fdictCountRates(dictStar, dictPlanets, dictGeom, b, dictMission)
+                        for b in listBandsDet]
+        faTauDetAlb = faRequiredExposureTime(listRatesAlb, listBandsDet,
+                                             listBandsDet[0]["fSignalToNoise"], dictMission)
+        faTauCharAlb = np.full(iNumPlanets, np.inf)
+        for dictOption in listCharOptions:
+            faTauCharAlb = np.minimum(faTauCharAlb, faRequiredExposureTime(
+                [fdictCountRates(dictStar, dictPlanets, dictGeom, dictOption, dictMission)],
+                [dictOption], dictOption["fSignalToNoise"], dictMission))
+        bCountsAlb = (np.isfinite(faTauDetAlb) & (faTauDetAlb <= fCap) &
+                      np.isfinite(faTauCharAlb) & (faTauCharAlb <= fCap))
+        faAlbSorted = np.sort(np.where(bCountsAlb, faTauDetAlb, np.inf)[bCountsAlb])
+        faCompAlbedo = (np.searchsorted(faAlbSorted, faTauGridS, side="right") /
+                        float(iNumPlanets))
+    return dict(faComp=faComp, faCompAlbedo=faCompAlbedo,
                 faTauCharMeanS=faCumulativeMeanCharTime(faTauDet, faTauChar, faTauGridS),
                 fTauCharS=float(np.median(faTauChar[bCounts])) if bCounts.any() else np.inf,
                 fMaxCompleteness=float(faComp[-1]))

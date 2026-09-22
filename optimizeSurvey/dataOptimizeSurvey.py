@@ -21,7 +21,9 @@ def flistLoadStars(sCompletenessPath, sBox):
     dictNpz = np.load(sCompletenessPath, allow_pickle=True)
     faTauGridS = dictNpz["faTauGridS"]
     faComp, faTauChar = dictNpz[f"faComp_{sBox}"], dictNpz[f"faTauChar_{sBox}"]
-    return [dict(faTauGridS=faTauGridS, faComp=faComp[i], fTauCharS=float(faTauChar[i]))
+    faCharMean, faCompAlb = dictNpz[f"faTauCharMean_{sBox}"], dictNpz[f"faCompAlbedo_{sBox}"]
+    return [dict(faTauGridS=faTauGridS, faComp=faComp[i], faCompYield=faCompAlb[i],
+                 faTauCharMeanS=faCharMean[i], fTauCharS=float(faTauChar[i]))
             for i in range(faComp.shape[0])], dictNpz
 
 

@@ -33,6 +33,8 @@
         "dictMission.fWavefrontMultiplier": 1.1,
         "dictMission.fExposureLimitS": 5184000.0,
         "dictMission.fThroughputCalibration": 1.0,
+        "dictMission.dictAlbedoDistribution.fMin": 0.08,
+        "dictMission.dictAlbedoDistribution.fMax": 0.32,
         "dictBands.dictBandCharacterization.fLambdaM": 1e-06,
         "dictBands.dictBandCharacterization.fOpticalThroughput": 0.23,
         "dictBands.dictBandCharacterization.fBandwidthFraction": 0.007142857142857143,
@@ -50,7 +52,7 @@
         "dictBoxes.hzOnly.fHzInnerAu": 0.96,
         "dictBoxes.hzOnly.fHzOuterAu": 1.2
       },
-      "iBytes": 4034
+      "iBytes": 4263
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",

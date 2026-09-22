@@ -18,12 +18,12 @@
         "iStarsAvailable": 1500.0,
         "fThroughputCalibration": 3.8382161995755495,
         "fEtaEarthBaseline": 0.24,
-        "fYieldBaseline": 22.478799999999993,
+        "fYieldBaseline": 21.951759999999982,
         "fSummedCompletenessBaseline": 93.66166666666663,
         "iStarsUsedBaseline": 321.0,
-        "fTimeUsedFractionBaseline": 0.7077928630732653
+        "fTimeUsedFractionBaseline": 0.7971903526899365
       },
-      "iBytes": 1469
+      "iBytes": 1478
     }
   }
 }
