@@ -87,43 +87,270 @@
         "iSamples",
         "sEtaNormalisation"
       ],
-      "dictNumbers": {
-        "fEtaLogNormalMu": -1.3590502684778558,
-        "fEtaLogNormalSigma": 0.5158001730512071,
-        "fEtaModeImplied": 0.19689196789208732,
-        "fEtaMeanImplied": 0.2934566475276453,
-        "iSamples": 14400.0,
-        "fAcceptanceFraction": 0.6436458333333333,
-        "fMaxAutocorrSteps": 36.78834226559994,
-        "dictParameters.lnGamma.fMedian": -1.0825710075946717,
-        "dictParameters.lnGamma.fP16": -1.5477366092870628,
-        "dictParameters.lnGamma.fP84": -0.6174287800427471,
-        "dictParameters.lnGamma.fMean": -1.1011247199042877,
-        "dictParameters.alpha.fMedian": -0.18713925478410204,
-        "dictParameters.alpha.fP16": -0.4531544355716044,
-        "dictParameters.alpha.fP84": 0.07744334688823788,
-        "dictParameters.alpha.fMean": -0.18833296309052205,
-        "dictParameters.beta.fMedian": 0.26275076563120436,
-        "dictParameters.beta.fP16": -0.027259323295514375,
-        "dictParameters.beta.fP84": 0.5541729491124299,
-        "dictParameters.beta.fMean": 0.2645734248645533,
-        "dictEtaByBox.canonical.fMedian": 0.2556492691802682,
-        "dictEtaByBox.canonical.fP16": 0.15469494416183774,
-        "dictEtaByBox.canonical.fP84": 0.423668577412398,
-        "dictEtaByBox.canonical.fMean": 0.2919290192658408,
-        "dictEtaByBox.redefined.fMedian": 0.05197086363264328,
-        "dictEtaByBox.redefined.fP16": 0.03123435936565548,
-        "dictEtaByBox.redefined.fP84": 0.08647564838899434,
-        "dictEtaByBox.redefined.fMean": 0.05940724695533123,
-        "dictEtaByBox.hzOnly.fMedian": 0.08219555377718488,
-        "dictEtaByBox.hzOnly.fP16": 0.04945378793516375,
-        "dictEtaByBox.hzOnly.fP84": 0.136406626027829,
-        "dictEtaByBox.hzOnly.fMean": 0.09398770586326054,
-        "dictRatioRedefinedOverCanonical.fMedian": 0.20334323541972582,
-        "dictRatioRedefinedOverCanonical.fP16": 0.18681361673777727,
-        "dictRatioRedefinedOverCanonical.fP84": 0.2204945874828882,
-        "dictRatioRedefinedOverCanonical.fMean": 0.20352045278060632
-      },
+      "listNumbers": [
+        {
+          "saPath": [
+            "fEtaLogNormalMu"
+          ],
+          "oValue": -1.3590502684778558
+        },
+        {
+          "saPath": [
+            "fEtaLogNormalSigma"
+          ],
+          "oValue": 0.5158001730512071
+        },
+        {
+          "saPath": [
+            "fEtaModeImplied"
+          ],
+          "oValue": 0.19689196789208732
+        },
+        {
+          "saPath": [
+            "fEtaMeanImplied"
+          ],
+          "oValue": 0.2934566475276453
+        },
+        {
+          "saPath": [
+            "iSamples"
+          ],
+          "oValue": 14400.0
+        },
+        {
+          "saPath": [
+            "fAcceptanceFraction"
+          ],
+          "oValue": 0.6436458333333333
+        },
+        {
+          "saPath": [
+            "fMaxAutocorrSteps"
+          ],
+          "oValue": 36.78834226559994
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "lnGamma",
+            "fMedian"
+          ],
+          "oValue": -1.0825710075946717
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "lnGamma",
+            "fP16"
+          ],
+          "oValue": -1.5477366092870628
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "lnGamma",
+            "fP84"
+          ],
+          "oValue": -0.6174287800427471
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "lnGamma",
+            "fMean"
+          ],
+          "oValue": -1.1011247199042877
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "alpha",
+            "fMedian"
+          ],
+          "oValue": -0.18713925478410204
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "alpha",
+            "fP16"
+          ],
+          "oValue": -0.4531544355716044
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "alpha",
+            "fP84"
+          ],
+          "oValue": 0.07744334688823788
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "alpha",
+            "fMean"
+          ],
+          "oValue": -0.18833296309052205
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "beta",
+            "fMedian"
+          ],
+          "oValue": 0.26275076563120436
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "beta",
+            "fP16"
+          ],
+          "oValue": -0.027259323295514375
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "beta",
+            "fP84"
+          ],
+          "oValue": 0.5541729491124299
+        },
+        {
+          "saPath": [
+            "dictParameters",
+            "beta",
+            "fMean"
+          ],
+          "oValue": 0.2645734248645533
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "canonical",
+            "fMedian"
+          ],
+          "oValue": 0.2556492691802682
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "canonical",
+            "fP16"
+          ],
+          "oValue": 0.15469494416183774
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "canonical",
+            "fP84"
+          ],
+          "oValue": 0.423668577412398
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "canonical",
+            "fMean"
+          ],
+          "oValue": 0.2919290192658408
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "redefined",
+            "fMedian"
+          ],
+          "oValue": 0.05197086363264328
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "redefined",
+            "fP16"
+          ],
+          "oValue": 0.03123435936565548
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "redefined",
+            "fP84"
+          ],
+          "oValue": 0.08647564838899434
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "redefined",
+            "fMean"
+          ],
+          "oValue": 0.05940724695533123
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "hzOnly",
+            "fMedian"
+          ],
+          "oValue": 0.08219555377718488
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "hzOnly",
+            "fP16"
+          ],
+          "oValue": 0.04945378793516375
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "hzOnly",
+            "fP84"
+          ],
+          "oValue": 0.136406626027829
+        },
+        {
+          "saPath": [
+            "dictEtaByBox",
+            "hzOnly",
+            "fMean"
+          ],
+          "oValue": 0.09398770586326054
+        },
+        {
+          "saPath": [
+            "dictRatioRedefinedOverCanonical",
+            "fMedian"
+          ],
+          "oValue": 0.20334323541972582
+        },
+        {
+          "saPath": [
+            "dictRatioRedefinedOverCanonical",
+            "fP16"
+          ],
+          "oValue": 0.18681361673777727
+        },
+        {
+          "saPath": [
+            "dictRatioRedefinedOverCanonical",
+            "fP84"
+          ],
+          "oValue": 0.2204945874828882
+        },
+        {
+          "saPath": [
+            "dictRatioRedefinedOverCanonical",
+            "fMean"
+          ],
+          "oValue": 0.20352045278060632
+        }
+      ],
       "iBytes": 1713
     }
   }

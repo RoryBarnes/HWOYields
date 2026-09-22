@@ -263,19 +263,77 @@
         "sQuery",
         "sSource"
       ],
-      "dictNumbers": {
-        "iRawRows": 8409.0,
-        "iCatalogRows": 8709.0,
-        "iGaiaRows": 8356.0,
-        "iHipparcosSupplementRows": 353.0,
-        "bSupplementFetched": true,
-        "iFgkStars": 5542.0,
-        "fMedianDistancePc": 35.86389302483663,
-        "fMaxEeidArcsec": 1.933903345413043,
-        "dictTeffPercentiles.5": 3099.27524,
-        "dictTeffPercentiles.50": 4679.176,
-        "dictTeffPercentiles.95": 6610.46079801322
-      },
+      "listNumbers": [
+        {
+          "saPath": [
+            "iRawRows"
+          ],
+          "oValue": 8409.0
+        },
+        {
+          "saPath": [
+            "iCatalogRows"
+          ],
+          "oValue": 8709.0
+        },
+        {
+          "saPath": [
+            "iGaiaRows"
+          ],
+          "oValue": 8356.0
+        },
+        {
+          "saPath": [
+            "iHipparcosSupplementRows"
+          ],
+          "oValue": 353.0
+        },
+        {
+          "saPath": [
+            "bSupplementFetched"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "iFgkStars"
+          ],
+          "oValue": 5542.0
+        },
+        {
+          "saPath": [
+            "fMedianDistancePc"
+          ],
+          "oValue": 35.86389302483663
+        },
+        {
+          "saPath": [
+            "fMaxEeidArcsec"
+          ],
+          "oValue": 1.933903345413043
+        },
+        {
+          "saPath": [
+            "dictTeffPercentiles",
+            "5"
+          ],
+          "oValue": 3099.27524
+        },
+        {
+          "saPath": [
+            "dictTeffPercentiles",
+            "50"
+          ],
+          "oValue": 4679.176
+        },
+        {
+          "saPath": [
+            "dictTeffPercentiles",
+            "95"
+          ],
+          "oValue": 6610.46079801322
+        }
+      ],
       "iBytes": 851
     }
   }

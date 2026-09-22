@@ -3,6 +3,18 @@
     "iMtime": 1790094911,
     "sSha256": "e46a55b135aaed857cb0e669711a7cd50e1d84ac9e31b25378a8b012b0fe8b01"
   },
+  "CompareTargetCompleteness/reference/starkFigure11.pdf": {
+    "iMtime": 1790097512,
+    "sSha256": "12d87423014dda9f8df9946bc82bdb55ba64b82532e64be518cc6ad137f850b0"
+  },
+  "CompareTargetCompleteness/starkFigure11Digitised.json": {
+    "iMtime": 1790097512,
+    "sSha256": "5689a989146350f1ea4ddec24e46e3a63dff981734455a7fb14ffb1bbea69e1f"
+  },
+  "CompareTargetCompleteness/targetCompletenessComparison.json": {
+    "iMtime": 1790097533,
+    "sSha256": "d4325e9b7608e1389162fb8e2f28a921e7474b1644ef7f106b4ee28583371553"
+  },
   "Plot/figApertureScaling.pdf": {
     "iMtime": 1790094912,
     "sSha256": "e093995edd56a5b8e9e8224af371e651171ebae74d458e1406982b64576700c6"
@@ -22,6 +34,10 @@
   "Plot/figOccurrencePosterior.pdf": {
     "iMtime": 1790053800,
     "sSha256": "36a1d03fe1134537f4c3270414de0d412b553c86145df2da0d46bae652a8088b"
+  },
+  "Plot/figTargetCompleteness.pdf": {
+    "iMtime": 1790097534,
+    "sSha256": "1874ee76ddf537317361e1c3e73abcd785d2fc2b90e21f8678dc92bc85f6be0b"
   },
   "Plot/figVerification.pdf": {
     "iMtime": 1790094913,

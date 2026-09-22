@@ -14,47 +14,314 @@
         "sCalibrationNote",
         "sCrossingNote"
       ],
-      "dictNumbers": {
-        "fFrozenCalibrationFactor": 1.4859320860199425,
-        "fCrossingDiameterM": 6.622881355932203,
-        "fCrossingDiameterPublishedM": 7.1,
-        "dictPublished.dictIncludingSigmaEta.6": 0.32,
-        "dictPublished.dictIncludingSigmaEta.7": 0.53,
-        "dictPublished.dictIncludingSigmaEta.8": 0.67,
-        "dictPublished.dictIncludingSigmaEta.9": 0.78,
-        "dictPublished.dictExcludingSigmaEta.6": 0.06,
-        "dictPublished.dictExcludingSigmaEta.7": 0.49,
-        "dictPublished.dictExcludingSigmaEta.8": 0.89,
-        "dictPublished.dictExcludingSigmaEta.9": 0.995,
-        "dictByDiameter.6.fExpectedYieldAtBaselineEta": 21.51098483128868,
-        "dictByDiameter.6.fMeanExpectedMarginal": 24.48790819032771,
-        "dictByDiameter.6.fProbability25IncludingSigmaEta": 0.43256944444444445,
-        "dictByDiameter.6.fProbability25ExcludingSigmaEta": 0.2590277777777778,
-        "dictByDiameter.6.iStarsScreened": 1500.0,
-        "dictByDiameter.7.fExpectedYieldAtBaselineEta": 28.615084536283277,
-        "dictByDiameter.7.fMeanExpectedMarginal": 32.41359493990116,
-        "dictByDiameter.7.fProbability25IncludingSigmaEta": 0.6711111111111111,
-        "dictByDiameter.7.fProbability25ExcludingSigmaEta": 0.7761805555555555,
-        "dictByDiameter.7.iStarsScreened": 1500.0,
-        "dictByDiameter.8.fExpectedYieldAtBaselineEta": 35.97380921419928,
-        "dictByDiameter.8.fMeanExpectedMarginal": 40.836909254530894,
-        "dictByDiameter.8.fProbability25IncludingSigmaEta": 0.8277777777777777,
-        "dictByDiameter.8.fProbability25ExcludingSigmaEta": 0.9779166666666667,
-        "dictByDiameter.8.iStarsScreened": 1500.0,
-        "dictByDiameter.9.fExpectedYieldAtBaselineEta": 43.61902652231246,
-        "dictByDiameter.9.fMeanExpectedMarginal": 49.54493682817614,
-        "dictByDiameter.9.fProbability25IncludingSigmaEta": 0.9109027777777777,
-        "dictByDiameter.9.fProbability25ExcludingSigmaEta": 0.9984722222222222,
-        "dictByDiameter.9.iStarsScreened": 1500.0,
-        "dictResiduals.6.fIncludingSigmaEta": 0.11256944444444444,
-        "dictResiduals.6.fExcludingSigmaEta": 0.1990277777777778,
-        "dictResiduals.7.fIncludingSigmaEta": 0.14111111111111108,
-        "dictResiduals.7.fExcludingSigmaEta": 0.28618055555555555,
-        "dictResiduals.8.fIncludingSigmaEta": 0.15777777777777768,
-        "dictResiduals.8.fExcludingSigmaEta": 0.08791666666666664,
-        "dictResiduals.9.fIncludingSigmaEta": 0.1309027777777777,
-        "dictResiduals.9.fExcludingSigmaEta": 0.00347222222222221
-      },
+      "listNumbers": [
+        {
+          "saPath": [
+            "fFrozenCalibrationFactor"
+          ],
+          "oValue": 1.4859320860199425
+        },
+        {
+          "saPath": [
+            "fCrossingDiameterM"
+          ],
+          "oValue": 6.622881355932203
+        },
+        {
+          "saPath": [
+            "fCrossingDiameterPublishedM"
+          ],
+          "oValue": 7.1
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictIncludingSigmaEta",
+            "6"
+          ],
+          "oValue": 0.32
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictIncludingSigmaEta",
+            "7"
+          ],
+          "oValue": 0.53
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictIncludingSigmaEta",
+            "8"
+          ],
+          "oValue": 0.67
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictIncludingSigmaEta",
+            "9"
+          ],
+          "oValue": 0.78
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictExcludingSigmaEta",
+            "6"
+          ],
+          "oValue": 0.06
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictExcludingSigmaEta",
+            "7"
+          ],
+          "oValue": 0.49
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictExcludingSigmaEta",
+            "8"
+          ],
+          "oValue": 0.89
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictExcludingSigmaEta",
+            "9"
+          ],
+          "oValue": 0.995
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fExpectedYieldAtBaselineEta"
+          ],
+          "oValue": 21.51098483128868
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fMeanExpectedMarginal"
+          ],
+          "oValue": 24.48790819032771
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fProbability25IncludingSigmaEta"
+          ],
+          "oValue": 0.43256944444444445
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fProbability25ExcludingSigmaEta"
+          ],
+          "oValue": 0.2590277777777778
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fExpectedYieldAtBaselineEta"
+          ],
+          "oValue": 28.615084536283277
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fMeanExpectedMarginal"
+          ],
+          "oValue": 32.41359493990116
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fProbability25IncludingSigmaEta"
+          ],
+          "oValue": 0.6711111111111111
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fProbability25ExcludingSigmaEta"
+          ],
+          "oValue": 0.7761805555555555
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fExpectedYieldAtBaselineEta"
+          ],
+          "oValue": 35.97380921419928
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fMeanExpectedMarginal"
+          ],
+          "oValue": 40.836909254530894
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fProbability25IncludingSigmaEta"
+          ],
+          "oValue": 0.8277777777777777
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fProbability25ExcludingSigmaEta"
+          ],
+          "oValue": 0.9779166666666667
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fExpectedYieldAtBaselineEta"
+          ],
+          "oValue": 43.61902652231246
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fMeanExpectedMarginal"
+          ],
+          "oValue": 49.54493682817614
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fProbability25IncludingSigmaEta"
+          ],
+          "oValue": 0.9109027777777777
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fProbability25ExcludingSigmaEta"
+          ],
+          "oValue": 0.9984722222222222
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "6",
+            "fIncludingSigmaEta"
+          ],
+          "oValue": 0.11256944444444444
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "6",
+            "fExcludingSigmaEta"
+          ],
+          "oValue": 0.1990277777777778
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "7",
+            "fIncludingSigmaEta"
+          ],
+          "oValue": 0.14111111111111108
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "7",
+            "fExcludingSigmaEta"
+          ],
+          "oValue": 0.28618055555555555
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "8",
+            "fIncludingSigmaEta"
+          ],
+          "oValue": 0.15777777777777768
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "8",
+            "fExcludingSigmaEta"
+          ],
+          "oValue": 0.08791666666666664
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "9",
+            "fIncludingSigmaEta"
+          ],
+          "oValue": 0.1309027777777777
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "9",
+            "fExcludingSigmaEta"
+          ],
+          "oValue": 0.00347222222222221
+        }
+      ],
       "iBytes": 5838
     }
   }

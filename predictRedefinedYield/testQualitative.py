@@ -53,8 +53,8 @@ def test_recorded_numeric_json_paths_are_present(sRelPath):
         pytest.skip("not a JSON output")
     with open(fsResolve(sRelPath)) as oFile:
         dictData = json.load(oFile)
-    for sPathKey in dictStd["dictNumbers"]:
+    for dictEntry in dictStd["listNumbers"]:
         oNode = dictData
-        for sPart in sPathKey.split("."):
-            assert isinstance(oNode, dict) and sPart in oNode, sPathKey
+        for sPart in dictEntry["saPath"]:
+            assert isinstance(oNode, dict) and sPart in oNode, dictEntry["saPath"]
             oNode = oNode[sPart]

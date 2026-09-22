@@ -240,23 +240,122 @@
         "iNumPlanetsPerStar",
         "iStarsScreened"
       ],
-      "dictNumbers": {
-        "iStarsScreened": 1500.0,
-        "iNumPlanetsPerStar": 1500.0,
-        "fThroughputCalibration": 1.4859320860199425,
-        "dictByBox.canonical.fMaxCompletenessBest": 1.0,
-        "dictByBox.canonical.fSummedMaxCompleteness": 8264.692000000001,
-        "dictByBox.canonical.iStarsWithAnyCompleteness": 18035.0,
-        "dictByBox.canonical.fMedianTauCharDays": 31.165926328618973,
-        "dictByBox.redefined.fMaxCompletenessBest": 1.0,
-        "dictByBox.redefined.fSummedMaxCompleteness": 8176.0273333333325,
-        "dictByBox.redefined.iStarsWithAnyCompleteness": 12957.0,
-        "dictByBox.redefined.fMedianTauCharDays": 23.640636261327202,
-        "dictByBox.hzOnly.fMaxCompletenessBest": 1.0,
-        "dictByBox.hzOnly.fSummedMaxCompleteness": 8946.710000000001,
-        "dictByBox.hzOnly.iStarsWithAnyCompleteness": 16621.0,
-        "dictByBox.hzOnly.fMedianTauCharDays": 27.582609557428803
-      },
+      "listNumbers": [
+        {
+          "saPath": [
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "iNumPlanetsPerStar"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "fThroughputCalibration"
+          ],
+          "oValue": 1.4859320860199425
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "fMaxCompletenessBest"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "fSummedMaxCompleteness"
+          ],
+          "oValue": 8264.692000000001
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "iStarsWithAnyCompleteness"
+          ],
+          "oValue": 18035.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "fMedianTauCharDays"
+          ],
+          "oValue": 31.165926328618973
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "fMaxCompletenessBest"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "fSummedMaxCompleteness"
+          ],
+          "oValue": 8176.0273333333325
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "iStarsWithAnyCompleteness"
+          ],
+          "oValue": 12957.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "fMedianTauCharDays"
+          ],
+          "oValue": 23.640636261327202
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "hzOnly",
+            "fMaxCompletenessBest"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "hzOnly",
+            "fSummedMaxCompleteness"
+          ],
+          "oValue": 8946.710000000001
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "hzOnly",
+            "iStarsWithAnyCompleteness"
+          ],
+          "oValue": 16621.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "hzOnly",
+            "fMedianTauCharDays"
+          ],
+          "oValue": 27.582609557428803
+        }
+      ],
       "iBytes": 728
     }
   }

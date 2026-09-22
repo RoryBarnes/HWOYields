@@ -22,23 +22,28 @@ S_SKIP_NUMERIC = ("fMedianTauCharDays",)
 
 
 def fdictIntrospectJson(sPath):
-    """Top-level keys and every finite numeric leaf, keyed by dotted path."""
+    """Top-level keys and every finite numeric leaf, each addressed by an explicit key list.
+
+    Paths are lists rather than dotted strings because JSON keys may themselves contain dots --
+    an axis-tick map keyed by "0.0" produced the path "dictXTicks.0.0", which no split on "."
+    can resolve. Key lists have no such ambiguity.
+    """
     with open(sPath) as oFile:
         dictData = json.load(oFile)
-    dictNumbers = {}
+    listNumbers = []
 
-    def fnWalk(oNode, sPrefix):
+    def fnWalk(oNode, listPrefix):
         if isinstance(oNode, dict):
             for sKey, oValue in oNode.items():
-                fnWalk(oValue, f"{sPrefix}.{sKey}" if sPrefix else sKey)
+                fnWalk(oValue, listPrefix + [sKey])
         elif isinstance(oNode, bool):
-            dictNumbers[sPrefix] = bool(oNode)
+            listNumbers.append({"saPath": listPrefix, "oValue": bool(oNode)})
         elif isinstance(oNode, (int, float)) and np.isfinite(oNode):
-            dictNumbers[sPrefix] = float(oNode)
+            listNumbers.append({"saPath": listPrefix, "oValue": float(oNode)})
 
-    fnWalk(dictData, "")
+    fnWalk(dictData, [])
     return {"sKind": "json", "saTopLevelKeys": sorted(dictData.keys()),
-            "dictNumbers": dictNumbers}
+            "listNumbers": listNumbers}
 
 
 def fdictIntrospectCsv(sPath):
@@ -163,10 +168,10 @@ def test_no_nan_or_inf_where_none_was_recorded(sRelPath):
         for sName in dictStd["dictArrayStats"]:
             assert np.all(np.isfinite(dictNpz[sName].astype(float))), sName
     else:
-        for sKey, oValue in dictStd["dictNumbers"].items():
-            if isinstance(oValue, bool):
+        for dictEntry in dictStd["listNumbers"]:
+            if isinstance(dictEntry["oValue"], bool):
                 continue
-            assert np.isfinite(oValue), sKey
+            assert np.isfinite(dictEntry["oValue"]), dictEntry["saPath"]
 '''
 
 S_QUALITATIVE_BODY = '''
@@ -199,10 +204,10 @@ def test_recorded_numeric_json_paths_are_present(sRelPath):
         pytest.skip("not a JSON output")
     with open(fsResolve(sRelPath)) as oFile:
         dictData = json.load(oFile)
-    for sPathKey in dictStd["dictNumbers"]:
+    for dictEntry in dictStd["listNumbers"]:
         oNode = dictData
-        for sPart in sPathKey.split("."):
-            assert isinstance(oNode, dict) and sPart in oNode, sPathKey
+        for sPart in dictEntry["saPath"]:
+            assert isinstance(oNode, dict) and sPart in oNode, dictEntry["saPath"]
             oNode = oNode[sPart]
 '''
 
@@ -219,14 +224,16 @@ def test_recorded_numbers_match_standards(sRelPath):
     if dictStd["sKind"] == "json":
         with open(sPath) as oFile:
             dictData = json.load(oFile)
-        for sPathKey, oExpected in dictStd["dictNumbers"].items():
+        for dictEntry in dictStd["listNumbers"]:
             oNode = dictData
-            for sPart in sPathKey.split("."):
+            for sPart in dictEntry["saPath"]:
                 oNode = oNode[sPart]
+            oExpected = dictEntry["oValue"]
             if isinstance(oExpected, bool):
-                assert bool(oNode) == oExpected, sPathKey
+                assert bool(oNode) == oExpected, dictEntry["saPath"]
             else:
-                assert np.allclose(float(oNode), oExpected, rtol=F_RTOL), sPathKey
+                assert np.allclose(float(oNode), oExpected,
+                                   rtol=F_RTOL), dictEntry["saPath"]
     elif dictStd["sKind"] == "csv":
         dfData = pd.read_csv(sPath)
         for sCol, dictStats in dictStd["dictColumnStats"].items():

@@ -596,6 +596,66 @@ What would settle it is a published completeness curve, which the papers do not 
 nearest available constraint is the per-target completeness of Fig.~11, which pins $C$ at the
 operating point but not its slope, and is a colour scale rather than a table.
 
+\subsection{Digitizing Fig.~11, and what it finally localizes}
+\label{sec:fig11}
+
+The slope investigation ended without a cause, so the only published per-target completeness data
+was extracted directly. Stark et al.\ (2024) Fig.~11 is a vector figure, so rather than
+rasterizing it, step A10 reads the PDF's drawing commands: each of the 154 selected targets is a
+filled polygon carrying its own CMYK colour, and the colour bar is an embedded 472-pixel CMYK
+image, so the colour-to-completeness mapping is recovered from the figure itself rather than
+assumed from a named colormap. Axes calibrate from the tick-label positions and recover
+0--40\,pc and 0.01--10\,$L_\odot$ exactly.
+
+The digitization gives 154 targets spanning 2.1--26.2\,pc and 0.004--20.2\,$L_\odot$, with a
+summed completeness of 77.4 and a median of 0.50. Matching them to this model's stars by distance
+and luminosity pairs 145 of the 154 --- so the catalog contains almost all of Stark's targets,
+and the disagreement is not a target-selection artifact.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{Median completeness} & \textbf{Published} & \textbf{This model} \\
+\midrule
+0--6\,pc   & 0.885 & 0.961 \\
+6--10\,pc  & 0.894 & 0.802 \\
+10--15\,pc & 0.728 & \textbf{0.031} \\
+15--30\,pc & 0.248 & \textbf{0.000} \\
+\bottomrule
+\end{tabular}
+\caption{Per-target completeness against the digitized Fig.~11, binned by distance. The model
+tracks the published values inside 10\,pc and collapses outside it.}
+\end{table}
+
+\textbf{This model's completeness collapses beyond about 10\,pc.} Inside that it is accurate,
+even slightly generous. Outside it, the optimizer allocates essentially nothing, while Stark
+sustains a median of 0.73 at 10--15\,pc and 0.25 at 15--30\,pc. The summed completeness happens
+to match (93.8 against 77.4) only because this model concentrates its yield in a few very near
+stars sitting at $C \approx 1$.
+
+\textbf{That single fact explains the rest of this section.} If the yield comes from a handful of
+saturated nearby targets rather than from many marginal ones, then perturbing those targets --- a
+darker albedo, an unlucky exozodi draw --- barely moves the yield, because they have margin to
+spare. The albedo and exozodi penalties being three to four times too weak, the shallow
+$(\mathrm{d}C/\mathrm{d}\ln\tau)/C$ measured across a bimodal population, and $P_{25}$ sitting too
+high because the yield rests on reliable rather than marginal stars, are all consequences of the
+same cliff rather than three separate faults.
+
+\textbf{What the cliff is not.} Exposure time scales as $d^{4.9}$ here, which is the correct
+behaviour for a background-limited regime: the planet dims as $1/d^2$ while the local zodiacal
+light does not. The background is exozodi-dominated at the relevant separations, and the
+coronagraph contrast rise inside the inner working angle --- the obvious suspect, since distant
+stars' habitable zones sit there --- was tested by removing it entirely and changes the exposure
+times by a factor of 1.00 at every distance. The absolute background levels check out against the
+standard benchmark that one zodi contributes roughly an Earth's flux in a diffraction-limited
+aperture at 10\,pc.
+
+So the distance scaling is defensible and still disagrees with the published figure. The
+discrepancy is now a single sharp statement about one region of parameter space rather than a
+diffuse weakness spread across three biases, which is a considerably better place to leave it.
+
 \subsection{Further checks, still not run}
 
 \begin{enumerate}

@@ -10,11 +10,26 @@
         "listChecks",
         "listDisagreeing"
       ],
-      "dictNumbers": {
-        "iChecks": 27.0,
-        "iIndependent": 26.0,
-        "iIndependentAgreeing": 21.0
-      },
+      "listNumbers": [
+        {
+          "saPath": [
+            "iChecks"
+          ],
+          "oValue": 27.0
+        },
+        {
+          "saPath": [
+            "iIndependent"
+          ],
+          "oValue": 26.0
+        },
+        {
+          "saPath": [
+            "iIndependentAgreeing"
+          ],
+          "oValue": 21.0
+        }
+      ],
       "iBytes": 9005
     }
   }

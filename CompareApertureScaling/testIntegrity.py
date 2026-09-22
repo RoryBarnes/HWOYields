@@ -70,7 +70,7 @@ def test_no_nan_or_inf_where_none_was_recorded(sRelPath):
         for sName in dictStd["dictArrayStats"]:
             assert np.all(np.isfinite(dictNpz[sName].astype(float))), sName
     else:
-        for sKey, oValue in dictStd["dictNumbers"].items():
-            if isinstance(oValue, bool):
+        for dictEntry in dictStd["listNumbers"]:
+            if isinstance(dictEntry["oValue"], bool):
                 continue
-            assert np.isfinite(oValue), sKey
+            assert np.isfinite(dictEntry["oValue"]), dictEntry["saPath"]

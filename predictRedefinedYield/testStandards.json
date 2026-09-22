@@ -8,31 +8,202 @@
         "dictYieldRatio",
         "fYieldGoal"
       ],
-      "dictNumbers": {
-        "dictByBox.canonical.dictDistribution.fMeanExpected": 24.48790819032771,
-        "dictByBox.canonical.dictDistribution.fMedianExpected": 22.684842402910487,
-        "dictByBox.canonical.dictDistribution.fP16Expected": 14.417598263853076,
-        "dictByBox.canonical.dictDistribution.fP84Expected": 34.19710172540384,
-        "dictByBox.canonical.dictDistribution.fP05Expected": 10.315663158000525,
-        "dictByBox.canonical.dictDistribution.fP95Expected": 44.59407575893603,
-        "dictByBox.canonical.dictDistribution.fProbabilityAtLeastGoal": 0.43256944444444445,
-        "dictByBox.canonical.dictDistribution.fProbabilityAtLeastOne": 1.0,
-        "dictByBox.canonical.fEtaMedian": 0.2556492691802682,
-        "dictByBox.redefined.dictDistribution.fMeanExpected": 5.395255965721054,
-        "dictByBox.redefined.dictDistribution.fMedianExpected": 4.701389659411429,
-        "dictByBox.redefined.dictDistribution.fP16Expected": 2.8217219458643976,
-        "dictByBox.redefined.dictDistribution.fP84Expected": 7.832419320549406,
-        "dictByBox.redefined.dictDistribution.fP05Expected": 1.9981955278102908,
-        "dictByBox.redefined.dictDistribution.fP95Expected": 11.107619011315228,
-        "dictByBox.redefined.dictDistribution.fProbabilityAtLeastGoal": 0.001875,
-        "dictByBox.redefined.dictDistribution.fProbabilityAtLeastOne": 0.968125,
-        "dictByBox.redefined.fEtaMedian": 0.05197086363264328,
-        "fYieldGoal": 25.0,
-        "dictYieldRatio.fMedian": 0.21036234549347627,
-        "dictYieldRatio.fP16": 0.18984665387059968,
-        "dictYieldRatio.fP84": 0.2356634239359304,
-        "dictYieldRatio.fOccurrenceRatioMedian": 0.20334323541972582
-      },
+      "listNumbers": [
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fMeanExpected"
+          ],
+          "oValue": 24.48790819032771
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fMedianExpected"
+          ],
+          "oValue": 22.684842402910487
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fP16Expected"
+          ],
+          "oValue": 14.417598263853076
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fP84Expected"
+          ],
+          "oValue": 34.19710172540384
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fP05Expected"
+          ],
+          "oValue": 10.315663158000525
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fP95Expected"
+          ],
+          "oValue": 44.59407575893603
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fProbabilityAtLeastGoal"
+          ],
+          "oValue": 0.43256944444444445
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fProbabilityAtLeastOne"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "fEtaMedian"
+          ],
+          "oValue": 0.2556492691802682
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fMeanExpected"
+          ],
+          "oValue": 5.395255965721054
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fMedianExpected"
+          ],
+          "oValue": 4.701389659411429
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fP16Expected"
+          ],
+          "oValue": 2.8217219458643976
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fP84Expected"
+          ],
+          "oValue": 7.832419320549406
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fP05Expected"
+          ],
+          "oValue": 1.9981955278102908
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fP95Expected"
+          ],
+          "oValue": 11.107619011315228
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fProbabilityAtLeastGoal"
+          ],
+          "oValue": 0.001875
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fProbabilityAtLeastOne"
+          ],
+          "oValue": 0.968125
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "fEtaMedian"
+          ],
+          "oValue": 0.05197086363264328
+        },
+        {
+          "saPath": [
+            "fYieldGoal"
+          ],
+          "oValue": 25.0
+        },
+        {
+          "saPath": [
+            "dictYieldRatio",
+            "fMedian"
+          ],
+          "oValue": 0.21036234549347627
+        },
+        {
+          "saPath": [
+            "dictYieldRatio",
+            "fP16"
+          ],
+          "oValue": 0.18984665387059968
+        },
+        {
+          "saPath": [
+            "dictYieldRatio",
+            "fP84"
+          ],
+          "oValue": 0.2356634239359304
+        },
+        {
+          "saPath": [
+            "dictYieldRatio",
+            "fOccurrenceRatioMedian"
+          ],
+          "oValue": 0.20334323541972582
+        }
+      ],
       "iBytes": 3921
     },
     "yieldSamples.npz": {

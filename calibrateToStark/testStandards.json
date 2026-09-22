@@ -17,18 +17,68 @@
         "listTrace",
         "sGateNote"
       ],
-      "dictNumbers": {
-        "fTargetYield": 22.5,
-        "iStarsScreened": 1500.0,
-        "fCalibratedThroughputFactor": 1.4859320860199425,
-        "fCalibratedYield": 22.500600000000002,
-        "fRelativeError": 2.6666666666762415e-05,
-        "bTargetReached": true,
-        "fMaxPlausibleFactor": 2.0,
-        "bFactorPlausible": true,
-        "bCalibrationGatePassed": true,
-        "fUncalibratedYield": 19.490700000000004
-      },
+      "listNumbers": [
+        {
+          "saPath": [
+            "fTargetYield"
+          ],
+          "oValue": 22.5
+        },
+        {
+          "saPath": [
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "fCalibratedThroughputFactor"
+          ],
+          "oValue": 1.4859320860199425
+        },
+        {
+          "saPath": [
+            "fCalibratedYield"
+          ],
+          "oValue": 22.500600000000002
+        },
+        {
+          "saPath": [
+            "fRelativeError"
+          ],
+          "oValue": 2.6666666666762415e-05
+        },
+        {
+          "saPath": [
+            "bTargetReached"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "fMaxPlausibleFactor"
+          ],
+          "oValue": 2.0
+        },
+        {
+          "saPath": [
+            "bFactorPlausible"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "bCalibrationGatePassed"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "fUncalibratedYield"
+          ],
+          "oValue": 19.490700000000004
+        }
+      ],
       "iBytes": 1853
     }
   }

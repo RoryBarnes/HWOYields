@@ -36,14 +36,16 @@ def test_recorded_numbers_match_standards(sRelPath):
     if dictStd["sKind"] == "json":
         with open(sPath) as oFile:
             dictData = json.load(oFile)
-        for sPathKey, oExpected in dictStd["dictNumbers"].items():
+        for dictEntry in dictStd["listNumbers"]:
             oNode = dictData
-            for sPart in sPathKey.split("."):
+            for sPart in dictEntry["saPath"]:
                 oNode = oNode[sPart]
+            oExpected = dictEntry["oValue"]
             if isinstance(oExpected, bool):
-                assert bool(oNode) == oExpected, sPathKey
+                assert bool(oNode) == oExpected, dictEntry["saPath"]
             else:
-                assert np.allclose(float(oNode), oExpected, rtol=F_RTOL), sPathKey
+                assert np.allclose(float(oNode), oExpected,
+                                   rtol=F_RTOL), dictEntry["saPath"]
     elif dictStd["sKind"] == "csv":
         dfData = pd.read_csv(sPath)
         for sCol, dictStats in dictStd["dictColumnStats"].items():

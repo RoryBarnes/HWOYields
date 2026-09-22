@@ -9,53 +9,344 @@
         "dictMission",
         "sProvenance"
       ],
-      "dictNumbers": {
-        "dictMission.fDiameterM": 6.0,
-        "dictMission.fIwaLamD": 3.89,
-        "dictMission.fOwaLamD": 32.0,
-        "dictMission.fCoreThroughputMax": 0.46,
-        "dictMission.fContrastFloor": 1e-10,
-        "dictMission.fNoiseFloorDeltaMag": 26.5,
-        "dictMission.fContaminationThroughput": 0.95,
-        "dictMission.fApertureRadiusLamD": 0.7,
-        "dictMission.fGeometricAlbedo": 0.2,
-        "dictMission.fZodiMagArcsec2": 23.0,
-        "dictMission.fExozodiMagArcsec2": 22.0,
-        "dictMission.fExozodiLevel": 3.0,
-        "dictMission.fDarkCurrent": 3e-05,
-        "dictMission.fReadNoise": 0.0,
-        "dictMission.fClockInducedCharge": 0.0013,
-        "dictMission.fQuantumEfficiency": 0.9,
-        "dictMission.fDetectiveQuantumEfficiency": 0.75,
-        "dictMission.fTotalScienceTimeS": 63115200.0,
-        "dictMission.fSlewOverheadS": 3600.0,
-        "dictMission.fWavefrontOverheadS": 9720.0,
-        "dictMission.fWavefrontMultiplier": 1.1,
-        "dictMission.fExposureLimitS": 5184000.0,
-        "dictMission.fThroughputCalibration": 1.0,
-        "dictMission.iMaxVisits": 6.0,
-        "dictMission.dictExozodiDistribution.fMedianZodi": 3.0,
-        "dictMission.dictExozodiDistribution.fLogSigma": 1.2,
-        "dictMission.dictAlbedoDistribution.fMin": 0.08,
-        "dictMission.dictAlbedoDistribution.fMax": 0.32,
-        "dictBands.dictBandCharacterization.fLambdaM": 1e-06,
-        "dictBands.dictBandCharacterization.fOpticalThroughput": 0.23,
-        "dictBands.dictBandCharacterization.fBandwidthFraction": 0.007142857142857143,
-        "dictBands.dictBandCharacterization.fSignalToNoise": 5.0,
-        "dictBands.dictBandCharacterization.iNumPixels": 96.0,
-        "dictBoxes.canonical.fRadiusMaxEarth": 1.4,
-        "dictBoxes.canonical.fHzInnerAu": 0.95,
-        "dictBoxes.canonical.fHzOuterAu": 1.67,
-        "dictBoxes.redefined.fMassLoEarth": 0.5,
-        "dictBoxes.redefined.fMassHiEarth": 2.0,
-        "dictBoxes.redefined.fMassRadiusExponent": 0.27,
-        "dictBoxes.redefined.fHzInnerAu": 0.96,
-        "dictBoxes.redefined.fHzOuterAu": 1.2,
-        "dictBoxes.hzOnly.fRadiusMaxEarth": 1.4,
-        "dictBoxes.hzOnly.fHzInnerAu": 0.96,
-        "dictBoxes.hzOnly.fHzOuterAu": 1.2
-      },
-      "iBytes": 4529
+      "listNumbers": [
+        {
+          "saPath": [
+            "dictMission",
+            "fDiameterM"
+          ],
+          "oValue": 6.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fIwaLamD"
+          ],
+          "oValue": 3.89
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fOwaLamD"
+          ],
+          "oValue": 32.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fCoreThroughputMax"
+          ],
+          "oValue": 0.46
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fContrastFloor"
+          ],
+          "oValue": 1e-10
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fNoiseFloorDeltaMag"
+          ],
+          "oValue": 26.5
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fContaminationThroughput"
+          ],
+          "oValue": 0.95
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fApertureRadiusLamD"
+          ],
+          "oValue": 0.7
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fGeometricAlbedo"
+          ],
+          "oValue": 0.2
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fZodiMagArcsec2"
+          ],
+          "oValue": 23.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fExozodiMagArcsec2"
+          ],
+          "oValue": 22.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fExozodiLevel"
+          ],
+          "oValue": 3.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fDarkCurrent"
+          ],
+          "oValue": 3e-05
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fReadNoise"
+          ],
+          "oValue": 0.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fClockInducedCharge"
+          ],
+          "oValue": 0.0013
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fQuantumEfficiency"
+          ],
+          "oValue": 0.9
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fDetectiveQuantumEfficiency"
+          ],
+          "oValue": 0.75
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fTotalScienceTimeS"
+          ],
+          "oValue": 63115200.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fSlewOverheadS"
+          ],
+          "oValue": 3600.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fWavefrontOverheadS"
+          ],
+          "oValue": 9720.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fWavefrontMultiplier"
+          ],
+          "oValue": 1.1
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fExposureLimitS"
+          ],
+          "oValue": 5184000.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fThroughputCalibration"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "iMaxVisits"
+          ],
+          "oValue": 6.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "iRequiredDetections"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictExozodiDistribution",
+            "fMedianZodi"
+          ],
+          "oValue": 3.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictExozodiDistribution",
+            "fLogSigma"
+          ],
+          "oValue": 1.2
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictAlbedoDistribution",
+            "fMin"
+          ],
+          "oValue": 0.08
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictAlbedoDistribution",
+            "fMax"
+          ],
+          "oValue": 0.32
+        },
+        {
+          "saPath": [
+            "dictBands",
+            "dictBandCharacterization",
+            "fLambdaM"
+          ],
+          "oValue": 1e-06
+        },
+        {
+          "saPath": [
+            "dictBands",
+            "dictBandCharacterization",
+            "fOpticalThroughput"
+          ],
+          "oValue": 0.23
+        },
+        {
+          "saPath": [
+            "dictBands",
+            "dictBandCharacterization",
+            "fBandwidthFraction"
+          ],
+          "oValue": 0.007142857142857143
+        },
+        {
+          "saPath": [
+            "dictBands",
+            "dictBandCharacterization",
+            "fSignalToNoise"
+          ],
+          "oValue": 5.0
+        },
+        {
+          "saPath": [
+            "dictBands",
+            "dictBandCharacterization",
+            "iNumPixels"
+          ],
+          "oValue": 96.0
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "canonical",
+            "fRadiusMaxEarth"
+          ],
+          "oValue": 1.4
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "canonical",
+            "fHzInnerAu"
+          ],
+          "oValue": 0.95
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "canonical",
+            "fHzOuterAu"
+          ],
+          "oValue": 1.67
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "redefined",
+            "fMassLoEarth"
+          ],
+          "oValue": 0.5
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "redefined",
+            "fMassHiEarth"
+          ],
+          "oValue": 2.0
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "redefined",
+            "fMassRadiusExponent"
+          ],
+          "oValue": 0.27
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "redefined",
+            "fHzInnerAu"
+          ],
+          "oValue": 0.96
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "redefined",
+            "fHzOuterAu"
+          ],
+          "oValue": 1.2
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "hzOnly",
+            "fRadiusMaxEarth"
+          ],
+          "oValue": 1.4
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "hzOnly",
+            "fHzInnerAu"
+          ],
+          "oValue": 0.96
+        },
+        {
+          "saPath": [
+            "dictBoxes",
+            "hzOnly",
+            "fHzOuterAu"
+          ],
+          "oValue": 1.2
+        }
+      ],
+      "iBytes": 4559
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",

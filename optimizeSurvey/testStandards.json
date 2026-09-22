@@ -15,16 +15,56 @@
         "listEtaScan",
         "sBox"
       ],
-      "dictNumbers": {
-        "iStarsAvailable": 1500.0,
-        "fThroughputCalibration": 1.4859320860199425,
-        "fEtaEarthBaseline": 0.24,
-        "fYieldBaseline": 21.45311999999998,
-        "fYieldPlanningBaseline": 22.500319999999995,
-        "fSummedCompletenessBaseline": 93.75133333333332,
-        "iStarsUsedBaseline": 169.0,
-        "fTimeUsedFractionBaseline": 0.9992539662310354
-      },
+      "listNumbers": [
+        {
+          "saPath": [
+            "iStarsAvailable"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "fThroughputCalibration"
+          ],
+          "oValue": 1.4859320860199425
+        },
+        {
+          "saPath": [
+            "fEtaEarthBaseline"
+          ],
+          "oValue": 0.24
+        },
+        {
+          "saPath": [
+            "fYieldBaseline"
+          ],
+          "oValue": 21.45311999999998
+        },
+        {
+          "saPath": [
+            "fYieldPlanningBaseline"
+          ],
+          "oValue": 22.500319999999995
+        },
+        {
+          "saPath": [
+            "fSummedCompletenessBaseline"
+          ],
+          "oValue": 93.75133333333332
+        },
+        {
+          "saPath": [
+            "iStarsUsedBaseline"
+          ],
+          "oValue": 169.0
+        },
+        {
+          "saPath": [
+            "fTimeUsedFractionBaseline"
+          ],
+          "oValue": 0.9992539662310354
+        }
+      ],
       "iBytes": 1522
     }
   }
