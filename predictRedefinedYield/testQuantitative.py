@@ -7,6 +7,8 @@ data files. Every assertion below is derived from the data, not from a reading o
 import json
 import os
 
+import subprocess
+
 import numpy as np
 import pandas as pd
 import pytest

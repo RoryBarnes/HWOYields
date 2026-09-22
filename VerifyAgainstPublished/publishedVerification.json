@@ -1,0 +1,311 @@
+{
+  "listChecks": [
+    {
+      "sName": "Upsilon_c at 2 lambda/D",
+      "fPublished": 0.05,
+      "fModel": 0.061816986904302436,
+      "fRelativeDifference": 0.23633973808604866,
+      "fTolerance": 0.35,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "Upsilon_c at 3 lambda/D",
+      "fPublished": 0.15,
+      "fModel": 0.1498489921360469,
+      "fRelativeDifference": 0.001006719093020562,
+      "fTolerance": 0.35,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "Upsilon_c at 3.5 lambda/D",
+      "fPublished": 0.2,
+      "fModel": 0.19622783297318613,
+      "fRelativeDifference": 0.018860835134069387,
+      "fTolerance": 0.35,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "Upsilon_c at 5 lambda/D",
+      "fPublished": 0.3,
+      "fModel": 0.3076600103180432,
+      "fRelativeDifference": 0.02553336772681066,
+      "fTolerance": 0.35,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "Upsilon_c at 10 lambda/D",
+      "fPublished": 0.42,
+      "fModel": 0.4294657394253798,
+      "fRelativeDifference": 0.022537474822332895,
+      "fTolerance": 0.35,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "Upsilon_c at 20 lambda/D",
+      "fPublished": 0.45,
+      "fModel": 0.45535140641933886,
+      "fRelativeDifference": 0.011892014265197431,
+      "fTolerance": 0.35,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "zeta at 2 lambda/D",
+      "fPublished": 3e-09,
+      "fModel": 1.9448100000000004e-09,
+      "fRelativeDifference": 0.3517299999999998,
+      "fTolerance": 0.75,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "zeta at 3 lambda/D",
+      "fPublished": 2.5e-10,
+      "fModel": 3.8416000000000015e-10,
+      "fRelativeDifference": 0.5366400000000004,
+      "fTolerance": 0.75,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "zeta at 4 lambda/D",
+      "fPublished": 1.2e-10,
+      "fModel": 1.2155062500000003e-10,
+      "fRelativeDifference": 0.012921875000000237,
+      "fTolerance": 0.75,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "zeta at 10 lambda/D",
+      "fPublished": 1e-10,
+      "fModel": 1e-10,
+      "fRelativeDifference": 0.0,
+      "fTolerance": 0.75,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC figure (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "eta_Earth over the canonical box (SAG13)",
+      "fPublished": 0.24,
+      "fModel": 0.24035172568495647,
+      "fRelativeDifference": 0.0014655236873186567,
+      "fTolerance": 0.03,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Table 1",
+      "sNote": ""
+    },
+    {
+      "sName": "Uncalibrated 6 m yield",
+      "fPublished": 22.5,
+      "fModel": 19.490700000000004,
+      "fRelativeDifference": 0.13374666666666649,
+      "fTolerance": 0.2,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Sec. 3.1",
+      "sNote": "Independent: no fitted parameter."
+    },
+    {
+      "sName": "Calibrated 6 m yield",
+      "fPublished": 22.5,
+      "fModel": 22.500600000000002,
+      "fRelativeDifference": 2.6666666666762415e-05,
+      "fTolerance": 0.02,
+      "bAgrees": true,
+      "bTuned": true,
+      "sSource": "Stark+2024 Sec. 3.1",
+      "sNote": "Fitted to this value."
+    },
+    {
+      "sName": "Calibration throughput factor",
+      "fPublished": 1.0,
+      "fModel": 1.4859320860199425,
+      "fRelativeDifference": 0.48593208601994253,
+      "fTolerance": 1.0,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Plausibility band, not a published value",
+      "sNote": "A factor beyond 2x absorbs physics rather than an unknown."
+    },
+    {
+      "sName": "Sampling distribution mean (Fig. 4)",
+      "fPublished": 22.5,
+      "fModel": 21.451365,
+      "fRelativeDifference": 0.046606000000000036,
+      "fTolerance": 0.2,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 4",
+      "sNote": ""
+    },
+    {
+      "sName": "Sampling distribution sigma (Fig. 4)",
+      "fPublished": 5.0,
+      "fModel": 4.624011206385102,
+      "fRelativeDifference": 0.07519775872297955,
+      "fTolerance": 0.25,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 4 (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "Albedo penalty on expected yield",
+      "fPublished": 0.12,
+      "fModel": 0.04654156029780976,
+      "fRelativeDifference": 0.6121536641849187,
+      "fTolerance": 0.5,
+      "bAgrees": false,
+      "bTuned": false,
+      "sSource": "Stark+2024 Sec. 3.2 (22.5 -> 19.8)",
+      "sNote": ""
+    },
+    {
+      "sName": "P25 including sigma_eta, 6 m",
+      "fPublished": 0.32,
+      "fModel": 0.43256944444444445,
+      "fRelativeDifference": 0.3517795138888889,
+      "fTolerance": 0.25,
+      "bAgrees": false,
+      "bTuned": false,
+      "sSource": "Stark+2024 Sec. 3.5",
+      "sNote": ""
+    },
+    {
+      "sName": "Realized-yield distribution mode",
+      "fPublished": 10.0,
+      "fModel": 17.5375,
+      "fRelativeDifference": 0.7537500000000001,
+      "fTolerance": 0.4,
+      "bAgrees": false,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 10 (read off)",
+      "sNote": "Marginalized over the eta posterior. Stark's distribution carries albedo and exozodi biases this pipeline under-models, so it should sit higher; the size of the offset is the diagnostic."
+    },
+    {
+      "sName": "Realized-yield distribution mean",
+      "fPublished": 21.0,
+      "fModel": 24.433194444444446,
+      "fRelativeDifference": 0.16348544973544982,
+      "fTolerance": 0.3,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 10 (dotted line)",
+      "sNote": ""
+    },
+    {
+      "sName": "Yield-aperture exponent",
+      "fPublished": 1.9,
+      "fModel": 1.7435032068418927,
+      "fRelativeDifference": 0.08236673324110903,
+      "fTolerance": 0.15,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2019 DMVC band and Stark+2024 Fig. 15",
+      "sNote": ""
+    },
+    {
+      "sName": "P25 including sigma_eta at 6 m",
+      "fPublished": 0.32,
+      "fModel": 0.43256944444444445,
+      "fRelativeDifference": 0.3517795138888889,
+      "fTolerance": 0.25,
+      "bAgrees": false,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 15",
+      "sNote": ""
+    },
+    {
+      "sName": "P25 including sigma_eta at 7 m",
+      "fPublished": 0.53,
+      "fModel": 0.6711111111111111,
+      "fRelativeDifference": 0.26624737945492655,
+      "fTolerance": 0.25,
+      "bAgrees": false,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 15 (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "P25 including sigma_eta at 8 m",
+      "fPublished": 0.67,
+      "fModel": 0.8277777777777777,
+      "fRelativeDifference": 0.23548922056384727,
+      "fTolerance": 0.25,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 15 (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "P25 including sigma_eta at 9 m",
+      "fPublished": 0.78,
+      "fModel": 0.9109027777777777,
+      "fRelativeDifference": 0.16782407407407396,
+      "fTolerance": 0.25,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 15 (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "Maximum luminosity among reachable targets",
+      "fPublished": 20.0,
+      "fModel": 13.006665557179453,
+      "fRelativeDifference": 0.34966672214102734,
+      "fTolerance": 0.6,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 11 (read off)",
+      "sNote": ""
+    },
+    {
+      "sName": "Maximum distance among reachable targets",
+      "fPublished": 25.0,
+      "fModel": 22.68562029399549,
+      "fRelativeDifference": 0.09257518824018035,
+      "fTolerance": 0.6,
+      "bAgrees": true,
+      "bTuned": false,
+      "sSource": "Stark+2024 Fig. 11 (read off)",
+      "sNote": ""
+    }
+  ],
+  "iChecks": 27,
+  "iIndependent": 26,
+  "iIndependentAgreeing": 21,
+  "listDisagreeing": [
+    "Albedo penalty on expected yield",
+    "P25 including sigma_eta, 6 m",
+    "Realized-yield distribution mode",
+    "P25 including sigma_eta at 6 m",
+    "P25 including sigma_eta at 7 m"
+  ]
+}

@@ -1,0 +1,37 @@
+check                                         published      model    diff  verdict
+----------------------------------------------------------------------------------------
+Upsilon_c at 2 lambda/D                            0.05    0.06182     24%  ok
+Upsilon_c at 3 lambda/D                            0.15     0.1498      0%  ok
+Upsilon_c at 3.5 lambda/D                           0.2     0.1962      2%  ok
+Upsilon_c at 5 lambda/D                             0.3     0.3077      3%  ok
+Upsilon_c at 10 lambda/D                           0.42     0.4295      2%  ok
+Upsilon_c at 20 lambda/D                           0.45     0.4554      1%  ok
+zeta at 2 lambda/D                                3e-09  1.945e-09     35%  ok
+zeta at 3 lambda/D                              2.5e-10  3.842e-10     54%  ok
+zeta at 4 lambda/D                              1.2e-10  1.216e-10      1%  ok
+zeta at 10 lambda/D                               1e-10      1e-10      0%  ok
+eta_Earth over the canonical box (SAG13)           0.24     0.2404      0%  ok
+Uncalibrated 6 m yield                             22.5      19.49     13%  ok
+Calibrated 6 m yield                               22.5       22.5      0%  TUNED
+Calibration throughput factor                         1      1.486     49%  ok
+Sampling distribution mean (Fig. 4)                22.5      21.45      5%  ok
+Sampling distribution sigma (Fig. 4)                  5      4.624      8%  ok
+Albedo penalty on expected yield                   0.12    0.04654     61%  DISAGREES
+P25 including sigma_eta, 6 m                       0.32     0.4326     35%  DISAGREES
+Realized-yield distribution mode                     10      17.54     75%  DISAGREES
+Realized-yield distribution mean                     21      24.43     16%  ok
+Yield-aperture exponent                             1.9      1.744      8%  ok
+P25 including sigma_eta at 6 m                     0.32     0.4326     35%  DISAGREES
+P25 including sigma_eta at 7 m                     0.53     0.6711     27%  DISAGREES
+P25 including sigma_eta at 8 m                     0.67     0.8278     24%  ok
+P25 including sigma_eta at 9 m                     0.78     0.9109     17%  ok
+Maximum luminosity among reachable targets           20      13.01     35%  ok
+Maximum distance among reachable targets             25      22.69      9%  ok
+
+independent checks agreeing: 21/26
+disagreeing:
+  - Albedo penalty on expected yield
+  - P25 including sigma_eta, 6 m
+  - Realized-yield distribution mode
+  - P25 including sigma_eta at 6 m
+  - P25 including sigma_eta at 7 m

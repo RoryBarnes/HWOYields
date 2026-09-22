@@ -1,0 +1,21 @@
+{
+  "sStep": "verifyAgainstPublished",
+  "dictFiles": {
+    "publishedVerification.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "iChecks",
+        "iIndependent",
+        "iIndependentAgreeing",
+        "listChecks",
+        "listDisagreeing"
+      ],
+      "dictNumbers": {
+        "iChecks": 27.0,
+        "iIndependent": 26.0,
+        "iIndependentAgreeing": 21.0
+      },
+      "iBytes": 9005
+    }
+  }
+}

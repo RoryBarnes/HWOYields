@@ -1,31 +1,39 @@
 {
   "CompareApertureScaling/apertureScaling.json": {
-    "iMtime": 1790092437,
-    "sSha256": "e4100acbef6e62024f01e92478ef393978fd3dbd69617c7b8334f3e77a41e91f"
+    "iMtime": 1790094911,
+    "sSha256": "e46a55b135aaed857cb0e669711a7cd50e1d84ac9e31b25378a8b012b0fe8b01"
   },
   "Plot/figApertureScaling.pdf": {
-    "iMtime": 1790092439,
-    "sSha256": "20cdf858ca6e889eba4ff95a1d6c352f0e2ca999d7b2dadb75d256f2caf17d8e"
+    "iMtime": 1790094912,
+    "sSha256": "e093995edd56a5b8e9e8224af371e651171ebae74d458e1406982b64576700c6"
   },
   "Plot/figCalibration.pdf": {
-    "iMtime": 1790091802,
-    "sSha256": "b720039875ea7bcca1e55b4fc81192acb2482a7a4b432eb1cc19bf227f365244"
+    "iMtime": 1790094331,
+    "sSha256": "a16e0561bd76e83625f6eab5d51665ae9dfce5b68951dc9e074976c2c2584d21"
   },
   "Plot/figCompleteness.pdf": {
-    "iMtime": 1790091910,
-    "sSha256": "20b400253989a538d9ed1f7340d104a8164cd63fc84954f3da5ee0a987f8da8e"
+    "iMtime": 1790094386,
+    "sSha256": "9b8f681d030cf7b1356a8c2f07a898353a6437fae6bb1703b52f3d62351f1919"
   },
   "Plot/figCoronagraphModel.pdf": {
-    "iMtime": 1790090923,
-    "sSha256": "bdb86d1e0a2d78f607d8771c9df86313595d4b02d29aa6d1cc620b8ff1eaf9b0"
+    "iMtime": 1790094125,
+    "sSha256": "d3e403b825e6e936a35891bd28a1945d3e3174e526369c2cf1e22839c9818113"
   },
   "Plot/figOccurrencePosterior.pdf": {
     "iMtime": 1790053800,
     "sSha256": "36a1d03fe1134537f4c3270414de0d412b553c86145df2da0d46bae652a8088b"
   },
+  "Plot/figVerification.pdf": {
+    "iMtime": 1790094913,
+    "sSha256": "f628eb8197b6608e0bfb1f94c8f077f92e865f008977d51fc8428aa4f8fc39c6"
+  },
   "Plot/figYieldPrediction.pdf": {
-    "iMtime": 1790092074,
-    "sSha256": "090779fb418a417e4f9ef6813897c2afb0553a6801174f892ec9fc35518596c4"
+    "iMtime": 1790094546,
+    "sSha256": "565226efd01aaba6b34bf6487ec45cabbc77e67938678959150b486282a29c65"
+  },
+  "VerifyAgainstPublished/publishedVerification.json": {
+    "iMtime": 1790094913,
+    "sSha256": "222f0490fdbe71baf4a8178e643e5b36c8ebd9793971b9428cc7be05d0ebf514"
   },
   "buildTargetCatalog/gaiaRawQuery.csv": {
     "iMtime": 1790035917,
@@ -44,36 +52,36 @@
     "sSha256": "39656b3cc05fec7536b1d726b4f9815ea028cc2d093a2b41056fcfae3eb49ee9"
   },
   "calibrateToStark/calibration.json": {
-    "iMtime": 1790091802,
-    "sSha256": "d554702482c5d476a63edeadd53d7bf7e783247e82c1fdb7904afb3d552685f3"
+    "iMtime": 1790094331,
+    "sSha256": "1de6d2ba26f60f7f934cf3b2d49021280fb1b350fcf535dc4353b151e7ef5ab9"
   },
   "computeCompleteness/completeness.npz": {
-    "iMtime": 1790091853,
-    "sSha256": "e6a161ac70364d679fd40b95ceac3be83c4c8b41c16133b787b0b998033134e9"
+    "iMtime": 1790094385,
+    "sSha256": "f162092fdeaaa9732f00d2bf1d4bd81415905fe38a4763dabd5f22e5e2345c44"
   },
   "computeCompleteness/completenessSummary.json": {
-    "iMtime": 1790091853,
-    "sSha256": "69cb0b553ce89609f94d0796f45ea6c35d98817ee164d8db51f47560428bac79"
+    "iMtime": 1790094385,
+    "sSha256": "894d370048599f9d92aaafd9dd8ead8d7a7061e0db40c902103b0aee3df7fe73"
   },
   "modelCoronagraph/coronagraphCurves.csv": {
-    "iMtime": 1790091561,
-    "sSha256": "53924c2cadf425c7423a05e226d7f92e2f9138630f484191dc9ae4abe1b0018b"
+    "iMtime": 1790094123,
+    "sSha256": "17f48c05d9f5cf27ecc484b3199daace0b5562bf5052a429c5f8824b093f0d0a"
   },
   "modelCoronagraph/missionParameters.json": {
-    "iMtime": 1790091561,
-    "sSha256": "a5d57ed8ab7a69495924bc3df016236fefbf4977556be8ef8202893f916ce1ac"
+    "iMtime": 1790094123,
+    "sSha256": "f13809b9ea54530a4002dcedfd44d8bfbb87384ac3426e68c2746562f755659d"
   },
   "optimizeSurvey/surveyResult.json": {
-    "iMtime": 1790091931,
-    "sSha256": "0a8feb16378244ce70b121f61ac32872d656393f3acce69aa1a087f3b455b2c3"
+    "iMtime": 1790094406,
+    "sSha256": "dc19eb15d6b55eaf1d842ecf3d0f83d046cf9a68ccc390f6dca9784026ed3f5e"
   },
   "predictRedefinedYield/yieldPrediction.json": {
-    "iMtime": 1790092073,
-    "sSha256": "62cd948723aedf9806e6e47c835bd16db5f31882f55217844d078b92a830c9cf"
+    "iMtime": 1790094545,
+    "sSha256": "ba9564c54022fd84cdff26ebb555d2fc47d0917240409e37e6ef0e668e58d069"
   },
   "predictRedefinedYield/yieldSamples.npz": {
-    "iMtime": 1790092073,
-    "sSha256": "9163c860520cf3f217552516501dc694f27ff24da7a1e58c347c9f170f61c7ea"
+    "iMtime": 1790094545,
+    "sSha256": "b541ceb923e2805c54b92a332ab2f4b69ca7989ed65cedaf9a4817743f544cc9"
   },
   "sampleOccurrencePosterior/occurrencePosterior.npz": {
     "iMtime": 1790053557,

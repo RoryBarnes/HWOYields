@@ -11,9 +11,9 @@
       ],
       "dictNumbers": {
         "dictMission.fDiameterM": 6.0,
-        "dictMission.fIwaLamD": 3.5,
+        "dictMission.fIwaLamD": 3.89,
         "dictMission.fOwaLamD": 32.0,
-        "dictMission.fCoreThroughputMax": 0.45,
+        "dictMission.fCoreThroughputMax": 0.46,
         "dictMission.fContrastFloor": 1e-10,
         "dictMission.fNoiseFloorDeltaMag": 26.5,
         "dictMission.fContaminationThroughput": 0.95,
@@ -34,6 +34,8 @@
         "dictMission.fExposureLimitS": 5184000.0,
         "dictMission.fThroughputCalibration": 1.0,
         "dictMission.iMaxVisits": 6.0,
+        "dictMission.dictExozodiDistribution.fMedianZodi": 3.0,
+        "dictMission.dictExozodiDistribution.fLogSigma": 1.2,
         "dictMission.dictAlbedoDistribution.fMin": 0.08,
         "dictMission.dictAlbedoDistribution.fMax": 0.32,
         "dictBands.dictBandCharacterization.fLambdaM": 1e-06,
@@ -53,7 +55,7 @@
         "dictBoxes.hzOnly.fHzInnerAu": 0.96,
         "dictBoxes.hzOnly.fHzOuterAu": 1.2
       },
-      "iBytes": 4284
+      "iBytes": 4529
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",
@@ -76,10 +78,10 @@
           "fMax": 38.39999999999999
         },
         "fCoreThroughput": {
-          "fMean": 0.2278071897825001,
-          "fStd": 0.1814728658358093,
+          "fMean": 0.22183834530005916,
+          "fStd": 0.1887161522202184,
           "fMin": 0.0,
-          "fMax": 0.4485249793232992
+          "fMax": 0.4586938182762129
         },
         "fRawContrast": {
           "fMean": 0.04500002983143214,
@@ -88,7 +90,7 @@
           "fMax": 1.0
         }
       },
-      "iBytes": 10355
+      "iBytes": 10366
     }
   }
 }

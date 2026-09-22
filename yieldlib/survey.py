@@ -45,6 +45,28 @@ def fdfScreenTargets(dfCatalog, dictMission, dictBandPrimary, fMinEeidLamD, iMax
     return dfOut.sort_values("fEeidLamD", ascending=False).head(iMaxStars).reset_index(drop=True)
 
 
+def faDrawExozodiLevels(dictMission, iStars, iSeed):
+    """Per-star exozodi levels drawn from a right-skewed stand-in for the LBTI HOSTS fit.
+
+    Stark et al. (2024) Sec. 3.3 draw each star's exozodi from the HOSTS best fit -- median three
+    zodis, multi-modal with peaks at higher levels -- rather than giving every star the median,
+    and report the mean yield falling from 19.8 to 17.6. The bias is asymmetric in the same way
+    as albedo: a star drawn below the median gains little because its exposure was already short,
+    while a high draw on a high-priority target lengthens its exposure enough that the optimizer
+    must substitute a less productive star from a limited pool.
+
+    A lognormal with the published median stands in for the multi-modal fit, whose parameters are
+    not reproduced here. Stark also pins four stars to their LBTI-measured levels (297, 148, 588
+    and 235 zodis), which he says accounts for about a third of the shift; those stars are not
+    identified in this catalog, so this implementation should recover roughly two thirds of it.
+    """
+    dictDraw = dictMission.get("dictExozodiDistribution")
+    if not dictDraw:
+        return np.full(iStars, dictMission["fExozodiLevel"])
+    rng = np.random.default_rng(iSeed)
+    return dictDraw["fMedianZodi"] * np.exp(rng.normal(0.0, dictDraw["fLogSigma"], iStars))
+
+
 def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlanets, iSeed):
     """Completeness curves and characterization times for every screened star."""
     dictMission = dictParams["dictMission"]
@@ -58,7 +80,9 @@ def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlane
     faTauCharMean = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
     faCompAlbedo = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
     faTauChar = np.zeros(len(dfTargets))
+    faExozodi = faDrawExozodiLevels(dictMission, len(dfTargets), iSeed + 977)
     for i, dictRow in enumerate(dfTargets.to_dict("records")):
+        dictRow["fExozodiLevel"] = float(faExozodi[i])
         dictResult = cp.fdictStarCompleteness(dictRow, dictBox, listBandsDet, dictBandChar,
                                               dictMission, faTauGridS, iNumPlanets,
                                               dictParams["fAlpha"], dictParams["fBeta"],

@@ -1,9 +1,9 @@
 {
   "dictMission": {
     "fDiameterM": 6.0,
-    "fIwaLamD": 3.5,
+    "fIwaLamD": 3.89,
     "fOwaLamD": 32.0,
-    "fCoreThroughputMax": 0.45,
+    "fCoreThroughputMax": 0.46,
     "fContrastFloor": 1e-10,
     "fNoiseFloorDeltaMag": 26.5,
     "fContaminationThroughput": 0.95,
@@ -24,6 +24,11 @@
     "fExposureLimitS": 5184000.0,
     "fThroughputCalibration": 1.0,
     "iMaxVisits": 6,
+    "dictExozodiDistribution": {
+      "fMedianZodi": 3.0,
+      "fLogSigma": 1.2,
+      "sSource": "Right-skewed stand-in for the LBTI HOSTS best fit used by Stark et al. 2024 Sec. 3.3: median three zodis with a tail to higher levels."
+    },
     "dictAlbedoDistribution": {
       "fMin": 0.08,
       "fMax": 0.32,

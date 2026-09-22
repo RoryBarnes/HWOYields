@@ -2,10 +2,10 @@
 
 import numpy as np
 
-F_DEFAULT_CORE_THROUGHPUT_MAX = 0.45
-F_DEFAULT_IWA_LAMD = 3.5
+F_DEFAULT_CORE_THROUGHPUT_MAX = 0.46
+F_DEFAULT_IWA_LAMD = 3.89
 F_DEFAULT_OWA_LAMD = 32.0
-F_DEFAULT_RAMP_INDEX = 2.6
+F_DEFAULT_RAMP_INDEX = 2.8
 F_DEFAULT_CONTRAST_FLOOR = 1.0e-10
 F_DEFAULT_CONTRAST_KNEE_LAMD = 4.2
 F_DEFAULT_CONTRAST_INNER_INDEX = 4.0
@@ -16,10 +16,12 @@ def faCoreThroughput(faSeparationLamD, fThroughputMax=F_DEFAULT_CORE_THROUGHPUT_
                      fRampIndex=F_DEFAULT_RAMP_INDEX):
     """Azimuthally-averaged coronagraph core throughput Upsilon_c as a function of separation.
 
-    A logistic ramp in log-separation reproducing the three numbers Stark et al. (2019, 2024)
-    publish for the DMVC: half of the maximum at the formal IWA of 3.5 lambda/D, a plateau near
-    45 percent at wide separations, and non-zero throughput inside the IWA (planets are
-    detectable interior to it at a throughput penalty).
+    A logistic ramp in log-separation fitted to the DMVC curve of Stark et al. (2019) rather
+    than to its three headline numbers. The earlier fit, anchored on a half-maximum at the
+    formal 3.5 lambda/D IWA, was 70 percent too generous at 2 lambda/D; this one reproduces the
+    published curve to within about 25 percent there and a few percent everywhere outside
+    3 lambda/D. Throughput inside the IWA is non-zero but small: planets are detectable interior
+    to it at a penalty.
     """
     faSep = np.asarray(faSeparationLamD, dtype=float)
     with np.errstate(divide="ignore", invalid="ignore"):

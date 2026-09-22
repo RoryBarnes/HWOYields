@@ -90,7 +90,8 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     fZodi = fZeroMag * 10 ** (-0.4 * dictMission["fZodiMagArcsec2"]) * fOmega * fArea * fThroughput
     faExozodiMag = dictMission["fExozodiMagArcsec2"] + \
         5.0 * np.log10(np.atleast_1d(dictPlanets["faAxisScaled"])[:, None])
-    faExozodi = dictMission["fExozodiLevel"] * fZeroMag * 10 ** (-0.4 * faExozodiMag) * \
+    fExozodiLevel = dictStar.get("fExozodiLevel", dictMission["fExozodiLevel"])
+    faExozodi = fExozodiLevel * fZeroMag * 10 ** (-0.4 * faExozodiMag) * \
         fOmega * fArea * fThroughput
     return dict(faPlanet=fStarRate * faUpsilon * faFluxRatio,
                 faLeak=fStarRate * faUpsilon * faZeta, fZodi=fZodi, faExozodi=faExozodi,
@@ -192,6 +193,38 @@ def faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet, listCharOpti
     return faTauDet, faTauChar
 
 
+def faStarkAlbedoTimes(faTauDet, faFlux, faSepLamD, faFluxDrawn):
+    """Exposure time at which a drawn-albedo planet passes Stark's per-visit detectability test.
+
+    Stark et al. (2024) Sec. 3.2 do not re-derive the exposure time for a planet whose albedo
+    differs from the planning value. They ask whether the fixed observation plan would have
+    caught it, by requiring its albedo-adjusted flux to exceed the FAINTEST flux actually
+    detected during that visit, and its separation to exceed the SMALLEST separation detected.
+    Both thresholds fall monotonically as the exposure lengthens, so each planet passes for every
+    exposure beyond some threshold, which is what this returns.
+
+    This is a blunter test than re-deriving the exposure time, because it cannot reward a dark
+    planet that happens to sit where the background is low. It is implemented alongside the
+    re-derivation so the two can be compared rather than assumed equivalent.
+    """
+    faOut = np.full(faTauDet.shape, np.inf)
+    for k in range(faTauDet.shape[1]):
+        faOrder = np.argsort(faTauDet[:, k])
+        faTauSorted = faTauDet[faOrder, k]
+        bFinite = np.isfinite(faTauSorted)
+        if not bFinite.any():
+            continue
+        faTauSorted = faTauSorted[bFinite]
+        faFloorFlux = np.minimum.accumulate(faFlux[faOrder, k][bFinite])
+        faFloorSep = np.minimum.accumulate(faSepLamD[faOrder, k][bFinite])
+        iFlux = np.searchsorted(-faFloorFlux, -faFluxDrawn[:, k], side="left")
+        iSep = np.searchsorted(-faFloorSep, -faSepLamD[:, k], side="left")
+        iNeed = np.maximum(iFlux, iSep)
+        bReach = iNeed < faTauSorted.size
+        faOut[bReach, k] = faTauSorted[iNeed[bReach]]
+    return faOut
+
+
 def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMission,
                           faTauGridS, iNumPlanets, fAlpha, fBeta, iSeed):
     """Completeness for one star against exposure time AND visit count.
@@ -226,6 +259,14 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
             (dictAlbedoRange["fMax"] - dictAlbedoRange["fMin"]))
         faTauDetA, faTauCharA = faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet,
                                                  listCharOptions, dictMission, iNumPlanets)
+        if dictMission.get("sAlbedoMethod", "recompute") == "perVisitThreshold":
+            dictRatesPlan = fdictCountRates(dictStar, dictPlanets, dictGeom, listBandsDet[0],
+                                            dict(dictMission, listBandsCharacterization=None))
+            faFluxPlan = dictRatesPlan["faFluxRatio"] * (
+                dictMission["fGeometricAlbedo"] /
+                np.atleast_1d(dictPlanets["faAlbedoDrawn"])[:, None])
+            faTauDetA = faStarkAlbedoTimes(faTauDet, faFluxPlan, dictRatesPlan["faSepLamD"],
+                                           dictRatesPlan["faFluxRatio"])
         faBestDetA, _, _ = faCountedTimes(faTauDetA, faTauCharA, fCap)
         faCompAlbedo = faCompletenessPerVisitCount(faBestDetA, faTauGridS, iNumPlanets)
     return dict(faComp=faComp, faCompAlbedo=faCompAlbedo,

@@ -9,6 +9,7 @@
         "fThroughputCalibration",
         "fTimeUsedFractionBaseline",
         "fYieldBaseline",
+        "fYieldPlanningBaseline",
         "iStarsAvailable",
         "iStarsUsedBaseline",
         "listEtaScan",
@@ -16,14 +17,15 @@
       ],
       "dictNumbers": {
         "iStarsAvailable": 1500.0,
-        "fThroughputCalibration": 1.0571587408490972,
+        "fThroughputCalibration": 1.4859320860199425,
         "fEtaEarthBaseline": 0.24,
-        "fYieldBaseline": 21.25472,
-        "fSummedCompletenessBaseline": 93.63866666666668,
-        "iStarsUsedBaseline": 160.0,
-        "fTimeUsedFractionBaseline": 0.999852983372827
+        "fYieldBaseline": 21.45311999999998,
+        "fYieldPlanningBaseline": 22.500319999999995,
+        "fSummedCompletenessBaseline": 93.75133333333332,
+        "iStarsUsedBaseline": 169.0,
+        "fTimeUsedFractionBaseline": 0.9992539662310354
       },
-      "iBytes": 1445
+      "iBytes": 1522
     }
   }
 }

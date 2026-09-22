@@ -9,31 +9,31 @@
         "fYieldGoal"
       ],
       "dictNumbers": {
-        "dictByBox.canonical.dictDistribution.fMeanExpected": 24.166700749750436,
-        "dictByBox.canonical.dictDistribution.fMedianExpected": 22.43690667168986,
-        "dictByBox.canonical.dictDistribution.fP16Expected": 14.418113713470907,
-        "dictByBox.canonical.dictDistribution.fP84Expected": 33.61893665234691,
-        "dictByBox.canonical.dictDistribution.fP05Expected": 10.388687095534678,
-        "dictByBox.canonical.dictDistribution.fP95Expected": 43.65692864221356,
-        "dictByBox.canonical.dictDistribution.fProbabilityAtLeastGoal": 0.4190277777777778,
-        "dictByBox.canonical.dictDistribution.fProbabilityAtLeastOne": 0.9999305555555555,
+        "dictByBox.canonical.dictDistribution.fMeanExpected": 24.48790819032771,
+        "dictByBox.canonical.dictDistribution.fMedianExpected": 22.684842402910487,
+        "dictByBox.canonical.dictDistribution.fP16Expected": 14.417598263853076,
+        "dictByBox.canonical.dictDistribution.fP84Expected": 34.19710172540384,
+        "dictByBox.canonical.dictDistribution.fP05Expected": 10.315663158000525,
+        "dictByBox.canonical.dictDistribution.fP95Expected": 44.59407575893603,
+        "dictByBox.canonical.dictDistribution.fProbabilityAtLeastGoal": 0.43256944444444445,
+        "dictByBox.canonical.dictDistribution.fProbabilityAtLeastOne": 1.0,
         "dictByBox.canonical.fEtaMedian": 0.2556492691802682,
-        "dictByBox.redefined.dictDistribution.fMeanExpected": 5.626596357689256,
-        "dictByBox.redefined.dictDistribution.fMedianExpected": 4.906920389401421,
-        "dictByBox.redefined.dictDistribution.fP16Expected": 2.9450792111362345,
-        "dictByBox.redefined.dictDistribution.fP84Expected": 8.17482932634794,
-        "dictByBox.redefined.dictDistribution.fP05Expected": 2.085550674957358,
-        "dictByBox.redefined.dictDistribution.fP95Expected": 11.593210976507097,
-        "dictByBox.redefined.dictDistribution.fProbabilityAtLeastGoal": 0.0016666666666666668,
-        "dictByBox.redefined.dictDistribution.fProbabilityAtLeastOne": 0.9717361111111111,
+        "dictByBox.redefined.dictDistribution.fMeanExpected": 5.395255965721054,
+        "dictByBox.redefined.dictDistribution.fMedianExpected": 4.701389659411429,
+        "dictByBox.redefined.dictDistribution.fP16Expected": 2.8217219458643976,
+        "dictByBox.redefined.dictDistribution.fP84Expected": 7.832419320549406,
+        "dictByBox.redefined.dictDistribution.fP05Expected": 1.9981955278102908,
+        "dictByBox.redefined.dictDistribution.fP95Expected": 11.107619011315228,
+        "dictByBox.redefined.dictDistribution.fProbabilityAtLeastGoal": 0.001875,
+        "dictByBox.redefined.dictDistribution.fProbabilityAtLeastOne": 0.968125,
         "dictByBox.redefined.fEtaMedian": 0.05197086363264328,
         "fYieldGoal": 25.0,
-        "dictYieldRatio.fMedian": 0.22144409757445752,
-        "dictYieldRatio.fP16": 0.19895316006593974,
-        "dictYieldRatio.fP84": 0.24968401102137358,
+        "dictYieldRatio.fMedian": 0.21036234549347627,
+        "dictYieldRatio.fP16": 0.18984665387059968,
+        "dictYieldRatio.fP84": 0.2356634239359304,
         "dictYieldRatio.fOccurrenceRatioMedian": 0.20334323541972582
       },
-      "iBytes": 3981
+      "iBytes": 3921
     },
     "yieldSamples.npz": {
       "sKind": "npz",
@@ -83,27 +83,27 @@
           "fMax": 1.2
         },
         "faExpected_canonical": {
-          "fMean": 24.166700749750436,
-          "fMin": 3.6957875157613826,
-          "fMax": 73.26640000000002
+          "fMean": 24.48790819032771,
+          "fMin": 3.6208712040105127,
+          "fMax": 75.9176
         },
         "faObserved_canonical": {
-          "fMean": 24.070069444444446,
-          "fMin": 0.0,
-          "fMax": 93.0
+          "fMean": 24.433194444444446,
+          "fMin": 1.0,
+          "fMax": 99.0
         },
         "faExpected_redefined": {
-          "fMean": 5.626596357689256,
-          "fMin": 0.7422417637757149,
-          "fMax": 30.315036272979302
+          "fMean": 5.395255965721054,
+          "fMin": 0.7111523065537503,
+          "fMax": 30.654079518534523
         },
         "faObserved_redefined": {
-          "fMean": 5.5929166666666665,
+          "fMean": 5.373888888888889,
           "fMin": 0.0,
-          "fMax": 40.0
+          "fMax": 36.0
         }
       },
-      "iBytes": 247296
+      "iBytes": 247446
     }
   }
 }

@@ -13,6 +13,8 @@ import argparse
 import json
 import os
 
+import subprocess
+
 import numpy as np
 import pandas as pd
 
@@ -95,6 +97,8 @@ data files. Every assertion below is derived from the data, not from a reading o
 
 import json
 import os
+
+import subprocess
 
 import numpy as np
 import pandas as pd
@@ -271,6 +275,26 @@ def fdictTestsBlock(sDirectory):
                                      ("dictQuantitative", "testQuantitative.py"))}
 
 
+def fnDeclareTests(dictProject, sProjectPath):
+    """Declare every step's dictTests through vaibify-do, falling back to a direct write.
+
+    Writing project.json directly is not safe for a step vaibify has recently created: the
+    backend rewrote one step's dictTests to empty commands, which silently disabled its whole
+    test suite while leaving the other steps intact. vaibify-do goes through schema validation
+    and an atomic save, so it wins the race.
+    """
+    for i, dictStep in enumerate(dictProject["listSteps"], start=1):
+        oResult = subprocess.run(
+            ["vaibify-do", "update-step", f"A{i:02d}",
+             json.dumps({"dictTests": dictStep["dictTests"]})],
+            capture_output=True, text=True, timeout=120)
+        if oResult.returncode != 0:
+            print(f"WARNING: update-step A{i:02d} failed; writing project.json directly")
+            with open(sProjectPath, "w") as oFile:
+                json.dump(dictProject, oFile, indent=2)
+            return
+
+
 def fdictParseArgs():
     """Command-line configuration for the test generator."""
     p = argparse.ArgumentParser(description=__doc__)
@@ -289,8 +313,7 @@ def main():
     for dictStep in dictProject["listSteps"]:
         dictReport[dictStep["sName"]] = fnWriteStepTests(sRepoRoot, dictStep, dictArgs["rtol"])
         dictStep["dictTests"] = fdictTestsBlock(dictStep["sDirectory"])
-    with open(dictArgs["project"], "w") as oFile:
-        json.dump(dictProject, oFile, indent=2)
+    fnDeclareTests(dictProject, dictArgs["project"])
     print(json.dumps({"dictFilesPinnedPerStep": dictReport,
                       "sNote": "dictTests declared for every step in " + dictArgs["project"]},
                      indent=2))

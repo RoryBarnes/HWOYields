@@ -26,6 +26,7 @@ the exact opposite of observed behaviour.
 | F5 | `create-project` cannot adopt an existing `project.json` | By design; gap | No agent-usable path from an authored project file to an open project. |
 | F6 | Nothing agent-visible says "this repo is untracked" | Confirmed | Root cause of a long dead end; the refusal names the wrong layer. |
 | F7 | Resolved output paths are visible **only** in `report-l1-blockers` | Confirmed | The one clue that cracked F1, and it reads like a display artifact. |
+| F10 | A direct `project.json` write was silently blanked for the newest step | Confirmed | Its whole test suite was disabled with no error. |
 | F9 | `create-step` silently overrides the supplied `sDirectory`, capitalising it | Confirmed | Directory did not exist on disk; `update-step` will not set it back. |
 | F8 | Determinism scanner cannot see unseeded global-RNG use | Working as documented | Included because the quantitative tier caught it — a design win worth knowing about. |
 
@@ -333,6 +334,32 @@ Two things worth deciding host-side:
 - If `sDirectory` is derived rather than accepted, `create-step` should either reject the
   argument or say it was overridden. Silently substituting a value the caller supplied, and then
   ignoring an explicit correction, is the combination that cost the time here.
+
+## 8c. F10 — a direct project.json write was silently blanked for the newest step
+
+`explorations/generateStepTests.py` writes `dictTests` for every step by editing `project.json`
+directly, which `CLAUDE.md` permits ("Direct edits are now detected by the host's polling loop").
+After adding a ninth step through `create-step`, that write was partially undone:
+
+```
+A08 dictTests: sFilePath "testIntegrity.py", saCommands ["python3 -m pytest ..."]   (intact)
+A09 dictTests: sFilePath "",                 saCommands []                          (blanked)
+```
+
+The eight older steps kept their declarations; only the step vaibify had just created came back
+with every category emptied, plus a `listUserTests` key the writer never wrote — so the backend
+rewrote that step from its own copy. `run-test-category A09` then answered
+`No commands for category: integrity` while the test files existed and passed when run by hand.
+
+The failure mode is quiet: the suite reports no error, the step simply has no tests, and a
+project that looks fully covered has a gap exactly where a step was most recently added. Pushing
+the same declarations through `vaibify-do update-step` fixed it immediately, and the generator
+now does that by default.
+
+Worth considering host-side: either have a direct `project.json` write win the race, or have the
+backend refuse to silently replace a step's `dictTests` with empty ones. `CLAUDE.md` already says
+`vaibify-do` is the canonical path, but it also tells the agent that direct edits are detected,
+which reads as an assurance that they survive.
 
 ## 9. F8 — a design win worth recording
 

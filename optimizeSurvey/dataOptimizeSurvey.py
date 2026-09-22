@@ -75,6 +75,8 @@ def main():
         "fThroughputCalibration": fCalibration,
         "fEtaEarthBaseline": dictArgs["eta_earth"],
         "fYieldBaseline": float(dictBaseline["fYield"]),
+        "fYieldPlanningBaseline": float(dictBaseline.get("fYieldPlanning",
+                                                         dictBaseline["fYield"])),
         "fSummedCompletenessBaseline": float(dictBaseline["fSummedCompleteness"]),
         "iStarsUsedBaseline": int(dictBaseline["iStarsUsed"]),
         "fTimeUsedFractionBaseline": float(dictBaseline["fTotalTimeS"] /

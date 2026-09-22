@@ -185,52 +185,52 @@
           "fMax": 49.87189334831839
         },
         "faComp_canonical": {
-          "fMean": 0.03032301382716049,
+          "fMean": 0.030943499753086422,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_canonical": {
-          "fMean": 179779.26996088948,
+          "fMean": 174160.52147882918,
           "fMin": 0.0,
-          "fMax": 5177207.223481891
+          "fMax": 5179450.0401050355
         },
         "faCompAlbedo_canonical": {
-          "fMean": 0.030182034074074073,
+          "fMean": 0.03075679160493827,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faComp_redefined": {
-          "fMean": 0.030802797037037036,
+          "fMean": 0.030836013827160495,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_redefined": {
-          "fMean": 110149.3516087016,
+          "fMean": 113187.96125845832,
           "fMin": 0.0,
-          "fMax": 5147473.080409483
+          "fMax": 5171204.066837855
         },
         "faCompAlbedo_redefined": {
-          "fMean": 0.030554042962962966,
+          "fMean": 0.03067425827160494,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faComp_hzOnly": {
-          "fMean": 0.03365443160493827,
+          "fMean": 0.033738357530864196,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_hzOnly": {
-          "fMean": 163732.60056206878,
+          "fMean": 155455.19505855144,
           "fMin": 0.0,
-          "fMax": 5172640.057873513
+          "fMax": 5157661.08646965
         },
         "faCompAlbedo_hzOnly": {
-          "fMean": 0.03341397037037037,
+          "fMean": 0.03345243012345679,
           "fMin": 0.0,
           "fMax": 1.0
         }
       },
-      "iBytes": 1741875
+      "iBytes": 1698574
     },
     "completenessSummary.json": {
       "sKind": "json",
@@ -243,21 +243,21 @@
       "dictNumbers": {
         "iStarsScreened": 1500.0,
         "iNumPlanetsPerStar": 1500.0,
-        "fThroughputCalibration": 1.0571587408490972,
+        "fThroughputCalibration": 1.4859320860199425,
         "dictByBox.canonical.fMaxCompletenessBest": 1.0,
-        "dictByBox.canonical.fSummedMaxCompleteness": 8122.164000000001,
-        "dictByBox.canonical.iStarsWithAnyCompleteness": 18013.0,
-        "dictByBox.canonical.fMedianTauCharDays": 30.58130684985652,
+        "dictByBox.canonical.fSummedMaxCompleteness": 8264.692000000001,
+        "dictByBox.canonical.iStarsWithAnyCompleteness": 18035.0,
+        "dictByBox.canonical.fMedianTauCharDays": 31.165926328618973,
         "dictByBox.redefined.fMaxCompletenessBest": 1.0,
-        "dictByBox.redefined.fSummedMaxCompleteness": 8204.679333333332,
-        "dictByBox.redefined.iStarsWithAnyCompleteness": 12808.0,
-        "dictByBox.redefined.fMedianTauCharDays": 20.11282405086679,
+        "dictByBox.redefined.fSummedMaxCompleteness": 8176.0273333333325,
+        "dictByBox.redefined.iStarsWithAnyCompleteness": 12957.0,
+        "dictByBox.redefined.fMedianTauCharDays": 23.640636261327202,
         "dictByBox.hzOnly.fMaxCompletenessBest": 1.0,
-        "dictByBox.hzOnly.fSummedMaxCompleteness": 8944.889333333333,
-        "dictByBox.hzOnly.iStarsWithAnyCompleteness": 16992.0,
-        "dictByBox.hzOnly.fMedianTauCharDays": 28.33808641060375
+        "dictByBox.hzOnly.fSummedMaxCompleteness": 8946.710000000001,
+        "dictByBox.hzOnly.iStarsWithAnyCompleteness": 16621.0,
+        "dictByBox.hzOnly.fMedianTauCharDays": 27.582609557428803
       },
-      "iBytes": 724
+      "iBytes": 728
     }
   }
 }

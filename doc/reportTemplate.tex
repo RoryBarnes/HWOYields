@@ -498,6 +498,56 @@ yield falls from 13.3 to 12.9 and the required calibration factor rises from 3.8
 Both comparisons are kept as \texttt{explorations/verifyCoronagraphAgainstPublished.py} with the
 read-off values recorded, so they re-run whenever the parametrization changes.
 
+\subsection{A standing check against the published record}
+
+Three separate apparent agreements in this project turned out to be compensating errors, so a
+single end-to-end number agreeing proves very little. Step A09 therefore checks every reachable
+quantity against the published record in one place --- coronagraph throughput and contrast at
+six and four separations, the occurrence anchor, the uncalibrated and calibrated yields, the
+calibration factor's plausibility, the sampling distribution's mean and width against Fig.~4,
+the albedo penalty, $P_{25}$ at four apertures, the yield-aperture exponent, the realized-yield
+mode and mean against Fig.~10, and the luminosity and distance envelope of the selected targets
+against Fig.~11. Each records its published value, its source, the tolerance, and whether the
+pipeline was fitted to it, so a pass on a tuned quantity can never be miscounted as evidence.
+
+\textbf{21 of 26 independent checks agree.} The five that do not are not scattered; they are the
+same failure seen five ways.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figVerification.pdf}
+\caption{Every check against the published record, as a signed relative difference. Green agrees,
+orange does not, grey was tuned and is not evidence.}
+\end{figure}
+
+\subsection{Two more corrections, and the pattern they leave behind}
+
+\textbf{Stark's per-visit albedo test was implemented and is weaker than the one it replaced.}
+Stark et al.\ (2024) do not re-derive a drawn planet's exposure time; they ask whether the fixed
+plan would have caught it, by requiring its adjusted flux to exceed the faintest flux detected
+during that visit and its separation to exceed the smallest detected. Implemented alongside the
+re-derivation, on the same target list it reduces the yield by 3.1\% against the re-derivation's
+4.6\%. The re-derivation is both more exact and the more conservative of the two, so it is kept;
+the method is not the source of the shortfall against Stark's 12\%.
+
+\textbf{Exozodi sampling was implemented and is also too weak.} Every star had been given the
+median three zodis; levels are now drawn per star from a right-skewed stand-in for the LBTI HOSTS
+fit. Stark reports this moving the mean yield from 19.8 to 17.6, about 11\%. Here it moves it by
+1.5\%. Part of that is expected --- he pins four stars to measured levels of 148 to 588 zodis and
+says they account for about a third of the shift, and those stars are not identified in this
+catalog --- but not most of it.
+
+\textbf{The pattern.} Both observational biases are between three and four times too weak here,
+and they fail in the same direction as the three remaining $P_{25}$ and distribution-shape
+disagreements. Both work through one mechanism: something becomes harder to detect, its required
+exposure lengthens, and it is lost at the fixed allocation. That the two independent sources are
+muted by a similar factor points at the shared mechanism rather than at either source. The
+specific suspect is the slope of $C(\tau)$: these curves rise over roughly four decades in
+exposure time, so a factor of two in required exposure costs little completeness. If the
+published curves are steeper near the operating point, every observational bias built on top of
+them would be correspondingly stronger. That is the next thing to measure, and it is not yet
+measured.
+
 \subsection{Further checks, still not run}
 
 \begin{enumerate}

@@ -49,6 +49,10 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
         "fExposureLimitS": 60.0 * 86400.0,
         "fThroughputCalibration": 1.0,
         "iMaxVisits": 6,
+        "dictExozodiDistribution": {"fMedianZodi": 3.0, "fLogSigma": 1.2,
+                                    "sSource": "Right-skewed stand-in for the LBTI HOSTS best "
+                                               "fit used by Stark et al. 2024 Sec. 3.3: median "
+                                               "three zodis with a tail to higher levels."},
         "dictAlbedoDistribution": {"fMin": 0.08, "fMax": 0.32,
                                    "sSource": "Stark et al. 2024 Sec. 3.2: the adopted uniform "
                                               "distribution, mean 0.20, quoted as reducing the "
