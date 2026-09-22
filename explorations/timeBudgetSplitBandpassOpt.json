@@ -1,0 +1,24 @@
+{
+  "listRows": [
+    {
+      "fDiameterM": 6.0,
+      "iStarsScreened": 5580,
+      "iStarsUsed": 160,
+      "fYield": 10.76532,
+      "fSearchFraction": 0.1809386399161524,
+      "fCharFraction": 0.29505918910865886,
+      "fMedianTauCharDaysUsed": 33.086305362101456,
+      "fMeanSearchTimePerStarHours": 19.826351468812398
+    },
+    {
+      "fDiameterM": 9.0,
+      "iStarsScreened": 6618,
+      "iStarsUsed": 336,
+      "fYield": 30.401879999999977,
+      "fSearchFraction": 0.2925212936783244,
+      "fCharFraction": 0.7074598684788406,
+      "fMedianTauCharDaysUsed": 27.67739268301402,
+      "fMeanSearchTimePerStarHours": 15.263343216572569
+    }
+  ]
+}

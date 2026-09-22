@@ -5,24 +5,31 @@
       "sKind": "json",
       "saTopLevelKeys": [
         "bCalibrationGatePassed",
+        "bFactorPlausible",
+        "bTargetReached",
         "fCalibratedThroughputFactor",
         "fCalibratedYield",
+        "fMaxPlausibleFactor",
         "fRelativeError",
         "fTargetYield",
         "fUncalibratedYield",
         "iStarsScreened",
-        "listTrace"
+        "listTrace",
+        "sGateNote"
       ],
       "dictNumbers": {
         "fTargetYield": 22.5,
         "iStarsScreened": 1500.0,
-        "fCalibratedThroughputFactor": 0.5848106303081663,
-        "fCalibratedYield": 22.4904,
-        "fRelativeError": 0.00042666666666661967,
-        "bCalibrationGatePassed": true,
-        "fUncalibratedYield": 24.637199999999996
+        "fCalibratedThroughputFactor": 3.8382161995755495,
+        "fCalibratedYield": 22.499800000000015,
+        "fRelativeError": 8.88888888823658e-06,
+        "bTargetReached": true,
+        "fMaxPlausibleFactor": 2.0,
+        "bFactorPlausible": false,
+        "bCalibrationGatePassed": false,
+        "fUncalibratedYield": 13.270600000000009
       },
-      "iBytes": 1486
+      "iBytes": 1884
     }
   }
 }

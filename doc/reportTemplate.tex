@@ -37,11 +37,13 @@ because a smaller expected detection count frees characterization time and becau
 the outer habitable zone preferentially removes the faintest, most expensive planets. The
 baseline 6\,m design yields a median of @@REDEFMED@@ exoEarth candidates under the redefined
 selection, against @@CANONMED@@ canonically, and the probability of reaching the 25-planet
-goal falls from @@CANONP25@@\% to @@REDEFP25@@\%. An out-of-sample test against the published
-aperture scaling (Sec.~\ref{sec:aperture}) both supports and qualifies this: the 6\,m design
-point is reproduced independently, but the yield here grows as $D^{@@APEXPONENT@@}$ against a
-published $\sim D^{1.9}$, so the model under-responds to changes in sensitivity and the ratio
-above is more likely an over-estimate than an under-estimate.
+goal falls from @@CANONP25@@\% to @@REDEFP25@@\%. An out-of-sample test against the published aperture
+scaling (Sec.~\ref{sec:aperture}) drove two corrections to the characterization model, after
+which the yield grows as $D^{@@APEXPONENT@@}$ against a published $\sim D^{1.9}$. The same
+corrections show that this model's characterization times are about @@CALFACTOR@@ times too long,
+so reproducing the published 6\,m yield now needs a throughput factor of @@CALFACTOR@@ and the
+calibration gate @@GATEPASS@@. The shape of the model is right and its normalisation is not, so
+absolute yields here are conditional while the ratio, taken at fixed aperture, is more robust.
 \end{abstract}
 
 \tableofcontents
@@ -195,28 +197,31 @@ magnitudes plus a Torres (2010) bolometric correction, for @@CATROWS@@ stars in 
 the supplement the missing targets would have been absorbed into the calibration factor below
 and misreported as a coronagraph modelling error.
 
-\subsection{The calibration gate, and what it does not license}
+\subsection{The calibration gate, which this model now fails}
 
 The parametrized coronagraph stands in for simulated maps, so a single scalar throughput factor
-absorbs the residual mismatch, fitted by bisection against the 22.5 exoEarth candidates that
-Stark et al.\ (2024) report for the baseline 6\,m design (Figure~\ref{fig:calibration}). The
-fitted factor is @@CALFACTOR@@ --- the model needs roughly @@CALFACTORINV@@ times \emph{less}
-throughput than the parametrization assumes.
+absorbs the residual mismatch, fitted by bisection against the 22.5 exoEarth candidates Stark
+et al.\ (2024) report for the baseline 6\,m design. The gate requires two things: that the target
+is reached, and that the fitted factor stays within a factor of two of unity. A factor far from
+unity means the scalar is absorbing missing physics rather than an instrumental unknown, which is
+not a pass.
 
-\textbf{The calibrated yield is not evidence of anything.} It is tuned to 22.5 by construction
-and will always agree. Only two things about the calibration carry information: that the
-\emph{uncalibrated} prediction was already @@CALUNCAL@@ against a published 22.5, and that the
-factor needed is within a factor of two of unity. The curve in Figure~\ref{fig:calibration} is
-also shallow --- a 42\% cut in throughput costs under 10\% of the yield --- because the survey is
-partly limited by the inner working angle and the noise floor rather than by photons. A weak
-lever cannot manufacture agreement that was not already close.
+\textbf{The fitted factor is @@CALFACTOR@@ --- @@FACTORPLAUSIBLE@@ that band --- so the gate
+@@GATEPASS@@.} Uncalibrated, the model predicts @@CALUNCAL@@ exoEarth candidates against a
+published 22.5.
+
+This is a change from an earlier version of this report, and the reason matters. That version
+predicted 24.53 uncalibrated, a 9\% agreement, and cited it as the headline evidence that the
+rederivation was sound. That agreement was the product of two compensating errors in the
+characterization model (Section~\ref{sec:aperture}). Correcting them fixed the aperture scaling
+almost exactly and simultaneously revealed that the absolute characterization cost is roughly
+four times too high. The earlier number looked better and meant less.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.62\textwidth]{figCalibration.pdf}
-\caption{Modelled yield against the coronagraph throughput calibration factor. The published
-22.5-candidate value is met at a factor of @@CALFACTOR@@, and the curve is shallow: a 42\%
-reduction in throughput costs under 10\% of the yield.}
+\caption{Modelled yield against the coronagraph throughput calibration factor, with the
+published 22.5-candidate target.}
 \label{fig:calibration}
 \end{figure}
 
@@ -340,48 +345,58 @@ inner-working-angle-accessible targets in the same way it under-responds to gain
 yield ratio of @@YRATIO@@ is likely an \emph{over}-estimate. Resolving the aperture scaling
 should therefore come before this number is used for anything load-bearing.
 
-\subsection{Chasing the cause}
+\subsection{Chasing the cause, and finding it}
 
-The failure was pursued rather than recorded. Four hypotheses; two rejected outright, one a real
-bug that was not the cause, one a partial explanation.
+Six hypotheses. Four rejected, one a real bug that was not the cause, and one that was.
 
 \begin{enumerate}
 \item \textbf{The target-screening cap. Rejected.} Lifting it from 1500 to 6500 stars changes
 the 9\,m yield by 1.3\%.
 
 \item \textbf{A uniform yield bias from the unmodelled uncertainty sources. Rejected.} Applying
-Stark's own published factor ($17.3/22.5$) repairs the 6\,m point and destroys the others.
+Stark's own factor ($17.3/22.5$) repairs the 6\,m point and destroys the others.
 
 \item \textbf{A real screening bug, found by building Fig.~11 --- but not the cause.} Stark's
-Fig.~11 selects targets out to $L \approx 20\,L_\odot$. This pipeline's screen admitted nothing
-above @@SCREENLMAX@@\,$L_\odot$, discarding @@SCREENLOST@@ stars, because it tested an
-\emph{Earth-sized planet at quadrature} against the noise floor instead of the brightest planet
-the selection box allows. The correct bound --- largest radius in the box, inner habitable-zone
-edge, full phase --- admits up to @@SCREENLMAXOK@@\,$L_\odot$. Since the discarded stars are
-luminous ones with wide habitable zones, exactly the distant targets a larger aperture should
-unlock, this looked like the answer. It was not: fixing it moved the exponent by 0.01. The bug
-was real and is fixed; the luminous stars it had been discarding turn out to be poor targets on
-their own merits.
+Fig.~11 selects targets out to $L \approx 20\,L_\odot$; this pipeline's screen admitted nothing
+above @@SCREENLMAX@@\,$L_\odot$ and discarded @@SCREENLOST@@ stars, because it tested an
+Earth-sized planet at quadrature against the noise floor rather than the brightest planet the box
+allows. Fixed, and box-aware. It moved the exponent by 0.01.
 
-\item \textbf{Characterization budgeting. About half the deficit.} Characterization consumes
-@@CHARFRAC6@@\% of the science budget at 6\,m and @@CHARFRAC9@@\% at 9\,m, so a growing share of
-each aperture increment is spent following up detections rather than finding them. Removing the
-characterization burden entirely raises the exponent from $D^{@@EXPWITHCHAR@@}$ to
-$D^{@@EXPNOCHAR@@}$, against a published $\sim D^{1.9}$.
+\item \textbf{Characterization bandpass optimization. Rejected.} Stark's AYO chooses among the
+bandpass options of his Fig.~3; only the 1000\,nm option was modelled here. Implementing all nine
+changed the 6\,m yield by 0.01, because the $(\mathrm{S/N})^2$ penalty of going bluer outweighs
+the photon gain for essentially every planet.
+
+\item \textbf{The characterization-time statistic. Confirmed.} \texttt{fTauCharS} was the
+\emph{median} over every planet \emph{detectable} around a star. The budget charges an expected
+total, which is a count times a \emph{mean}, and the planets actually detected in a short
+allocation are the brightest and cheapest to characterize. Characterization time is now a
+function of the allocation: the running mean over the planets a given exposure actually counts.
+
+\item \textbf{The counting rule. Confirmed.} Stark et al.\ (2019) require both detection and
+characterization to fit inside two months and state that "any planets that did not meet this
+criteria did not count toward the yield". This pipeline counted planets it could detect but never
+characterize. Those planets are now excluded from completeness rather than charged the cap.
 \end{enumerate}
 
-So roughly half the shortfall is the characterization coupling and half remains unexplained.
-Two observations bear on the remainder. The survey's growth comes almost entirely from observing
-more stars (@@STARSUSED6@@ at 6\,m, @@STARSUSED9@@ at 9\,m) rather than from higher completeness
-per star, which is flat near 0.44 at both apertures. And the leading untested suspect is the
-characterization time itself: \texttt{fTauCharS} is the median over every planet \emph{detectable}
-around a star, whereas the planets actually detected in a short allocation are the brightest
-ones, whose characterization is correspondingly cheaper. If so the burden is systematically
-overcharged, which would depress the yield at every aperture and bite hardest where detections
-are most numerous. That is a hypothesis, not a finding.
+\textbf{Together, items 5 and 6 resolve the scaling.} The exponent moves from $D^{1.11}$ to
+$D^{@@APEXPONENT@@}$, against a published $\sim D^{1.9}$. Characterization was the whole of it:
+removing the burden entirely gives $D^{@@EXPNOCHAR@@}$, and charging it correctly gives
+essentially the published value.
 
-The diagnostics are kept as \texttt{explorations/diagnoseTargetSelection.py},
-\texttt{diagnoseTimeBudgetSplit.py} and \texttt{testCrossingUnderStarkBias.py}.
+\textbf{And they expose a larger problem.} With the counting rule applied correctly, roughly half
+this model's detectable planets cannot be characterized inside two months, so the 6\,m yield falls
+to @@CALUNCAL@@ and the calibration needs a factor of @@CALFACTOR@@ to recover 22.5. Since
+exposure time scales inversely with throughput, a factor of @@CALFACTOR@@ is the signature of
+characterization times roughly @@CALFACTOR@@ times too long. The shape of the model is now right
+and its scale is wrong, which is a more tractable position than before but not a better one.
+
+The leading suspect is the spectral bin width. Characterization here collects photons over
+$\Delta\lambda = \lambda/R$ with $R = 140$, the width of one spectral bin, matching Table~2's
+"S/N per spectral bin evaluated in continuum". If the continuum signal-to-noise is instead
+accumulated over a wider effective width, every characterization time here is too long by that
+ratio, which would be a single constant factor of exactly the kind the calibration is absorbing.
+That is the next thing to test and it is not yet tested.
 
 \subsection{Further checks, still not run}
 
@@ -559,11 +574,13 @@ decadal benchmark under any plausible draw of the occurrence rate.
 These are the things a reader should weigh before using these numbers.
 
 \begin{itemize}
-\item \textbf{The yield does not scale correctly with aperture.} Measured $D^{@@APEXPONENT@@}$
-against a published $\sim D^{1.9}$ (Sec.~\ref{sec:aperture}). The cause is not identified; the
-target-screening cap and a uniform yield bias were both tested and rejected. Nothing in this
-report should be extrapolated in aperture, and the headline ratio should be treated as an upper
-bound until this is resolved.
+\item \textbf{The calibration gate fails.} Reproducing the published 6\,m yield requires a
+throughput factor of @@CALFACTOR@@, far outside the factor-of-two band that would make the scalar
+a plausible stand-in for the unpublished coronagraph maps. The aperture scaling is now correct
+($D^{@@APEXPONENT@@}$ against $\sim D^{1.9}$), so the model's shape is right and its normalisation
+is not. Every absolute yield in this report is therefore conditional on a calibration that is
+absorbing missing physics; ratios at fixed aperture are far less affected, but should still be
+read with that in mind.
 \item \textbf{The coronagraph is parametrized, not simulated.} $\Upsilon_c$ and $\zeta$ are
 smooth functions of separation fitted to three published anchors, not the two-dimensional maps
 AYO interpolates. The calibration factor of @@CALFACTOR@@ bounds the resulting error on the

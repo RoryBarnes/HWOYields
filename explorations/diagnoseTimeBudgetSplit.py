@@ -27,8 +27,11 @@ def fdictDecomposeAllocation(listStars, fSlope, fEtaEarth, dictMission):
         faTau = np.concatenate(([0.0], dictStar["faTauGridS"]))
         faComp = np.concatenate(([0.0], dictStar["faComp"]))
         faCost = np.where(faTau > 0.0, fMult * faTau + fOverhead, 0.0)
-        if np.isfinite(dictStar["fTauCharS"]):
-            faCost = faCost + fEtaEarth * faComp * (fMult * dictStar["fTauCharS"] + fOverhead)
+        faCharGrid = dictStar.get("faTauCharMeanS")
+        if faCharGrid is not None:
+            faChar = np.concatenate(([0.0], np.asarray(faCharGrid)))
+            faCost = faCost + fEtaEarth * faComp * np.where(faChar > 0.0,
+                                                            fMult * faChar + fOverhead, 0.0)
         faHull = opt.faUpperConcaveHull(faCost, faComp)
         faHullCost, faHullComp = faCost[faHull], faComp[faHull]
         faSlopes = np.diff(faHullComp) / np.diff(faHullCost)
@@ -38,8 +41,10 @@ def fdictDecomposeAllocation(listStars, fSlope, fEtaEarth, dictMission):
         iOriginal = int(faHull[iVertex])
         fTau, fC = faTau[iOriginal], faComp[iOriginal]
         fSearch += fMult * fTau + fOverhead
-        if np.isfinite(dictStar["fTauCharS"]):
-            fChar += fEtaEarth * fC * (fMult * dictStar["fTauCharS"] + fOverhead)
+        if faCharGrid is not None:
+            fTauCharHere = float(np.concatenate(([0.0], np.asarray(faCharGrid)))[iOriginal])
+            if fTauCharHere > 0.0:
+                fChar += fEtaEarth * fC * (fMult * fTauCharHere + fOverhead)
         fComp += fC
         iUsed += 1
     return {"fSearchTimeS": fSearch, "fCharTimeS": fChar, "fSummedCompleteness": fComp,
@@ -60,6 +65,7 @@ def fdictAtDiameter(dfCatalog, dictParams, fDiameterM, dictArgs):
     if dictArgs.get("no_characterization"):
         for dictStar in listStars:
             dictStar["fTauCharS"] = np.inf
+            dictStar["faTauCharMeanS"] = None
     dictOpt = opt.fdictOptimizeSurvey(listStars, dictArgs["eta_earth"],
                                       dictParams["dictMission"])
     dictSplit = fdictDecomposeAllocation(listStars, dictOpt["fSlope"], dictArgs["eta_earth"],

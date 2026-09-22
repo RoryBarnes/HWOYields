@@ -14,29 +14,29 @@ against the canonical HabEx/LUVOIR exoEarth-candidate box (0.95–1.67 AU, R ≤
 | | Canonical box | Redefined box |
 |---|---|---|
 | Occurrence η | 0.217 (+0.126/−0.080) | 0.0439 (+0.0256/−0.0163) |
-| Median expected yield (6 m) | 20.7 | 5.9 |
-| P(≥ 25 candidates) | 33.4% | 0.05% |
+| Median expected yield (6 m) | 20.5 | 4.1 |
+| P(≥ 25 candidates) | 34.5% | 0.00% |
 
-Occurrence ratio **0.203 (+0.017/−0.017)**; yield ratio **0.278 (+0.028/−0.027)**. The yield
+Occurrence ratio **0.203 (+0.017/−0.017)**; yield ratio **0.203 (+0.017/−0.017)**. The yield
 ratio exceeds the occurrence ratio because fewer expected detections free characterization time,
 and because truncating the outer habitable zone preferentially removes the faintest planets.
 
-**Validation, and a known failure.** At 6 m the model holds up: before any calibration it
-predicts 24.6 candidates against Stark's published 22.5 (9%), and marginalised over the
-occurrence posterior it gives P(≥25) = 33.4% against a published 32% — neither tuned to.
+**Validation: the shape is right, the scale is not.** An out-of-sample aperture test
+(Stark et al. 2024 Fig. 15) drove two corrections to the characterization model — the budget must
+charge a *mean* over the planets a given exposure actually counts, not a median over all
+detectable ones, and planets that cannot be characterized within two months must not count toward
+the yield at all (Stark et al. 2019). After those, **yield grows as D^1.88 against a published
+~D^1.9**.
 
-But the out-of-sample aperture test (Stark et al. 2024 Fig. 15, calibration frozen at 6 m)
-exposes a real deficiency: **yield here grows as D^1.11 against a published ~D^1.9**. The
-P(≥25) curve including σ_η⊕ agrees to within 6 points, but only because the broad η posterior
-washes out the aperture dependence; the excluding-σ curve misses by 26 points at 6 m. Chasing it found a real screening bug (the noise-floor screen tested a typical planet rather
-than the brightest the box allows, discarding 536 luminous stars — now fixed, but
-not the cause), rejected two other hypotheses, and traced about half the shortfall to
-characterization budgeting: removing that burden raises the exponent to D^1.54. The remaining
-half is unexplained.
+The same corrections show the absolute characterization cost is ~3.8x too high: reproducing
+the published 22.5 EECs at 6 m now needs a throughput factor of 3.84, so **the calibration
+gate fails** on factor plausibility. An earlier version of this work predicted 24.5 uncalibrated
+and cited that 9% agreement as its headline evidence; that agreement was two compensating errors.
+The leading untested suspect is the spectral bin width used for characterization photon
+collection.
 
-Consequence: nothing here should be extrapolated in aperture, and because the redefined box
-changes sensitivity along the same axis the model under-responds to, **the yield ratio of 0.285
-should be treated as an upper bound.** See Section 4 of the report.
+Consequence: absolute yields here are conditional on a calibration absorbing missing physics.
+The box ratio, taken at fixed aperture, is far less affected.
 
 The full write-up, including limitations, is `doc/hwoYieldRederivationReport.pdf`.
 

@@ -107,14 +107,35 @@ def faRequiredExposureTime(listBandRates, listBands, fSignalToNoise, dictMission
     return np.where(faBlocked, np.inf, faTau)
 
 
+def faCumulativeMeanCharTime(faTauDet, faTauChar, faTauGridS):
+    """Mean characterization time over the planets actually counted at each exposure time.
+
+    The budget charges the EXPECTED TOTAL characterization time, which is the number of
+    detections times the mean cost per detection, so the mean is the correct statistic and it
+    must be taken over the counted set rather than over every detectable planet. Detection is
+    brightness-ordered: a short allocation finds only the brightest planets, which are also the
+    cheapest to characterize, so a statistic over all detectable planets overcharges short
+    allocations. faTauDet must already be infinite for planets that do not count.
+    """
+    faOrder = np.argsort(faTauDet)
+    faDetSorted = faTauDet[faOrder]
+    faCharSorted = np.where(np.isfinite(faTauChar[faOrder]), faTauChar[faOrder], 0.0)
+    faCumulative = np.cumsum(faCharSorted)
+    faCount = np.searchsorted(faDetSorted, faTauGridS, side="right")
+    return np.where(faCount > 0, faCumulative[np.maximum(faCount - 1, 0)] /
+                    np.maximum(faCount, 1), 0.0)
+
+
 def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMission,
                           faTauGridS, iNumPlanets, fAlpha, fBeta, iSeed):
-    """Completeness C(tau) on a shared time grid for one star, plus its characterization time.
+    """Completeness C(tau) on a shared time grid for one star, with its characterization cost.
 
-    C(tau) is the fraction of ALL injected EECs detectable in tau, so it already carries the
-    geometric, photometric and noise-floor losses. Planets blocked by the noise floor, the outer
-    working angle, or the two-month exposure cap never enter, which is exactly their effect on
-    the survey.
+    C(tau) is the fraction of ALL injected EECs that COUNT within tau. A planet counts only if
+    it can be both detected and spectrally characterized inside the two-month cap: Stark et al.
+    (2019) require both times to be under two months and state that "any planets that did not
+    meet this criteria did not count toward the yield". Charging an uncharacterizable planet the
+    cap instead of excluding it inflates the characterization budget badly, which is what an
+    earlier version of this function did.
     """
     rng = np.random.default_rng(iSeed)
     dictPlanets = fdictInjectPlanets(dictBox, np.sqrt(dictStar["fLuminosityLsun"]),
@@ -124,13 +145,20 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
                     for b in listBandsDet]
     faTauDet = faRequiredExposureTime(listDetRates, listBandsDet,
                                       listBandsDet[0]["fSignalToNoise"], dictMission)
-    listCharRates = [fdictCountRates(dictStar, dictPlanets, dictGeom, dictBandChar, dictMission)]
-    faTauChar = faRequiredExposureTime(listCharRates, [dictBandChar],
-                                       dictBandChar["fSignalToNoise"], dictMission)
+    listCharOptions = dictMission.get("listBandsCharacterization") or [dictBandChar]
+    faTauChar = np.full(iNumPlanets, np.inf)
+    for dictOption in listCharOptions:
+        faOption = faRequiredExposureTime(
+            [fdictCountRates(dictStar, dictPlanets, dictGeom, dictOption, dictMission)],
+            [dictOption], dictOption["fSignalToNoise"], dictMission)
+        faTauChar = np.minimum(faTauChar, faOption)
     fCap = dictMission["fExposureLimitS"]
-    faTauDet = np.where(faTauDet <= fCap, faTauDet, np.inf)
+    bCounts = (np.isfinite(faTauDet) & (faTauDet <= fCap) &
+               np.isfinite(faTauChar) & (faTauChar <= fCap))
+    faTauDet = np.where(bCounts, faTauDet, np.inf)
     faDetSorted = np.sort(faTauDet[np.isfinite(faTauDet)])
     faComp = np.searchsorted(faDetSorted, faTauGridS, side="right") / float(iNumPlanets)
-    faCharOk = faTauChar[np.isfinite(faTauDet) & np.isfinite(faTauChar) & (faTauChar <= fCap)]
-    return dict(faComp=faComp, fTauCharS=float(np.median(faCharOk)) if faCharOk.size else np.inf,
+    return dict(faComp=faComp,
+                faTauCharMeanS=faCumulativeMeanCharTime(faTauDet, faTauChar, faTauGridS),
+                fTauCharS=float(np.median(faTauChar[bCounts])) if bCounts.any() else np.inf,
                 fMaxCompleteness=float(faComp[-1]))

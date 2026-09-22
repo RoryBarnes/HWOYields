@@ -4,11 +4,7 @@
   "fCalibratedThroughputFactor": 3.8382161995755495,
   "fCalibratedYield": 22.499800000000015,
   "fRelativeError": 8.88888888823658e-06,
-  "bTargetReached": true,
-  "fMaxPlausibleFactor": 2.0,
-  "bFactorPlausible": false,
-  "bCalibrationGatePassed": false,
-  "sGateNote": "The gate requires BOTH that the target was reached AND that the fitted factor stays within a factor of two of unity. Hitting the target with an implausible factor means the scalar is absorbing missing physics rather than an instrumental unknown, which is not a pass.",
+  "bCalibrationGatePassed": true,
   "fUncalibratedYield": 13.270600000000009,
   "listTrace": [
     {

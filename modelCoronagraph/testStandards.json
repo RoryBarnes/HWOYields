@@ -50,7 +50,7 @@
         "dictBoxes.hzOnly.fHzInnerAu": 0.96,
         "dictBoxes.hzOnly.fHzOuterAu": 1.2
       },
-      "iBytes": 2029
+      "iBytes": 4034
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",

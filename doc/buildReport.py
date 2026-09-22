@@ -114,6 +114,8 @@ def fdictSubstitutions(dictResults):
         "APEXPONENT": f"{math.log(dictAp['dictByDiameter']['9']['fExpectedYieldAtBaselineEta'] / dictAp['dictByDiameter']['6']['fExpectedYieldAtBaselineEta']) / math.log(1.5):.2f}",
         "ETASAG13": "0.2404",
         "CALFACTORINV": f"{1.0/dictCal['fCalibratedThroughputFactor']:.2f}",
+        "GATEPASS": "passes" if dictCal.get("bCalibrationGatePassed") else "FAILS",
+        "FACTORPLAUSIBLE": "within" if dictCal.get("bFactorPlausible") else "outside",
     }
 
 

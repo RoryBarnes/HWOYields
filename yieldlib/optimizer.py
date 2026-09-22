@@ -37,7 +37,12 @@ def fdictStarCostCurve(dictStar, fEtaEarth, dictMission):
     faTau = np.concatenate(([0.0], dictStar["faTauGridS"]))
     faComp = np.concatenate(([0.0], dictStar["faComp"]))
     faCost = np.where(faTau > 0.0, fMult * faTau + fOverhead, 0.0)
-    if np.isfinite(dictStar["fTauCharS"]):
+    faTauChar = dictStar.get("faTauCharMeanS")
+    if faTauChar is not None:
+        faChar = np.concatenate(([0.0], np.asarray(faTauChar)))
+        faCost = faCost + fEtaEarth * faComp * np.where(faChar > 0.0,
+                                                        fMult * faChar + fOverhead, 0.0)
+    elif np.isfinite(dictStar["fTauCharS"]):
         faCost = faCost + fEtaEarth * faComp * (fMult * dictStar["fTauCharS"] + fOverhead)
     faHull = faUpperConcaveHull(faCost, faComp)
     return dict(faCost=faCost[faHull], faComp=faComp[faHull])

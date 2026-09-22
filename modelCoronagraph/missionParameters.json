@@ -50,7 +50,81 @@
       "fBandwidthFraction": 0.007142857142857143,
       "fSignalToNoise": 5.0,
       "iNumPixels": 96
-    }
+    },
+    "listBandsCharacterization": [
+      {
+        "sName": "IFS730",
+        "fLambdaM": 7.3e-07,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 17.0,
+        "iNumPixels": 51
+      },
+      {
+        "sName": "IFS763",
+        "fLambdaM": 7.63e-07,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 15.0,
+        "iNumPixels": 56
+      },
+      {
+        "sName": "IFS779",
+        "fLambdaM": 7.79e-07,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 14.0,
+        "iNumPixels": 58
+      },
+      {
+        "sName": "IFS824",
+        "fLambdaM": 8.24e-07,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 13.0,
+        "iNumPixels": 65
+      },
+      {
+        "sName": "IFS842",
+        "fLambdaM": 8.42e-07,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 12.0,
+        "iNumPixels": 68
+      },
+      {
+        "sName": "IFS917",
+        "fLambdaM": 9.17e-07,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 10.0,
+        "iNumPixels": 81
+      },
+      {
+        "sName": "IFS930",
+        "fLambdaM": 9.3e-07,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 9.0,
+        "iNumPixels": 83
+      },
+      {
+        "sName": "IFS943",
+        "fLambdaM": 9.43e-07,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 6.0,
+        "iNumPixels": 85
+      },
+      {
+        "sName": "IFS1000",
+        "fLambdaM": 1e-06,
+        "fOpticalThroughput": 0.23,
+        "fBandwidthFraction": 0.007142857142857143,
+        "fSignalToNoise": 5.0,
+        "iNumPixels": 96
+      }
+    ]
   },
   "dictBoxes": {
     "canonical": {

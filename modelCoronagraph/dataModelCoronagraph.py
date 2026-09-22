@@ -63,7 +63,30 @@ def fdictBandParameters():
         "dictBandCharacterization": {
             "sName": "IFS", "fLambdaM": 1000e-9, "fOpticalThroughput": 0.23,
             "fBandwidthFraction": 1.0 / 140.0, "fSignalToNoise": 5.0, "iNumPixels": 96},
+        "listBandsCharacterization": flistCharacterizationOptions(),
     }
+
+
+def flistCharacterizationOptions():
+    """Bandpass options AYO chooses among for a water-vapour characterization.
+
+    Digitized from the 20 percent bandwidth curve of Stark et al. (2024) Fig. 3: the continuum
+    S/N needed for a strong H2O detection against the long-wavelength edge of the bandpass. A
+    shorter edge needs more S/N but collects more stellar photons and sits at a smaller lambda/D,
+    so the cheapest option differs star by star. Modelling only the 1000 nm option -- as an
+    earlier version did -- makes characterization far too expensive for hard targets, which then
+    fail the two-month cap and stop counting toward the yield.
+
+    Pixel count scales with the diffraction-limited lenslet area, and the IFS throughput is held
+    at its 1000 nm value for want of a published wavelength dependence.
+    """
+    listEdges = [(730e-9, 17.0), (763e-9, 15.0), (779e-9, 14.0), (824e-9, 13.0),
+                 (842e-9, 12.0), (917e-9, 10.0), (930e-9, 9.0), (943e-9, 6.0),
+                 (1000e-9, 5.0)]
+    return [{"sName": f"IFS{int(f * 1e9)}", "fLambdaM": f, "fOpticalThroughput": 0.23,
+             "fBandwidthFraction": 1.0 / 140.0, "fSignalToNoise": fSnr,
+             "iNumPixels": max(int(round(96 * (f / 1000e-9) ** 2)), 4)}
+            for f, fSnr in listEdges]
 
 
 def fdictSelectionBoxes():

@@ -56,6 +56,8 @@ def fdictParseArgs():
     p.add_argument("--calibration-max", type=float, default=20.0)
     p.add_argument("--bisection-steps", type=int, default=14)
     p.add_argument("--tolerance-fraction", type=float, default=0.10)
+    p.add_argument("--max-plausible-factor", type=float, default=2.0,
+                   help="a fitted factor beyond this band absorbs physics, not an unknown")
     p.add_argument("--seed", type=int, default=20260921)
     p.add_argument("--out-calibration", default="calibration.json")
     return vars(p.parse_args())
@@ -83,7 +85,19 @@ def main():
         "fCalibratedThroughputFactor": dictBest["fCalibration"],
         "fCalibratedYield": dictBest["fYield"],
         "fRelativeError": fRelativeError,
-        "bCalibrationGatePassed": bool(fRelativeError <= dictArgs["tolerance_fraction"]),
+        "bTargetReached": bool(fRelativeError <= dictArgs["tolerance_fraction"]),
+        "fMaxPlausibleFactor": dictArgs["max_plausible_factor"],
+        "bFactorPlausible": bool(
+            1.0 / dictArgs["max_plausible_factor"] <= dictBest["fCalibration"]
+            <= dictArgs["max_plausible_factor"]),
+        "bCalibrationGatePassed": bool(
+            fRelativeError <= dictArgs["tolerance_fraction"]
+            and 1.0 / dictArgs["max_plausible_factor"] <= dictBest["fCalibration"]
+            <= dictArgs["max_plausible_factor"]),
+        "sGateNote": "The gate requires BOTH that the target was reached AND that the fitted "
+                     "factor stays within a factor of two of unity. Hitting the target with an "
+                     "implausible factor means the scalar is absorbing missing physics rather "
+                     "than an instrumental unknown, which is not a pass.",
         "fUncalibratedYield": sv.fnYieldForCalibration(
             dfTargets, dictParams, dictBox, faTauGridS, dictArgs["num_planets"],
             dictArgs["seed"], dictArgs["eta_earth"], 1.0),

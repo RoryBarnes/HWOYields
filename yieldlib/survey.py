@@ -50,7 +50,11 @@ def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlane
     dictMission = dictParams["dictMission"]
     listBandsDet = dictParams["dictBands"]["listBandsDetection"]
     dictBandChar = dictParams["dictBands"]["dictBandCharacterization"]
+    dictMission = dict(dictMission)
+    dictMission["listBandsCharacterization"] = \
+        dictParams["dictBands"].get("listBandsCharacterization")
     faComp = np.zeros((len(dfTargets), len(faTauGridS)))
+    faTauCharMean = np.zeros((len(dfTargets), len(faTauGridS)))
     faTauChar = np.zeros(len(dfTargets))
     for i, dictRow in enumerate(dfTargets.to_dict("records")):
         dictResult = cp.fdictStarCompleteness(dictRow, dictBox, listBandsDet, dictBandChar,
@@ -58,13 +62,15 @@ def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlane
                                               dictParams["fAlpha"], dictParams["fBeta"],
                                               iSeed + i)
         faComp[i] = dictResult["faComp"]
+        faTauCharMean[i] = dictResult["faTauCharMeanS"]
         faTauChar[i] = dictResult["fTauCharS"]
-    return dict(faComp=faComp, faTauChar=faTauChar)
+    return dict(faComp=faComp, faTauChar=faTauChar, faTauCharMean=faTauCharMean)
 
 
 def flistStarsFromTable(dictTable, faTauGridS):
     """Package a completeness table into the per-star dicts the optimizer expects."""
     return [dict(faTauGridS=faTauGridS, faComp=dictTable["faComp"][i],
+                 faTauCharMeanS=dictTable["faTauCharMean"][i],
                  fTauCharS=float(dictTable["faTauChar"][i]))
             for i in range(dictTable["faComp"].shape[0])]
 
