@@ -115,6 +115,8 @@ def fdictSubstitutions(dictResults):
         "ETASAG13": "0.2404",
         "CALFACTORINV": f"{1.0/dictCal['fCalibratedThroughputFactor']:.2f}",
         "GATEPASS": "passes" if dictCal.get("bCalibrationGatePassed") else "FAILS",
+        "ETAMODE": f"{dictPost.get('fEtaModeImplied', float('nan')):.3f}",
+        "BIASMEAN": f"{dictCanon['fMeanExpected'] * 17.3 / 22.5:.1f}",
         "FACTORPLAUSIBLE": "within" if dictCal.get("bFactorPlausible") else "outside",
     }
 

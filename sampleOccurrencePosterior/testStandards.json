@@ -55,22 +55,22 @@
           "fMax": 0.27199668308709374
         },
         "faEta_canonical": {
-          "fMean": 0.23715695115037513,
-          "fMin": 0.010398894951588867,
-          "fMax": 0.9182412021317307
+          "fMean": 0.2919290192658408,
+          "fMin": 0.0379133266757716,
+          "fMax": 1.782314060021193
         },
         "faEta_redefined": {
-          "fMean": 0.04813473036286549,
-          "fMin": 0.002193624061917088,
-          "fMax": 0.1905864674877562
+          "fMean": 0.05940724695533123,
+          "fMin": 0.007817019056823723,
+          "fMax": 0.363370363917705
         },
         "faEta_hzOnly": {
-          "fMean": 0.07616081509838214,
-          "fMin": 0.0034907397266737256,
-          "fMax": 0.30637743136612366
+          "fMean": 0.09398770586326054,
+          "fMin": 0.01245145804755511,
+          "fMax": 0.582502886816197
         }
       },
-      "iBytes": 764641
+      "iBytes": 764963
     },
     "occurrencePosteriorSummary.json": {
       "sKind": "json",
@@ -79,10 +79,19 @@
         "dictParameters",
         "dictRatioRedefinedOverCanonical",
         "fAcceptanceFraction",
+        "fEtaLogNormalMu",
+        "fEtaLogNormalSigma",
+        "fEtaMeanImplied",
+        "fEtaModeImplied",
         "fMaxAutocorrSteps",
-        "iSamples"
+        "iSamples",
+        "sEtaNormalisation"
       ],
       "dictNumbers": {
+        "fEtaLogNormalMu": -1.3590502684778558,
+        "fEtaLogNormalSigma": 0.5158001730512071,
+        "fEtaModeImplied": 0.19689196789208732,
+        "fEtaMeanImplied": 0.2934566475276453,
         "iSamples": 14400.0,
         "fAcceptanceFraction": 0.6436458333333333,
         "fMaxAutocorrSteps": 36.78834226559994,
@@ -98,24 +107,24 @@
         "dictParameters.beta.fP16": -0.027259323295514375,
         "dictParameters.beta.fP84": 0.5541729491124299,
         "dictParameters.beta.fMean": 0.2645734248645533,
-        "dictEtaByBox.canonical.fMedian": 0.21727515874384132,
-        "dictEtaByBox.canonical.fP16": 0.1369300698601498,
-        "dictEtaByBox.canonical.fP84": 0.34348611887373415,
-        "dictEtaByBox.canonical.fMean": 0.23715695115037513,
-        "dictEtaByBox.redefined.fMedian": 0.04385129210984426,
-        "dictEtaByBox.redefined.fP16": 0.027573639549127723,
-        "dictEtaByBox.redefined.fP84": 0.06948120032885433,
-        "dictEtaByBox.redefined.fMean": 0.04813473036286549,
-        "dictEtaByBox.hzOnly.fMedian": 0.06935710826062313,
-        "dictEtaByBox.hzOnly.fP16": 0.0436498269581088,
-        "dictEtaByBox.hzOnly.fP84": 0.11005399132202998,
-        "dictEtaByBox.hzOnly.fMean": 0.07616081509838214,
+        "dictEtaByBox.canonical.fMedian": 0.2556492691802682,
+        "dictEtaByBox.canonical.fP16": 0.15469494416183774,
+        "dictEtaByBox.canonical.fP84": 0.423668577412398,
+        "dictEtaByBox.canonical.fMean": 0.2919290192658408,
+        "dictEtaByBox.redefined.fMedian": 0.05197086363264328,
+        "dictEtaByBox.redefined.fP16": 0.03123435936565548,
+        "dictEtaByBox.redefined.fP84": 0.08647564838899434,
+        "dictEtaByBox.redefined.fMean": 0.05940724695533123,
+        "dictEtaByBox.hzOnly.fMedian": 0.08219555377718488,
+        "dictEtaByBox.hzOnly.fP16": 0.04945378793516375,
+        "dictEtaByBox.hzOnly.fP84": 0.136406626027829,
+        "dictEtaByBox.hzOnly.fMean": 0.09398770586326054,
         "dictRatioRedefinedOverCanonical.fMedian": 0.20334323541972582,
         "dictRatioRedefinedOverCanonical.fP16": 0.18681361673777727,
         "dictRatioRedefinedOverCanonical.fP84": 0.2204945874828882,
         "dictRatioRedefinedOverCanonical.fMean": 0.20352045278060632
       },
-      "iBytes": 1339
+      "iBytes": 1713
     }
   }
 }

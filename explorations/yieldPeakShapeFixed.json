@@ -1,0 +1,61 @@
+{
+  "dictEtaShape": {
+    "mine": {
+      "sName": "this pipeline",
+      "fMode": 0.219621736399253,
+      "fMedian": 0.2556492691802682,
+      "fMean": 0.2919290192658408,
+      "fP16": 0.15469494416183774,
+      "fP84": 0.423668577412398,
+      "fMeanOverMode": 1.3292355485940586,
+      "fUpperOverLower": 1.6643101541360985
+    },
+    "published": {
+      "sName": "Stark 0.26 +0.29/-0.14",
+      "fMode": 0.2503298258468762,
+      "fMedian": 0.3246618680382891,
+      "fMean": 0.3417399538742135,
+      "fP16": 0.19562959197908444,
+      "fP84": 0.4924563106264144,
+      "fMeanOverMode": 1.365158756924362,
+      "fUpperOverLower": 1.300406748704759
+    }
+  },
+  "dictYieldShape": {
+    "mine": {
+      "sName": "mine",
+      "fMode": 17.9125,
+      "fMedian": 24.0,
+      "fMean": 26.654097222222223,
+      "fP16": 14.0,
+      "fP84": 40.0,
+      "fMeanOverMode": 1.4880165930061253,
+      "fUpperOverLower": 1.6
+    },
+    "published": {
+      "sName": "published eta",
+      "fMode": 27.625,
+      "fMedian": 30.0,
+      "fMean": 31.300881475488268,
+      "fP16": 17.0,
+      "fP84": 46.0,
+      "fMeanOverMode": 1.1330635828231048,
+      "fUpperOverLower": 1.2307692307692308
+    }
+  },
+  "dictYieldShapeWithBias": {
+    "mine": {
+      "sName": "mine x bias",
+      "fMode": 13.325,
+      "fMedian": 18.0,
+      "fMean": 20.50409722222222,
+      "fP16": 10.0,
+      "fP84": 31.0,
+      "fMeanOverMode": 1.5387690223056076,
+      "fUpperOverLower": 1.625
+    }
+  },
+  "fBiasFactor": 0.768888888888889,
+  "fStarkFig10PeakApprox": 10.0,
+  "fStarkFig10MeanApprox": 21.0
+}

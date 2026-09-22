@@ -66,6 +66,23 @@ def faRunSampler(dictBoxes, dictPriors, dictLikelihood, iWalkers, iSteps, iBurn,
     return oSampler, oSampler.get_chain(discard=iBurn, thin=10, flat=True)
 
 
+def faSampleEtaFromPublished(fCentre, fMinus, fPlus, iDraws, rng):
+    """Draw eta for the canonical box directly from the published posterior summary.
+
+    The value this pipeline must reproduce is already a POSTERIOR -- Stark et al. (2024) obtain
+    eta_Earth = 0.26 (+0.29/-0.14) at 86 percent by integrating the Bryson et al. (2021) chain.
+    An earlier version treated it as a likelihood and multiplied it by priors on (lnGamma, alpha,
+    beta), which double-counts information: the result came out 23 percent NARROWER than the
+    constraint it was built from, with its mode dragged toward the prior centre and its right
+    skew destroyed. Occurrence rates are positive and heavy-tailed, so a lognormal matched to the
+    published interval is used here rather than a split-normal, which has far too light a tail.
+    """
+    fLo, fHi = fCentre - fMinus, fCentre + fPlus
+    fMu = 0.5 * (np.log(fLo) + np.log(fHi))
+    fSigma = (np.log(fHi) - np.log(fLo)) / (2.0 * F_Z_86_PERCENT)
+    return np.exp(rng.normal(fMu, fSigma, iDraws)), fMu, fSigma
+
+
 def fdictBoxPosteriors(faChain, dictBoxes):
     """Integrate every posterior draw over each selection box."""
     dictOut = {}
@@ -121,11 +138,24 @@ def main():
     oSampler, faChain = faRunSampler(dictBoxes, dictPriors, dictLikelihood,
                                      dictArgs["walkers"], dictArgs["steps"],
                                      dictArgs["burn"], dictArgs["seed"])
-    dictEta = fdictBoxPosteriors(faChain, dictBoxes)
-    faRatio = dictEta["redefined"] / dictEta["canonical"]
+    dictEtaShape = fdictBoxPosteriors(faChain, dictBoxes)
+    faRatio = dictEtaShape["redefined"] / dictEtaShape["canonical"]
+    rngEta = np.random.default_rng(dictArgs["seed"] + 1)
+    faEtaCanonical, fMu, fSigma = faSampleEtaFromPublished(
+        dictArgs["eta_centre"], dictArgs["eta_minus"], dictArgs["eta_plus"],
+        faRatio.size, rngEta)
+    dictEta = {"canonical": faEtaCanonical, "redefined": faEtaCanonical * faRatio,
+               "hzOnly": faEtaCanonical * (dictEtaShape["hzOnly"] /
+                                           dictEtaShape["canonical"])}
     np.savez_compressed(dictArgs["out_samples"], faChain=faChain, faRatio=faRatio,
                         **{f"faEta_{k}": v for k, v in dictEta.items()})
     dictSummary = {
+        "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior "
+                             "(lognormal matched to its 86 percent interval); other boxes follow "
+                             "by the Gamma-independent ratio from the shape chain.",
+        "fEtaLogNormalMu": float(fMu), "fEtaLogNormalSigma": float(fSigma),
+        "fEtaModeImplied": float(np.exp(fMu - fSigma ** 2)),
+        "fEtaMeanImplied": float(np.exp(fMu + 0.5 * fSigma ** 2)),
         "iSamples": int(faChain.shape[0]),
         "fAcceptanceFraction": float(np.mean(oSampler.acceptance_fraction)),
         "fMaxAutocorrSteps": float(np.max(oSampler.get_autocorr_time(quiet=True))),

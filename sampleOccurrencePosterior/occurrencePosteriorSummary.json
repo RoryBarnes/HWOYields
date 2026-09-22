@@ -1,4 +1,9 @@
 {
+  "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior (lognormal matched to its 86 percent interval); other boxes follow by the Gamma-independent ratio from the shape chain.",
+  "fEtaLogNormalMu": -1.3590502684778558,
+  "fEtaLogNormalSigma": 0.5158001730512071,
+  "fEtaModeImplied": 0.19689196789208732,
+  "fEtaMeanImplied": 0.2934566475276453,
   "iSamples": 14400,
   "fAcceptanceFraction": 0.6436458333333333,
   "fMaxAutocorrSteps": 36.78834226559994,
@@ -24,22 +29,22 @@
   },
   "dictEtaByBox": {
     "canonical": {
-      "fMedian": 0.21727515874384132,
-      "fP16": 0.1369300698601498,
-      "fP84": 0.34348611887373415,
-      "fMean": 0.23715695115037513
+      "fMedian": 0.2556492691802682,
+      "fP16": 0.15469494416183774,
+      "fP84": 0.423668577412398,
+      "fMean": 0.2919290192658408
     },
     "redefined": {
-      "fMedian": 0.04385129210984426,
-      "fP16": 0.027573639549127723,
-      "fP84": 0.06948120032885433,
-      "fMean": 0.04813473036286549
+      "fMedian": 0.05197086363264328,
+      "fP16": 0.03123435936565548,
+      "fP84": 0.08647564838899434,
+      "fMean": 0.05940724695533123
     },
     "hzOnly": {
-      "fMedian": 0.06935710826062313,
-      "fP16": 0.0436498269581088,
-      "fP84": 0.11005399132202998,
-      "fMean": 0.07616081509838214
+      "fMedian": 0.08219555377718488,
+      "fP16": 0.04945378793516375,
+      "fP84": 0.136406626027829,
+      "fMean": 0.09398770586326054
     }
   },
   "dictRatioRedefinedOverCanonical": {

@@ -1,10 +1,10 @@
 {
   "iStateSchemaVersion": 3,
-  "sLastUpdated": "2026-09-22T04:49:37Z",
+  "sLastUpdated": "2026-09-22T05:11:04Z",
   "dictWorkflowState": {
     ".vaibify/projects/hwoYieldRederivation.json": {
       "iStateSchemaVersion": 3,
-      "sLastUpdated": "2026-09-22T04:49:37Z",
+      "sLastUpdated": "2026-09-22T05:11:04Z",
       "dictStepState": {
         "buildtargetcatalog": {
           "dictVerification": {
@@ -101,8 +101,7 @@
             "sUnitTest": "passed",
             "sIntegrity": "passed",
             "sQualitative": "passed",
-            "sQuantitative": "passed",
-            "bUpstreamModified": true
+            "sQuantitative": "passed"
           },
           "dictRunStats": {
             "fWallClock": 6.1,
@@ -112,7 +111,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "e5f63d10f44330c179cbf80c572647a11abf8f20cee51a10a69c42ef338cb2d5"
+            "dictVerification": "2984043fff02361c213db358354410e5aa3d26732799e446a8d50f3ba70d9e87"
           }
         },
         "predictredefinedyield": {
@@ -130,20 +129,20 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "971576945729076d28ef239666a7c7ee33c5bbd672ea40dc38c963e35b2b8d09"
+            "dictVerification": "f9dedeee4d80e77528e469320ef2c23f6dbdcc9239a76cb3030edecb602fa371"
           }
         },
         "compareaperturescaling": {
           "dictVerification": {
-            "sUnitTest": "untested",
+            "sUnitTest": "passed",
             "sUser": "untested",
             "sQualitative": "passed",
-            "sQuantitative": "untested",
+            "sQuantitative": "passed",
             "sIntegrity": "passed"
           },
           "dictRunStats": {},
           "dictDefinitionProducers": {
-            "dictVerification": "59eb1b4f89fa2e60cc25ba21596f5db8434dda96c58a4683e2b5c07a35ca4f1e"
+            "dictVerification": "0cc199b638ebff0cba6c08c0215c458eb69b94163bc6069e38a2b0cc62fe9823"
           }
         }
       },

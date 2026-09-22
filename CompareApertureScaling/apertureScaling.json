@@ -1,6 +1,6 @@
 {
   "fFrozenCalibrationFactor": 3.8382161995755495,
-  "fCrossingDiameterM": 6.047047527604417,
+  "fCrossingDiameterM": 6.440293937538273,
   "fCrossingDiameterPublishedM": 7.1,
   "sCrossingNote": "Diameter at which the excluding-sigma curve overtakes the including-sigma curve. Published value read off Fig. 15.",
   "sCalibrationNote": "Fitted at 6 m only; 7, 8 and 9 m are out-of-sample predictions.",
@@ -52,9 +52,9 @@
   "dictByDiameter": {
     "6": {
       "fExpectedYieldAtBaselineEta": 22.58463980463385,
-      "fMeanExpectedMarginal": 21.936192967084555,
-      "fProbability25IncludingSigmaEta": 0.3474305555555556,
-      "fProbability25ExcludingSigmaEta": 0.33381944444444445,
+      "fMeanExpectedMarginal": 26.27802150631895,
+      "fProbability25IncludingSigmaEta": 0.4847916666666667,
+      "fProbability25ExcludingSigmaEta": 0.335,
       "iStarsScreened": 1500,
       "faYieldGrid": [
         0.280985,
@@ -85,9 +85,9 @@
     },
     "7": {
       "fExpectedYieldAtBaselineEta": 32.17123110129337,
-      "fMeanExpectedMarginal": 30.468858877331346,
-      "fProbability25IncludingSigmaEta": 0.6428472222222222,
-      "fProbability25ExcludingSigmaEta": 0.9185416666666667,
+      "fMeanExpectedMarginal": 35.97864699918155,
+      "fProbability25IncludingSigmaEta": 0.7282638888888889,
+      "fProbability25ExcludingSigmaEta": 0.9186805555555555,
       "iStarsScreened": 1500,
       "faYieldGrid": [
         0.4028379999999999,
@@ -118,9 +118,9 @@
     },
     "8": {
       "fExpectedYieldAtBaselineEta": 40.54091287898635,
-      "fMeanExpectedMarginal": 38.65996966939172,
-      "fProbability25IncludingSigmaEta": 0.8101388888888889,
-      "fProbability25ExcludingSigmaEta": 0.9970138888888889,
+      "fMeanExpectedMarginal": 45.41717130646037,
+      "fProbability25IncludingSigmaEta": 0.8673611111111111,
+      "fProbability25ExcludingSigmaEta": 0.9963194444444444,
       "iStarsScreened": 1500,
       "faYieldGrid": [
         0.5284220000000004,
@@ -151,8 +151,8 @@
     },
     "9": {
       "fExpectedYieldAtBaselineEta": 48.43829108681268,
-      "fMeanExpectedMarginal": 46.63397774533076,
-      "fProbability25IncludingSigmaEta": 0.8961805555555555,
+      "fMeanExpectedMarginal": 54.68908940267249,
+      "fProbability25IncludingSigmaEta": 0.9372916666666666,
       "fProbability25ExcludingSigmaEta": 1.0,
       "iStarsScreened": 1500,
       "faYieldGrid": [
@@ -185,19 +185,19 @@
   },
   "dictResiduals": {
     "6": {
-      "fIncludingSigmaEta": 0.02743055555555557,
-      "fExcludingSigmaEta": 0.27381944444444445
+      "fIncludingSigmaEta": 0.16479166666666667,
+      "fExcludingSigmaEta": 0.275
     },
     "7": {
-      "fIncludingSigmaEta": 0.11284722222222221,
-      "fExcludingSigmaEta": 0.4285416666666667
+      "fIncludingSigmaEta": 0.1982638888888889,
+      "fExcludingSigmaEta": 0.4286805555555555
     },
     "8": {
-      "fIncludingSigmaEta": 0.1401388888888888,
-      "fExcludingSigmaEta": 0.10701388888888885
+      "fIncludingSigmaEta": 0.1973611111111111,
+      "fExcludingSigmaEta": 0.10631944444444441
     },
     "9": {
-      "fIncludingSigmaEta": 0.11618055555555551,
+      "fIncludingSigmaEta": 0.1572916666666666,
       "fExcludingSigmaEta": 0.0050000000000000044
     }
   }

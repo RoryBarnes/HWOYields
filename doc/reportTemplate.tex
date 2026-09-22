@@ -236,7 +236,7 @@ published 22.5-candidate target.}
 \midrule
 $\eta_\oplus$, SAG13 over the canonical box & 0.24 & @@ETASAG13@@ & Independent \\
 Expected yield, 6\,m, \emph{before} calibration & 22.5 & @@CALUNCAL@@ & Independent \\
-$P_{25}$ including $\sigma_{\eta_\oplus}$, 6\,m & 32\% & @@CANONP25@@\% & Independent \\
+$P_{25}$ including $\sigma_{\eta_\oplus}$, 6\,m & 32\% & @@CANONP25@@\% & Independent, \textbf{disagrees} \\
 Expected yield, 6\,m, after calibration & 22.5 & @@CALYIELD@@ & \textbf{Tuned (not evidence)} \\
 \bottomrule
 \end{tabular}
@@ -248,7 +248,10 @@ mistaken for a result.}
 The $\eta_\oplus$ row involves no telescope model at all and tests the population layer alone.
 The $P_{25}$ row is the most informative of the three, because it depends on the completeness
 model, the optimizer, the characterization budget and the occurrence posterior simultaneously,
-and nothing in the pipeline was fitted to it.
+and nothing in the pipeline was fitted to it. \textbf{It no longer agrees}, and
+Section~\ref{sec:peak} explains why: it is not a like-for-like comparison, and the agreement an
+earlier version of this report claimed here was an artifact of two errors that have since been
+found.
 
 \subsection{Checking this yourself, in one command}
 
@@ -398,12 +401,56 @@ accumulated over a wider effective width, every characterization time here is to
 ratio, which would be a single constant factor of exactly the kind the calibration is absorbing.
 That is the next thing to test and it is not yet tested.
 
+\subsection{The shape of the yield distribution}
+\label{sec:peak}
+
+Stark et al.\ (2024) Fig.~10 peaks near 10 exoEarth candidates with a long right tail and a mean
+near 21. The distribution here peaked near 17 and looked close to symmetric, which is a
+diagnostic in its own right, and chasing it found two more problems.
+
+\textbf{The occurrence posterior was double-counting its own constraint.} The value this pipeline
+must reproduce, $\eta_\oplus = 0.26\,(+0.29/-0.14)$, is already a posterior: Stark obtains it by
+integrating the Bryson et al.\ (2021) chain. An earlier version treated it as a \emph{likelihood}
+and multiplied it by priors on $(\ln\Gamma, \alpha, \beta)$. The result came out with an 86\%
+interval of $[0.101, 0.432]$ against the published $[0.12, 0.55]$ --- 23\% \emph{narrower than the
+constraint it was built from} --- with its mode dragged toward the prior centre and its right skew
+destroyed, giving a mean-to-mode ratio of 0.98 where the published distribution has 1.37.
+Occurrence rates are positive and heavy-tailed, so the canonical-box $\eta$ is now drawn directly
+from a lognormal matched to the published interval (implied mode @@ETAMODE@@), and the other boxes
+follow by the $\Gamma$-independent ratio from the shape chain. The mean-to-mode ratio is now 1.33.
+
+\textbf{That fixed the skew and did not move the peak down.} It moved it up, to 17.9, because the
+corrected distribution has a higher median. The peak offset has a different cause.
+
+\textbf{Albedo and exozodi are the cause, and the geometric albedo is the specific culprit.} Stark's
+expected yield falls from 22.5 to 17.3 once albedo, exozodi-distribution and exozodi-sampling
+uncertainty are included, and Fig.~10 is built on the lower figure. This pipeline holds
+$A_G = 0.2$ for every planet and every exozodi at 3 zodis, so it produces the \emph{unbiased}
+distribution. Multiplying by Stark's own factor gives a mean of @@BIASMEAN@@ against his $\sim$21
+--- agreement to a few percent --- and moves the peak from 17.9 to 13.3 against his $\sim$10.
+
+The residual peak offset is informative about what a uniform factor cannot capture. Albedo
+uncertainty is a \emph{distribution}, not a scale factor: drawing a low albedo does not merely
+dim a planet, it can push it below the $\Delta\mathrm{mag} = 26.5$ noise floor, where it stops
+counting entirely. That removes weight from the middle of the distribution and piles it at low
+yields, which is exactly the difference in shape that remains. Modelling the albedo distribution
+is the next correction, and it is not yet done.
+
+\textbf{A consequence for Section~4.3.} The $P_{25}$ comparison there is therefore not
+like-for-like: this pipeline's @@CANONP25@@\% is an unbiased-distribution number and Stark's 32\%
+is a biased-distribution number. An earlier version of this report recorded 33\% against 32\% and
+presented it as the strongest independent check in the work. That agreement required the
+occurrence posterior to be too narrow \emph{and} the albedo bias to be missing, pulling in
+opposite directions. It was the third compensating-error coincidence found in this analysis, and
+like the other two it looked like a success.
+
 \subsection{Further checks, still not run}
 
 \begin{enumerate}
-\item \textbf{The characterization-time statistic.} Recompute \texttt{fTauCharS} over planets
-actually detected within the allocated exposure rather than over all detectable planets, and
-re-measure the exponent. This is the leading untested suspect for the unexplained half.
+\item \textbf{The geometric albedo distribution.} Draw $A_G$ per planet rather than fixing it at
+0.2, and re-measure the peak and $P_{25}$. This is the leading untested correction, and unlike a
+uniform bias factor it should move the mode as well as the mean, because low-albedo planets fall
+below the noise floor rather than merely dimming.
 \item \textbf{Sensitivity derivatives --- Stark et al.\ (2019),
 \texttt{yield\_sensitivity} panels.} Yield derivatives with respect to inner working angle,
 contrast and throughput. These bear directly on the same question.
@@ -599,9 +646,10 @@ DR25 catalog and its completeness products.
 \item \textbf{Exozodi is a fixed 3 zodis} and the local zodiacal surface brightness is the
 tabulated average rather than an ecliptic-latitude-dependent model. Stark et al.\ show exozodi
 \emph{distribution} uncertainty costs roughly 4\% of the yield.
-\item \textbf{Albedo is fixed at $A_G = 0.2$.} The albedo distribution that Stark et al.\ find
-costs roughly 15\% of the expected yield is not modelled, which is part of why the
-distributions here are narrower than theirs.
+\item \textbf{Albedo is fixed at $A_G = 0.2$ and exozodi at 3 zodis.} Together these are worth
+22.5 $\rightarrow$ 17.3 in expected yield, so every absolute yield here is an unbiased number and
+is not directly comparable with the distributions or $P_{25}$ values Stark reports
+(Sec.~\ref{sec:peak}).
 \end{itemize}
 
 \section{Reproducing this}
