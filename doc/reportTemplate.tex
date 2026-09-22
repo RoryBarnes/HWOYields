@@ -458,6 +458,31 @@ occurrence posterior to be too narrow \emph{and} the albedo bias to be missing, 
 opposite directions. It was the third compensating-error coincidence found in this analysis, and
 like the other two it looked like a success.
 
+\subsection{Verifying the coronagraph itself}
+
+The coronagraph maps are the one input the papers do not distribute, so the parametrization
+standing in for them is this rederivation's largest approximation and the obvious suspect when
+the calibration demands a factor of four. It was checked directly against the DMVC curves of
+Stark et al.\ (2019), and the answer is split.
+
+\textbf{The core throughput agrees.} Against values read off their figure, this model gives 0.18
+at 3 $\lambda/D$ (published $\sim$0.15), 0.225 at 3.5 ($\sim$0.20), 0.319 at 5 ($\sim$0.30),
+0.421 at 10 ($\sim$0.42) and 0.443 at 20 ($\sim$0.45) --- a worst-case error of 0.035 in
+$\Upsilon_c$. The suspect is cleared: the missing factor of four is not hiding in the throughput.
+
+\textbf{The contrast did not agree, and has been corrected.} Stark et al.\ take
+$\zeta = \max(\zeta_{\rm simulated}, \zeta_{\rm floor})$, and the floor is operative only outside
+about 4 $\lambda/D$. Inside that the simulated contrast climbs steeply, reaching
+$\sim$2.5$\times10^{-10}$ at 3 $\lambda/D$ and above $10^{-8}$ below 1.5. This pipeline applied
+the floor universally, making close-in planets far easier than they are --- and worst for distant
+stars, whose entire habitable zone sits inside the knee. An inner power law fitted to their
+figure now tracks it to within 0.21 dex. The effect is real but small: the uncalibrated 6\,m
+yield falls from 13.3 to 12.9 and the required calibration factor rises from 3.84 to
+@@CALFACTOR@@.
+
+Both comparisons are kept as \texttt{explorations/verifyCoronagraphAgainstPublished.py} with the
+read-off values recorded, so they re-run whenever the parametrization changes.
+
 \subsection{Further checks, still not run}
 
 \begin{enumerate}

@@ -1,0 +1,119 @@
+{
+  "sSource": "Stark et al. (2019), DMVC contrast and core-throughput figure; values read off.",
+  "listThroughput": [
+    {
+      "fSeparationLamD": 1.0,
+      "fPublished": 0.0,
+      "fModel": 0.016681323055929755,
+      "fResidual": 0.016681323055929755
+    },
+    {
+      "fSeparationLamD": 2.0,
+      "fPublished": 0.05,
+      "fModel": 0.08515489173938322,
+      "fResidual": 0.035154891739383215
+    },
+    {
+      "fSeparationLamD": 3.0,
+      "fPublished": 0.15,
+      "fModel": 0.18050495584422624,
+      "fResidual": 0.030504955844226245
+    },
+    {
+      "fSeparationLamD": 3.5,
+      "fPublished": 0.2,
+      "fModel": 0.225,
+      "fResidual": 0.024999999999999994
+    },
+    {
+      "fSeparationLamD": 4.0,
+      "fPublished": 0.24,
+      "fModel": 0.2636702832943181,
+      "fResidual": 0.023670283294318084
+    },
+    {
+      "fSeparationLamD": 5.0,
+      "fPublished": 0.3,
+      "fModel": 0.3224422506430252,
+      "fResidual": 0.022442250643025186
+    },
+    {
+      "fSeparationLamD": 6.0,
+      "fPublished": 0.35,
+      "fModel": 0.3610820299139357,
+      "fResidual": 0.011082029913935698
+    },
+    {
+      "fSeparationLamD": 8.0,
+      "fPublished": 0.4,
+      "fModel": 0.40302421077033146,
+      "fResidual": 0.003024210770331437
+    },
+    {
+      "fSeparationLamD": 10.0,
+      "fPublished": 0.42,
+      "fModel": 0.4224362624075233,
+      "fResidual": 0.0024362624075233152
+    },
+    {
+      "fSeparationLamD": 15.0,
+      "fPublished": 0.44,
+      "fModel": 0.4399956691988572,
+      "fResidual": -4.330801142815588e-06
+    },
+    {
+      "fSeparationLamD": 20.0,
+      "fPublished": 0.45,
+      "fModel": 0.4452085995310316,
+      "fResidual": -0.004791400468968421
+    }
+  ],
+  "listContrast": [
+    {
+      "fSeparationLamD": 1.5,
+      "fPublished": 1e-08,
+      "fModel": 6.146560000000002e-09,
+      "fResidual": -0.21136787463112297
+    },
+    {
+      "fSeparationLamD": 2.0,
+      "fPublished": 3e-09,
+      "fModel": 1.9448100000000004e-09,
+      "fResidual": -0.18824407578398528
+    },
+    {
+      "fSeparationLamD": 2.5,
+      "fPublished": 6e-10,
+      "fModel": 7.965941760000004e-10,
+      "fResidual": 0.12308587651980797
+    },
+    {
+      "fSeparationLamD": 3.0,
+      "fPublished": 2.5e-10,
+      "fModel": 3.8416000000000015e-10,
+      "fResidual": 0.18657213404091463
+    },
+    {
+      "fSeparationLamD": 4.0,
+      "fPublished": 1.2e-10,
+      "fModel": 1.2155062500000003e-10,
+      "fResidual": 0.005575950232127546
+    },
+    {
+      "fSeparationLamD": 6.0,
+      "fPublished": 1e-10,
+      "fModel": 1e-10,
+      "fResidual": 0.0
+    },
+    {
+      "fSeparationLamD": 10.0,
+      "fPublished": 1e-10,
+      "fModel": 1e-10,
+      "fResidual": 0.0
+    }
+  ],
+  "fWorstThroughputError": 0.035154891739383215,
+  "fWorstContrastDex": 0.21136787463112297,
+  "bThroughputAgrees": true,
+  "bContrastAgrees": true
+}
