@@ -656,6 +656,65 @@ So the distance scaling is defensible and still disagrees with the published fig
 discrepancy is now a single sharp statement about one region of parameter space rather than a
 diffuse weakness spread across three biases, which is a considerably better place to leave it.
 
+\subsection{The 20\,pc completeness, and a real error it uncovered}
+\label{sec:twentypc}
+
+The cliff at 10\,pc was pursued in the currency the optimizer actually uses, and the answer is
+not the one the previous section implied.
+
+\textbf{Detection is not the problem.} Completeness computed on detection alone, ignoring the
+characterization requirement, is 0.99 at 10--15\,pc and 0.80 at 15--30\,pc at long exposure. The
+collapse comes entirely from the requirement that a counted planet also be spectrally
+characterized within two months.
+
+\textbf{Characterization is what fails, and for a specific reason.} Its exposure time runs 70
+times the detection time at 5\,pc but 2030 times at 25\,pc --- a ratio that \emph{grows} with
+distance rather than staying fixed. Characterization runs at 1000\,nm, where $\lambda/D$ is 1.8
+times larger than at the 550\,nm detection wavelength: the planet therefore sits proportionally
+closer to the inner working angle and loses core throughput, while the photometric aperture grows
+as $(\lambda/D)^2$ and admits more exozodiacal light. That light, not detector noise, dominates
+the characterization background at every distance (67\% against 11\%). Beyond about 12\,pc
+nothing can be characterized inside the cap.
+
+\textbf{A real error in the cost function.} The survey charged each star
+$\eta\,C\,(\tau'\tau_{\rm char} + \mathrm{overhead})$ using the nominal characterization time even
+when that time exceeded the two-month cap --- fifteen thousand days at 20\,pc, for an observation
+that would never be attempted. Distant stars were therefore priced as ruinous rather than merely
+uncharacterizable. Charging zero for characterizations that cannot be performed raises the
+median allocated completeness at 10--15\,pc from 0.000 to 0.532 under a detection-counting rule,
+and takes the survey from 147 to 269 stars.
+
+\textbf{Which counting rule matches the published figure.} Neither reproduces Fig.~11 fully.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+& \textbf{Yield} & \textbf{0--6\,pc} & \textbf{6--10} & \textbf{10--15} & \textbf{15--30} \\
+\midrule
+Requires characterization & 21.1 & 0.991 & 0.878 & 0.091 & 0.000 \\
+Detections count          & 17.1 & 0.959 & 0.817 & 0.532 & 0.000 \\
+Stark et al.\ Fig.~11     & ---  & 0.885 & 0.894 & 0.728 & 0.248 \\
+\bottomrule
+\end{tabular}
+\caption{Median allocated completeness by distance under the two counting rules, after the cost
+fix. The strict rule reproduces the published \emph{yield} better; the relaxed rule reproduces
+the published \emph{target distribution} better. They cannot both be right.}
+\end{table}
+
+That tension is itself the finding. Stark et al.\ (2019) state that a planet whose detection or
+characterization exceeds two months does not count toward the yield, which is the strict rule.
+But Fig.~11 shows targets selected out to 26\,pc carrying substantial completeness, and by the
+physics above those targets cannot be characterized at all --- so the completeness that figure
+plots is most consistent with detection alone, and the yield it supports is not. The default here
+remains the strict rule, because it is the one the text states.
+
+\textbf{What remains unexplained.} The 15--30\,pc bin is still zero under both rules. It is not
+the target screen: raising the cap to 4000 stars puts 995 targets in that range into the pool and
+changes nothing, while thinning the nearer bins. Distant stars simply cannot clear the
+equal-slope threshold in this model's economics, and why Stark's can is not yet established.
+
 \subsection{Further checks, still not run}
 
 \begin{enumerate}

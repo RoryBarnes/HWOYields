@@ -79,6 +79,7 @@ def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlane
     faComp = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
     faTauCharMean = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
     faCompAlbedo = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
+    faCompDetection = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
     faTauChar = np.zeros(len(dfTargets))
     faExozodi = faDrawExozodiLevels(dictMission, len(dfTargets), iSeed + 977)
     for i, dictRow in enumerate(dfTargets.to_dict("records")):
@@ -90,9 +91,10 @@ def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlane
         faComp[i] = dictResult["faComp"]
         faTauCharMean[i] = dictResult["faTauCharMeanS"]
         faCompAlbedo[i] = dictResult["faCompAlbedo"]
+        faCompDetection[i] = dictResult["faCompDetectionOnly"]
         faTauChar[i] = dictResult["fTauCharS"]
     return dict(faComp=faComp, faTauChar=faTauChar, faTauCharMean=faTauCharMean,
-                faCompAlbedo=faCompAlbedo)
+                faCompAlbedo=faCompAlbedo, faCompDetectionOnly=faCompDetection)
 
 
 def flistStarsFromTable(dictTable, faTauGridS):

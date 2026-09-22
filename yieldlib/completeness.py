@@ -126,7 +126,7 @@ def faRequiredExposureTime(listBandRates, listBands, fSignalToNoise, dictMission
     return np.where(faBlocked, np.inf, faTau)
 
 
-def faCumulativeMeanCharTime(faTauDet, faTauChar, faTauGridS):
+def faCumulativeMeanCharTime(faTauDet, faTauChar, faTauGridS, fCap=np.inf):
     """Mean characterization time over the planets actually counted at each exposure time.
 
     The budget charges the EXPECTED TOTAL characterization time, which is the number of
@@ -135,10 +135,18 @@ def faCumulativeMeanCharTime(faTauDet, faTauChar, faTauGridS):
     brightness-ordered: a short allocation finds only the brightest planets, which are also the
     cheapest to characterize, so a statistic over all detectable planets overcharges short
     allocations. faTauDet must already be infinite for planets that do not count.
+
+    A characterization that would exceed the two-month cap is charged as zero rather than at its
+    nominal value, because it would never be attempted. Charging it was a real error: beyond
+    about 15 pc the nominal characterization time runs to thousands of days, and feeding that
+    into the cost made distant stars look ruinously expensive even under a counting rule that
+    does not require characterization at all.
     """
     faOrder = np.argsort(faTauDet)
     faDetSorted = faTauDet[faOrder]
-    faCharSorted = np.where(np.isfinite(faTauChar[faOrder]), faTauChar[faOrder], 0.0)
+    faCharSorted = faTauChar[faOrder]
+    faCharSorted = np.where(np.isfinite(faCharSorted) & (faCharSorted <= fCap),
+                            faCharSorted, 0.0)
     faCumulative = np.cumsum(faCharSorted)
     faCount = np.searchsorted(faDetSorted, faTauGridS, side="right")
     return np.where(faCount > 0, faCumulative[np.maximum(faCount - 1, 0)] /
@@ -187,12 +195,13 @@ def faCompletenessPerVisitCount(faBestDet, faTauGridS, iNumPlanets):
     return faOut
 
 
-def faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS):
+def faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS, fCap=np.inf):
     """Mean characterization time over the counted planets, for each visit count."""
     iVisits = faBestDet.shape[1]
     faOut = np.zeros((iVisits, faTauGridS.size))
     for k in range(iVisits):
-        faOut[k] = faCumulativeMeanCharTime(faBestDet[:, k], faBestChar[:, k], faTauGridS)
+        faOut[k] = faCumulativeMeanCharTime(faBestDet[:, k], faBestChar[:, k], faTauGridS,
+                                            fCap)
     return faOut
 
 
@@ -270,6 +279,13 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
     iRequired = int(dictMission.get("iRequiredDetections", 1))
     faBestDet, faBestChar, bCounts = faCountedTimes(faTauDet, faTauChar, fCap, iRequired)
     faComp = faCompletenessPerVisitCount(faBestDet, faTauGridS, iNumPlanets)
+    if not dictMission.get("bYieldRequiresCharacterization", True):
+        faDetCount = np.where(np.isfinite(faTauDet) & (faTauDet <= fCap), faTauDet, np.inf)
+        faBestDet = faNthSmallestAccumulated(faDetCount, iRequired)
+        faComp = faCompletenessPerVisitCount(faBestDet, faTauGridS, iNumPlanets)
+    faDetOnly = np.where(np.isfinite(faTauDet) & (faTauDet <= fCap), faTauDet, np.inf)
+    faDetOnly = faNthSmallestAccumulated(faDetOnly, iRequired)
+    faCompDetectionOnly = faCompletenessPerVisitCount(faDetOnly, faTauGridS, iNumPlanets)
     faCompAlbedo = faComp
     dictAlbedoRange = dictMission.get("dictAlbedoDistribution")
     if dictAlbedoRange:
@@ -289,7 +305,9 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
         faBestDetA, _, _ = faCountedTimes(faTauDetA, faTauCharA, fCap, iRequired)
         faCompAlbedo = faCompletenessPerVisitCount(faBestDetA, faTauGridS, iNumPlanets)
     return dict(faComp=faComp, faCompAlbedo=faCompAlbedo,
-                faTauCharMeanS=faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS),
+                faCompDetectionOnly=faCompDetectionOnly,
+                faTauCharMeanS=faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS,
+                                                       fCap),
                 fTauCharS=float(np.median(faBestChar[:, -1][bCounts[:, -1]]))
                 if bCounts[:, -1].any() else np.inf,
                 fMaxCompleteness=float(faComp[-1, -1]))

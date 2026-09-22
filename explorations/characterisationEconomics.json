@@ -1,0 +1,54 @@
+{
+  "listRows": [
+    {
+      "fDistancePc": 5.0,
+      "fDetectableFraction": 0.722,
+      "fAlsoCharacterizableFraction": 0.7123333333333334,
+      "fMedianTauDetDays": 0.011596873821222674,
+      "fMedianTauCharDays": 0.8093302823178251,
+      "fCharOverDet": 69.78865984009614,
+      "fExozodiShareOfCharBackground": 0.5863030734953579,
+      "fDetectorShareOfCharBackground": 0.10042227366736813
+    },
+    {
+      "fDistancePc": 10.0,
+      "fDetectableFraction": 0.7173333333333334,
+      "fAlsoCharacterizableFraction": 0.386,
+      "fMedianTauDetDays": 0.166349634724759,
+      "fMedianTauCharDays": 54.09992327118261,
+      "fCharOverDet": 325.2181669090887,
+      "fExozodiShareOfCharBackground": 0.6683778882940852,
+      "fDetectorShareOfCharBackground": 0.11128669189112014
+    },
+    {
+      "fDistancePc": 15.0,
+      "fDetectableFraction": 0.7013333333333334,
+      "fAlsoCharacterizableFraction": 0.0,
+      "fMedianTauDetDays": 1.5275667789379332,
+      "fMedianTauCharDays": 1390.2153072078056,
+      "fCharOverDet": 910.0848004657292,
+      "fExozodiShareOfCharBackground": 0.673147144740454,
+      "fDetectorShareOfCharBackground": 0.1126219467810224
+    },
+    {
+      "fDistancePc": 20.0,
+      "fDetectableFraction": 0.619,
+      "fAlsoCharacterizableFraction": 0.0,
+      "fMedianTauDetDays": 9.390113816835672,
+      "fMedianTauCharDays": 15012.123989607468,
+      "fCharOverDet": 1598.715871014472,
+      "fExozodiShareOfCharBackground": 0.6766713568435512,
+      "fDetectorShareOfCharBackground": 0.11600192106808907
+    },
+    {
+      "fDistancePc": 25.0,
+      "fDetectableFraction": 0.33666666666666667,
+      "fAlsoCharacterizableFraction": 0.0,
+      "fMedianTauDetDays": 27.416379611608896,
+      "fMedianTauCharDays": 55662.25190266102,
+      "fCharOverDet": 2030.255368914282,
+      "fExozodiShareOfCharBackground": 0.67445574569531,
+      "fDetectorShareOfCharBackground": 0.12138846144510423
+    }
+  ]
+}

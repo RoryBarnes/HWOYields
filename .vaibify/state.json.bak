@@ -1,10 +1,10 @@
 {
   "iStateSchemaVersion": 3,
-  "sLastUpdated": "2026-09-22T17:20:52Z",
+  "sLastUpdated": "2026-09-22T20:05:13Z",
   "dictWorkflowState": {
     ".vaibify/projects/hwoYieldRederivation.json": {
       "iStateSchemaVersion": 3,
-      "sLastUpdated": "2026-09-22T17:20:52Z",
+      "sLastUpdated": "2026-09-22T20:05:13Z",
       "dictStepState": {
         "buildtargetcatalog": {
           "dictVerification": {
@@ -21,7 +21,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "fdff836b1ad49dcb72509d75276734a4b24f1f3a2804d8d7e271bbe2e4463ff6"
+            "dictVerification": "9875d2595f29ac08e763775eca5467cea22e329a27e20eb831b3f3601a93631a"
           }
         },
         "modelcoronagraph": {
@@ -39,7 +39,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "f6a975a7aba5823a6681704b801d80e0884642a43d929a8422808c223f11be9e"
+            "dictVerification": "bf4beac58f95cf6852b60e8d4fded55668230888462f8b226f37ea7a3b366812"
           }
         },
         "calibratetostark": {
@@ -47,8 +47,7 @@
             "sUnitTest": "passed",
             "sIntegrity": "passed",
             "sQualitative": "passed",
-            "sQuantitative": "passed",
-            "bUpstreamModified": true
+            "sQuantitative": "passed"
           },
           "dictRunStats": {
             "fWallClock": 32.0,
@@ -58,7 +57,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "e5d3e9371a8c87691ec26d8f528687d622034434b9d0fd1986f8ce6b82c8f8c0"
+            "dictVerification": "132b48b7ac979eaf1923ef38312d5da0ecb89b49674820090e9eed983cea34fd"
           }
         },
         "computecompleteness": {
@@ -66,8 +65,7 @@
             "sUnitTest": "passed",
             "sIntegrity": "passed",
             "sQualitative": "passed",
-            "sQuantitative": "passed",
-            "bUpstreamModified": true
+            "sQuantitative": "passed"
           },
           "dictRunStats": {
             "fWallClock": 8.6,
@@ -77,7 +75,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "9c98def1efc943d6c900f4933e9fe31d2c3aad6a9eead035133528ce6a336725"
+            "dictVerification": "8c09e332b8b1a509c76033609dd27ee9a79dac2396ea416338e7e4e776da271a"
           }
         },
         "optimizesurvey": {
@@ -85,8 +83,7 @@
             "sUnitTest": "passed",
             "sIntegrity": "passed",
             "sQualitative": "passed",
-            "sQuantitative": "passed",
-            "bUpstreamModified": true
+            "sQuantitative": "passed"
           },
           "dictRunStats": {
             "fWallClock": 9.4,
@@ -96,7 +93,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "ffec333d263dc09305bd716286698d05ddb4d8cfdef02f447f2cd4fc5cb2e140"
+            "dictVerification": "eae3e95cdecb1adc704405a6bc3099dfe6bb2ee5f3862c5af6b271dd25701622"
           }
         },
         "sampleoccurrenceposterior": {
@@ -115,7 +112,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "5fbf1a38e256bdcf028fb562af0b047947559b362eff0f3936183a8f229d7b25"
+            "dictVerification": "8954cf0d26c0c106c6f380c281311cf99ef44fe0cce731fa661640af006a6ac4"
           }
         },
         "predictredefinedyield": {
@@ -123,8 +120,7 @@
             "sUnitTest": "passed",
             "sIntegrity": "passed",
             "sQualitative": "passed",
-            "sQuantitative": "passed",
-            "bUpstreamModified": true
+            "sQuantitative": "passed"
           },
           "dictRunStats": {
             "fWallClock": 52.8,
@@ -134,7 +130,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "ada99b497b67c0ded42326ccbe1d31630416d10f8d0174badd461d122118a013"
+            "dictVerification": "d9e3a38318499183404e780c9e11ce53768f2956bd98f39f92fdcce90a513939"
           }
         },
         "compareaperturescaling": {
@@ -143,12 +139,11 @@
             "sUser": "untested",
             "sQualitative": "passed",
             "sQuantitative": "passed",
-            "sIntegrity": "passed",
-            "bUpstreamModified": true
+            "sIntegrity": "passed"
           },
           "dictRunStats": {},
           "dictDefinitionProducers": {
-            "dictVerification": "745f3e8e4707e963c97974e1e0963ed892b6ee48db99724d91ecd6dcf7338b02"
+            "dictVerification": "d2a5791d7f06eff06706054b7807ed264a649efb8a43f9ee12a7978d829d4607"
           }
         },
         "verifyagainstpublished": {
@@ -161,7 +156,7 @@
           },
           "dictRunStats": {},
           "dictDefinitionProducers": {
-            "dictVerification": "09b207b9fb1a3eeac0a15415544df4ec384e079dbf0704599b1c8400916bdf1e"
+            "dictVerification": "e388ed5dfcce385a231b764e0814c516d7b8cbafc504f4c1146e50e4f4610fe2"
           }
         },
         "comparetargetcompleteness": {
@@ -174,7 +169,7 @@
           },
           "dictRunStats": {},
           "dictDefinitionProducers": {
-            "dictVerification": "1902e586676cca87c79f9b2edc9240ab04db4d8bd47e7f270a6b019373ce4aa9"
+            "dictVerification": "0bee9a411aef52e9326c71cba10c85f1f81ecb6e8ab211f17fa11f220ff71006"
           }
         }
       },

@@ -1,6 +1,6 @@
 {
   "CompareApertureScaling/apertureScaling.json": {
-    "iMtime": 1790094911,
+    "iMtime": 1790107445,
     "sSha256": "e46a55b135aaed857cb0e669711a7cd50e1d84ac9e31b25378a8b012b0fe8b01"
   },
   "CompareTargetCompleteness/reference/starkFigure11.pdf": {
@@ -16,20 +16,20 @@
     "sSha256": "d4325e9b7608e1389162fb8e2f28a921e7474b1644ef7f106b4ee28583371553"
   },
   "Plot/figApertureScaling.pdf": {
-    "iMtime": 1790094912,
-    "sSha256": "e093995edd56a5b8e9e8224af371e651171ebae74d458e1406982b64576700c6"
+    "iMtime": 1790107447,
+    "sSha256": "d82517121cd33b302c1bf1db7b1daf59ee6364b6afd1f2a280336197ff65767c"
   },
   "Plot/figCalibration.pdf": {
-    "iMtime": 1790094331,
-    "sSha256": "a16e0561bd76e83625f6eab5d51665ae9dfce5b68951dc9e074976c2c2584d21"
+    "iMtime": 1790106603,
+    "sSha256": "3979c331c07969e1a7d575007986850c80a3cadc657255af9f6b24934422a12a"
   },
   "Plot/figCompleteness.pdf": {
-    "iMtime": 1790094386,
-    "sSha256": "9b8f681d030cf7b1356a8c2f07a898353a6437fae6bb1703b52f3d62351f1919"
+    "iMtime": 1790106678,
+    "sSha256": "f63fd462041b3b0e5afd308903ddd5a3c098e71fd1aedf764da81ef8b83a7777"
   },
   "Plot/figCoronagraphModel.pdf": {
-    "iMtime": 1790094125,
-    "sSha256": "d3e403b825e6e936a35891bd28a1945d3e3174e526369c2cf1e22839c9818113"
+    "iMtime": 1790106338,
+    "sSha256": "a6d1bbe39200a4ebdd2974aec2948b291357bea2c33bd841dcfc308f63409757"
   },
   "Plot/figOccurrencePosterior.pdf": {
     "iMtime": 1790053800,
@@ -40,15 +40,15 @@
     "sSha256": "1874ee76ddf537317361e1c3e73abcd785d2fc2b90e21f8678dc92bc85f6be0b"
   },
   "Plot/figVerification.pdf": {
-    "iMtime": 1790094913,
-    "sSha256": "f628eb8197b6608e0bfb1f94c8f077f92e865f008977d51fc8428aa4f8fc39c6"
+    "iMtime": 1790107449,
+    "sSha256": "75233ab2c084d3f5db52c111023ce8e5ec44f7f69d0509887ca0a8b4e28e4228"
   },
   "Plot/figYieldPrediction.pdf": {
-    "iMtime": 1790094546,
-    "sSha256": "565226efd01aaba6b34bf6487ec45cabbc77e67938678959150b486282a29c65"
+    "iMtime": 1790106897,
+    "sSha256": "f5ffeb2145a8b8aa950f5676a79b151f758583184dfe4b4a47fc360df3a8201b"
   },
   "VerifyAgainstPublished/publishedVerification.json": {
-    "iMtime": 1790094913,
+    "iMtime": 1790107448,
     "sSha256": "222f0490fdbe71baf4a8178e643e5b36c8ebd9793971b9428cc7be05d0ebf514"
   },
   "buildTargetCatalog/gaiaRawQuery.csv": {
@@ -68,35 +68,35 @@
     "sSha256": "39656b3cc05fec7536b1d726b4f9815ea028cc2d093a2b41056fcfae3eb49ee9"
   },
   "calibrateToStark/calibration.json": {
-    "iMtime": 1790094331,
+    "iMtime": 1790106602,
     "sSha256": "1de6d2ba26f60f7f934cf3b2d49021280fb1b350fcf535dc4353b151e7ef5ab9"
   },
   "computeCompleteness/completeness.npz": {
-    "iMtime": 1790094385,
+    "iMtime": 1790106676,
     "sSha256": "f162092fdeaaa9732f00d2bf1d4bd81415905fe38a4763dabd5f22e5e2345c44"
   },
   "computeCompleteness/completenessSummary.json": {
-    "iMtime": 1790094385,
+    "iMtime": 1790106676,
     "sSha256": "894d370048599f9d92aaafd9dd8ead8d7a7061e0db40c902103b0aee3df7fe73"
   },
   "modelCoronagraph/coronagraphCurves.csv": {
-    "iMtime": 1790095562,
+    "iMtime": 1790106336,
     "sSha256": "17f48c05d9f5cf27ecc484b3199daace0b5562bf5052a429c5f8824b093f0d0a"
   },
   "modelCoronagraph/missionParameters.json": {
-    "iMtime": 1790095562,
+    "iMtime": 1790106336,
     "sSha256": "1bb2a2a58ff7f154622722ad4f938fc8243cdf12e2224a75bde35154e1eb6e25"
   },
   "optimizeSurvey/surveyResult.json": {
-    "iMtime": 1790094406,
+    "iMtime": 1790106705,
     "sSha256": "dc19eb15d6b55eaf1d842ecf3d0f83d046cf9a68ccc390f6dca9784026ed3f5e"
   },
   "predictRedefinedYield/yieldPrediction.json": {
-    "iMtime": 1790094545,
+    "iMtime": 1790106896,
     "sSha256": "ba9564c54022fd84cdff26ebb555d2fc47d0917240409e37e6ef0e668e58d069"
   },
   "predictRedefinedYield/yieldSamples.npz": {
-    "iMtime": 1790094545,
+    "iMtime": 1790106896,
     "sSha256": "b541ceb923e2805c54b92a332ab2f4b69ca7989ed65cedaf9a4817743f544cc9"
   },
   "sampleOccurrencePosterior/occurrencePosterior.npz": {

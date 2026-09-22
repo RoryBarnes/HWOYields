@@ -1,0 +1,62 @@
+{
+  "fLambdaPerDay": 0.024693815046127398,
+  "iStarsUsed": 169,
+  "fYield": 21.45311999999998,
+  "dictRows": {
+    "5 pc": {
+      "fDistancePc": 5.113327846832172,
+      "fLuminosityLsun": 0.5142145,
+      "fBestSlopePerDay": 1.5606242173127727,
+      "fLambdaPerDay": 0.024693815046127398,
+      "bAdmitted": true,
+      "fAllocatedCompleteness": 0.994,
+      "fAllocatedCostDays": 1.665331354085323,
+      "fMaxCompleteness": 1.0,
+      "fCostForQuarterCompletenessDays": 0.16019231101672454
+    },
+    "10 pc": {
+      "fDistancePc": 8.525149190110827,
+      "fLuminosityLsun": 0.8129827174870476,
+      "fBestSlopePerDay": 0.5090616719265421,
+      "fLambdaPerDay": 0.024693815046127398,
+      "bAdmitted": true,
+      "fAllocatedCompleteness": 0.9706666666666667,
+      "fAllocatedCostDays": 3.91279036863671,
+      "fMaxCompleteness": 0.988,
+      "fCostForQuarterCompletenessDays": 0.5022600421541945
+    },
+    "15 pc": {
+      "fDistancePc": 14.5792232842774,
+      "fLuminosityLsun": 1.8159001,
+      "fBestSlopePerDay": 0.08440557911249155,
+      "fLambdaPerDay": 0.024693815046127398,
+      "bAdmitted": true,
+      "fAllocatedCompleteness": 0.3446666666666667,
+      "fAllocatedCostDays": 5.337053879169598,
+      "fMaxCompleteness": 0.3606666666666667,
+      "fCostForQuarterCompletenessDays": 3.357655019192973
+    },
+    "20 pc": {
+      "fDistancePc": 18.20235091918385,
+      "fLuminosityLsun": 1.8814852,
+      "fBestSlopePerDay": 0.0,
+      "fLambdaPerDay": 0.024693815046127398,
+      "bAdmitted": false,
+      "fAllocatedCompleteness": 0.0,
+      "fAllocatedCostDays": 0.0,
+      "fMaxCompleteness": 0.0,
+      "fCostForQuarterCompletenessDays": NaN
+    },
+    "25 pc": {
+      "fDistancePc": 23.82022907341681,
+      "fLuminosityLsun": 1.869408,
+      "fBestSlopePerDay": 0.0,
+      "fLambdaPerDay": 0.024693815046127398,
+      "bAdmitted": false,
+      "fAllocatedCompleteness": 0.0,
+      "fAllocatedCostDays": 0.0,
+      "fMaxCompleteness": 0.0,
+      "fCostForQuarterCompletenessDays": NaN
+    }
+  }
+}
