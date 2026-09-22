@@ -1,0 +1,80 @@
+{
+  "listChecked": [
+    {
+      "sLabel": "eta_Earth, SAG13 over canonical EEC box",
+      "sSource": "Stark+2024 Table 1",
+      "fPublished": 0.24,
+      "fThisPipeline": 0.24035172568495647,
+      "fRelativeDifference": 0.0014655236873186567,
+      "fTolerance": 0.03,
+      "bWithinTolerance": true,
+      "bTunedToThisValue": false,
+      "sNote": "Population layer only; no telescope model involved."
+    },
+    {
+      "sLabel": "Expected EEC yield, 6 m baseline (uncalibrated)",
+      "sSource": "Stark+2024 Sec. 3.1",
+      "fPublished": 22.5,
+      "fThisPipeline": 24.527200000000008,
+      "fRelativeDifference": 0.09009777777777812,
+      "fTolerance": 0.2,
+      "bWithinTolerance": true,
+      "bTunedToThisValue": false,
+      "sNote": "The pipeline's prediction BEFORE the throughput factor is fitted."
+    },
+    {
+      "sLabel": "Expected EEC yield, 6 m baseline (calibrated)",
+      "sSource": "Stark+2024 Sec. 3.1",
+      "fPublished": 22.5,
+      "fThisPipeline": 22.503800000000002,
+      "fRelativeDifference": 0.00016888888888896898,
+      "fTolerance": 0.02,
+      "bWithinTolerance": true,
+      "bTunedToThisValue": true,
+      "sNote": "TUNED to this value by construction. Not evidence."
+    },
+    {
+      "sLabel": "P25 including eta_Earth uncertainty, 6 m",
+      "sSource": "Stark+2024 Sec. 3.5",
+      "fPublished": 0.32,
+      "fThisPipeline": 0.3302083333333333,
+      "fRelativeDifference": 0.03190104166666662,
+      "fTolerance": 0.25,
+      "bWithinTolerance": true,
+      "bTunedToThisValue": false,
+      "sNote": "Independent: nothing in the pipeline was fitted to this."
+    }
+  ],
+  "iIndependentChecks": 3,
+  "iIndependentAgreeing": 3,
+  "bAllIndependentAgree": true,
+  "listNotYetRun": [
+    {
+      "sLabel": "P25 vs aperture, 7/8/9 m (including sigma_eta)",
+      "faPublished": [
+        0.53,
+        0.67,
+        0.78
+      ],
+      "sSource": "Stark+2024 Fig. 15 (read off figure)",
+      "sHow": "Re-run A04/A05/A07 at --diameter-m 7, 8, 9 with the 6 m calibration frozen."
+    },
+    {
+      "sLabel": "P25 vs aperture, 6/7/8/9 m (excluding sigma_eta)",
+      "faPublished": [
+        0.056,
+        0.49,
+        0.89,
+        0.995
+      ],
+      "sSource": "Stark+2024 Fig. 15 (read off figure)",
+      "sHow": "Same runs, with eta fixed at 0.24 and only Poisson sampling applied."
+    },
+    {
+      "sLabel": "Per-target HZ completeness vs distance",
+      "faPublished": [],
+      "sSource": "Stark+2024 Fig. 11",
+      "sHow": "Plot faComp[:, -1] against faDistancePc from completeness.npz."
+    }
+  ]
+}

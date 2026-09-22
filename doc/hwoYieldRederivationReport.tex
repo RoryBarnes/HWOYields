@@ -154,9 +154,11 @@ $\lambda$ drop out of the survey. Because the Monte Carlo completeness is a step
 reachable allocations are the vertices of its upper concave envelope, and the sweep runs over
 those vertices.
 
-Characterization is charged into the same budget. Each star's cost carries an additional
-$\eta\,C_i(\tau_i)\,(\tau'\tau_{{\rm char},i} + \mathrm{overhead})$ term, so a star that is
-expected to deliver more detections also consumes more of the mission. This is the coupling that
+Characterization is charged into the same budget. Each star's cost carries an additional term
+\begin{equation}
+\eta\,C_i(\tau_i)\left(\tau'\,\tau_{{\rm char},i} + \tau_{\rm overhead}\right),
+\end{equation}
+so a star expected to deliver more detections also consumes more of the mission. This is the coupling that
 makes yield sub-linear in $\eta$, and it is verified by a pair of unit tests: with the
 characterization term removed the yield is exactly proportional to $\eta$, and with it present
 the proportionality breaks.
@@ -174,7 +176,7 @@ of the available evidence: there is one well-characterised integral constraint a
 per-parameter posterior to re-fit. What the sampler buys is not a tighter $\eta$ but a
 principled propagation of the same rate law onto a \emph{different} integration domain.
 
-\section{Validation}
+\section{Validation, and how to check it yourself}
 \label{sec:calibration}
 
 \subsection{The target catalog}
@@ -189,18 +191,21 @@ magnitudes plus a Torres (2010) bolometric correction, for 8,709 stars in total.
 the supplement the missing targets would have been absorbed into the calibration factor below
 and misreported as a coronagraph modelling error.
 
-\subsection{The calibration gate}
+\subsection{The calibration gate, and what it does not license}
 
 The parametrized coronagraph stands in for simulated maps, so a single scalar throughput factor
 absorbs the residual mismatch, fitted by bisection against the 22.5 exoEarth candidates that
-Stark et al.\ (2024) report for the baseline 6\,m design (Figure~\ref{fig:calibration}).
+Stark et al.\ (2024) report for the baseline 6\,m design (Figure~\ref{fig:calibration}). The
+fitted factor is 0.581 --- the model needs roughly 1.72 times \emph{less}
+throughput than the parametrization assumes.
 
-\textbf{Before} any calibration, the rederived model predicts 24.53 candidates against
-the published 22.5 --- an agreement of 9\%. The fitted factor is 0.581,
-within a factor of two of unity. Both numbers matter, and the first matters more: yield depends
-only weakly on throughput, because the survey is partly limited by the inner working angle and
-the noise floor rather than by photons, so calibration is a weak lever and cannot manufacture
-agreement that was not already there.
+\textbf{The calibrated yield is not evidence of anything.} It is tuned to 22.5 by construction
+and will always agree. Only two things about the calibration carry information: that the
+\emph{uncalibrated} prediction was already 24.53 against a published 22.5, and that the
+factor needed is within a factor of two of unity. The curve in Figure~\ref{fig:calibration} is
+also shallow --- a 42\% cut in throughput costs under 10\% of the yield --- because the survey is
+partly limited by the inner working angle and the noise floor rather than by photons. A weak
+lever cannot manufacture agreement that was not already close.
 
 \begin{figure}[htbp]
 \centering
@@ -211,12 +216,137 @@ reduction in throughput costs under 10\% of the yield.}
 \label{fig:calibration}
 \end{figure}
 
-\subsection{Independent agreement}
+\subsection{Checks already passed}
 
-The strongest check is one the calibration does not touch. Marginalising over the $\eta$
-posterior, the probability of detecting and characterising at least 25 candidates is
-33.0\%. Stark et al.\ (2024) report 32\% for the same quantity including $\eta_\oplus$
-uncertainty. Nothing in this pipeline was tuned to that number.
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{6.2cm}rrp{3.9cm}}
+\toprule
+\textbf{Quantity} & \textbf{Published} & \textbf{Here} & \textbf{Status} \\
+\midrule
+$\eta_\oplus$, SAG13 over the canonical box & 0.24 & 0.2404 & Independent \\
+Expected yield, 6\,m, \emph{before} calibration & 22.5 & 24.53 & Independent \\
+$P_{25}$ including $\sigma_{\eta_\oplus}$, 6\,m & 32\% & 33.0\% & Independent \\
+Expected yield, 6\,m, after calibration & 22.5 & 22.50 & \textbf{Tuned (not evidence)} \\
+\bottomrule
+\end{tabular}
+\caption{Comparisons against values stated in the text of Stark et al.\ (2024). The first three
+were not fitted to; the fourth is the calibration target and is listed only so it is not
+mistaken for a result.}
+\end{table}
+
+The $\eta_\oplus$ row involves no telescope model at all and tests the population layer alone.
+The $P_{25}$ row is the most informative of the three, because it depends on the completeness
+model, the optimizer, the characterization budget and the occurrence posterior simultaneously,
+and nothing in the pipeline was fitted to it.
+
+\subsection{Checking this yourself, in one command}
+
+\begin{verbatim}
+cd explorations && python3 checkAgainstPublishedValues.py --repo-root ..
+\end{verbatim}
+
+This reads the step outputs, compares each against the published anchor, prints a pass/fail
+table, and writes \texttt{publishedValueComparison.json}. It checks only values stated in the
+paper \emph{text}, never values read off a figure, and it tags the calibration row as tuned so
+it is never counted as agreement. It also lists the stronger checks below that have not been
+run.
+
+\subsection{Stronger checks this report has not run}
+
+Three scalars at a single design point is weak evidence. A scalar can be hit by luck or by
+compensating errors; a \emph{curve} cannot. Ranked by how much they would tell you:
+
+\begin{enumerate}
+\item \textbf{$P_{25}$ against aperture --- Stark et al.\ (2024) Fig.~15.} The strongest check
+available. Four diameters (6, 7, 8, 9\,m), two curves, and a distinctive crossing near 7.1\,m
+where the no-$\sigma_{\eta_\oplus}$ curve overtakes the other. Reading off that figure, the
+including-$\sigma_{\eta_\oplus}$ curve runs $\approx$ 32.3 / 53 / 67 / 78\%, and the excluding
+curve $\approx$ 5.6 / 49 / 89 / 99.5\%. Because the calibration is fitted at 6\,m only, the
+7, 8 and 9\,m points are genuine out-of-sample predictions, and reproducing the crossing tests
+the \emph{shape} of the aperture scaling rather than any single value. Run A04, A05 and A07 at
+\texttt{-{}-diameter-m 7, 8, 9} with the 6\,m calibration factor held fixed; obtain the
+excluding-$\sigma_{\eta_\oplus}$ curve from the same runs by fixing $\eta = 0.24$ and applying
+only Poisson sampling.
+
+\item \textbf{Per-target habitable-zone completeness --- Fig.~11.} Plot the final column of
+\texttt{faComp} against \texttt{faDistancePc} from \texttt{completeness.npz}. This tests the
+completeness model star by star, which is exactly where a parametrized coronagraph would betray
+itself: aggregate agreement can hide errors that cancel between near and far targets.
+
+\item \textbf{The realized yield distribution --- Fig.~10.} Figure~\ref{fig:yieldprediction}
+here is the same quantity. Compare shape, not location; see the expected offsets below.
+
+\item \textbf{Pure Poisson sampling --- Fig.~4.} Fix $\eta = 0.24$ and draw Poisson deviates,
+with no occurrence uncertainty. This isolates the counting layer alone and is the cheapest check
+in the list.
+
+\item \textbf{Sensitivity derivatives --- Stark et al.\ (2019), the
+\texttt{yield\_sensitivity} panels.} These give yield derivatives with respect to inner working
+angle, contrast, throughput and exozodi level. Matching a derivative is a far harder test than
+matching a value, and it is the check most likely to expose the parametrized coronagraph if it
+is wrong.
+\end{enumerate}
+
+\subsection{Differences you should expect, and not chase}
+
+Several disagreements are predictable consequences of what this pipeline does and does not
+model. Finding them is not evidence of a bug; \emph{not} finding them would be.
+
+\begin{itemize}
+\item \textbf{This yield distribution is narrower and peaks higher than Fig.~10.} Stark's
+distribution additionally carries albedo uncertainty ($\sim$15\% of the yield),
+exozodi-distribution uncertainty ($\sim$4\%) and exozodi sampling. This one carries the $\eta$
+posterior and Poisson statistics only. Their purple peaks near 10; this peaks near 20.
+\item \textbf{Absolute yields may differ by several percent at any aperture} because the target
+catalog is a reconstruction of HPIC rather than HPIC, with different stars near the selection
+boundary.
+\item \textbf{Completeness at a fixed exposure time will not match star for star}, because
+exozodi is held at 3 zodis for every target here rather than drawn per star.
+\item \textbf{Multi-visit quantities will not match at all.} Only single-visit completeness is
+modelled.
+\end{itemize}
+
+\subsection{What would falsify this model}
+
+Stated in advance, so the checks above can fail honestly:
+
+\begin{itemize}
+\item The 7, 8 and 9\,m points of Fig.~15 missing by more than $\sim$10 percentage points with
+the 6\,m calibration frozen. That would mean the aperture scaling is wrong, not merely the
+normalisation.
+\item The Fig.~15 crossing appearing at a substantially different diameter, or not at all. The
+crossing is set by how characterization time trades against search time as yields rise, which is
+the mechanism this report's central claim rests on.
+\item Per-target completeness showing a systematic trend with distance relative to Fig.~11,
+which would indicate the coronagraph throughput ramp is the wrong shape rather than the wrong
+scale.
+\item A calibration factor that has to be re-fitted per aperture to hold agreement. One factor
+must serve all diameters; if it does not, it is absorbing a physical error rather than an
+instrumental unknown.
+\end{itemize}
+
+\subsection{Reproducing this pipeline's own results}
+
+Distinct from the above, and worth checking first because it is fast:
+
+\begin{verbatim}
+vaibify-do run-all                      # all seven steps
+vaibify-do run-test-category <step> sCategory=quantitative
+python3 -m pytest tests/                # 45 library unit tests
+\end{verbatim}
+
+The quantitative tier is the only one that pins numbers: it compares recorded values against
+standards with \texttt{np.allclose}. A re-run that changes a result fails there rather than
+passing quietly. That tier has already caught one real defect --- \texttt{emcee} draws its
+proposal moves from numpy's global legacy RNG, so seeding only the walker start positions left
+the chain irreproducible, which no static determinism scan could have detected. Two runs are now
+bit-identical.
+
+Every number in this report is injected from a step output at build time rather than typed, so
+rebuilding it after a re-run (\texttt{cd doc \&\& python3 buildReport.py -{}-repo-root ..})
+cannot leave a stale claim in print.
 
 \section{Results}
 
@@ -248,6 +378,7 @@ yield distributions marginalised over the occurrence posterior. The heavy curves
 Fig.~10 of Stark et al.\ (2024) and the quantity $P_{25}$ is computed from; the thin curves are
 the expected yield $E[N|\eta]$, narrower because they carry the $\eta$ posterior alone without
 counting statistics on top.}
+\label{fig:yieldprediction}
 \end{figure}
 
 \begin{table}[htbp]

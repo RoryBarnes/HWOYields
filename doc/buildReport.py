@@ -79,6 +79,8 @@ def fdictSubstitutions(dictResults):
         "REDEFP25": f"{100*dictRedef['fProbabilityAtLeastGoal']:.2f}",
         "POSTSAMPLES": f"{dictPost['iSamples']:,}",
         "POSTACCEPT": f"{dictPost['fAcceptanceFraction']:.2f}",
+        "ETASAG13": "0.2404",
+        "CALFACTORINV": f"{1.0/dictCal['fCalibratedThroughputFactor']:.2f}",
     }
 
 
