@@ -1,0 +1,49 @@
+{
+  "sCaveat": "POST-HOC and NOT independent evidence: it applies Stark et al. (2024)'s own published bias",
+  "fBiasFactorApplied": 0.768888888888889,
+  "faDiameters": [
+    6.0,
+    7.0,
+    8.0,
+    9.0
+  ],
+  "faPublishedExcluding": [
+    0.06,
+    0.49,
+    0.89,
+    0.995
+  ],
+  "fCrossingPublishedM": 7.1,
+  "dictRows": {
+    "unbiased": {
+      "faProbability": [
+        0.316675,
+        0.597735,
+        0.86077,
+        0.972175
+      ],
+      "faExpectedYield": [
+        22.374850940829386,
+        25.918592249498086,
+        30.480503363592995,
+        35.456459558274645
+      ],
+      "fCrossingM": 6.098262258579796
+    },
+    "starkBias": {
+      "faProbability": [
+        0.04512,
+        0.153215,
+        0.400965,
+        0.694205
+      ],
+      "faExpectedYield": [
+        17.203774278948817,
+        19.928517596280752,
+        23.43612036400706,
+        27.262077793695617
+      ],
+      "fCrossingM": null
+    }
+  }
+}

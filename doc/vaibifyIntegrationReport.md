@@ -22,10 +22,11 @@ the exact opposite of observed behaviour.
 | F1 | Declared paths resolve **step-relative**; `scriptAuthoring.md` says repo-relative | **Confirmed** | The headline bug. Silently broke every declared output and figure in 7 steps. |
 | F2 | A working project (`fillet`) uses the **opposite** convention to the one that worked here | **Unresolved** | Either `fillet` is latently broken or the rule is not uniform. |
 | F3 | `init-project-repo` has no recovery path once the agent has run `git init` | Confirmed | Left a root commit with no parent. |
-| F4 | `run-all-tests` and `run-plots-only` hang; other WS actions on the same socket work | Confirmed (2 instances) | ~10 min and a misleading "returned nothing". |
+| F4 | `run-all-tests`, `run-plots-only`, `run-step` on a plot-bearing step hang | Confirmed (3 instances) | ~10 min and a misleading "returned nothing". |
 | F5 | `create-project` cannot adopt an existing `project.json` | By design; gap | No agent-usable path from an authored project file to an open project. |
 | F6 | Nothing agent-visible says "this repo is untracked" | Confirmed | Root cause of a long dead end; the refusal names the wrong layer. |
 | F7 | Resolved output paths are visible **only** in `report-l1-blockers` | Confirmed | The one clue that cracked F1, and it reads like a display artifact. |
+| F9 | `create-step` silently overrides the supplied `sDirectory`, capitalising it | Confirmed | Directory did not exist on disk; `update-step` will not set it back. |
 | F8 | Determinism scanner cannot see unseeded global-RNG use | Working as documented | Included because the quantitative tier caught it — a design win worth knowing about. |
 
 ---
@@ -286,10 +287,14 @@ A caution for whoever reads the surrounding logs: the shell task wrapping this r
 **exit code 0**, because the chained command that followed the killed `vaibify-do` succeeded.
 Taking that at face value would suggest the action completed. It did not.
 
-So this is not unique to `run-all-tests`. Both affected actions fan out over a step's
-sub-commands *without* running its data commands (`run-plots-only`, `run-all-tests`), whereas
-every action that runs data commands worked. That is a suggestive common factor across two
-instances, not a diagnosis, but it narrows where to look.
+**Third instance:** `run-step A08` (a step with one data command and one plot command) also
+hung and was SIGTERMed at 400 s. Its data command had run — the declared output was on disk with
+a fresh timestamp — but the plot was never produced and the call never returned.
+
+So the common factor is narrower than first thought: it is not "actions that skip data
+commands", since `run-step A08` runs both. All three hangs involve executing a step's **plot**
+commands. `run-step A02`, which also has a plot command, did complete earlier in the session, so
+this is not unconditional. Worth a look at the plot-command execution path.
 
 ---
 
@@ -308,6 +313,34 @@ An agent-safe `resolve-step-paths <label>` returning declared → resolved → e
 path would make this a one-call diagnosis instead of a multi-step experiment.
 
 ---
+
+## 8b. F9 — `create-step` overrides `sDirectory`, and `update-step` will not undo it
+
+Creating a step with an explicit lowercase directory:
+
+```
+vaibify-do create-step '{"sName":"compareApertureScaling",
+                         "sDirectory":"compareApertureScaling", ...}'
+→ stored sDirectory = "CompareApertureScaling"
+```
+
+The supplied value was replaced by `slug(sName)` with a capitalised first letter. The directory
+already existed on disk in lowercase, so every declared path under the step resolved to a
+non-existent directory and test generation failed with `FileNotFoundError`.
+
+`vaibify-do update-step A08 '{"sDirectory":"compareApertureScaling"}'` returns success but does
+not change the stored value, so there is no agent-facing way to correct it; the only resolution
+was to rename the on-disk directory to match.
+
+Two things worth deciding host-side:
+
+- The capitalisation conflicts with the container's own `CLAUDE.md`, which says a vaibified repo
+  contains "one **camelCase** directory per step". The seven steps authored directly in
+  `project.json` are lowercase camelCase and work fine, so a project can end up with seven
+  lowercase directories and one capitalised, purely depending on how each step was created.
+- If `sDirectory` is derived rather than accepted, `create-step` should either reject the
+  argument or say it was overridden. Silently substituting a value the caller supplied, and then
+  ignoring an explicit correction, is the combination that cost the time here.
 
 ## 9. F8 — a design win worth recording
 

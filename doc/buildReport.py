@@ -8,6 +8,7 @@ leaving a stale claim in print.
 
 import argparse
 import json
+import math
 import os
 import re
 import subprocess
@@ -22,6 +23,7 @@ def fdictLoadResults(sRepoRoot):
         "survey": "optimizeSurvey/surveyResult.json",
         "posterior": "sampleOccurrencePosterior/occurrencePosteriorSummary.json",
         "prediction": "predictRedefinedYield/yieldPrediction.json",
+        "aperture": "compareApertureScaling/apertureScaling.json",
     }
     dictOut = {}
     for sKey, sRel in dictPaths.items():
@@ -35,6 +37,7 @@ def fdictSubstitutions(dictResults):
     dictCat, dictCal = dictResults["catalog"], dictResults["calibration"]
     dictPost, dictPred = dictResults["posterior"], dictResults["prediction"]
     dictSurvey, dictComp = dictResults["survey"], dictResults["completeness"]
+    dictAp = dictResults["aperture"]
     dictCanon = dictPred["dictByBox"]["canonical"]["dictDistribution"]
     dictRedef = dictPred["dictByBox"]["redefined"]["dictDistribution"]
     dictEtaC, dictEtaR = dictPost["dictEtaByBox"]["canonical"], dictPost["dictEtaByBox"]["redefined"]
@@ -79,6 +82,20 @@ def fdictSubstitutions(dictResults):
         "REDEFP25": f"{100*dictRedef['fProbabilityAtLeastGoal']:.2f}",
         "POSTSAMPLES": f"{dictPost['iSamples']:,}",
         "POSTACCEPT": f"{dictPost['fAcceptanceFraction']:.2f}",
+        "APINCL": " / ".join(f"{100*dictAp['dictByDiameter'][s]['fProbability25IncludingSigmaEta']:.0f}"
+                             for s in ("6", "7", "8", "9")),
+        "APINCLPUB": " / ".join(f"{100*dictAp['dictPublished']['dictIncludingSigmaEta'][s]:.0f}"
+                                for s in ("6", "7", "8", "9")),
+        "APEXCL": " / ".join(f"{100*dictAp['dictByDiameter'][s]['fProbability25ExcludingSigmaEta']:.0f}"
+                             for s in ("6", "7", "8", "9")),
+        "APEXCLPUB": " / ".join(f"{100*dictAp['dictPublished']['dictExcludingSigmaEta'][s]:.0f}"
+                                for s in ("6", "7", "8", "9")),
+        "APMAXRESID": f"{100*max(abs(dictAp['dictResiduals'][s]['fIncludingSigmaEta']) for s in ('6','7','8','9')):.1f}",
+        "APCROSS": f"{dictAp['fCrossingDiameterM']:.1f}",
+        "APCROSSPUB": f"{dictAp['fCrossingDiameterPublishedM']:.1f}",
+        "APYIELDS": " / ".join(f"{dictAp['dictByDiameter'][s]['fExpectedYieldAtBaselineEta']:.1f}"
+                               for s in ("6", "7", "8", "9")),
+        "APEXPONENT": f"{math.log(dictAp['dictByDiameter']['9']['fExpectedYieldAtBaselineEta'] / dictAp['dictByDiameter']['6']['fExpectedYieldAtBaselineEta']) / math.log(1.5):.2f}",
         "ETASAG13": "0.2404",
         "CALFACTORINV": f"{1.0/dictCal['fCalibratedThroughputFactor']:.2f}",
     }

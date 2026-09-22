@@ -37,7 +37,11 @@ because a smaller expected detection count frees characterization time and becau
 the outer habitable zone preferentially removes the faintest, most expensive planets. The
 baseline 6\,m design yields a median of @@REDEFMED@@ exoEarth candidates under the redefined
 selection, against @@CANONMED@@ canonically, and the probability of reaching the 25-planet
-goal falls from @@CANONP25@@\% to @@REDEFP25@@\%.
+goal falls from @@CANONP25@@\% to @@REDEFP25@@\%. An out-of-sample test against the published
+aperture scaling (Sec.~\ref{sec:aperture}) both supports and qualifies this: the 6\,m design
+point is reproduced independently, but the yield here grows as $D^{@@APEXPONENT@@}$ against a
+published $\sim D^{1.9}$, so the model under-responds to changes in sensitivity and the ratio
+above is more likely an over-estimate than an under-estimate.
 \end{abstract}
 
 \tableofcontents
@@ -253,40 +257,100 @@ paper \emph{text}, never values read off a figure, and it tags the calibration r
 it is never counted as agreement. It also lists the stronger checks below that have not been
 run.
 
-\subsection{Stronger checks this report has not run}
+\subsection{The aperture-scaling check, and how it failed}
+\label{sec:aperture}
 
-Three scalars at a single design point is weak evidence. A scalar can be hit by luck or by
-compensating errors; a \emph{curve} cannot. Ranked by how much they would tell you:
+Three scalars at a single design point is weak evidence: a scalar can be hit by luck or by
+compensating errors, and a \emph{curve} cannot. The strongest check available is Fig.~15 of
+Stark et al.\ (2024), $P_{25}$ against inscribed diameter at 6, 7, 8 and 9\,m. It was run here
+with the throughput calibration \textbf{frozen at its 6\,m value}, so the 7, 8 and 9\,m points
+are out-of-sample predictions.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+& \textbf{6\,m} & \textbf{7\,m} & \textbf{8\,m} & \textbf{9\,m} \\
+\midrule
+$P_{25}$ including $\sigma_{\eta_\oplus}$, this work & \multicolumn{4}{c}{@@APINCL@@ \%} \\
+$P_{25}$ including $\sigma_{\eta_\oplus}$, published & \multicolumn{4}{c}{@@APINCLPUB@@ \%} \\
+$P_{25}$ excluding $\sigma_{\eta_\oplus}$, this work & \multicolumn{4}{c}{@@APEXCL@@ \%} \\
+$P_{25}$ excluding $\sigma_{\eta_\oplus}$, published & \multicolumn{4}{c}{@@APEXCLPUB@@ \%} \\
+Expected yield at $\eta = 0.24$, this work & \multicolumn{4}{c}{@@APYIELDS@@} \\
+\bottomrule
+\end{tabular}
+\caption{The aperture-scaling comparison. Published values at 7, 8 and 9\,m are read off Fig.~15
+and carry roughly $\pm$2--3 percentage points of reading error; the 6\,m pair is stated in the
+text.}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figApertureScaling.pdf}
+\caption{Left: $P_{25}$ against aperture, with the calibration frozen at 6\,m. The
+including-$\sigma_{\eta_\oplus}$ curve tracks the published one; the excluding-$\sigma_{\eta_\oplus}$
+curve does not. Right: expected yield against aperture, against the segmented off-axis DMVC band
+of Stark et al.\ (2019) --- the same configuration modelled here. This model begins inside the
+published band at 6\,m and leaves it by 8\,m.}
+\label{fig:aperture}
+\end{figure}
+
+\textbf{The including-$\sigma_{\eta_\oplus}$ curve agrees}, with a maximum residual of
+@@APMAXRESID@@ percentage points, comparable to the reading error on the published points.
+Taken alone that looks like a success. It is not, and the second curve shows why.
+
+\textbf{The excluding-$\sigma_{\eta_\oplus}$ curve fails}, by 26 percentage points at 6\,m. That
+much was predicted in advance and for a stated reason: Stark's excluding-$\sigma$ distribution
+still carries albedo and exozodi uncertainty, which pull the expected yield from 22.5 to 17.3,
+and this pipeline models neither. But the predicted explanation was then tested and
+\emph{rejected}. Applying Stark's own published bias factor ($17.3/22.5$) uniformly to this
+model's excluding-$\sigma$ curve repairs the 6\,m point (4.5\% against a published 6\%) and
+destroys the others (15 / 40 / 69\% against 49 / 89 / 99.5\%).
+
+The residual, once chased, is a genuine deficiency in this rederivation:
+
+\begin{quote}
+\textbf{The yield here grows as $D^{@@APEXPONENT@@}$, while the published yield grows as
+$\sim D^{1.9}$.}
+\end{quote}
+
+That exponent is confirmed two independent ways: by inverting the published $P_{25}$ values
+through Poisson statistics, and by reading the DMVC band of Stark et al.\ (2019) directly, which
+runs from $\sim$23 exoEarth candidates at 6\,m to $\sim$50 at 9\,m. Two candidate explanations
+were tested and rejected --- the target-screening cap is not responsible (lifting it from 1500
+to 6500 stars changes the 9\,m yield by 1.3\%), and a uniform yield bias is not responsible, as
+above. The cause is not yet identified.
+
+\textbf{Consequences.} The crossing of the two curves, which Stark places near 7.1\,m, appears
+here at @@APCROSS@@\,m --- present, but displaced. And the agreement of the
+including-$\sigma_{\eta_\oplus}$ curve is much less informative than it first appears: the
+$\eta_\oplus$ posterior is broad enough to dominate $P_{25}$ and wash out the aperture
+dependence, so that curve is largely insensitive to the very scaling that is wrong. The 32\%
+$\rightarrow$ @@CANONP25@@\% agreement reported in Section~4.3 remains true and remains
+independent, but it should be read as a check at 6\,m rather than as evidence that the model
+extrapolates.
+
+\textbf{What this does and does not undermine.} This report's central result is a \emph{ratio}
+between two planet selections at one fixed aperture, where the model is calibrated and where the
+6\,m checks pass, so it is not directly affected. But the failure is a failure of the model's
+response to changing sensitivity, and the redefined box changes effective sensitivity by
+truncating the outer habitable zone --- the same axis. If the model under-responds to losing
+inner-working-angle-accessible targets in the same way it under-responds to gaining them, the
+yield ratio of @@YRATIO@@ is likely an \emph{over}-estimate. Resolving the aperture scaling
+should therefore come before this number is used for anything load-bearing.
+
+\subsection{Further checks, still not run}
 
 \begin{enumerate}
-\item \textbf{$P_{25}$ against aperture --- Stark et al.\ (2024) Fig.~15.} The strongest check
-available. Four diameters (6, 7, 8, 9\,m), two curves, and a distinctive crossing near 7.1\,m
-where the no-$\sigma_{\eta_\oplus}$ curve overtakes the other. Reading off that figure, the
-including-$\sigma_{\eta_\oplus}$ curve runs $\approx$ 32.3 / 53 / 67 / 78\%, and the excluding
-curve $\approx$ 5.6 / 49 / 89 / 99.5\%. Because the calibration is fitted at 6\,m only, the
-7, 8 and 9\,m points are genuine out-of-sample predictions, and reproducing the crossing tests
-the \emph{shape} of the aperture scaling rather than any single value. Run A04, A05 and A07 at
-\texttt{-{}-diameter-m 7, 8, 9} with the 6\,m calibration factor held fixed; obtain the
-excluding-$\sigma_{\eta_\oplus}$ curve from the same runs by fixing $\eta = 0.24$ and applying
-only Poisson sampling.
-
 \item \textbf{Per-target habitable-zone completeness --- Fig.~11.} Plot the final column of
-\texttt{faComp} against \texttt{faDistancePc} from \texttt{completeness.npz}. This tests the
-completeness model star by star, which is exactly where a parametrized coronagraph would betray
-itself: aggregate agreement can hide errors that cancel between near and far targets.
-
-\item \textbf{The realized yield distribution --- Fig.~10.} Figure~\ref{fig:yieldprediction}
-here is the same quantity. Compare shape, not location; see the expected offsets below.
-
-\item \textbf{Pure Poisson sampling --- Fig.~4.} Fix $\eta = 0.24$ and draw Poisson deviates,
-with no occurrence uncertainty. This isolates the counting layer alone and is the cheapest check
-in the list.
-
-\item \textbf{Sensitivity derivatives --- Stark et al.\ (2019), the
-\texttt{yield\_sensitivity} panels.} These give yield derivatives with respect to inner working
-angle, contrast, throughput and exozodi level. Matching a derivative is a far harder test than
-matching a value, and it is the check most likely to expose the parametrized coronagraph if it
-is wrong.
+\texttt{faComp} against \texttt{faDistancePc} from \texttt{completeness.npz}. Given the scaling
+failure above, this is now the most informative remaining check: it would show whether the
+deficiency is in how many distant targets become accessible, which is the leading suspect.
+\item \textbf{Sensitivity derivatives --- Stark et al.\ (2019),
+\texttt{yield\_sensitivity} panels.} Yield derivatives with respect to inner working angle,
+contrast and throughput. These bear directly on the same question.
+\item \textbf{Pure Poisson sampling --- Fig.~4.} Isolates the counting layer alone.
 \end{enumerate}
 
 \subsection{Differences you should expect, and not chase}
@@ -308,23 +372,28 @@ exozodi is held at 3 zodis for every target here rather than drawn per star.
 modelled.
 \end{itemize}
 
-\subsection{What would falsify this model}
+\subsection{What would falsify this model, and what did}
 
-Stated in advance, so the checks above can fail honestly:
+These criteria were written before the aperture-scaling check was run. The outcome against each
+is recorded alongside it.
 
 \begin{itemize}
 \item The 7, 8 and 9\,m points of Fig.~15 missing by more than $\sim$10 percentage points with
-the 6\,m calibration frozen. That would mean the aperture scaling is wrong, not merely the
-normalisation.
-\item The Fig.~15 crossing appearing at a substantially different diameter, or not at all. The
-crossing is set by how characterization time trades against search time as yields rise, which is
-the mechanism this report's central claim rests on.
+the 6\,m calibration frozen. \textbf{Mixed, and the criterion was badly posed.} The
+including-$\sigma_{\eta_\oplus}$ curve passes at @@APMAXRESID@@ points; the
+excluding-$\sigma_{\eta_\oplus}$ curve fails at 26 points. Writing the criterion without naming
+the curve was a mistake, because the two differ in exactly the way that mattered: the passing
+curve is the one insensitive to the quantity being tested.
+\item The Fig.~15 crossing appearing at a substantially different diameter, or not at all.
+\textbf{Failed.} The crossing is present but sits at @@APCROSS@@\,m against a published
+7.1\,m.
 \item Per-target completeness showing a systematic trend with distance relative to Fig.~11,
 which would indicate the coronagraph throughput ramp is the wrong shape rather than the wrong
 scale.
 \item A calibration factor that has to be re-fitted per aperture to hold agreement. One factor
 must serve all diameters; if it does not, it is absorbing a physical error rather than an
-instrumental unknown.
+instrumental unknown. \textbf{Not re-fitted} --- the 6\,m factor was held frozen throughout, so
+the scaling failure is a property of the model rather than of the calibration.
 \end{itemize}
 
 \subsection{Reproducing this pipeline's own results}
@@ -448,6 +517,11 @@ decadal benchmark under any plausible draw of the occurrence rate.
 These are the things a reader should weigh before using these numbers.
 
 \begin{itemize}
+\item \textbf{The yield does not scale correctly with aperture.} Measured $D^{@@APEXPONENT@@}$
+against a published $\sim D^{1.9}$ (Sec.~\ref{sec:aperture}). The cause is not identified; the
+target-screening cap and a uniform yield bias were both tested and rejected. Nothing in this
+report should be extrapolated in aperture, and the headline ratio should be treated as an upper
+bound until this is resolved.
 \item \textbf{The coronagraph is parametrized, not simulated.} $\Upsilon_c$ and $\zeta$ are
 smooth functions of separation fitted to three published anchors, not the two-dimensional maps
 AYO interpolates. The calibration factor of @@CALFACTOR@@ bounds the resulting error on the

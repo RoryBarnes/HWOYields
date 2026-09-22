@@ -1,4 +1,12 @@
 {
+  "CompareApertureScaling/apertureScaling.json": {
+    "iMtime": 1790043627,
+    "sSha256": "7542866c99fc6b8147645eabb517b9a007f17236caf6f15c7cba33578b042cd7"
+  },
+  "Plot/figApertureScaling.pdf": {
+    "iMtime": 1790044045,
+    "sSha256": "ad48a87f9c5d352ad769515422dc91b21050396896ab00c8fa059936140d17fa"
+  },
   "Plot/figCalibration.pdf": {
     "iMtime": 1790036382,
     "sSha256": "6746160304d4e0ea8c928268af3ca1bb5c7656e9ba92a5a4013f2007d9bfec39"

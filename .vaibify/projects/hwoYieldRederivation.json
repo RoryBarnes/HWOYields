@@ -27,21 +27,21 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "................                                                         [100%]\n16 passed in 0.35s\n"
+          "sLastOutput": "................                                                         [100%]\n16 passed in 0.45s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "....sss.                                                                 [100%]\n5 passed, 3 skipped in 0.32s\n"
+          "sLastOutput": "....sss.                                                                 [100%]\n5 passed, 3 skipped in 0.39s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.34s\n"
+          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.82s\n"
         }
       },
       "sStepId": "buildtargetcatalog",
@@ -73,21 +73,21 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.30s\n"
+          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.48s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.37s\n"
+          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.30s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.31s\n"
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.32s\n"
         }
       },
       "sStepId": "modelcoronagraph",
@@ -118,21 +118,21 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.36s\n"
+          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.39s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.34s\n"
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.36s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": ".                                                                        [100%]\n1 passed in 0.30s\n"
+          "sLastOutput": ".                                                                        [100%]\n1 passed in 0.35s\n"
         }
       },
       "sStepId": "calibratetostark",
@@ -164,21 +164,21 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.40s\n"
+          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.39s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.37s\n"
+          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.33s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.28s\n"
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.32s\n"
         }
       },
       "sStepId": "computecompleteness",
@@ -205,21 +205,21 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.30s\n"
+          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.28s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.30s\n"
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.35s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": ".                                                                        [100%]\n1 passed in 0.32s\n"
+          "sLastOutput": ".                                                                        [100%]\n1 passed in 0.39s\n"
         }
       },
       "sStepId": "optimizesurvey",
@@ -251,21 +251,21 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.35s\n"
+          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.30s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.34s\n"
+          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.31s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.29s\n"
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.30s\n"
         }
       },
       "sStepId": "sampleoccurrenceposterior",
@@ -297,25 +297,73 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.31s\n"
+          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.27s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "...s                                                                     [100%]\n3 passed, 1 skipped in 0.44s\n"
+          "sLastOutput": "...s                                                                     [100%]\n3 passed, 1 skipped in 0.34s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.35s\n"
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.36s\n"
         }
       },
       "sStepId": "predictredefinedyield",
       "listRemoteData": []
+    },
+    {
+      "sName": "compareApertureScaling",
+      "sDirectory": "CompareApertureScaling",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bInteractive": false,
+      "saDataCommands": [
+        "python3 dataCompareApertureScaling.py --target-catalog {step:buildtargetcatalog.targetCatalog} --mission-parameters {step:modelcoronagraph.missionParameters} --calibration-json {step:calibratetostark.calibration} --occurrence-posterior {step:sampleoccurrenceposterior.occurrencePosterior} --out-comparison apertureScaling.json"
+      ],
+      "saOutputDataFiles": [
+        "apertureScaling.json"
+      ],
+      "saTestCommands": [],
+      "saPlotCommands": [
+        "python3 plotApertureScaling.py --comparison apertureScaling.json ../Plot/figApertureScaling.pdf"
+      ],
+      "saPlotFiles": [
+        "../Plot/figApertureScaling.pdf"
+      ],
+      "saInputDataFiles": [],
+      "bNoInputData": true,
+      "listRemoteData": [],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ],
+          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.40s\n"
+        },
+        "dictQualitative": {
+          "sFilePath": "testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ],
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.35s\n"
+        },
+        "dictQuantitative": {
+          "sFilePath": "testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ],
+          "sLastOutput": ".                                                                        [100%]\n1 passed in 0.35s\n"
+        }
+      },
+      "saDependencies": [],
+      "sStepId": "compareaperturescaling"
     }
   ],
   "iWorkflowSchemaVersion": 13
