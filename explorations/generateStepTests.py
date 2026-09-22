@@ -74,9 +74,12 @@ def fdictIntrospectNpz(sPath):
             "dictArrayStats": dictStats}
 
 
-def fdictIntrospectFile(sRepoRoot, sRelPath):
-    """Dispatch introspection on a declared output file by extension."""
-    sPath = os.path.join(sRepoRoot, sRelPath)
+def fdictIntrospectFile(sStepDir, sRelPath):
+    """Dispatch introspection on a declared output file by extension.
+
+    Declared paths are relative to the STEP directory, which is how vaibify resolves them.
+    """
+    sPath = os.path.normpath(os.path.join(sStepDir, sRelPath))
     sExt = os.path.splitext(sRelPath)[1].lower()
     dictOut = {".json": fdictIntrospectJson, ".csv": fdictIntrospectCsv,
                ".npz": fdictIntrospectNpz}[sExt](sPath)
@@ -105,8 +108,8 @@ LIST_FILES = sorted(DICT_STANDARDS["dictFiles"].keys())
 
 
 def fsResolve(sRelPath):
-    """Absolute path to a declared output file."""
-    return os.path.join(S_REPO_ROOT, sRelPath)
+    """Absolute path to a declared output file, resolved from the step directory."""
+    return os.path.normpath(os.path.join(S_STEP_DIR, sRelPath))
 '''
 
 S_INTEGRITY_BODY = '''
@@ -240,7 +243,7 @@ def test_recorded_numbers_match_standards(sRelPath):
 def fnWriteStepTests(sRepoRoot, dictStep, fRtol):
     """Write the three test files and the standards file for one step."""
     sStepDir = os.path.join(sRepoRoot, dictStep["sDirectory"])
-    dictFiles = {s: fdictIntrospectFile(sRepoRoot, s) for s in dictStep["saOutputDataFiles"]}
+    dictFiles = {s: fdictIntrospectFile(sStepDir, s) for s in dictStep["saOutputDataFiles"]}
     with open(os.path.join(sStepDir, "testStandards.json"), "w") as oFile:
         json.dump({"sStep": dictStep["sName"], "dictFiles": dictFiles}, oFile, indent=2)
     for sFileName, sDoc, sBody in (
@@ -256,8 +259,12 @@ def fnWriteStepTests(sRepoRoot, dictStep, fRtol):
 
 
 def fdictTestsBlock(sDirectory):
-    """The dictTests block declaring all three categories for a step."""
-    return {sCategory: {"sFilePath": f"{sDirectory}/{sFile}",
+    """The dictTests block declaring all three categories for a step.
+
+    Paths are relative to the STEP directory, which is how vaibify resolves every declared
+    path in a step (saOutputDataFiles, saPlotFiles, dictTests.sFilePath).
+    """
+    return {sCategory: {"sFilePath": sFile,
                         "saCommands": [f"python3 -m pytest {sFile} -q"]}
             for sCategory, sFile in (("dictIntegrity", "testIntegrity.py"),
                                      ("dictQualitative", "testQualitative.py"),

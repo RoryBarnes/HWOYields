@@ -1,7 +1,7 @@
 {
   "sStep": "calibrateToStark",
   "dictFiles": {
-    "calibrateToStark/calibration.json": {
+    "calibration.json": {
       "sKind": "json",
       "saTopLevelKeys": [
         "bCalibrationGatePassed",

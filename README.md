@@ -13,16 +13,16 @@ against the canonical HabEx/LUVOIR exoEarth-candidate box (0.95–1.67 AU, R ≤
 
 | | Canonical box | Redefined box |
 |---|---|---|
-| Occurrence η | 0.217 (+0.128/−0.080) | 0.0439 (+0.0261/−0.0164) |
+| Occurrence η | 0.217 (+0.126/−0.080) | 0.0439 (+0.0256/−0.0163) |
 | Median expected yield (6 m) | 20.7 | 5.8 |
-| P(≥ 25 candidates) | 32.5% | 0.05% |
+| P(≥ 25 candidates) | 33.0% | 0.04% |
 
-Occurrence ratio **0.204 (+0.017/−0.016)**; yield ratio **0.280 (+0.028/−0.027)**. The yield
+Occurrence ratio **0.203 (+0.017/−0.017)**; yield ratio **0.278 (+0.028/−0.027)**. The yield
 ratio exceeds the occurrence ratio because fewer expected detections free characterization time,
 and because truncating the outer habitable zone preferentially removes the faintest planets.
 
 **Validation:** before any calibration the model predicts 24.5 candidates against Stark's
-published 22.5 (9%). Marginalised over the occurrence posterior it gives P(≥25) = 32.5% against
+published 22.5 (9%). Marginalised over the occurrence posterior it gives P(≥25) = 33.0% against
 Stark's published 32% — a number nothing here was tuned to.
 
 The full write-up, including limitations, is `doc/hwoYieldRederivationReport.pdf`.

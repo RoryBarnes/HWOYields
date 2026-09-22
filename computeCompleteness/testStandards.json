@@ -1,7 +1,7 @@
 {
   "sStep": "computeCompleteness",
   "dictFiles": {
-    "computeCompleteness/completeness.npz": {
+    "completeness.npz": {
       "sKind": "npz",
       "saArrays": [
         "faComp_canonical",
@@ -145,7 +145,7 @@
       },
       "iBytes": 371546
     },
-    "computeCompleteness/completenessSummary.json": {
+    "completenessSummary.json": {
       "sKind": "json",
       "saTopLevelKeys": [
         "dictByBox",

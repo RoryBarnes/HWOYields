@@ -1,7 +1,7 @@
 {
   "sStep": "modelCoronagraph",
   "dictFiles": {
-    "modelCoronagraph/missionParameters.json": {
+    "missionParameters.json": {
       "sKind": "json",
       "saTopLevelKeys": [
         "dictBands",
@@ -52,7 +52,7 @@
       },
       "iBytes": 2029
     },
-    "modelCoronagraph/coronagraphCurves.csv": {
+    "coronagraphCurves.csv": {
       "sKind": "csv",
       "saColumns": [
         "fSeparationLamD",

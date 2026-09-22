@@ -1,7 +1,7 @@
 {
   "sStep": "buildTargetCatalog",
   "dictFiles": {
-    "buildTargetCatalog/gaiaRawQuery.csv": {
+    "gaiaRawQuery.csv": {
       "sKind": "csv",
       "saColumns": [
         "source_id",
@@ -93,7 +93,7 @@
       },
       "iBytes": 1213040
     },
-    "buildTargetCatalog/hipparcosRawQuery.csv": {
+    "hipparcosRawQuery.csv": {
       "sKind": "csv",
       "saColumns": [
         "hip",
@@ -152,7 +152,7 @@
       },
       "iBytes": 45896
     },
-    "buildTargetCatalog/targetCatalog.csv": {
+    "targetCatalog.csv": {
       "sKind": "csv",
       "saColumns": [
         "sSourceId",
@@ -248,7 +248,7 @@
       },
       "iBytes": 1819544
     },
-    "buildTargetCatalog/targetCatalogSummary.json": {
+    "targetCatalogSummary.json": {
       "sKind": "json",
       "saTopLevelKeys": [
         "bSupplementFetched",

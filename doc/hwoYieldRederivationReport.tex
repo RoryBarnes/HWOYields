@@ -28,16 +28,16 @@ tables, and uses it to answer a counterfactual: what would the Habitable Worlds 
 $R = M^{0.27}$, and if the habitable zone were $0.96$--$1.20$~AU for the Sun rather than the
 conservative $0.95$--$1.67$~AU, scaled by $\sqrt{L_\star}$ for every star. Integrating the
 SAG13 occurrence law over the redefined box gives
-$\eta = 0.0439^{+0.0261}_{-0.0164}$ against
-$0.217^{+0.128}_{-0.080}$ for the canonical box, a ratio of
-$0.204^{+0.017}_{-0.016}$ that is independent of the overall
+$\eta = 0.0439^{+0.0256}_{-0.0163}$ against
+$0.217^{+0.126}_{-0.080}$ for the canonical box, a ratio of
+$0.203^{+0.017}_{-0.017}$ that is independent of the overall
 normalisation. The full survey optimization gives a \emph{yield} ratio of
-$0.280^{+0.028}_{-0.027}$, materially larger than the occurrence ratio,
+$0.278^{+0.028}_{-0.027}$, materially larger than the occurrence ratio,
 because a smaller expected detection count frees characterization time and because truncating
 the outer habitable zone preferentially removes the faintest, most expensive planets. The
 baseline 6\,m design yields a median of 5.8 exoEarth candidates under the redefined
 selection, against 20.7 canonically, and the probability of reaching the 25-planet
-goal falls from 32.5\% to 0.05\%.
+goal falls from 33.0\% to 0.04\%.
 \end{abstract}
 
 \tableofcontents
@@ -215,7 +215,7 @@ reduction in throughput costs under 10\% of the yield.}
 
 The strongest check is one the calibration does not touch. Marginalising over the $\eta$
 posterior, the probability of detecting and characterising at least 25 candidates is
-32.5\%. Stark et al.\ (2024) report 32\% for the same quantity including $\eta_\oplus$
+33.0\%. Stark et al.\ (2024) report 32\% for the same quantity including $\eta_\oplus$
 uncertainty. Nothing in this pipeline was tuned to that number.
 
 \section{Results}
@@ -255,14 +255,14 @@ yield distributions marginalised over the occurrence posterior.}
 \midrule
 Habitable zone (scaled AU) & 0.95--1.67 & 0.96--1.20 \\
 Planet selection & $R \leq 1.4\,R_\oplus$ & $0.5$--$2\,M_\oplus$, $R=M^{0.27}$ \\
-Occurrence $\eta$ & $0.217^{+0.128}_{-0.080}$ &
-  $0.0439^{+0.0261}_{-0.0164}$ \\
+Occurrence $\eta$ & $0.217^{+0.126}_{-0.080}$ &
+  $0.0439^{+0.0256}_{-0.0163}$ \\
 Stars with non-zero completeness & 1,054 & 818 \\
 Peak completeness & 0.927 & 0.944 \\
 Median expected yield & 20.7 & 5.8 \\
 Mean expected yield & 21.8 & 6.2 \\
-90\% interval & 9.8--38.3 & 2.4--11.9 \\
-$P(\geq 25$ candidates$)$ & 32.5\% & 0.05\% \\
+90\% interval & 9.7--38.2 & 2.4--11.8 \\
+$P(\geq 25$ candidates$)$ & 33.0\% & 0.04\% \\
 \bottomrule
 \end{tabular}
 \caption{Headline results for the baseline 6\,m LUVOIR-B-like design. The survey uses
@@ -272,12 +272,12 @@ $P(\geq 25$ candidates$)$ & 32.5\% & 0.05\% \\
 \subsection{The central number}
 
 The occurrence ratio between the boxes is
-$0.204^{+0.017}_{-0.016}$, and it decomposes: narrowing the habitable
+$0.203^{+0.017}_{-0.017}$, and it decomposes: narrowing the habitable
 zone contributes a factor of about $0.32$ and the mass selection a further $0.63$. Narrowing the
 habitable zone dominates, because it cuts the log-period width to roughly 40\% and because
 $\beta > 0$ weights the outer habitable zone more heavily.
 
-The \emph{yield} ratio is $0.280^{+0.028}_{-0.027}$ --- about 38\% larger
+The \emph{yield} ratio is $0.278^{+0.028}_{-0.027}$ --- about 38\% larger
 than the occurrence ratio. Three effects account for the difference, and they do not all point
 the same way:
 
@@ -296,14 +296,14 @@ ratio.
 
 The first two outweigh the third. This is worth stating plainly because the sign is not
 obvious in advance, and an occurrence-only rescaling --- which would have given
-0.204 --- gets it wrong in a direction that cannot be guessed without running the
+0.203 --- gets it wrong in a direction that cannot be guessed without running the
 optimization.
 
 \subsection{What it means for HWO}
 
 Under the redefined selection the baseline 6\,m design delivers a median of 5.8
-exoEarth candidates, with a 90\% interval of 2.4--11.9. The probability of
-reaching the Astro2020 benchmark of 25 falls from 32.5\% to 0.05\%: not reduced,
+exoEarth candidates, with a 90\% interval of 2.4--11.8. The probability of
+reaching the Astro2020 benchmark of 25 falls from 33.0\% to 0.04\%: not reduced,
 but effectively eliminated. If the habitable zone really is as narrow as $0.96$--$1.20$~AU and
 the sample of interest really is $0.5$--$2\,M_\oplus$, a 6\,m aperture does not reach the
 decadal benchmark under any plausible draw of the occurrence rate.

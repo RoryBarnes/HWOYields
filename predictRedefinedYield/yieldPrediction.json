@@ -54,16 +54,16 @@
         85.4876
       ],
       "dictDistribution": {
-        "fMeanExpected": 21.818345578896718,
-        "fMedianExpected": 20.678674188533847,
-        "fP16Expected": 14.202445859597713,
-        "fP84Expected": 30.0206107086768,
-        "fP05Expected": 9.794548584825288,
-        "fP95Expected": 38.3143321596065,
-        "fProbabilityAtLeastGoal": 0.3254166666666667,
-        "fProbabilityAtLeastOne": 0.9996527777777777
+        "fMeanExpected": 21.78751448427962,
+        "fMedianExpected": 20.719714001226706,
+        "fP16Expected": 14.232234177210584,
+        "fP84Expected": 29.926633059604182,
+        "fP05Expected": 9.738627596642788,
+        "fP95Expected": 38.19696253340773,
+        "fProbabilityAtLeastGoal": 0.3302083333333333,
+        "fProbabilityAtLeastOne": 0.9999305555555555
       },
-      "fEtaMedian": 0.21673990824360168
+      "fEtaMedian": 0.21727515874384132
     },
     "redefined": {
       "faEtaGrid": [
@@ -119,23 +119,23 @@
         108.11839999999997
       ],
       "dictDistribution": {
-        "fMeanExpected": 6.2431413597836825,
-        "fMedianExpected": 5.765922166338218,
-        "fP16Expected": 3.671709118650793,
-        "fP84Expected": 8.91874002121341,
-        "fP05Expected": 2.4401478045425433,
-        "fP95Expected": 11.894043634985591,
-        "fProbabilityAtLeastGoal": 0.0004861111111111111,
-        "fProbabilityAtLeastOne": 0.9825694444444445
+        "fMeanExpected": 6.210616483301035,
+        "fMedianExpected": 5.754282923352775,
+        "fP16Expected": 3.676705827009646,
+        "fP84Expected": 8.842984617764852,
+        "fP05Expected": 2.4254128037888028,
+        "fP95Expected": 11.838085657724472,
+        "fProbabilityAtLeastGoal": 0.0004166666666666667,
+        "fProbabilityAtLeastOne": 0.9796527777777778
       },
-      "fEtaMedian": 0.04393996550872728
+      "fEtaMedian": 0.04385129210984426
     }
   },
   "fYieldGoal": 25.0,
   "dictYieldRatio": {
-    "fMedian": 0.2795066958880725,
-    "fP16": 0.2526339563411243,
-    "fP84": 0.3070249257810511,
-    "fOccurrenceRatioMedian": 0.20381874543483713
+    "fMedian": 0.2784955890573494,
+    "fP16": 0.25197662765642004,
+    "fP84": 0.30639054377282626,
+    "fOccurrenceRatioMedian": 0.20334323541972582
   }
 }

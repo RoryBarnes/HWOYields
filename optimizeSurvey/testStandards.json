@@ -1,7 +1,7 @@
 {
   "sStep": "optimizeSurvey",
   "dictFiles": {
-    "optimizeSurvey/surveyResult.json": {
+    "surveyResult.json": {
       "sKind": "json",
       "saTopLevelKeys": [
         "fEtaEarthBaseline",

@@ -19,8 +19,8 @@ LIST_FILES = sorted(DICT_STANDARDS["dictFiles"].keys())
 
 
 def fsResolve(sRelPath):
-    """Absolute path to a declared output file."""
-    return os.path.join(S_REPO_ROOT, sRelPath)
+    """Absolute path to a declared output file, resolved from the step directory."""
+    return os.path.normpath(os.path.join(S_STEP_DIR, sRelPath))
 
 
 @pytest.mark.parametrize("sRelPath", LIST_FILES)

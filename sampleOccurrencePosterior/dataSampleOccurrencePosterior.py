@@ -47,7 +47,14 @@ def fnLogPosterior(faTheta, dictBoxes, dictPriors, dictLikelihood):
 
 
 def faRunSampler(dictBoxes, dictPriors, dictLikelihood, iWalkers, iSteps, iBurn, iSeed):
-    """Run emcee and return the flattened, burned-in, thinned chain."""
+    """Run emcee and return the flattened, burned-in, thinned chain.
+
+    emcee's EnsembleSampler draws its proposal moves from numpy's GLOBAL legacy RNG, not from
+    any generator passed in, so seeding only the walker start positions leaves the chain
+    irreproducible. Both are seeded here. The determinism scanner cannot detect this class of
+    bug -- it was caught by the quantitative test comparing the chain against its standard.
+    """
+    np.random.seed(iSeed)
     rng = np.random.default_rng(iSeed)
     faStart = np.column_stack([
         rng.normal(dictPriors["fLnGammaMean"], 0.05, iWalkers),
