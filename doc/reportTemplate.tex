@@ -197,25 +197,26 @@ magnitudes plus a Torres (2010) bolometric correction, for @@CATROWS@@ stars in 
 the supplement the missing targets would have been absorbed into the calibration factor below
 and misreported as a coronagraph modelling error.
 
-\subsection{The calibration gate, which this model now fails}
+\subsection{The calibration gate}
 
 The parametrized coronagraph stands in for simulated maps, so a single scalar throughput factor
-absorbs the residual mismatch, fitted by bisection against the 22.5 exoEarth candidates Stark
-et al.\ (2024) report for the baseline 6\,m design. The gate requires two things: that the target
-is reached, and that the fitted factor stays within a factor of two of unity. A factor far from
-unity means the scalar is absorbing missing physics rather than an instrumental unknown, which is
-not a pass.
+absorbs the residual mismatch, fitted against the 22.5 exoEarth candidates Stark et al.\ (2024)
+report for the baseline 6\,m design. The gate requires two things: that the target is reached,
+and that the fitted factor stays within a factor of two of unity, because a factor far from unity
+means the scalar is absorbing missing physics rather than an instrumental unknown.
 
-\textbf{The fitted factor is @@CALFACTOR@@ --- @@FACTORPLAUSIBLE@@ that band --- so the gate
-@@GATEPASS@@.} Uncalibrated, the model predicts @@CALUNCAL@@ exoEarth candidates against a
-published 22.5.
+\textbf{The fitted factor is @@CALFACTOR@@ and the gate @@GATEPASS@@.} Uncalibrated, the model
+predicts @@CALUNCAL@@ against a published 22.5 --- agreement to about two percent with no fitted
+parameter at all.
 
-This is a change from an earlier version of this report, and the reason matters. That version
-predicted 24.53 uncalibrated, a 9\% agreement, and cited it as the headline evidence that the
-rederivation was sound. That agreement was the product of two compensating errors in the
-characterization model (Section~\ref{sec:aperture}). Correcting them fixed the aperture scaling
-almost exactly and simultaneously revealed that the absolute characterization cost is roughly
-four times too high. The earlier number looked better and meant less.
+That is a recent state. Earlier versions of this report recorded, in turn, a 9\% uncalibrated
+agreement that turned out to rest on compensating errors, and then a gate failure requiring a
+factor of 4.2. What closed it was not a tuning but a missing piece of the survey model: this
+pipeline observed each star once, where AYO optimizes the number of visits (Sec.~\ref{sec:peak}).
+A single visit catches a planet only at the phase it happens to occupy; revisiting catches the
+ones that were behind the inner working angle or at crescent phase. Modelling that raised the
+uncalibrated yield by a factor of about 1.7 and took the required factor from 4.23 to
+@@CALFACTOR@@.
 
 \begin{figure}[htbp]
 \centering
@@ -429,7 +430,20 @@ $A_G = 0.2$ for every planet and every exozodi at 3 zodis, so it produces the \e
 distribution. Multiplying by Stark's own factor gives a mean of @@BIASMEAN@@ against his $\sim$21
 --- agreement to a few percent --- and moves the peak from 17.9 to 13.3 against his $\sim$10.
 
-\textbf{The albedo distribution has now been modelled, and it does not close the gap.} Following
+\textbf{The survey model was missing revisits, and that was the dominant error.} AYO optimizes
+"the number of visits to each star, and the exposure and delay times for each visit"; this
+pipeline observed each star once. Completeness per star is now computed for every visit count up
+to six, with the orbit sampled at independent epochs, and the equal-slope sweep chooses the visit
+count along with the exposure by pooling every (visits, exposure) option onto one concave
+envelope. On a fixed target list this raises the optimized yield by a factor of 1.7, which is
+what took the calibration factor from 4.23 to @@CALFACTOR@@ and closed the gate.
+
+The epochs are drawn at random rather than evenly spaced in mean anomaly. For a circular orbit
+the projected separation has period $\pi$ in true anomaly, so even spacing with an even visit
+count makes alternate visits duplicates and silently removes the benefit of revisiting; a unit
+test now pins that.
+
+\textbf{The albedo distribution has been modelled, and it does not close the remaining gap.} Following
 Stark et al.\ (2024) Sec.~3.2, the survey is optimized assuming $A_G = 0.2$, and the yield is then
 read from the same planets --- same orbits, radii and phases --- with albedos drawn uniformly on
 $0.08 < A_G < 0.32$, the distribution Stark adopts. The mechanism is the right one: a
@@ -438,9 +452,10 @@ the noise floor or the two-month cap outright, while a brighter one adds little 
 exposure was already sufficient.
 
 The direction is right and the magnitude is not. Stark reports that this distribution reduces the
-expected yield by about 12\%, from 22.5 to 19.8. Here it reduces it by 2.4\%, and the peak of the
-realized-yield distribution does not move down. So the albedo distribution is not the explanation
-for the peak offset either, and the offset remains open.
+expected yield by about 12\%, from 22.5 to 19.8. Here it reduces it by about 1\%, and the peak of
+the realized-yield distribution does not move down. So the albedo distribution is not the
+explanation for the peak offset, and the offset remains open: the realized-yield distribution
+still peaks near 18 against a published $\sim$10, and $P_{25}$ is @@CANONP25@@\% against 32\%.
 
 One difference in method is worth recording as the likely cause. Stark tests a drawn planet
 against the \emph{minimum flux actually detected during that visit} and the minimum separation

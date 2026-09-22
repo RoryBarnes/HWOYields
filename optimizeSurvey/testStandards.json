@@ -16,14 +16,14 @@
       ],
       "dictNumbers": {
         "iStarsAvailable": 1500.0,
-        "fThroughputCalibration": 4.2303353150233765,
+        "fThroughputCalibration": 1.0571587408490972,
         "fEtaEarthBaseline": 0.24,
-        "fYieldBaseline": 21.93863999999998,
-        "fSummedCompletenessBaseline": 93.64033333333339,
-        "iStarsUsedBaseline": 324.0,
-        "fTimeUsedFractionBaseline": 0.7852153076396565
+        "fYieldBaseline": 21.25472,
+        "fSummedCompletenessBaseline": 93.63866666666668,
+        "iStarsUsedBaseline": 160.0,
+        "fTimeUsedFractionBaseline": 0.999852983372827
       },
-      "iBytes": 1475
+      "iBytes": 1445
     }
   }
 }

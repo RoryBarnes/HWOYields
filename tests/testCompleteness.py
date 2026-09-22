@@ -51,7 +51,7 @@ def test_projected_separation_never_exceeds_the_orbital_radius():
     rng = np.random.default_rng(11)
     dictPlanets = cp.fdictInjectPlanets(DICT_BOX, 1.0, 5000, -0.19, 0.26, rng)
     dictGeom = cp.fdictProjectOrbits(dictPlanets)
-    assert np.all(dictGeom["faSepAu"] <= dictPlanets["faAxisAu"] + 1e-12)
+    assert np.all(dictGeom["faSepAu"] <= dictPlanets["faAxisAu"][:, None] + 1e-12)
 
 
 def test_phase_factor_stays_within_lambertian_bounds():
@@ -84,7 +84,7 @@ def test_completeness_is_monotonic_and_bounded():
                                           DICT_BAND_CHAR, DICT_MISSION, faTauGridS,
                                           3000, -0.19, 0.26, 42)
     faComp = dictResult["faComp"]
-    assert np.all(np.diff(faComp) >= -1e-12)
+    assert np.all(np.diff(faComp, axis=-1) >= -1e-12)
     assert 0.0 <= faComp.min() and faComp.max() <= 1.0
 
 
@@ -96,7 +96,7 @@ def test_nearby_star_beats_a_distant_one():
         dictResult = cp.fdictStarCompleteness(fdictSolarTwin(fDistancePc), DICT_BOX,
                                               LIST_BANDS_DET, DICT_BAND_CHAR, DICT_MISSION,
                                               faTauGridS, 2000, -0.19, 0.26, 42)
-        listMax.append(dictResult["faComp"][-1])
+        listMax.append(dictResult["faComp"][-1, -1])
     assert listMax[0] > listMax[1]
 
 
@@ -107,3 +107,32 @@ def test_completeness_is_reproducible_for_a_fixed_seed():
                                          DICT_BAND_CHAR, DICT_MISSION, faTauGridS,
                                          1500, -0.19, 0.26, 99)["faComp"] for _ in range(2)]
     assert np.array_equal(listRuns[0], listRuns[1])
+
+
+def test_completeness_never_decreases_with_visit_count():
+    """A revisit can only add planets, never lose one already caught."""
+    faTauGridS = np.logspace(1.0, np.log10(DICT_MISSION["fExposureLimitS"]), 60)
+    dictMission = dict(DICT_MISSION, iMaxVisits=5)
+    dictResult = cp.fdictStarCompleteness(fdictSolarTwin(6.0), DICT_BOX, LIST_BANDS_DET,
+                                          DICT_BAND_CHAR, dictMission, faTauGridS,
+                                          2000, -0.19, 0.26, 21)
+    faComp = dictResult["faComp"]
+    assert faComp.shape[0] == 5
+    assert np.all(np.diff(faComp, axis=0) >= -1e-12)
+
+
+def test_revisiting_catches_planets_a_single_visit_misses():
+    """The point of a revisit: a planet behind the IWA or at crescent phase gets another chance."""
+    faTauGridS = np.logspace(1.0, np.log10(DICT_MISSION["fExposureLimitS"]), 60)
+    dictResult = cp.fdictStarCompleteness(fdictSolarTwin(6.0), DICT_BOX, LIST_BANDS_DET,
+                                          DICT_BAND_CHAR, dict(DICT_MISSION, iMaxVisits=6),
+                                          faTauGridS, 2000, -0.19, 0.26, 21)
+    assert dictResult["faComp"][-1, -1] > dictResult["faComp"][0, -1] * 1.2
+
+
+def test_visit_epochs_are_not_degenerate():
+    """Evenly spaced mean anomalies would duplicate alternate visits; random epochs must not."""
+    rng = np.random.default_rng(4)
+    dictPlanets = cp.fdictInjectPlanets(DICT_BOX, 1.0, 400, -0.19, 0.26, rng, iVisits=4)
+    faSep = cp.fdictProjectOrbits(dictPlanets)["faSepAu"]
+    assert not np.allclose(faSep[:, 0], faSep[:, 2])

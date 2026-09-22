@@ -53,9 +53,10 @@ def fdictCompletenessTable(dfTargets, dictParams, dictBox, faTauGridS, iNumPlane
     dictMission = dict(dictMission)
     dictMission["listBandsCharacterization"] = \
         dictParams["dictBands"].get("listBandsCharacterization")
-    faComp = np.zeros((len(dfTargets), len(faTauGridS)))
-    faTauCharMean = np.zeros((len(dfTargets), len(faTauGridS)))
-    faCompAlbedo = np.zeros((len(dfTargets), len(faTauGridS)))
+    iVisits = int(dictMission.get("iMaxVisits", 1))
+    faComp = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
+    faTauCharMean = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
+    faCompAlbedo = np.zeros((len(dfTargets), iVisits, len(faTauGridS)))
     faTauChar = np.zeros(len(dfTargets))
     for i, dictRow in enumerate(dfTargets.to_dict("records")):
         dictResult = cp.fdictStarCompleteness(dictRow, dictBox, listBandsDet, dictBandChar,

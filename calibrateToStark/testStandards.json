@@ -20,16 +20,16 @@
       "dictNumbers": {
         "fTargetYield": 22.5,
         "iStarsScreened": 1500.0,
-        "fCalibratedThroughputFactor": 4.2303353150233765,
-        "fCalibratedYield": 22.49900000000001,
-        "fRelativeError": 4.4444444444025064e-05,
+        "fCalibratedThroughputFactor": 1.0571587408490972,
+        "fCalibratedYield": 22.502399999999998,
+        "fRelativeError": 0.00010666666666657597,
         "bTargetReached": true,
         "fMaxPlausibleFactor": 2.0,
-        "bFactorPlausible": false,
-        "bCalibrationGatePassed": false,
-        "fUncalibratedYield": 12.883400000000005
+        "bFactorPlausible": true,
+        "bCalibrationGatePassed": true,
+        "fUncalibratedYield": 22.073700000000013
       },
-      "iBytes": 1879
+      "iBytes": 1843
     }
   }
 }

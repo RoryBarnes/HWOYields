@@ -23,6 +23,7 @@
     "fWavefrontMultiplier": 1.1,
     "fExposureLimitS": 5184000.0,
     "fThroughputCalibration": 1.0,
+    "iMaxVisits": 6,
     "dictAlbedoDistribution": {
       "fMin": 0.08,
       "fMax": 0.32,

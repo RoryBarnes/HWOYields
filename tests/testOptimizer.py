@@ -12,15 +12,23 @@ DICT_MISSION = {"fSlewOverheadS": 3600.0, "fWavefrontOverheadS": 9720.0,
                 "fWavefrontMultiplier": 1.1, "fTotalScienceTimeS": 2.0 * 365.25 * 86400.0}
 
 
-def flistToyStars(iStars, fTauCharS, iSeed=7):
-    """A small synthetic target list with saturating completeness curves."""
+def flistToyStars(iStars, fTauCharS, iSeed=7, iVisits=1):
+    """A small synthetic target list with saturating completeness curves, shaped (visits, grid).
+
+    Completeness rises with visit count, as it must: a revisit can only add planets.
+    """
     rng = np.random.default_rng(iSeed)
     faTauGridS = np.logspace(3.0, np.log10(60 * 86400.0), 60)
     listStars = []
     for _ in range(iStars):
         fScale = 10.0 ** rng.uniform(4.0, 6.0)
-        faComp = rng.uniform(0.3, 0.95) * (1.0 - np.exp(-faTauGridS / fScale))
-        listStars.append(dict(faTauGridS=faTauGridS, faComp=faComp, fTauCharS=fTauCharS))
+        fPeak = rng.uniform(0.3, 0.95)
+        faComp = np.stack([fPeak * (1.0 - (1.0 - 0.55) ** (k + 1)) *
+                           (1.0 - np.exp(-faTauGridS / fScale)) for k in range(iVisits)])
+        faChar = (np.zeros_like(faComp) if not np.isfinite(fTauCharS)
+                  else np.full_like(faComp, fTauCharS))
+        listStars.append(dict(faTauGridS=faTauGridS, faComp=faComp,
+                              faTauCharMeanS=faChar, fTauCharS=fTauCharS))
     return listStars
 
 
@@ -89,3 +97,20 @@ def test_characterization_reduces_summed_completeness():
 def test_empty_target_list_yields_nothing():
     """A survey with no usable targets returns a zero yield rather than failing."""
     assert opt.fdictOptimizeSurvey([], 0.24, DICT_MISSION)["fYield"] == 0.0
+
+
+def test_optimizer_prefers_more_visits_when_they_are_cheap():
+    """Offered a revisit option that adds completeness, the optimizer must use it."""
+    fSingle = opt.fdictOptimizeSurvey(flistToyStars(40, np.inf, iVisits=1), 0.24,
+                                      DICT_MISSION)["fYield"]
+    fMulti = opt.fdictOptimizeSurvey(flistToyStars(40, np.inf, iVisits=5), 0.24,
+                                     DICT_MISSION)["fYield"]
+    assert fMulti > fSingle
+
+
+def test_star_without_characterization_data_does_not_crash():
+    """A star carrying no characterization curve is charged nothing for it, not an exception."""
+    listStars = flistToyStars(10, np.inf, iVisits=2)
+    for dictStar in listStars:
+        dictStar.pop("faTauCharMeanS")
+    assert opt.fdictOptimizeSurvey(listStars, 0.24, DICT_MISSION)["fYield"] > 0.0

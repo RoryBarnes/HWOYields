@@ -27,20 +27,21 @@ def main():
     dictNpz = np.load(dictArgs["completeness"], allow_pickle=True)
     listBoxes = [b.strip() for b in dictArgs["boxes"].split(",")]
     faTauDays = dictNpz["faTauGridS"] / 86400.0
-    faRank = np.argsort(-dictNpz[f"faComp_{listBoxes[0]}"][:, -1])[:dictArgs["num_stars"]]
+    faRank = np.argsort(-dictNpz[f"faComp_{listBoxes[0]}"][:, -1, -1])[:dictArgs["num_stars"]]
     oFig, oAxesPair = plt.subplots(1, 2, figsize=(7.2, 3.0))
     listStyles = ["-", "--", ":"]
     for sBox in listBoxes:
         for iStyle, iStar in enumerate(faRank):
-            oAxesPair[0].plot(faTauDays, dictNpz[f"faComp_{sBox}"][iStar],
+            oAxesPair[0].plot(faTauDays, dictNpz[f"faComp_{sBox}"][iStar, -1],
                               color=ps.DICT_BOX_COLOUR[sBox], ls=listStyles[iStyle % 3],
                               label=ps.DICT_BOX_LABEL_LONG[sBox] if iStyle == 0 else None)
     oAxesPair[0].set_xscale("log")
     ps.fnFinishAxes(oAxesPair[0], "Exposure time (days)", "Completeness $C(\\tau)$",
-                    f"C($\\tau$), top {dictArgs['num_stars']} targets")
+                    f"C($\\tau$) at {dictNpz[f'faComp_{listBoxes[0]}'].shape[1]} visits, "
+                    f"top {dictArgs['num_stars']}")
     oAxesPair[0].legend(loc="lower right")
     for sBox in listBoxes:
-        faMax = dictNpz[f"faComp_{sBox}"][:, -1]
+        faMax = dictNpz[f"faComp_{sBox}"][:, -1, -1]
         oAxesPair[1].hist(faMax[faMax > 0], bins=30, histtype="step", linewidth=2.0,
                           color=ps.DICT_BOX_COLOUR[sBox],
                           label=f"{sBox}: {int(np.sum(faMax > 0))} stars reachable")

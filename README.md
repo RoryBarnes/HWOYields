@@ -14,32 +14,34 @@ against the canonical HabEx/LUVOIR exoEarth-candidate box (0.95–1.67 AU, R ≤
 | | Canonical box | Redefined box |
 |---|---|---|
 | Occurrence η | 0.256 | 0.0520 |
-| Median expected yield (6 m) | 24.0 | 4.9 |
-| P(≥ 25 candidates) | 48.6% | 0.21% |
+| Median expected yield (6 m) | 22.4 | 4.9 |
+| P(≥ 25 candidates) | 41.9% | 0.17% |
 
-Occurrence ratio **0.203 (+0.017/−0.017)**; yield ratio **0.204 (+0.019/−0.017)**. The yield
+Occurrence ratio **0.203 (+0.017/−0.017)**; yield ratio **0.221 (+0.028/−0.022)**. The yield
 ratio exceeds the occurrence ratio because fewer expected detections free characterization time,
 and because truncating the outer habitable zone preferentially removes the faintest planets.
 
-**Validation: three compensating-error coincidences, now unpicked.** Out-of-sample checks
-against Stark et al. (2024) drove three rounds of correction:
+**Validation: the calibration gate now passes.** Out-of-sample checks against Stark et al.
+(2024) drove four rounds of correction, each removing an apparent agreement before producing a
+real one:
 
-1. *Characterization* — the budget must charge a mean over the planets an exposure actually
-   counts, not a median over all detectable ones, and planets that cannot be characterized within
-   two months must not count at all. Fixing this took the aperture scaling from D^1.11 to
-   **D^1.88** against a published ~D^1.9.
-2. *Occurrence posterior* — the published eta was treated as a likelihood and multiplied by
-   priors, giving an interval 23% **narrower than the constraint it was built from** with its
-   right skew destroyed. Now sampled directly from the published posterior.
-3. *Albedo and exozodi* — held fixed here, so this pipeline produces the **unbiased** yield while
-   Stark's distributions and P25 values are biased ones (22.5 -> 17.3). Applying his own factor
-   brings the mean to 20.5 against his ~21.
+1. *Characterization* — charge a mean over the planets an exposure actually counts, not a median
+   over all detectable ones, and exclude planets that cannot be characterized within two months.
+2. *Occurrence posterior* — the published eta is a posterior, not a likelihood; treating it as
+   one gave an interval 23% narrower than the constraint it was built from.
+3. *Coronagraph contrast* — the 1e-10 floor is operative only outside ~4 lambda/D; inside it the
+   simulated contrast climbs steeply. (Core throughput was checked and **agrees**, to 0.035.)
+4. *Revisits* — the dominant error. AYO optimizes the number of visits per star; this pipeline
+   observed each star once, so a planet behind the inner working angle or at crescent phase was
+   simply lost. Modelling visits raised the uncalibrated yield by **1.7x**.
 
-Each correction removed an apparent agreement: the 9% uncalibrated yield match, and the
-P(≥25) = 33% vs 32% match, were both artifacts. The calibration gate now **fails** on factor
-plausibility (3.84x), and P(≥25) here is 48.6% against a published 32% — not comparable until
-albedo is modelled. Absolute yields are conditional; the box ratio at fixed aperture is the
-robust quantity.
+Result: the uncalibrated 6 m yield is **22.07 against a published 22.5** — two percent, with no
+fitted parameter — and the calibration factor is **1.057**, so the gate **passes**.
+
+Still open: the aperture exponent is D^1.68 against a published ~D^1.9; P(≥25) is 41.9% against
+32%; and the realized-yield distribution peaks near 18 against Stark's ~10. Albedo and exozodi
+biases (22.5 -> 17.3 in his accounting) remain under-modelled — the implemented albedo draw
+reproduces only ~1% of his 12%.
 
 The full write-up, including limitations, is `doc/hwoYieldRederivationReport.pdf`.
 

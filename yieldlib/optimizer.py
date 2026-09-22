@@ -27,29 +27,39 @@ def faUpperConcaveHull(faTime, faComp):
 
 
 def fdictStarCostCurve(dictStar, fEtaEarth, dictMission):
-    """Time cost and completeness at every reachable allocation for one star, including its hull.
+    """Reachable (time, completeness) options for one star, over exposure AND visit count.
 
-    Cost per visit is tau' * tau + tau_slew + tau_WFC; the characterization burden
-    eta * C * (tau' * tau_char + overhead) is added because detections must be followed up.
+    Each visit count k offers its own curve: k visits of exposure tau cost k(tau' tau + overhead)
+    and deliver C_k(tau). Pooling every (k, tau) pair and taking the upper concave envelope lets
+    the equal-slope sweep choose both, which is what AYO does. Restricting to k = 1, as an
+    earlier version did, forces the survey to buy completeness only by staring longer at each
+    star, when revisiting is often the cheaper way to catch a planet that was behind the inner
+    working angle.
+
+    Characterization is charged as eta * C * (tau' * tau_char + overhead) and is paid once per
+    expected detection, not once per visit.
     """
     fOverhead = dictMission["fSlewOverheadS"] + dictMission["fWavefrontOverheadS"]
     fMult = dictMission["fWavefrontMultiplier"]
-    faTau = np.concatenate(([0.0], dictStar["faTauGridS"]))
-    faComp = np.concatenate(([0.0], dictStar["faComp"]))
-    faCost = np.where(faTau > 0.0, fMult * faTau + fOverhead, 0.0)
-    faTauChar = dictStar.get("faTauCharMeanS")
-    if faTauChar is not None:
-        faChar = np.concatenate(([0.0], np.asarray(faTauChar)))
-        faCost = faCost + fEtaEarth * faComp * np.where(faChar > 0.0,
-                                                        fMult * faChar + fOverhead, 0.0)
-    elif np.isfinite(dictStar["fTauCharS"]):
-        faCost = faCost + fEtaEarth * faComp * (fMult * dictStar["fTauCharS"] + fOverhead)
+    faTau = np.asarray(dictStar["faTauGridS"])
+    faComp2 = np.atleast_2d(dictStar["faComp"])
+    faChar2 = (np.zeros_like(faComp2) if dictStar.get("faTauCharMeanS") is None
+               else np.atleast_2d(dictStar["faTauCharMeanS"]))
+    faYield2 = np.atleast_2d(dictStar.get("faCompYield", dictStar["faComp"]))
+    listCost, listComp, listYield = [np.zeros(1)], [np.zeros(1)], [np.zeros(1)]
+    for k in range(faComp2.shape[0]):
+        faCost = (k + 1) * (fMult * faTau + fOverhead)
+        faCharTerm = np.where(faChar2[k] > 0.0, fMult * faChar2[k] + fOverhead, 0.0)
+        listCost.append(faCost + fEtaEarth * faComp2[k] * faCharTerm)
+        listComp.append(faComp2[k])
+        listYield.append(faYield2[k])
+    faCost = np.concatenate(listCost)
+    faComp = np.concatenate(listComp)
+    faYield = np.concatenate(listYield)
+    faOrder = np.argsort(faCost, kind="stable")
+    faCost, faComp, faYield = faCost[faOrder], faComp[faOrder], faYield[faOrder]
     faHull = faUpperConcaveHull(faCost, faComp)
-    faYieldCurve = dictStar.get("faCompYield")
-    faCompYield = (faComp if faYieldCurve is None
-                   else np.concatenate(([0.0], np.asarray(faYieldCurve))))
-    return dict(faCost=faCost[faHull], faComp=faComp[faHull],
-                faCompYield=faCompYield[faHull])
+    return dict(faCost=faCost[faHull], faComp=faComp[faHull], faCompYield=faYield[faHull])
 
 
 def fdictAllocateAtSlope(listCurves, fSlope):
