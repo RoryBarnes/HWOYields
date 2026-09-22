@@ -1,0 +1,29 @@
+{
+  "sStep": "optimizeSurvey",
+  "dictFiles": {
+    "optimizeSurvey/surveyResult.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "fEtaEarthBaseline",
+        "fSummedCompletenessBaseline",
+        "fThroughputCalibration",
+        "fTimeUsedFractionBaseline",
+        "fYieldBaseline",
+        "iStarsAvailable",
+        "iStarsUsedBaseline",
+        "listEtaScan",
+        "sBox"
+      ],
+      "dictNumbers": {
+        "iStarsAvailable": 1500.0,
+        "fThroughputCalibration": 0.580761385587706,
+        "fEtaEarthBaseline": 0.24,
+        "fYieldBaseline": 22.328560000000007,
+        "fSummedCompletenessBaseline": 93.0356666666667,
+        "iStarsUsedBaseline": 204.0,
+        "fTimeUsedFractionBaseline": 0.9981440921346669
+      },
+      "iBytes": 1465
+    }
+  }
+}

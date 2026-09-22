@@ -1,0 +1,176 @@
+{
+  "sStep": "computeCompleteness",
+  "dictFiles": {
+    "computeCompleteness/completeness.npz": {
+      "sKind": "npz",
+      "saArrays": [
+        "faComp_canonical",
+        "faComp_hzOnly",
+        "faComp_redefined",
+        "faDistancePc",
+        "faEeidLamD",
+        "faLuminosityLsun",
+        "faTauChar_canonical",
+        "faTauChar_hzOnly",
+        "faTauChar_redefined",
+        "faTauGridS",
+        "faTeffK",
+        "saBoxNames",
+        "saSourceId"
+      ],
+      "dictArrayMeta": {
+        "faTauGridS": {
+          "listShape": [
+            150
+          ],
+          "sDtype": "float64"
+        },
+        "faTeffK": {
+          "listShape": [
+            1500
+          ],
+          "sDtype": "float64"
+        },
+        "faDistancePc": {
+          "listShape": [
+            1500
+          ],
+          "sDtype": "float64"
+        },
+        "faLuminosityLsun": {
+          "listShape": [
+            1500
+          ],
+          "sDtype": "float64"
+        },
+        "faEeidLamD": {
+          "listShape": [
+            1500
+          ],
+          "sDtype": "float64"
+        },
+        "saSourceId": {
+          "listShape": [
+            1500
+          ],
+          "sDtype": "object"
+        },
+        "saBoxNames": {
+          "listShape": [
+            3
+          ],
+          "sDtype": "<U9"
+        },
+        "faComp_canonical": {
+          "listShape": [
+            1500,
+            150
+          ],
+          "sDtype": "float64"
+        },
+        "faTauChar_canonical": {
+          "listShape": [
+            1500
+          ],
+          "sDtype": "float64"
+        },
+        "faComp_redefined": {
+          "listShape": [
+            1500,
+            150
+          ],
+          "sDtype": "float64"
+        },
+        "faTauChar_redefined": {
+          "listShape": [
+            1500
+          ],
+          "sDtype": "float64"
+        },
+        "faComp_hzOnly": {
+          "listShape": [
+            1500,
+            150
+          ],
+          "sDtype": "float64"
+        },
+        "faTauChar_hzOnly": {
+          "listShape": [
+            1500
+          ],
+          "sDtype": "float64"
+        }
+      },
+      "dictArrayStats": {
+        "faTauGridS": {
+          "fMean": 408872.9500237673,
+          "fMin": 10.0,
+          "fMax": 5184000.000000002
+        },
+        "faTeffK": {
+          "fMean": 5819.499245395531,
+          "fMin": 2829.3542,
+          "fMax": 7077.934811525072
+        },
+        "faDistancePc": {
+          "fMean": 30.241728174505756,
+          "fMin": 1.3019705311704333,
+          "fMax": 49.967738776565575
+        },
+        "faLuminosityLsun": {
+          "fMean": 1.9939657928710466,
+          "fMin": 0.0015221541,
+          "fMax": 4.589399
+        },
+        "faEeidLamD": {
+          "fMean": 2.730653972500877,
+          "fMin": 1.5738109676226726,
+          "fMax": 49.87189334831839
+        },
+        "faComp_canonical": {
+          "fMean": 0.04689085333333333,
+          "fMin": 0.0,
+          "fMax": 0.927
+        },
+        "faComp_redefined": {
+          "fMean": 0.049335634074074076,
+          "fMin": 0.0,
+          "fMax": 0.9443333333333334
+        },
+        "faComp_hzOnly": {
+          "fMean": 0.05305794222222223,
+          "fMin": 0.0,
+          "fMax": 0.9473333333333334
+        }
+      },
+      "iBytes": 371546
+    },
+    "computeCompleteness/completenessSummary.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictByBox",
+        "fThroughputCalibration",
+        "iNumPlanetsPerStar",
+        "iStarsScreened"
+      ],
+      "dictNumbers": {
+        "iStarsScreened": 1500.0,
+        "iNumPlanetsPerStar": 3000.0,
+        "fThroughputCalibration": 0.580761385587706,
+        "dictByBox.canonical.fMaxCompletenessBest": 0.927,
+        "dictByBox.canonical.fSummedMaxCompleteness": 342.33566666666667,
+        "dictByBox.canonical.iStarsWithAnyCompleteness": 1054.0,
+        "dictByBox.canonical.fMedianTauCharDays": 29.094139930857786,
+        "dictByBox.redefined.fMaxCompletenessBest": 0.9443333333333334,
+        "dictByBox.redefined.fSummedMaxCompleteness": 352.749,
+        "dictByBox.redefined.iStarsWithAnyCompleteness": 818.0,
+        "dictByBox.redefined.fMedianTauCharDays": 26.086405757550228,
+        "dictByBox.hzOnly.fMaxCompletenessBest": 0.9473333333333334,
+        "dictByBox.hzOnly.fSummedMaxCompleteness": 374.55133333333333,
+        "dictByBox.hzOnly.iStarsWithAnyCompleteness": 976.0,
+        "dictByBox.hzOnly.fMedianTauCharDays": 29.12594815730073
+      },
+      "iBytes": 744
+    }
+  }
+}

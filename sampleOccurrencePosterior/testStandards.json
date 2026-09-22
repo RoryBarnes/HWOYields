@@ -1,0 +1,121 @@
+{
+  "sStep": "sampleOccurrencePosterior",
+  "dictFiles": {
+    "sampleOccurrencePosterior/occurrencePosterior.npz": {
+      "sKind": "npz",
+      "saArrays": [
+        "faChain",
+        "faEta_canonical",
+        "faEta_hzOnly",
+        "faEta_redefined",
+        "faRatio"
+      ],
+      "dictArrayMeta": {
+        "faChain": {
+          "listShape": [
+            14400,
+            3
+          ],
+          "sDtype": "float64"
+        },
+        "faRatio": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faEta_canonical": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faEta_redefined": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faEta_hzOnly": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        }
+      },
+      "dictArrayStats": {
+        "faChain": {
+          "fMean": -0.3452570220826868,
+          "fMin": -4.624997511847809,
+          "fMax": 1.2915579769205823
+        },
+        "faRatio": {
+          "fMean": 0.2041778512332679,
+          "fMin": 0.14787624211351322,
+          "fMax": 0.2724909528303296
+        },
+        "faEta_canonical": {
+          "fMean": 0.23767700153152013,
+          "fMin": 0.006099521972513195,
+          "fMax": 0.963998437867825
+        },
+        "faEta_redefined": {
+          "fMean": 0.04841605817947903,
+          "fMin": 0.0012589502007575558,
+          "fMax": 0.2087577129030728
+        },
+        "faEta_hzOnly": {
+          "fMean": 0.07658886494362147,
+          "fMin": 0.0020291641880283632,
+          "fMax": 0.32757300243190096
+        }
+      },
+      "iBytes": 764615
+    },
+    "sampleOccurrencePosterior/occurrencePosteriorSummary.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictEtaByBox",
+        "dictParameters",
+        "dictRatioRedefinedOverCanonical",
+        "fAcceptanceFraction",
+        "fMaxAutocorrSteps",
+        "iSamples"
+      ],
+      "dictNumbers": {
+        "iSamples": 14400.0,
+        "fAcceptanceFraction": 0.64328125,
+        "fMaxAutocorrSteps": 40.036795902279515,
+        "dictParameters.lnGamma.fMedian": -1.0765341931935866,
+        "dictParameters.lnGamma.fP16": -1.5484314410068074,
+        "dictParameters.lnGamma.fP84": -0.6081542258533517,
+        "dictParameters.lnGamma.fMean": -1.096458519264122,
+        "dictParameters.alpha.fMedian": -0.1898335954849621,
+        "dictParameters.alpha.fP16": -0.4627904783660698,
+        "dictParameters.alpha.fP84": 0.0811833366585586,
+        "dictParameters.alpha.fMean": -0.19206492226791508,
+        "dictParameters.beta.fMedian": 0.2542032918637848,
+        "dictParameters.beta.fP16": -0.03164861426495117,
+        "dictParameters.beta.fP84": 0.5357623204498746,
+        "dictParameters.beta.fMean": 0.25275237528397676,
+        "dictEtaByBox.canonical.fMedian": 0.21673990824360168,
+        "dictEtaByBox.canonical.fP16": 0.13657610962010514,
+        "dictEtaByBox.canonical.fP84": 0.3447500553739009,
+        "dictEtaByBox.canonical.fMean": 0.23767700153152013,
+        "dictEtaByBox.redefined.fMedian": 0.04393996550872728,
+        "dictEtaByBox.redefined.fP16": 0.027534909725722367,
+        "dictEtaByBox.redefined.fP84": 0.0700595725990288,
+        "dictEtaByBox.redefined.fMean": 0.04841605817947903,
+        "dictEtaByBox.hzOnly.fMedian": 0.06954055977719298,
+        "dictEtaByBox.hzOnly.fP16": 0.043554987015075146,
+        "dictEtaByBox.hzOnly.fP84": 0.11086566644172251,
+        "dictEtaByBox.hzOnly.fMean": 0.07658886494362147,
+        "dictRatioRedefinedOverCanonical.fMedian": 0.20381874543483713,
+        "dictRatioRedefinedOverCanonical.fP16": 0.1878663547340919,
+        "dictRatioRedefinedOverCanonical.fP84": 0.2206443151997455,
+        "dictRatioRedefinedOverCanonical.fMean": 0.2041778512332679
+      },
+      "iBytes": 1327
+    }
+  }
+}

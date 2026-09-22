@@ -1,0 +1,109 @@
+{
+  "sStep": "predictRedefinedYield",
+  "dictFiles": {
+    "predictRedefinedYield/yieldPrediction.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictByBox",
+        "dictYieldRatio",
+        "fYieldGoal"
+      ],
+      "dictNumbers": {
+        "dictByBox.canonical.dictDistribution.fMeanExpected": 21.818345578896718,
+        "dictByBox.canonical.dictDistribution.fMedianExpected": 20.678674188533847,
+        "dictByBox.canonical.dictDistribution.fP16Expected": 14.202445859597713,
+        "dictByBox.canonical.dictDistribution.fP84Expected": 30.0206107086768,
+        "dictByBox.canonical.dictDistribution.fP05Expected": 9.794548584825288,
+        "dictByBox.canonical.dictDistribution.fP95Expected": 38.3143321596065,
+        "dictByBox.canonical.dictDistribution.fProbabilityAtLeastGoal": 0.3254166666666667,
+        "dictByBox.canonical.dictDistribution.fProbabilityAtLeastOne": 0.9996527777777777,
+        "dictByBox.canonical.fEtaMedian": 0.21673990824360168,
+        "dictByBox.redefined.dictDistribution.fMeanExpected": 6.2431413597836825,
+        "dictByBox.redefined.dictDistribution.fMedianExpected": 5.765922166338218,
+        "dictByBox.redefined.dictDistribution.fP16Expected": 3.671709118650793,
+        "dictByBox.redefined.dictDistribution.fP84Expected": 8.91874002121341,
+        "dictByBox.redefined.dictDistribution.fP05Expected": 2.4401478045425433,
+        "dictByBox.redefined.dictDistribution.fP95Expected": 11.894043634985591,
+        "dictByBox.redefined.dictDistribution.fProbabilityAtLeastGoal": 0.0004861111111111111,
+        "dictByBox.redefined.dictDistribution.fProbabilityAtLeastOne": 0.9825694444444445,
+        "dictByBox.redefined.fEtaMedian": 0.04393996550872728,
+        "fYieldGoal": 25.0,
+        "dictYieldRatio.fMedian": 0.2795066958880725,
+        "dictYieldRatio.fP16": 0.2526339563411243,
+        "dictYieldRatio.fP84": 0.3070249257810511,
+        "dictYieldRatio.fOccurrenceRatioMedian": 0.20381874543483713
+      },
+      "iBytes": 3963
+    },
+    "predictRedefinedYield/yieldSamples.npz": {
+      "sKind": "npz",
+      "saArrays": [
+        "faEtaGrid",
+        "faExpected_canonical",
+        "faExpected_redefined",
+        "faObserved_canonical",
+        "faObserved_redefined"
+      ],
+      "dictArrayMeta": {
+        "faEtaGrid": {
+          "listShape": [
+            24
+          ],
+          "sDtype": "float64"
+        },
+        "faExpected_canonical": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faObserved_canonical": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "int64"
+        },
+        "faExpected_redefined": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faObserved_redefined": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "int64"
+        }
+      },
+      "dictArrayStats": {
+        "faEtaGrid": {
+          "fMean": 0.21760384028484822,
+          "fMin": 0.003000000000000001,
+          "fMax": 1.2
+        },
+        "faExpected_canonical": {
+          "fMean": 21.818345578896718,
+          "fMin": 0.7354789680487586,
+          "fMax": 70.77296197970101
+        },
+        "faObserved_canonical": {
+          "fMean": 21.760555555555555,
+          "fMin": 0.0,
+          "fMax": 79.0
+        },
+        "faExpected_redefined": {
+          "fMean": 6.2431413597836825,
+          "fMin": 0.4044599999999999,
+          "fMax": 23.24829707114199
+        },
+        "faObserved_redefined": {
+          "fMean": 6.221666666666667,
+          "fMin": 0.0,
+          "fMax": 29.0
+        }
+      },
+      "iBytes": 246478
+    }
+  }
+}

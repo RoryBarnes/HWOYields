@@ -1,0 +1,286 @@
+{
+  "sPlotDirectory": "Plot",
+  "sFigureType": "pdf",
+  "iNumberOfCores": -1,
+  "listSteps": [
+    {
+      "sName": "buildTargetCatalog",
+      "sDirectory": "buildTargetCatalog",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bNoInputData": true,
+      "saInputDataFiles": [],
+      "saDataCommands": [
+        "python3 dataBuildTargetCatalog.py --out-catalog targetCatalog.csv --out-summary targetCatalogSummary.json"
+      ],
+      "saOutputDataFiles": [
+        "buildTargetCatalog/gaiaRawQuery.csv",
+        "buildTargetCatalog/hipparcosRawQuery.csv",
+        "buildTargetCatalog/targetCatalog.csv",
+        "buildTargetCatalog/targetCatalogSummary.json"
+      ],
+      "saPlotCommands": [],
+      "saPlotFiles": [],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "buildTargetCatalog/testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ]
+        },
+        "dictQualitative": {
+          "sFilePath": "buildTargetCatalog/testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ]
+        },
+        "dictQuantitative": {
+          "sFilePath": "buildTargetCatalog/testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ]
+        }
+      }
+    },
+    {
+      "sName": "modelCoronagraph",
+      "sDirectory": "modelCoronagraph",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bNoInputData": true,
+      "saInputDataFiles": [],
+      "saDataCommands": [
+        "python3 dataModelCoronagraph.py --out-parameters missionParameters.json --out-curves coronagraphCurves.csv"
+      ],
+      "saOutputDataFiles": [
+        "modelCoronagraph/missionParameters.json",
+        "modelCoronagraph/coronagraphCurves.csv"
+      ],
+      "saPlotCommands": [
+        "python3 plotCoronagraphModel.py --curves coronagraphCurves.csv ../Plot/figCoronagraphModel.pdf"
+      ],
+      "saPlotFiles": [
+        "Plot/figCoronagraphModel.pdf"
+      ],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "modelCoronagraph/testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ]
+        },
+        "dictQualitative": {
+          "sFilePath": "modelCoronagraph/testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ]
+        },
+        "dictQuantitative": {
+          "sFilePath": "modelCoronagraph/testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ]
+        }
+      }
+    },
+    {
+      "sName": "calibrateToStark",
+      "sDirectory": "calibrateToStark",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bNoInputData": true,
+      "saInputDataFiles": [],
+      "saDataCommands": [
+        "python3 dataCalibrateToStark.py --target-catalog {Step01.targetCatalog} --mission-parameters {Step02.missionParameters} --out-calibration calibration.json"
+      ],
+      "saOutputDataFiles": [
+        "calibrateToStark/calibration.json"
+      ],
+      "saPlotCommands": [
+        "python3 plotCalibration.py --calibration calibration.json ../Plot/figCalibration.pdf"
+      ],
+      "saPlotFiles": [
+        "Plot/figCalibration.pdf"
+      ],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "calibrateToStark/testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ]
+        },
+        "dictQualitative": {
+          "sFilePath": "calibrateToStark/testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ]
+        },
+        "dictQuantitative": {
+          "sFilePath": "calibrateToStark/testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ]
+        }
+      }
+    },
+    {
+      "sName": "computeCompleteness",
+      "sDirectory": "computeCompleteness",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bNoInputData": true,
+      "saInputDataFiles": [],
+      "saDataCommands": [
+        "python3 dataComputeCompleteness.py --target-catalog {Step01.targetCatalog} --mission-parameters {Step02.missionParameters} --calibration-json {Step03.calibration} --out-completeness completeness.npz --out-summary completenessSummary.json"
+      ],
+      "saOutputDataFiles": [
+        "computeCompleteness/completeness.npz",
+        "computeCompleteness/completenessSummary.json"
+      ],
+      "saPlotCommands": [
+        "python3 plotCompletenessCurves.py --completeness completeness.npz ../Plot/figCompleteness.pdf"
+      ],
+      "saPlotFiles": [
+        "Plot/figCompleteness.pdf"
+      ],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "computeCompleteness/testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ]
+        },
+        "dictQualitative": {
+          "sFilePath": "computeCompleteness/testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ]
+        },
+        "dictQuantitative": {
+          "sFilePath": "computeCompleteness/testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ]
+        }
+      }
+    },
+    {
+      "sName": "optimizeSurvey",
+      "sDirectory": "optimizeSurvey",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bNoInputData": true,
+      "saInputDataFiles": [],
+      "saDataCommands": [
+        "python3 dataOptimizeSurvey.py --completeness {Step04.completeness} --mission-parameters {Step02.missionParameters} --calibration-json {Step03.calibration} --box canonical --out-survey surveyResult.json"
+      ],
+      "saOutputDataFiles": [
+        "optimizeSurvey/surveyResult.json"
+      ],
+      "saPlotCommands": [],
+      "saPlotFiles": [],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "optimizeSurvey/testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ]
+        },
+        "dictQualitative": {
+          "sFilePath": "optimizeSurvey/testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ]
+        },
+        "dictQuantitative": {
+          "sFilePath": "optimizeSurvey/testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ]
+        }
+      }
+    },
+    {
+      "sName": "sampleOccurrencePosterior",
+      "sDirectory": "sampleOccurrencePosterior",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bNoInputData": true,
+      "saInputDataFiles": [],
+      "saDataCommands": [
+        "python3 dataSampleOccurrencePosterior.py --mission-parameters {Step02.missionParameters} --out-samples occurrencePosterior.npz --out-summary occurrencePosteriorSummary.json"
+      ],
+      "saOutputDataFiles": [
+        "sampleOccurrencePosterior/occurrencePosterior.npz",
+        "sampleOccurrencePosterior/occurrencePosteriorSummary.json"
+      ],
+      "saPlotCommands": [
+        "python3 plotOccurrencePosterior.py --posterior occurrencePosterior.npz ../Plot/figOccurrencePosterior.pdf"
+      ],
+      "saPlotFiles": [
+        "Plot/figOccurrencePosterior.pdf"
+      ],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "sampleOccurrencePosterior/testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ]
+        },
+        "dictQualitative": {
+          "sFilePath": "sampleOccurrencePosterior/testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ]
+        },
+        "dictQuantitative": {
+          "sFilePath": "sampleOccurrencePosterior/testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ]
+        }
+      }
+    },
+    {
+      "sName": "predictRedefinedYield",
+      "sDirectory": "predictRedefinedYield",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bNoInputData": true,
+      "saInputDataFiles": [],
+      "saDataCommands": [
+        "python3 dataPredictRedefinedYield.py --completeness {Step04.completeness} --occurrence-posterior {Step06.occurrencePosterior} --mission-parameters {Step02.missionParameters} --calibration-json {Step03.calibration} --out-prediction yieldPrediction.json --out-samples yieldSamples.npz"
+      ],
+      "saOutputDataFiles": [
+        "predictRedefinedYield/yieldPrediction.json",
+        "predictRedefinedYield/yieldSamples.npz"
+      ],
+      "saPlotCommands": [
+        "python3 plotYieldPrediction.py --prediction yieldPrediction.json --samples yieldSamples.npz ../Plot/figYieldPrediction.pdf"
+      ],
+      "saPlotFiles": [
+        "Plot/figYieldPrediction.pdf"
+      ],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "predictRedefinedYield/testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ]
+        },
+        "dictQualitative": {
+          "sFilePath": "predictRedefinedYield/testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ]
+        },
+        "dictQuantitative": {
+          "sFilePath": "predictRedefinedYield/testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "sStep": "buildTargetCatalog",
+  "dictFiles": {
+    "buildTargetCatalog/gaiaRawQuery.csv": {
+      "sKind": "csv",
+      "saColumns": [
+        "source_id",
+        "ra",
+        "dec",
+        "ecl_lat",
+        "parallax",
+        "phot_g_mean_mag",
+        "teff_gspphot",
+        "radius_gspphot",
+        "lum_flame",
+        "mass_flame",
+        "logg_gspphot"
+      ],
+      "iRows": 8409,
+      "saFiniteColumns": [
+        "source_id",
+        "ra",
+        "dec",
+        "ecl_lat",
+        "parallax",
+        "phot_g_mean_mag",
+        "teff_gspphot",
+        "radius_gspphot",
+        "lum_flame",
+        "logg_gspphot"
+      ],
+      "dictColumnStats": {
+        "source_id": {
+          "fMean": 3.4292309492617897e+18,
+          "fStd": 1.9987936711232865e+18,
+          "fMin": 3179036008830848.0,
+          "fMax": 6.917116130961541e+18
+        },
+        "ra": {
+          "fMean": 178.87939617787404,
+          "fStd": 105.18547368473459,
+          "fMin": 0.0051209692069888,
+          "fMax": 359.9576636759044
+        },
+        "dec": {
+          "fMean": -0.2565450919106685,
+          "fStd": 39.35448133142275,
+          "fMin": -87.96726181571509,
+          "fMax": 88.30368206594339
+        },
+        "ecl_lat": {
+          "fMean": -0.48769834864099837,
+          "fStd": 39.34496224366064,
+          "fMin": -88.85512282647657,
+          "fMax": 87.68764152821672
+        },
+        "parallax": {
+          "fMean": 34.6002823256202,
+          "fStd": 24.00908893415327,
+          "fMin": 20.000053745673146,
+          "fMax": 768.0665391873573
+        },
+        "phot_g_mean_mag": {
+          "fMean": 9.317516449922703,
+          "fStd": 2.2529231818239723,
+          "fMin": 2.9649055,
+          "fMax": 12.999628
+        },
+        "teff_gspphot": {
+          "fMean": 4602.371629682482,
+          "fStd": 1172.5329778217172,
+          "fMin": 2829.3542,
+          "fMax": 11884.809
+        },
+        "radius_gspphot": {
+          "fMean": 0.8715358187656084,
+          "fStd": 0.5877045180500956,
+          "fMin": 0.1521,
+          "fMax": 14.1069
+        },
+        "lum_flame": {
+          "fMean": 1.123190779004507,
+          "fStd": 3.8387378049024954,
+          "fMin": 0.0014102381,
+          "fMax": 119.68707
+        },
+        "logg_gspphot": {
+          "fMean": 4.363581329527887,
+          "fStd": 0.25364300008769697,
+          "fMin": 2.0479,
+          "fMax": 5.1373
+        }
+      },
+      "iBytes": 1213040
+    },
+    "buildTargetCatalog/hipparcosRawQuery.csv": {
+      "sKind": "csv",
+      "saColumns": [
+        "hip",
+        "ra",
+        "de",
+        "plx",
+        "vmag",
+        "b_v"
+      ],
+      "iRows": 965,
+      "saFiniteColumns": [
+        "hip",
+        "ra",
+        "de",
+        "plx",
+        "vmag",
+        "b_v"
+      ],
+      "dictColumnStats": {
+        "hip": {
+          "fMean": 57546.08186528498,
+          "fStd": 35084.4743058324,
+          "fMin": 171.0,
+          "fMax": 118281.0
+        },
+        "ra": {
+          "fMean": 176.62438681331605,
+          "fStd": 106.04437401165156,
+          "fMin": 0.54018776,
+          "fMax": 359.87222432
+        },
+        "de": {
+          "fMean": 0.5624740922590675,
+          "fStd": 39.91685683453401,
+          "fMin": -85.66323432,
+          "fMax": 86.96802383
+        },
+        "plx": {
+          "fMean": 42.899803108808285,
+          "fStd": 46.05386802500807,
+          "fMin": 20.01,
+          "fMax": 742.12
+        },
+        "vmag": {
+          "fMean": 4.69018652849741,
+          "fStd": 1.1141900408244567,
+          "fMin": -1.44,
+          "fMax": 5.99
+        },
+        "b_v": {
+          "fMean": 0.4968963730569948,
+          "fStd": 0.31317041270875456,
+          "fMin": -0.158,
+          "fMax": 1.6
+        }
+      },
+      "iBytes": 45896
+    },
+    "buildTargetCatalog/targetCatalog.csv": {
+      "sKind": "csv",
+      "saColumns": [
+        "sSourceId",
+        "ra",
+        "dec",
+        "fEclipticLatDeg",
+        "parallax",
+        "fGmag",
+        "fTeffK",
+        "fRadiusRsun",
+        "fLuminosityLsun",
+        "fMassMsun",
+        "logg_gspphot",
+        "fDistancePc",
+        "sCatalogSource",
+        "fEeidAu",
+        "fEeidArcsec"
+      ],
+      "iRows": 8709,
+      "saFiniteColumns": [
+        "ra",
+        "dec",
+        "fEclipticLatDeg",
+        "fGmag",
+        "fTeffK",
+        "fRadiusRsun",
+        "fLuminosityLsun",
+        "fDistancePc",
+        "fEeidAu",
+        "fEeidArcsec"
+      ],
+      "dictColumnStats": {
+        "ra": {
+          "fMean": 178.50212922737015,
+          "fStd": 105.1701147072255,
+          "fMin": 0.0051209692069888,
+          "fMax": 359.9576636759044
+        },
+        "dec": {
+          "fMean": -0.1238459676219655,
+          "fStd": 39.264926521212956,
+          "fMin": -87.96726181571509,
+          "fMax": 88.30368206594339
+        },
+        "fEclipticLatDeg": {
+          "fMean": -0.3573885653978473,
+          "fStd": 39.25795172075125,
+          "fMin": -88.85512282647657,
+          "fMax": 87.68764152821672
+        },
+        "fGmag": {
+          "fMean": 9.156603959926512,
+          "fStd": 2.3815311635596217,
+          "fMin": -1.44,
+          "fMax": 12.999628
+        },
+        "fTeffK": {
+          "fMean": 4695.83297174204,
+          "fStd": 1280.32137850283,
+          "fMin": 2829.3542,
+          "fMax": 11884.809
+        },
+        "fRadiusRsun": {
+          "fMean": 0.8837568570983533,
+          "fStd": 0.46374352219061893,
+          "fMin": 0.1521,
+          "fMax": 2.986247221581368
+        },
+        "fLuminosityLsun": {
+          "fMean": 1.4490915739933252,
+          "fStd": 4.983419171793594,
+          "fMin": 0.0014102381,
+          "fMax": 119.68707
+        },
+        "fDistancePc": {
+          "fMean": 34.11988256764236,
+          "fStd": 11.13217446568122,
+          "fMin": 1.3019705311704333,
+          "fMax": 49.99986563617821
+        },
+        "fEeidAu": {
+          "fMean": 0.7849478019833818,
+          "fStd": 0.9126601350748169,
+          "fMin": 0.0375531370194288,
+          "fMax": 10.940158591172253
+        },
+        "fEeidArcsec": {
+          "fMean": 0.025109591228829616,
+          "fStd": 0.041430536103460945,
+          "fMin": 0.0029638854846558,
+          "fMax": 1.933903345413043
+        }
+      },
+      "iBytes": 1819544
+    },
+    "buildTargetCatalog/targetCatalogSummary.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "bSupplementFetched",
+        "dictTeffPercentiles",
+        "fMaxEeidArcsec",
+        "fMedianDistancePc",
+        "iCatalogRows",
+        "iFgkStars",
+        "iGaiaRows",
+        "iHipparcosSupplementRows",
+        "iRawRows",
+        "sQuery",
+        "sSource"
+      ],
+      "dictNumbers": {
+        "iRawRows": 8409.0,
+        "iCatalogRows": 8709.0,
+        "iGaiaRows": 8356.0,
+        "iHipparcosSupplementRows": 353.0,
+        "bSupplementFetched": true,
+        "iFgkStars": 5542.0,
+        "fMedianDistancePc": 35.86389302483663,
+        "fMaxEeidArcsec": 1.933903345413043,
+        "dictTeffPercentiles.5": 3099.27524,
+        "dictTeffPercentiles.50": 4679.176,
+        "dictTeffPercentiles.95": 6610.46079801322
+      },
+      "iBytes": 851
+    }
+  }
+}

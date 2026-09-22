@@ -1,0 +1,17 @@
+{
+  "sQuery": "SELECT TOP 300000 s.source_id, s.ra, s.dec, s.ecl_lat, s.parallax, s.phot_g_mean_mag, ap.teff_gspphot, ap.radius_gspphot, ap.lum_flame, ap.mass_flame, ap.logg_gspphot FROM gaiadr3.gaia_source AS s JOIN gaiadr3.astrophysical_parameters AS ap ON s.source_id = ap.source_id WHERE s.parallax > 20.0 AND s.phot_g_mean_mag < 13.0 AND ap.teff_gspphot IS NOT NULL AND ap.radius_gspphot IS NOT NULL AND ap.lum_flame IS NOT NULL",
+  "sSource": "Gaia DR3 (gaia_source x astrophysical_parameters), ESA archive TAP",
+  "iRawRows": 8409,
+  "iCatalogRows": 8709,
+  "iGaiaRows": 8356,
+  "iHipparcosSupplementRows": 353,
+  "bSupplementFetched": true,
+  "iFgkStars": 5542,
+  "fMedianDistancePc": 35.86389302483663,
+  "fMaxEeidArcsec": 1.933903345413043,
+  "dictTeffPercentiles": {
+    "5": 3099.27524,
+    "50": 4679.176,
+    "95": 6610.46079801322
+  }
+}

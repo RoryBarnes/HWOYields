@@ -1,0 +1,28 @@
+{
+  "sStep": "calibrateToStark",
+  "dictFiles": {
+    "calibrateToStark/calibration.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "bCalibrationGatePassed",
+        "fCalibratedThroughputFactor",
+        "fCalibratedYield",
+        "fRelativeError",
+        "fTargetYield",
+        "fUncalibratedYield",
+        "iStarsScreened",
+        "listTrace"
+      ],
+      "dictNumbers": {
+        "fTargetYield": 22.5,
+        "iStarsScreened": 1500.0,
+        "fCalibratedThroughputFactor": 0.580761385587706,
+        "fCalibratedYield": 22.503800000000002,
+        "fRelativeError": 0.00016888888888896898,
+        "bCalibrationGatePassed": true,
+        "fUncalibratedYield": 24.527200000000008
+      },
+      "iBytes": 1476
+    }
+  }
+}

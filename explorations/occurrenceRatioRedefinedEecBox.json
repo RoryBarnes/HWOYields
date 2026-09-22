@@ -1,0 +1,46 @@
+{
+  "dictConfig": {
+    "fGamma": 0.38,
+    "fAlpha": -0.19,
+    "fBeta": 0.26,
+    "fAlphaErr": 0.27,
+    "fBetaErr": 0.29,
+    "fHzLoCanon": 0.95,
+    "fHzHiCanon": 1.67,
+    "fHzLo": 0.96,
+    "fHzHi": 1.2,
+    "fMassLo": 0.5,
+    "fMassHi": 2.0,
+    "fMassRadiusExponent": 0.27,
+    "fStarkYieldNoBias": 22.5,
+    "fStarkYieldWithBias": 17.3,
+    "iSamples": 8000,
+    "iSeed": 20260921,
+    "sOutPath": "explorations/occurrenceRatioRedefinedEecBox.json"
+  },
+  "dictRadiusBoxRedefined": {
+    "fRLo": 0.8293195458144417,
+    "fRHi": 1.2058078276907604
+  },
+  "dictEtaByBox": {
+    "canonical": 0.24035172568495722,
+    "hzOnly": 0.07741136477169941,
+    "redefined": 0.04896550140699172
+  },
+  "fEtaCanonicalSag13Check": 0.24035172568495722,
+  "dictRatioDecomposition": {
+    "fHzNarrowingOnly": 0.3220753441694316,
+    "fMassBoxGivenHz": 0.632536340773737,
+    "fCombined": 0.20372435965437422
+  },
+  "dictRatioUncertainty": {
+    "fMedian": 0.20352423209840137,
+    "fP16": 0.18724305698325774,
+    "fP84": 0.22069408049863137
+  },
+  "dictYieldUpperBound": {
+    "sCaveat": "Occurrence-only rescaling. Completeness also falls under both changes, so these are UPPER BOUNDS on the redefined yield, not predictions.",
+    "fFromNoBias": 4.58379809222342,
+    "fFromWithBias": 3.5244314220206743
+  }
+}

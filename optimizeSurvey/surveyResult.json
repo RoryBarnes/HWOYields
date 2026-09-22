@@ -1,0 +1,54 @@
+{
+  "sBox": "canonical",
+  "iStarsAvailable": 1500,
+  "fThroughputCalibration": 0.580761385587706,
+  "fEtaEarthBaseline": 0.24,
+  "fYieldBaseline": 22.328560000000007,
+  "fSummedCompletenessBaseline": 93.0356666666667,
+  "iStarsUsedBaseline": 204,
+  "fTimeUsedFractionBaseline": 0.9981440921346669,
+  "listEtaScan": [
+    {
+      "fEtaEarth": 0.02,
+      "fYield": 2.365253333333333,
+      "fSummedCompleteness": 118.26266666666665,
+      "iStarsUsed": 246,
+      "fTimeUsedFraction": 0.9992622728275838
+    },
+    {
+      "fEtaEarth": 0.06,
+      "fYield": 6.80186,
+      "fSummedCompleteness": 113.36433333333333,
+      "iStarsUsed": 237,
+      "fTimeUsedFraction": 0.9997261571443388
+    },
+    {
+      "fEtaEarth": 0.12,
+      "fYield": 12.65088000000001,
+      "fSummedCompleteness": 105.42400000000008,
+      "iStarsUsed": 229,
+      "fTimeUsedFraction": 0.9949777588153818
+    },
+    {
+      "fEtaEarth": 0.24,
+      "fYield": 22.328560000000007,
+      "fSummedCompleteness": 93.0356666666667,
+      "iStarsUsed": 204,
+      "fTimeUsedFraction": 0.9981440921346669
+    },
+    {
+      "fEtaEarth": 0.4,
+      "fYield": 33.72346666666667,
+      "fSummedCompleteness": 84.30866666666667,
+      "iStarsUsed": 181,
+      "fTimeUsedFraction": 0.9999893430243314
+    },
+    {
+      "fEtaEarth": 0.6,
+      "fYield": 46.880200000000016,
+      "fSummedCompleteness": 78.1336666666667,
+      "iStarsUsed": 171,
+      "fTimeUsedFraction": 0.9976261022383288
+    }
+  ]
+}

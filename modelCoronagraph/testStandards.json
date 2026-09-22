@@ -1,0 +1,91 @@
+{
+  "sStep": "modelCoronagraph",
+  "dictFiles": {
+    "modelCoronagraph/missionParameters.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictBands",
+        "dictBoxes",
+        "dictMission",
+        "sProvenance"
+      ],
+      "dictNumbers": {
+        "dictMission.fDiameterM": 6.0,
+        "dictMission.fIwaLamD": 3.5,
+        "dictMission.fOwaLamD": 32.0,
+        "dictMission.fCoreThroughputMax": 0.45,
+        "dictMission.fContrastFloor": 1e-10,
+        "dictMission.fNoiseFloorDeltaMag": 26.5,
+        "dictMission.fContaminationThroughput": 0.95,
+        "dictMission.fApertureRadiusLamD": 0.7,
+        "dictMission.fGeometricAlbedo": 0.2,
+        "dictMission.fZodiMagArcsec2": 23.0,
+        "dictMission.fExozodiMagArcsec2": 22.0,
+        "dictMission.fExozodiLevel": 3.0,
+        "dictMission.fDarkCurrent": 3e-05,
+        "dictMission.fReadNoise": 0.0,
+        "dictMission.fClockInducedCharge": 0.0013,
+        "dictMission.fQuantumEfficiency": 0.9,
+        "dictMission.fDetectiveQuantumEfficiency": 0.75,
+        "dictMission.fTotalScienceTimeS": 63115200.0,
+        "dictMission.fSlewOverheadS": 3600.0,
+        "dictMission.fWavefrontOverheadS": 9720.0,
+        "dictMission.fWavefrontMultiplier": 1.1,
+        "dictMission.fExposureLimitS": 5184000.0,
+        "dictMission.fThroughputCalibration": 1.0,
+        "dictBands.dictBandCharacterization.fLambdaM": 1e-06,
+        "dictBands.dictBandCharacterization.fOpticalThroughput": 0.23,
+        "dictBands.dictBandCharacterization.fBandwidthFraction": 0.007142857142857143,
+        "dictBands.dictBandCharacterization.fSignalToNoise": 5.0,
+        "dictBands.dictBandCharacterization.iNumPixels": 96.0,
+        "dictBoxes.canonical.fRadiusMaxEarth": 1.4,
+        "dictBoxes.canonical.fHzInnerAu": 0.95,
+        "dictBoxes.canonical.fHzOuterAu": 1.67,
+        "dictBoxes.redefined.fMassLoEarth": 0.5,
+        "dictBoxes.redefined.fMassHiEarth": 2.0,
+        "dictBoxes.redefined.fMassRadiusExponent": 0.27,
+        "dictBoxes.redefined.fHzInnerAu": 0.96,
+        "dictBoxes.redefined.fHzOuterAu": 1.2,
+        "dictBoxes.hzOnly.fRadiusMaxEarth": 1.4,
+        "dictBoxes.hzOnly.fHzInnerAu": 0.96,
+        "dictBoxes.hzOnly.fHzOuterAu": 1.2
+      },
+      "iBytes": 2029
+    },
+    "modelCoronagraph/coronagraphCurves.csv": {
+      "sKind": "csv",
+      "saColumns": [
+        "fSeparationLamD",
+        "fCoreThroughput",
+        "fRawContrast"
+      ],
+      "iRows": 200,
+      "saFiniteColumns": [
+        "fSeparationLamD",
+        "fCoreThroughput",
+        "fRawContrast"
+      ],
+      "dictColumnStats": {
+        "fSeparationLamD": {
+          "fMean": 8.784238669063628,
+          "fStd": 9.77272767488254,
+          "fMin": 0.5,
+          "fMax": 38.39999999999999
+        },
+        "fCoreThroughput": {
+          "fMean": 0.2278071897825001,
+          "fStd": 0.1814728658358093,
+          "fMin": 0.0,
+          "fMax": 0.4485249793232992
+        },
+        "fRawContrast": {
+          "fMean": 0.04500000009550001,
+          "fStd": 0.20730412439554838,
+          "fMin": 1e-10,
+          "fMax": 1.0
+        }
+      },
+      "iBytes": 8751
+    }
+  }
+}

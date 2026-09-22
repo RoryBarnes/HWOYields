@@ -1,0 +1,78 @@
+{
+  "dictMission": {
+    "fDiameterM": 6.0,
+    "fIwaLamD": 3.5,
+    "fOwaLamD": 32.0,
+    "fCoreThroughputMax": 0.45,
+    "fContrastFloor": 1e-10,
+    "fNoiseFloorDeltaMag": 26.5,
+    "fContaminationThroughput": 0.95,
+    "fApertureRadiusLamD": 0.7,
+    "fGeometricAlbedo": 0.2,
+    "fZodiMagArcsec2": 23.0,
+    "fExozodiMagArcsec2": 22.0,
+    "fExozodiLevel": 3.0,
+    "fDarkCurrent": 3e-05,
+    "fReadNoise": 0.0,
+    "fClockInducedCharge": 0.0013,
+    "fQuantumEfficiency": 0.9,
+    "fDetectiveQuantumEfficiency": 0.75,
+    "fTotalScienceTimeS": 63115200.0,
+    "fSlewOverheadS": 3600.0,
+    "fWavefrontOverheadS": 9720.0,
+    "fWavefrontMultiplier": 1.1,
+    "fExposureLimitS": 5184000.0,
+    "fThroughputCalibration": 1.0
+  },
+  "dictBands": {
+    "listBandsDetection": [
+      {
+        "sName": "LW",
+        "fLambdaM": 5.5e-07,
+        "fOpticalThroughput": 0.34,
+        "fBandwidthFraction": 0.2,
+        "fSignalToNoise": 7.0,
+        "iNumPixels": 4
+      },
+      {
+        "sName": "SW",
+        "fLambdaM": 4.5e-07,
+        "fOpticalThroughput": 0.15,
+        "fBandwidthFraction": 0.2,
+        "fSignalToNoise": 7.0,
+        "iNumPixels": 4
+      }
+    ],
+    "dictBandCharacterization": {
+      "sName": "IFS",
+      "fLambdaM": 1e-06,
+      "fOpticalThroughput": 0.23,
+      "fBandwidthFraction": 0.007142857142857143,
+      "fSignalToNoise": 5.0,
+      "iNumPixels": 96
+    }
+  },
+  "dictBoxes": {
+    "canonical": {
+      "sRadiusMode": "canonical",
+      "fRadiusMaxEarth": 1.4,
+      "fHzInnerAu": 0.95,
+      "fHzOuterAu": 1.67
+    },
+    "redefined": {
+      "sRadiusMode": "mass",
+      "fMassLoEarth": 0.5,
+      "fMassHiEarth": 2.0,
+      "fMassRadiusExponent": 0.27,
+      "fHzInnerAu": 0.96,
+      "fHzOuterAu": 1.2
+    },
+    "hzOnly": {
+      "sRadiusMode": "canonical",
+      "fRadiusMaxEarth": 1.4,
+      "fHzInnerAu": 0.96,
+      "fHzOuterAu": 1.2
+    }
+  },
+  "sProvenance": "Stark et al. 2024 JATIS 10 034006, Tables 1 and 2; coronagraph profiles parametrized from published DMVC anchors."
+}
