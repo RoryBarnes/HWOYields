@@ -22,7 +22,7 @@ the exact opposite of observed behaviour.
 | F1 | Declared paths resolve **step-relative**; `scriptAuthoring.md` says repo-relative | **Confirmed** | The headline bug. Silently broke every declared output and figure in 7 steps. |
 | F2 | A working project (`fillet`) uses the **opposite** convention to the one that worked here | **Unresolved** | Either `fillet` is latently broken or the rule is not uniform. |
 | F3 | `init-project-repo` has no recovery path once the agent has run `git init` | Confirmed | Left a root commit with no parent. |
-| F4 | `run-all-tests`, `run-plots-only`, `run-step` on a plot-bearing step hang | Confirmed (3 instances) | ~10 min and a misleading "returned nothing". |
+| F4 | Intermittent hangs in the run actions; no clean common factor | Confirmed (4 instances) | ~10 min and a misleading "returned nothing". |
 | F5 | `create-project` cannot adopt an existing `project.json` | By design; gap | No agent-usable path from an authored project file to an open project. |
 | F6 | Nothing agent-visible says "this repo is untracked" | Confirmed | Root cause of a long dead end; the refusal names the wrong layer. |
 | F7 | Resolved output paths are visible **only** in `report-l1-blockers` | Confirmed | The one clue that cracked F1, and it reads like a display artifact. |
@@ -257,46 +257,38 @@ plain git. The agent takes the obvious path and lands in an unsupported state.
 
 ---
 
-## 7. F4 — `run-all-tests` hangs
+## 7. F4 — intermittent hangs in the run actions
 
-```
-timeout 600 vaibify-do run-all-tests     → no output, exit 143 (SIGTERM at timeout)
-vaibify-do run-test-category A02 sCategory=integrity
-                                         → {"bPassed": true, "iExitCode": 0, …}  (0.4 s)
-```
+Four observed hangs, against several successes of the same actions in the same session. No
+clean common factor; recorded as observations rather than a diagnosis.
 
-`run-step`, `run-selected-steps`, `run-all` and `run-test-category` all worked over the same
-WebSocket in the same session, so this looks specific to `run-all-tests`. One instance only; I
-did not retry it after the path fix, so I cannot say whether it is load-related, related to
-7 steps × 3 categories, or unconditional.
+| Action | Outcome | Notes |
+|---|---|---|
+| `run-all-tests` | **hung**, SIGTERM at 600 s | No output. Executes test commands. |
+| `run-plots-only A07` | **hung**, SIGTERM at 200 s | The step's one plot command runs directly in ~1.4 s. |
+| `run-step A08` | **hung**, SIGTERM at 400 s | Data command HAD run (output on disk, fresh timestamp); plot never produced. |
+| `run-all` (8 steps) | **hung**, SIGTERM at 1500 s | Outputs untouched; nothing appeared to execute. |
+| `run-all` (7 steps) | succeeded | ~84 s, all steps passed, earlier in the session. |
+| `run-step A02` | succeeded | Includes a plot command; emitted `[testResult]`. |
+| `run-selected-steps A06 A07` | succeeded | Both have plot commands. |
+| `run-test-category` ×24 | succeeded | Always, every time. |
 
-Workaround: 21 explicit `run-test-category` calls, all green.
+**Two corrections to earlier drafts of this report, both mine.** I first wrote that the common
+factor was "actions that fan out over sub-commands without running data commands". That was
+wrong: `run-step A08` runs a data command. I then wrote that "all three hangs involve executing
+a step's plot commands". That was also wrong: `run-all-tests` executes test commands, not plot
+commands, and `run-all` and `run-step` have both succeeded on plot-bearing steps. Anyone
+bisecting on either hypothesis would be chasing nothing.
 
-**Second instance, later in the session:**
+What can be said: the hangs are **intermittent** rather than deterministic per action, they
+produce no output at all rather than a partial result or an error, and the WebSocket call never
+returns. `run-test-category` and the `--describe`/GET actions never hung. Since a hang produces
+silence rather than a failure, an agent cannot distinguish it from a slow action except by
+timeout, which is why each instance cost several minutes.
 
-```
-timeout 200 vaibify-do run-plots-only A07   → no output, SIGTERM at 200 s
-python3 plotYieldPrediction.py … ../Plot/figYieldPrediction.pdf   → 1.4 s
-```
-
-The step's single plot command runs directly in about a second, so 200 s with no output is a
-hang, not slowness. `run-step`, `run-selected-steps` and `run-all` continued to work in the
-same session, and a `run-step A02` earlier had executed that same step's plot command fine.
-
-A caution for whoever reads the surrounding logs: the shell task wrapping this reported
-**exit code 0**, because the chained command that followed the killed `vaibify-do` succeeded.
-Taking that at face value would suggest the action completed. It did not.
-
-**Third instance:** `run-step A08` (a step with one data command and one plot command) also
-hung and was SIGTERMed at 400 s. Its data command had run — the declared output was on disk with
-a fresh timestamp — but the plot was never produced and the call never returned.
-
-So the common factor is narrower than first thought: it is not "actions that skip data
-commands", since `run-step A08` runs both. All three hangs involve executing a step's **plot**
-commands. `run-step A02`, which also has a plot command, did complete earlier in the session, so
-this is not unconditional. Worth a look at the plot-command execution path.
-
----
+**A trap for whoever reads the logs.** The shell task wrapping a killed `vaibify-do` can report
+**exit code 0** when a later chained command succeeds. Taking that at face value suggests the
+action completed. It did not. One of these four nearly made me retract a correct finding.
 
 ## 8. F7 — the resolved path is visible in exactly one place
 
