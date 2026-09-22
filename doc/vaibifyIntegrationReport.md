@@ -271,12 +271,25 @@ did not retry it after the path fix, so I cannot say whether it is load-related,
 
 Workaround: 21 explicit `run-test-category` calls, all green.
 
-**Second instance, later in the session:** `run-plots-only A07` also hung (no output, no
-completion) while `run-step`, `run-selected-steps` and `run-all` continued to work in the same
-session. So this is not unique to `run-all-tests`. Both hanging actions are ones that fan out
-over sub-commands without running the step's data commands; that may be the common factor, but
-with two instances I cannot say more than that it is worth a look at whichever code path
-`run-all-tests` and `run-plots-only` share.
+**Second instance, later in the session:**
+
+```
+timeout 200 vaibify-do run-plots-only A07   → no output, SIGTERM at 200 s
+python3 plotYieldPrediction.py … ../Plot/figYieldPrediction.pdf   → 1.4 s
+```
+
+The step's single plot command runs directly in about a second, so 200 s with no output is a
+hang, not slowness. `run-step`, `run-selected-steps` and `run-all` continued to work in the
+same session, and a `run-step A02` earlier had executed that same step's plot command fine.
+
+A caution for whoever reads the surrounding logs: the shell task wrapping this reported
+**exit code 0**, because the chained command that followed the killed `vaibify-do` succeeded.
+Taking that at face value would suggest the action completed. It did not.
+
+So this is not unique to `run-all-tests`. Both affected actions fan out over a step's
+sub-commands *without* running its data commands (`run-plots-only`, `run-all-tests`), whereas
+every action that runs data commands worked. That is a suggestive common factor across two
+instances, not a diagnosis, but it narrows where to look.
 
 ---
 
