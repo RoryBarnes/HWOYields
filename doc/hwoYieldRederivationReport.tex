@@ -187,8 +187,8 @@ principled propagation of the same rate law onto a \emph{different} integration 
 
 \subsection{Ledger: every hypothesis tested, and its outcome}
 
-This section grew by accretion as each check failed, so the ledger comes first. Thirteen distinct
-causes have been proposed for the disagreements with the published record. Six were rejected on
+This section grew by accretion as each check failed, so the ledger comes first. Fifteen distinct
+causes have been proposed for the disagreements with the published record. Eight were rejected on
 evidence and seven were real defects, of which three moved the result materially --- the
 characterization-time statistic, the missing revisits, and the over-cap characterization charge
 --- while four had to be fixed anyway and changed almost nothing. None has closed the remaining
@@ -215,9 +215,11 @@ Missing revisits & \textbf{Real error, and a cause} & Single-visit only. Modelli
 Albedo distribution unmodelled & \textbf{Real, insufficient} & Implemented per Stark's method. He reports 12\%; this gives $\sim$1--5\%. \\
 Exozodi sampling unmodelled & \textbf{Real, insufficient} & Implemented. He reports 11\%; this gives 1.5\%. \\
 Over-cap characterization charged in the cost & \textbf{Real error, partial cause} & 15\,000 days charged at 20\,pc for an observation never attempted. Fixing it took 10--15\,pc completeness 0.000 $\to$ 0.532. \\
+A separate coronagraph for characterization & Rejected on source & Stark et al.\ (2019): the selection "usually selected a single coronagraph design for all stars for each OTA scenario", the exception being segmented \emph{on-axis}. This configuration is segmented off-axis, so one design is correct. \\
+Equal-slope allocation is wrong & Rejected & Checked against an exact multiple-choice-knapsack optimum by dynamic programming: 0.67\% median shortfall on synthetic curves, \textbf{0.00\% on the pipeline's real ones}. The concave envelope discards no reachable yield. \\
 \bottomrule
 \end{tabular}
-\caption{The ledger. Thirteen hypotheses: six rejected on evidence, seven real defects found and
+\caption{The ledger. Fifteen hypotheses: eight rejected on evidence, seven real defects found and
 fixed. Three of the seven moved the result.}
 \end{table}
 
@@ -229,32 +231,32 @@ very likely the parent of the first three, for the reason given in Sec.~\ref{sec
 
 \subsection{What has not been tried}
 
-Stated plainly, because the useful question after thirteen failed hypotheses is what is missing
-rather than what has been eliminated. In rough order of how obvious the omission is:
+Stated plainly, because after fifteen hypotheses the useful question is what is missing rather
+than what has been eliminated. The two items that headed this list have since been closed and
+appear in the ledger above: a dedicated characterization coronagraph, rejected because Stark et
+al.\ (2019) use a single design for the segmented off-axis case modelled here, and an error in the
+equal-slope allocation, rejected because it reproduces an exact dynamic-programming optimum to
+0.00\% on this pipeline's own completeness curves. What remains, in order of how obvious the
+omission is:
 
 \begin{enumerate}
-\item \textbf{A separate coronagraph for characterization.} This model uses one coronagraph for
-both bands. Stark et al.\ (2019) say they "modified our yield code to handle up to four
-coronagraphs for detection and four (potentially different) coronagraphs for spectral
-characterization." Characterization here runs at 1000\,nm, where $\lambda/D$ is 1.8 times the
-detection value, so the planet sits near the inner working angle and loses throughput --- exactly
-the problem a dedicated characterization design would remove, and exactly the mechanism behind
-the 15--30\,pc hole. This is the most obvious untried thing in the list and it is sourced.
-\item \textbf{Brute-force verification of the optimizer.} The equal-slope allocation is tested for
-properties --- budget respected, yield monotonic in time, envelope concave --- but has never been
-checked against an exhaustive search on a small problem. Every number in this report passes
-through it, and a subtly wrong allocation would reproduce most of the symptoms seen here.
 \item \textbf{The sensitivity panels of Stark et al.\ (2019).} Yield derivatives with respect to
-inner working angle, contrast, throughput and exozodi level. Matching a derivative is a far harder
-test than matching a value, and this check has been deferred four times.
+inner working angle, contrast, throughput and exozodi level. Matching a derivative is a far
+harder test than matching a value, and this is now the strongest unused constraint in the
+published record.
 \item \textbf{Scenarios A--F of Stark et al.\ (2024).} Six further design points with published
-yields and $P_{25}$ values, entirely unused. They are out-of-sample in the same sense the
-aperture scan was.
-\item \textbf{An independent yield code.} EXOSIMS is public. Every comparison in this report is
-against Stark's papers, so a disagreement cannot presently distinguish an error in this
-implementation from a misreading of the method. A second implementation would separate them.
+yields and $P_{25}$ values, entirely unused, and out-of-sample in the same sense the aperture
+scan was.
+\item \textbf{An independent yield code.} EXOSIMS is public. Every comparison here is against
+Stark's papers, so a disagreement cannot presently distinguish an error in this implementation
+from a misreading of the method. A second implementation would separate them, and after fifteen
+hypotheses that distinction is the one that matters most.
 \item \textbf{Whether the two-month limit is per visit or per target.} It is applied per visit
-here. Per target it would bind much harder on multi-visit nearby stars.
+here; per target it would bind much harder on multi-visit nearby stars, which are precisely the
+targets carrying this model's yield.
+\item \textbf{Stark et al.\ (2014, 2015).} The papers that define AYO originally. This
+rederivation is built from the 2019 and 2024 descriptions; the earlier pair may define
+completeness or the visit model in ways the later summaries compress.
 \end{enumerate}
 
 \subsection{The target catalog}

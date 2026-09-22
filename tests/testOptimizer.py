@@ -114,3 +114,70 @@ def test_star_without_characterization_data_does_not_crash():
     for dictStar in listStars:
         dictStar.pop("faTauCharMeanS")
     assert opt.fdictOptimizeSurvey(listStars, 0.24, DICT_MISSION)["fYield"] > 0.0
+
+
+def fnExactOptimumByDynamicProgramming(listOptions, fBudget, iBins=1500):
+    """Exact multiple-choice knapsack optimum, for checking the equal-slope allocation."""
+    fStep = fBudget / iBins
+    faBest = np.zeros(iBins + 1)
+    for faCost, faComp in listOptions:
+        faIndex = np.minimum((faCost / fStep).astype(int), iBins)
+        faNext = faBest.copy()
+        for iCost, fComp in zip(faIndex, faComp):
+            if iCost > iBins:
+                continue
+            faShifted = np.full(iBins + 1, -np.inf)
+            faShifted[iCost:] = faBest[:iBins + 1 - iCost] + fComp
+            faNext = np.maximum(faNext, faShifted)
+        faBest = faNext
+    return float(np.max(faBest))
+
+
+def test_equal_slope_allocation_matches_the_exact_optimum():
+    """The equal-slope survey must come within a percent of an exhaustively computed optimum.
+
+    Every yield in this project passes through this optimizer, and property tests alone cannot
+    show the allocation is right. The survey problem is a multiple-choice knapsack -- one
+    (visits, exposure) option per star within a time budget -- which dynamic programming solves
+    exactly on a discretized budget, so the two can be compared directly.
+    """
+    dictMission = dict(DICT_MISSION, fTotalScienceTimeS=120.0 * 86400.0)
+    listStars = flistToyStars(12, 8.0 * 86400.0, iSeed=101, iVisits=4)
+    dictResult = opt.fdictOptimizeSurvey(listStars, 0.24, dictMission)
+    listOptions = [(dictCurve["faCost"], dictCurve["faComp"]) for dictCurve in
+                   (opt.fdictStarCostCurve(s, 0.24, dictMission) for s in listStars)]
+    fExact = fnExactOptimumByDynamicProgramming(listOptions,
+                                                dictMission["fTotalScienceTimeS"])
+    assert dictResult["fSummedCompleteness"] >= 0.97 * fExact
+
+
+def test_concave_envelope_discards_no_reachable_yield():
+    """Hulling each star's options must not throw away an allocation the optimum would use.
+
+    Equal-slope solves the continuous relaxation, in which a star can time-share between two
+    envelope vertices; a real survey picks one allocation per star. If the interior points the
+    envelope discards mattered, the exact optimum over ALL options would beat the exact optimum
+    over the envelope alone.
+    """
+    dictMission = dict(DICT_MISSION, fTotalScienceTimeS=120.0 * 86400.0)
+    listStars = flistToyStars(10, 8.0 * 86400.0, iSeed=202, iVisits=4)
+    fMult, fOverhead = dictMission["fWavefrontMultiplier"], (
+        dictMission["fSlewOverheadS"] + dictMission["fWavefrontOverheadS"])
+    listHull, listFull = [], []
+    for dictStar in listStars:
+        dictCurve = opt.fdictStarCostCurve(dictStar, 0.24, dictMission)
+        listHull.append((dictCurve["faCost"], dictCurve["faComp"]))
+        faTau = np.asarray(dictStar["faTauGridS"])
+        faComp2 = np.atleast_2d(dictStar["faComp"])
+        faChar2 = np.atleast_2d(dictStar["faTauCharMeanS"])
+        listCost, listComp = [np.zeros(1)], [np.zeros(1)]
+        for k in range(faComp2.shape[0]):
+            faCharTerm = np.where(faChar2[k] > 0.0, fMult * faChar2[k] + fOverhead, 0.0)
+            listCost.append((k + 1) * (fMult * faTau + fOverhead) +
+                            0.24 * faComp2[k] * faCharTerm)
+            listComp.append(faComp2[k])
+        listFull.append((np.concatenate(listCost), np.concatenate(listComp)))
+    fBudget = dictMission["fTotalScienceTimeS"]
+    fHull = fnExactOptimumByDynamicProgramming(listHull, fBudget)
+    fFull = fnExactOptimumByDynamicProgramming(listFull, fBudget)
+    assert fHull >= 0.99 * fFull

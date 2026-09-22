@@ -1,0 +1,62 @@
+{
+  "listRows": [
+    {
+      "iTrial": 0,
+      "fEqualSlope": 6.576,
+      "fExactOnEnvelope": 6.576,
+      "fExactOnFullOptions": 6.576,
+      "fShortfallVsEnvelope": 0.0,
+      "fShortfallVsFull": 0.0,
+      "fTimeUsedFraction": 0.3109314631181718
+    },
+    {
+      "iTrial": 1,
+      "fEqualSlope": 8.128,
+      "fExactOnEnvelope": 8.128,
+      "fExactOnFullOptions": 8.128,
+      "fShortfallVsEnvelope": 0.0,
+      "fShortfallVsFull": 0.0,
+      "fTimeUsedFraction": 0.3868917926048838
+    },
+    {
+      "iTrial": 2,
+      "fEqualSlope": 7.430666666666666,
+      "fExactOnEnvelope": 7.430666666666666,
+      "fExactOnFullOptions": 7.430666666666666,
+      "fShortfallVsEnvelope": 0.0,
+      "fShortfallVsFull": 0.0,
+      "fTimeUsedFraction": 0.3624202765893331
+    },
+    {
+      "iTrial": 3,
+      "fEqualSlope": 8.08,
+      "fExactOnEnvelope": 8.08,
+      "fExactOnFullOptions": 8.08,
+      "fShortfallVsEnvelope": 0.0,
+      "fShortfallVsFull": 0.0,
+      "fTimeUsedFraction": 0.3904275199242943
+    },
+    {
+      "iTrial": 4,
+      "fEqualSlope": 9.328666666666669,
+      "fExactOnEnvelope": 9.328666666666669,
+      "fExactOnFullOptions": 9.328666666666669,
+      "fShortfallVsEnvelope": 0.0,
+      "fShortfallVsFull": 0.0,
+      "fTimeUsedFraction": 0.39285621757271527
+    },
+    {
+      "iTrial": 5,
+      "fEqualSlope": 5.530666666666665,
+      "fExactOnEnvelope": 5.530666666666665,
+      "fExactOnFullOptions": 5.530666666666665,
+      "fShortfallVsEnvelope": 0.0,
+      "fShortfallVsFull": 0.0,
+      "fTimeUsedFraction": 0.3359438000965017
+    }
+  ],
+  "fMedianShortfallVsEnvelope": 0.0,
+  "fMaxShortfallVsEnvelope": 0.0,
+  "fMedianShortfallVsFull": 0.0,
+  "fMaxShortfallVsFull": 0.0
+}
