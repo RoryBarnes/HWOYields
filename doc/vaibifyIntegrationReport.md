@@ -22,7 +22,7 @@ the exact opposite of observed behaviour.
 | F1 | Declared paths resolve **step-relative**; `scriptAuthoring.md` says repo-relative | **Confirmed** | The headline bug. Silently broke every declared output and figure in 7 steps. |
 | F2 | A working project (`fillet`) uses the **opposite** convention to the one that worked here | **Unresolved** | Either `fillet` is latently broken or the rule is not uniform. |
 | F3 | `init-project-repo` has no recovery path once the agent has run `git init` | Confirmed | Left a root commit with no parent. |
-| F4 | `run-all-tests` hangs; per-category calls on the same socket work | Confirmed (1 instance) | ~10 min and a misleading "returned nothing". |
+| F4 | `run-all-tests` and `run-plots-only` hang; other WS actions on the same socket work | Confirmed (2 instances) | ~10 min and a misleading "returned nothing". |
 | F5 | `create-project` cannot adopt an existing `project.json` | By design; gap | No agent-usable path from an authored project file to an open project. |
 | F6 | Nothing agent-visible says "this repo is untracked" | Confirmed | Root cause of a long dead end; the refusal names the wrong layer. |
 | F7 | Resolved output paths are visible **only** in `report-l1-blockers` | Confirmed | The one clue that cracked F1, and it reads like a display artifact. |
@@ -270,6 +270,13 @@ did not retry it after the path fix, so I cannot say whether it is load-related,
 7 steps × 3 categories, or unconditional.
 
 Workaround: 21 explicit `run-test-category` calls, all green.
+
+**Second instance, later in the session:** `run-plots-only A07` also hung (no output, no
+completion) while `run-step`, `run-selected-steps` and `run-all` continued to work in the same
+session. So this is not unique to `run-all-tests`. Both hanging actions are ones that fan out
+over sub-commands without running the step's data commands; that may be the common factor, but
+with two instances I cannot say more than that it is worth a look at whichever code path
+`run-all-tests` and `run-plots-only` share.
 
 ---
 

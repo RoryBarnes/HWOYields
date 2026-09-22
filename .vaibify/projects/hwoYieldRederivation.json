@@ -251,21 +251,21 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.29s\n"
+          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.35s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.32s\n"
+          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.34s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.28s\n"
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.29s\n"
         }
       },
       "sStepId": "sampleoccurrenceposterior",
@@ -297,21 +297,21 @@
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
           ],
-          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.28s\n"
+          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.31s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
           ],
-          "sLastOutput": "...s                                                                     [100%]\n3 passed, 1 skipped in 0.39s\n"
+          "sLastOutput": "...s                                                                     [100%]\n3 passed, 1 skipped in 0.44s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
           ],
-          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.30s\n"
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.35s\n"
         }
       },
       "sStepId": "predictredefinedyield",
