@@ -1,0 +1,45 @@
+{
+  "iStars": 90,
+  "fMedianSlopeAtHalfCompleteness": 0.33148132420008536,
+  "fMedianRelativeSlope": 1.0648000297333198,
+  "fCompletenessWeightedRelativeSlope": 1.015602626724015,
+  "fRelativeSlopeNeededForStarkAlbedo": 1.7910447761194028,
+  "sRelativeSlopeNote": "Stark's albedo draw shifts E[ln tau] by +0.067 and costs 12 percent of the yield, so the completeness-weighted relative slope (dC/dln tau)/C must be about 1.8 per ln unit. The relative form is the comparable one because the published loss is relative; comparing absolute slopes across stars of very different maximum completeness is not meaningful.",
+  "fSlopeNeededForStarkAlbedo": 0.9,
+  "fMedianCompletenessThere": 0.314125,
+  "dictSpread": {
+    "full": {
+      "fStdLnTau": 1.2075935178004373,
+      "fDetectableFraction": 0.07825
+    },
+    "phase frozen at quadrature": {
+      "fStdLnTau": 1.1249558936293353,
+      "fDetectableFraction": 0.1225
+    },
+    "radius frozen at 1 Rearth": {
+      "fStdLnTau": 0.9625170351341523,
+      "fDetectableFraction": 0.07825
+    },
+    "separation frozen at EEID": {
+      "fStdLnTau": 0.9591280127629772,
+      "fDetectableFraction": 0.1255
+    }
+  },
+  "fOptimizedYield": 12.14958,
+  "dictNoiseRegime": {
+    "widest HZ star": {
+      "fMedianPlanetOverBackground": 1.4137267993632379,
+      "fFractionPhotonLimited": 0.25559105431309903,
+      "fMedianLeakShare": 0.9536088771852438,
+      "fMedianZodiShare": 0.0073739658941006725,
+      "fMedianExozodiShare": 0.03905528691884816
+    },
+    "best-completeness star": {
+      "fMedianPlanetOverBackground": 0.9450100824542735,
+      "fFractionPhotonLimited": 0.17280046003450258,
+      "fMedianLeakShare": 0.4205369253377199,
+      "fMedianZodiShare": 0.10098011469165054,
+      "fMedianExozodiShare": 0.4774379248254432
+    }
+  }
+}

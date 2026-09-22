@@ -23,7 +23,14 @@ F_HOUR_S = 3600.0
 
 
 def fdictMissionParameters(fDiameterM, fExozodiLevel):
-    """Baseline coronagraph-mission parameters, Stark et al. (2024) Tables 1 and 2."""
+    """Baseline coronagraph-mission parameters, Stark et al. (2024) Tables 1 and 2.
+
+    iRequiredDetections is 1. Two was tested, on the grounds that Stark budgets characterization
+    only after orbit determination and cites Bruna et al. (2023) for two reflected-light
+    detections sufficing: it lowers the yield from 20.4 to 18.8 without steepening C(tau) or
+    strengthening the albedo penalty, so it does not explain the shortfall and Stark et al.
+    (2024) drop the visit mandate in any case. The option is kept so the test can be repeated.
+    """
     return {
         "fDiameterM": fDiameterM,
         "fIwaLamD": cg.F_DEFAULT_IWA_LAMD,
@@ -49,6 +56,7 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
         "fExposureLimitS": 60.0 * 86400.0,
         "fThroughputCalibration": 1.0,
         "iMaxVisits": 6,
+        "iRequiredDetections": 1,
         "dictExozodiDistribution": {"fMedianZodi": 3.0, "fLogSigma": 1.2,
                                     "sSource": "Right-skewed stand-in for the LBTI HOSTS best "
                                                "fit used by Stark et al. 2024 Sec. 3.3: median "

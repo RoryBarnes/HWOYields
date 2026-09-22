@@ -145,14 +145,32 @@ def faCumulativeMeanCharTime(faTauDet, faTauChar, faTauGridS):
                     np.maximum(faCount, 1), 0.0)
 
 
-def faCountedTimes(faTauDet, faTauChar, fCap):
+def faNthSmallestAccumulated(faValues, iRequired):
+    """Running iRequired-th smallest along the visit axis, infinite until that many exist.
+
+    With iRequired = 1 this is the running minimum: one detection is enough. With 2 it is the
+    running second-smallest, which is the exposure at which a planet has been caught TWICE.
+    """
+    if iRequired <= 1:
+        return np.minimum.accumulate(faValues, axis=1)
+    iStars, iVisits = faValues.shape
+    faOut = np.full_like(faValues, np.inf)
+    for k in range(iRequired - 1, iVisits):
+        faPrefix = np.sort(faValues[:, :k + 1], axis=1)
+        faOut[:, k] = faPrefix[:, iRequired - 1]
+    return faOut
+
+
+def faCountedTimes(faTauDet, faTauChar, fCap, iRequiredDetections=1):
     """Per-planet detection time using the first k visits, for every k, infinite where it fails.
 
-    Cumulative minimum along the visit axis: with k visits in hand a planet is caught at
-    whichever of those epochs was cheapest. A planet counts only if it can also be characterized
-    within the cap at that same standard (Stark et al. 2019).
+    A planet counts once it has been detected iRequiredDetections times. One detection suffices
+    to find a planet, but Stark et al. (2024) budget characterization only after orbit
+    determination, and cite Bruna et al. (2023) for two reflected-light detections being enough
+    to constrain an orbit. Requiring two makes the second-cheapest epoch the binding one rather
+    than the cheapest, which steepens C(tau): a marginal single detection no longer counts.
     """
-    faBestDet = np.minimum.accumulate(faTauDet, axis=1)
+    faBestDet = faNthSmallestAccumulated(faTauDet, iRequiredDetections)
     faBestChar = np.minimum.accumulate(faTauChar, axis=1)
     bCounts = (np.isfinite(faBestDet) & (faBestDet <= fCap) &
                np.isfinite(faBestChar) & (faBestChar <= fCap))
@@ -249,7 +267,8 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
     fCap = dictMission["fExposureLimitS"]
     faTauDet, faTauChar = faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet,
                                            listCharOptions, dictMission, iNumPlanets)
-    faBestDet, faBestChar, bCounts = faCountedTimes(faTauDet, faTauChar, fCap)
+    iRequired = int(dictMission.get("iRequiredDetections", 1))
+    faBestDet, faBestChar, bCounts = faCountedTimes(faTauDet, faTauChar, fCap, iRequired)
     faComp = faCompletenessPerVisitCount(faBestDet, faTauGridS, iNumPlanets)
     faCompAlbedo = faComp
     dictAlbedoRange = dictMission.get("dictAlbedoDistribution")
@@ -267,7 +286,7 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
                 np.atleast_1d(dictPlanets["faAlbedoDrawn"])[:, None])
             faTauDetA = faStarkAlbedoTimes(faTauDet, faFluxPlan, dictRatesPlan["faSepLamD"],
                                            dictRatesPlan["faFluxRatio"])
-        faBestDetA, _, _ = faCountedTimes(faTauDetA, faTauCharA, fCap)
+        faBestDetA, _, _ = faCountedTimes(faTauDetA, faTauCharA, fCap, iRequired)
         faCompAlbedo = faCompletenessPerVisitCount(faBestDetA, faTauGridS, iNumPlanets)
     return dict(faComp=faComp, faCompAlbedo=faCompAlbedo,
                 faTauCharMeanS=faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS),

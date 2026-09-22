@@ -24,6 +24,7 @@
     "fExposureLimitS": 5184000.0,
     "fThroughputCalibration": 1.0,
     "iMaxVisits": 6,
+    "iRequiredDetections": 1,
     "dictExozodiDistribution": {
       "fMedianZodi": 3.0,
       "fLogSigma": 1.2,
