@@ -50,7 +50,15 @@ def faDrawExozodiLevels(dictMission, iStars, iSeed):
 
     Stark et al. (2024) Sec. 3.3 draw each star's exozodi from the HOSTS best fit -- median three
     zodis, multi-modal with peaks at higher levels -- rather than giving every star the median,
-    and report the mean yield falling from 19.8 to 17.6. The bias is asymmetric in the same way
+    and report the mean yield falling from 19.8 to 17.6.
+
+    bDrawExozodiLevels selects between the two rungs of that ladder, and it matters more than it
+    looks. The published 22.5 comes from a single AYO run at a FIXED exozodi level, before the
+    sampling section; 17.6 is what sampling costs. Drawing unconditionally -- which this module
+    did until the exozodi penalty measured as exactly zero and exposed it -- anchors the
+    throughput calibration against an exozodi-sampled yield while the number it is fitted to is
+    not, and makes the published 11% penalty structurally unmeasurable because both sides of the
+    comparison already contain it. The bias is asymmetric in the same way
     as albedo: a star drawn below the median gains little because its exposure was already short,
     while a high draw on a high-priority target lengthens its exposure enough that the optimizer
     must substitute a less productive star from a limited pool.
@@ -61,7 +69,7 @@ def faDrawExozodiLevels(dictMission, iStars, iSeed):
     identified in this catalog, so this implementation should recover roughly two thirds of it.
     """
     dictDraw = dictMission.get("dictExozodiDistribution")
-    if not dictDraw:
+    if not dictDraw or not dictMission.get("bDrawExozodiLevels", True):
         return np.full(iStars, dictMission["fExozodiLevel"])
     rng = np.random.default_rng(iSeed)
     return dictDraw["fMedianZodi"] * np.exp(rng.normal(0.0, dictDraw["fLogSigma"], iStars))

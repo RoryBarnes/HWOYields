@@ -1,25 +1,25 @@
 {
   "iStarsScreened": 1500,
   "iNumPlanetsPerStar": 3000,
-  "fThroughputCalibration": 1.4289121427167732,
+  "fThroughputCalibration": 1.2317590696470277,
   "dictByBox": {
     "canonical": {
       "fMaxCompletenessBest": 1.0,
-      "fSummedMaxCompleteness": 8388.603000000001,
-      "iStarsWithAnyCompleteness": 18490,
-      "fMedianTauCharDays": 27.20096223195458
+      "fSummedMaxCompleteness": 8269.540666666668,
+      "iStarsWithAnyCompleteness": 17665,
+      "fMedianTauCharDays": 26.049594612514355
     },
     "redefined": {
       "fMaxCompletenessBest": 1.0,
-      "fSummedMaxCompleteness": 9054.534333333335,
-      "iStarsWithAnyCompleteness": 14897,
-      "fMedianTauCharDays": 26.914652713952744
+      "fSummedMaxCompleteness": 8942.874333333333,
+      "iStarsWithAnyCompleteness": 13927,
+      "fMedianTauCharDays": 26.500461839634475
     },
     "hzOnly": {
       "fMaxCompletenessBest": 1.0,
-      "fSummedMaxCompleteness": 9927.53366666667,
-      "iStarsWithAnyCompleteness": 18418,
-      "fMedianTauCharDays": 26.397882003714088
+      "fSummedMaxCompleteness": 9792.577999999998,
+      "iStarsWithAnyCompleteness": 17601,
+      "fMedianTauCharDays": 26.22801166359956
     }
   }
 }

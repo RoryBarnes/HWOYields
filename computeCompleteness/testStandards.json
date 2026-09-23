@@ -185,52 +185,52 @@
           "fMax": 50.555194028119544
         },
         "faComp_canonical": {
-          "fMean": 0.031185578271604942,
+          "fMean": 0.032575656543209874,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_canonical": {
-          "fMean": 173177.6636238199,
+          "fMean": 157848.92779091315,
           "fMin": 0.0,
-          "fMax": 5170768.689655731
+          "fMax": 5177359.342077994
         },
         "faCompAlbedo_canonical": {
-          "fMean": 0.03081951654320988,
+          "fMean": 0.032192686666666664,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faComp_redefined": {
-          "fMean": 0.033676327654321,
+          "fMean": 0.03531762296296296,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_redefined": {
-          "fMean": 138008.3522445366,
+          "fMean": 118014.11019945604,
           "fMin": 0.0,
-          "fMax": 5164802.111794726
+          "fMax": 5157907.663244381
         },
         "faCompAlbedo_redefined": {
-          "fMean": 0.03332230839506173,
+          "fMean": 0.03491698049382716,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faComp_hzOnly": {
-          "fMean": 0.03703680839506173,
+          "fMean": 0.03881500790123456,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_hzOnly": {
-          "fMean": 170754.848069796,
+          "fMean": 154428.178068891,
           "fMin": 0.0,
-          "fMax": 5164324.9226574665
+          "fMax": 5171837.897769562
         },
         "faCompAlbedo_hzOnly": {
-          "fMean": 0.03645871777777778,
+          "fMean": 0.038207365925925926,
           "fMin": 0.0,
           "fMax": 1.0
         }
       },
-      "iBytes": 1944099
+      "iBytes": 2981943
     },
     "completenessSummary.json": {
       "sKind": "json",
@@ -257,7 +257,7 @@
           "saPath": [
             "fThroughputCalibration"
           ],
-          "oValue": 1.4289121427167732
+          "oValue": 1.2317590696470277
         },
         {
           "saPath": [
@@ -273,7 +273,7 @@
             "canonical",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 8388.603000000001
+          "oValue": 8269.540666666668
         },
         {
           "saPath": [
@@ -281,7 +281,7 @@
             "canonical",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 18490.0
+          "oValue": 17665.0
         },
         {
           "saPath": [
@@ -289,7 +289,7 @@
             "canonical",
             "fMedianTauCharDays"
           ],
-          "oValue": 27.20096223195458
+          "oValue": 26.049594612514355
         },
         {
           "saPath": [
@@ -305,7 +305,7 @@
             "redefined",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 9054.534333333335
+          "oValue": 8942.874333333333
         },
         {
           "saPath": [
@@ -313,7 +313,7 @@
             "redefined",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 14897.0
+          "oValue": 13927.0
         },
         {
           "saPath": [
@@ -321,7 +321,7 @@
             "redefined",
             "fMedianTauCharDays"
           ],
-          "oValue": 26.914652713952744
+          "oValue": 26.500461839634475
         },
         {
           "saPath": [
@@ -337,7 +337,7 @@
             "hzOnly",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 9927.53366666667
+          "oValue": 9792.577999999998
         },
         {
           "saPath": [
@@ -345,7 +345,7 @@
             "hzOnly",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 18418.0
+          "oValue": 17601.0
         },
         {
           "saPath": [
@@ -353,10 +353,10 @@
             "hzOnly",
             "fMedianTauCharDays"
           ],
-          "oValue": 26.397882003714088
+          "oValue": 26.22801166359956
         }
       ],
-      "iBytes": 725
+      "iBytes": 726
     }
   }
 }

@@ -47,19 +47,24 @@ def fdictStarCostCurve(dictStar, fEtaEarth, dictMission):
                else np.atleast_2d(dictStar["faTauCharMeanS"]))
     faYield2 = np.atleast_2d(dictStar.get("faCompYield", dictStar["faComp"]))
     listCost, listComp, listYield = [np.zeros(1)], [np.zeros(1)], [np.zeros(1)]
+    listChar = [np.zeros(1)]
     for k in range(faComp2.shape[0]):
         faCost = (k + 1) * (fMult * faTau + fOverhead)
         faCharTerm = np.where(faChar2[k] > 0.0, fMult * faChar2[k] + fOverhead, 0.0)
         listCost.append(faCost + fEtaEarth * faComp2[k] * faCharTerm)
         listComp.append(faComp2[k])
         listYield.append(faYield2[k])
+        listChar.append(faChar2[k])
     faCost = np.concatenate(listCost)
     faComp = np.concatenate(listComp)
     faYield = np.concatenate(listYield)
+    faChar = np.concatenate(listChar)
     faOrder = np.argsort(faCost, kind="stable")
-    faCost, faComp, faYield = faCost[faOrder], faComp[faOrder], faYield[faOrder]
+    faCost, faComp = faCost[faOrder], faComp[faOrder]
+    faYield, faChar = faYield[faOrder], faChar[faOrder]
     faHull = faUpperConcaveHull(faCost, faComp)
-    return dict(faCost=faCost[faHull], faComp=faComp[faHull], faCompYield=faYield[faHull])
+    return dict(faCost=faCost[faHull], faComp=faComp[faHull], faCompYield=faYield[faHull],
+                faTauCharMeanS=faChar[faHull])
 
 
 def fdictAllocateAtSlope(listCurves, fSlope):

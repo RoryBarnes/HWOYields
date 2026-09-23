@@ -1,0 +1,55 @@
+{
+  "fCalibration": 1.4289121427167732,
+  "listVisits": [
+    {
+      "iMaxVisits": 1,
+      "fYieldPlanning": 17.746,
+      "fYieldAlbedoDrawn": 17.179,
+      "fAlbedoPenalty": 0.032,
+      "fAlbedoPenaltyPublished": 0.12,
+      "fExozodiPenalty": 0.0,
+      "fExozodiPenaltyPublished": 0.11,
+      "iStarsUsed": 196
+    },
+    {
+      "iMaxVisits": 2,
+      "fYieldPlanning": 21.614,
+      "fYieldAlbedoDrawn": 20.828,
+      "fAlbedoPenalty": 0.0364,
+      "fAlbedoPenaltyPublished": 0.12,
+      "fExozodiPenalty": 0.0,
+      "fExozodiPenaltyPublished": 0.11,
+      "iStarsUsed": 194
+    },
+    {
+      "iMaxVisits": 3,
+      "fYieldPlanning": 23.052,
+      "fYieldAlbedoDrawn": 22.124,
+      "fAlbedoPenalty": 0.0403,
+      "fAlbedoPenaltyPublished": 0.12,
+      "fExozodiPenalty": 0.0,
+      "fExozodiPenaltyPublished": 0.11,
+      "iStarsUsed": 189
+    },
+    {
+      "iMaxVisits": 4,
+      "fYieldPlanning": 23.59,
+      "fYieldAlbedoDrawn": 22.419,
+      "fAlbedoPenalty": 0.0497,
+      "fAlbedoPenaltyPublished": 0.12,
+      "fExozodiPenalty": 0.0,
+      "fExozodiPenaltyPublished": 0.11,
+      "iStarsUsed": 182
+    },
+    {
+      "iMaxVisits": 6,
+      "fYieldPlanning": 23.763,
+      "fYieldAlbedoDrawn": 22.514,
+      "fAlbedoPenalty": 0.0526,
+      "fAlbedoPenaltyPublished": 0.12,
+      "fExozodiPenalty": 0.0,
+      "fExozodiPenaltyPublished": 0.11,
+      "iStarsUsed": 177
+    }
+  ]
+}

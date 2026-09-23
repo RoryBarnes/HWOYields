@@ -1,0 +1,69 @@
+{
+  "fCalibration": 1.4289121427167732,
+  "listRuns": [
+    {
+      "sLabel": "charGateOn",
+      "fYieldPlanning": 23.763,
+      "fYieldAlbedoDrawn": 22.514,
+      "fAlbedoPenalty": 0.0526,
+      "iStarsObserved": 177,
+      "fMeanCompleteness": 0.559,
+      "fMedianCompleteness": 0.552,
+      "fMedianOverMean": 0.986,
+      "dictByDistance": {
+        "0-10": {
+          "iObserved": 72,
+          "fMeanCompleteness": 0.807
+        },
+        "10-15": {
+          "iObserved": 56,
+          "fMeanCompleteness": 0.481
+        },
+        "15-20": {
+          "iObserved": 38,
+          "fMeanCompleteness": 0.328
+        },
+        "20-30": {
+          "iObserved": 11,
+          "fMeanCompleteness": 0.136
+        },
+        "30-50": {
+          "iObserved": 0,
+          "fMeanCompleteness": 0.0
+        }
+      }
+    },
+    {
+      "sLabel": "charGateOff",
+      "fYieldPlanning": 33.27,
+      "fYieldAlbedoDrawn": 19.064,
+      "fAlbedoPenalty": 0.427,
+      "iStarsObserved": 272,
+      "fMeanCompleteness": 0.51,
+      "fMedianCompleteness": 0.481,
+      "fMedianOverMean": 0.943,
+      "dictByDistance": {
+        "0-10": {
+          "iObserved": 73,
+          "fMeanCompleteness": 0.779
+        },
+        "10-15": {
+          "iObserved": 76,
+          "fMeanCompleteness": 0.517
+        },
+        "15-20": {
+          "iObserved": 76,
+          "fMeanCompleteness": 0.381
+        },
+        "20-30": {
+          "iObserved": 47,
+          "fMeanCompleteness": 0.286
+        },
+        "30-50": {
+          "iObserved": 0,
+          "fMeanCompleteness": 0.0
+        }
+      }
+    }
+  ]
+}

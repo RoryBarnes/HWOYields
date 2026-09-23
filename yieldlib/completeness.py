@@ -256,6 +256,34 @@ def faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS, fCap=np.inf):
     return faOut
 
 
+def faCharacterizationTimeAtBestPhase(dictStar, dictPlanets, listCharOptions, dictMission,
+                                      iPhaseSamples):
+    """Characterization time for each planet at the most favourable phase on its orbit.
+
+    Stark et al. (2019) Sec. 7.2: "We assumed that the orbit was well-determined, such that the
+    phase of the planet could be optimized." Spectral characterization follows orbit determination
+    and is therefore scheduled, not taken wherever the planet happened to sit when it was
+    detected. Charging the detection phase instead -- which this pipeline did until this was
+    traced -- bills every crescent-phase detection at its worst possible moment, and because the
+    two-month cap converts "expensive" into "does not count toward the yield", it turns marginal
+    targets into hard zeros rather than merely costly ones.
+
+    The orbit is resolved into iPhaseSamples epochs, mirroring the 100 evenly spaced mean
+    anomalies AYO uses, and the minimum over them is returned. The result depends only on the
+    planet's orbit, not on which visit detected it, so it is one number per planet.
+    """
+    faTheta = np.linspace(0.0, 2.0 * np.pi, iPhaseSamples, endpoint=False)
+    dictOrbit = dict(dictPlanets)
+    dictOrbit["faTheta"] = np.tile(faTheta, (len(np.atleast_1d(dictPlanets["faAxisAu"])), 1))
+    dictGeomAll = fdictProjectOrbits(dictOrbit)
+    faBest = np.full((len(np.atleast_1d(dictPlanets["faAxisAu"])), iPhaseSamples), np.inf)
+    for dictOption in listCharOptions:
+        faBest = np.minimum(faBest, faRequiredExposureTime(
+            [fdictCountRates(dictStar, dictOrbit, dictGeomAll, dictOption, dictMission)],
+            [dictOption], dictOption["fSignalToNoise"], dictMission))
+    return np.min(faBest, axis=1)
+
+
 def faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet, listCharOptions,
                      dictMission, iNumPlanets):
     """Detection and characterization exposure times per planet per visit epoch."""
@@ -263,6 +291,11 @@ def faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet, listCharOpti
                     for b in listBandsDet]
     faTauDet = faRequiredExposureTime(listDetRates, listBandsDet,
                                       listBandsDet[0]["fSignalToNoise"], dictMission)
+    if dictMission.get("bOptimizeCharacterizationPhase", True):
+        faBestPhase = faCharacterizationTimeAtBestPhase(
+            dictStar, dictPlanets, listCharOptions, dictMission,
+            int(dictMission.get("iCharacterizationPhaseSamples", 100)))
+        return faTauDet, np.repeat(faBestPhase[:, None], faTauDet.shape[1], axis=1)
     faTauChar = np.full(faTauDet.shape, np.inf)
     for dictOption in listCharOptions:
         faTauChar = np.minimum(faTauChar, faRequiredExposureTime(

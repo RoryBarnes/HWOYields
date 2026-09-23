@@ -1,0 +1,24 @@
+{
+  "fCalibration": 1.4289121427167732,
+  "dictRungs": {
+    "fFixedExozodiPlanningAlbedo": 23.79,
+    "fFixedExozodiDrawnAlbedo": 22.564,
+    "fDrawnExozodiDrawnAlbedo": 22.514,
+    "fDrawnExozodiPlanningAlbedo": 23.763
+  },
+  "dictPublishedRungs": {
+    "fBaseline": 22.5,
+    "fWithAlbedo": 19.8,
+    "fWithExozodi": 17.6
+  },
+  "dictPenalties": {
+    "fAlbedo": 0.0516,
+    "fAlbedoPublished": 0.12,
+    "fExozodi": 0.0022,
+    "fExozodiPublished": 0.1111,
+    "fCombined": 0.0536,
+    "fCombinedPublished": 0.2178
+  },
+  "iStarsFixedExozodi": 180,
+  "iStarsDrawnExozodi": 177
+}
