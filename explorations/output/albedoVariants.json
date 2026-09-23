@@ -1,0 +1,50 @@
+{
+  "fCalibration": 1.6576211711504056,
+  "listVariants": [
+    {
+      "sVariant": "recompute, char adjusted (previous behaviour)",
+      "dictOverrides": {
+        "sAlbedoMethod": "recompute",
+        "bAdjustCharacterizationForAlbedo": true
+      },
+      "fYieldPlanning": 22.5,
+      "fYieldAlbedoDrawn": 21.382,
+      "fAlbedoPenalty": 0.0497,
+      "fPublishedPenalty": 0.12
+    },
+    {
+      "sVariant": "recompute, char fixed at A_G=0.2 (Stark Sec. 3.2)",
+      "dictOverrides": {
+        "sAlbedoMethod": "recompute",
+        "bAdjustCharacterizationForAlbedo": false
+      },
+      "fYieldPlanning": 22.5,
+      "fYieldAlbedoDrawn": 20.513,
+      "fAlbedoPenalty": 0.0883,
+      "fPublishedPenalty": 0.12
+    },
+    {
+      "sVariant": "perVisitThreshold, char fixed",
+      "dictOverrides": {
+        "sAlbedoMethod": "perVisitThreshold",
+        "bAdjustCharacterizationForAlbedo": false
+      },
+      "fYieldPlanning": 22.5,
+      "fYieldAlbedoDrawn": 21.828,
+      "fAlbedoPenalty": 0.0298,
+      "fPublishedPenalty": 0.12
+    },
+    {
+      "sVariant": "perVisitThreshold, char fixed, bright bound",
+      "dictOverrides": {
+        "sAlbedoMethod": "perVisitThreshold",
+        "bAdjustCharacterizationForAlbedo": false,
+        "bAlbedoBrightBound": true
+      },
+      "fYieldPlanning": 22.5,
+      "fYieldAlbedoDrawn": 21.779,
+      "fAlbedoPenalty": 0.032,
+      "fPublishedPenalty": 0.12
+    }
+  ]
+}

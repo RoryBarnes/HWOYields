@@ -1,0 +1,63 @@
+{
+  "dictCostSplit": {
+    "fDetectionSeconds": 0.5214,
+    "fCharacterizationSeconds": 0.2653,
+    "fCharacterizationShare": 0.3372
+  },
+  "dictPhaseConvergence": {
+    "200": {
+      "fSeconds": 0.4346,
+      "fMedianRatioToFinest": 1.0,
+      "fMaxRatioToFinest": 1.0,
+      "iCountedUnderCap": 1011
+    },
+    "100": {
+      "fSeconds": 0.186,
+      "fMedianRatioToFinest": 1.0,
+      "fMaxRatioToFinest": 1.0064,
+      "iCountedUnderCap": 1011
+    },
+    "60": {
+      "fSeconds": 0.092,
+      "fMedianRatioToFinest": 1.00058,
+      "fMaxRatioToFinest": 1.01225,
+      "iCountedUnderCap": 1011
+    },
+    "40": {
+      "fSeconds": 0.084,
+      "fMedianRatioToFinest": 1.00179,
+      "fMaxRatioToFinest": 1.02787,
+      "iCountedUnderCap": 1011
+    },
+    "30": {
+      "fSeconds": 0.0246,
+      "fMedianRatioToFinest": 1.0032,
+      "fMaxRatioToFinest": 1.04597,
+      "iCountedUnderCap": 1010
+    },
+    "24": {
+      "fSeconds": 0.0166,
+      "fMedianRatioToFinest": 1.00549,
+      "fMaxRatioToFinest": 1.07286,
+      "iCountedUnderCap": 1006
+    },
+    "16": {
+      "fSeconds": 0.059,
+      "fMedianRatioToFinest": 1.01642,
+      "fMaxRatioToFinest": 1.14493,
+      "iCountedUnderCap": 1004
+    },
+    "12": {
+      "fSeconds": 0.0094,
+      "fMedianRatioToFinest": 1.02113,
+      "fMaxRatioToFinest": 1.17659,
+      "iCountedUnderCap": 991
+    },
+    "8": {
+      "fSeconds": 0.0064,
+      "fMedianRatioToFinest": 1.0247,
+      "fMaxRatioToFinest": 1.65682,
+      "iCountedUnderCap": 1002
+    }
+  }
+}

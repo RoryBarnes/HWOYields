@@ -6,6 +6,15 @@ from . import coronagraph as cg
 from . import physics as ph
 
 F_REARTH_AU = 4.25875e-5
+I_DEFAULT_CHARACTERIZATION_PHASES = 40
+""" Orbital phases sampled when scheduling characterization at its most favourable point.
+
+Measured convergence against a 200-phase reference, for a solar twin at 10 pc
+(explorations/profileCompletenessCost.py): 40 phases reproduces the counted planet set exactly
+(1011 of 1011) with a median error of 0.18% and a worst case of 2.8%, while 100 phases costs
+2.4 times as much for a median error of 0.00%. Dropping to 24 starts losing counted planets
+(1006), which is the quantity the yield is built from, so 40 is the last value that is free.
+"""
 
 
 def faSamplePowerLawInLog(faLo, faHi, fIndex, faUniform):
@@ -292,16 +301,26 @@ def faCharacterizationTimeAtBestPhase(dictStar, dictPlanets, listCharOptions, di
 
 
 def faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet, listCharOptions,
-                     dictMission, iNumPlanets):
-    """Detection and characterization exposure times per planet per visit epoch."""
+                     dictMission, iNumPlanets, bCharacterization=True):
+    """Detection and characterization exposure times per planet per visit epoch.
+
+    bCharacterization=False skips the characterization calculation entirely and returns infinities
+    in its place. The albedo re-evaluation uses it, because Ref. stark2024 Sec. 3.2 fixes the
+    characterization budget at the planning albedo and the recomputed value is therefore thrown
+    away. Characterization is 91% of this function's cost once it is scheduled over orbital
+    phases, so not computing a discarded result is the single largest saving available.
+    """
     listDetRates = [fdictCountRates(dictStar, dictPlanets, dictGeom, b, dictMission)
                     for b in listBandsDet]
     faTauDet = faRequiredExposureTime(listDetRates, listBandsDet,
                                       listBandsDet[0]["fSignalToNoise"], dictMission)
+    if not bCharacterization:
+        return faTauDet, np.full(faTauDet.shape, np.inf)
     if dictMission.get("bOptimizeCharacterizationPhase", True):
         faBestPhase = faCharacterizationTimeAtBestPhase(
             dictStar, dictPlanets, listCharOptions, dictMission,
-            int(dictMission.get("iCharacterizationPhaseSamples", 100)))
+            int(dictMission.get("iCharacterizationPhaseSamples",
+                                I_DEFAULT_CHARACTERIZATION_PHASES)))
         return faTauDet, np.repeat(faBestPhase[:, None], faTauDet.shape[1], axis=1)
     faTauChar = np.full(faTauDet.shape, np.inf)
     for dictOption in listCharOptions:
@@ -311,19 +330,27 @@ def faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet, listCharOpti
     return faTauDet, faTauChar
 
 
-def faStarkAlbedoTimes(faTauDet, faFlux, faSepLamD, faFluxDrawn):
+def faStarkAlbedoTimes(faTauDet, faFlux, faSepLamD, faFluxDrawn, bBrightBound=False):
     """Exposure time at which a drawn-albedo planet passes Stark's per-visit detectability test.
 
     Stark et al. (2024) Sec. 3.2 do not re-derive the exposure time for a planet whose albedo
-    differs from the planning value. They ask whether the fixed observation plan would have
-    caught it, by requiring its albedo-adjusted flux to exceed the FAINTEST flux actually
-    detected during that visit, and its separation to exceed the SMALLEST separation detected.
-    Both thresholds fall monotonically as the exposure lengthens, so each planet passes for every
-    exposure beyond some threshold, which is what this returns.
+    differs from the planning value. They ask whether the fixed observation plan would have caught
+    it, by requiring its albedo-adjusted flux to fall inside the range of fluxes actually detected
+    during that visit: "The faintest detected planet flux along the orbit segment (usually
+    corresponding to crescent phase) is limited by the exposure time, while the brightest planet
+    flux along the segment (usually corresponding to gibbous phase) is constrained by the IWA of
+    the coronagraph."
 
-    This is a blunter test than re-deriving the exposure time, because it cannot reward a dark
-    planet that happens to sit where the background is low. It is implemented alongside the
-    re-derivation so the two can be compared rather than assumed equivalent.
+    bBrightBound adds that upper limit. It is not an approximation artifact, which is how an
+    earlier note here described it: for an edge-on orbit gibbous phase IS small projected
+    separation, so a flux above what the segment reached does imply the planet was inside the
+    inner working angle. Since cos(i) is uniform, high inclinations dominate the detections, and
+    the identification holds where it matters; it degrades toward face-on, where the flux barely
+    varies along the orbit and the bound does not bind anyway.
+
+    The lower bounds relax monotonically as the exposure lengthens, so each planet passes for every
+    exposure beyond some threshold, which is what this returns. The bright bound does not depend on
+    exposure, so it is applied as a veto.
     """
     faOut = np.full(faTauDet.shape, np.inf)
     for k in range(faTauDet.shape[1]):
@@ -333,12 +360,15 @@ def faStarkAlbedoTimes(faTauDet, faFlux, faSepLamD, faFluxDrawn):
         if not bFinite.any():
             continue
         faTauSorted = faTauSorted[bFinite]
-        faFloorFlux = np.minimum.accumulate(faFlux[faOrder, k][bFinite])
+        faFluxOrdered = faFlux[faOrder, k][bFinite]
+        faFloorFlux = np.minimum.accumulate(faFluxOrdered)
         faFloorSep = np.minimum.accumulate(faSepLamD[faOrder, k][bFinite])
         iFlux = np.searchsorted(-faFloorFlux, -faFluxDrawn[:, k], side="left")
         iSep = np.searchsorted(-faFloorSep, -faSepLamD[:, k], side="left")
         iNeed = np.maximum(iFlux, iSep)
         bReach = iNeed < faTauSorted.size
+        if bBrightBound:
+            bReach &= faFluxDrawn[:, k] <= float(np.max(faFluxOrdered))
         faOut[bReach, k] = faTauSorted[iNeed[bReach]]
     return faOut
 
@@ -357,6 +387,18 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
     Two curves per visit count. faComp assumes the planning albedo A_G = 0.2 and is what the
     optimizer allocates against; faCompAlbedo re-evaluates the SAME planets and orbits with
     albedos drawn from the adopted distribution, and is what the yield is read from.
+
+    The albedo re-evaluation adjusts the DETECTION time only. Ref. stark2024 Sec. 3.2 is explicit:
+    "Detection times are used to determine whether a planet of differing albedo would have been
+    detected, but characterization times are not considered. Characterization times are budgeted
+    for by AYO under the assumption that the planets have a single A_G = 0.2." The observation
+    plan is set in stone before the draw, so the spectrum's cost cannot be revised after it.
+
+    Adjusting both, as this module did until the published detection-rate-versus-albedo shape was
+    checked, is what held the albedo penalty at 5% against a published 12%. Characterization binds
+    beyond about 10 pc, so letting a bright planet also buy a cheaper spectrum lets it keep gaining
+    above A_G = 0.2, where Stark's detection rate is flat; that rising tail cancels the loss from
+    dark planets. bAdjustCharacterizationForAlbedo restores the old behaviour for comparison.
     """
     rng = np.random.default_rng(iSeed)
     iVisits = int(dictMission.get("iMaxVisits", 1))
@@ -383,16 +425,21 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
         dictPlanets["faAlbedoDrawn"] = (
             dictAlbedoRange["fMin"] + dictPlanets["faAlbedo"] *
             (dictAlbedoRange["fMax"] - dictAlbedoRange["fMin"]))
+        bNeedChar = bool(dictMission.get("bAdjustCharacterizationForAlbedo", False))
         faTauDetA, faTauCharA = faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet,
-                                                 listCharOptions, dictMission, iNumPlanets)
+                                                 listCharOptions, dictMission, iNumPlanets,
+                                                 bCharacterization=bNeedChar)
         if dictMission.get("sAlbedoMethod", "recompute") == "perVisitThreshold":
             dictRatesPlan = fdictCountRates(dictStar, dictPlanets, dictGeom, listBandsDet[0],
                                             dict(dictMission, listBandsCharacterization=None))
             faFluxPlan = dictRatesPlan["faFluxRatio"] * (
                 dictMission["fGeometricAlbedo"] /
                 np.atleast_1d(dictPlanets["faAlbedoDrawn"])[:, None])
-            faTauDetA = faStarkAlbedoTimes(faTauDet, faFluxPlan, dictRatesPlan["faSepLamD"],
-                                           dictRatesPlan["faFluxRatio"])
+            faTauDetA = faStarkAlbedoTimes(
+                faTauDet, faFluxPlan, dictRatesPlan["faSepLamD"], dictRatesPlan["faFluxRatio"],
+                bBrightBound=bool(dictMission.get("bAlbedoBrightBound", False)))
+        if not bNeedChar:
+            faTauCharA = faTauChar
         faBestDetA, _, _ = faCountedTimes(faTauDetA, faTauCharA, fCap, iRequired)
         faCompAlbedo = faCompletenessPerVisitCount(faBestDetA, faTauGridS, iNumPlanets)
     return dict(faComp=faComp, faCompAlbedo=faCompAlbedo,

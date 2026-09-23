@@ -121,7 +121,7 @@
           "saPath": [
             "iModelStarsUsed"
           ],
-          "oValue": 173.0
+          "oValue": 175.0
         },
         {
           "saPath": [
@@ -133,7 +133,7 @@
           "saPath": [
             "fModelSummedCompleteness"
           ],
-          "oValue": 93.61733333333332
+          "oValue": 93.656
         },
         {
           "saPath": [
@@ -151,16 +151,16 @@
           "saPath": [
             "fMedianRatio"
           ],
-          "oValue": 0.45355835562689495
+          "oValue": 0.4868723020642801
         },
         {
           "saPath": [
             "fTrendWithDistance"
           ],
-          "oValue": -0.009886301955263459
+          "oValue": -0.009779914857905357
         }
       ],
-      "iBytes": 27147
+      "iBytes": 27028
     }
   }
 }

@@ -1,0 +1,42 @@
+{
+  "iBlockStars": 40,
+  "bTablePresent": true,
+  "listCases": [
+    {
+      "sCase": "current: table curves, 100 phases",
+      "fSecondsForBlock": 3.39,
+      "fSecondsPerStar": 0.0848,
+      "fMinutesFor1500Stars": 2.1
+    },
+    {
+      "sCase": "table curves, 40 phases",
+      "fSecondsForBlock": 2.88,
+      "fSecondsPerStar": 0.072,
+      "fMinutesFor1500Stars": 1.8
+    },
+    {
+      "sCase": "table curves, 24 phases",
+      "fSecondsForBlock": 2.1,
+      "fSecondsPerStar": 0.0526,
+      "fMinutesFor1500Stars": 1.3
+    },
+    {
+      "sCase": "table curves, phase optimization OFF",
+      "fSecondsForBlock": 0.72,
+      "fSecondsPerStar": 0.018,
+      "fMinutesFor1500Stars": 0.5
+    },
+    {
+      "sCase": "parametric curves, 100 phases",
+      "fSecondsForBlock": 2.68,
+      "fSecondsPerStar": 0.0669,
+      "fMinutesFor1500Stars": 1.7
+    },
+    {
+      "sCase": "parametric curves, phase optimization OFF",
+      "fSecondsForBlock": 0.81,
+      "fSecondsPerStar": 0.0203,
+      "fMinutesFor1500Stars": 0.5
+    }
+  ]
+}

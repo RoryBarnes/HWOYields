@@ -217,3 +217,60 @@ def test_coronagraph_curves_are_evaluated_in_circumscribed_lambda_over_d():
     fUpsilonPlain = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand,
                                        dictPlain)["faUpsilon"]
     assert np.all(fUpsilonScaled > fUpsilonPlain)
+
+
+def test_albedo_draw_does_not_revise_the_characterization_budget():
+    """Stark et al. (2024) Sec. 3.2 fix the spectrum's cost at the planning albedo.
+
+    "Detection times are used to determine whether a planet of differing albedo would have been
+    detected, but characterization times are not considered. Characterization times are budgeted
+    for by AYO under the assumption that the planets have a single A_G = 0.2." The observation plan
+    is set in stone before the draw, so a brighter planet cannot also buy itself a cheaper
+    spectrum. Letting it do so -- which this module did until the published detection-rate-versus-
+    albedo shape was checked -- roughly halves the albedo penalty, because characterization is the
+    binding constraint beyond about 10 pc.
+    """
+    faTauGridS = np.logspace(1.0, np.log10(DICT_MISSION["fExposureLimitS"]), 60)
+    dictMission = dict(DICT_MISSION, iMaxVisits=2,
+                       dictAlbedoDistribution={"fMin": 0.08, "fMax": 0.32})
+    dictFixed = cp.fdictStarCompleteness(fdictSolarTwin(12.0), DICT_BOX, LIST_BANDS_DET,
+                                         DICT_BAND_CHAR, dictMission, faTauGridS,
+                                         1500, -0.19, 0.26, 7)
+    dictAdjusted = cp.fdictStarCompleteness(
+        fdictSolarTwin(12.0), DICT_BOX, LIST_BANDS_DET, DICT_BAND_CHAR,
+        dict(dictMission, bAdjustCharacterizationForAlbedo=True), faTauGridS,
+        1500, -0.19, 0.26, 7)
+    assert not np.allclose(dictFixed["faCompAlbedo"], dictAdjusted["faCompAlbedo"])
+    for dictRun in (dictFixed, dictAdjusted):
+        faAlbedo = dictRun["faCompAlbedo"]
+        assert np.all((faAlbedo >= 0.0) & (faAlbedo <= 1.0))
+        assert np.all(np.diff(faAlbedo, axis=-1) >= -1e-12)
+
+    # The per-star direction is not universal: holding the budget fixed lets a DARK planet keep
+    # the cheaper A_G = 0.2 spectrum while denying a bright one an even cheaper one, and which
+    # dominates depends on the star. Over the whole survey it costs yield, taking the albedo
+    # penalty from 0.050 to 0.088 against a published 0.12
+    # (explorations/compareAlbedoVariants.py). Asserting the survey-level direction star by star
+    # would be asserting something this test cannot see, so it checks only that the flag is live
+    # and that each curve stays a completeness: bounded in [0, 1] and non-decreasing in exposure.
+    # Note faCompAlbedo is NOT bounded by faCompDetectionOnly, which is evaluated at the planning
+    # albedo -- a planet drawn brighter than A_G = 0.2 can be caught at an exposure where the
+    # planning planet was not.
+
+
+def test_bright_flux_bound_can_only_remove_detections():
+    """The upper end of the detected flux range is a veto, never a licence.
+
+    For an edge-on orbit a flux above what the segment reached implies gibbous phase and therefore
+    a separation inside the inner working angle, so applying it can only reject planets. Measured
+    on the full survey it moves the albedo penalty by 0.002, so it is real but not the reason this
+    model's penalty fell short of the published 12%.
+    """
+    faTauDet = np.array([[1.0e4], [2.0e4], [4.0e4], [np.inf]])
+    faFlux = np.array([[3.0e-10], [2.0e-10], [1.0e-10], [5.0e-11]])
+    faSep = np.array([[6.0], [7.0], [8.0], [9.0]])
+    faDrawn = np.array([[9.0e-10], [2.0e-10], [1.5e-10], [1.0e-10]])
+    faWithout = cp.faStarkAlbedoTimes(faTauDet, faFlux, faSep, faDrawn, bBrightBound=False)
+    faWith = cp.faStarkAlbedoTimes(faTauDet, faFlux, faSep, faDrawn, bBrightBound=True)
+    assert np.all(faWith >= faWithout)
+    assert np.isinf(faWith[0, 0]) and np.isfinite(faWithout[0, 0])

@@ -1,0 +1,35 @@
+{
+  "fCalibration": 1.6576211711504056,
+  "listVariants": [
+    {
+      "sVariant": "100 characterization phases (reference)",
+      "dictOverrides": {
+        "iCharacterizationPhaseSamples": 100
+      },
+      "fYieldPlanning": 22.5,
+      "fYieldAlbedoDrawn": 20.513,
+      "fAlbedoPenalty": 0.0883,
+      "fPublishedPenalty": 0.12
+    },
+    {
+      "sVariant": "40 characterization phases (new default)",
+      "dictOverrides": {
+        "iCharacterizationPhaseSamples": 40
+      },
+      "fYieldPlanning": 22.468,
+      "fYieldAlbedoDrawn": 20.483,
+      "fAlbedoPenalty": 0.0884,
+      "fPublishedPenalty": 0.12
+    },
+    {
+      "sVariant": "24 characterization phases",
+      "dictOverrides": {
+        "iCharacterizationPhaseSamples": 24
+      },
+      "fYieldPlanning": 22.409,
+      "fYieldAlbedoDrawn": 20.423,
+      "fAlbedoPenalty": 0.0886,
+      "fPublishedPenalty": 0.12
+    }
+  ]
+}

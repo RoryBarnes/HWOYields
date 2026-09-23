@@ -16,7 +16,7 @@
             "dictDistribution",
             "fMeanExpected"
           ],
-          "oValue": 24.167580830172422
+          "oValue": 23.310944113209327
         },
         {
           "saPath": [
@@ -25,7 +25,7 @@
             "dictDistribution",
             "fMedianExpected"
           ],
-          "oValue": 22.59784974286455
+          "oValue": 21.678003045160708
         },
         {
           "saPath": [
@@ -34,7 +34,7 @@
             "dictDistribution",
             "fP16Expected"
           ],
-          "oValue": 14.536526050449952
+          "oValue": 13.88384023893658
         },
         {
           "saPath": [
@@ -43,7 +43,7 @@
             "dictDistribution",
             "fP84Expected"
           ],
-          "oValue": 33.429773804123904
+          "oValue": 32.329431404615676
         },
         {
           "saPath": [
@@ -52,7 +52,7 @@
             "dictDistribution",
             "fP05Expected"
           ],
-          "oValue": 10.458899136250228
+          "oValue": 9.995296553817518
         },
         {
           "saPath": [
@@ -61,7 +61,7 @@
             "dictDistribution",
             "fP95Expected"
           ],
-          "oValue": 43.12577986140419
+          "oValue": 42.103446501867765
         },
         {
           "saPath": [
@@ -70,7 +70,7 @@
             "dictDistribution",
             "fProbabilityAtLeastGoal"
           ],
-          "oValue": 0.42569444444444443
+          "oValue": 0.3892361111111111
         },
         {
           "saPath": [
@@ -79,7 +79,7 @@
             "dictDistribution",
             "fProbabilityAtLeastOne"
           ],
-          "oValue": 1.0
+          "oValue": 0.9999305555555555
         },
         {
           "saPath": [
@@ -96,7 +96,7 @@
             "dictDistribution",
             "fMeanExpected"
           ],
-          "oValue": 6.02543520514
+          "oValue": 5.964154395731941
         },
         {
           "saPath": [
@@ -105,7 +105,7 @@
             "dictDistribution",
             "fMedianExpected"
           ],
-          "oValue": 5.281857127663715
+          "oValue": 5.2527315775890475
         },
         {
           "saPath": [
@@ -114,7 +114,7 @@
             "dictDistribution",
             "fP16Expected"
           ],
-          "oValue": 3.174770461965704
+          "oValue": 3.167336033078215
         },
         {
           "saPath": [
@@ -123,7 +123,7 @@
             "dictDistribution",
             "fP84Expected"
           ],
-          "oValue": 8.766404278560422
+          "oValue": 8.669725901872074
         },
         {
           "saPath": [
@@ -132,7 +132,7 @@
             "dictDistribution",
             "fP05Expected"
           ],
-          "oValue": 2.250537982222414
+          "oValue": 2.2474436885228606
         },
         {
           "saPath": [
@@ -141,7 +141,7 @@
             "dictDistribution",
             "fP95Expected"
           ],
-          "oValue": 12.319410567402551
+          "oValue": 12.089555285816317
         },
         {
           "saPath": [
@@ -150,7 +150,7 @@
             "dictDistribution",
             "fProbabilityAtLeastGoal"
           ],
-          "oValue": 0.002916666666666667
+          "oValue": 0.0025694444444444445
         },
         {
           "saPath": [
@@ -159,7 +159,7 @@
             "dictDistribution",
             "fProbabilityAtLeastOne"
           ],
-          "oValue": 0.9772222222222222
+          "oValue": 0.9785416666666666
         },
         {
           "saPath": [
@@ -180,21 +180,21 @@
             "dictYieldRatio",
             "fMedian"
           ],
-          "oValue": 0.23723665751165496
+          "oValue": 0.24580112640056698
         },
         {
           "saPath": [
             "dictYieldRatio",
             "fP16"
           ],
-          "oValue": 0.2129003904160316
+          "oValue": 0.2216183517864698
         },
         {
           "saPath": [
             "dictYieldRatio",
             "fP84"
           ],
-          "oValue": 0.2683100422356509
+          "oValue": 0.2747407849706274
         },
         {
           "saPath": [
@@ -204,7 +204,7 @@
           "oValue": 0.20334323541972582
         }
       ],
-      "iBytes": 3956
+      "iBytes": 3972
     },
     "yieldSamples.npz": {
       "sKind": "npz",
@@ -254,27 +254,27 @@
           "fMax": 1.2
         },
         "faExpected_canonical": {
-          "fMean": 24.167580830172422,
-          "fMin": 3.716323397163425,
-          "fMax": 71.97519999999999
+          "fMean": 23.310944113209327,
+          "fMin": 3.5739490780483356,
+          "fMax": 71.26799999999997
         },
         "faObserved_canonical": {
-          "fMean": 24.11826388888889,
-          "fMin": 1.0,
-          "fMax": 94.0
+          "fMean": 23.25840277777778,
+          "fMin": 0.0,
+          "fMax": 89.0
         },
         "faExpected_redefined": {
-          "fMean": 6.02543520514,
-          "fMin": 0.8015636499144246,
-          "fMax": 30.868595941704292
+          "fMean": 5.964154395731941,
+          "fMin": 0.8015496397572774,
+          "fMax": 30.09914466572514
         },
         "faObserved_redefined": {
-          "fMean": 5.998402777777778,
+          "fMean": 5.936111111111111,
           "fMin": 0.0,
-          "fMax": 37.0
+          "fMax": 33.0
         }
       },
-      "iBytes": 247327
+      "iBytes": 247248
     }
   }
 }
