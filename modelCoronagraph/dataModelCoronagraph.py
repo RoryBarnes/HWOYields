@@ -22,8 +22,34 @@ F_YEAR_S = 365.25 * 86400.0
 F_HOUR_S = 3600.0
 
 
+F_CIRCUMSCRIBED_RATIO = 8.0 / 6.7
+F_APERTURE_FILL_FACTOR = 0.785
+
+
 def fdictMissionParameters(fDiameterM, fExozodiLevel):
     """Baseline coronagraph-mission parameters, Stark et al. (2024) Tables 1 and 2.
+
+    fDiameterM is the INSCRIBED diameter, which is how Stark et al. (2024) label every scenario
+    ("6 m ID"). Two quantities do not follow that diameter, and treating them as if they did was
+    the single largest error in this pipeline:
+
+      * The published coronagraph curves are plotted against the CIRCUMSCRIBED diameter (Ref.
+        stark2024 Sec. 6.1, which notes the DMVC6's apparent 3.5 lambda/D IWA is inflated for
+        precisely this reason). Ref. stark2019 Sec. 6.2 adds that normalised to the inscribed
+        pupil the DMVC and the monolithic vortex "would look nearly identical", and the monolithic
+        vortex sits at ~3 lambda/D -- the same 1.19 ratio. Evaluating those curves at inscribed
+        lambda/D put this pipeline's inner working angle 19% too far out in ANGLE.
+      * The collecting area A is the full obscured primary, because Upsilon_c is normalised to the
+        light entering the coronagraph from that whole aperture including the region outside the
+        inscribed diameter (Ref. stark2019 Sec. 6.2). Using a circle of the inscribed diameter
+        charged the Lyot stop's discard twice.
+
+    F_APERTURE_FILL_FACTOR is the one number here that neither paper states: the fraction of the
+    circumscribed circle a hex-segmented primary actually collects. 0.785 corresponds to the
+    ~39.5 m^2 usually quoted for LUVOIR-B's 8 m circumscribed aperture. Yield goes as roughly the
+    0.37 power of collecting area, verified in explorations/scanApertureGeometryConventions.py, so
+    the plausible range 0.70-0.88 moves the yield by about +/-4%. It is an assumption, not a
+    published value, and is the largest single unsourced input in this model.
 
     iRequiredDetections is 1. Two was tested, on the grounds that Stark budgets characterization
     only after orbit determination and cites Bruna et al. (2023) for two reflected-light
@@ -33,6 +59,8 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
     """
     return {
         "fDiameterM": fDiameterM,
+        "fCircumscribedRatio": F_CIRCUMSCRIBED_RATIO,
+        "fApertureFillFactor": F_APERTURE_FILL_FACTOR,
         "fIwaLamD": cg.F_DEFAULT_IWA_LAMD,
         "fOwaLamD": cg.F_DEFAULT_OWA_LAMD,
         "fCoreThroughputMax": cg.F_DEFAULT_CORE_THROUGHPUT_MAX,

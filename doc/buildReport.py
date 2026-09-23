@@ -27,6 +27,7 @@ def fdictLoadResults(sRepoRoot):
         "budget": "explorations/timeBudgetSplit.json",
         "budgetNoChar": "explorations/timeBudgetSplitNoChar.json",
         "screen": "explorations/targetSelectionAudit.json",
+        "photometry": "buildTargetCatalog/stellarFluxPhotometryCheck.json",
     }
     dictOut = {}
     for sKey, sRel in dictPaths.items():
@@ -43,6 +44,7 @@ def fdictSubstitutions(dictResults):
     dictAp = dictResults["aperture"]
     dictBud, dictNoChar = dictResults["budget"]["listRows"], dictResults["budgetNoChar"]["listRows"]
     dictScr = dictResults["screen"]
+    dictPhot = dictResults["photometry"]
     fExpWith = math.log(dictBud[1]["fYield"] / dictBud[0]["fYield"]) / math.log(1.5)
     fExpNo = math.log(dictNoChar[1]["fYield"] / dictNoChar[0]["fYield"]) / math.log(1.5)
     dictCanon = dictPred["dictByBox"]["canonical"]["dictDistribution"]
@@ -51,9 +53,12 @@ def fdictSubstitutions(dictResults):
     dictRatio, dictYRatio = dictPost["dictRatioRedefinedOverCanonical"], dictPred["dictYieldRatio"]
     return {
         "CATROWS": f"{dictCat['iCatalogRows']:,}",
-        "CATGAIA": f"{dictCat['iGaiaRows']:,}",
-        "CATHIP": f"{dictCat['iHipparcosSupplementRows']:,}",
         "CATFGK": f"{dictCat['iFgkStars']:,}",
+        "PHOTN": f"{dictPhot['dictSunLikeResidual']['iStars']:,}",
+        "PHOTMED": f"{dictPhot['dictSunLikeResidual']['fMedian']:+.3f}",
+        "PHOTSTD": f"{dictPhot['dictSunLikeResidual']['fStdDev']:.2f}",
+        "CALUNCALFRAC": f"{100*dictCal['fUncalibratedYield']/22.5:.0f}",
+        "ALBEDOPEN": f"{100*(1.0 - dictSurvey['fYieldBaseline']/dictSurvey['fYieldPlanningBaseline']):.1f}",
         "CALFACTOR": f"{dictCal['fCalibratedThroughputFactor']:.3f}",
         "CALYIELD": f"{dictCal['fCalibratedYield']:.2f}",
         "CALUNCAL": f"{dictCal['fUncalibratedYield']:.2f}",

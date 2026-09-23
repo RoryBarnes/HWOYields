@@ -1,340 +1,707 @@
 {
   "sStep": "buildTargetCatalog",
   "dictFiles": {
-    "gaiaRawQuery.csv": {
-      "sKind": "csv",
-      "saColumns": [
-        "source_id",
-        "ra",
-        "dec",
-        "ecl_lat",
-        "parallax",
-        "phot_g_mean_mag",
-        "teff_gspphot",
-        "radius_gspphot",
-        "lum_flame",
-        "mass_flame",
-        "logg_gspphot"
-      ],
-      "iRows": 8409,
-      "saFiniteColumns": [
-        "source_id",
-        "ra",
-        "dec",
-        "ecl_lat",
-        "parallax",
-        "phot_g_mean_mag",
-        "teff_gspphot",
-        "radius_gspphot",
-        "lum_flame",
-        "logg_gspphot"
-      ],
-      "dictColumnStats": {
-        "source_id": {
-          "fMean": 3.4292309492617897e+18,
-          "fStd": 1.9987936711232865e+18,
-          "fMin": 3179036008830848.0,
-          "fMax": 6.917116130961541e+18
-        },
-        "ra": {
-          "fMean": 178.87939617787404,
-          "fStd": 105.18547368473459,
-          "fMin": 0.0051209692069888,
-          "fMax": 359.9576636759044
-        },
-        "dec": {
-          "fMean": -0.2565450919106685,
-          "fStd": 39.35448133142275,
-          "fMin": -87.96726181571509,
-          "fMax": 88.30368206594339
-        },
-        "ecl_lat": {
-          "fMean": -0.48769834864099837,
-          "fStd": 39.34496224366064,
-          "fMin": -88.85512282647657,
-          "fMax": 87.68764152821672
-        },
-        "parallax": {
-          "fMean": 34.6002823256202,
-          "fStd": 24.00908893415327,
-          "fMin": 20.000053745673146,
-          "fMax": 768.0665391873573
-        },
-        "phot_g_mean_mag": {
-          "fMean": 9.317516449922703,
-          "fStd": 2.2529231818239723,
-          "fMin": 2.9649055,
-          "fMax": 12.999628
-        },
-        "teff_gspphot": {
-          "fMean": 4602.371629682482,
-          "fStd": 1172.5329778217172,
-          "fMin": 2829.3542,
-          "fMax": 11884.809
-        },
-        "radius_gspphot": {
-          "fMean": 0.8715358187656084,
-          "fStd": 0.5877045180500956,
-          "fMin": 0.1521,
-          "fMax": 14.1069
-        },
-        "lum_flame": {
-          "fMean": 1.123190779004507,
-          "fStd": 3.8387378049024954,
-          "fMin": 0.0014102381,
-          "fMax": 119.68707
-        },
-        "logg_gspphot": {
-          "fMean": 4.363581329527887,
-          "fStd": 0.25364300008769697,
-          "fMin": 2.0479,
-          "fMax": 5.1373
-        }
-      },
-      "iBytes": 1213040
-    },
-    "hipparcosRawQuery.csv": {
-      "sKind": "csv",
-      "saColumns": [
-        "hip",
-        "ra",
-        "de",
-        "plx",
-        "vmag",
-        "b_v"
-      ],
-      "iRows": 965,
-      "saFiniteColumns": [
-        "hip",
-        "ra",
-        "de",
-        "plx",
-        "vmag",
-        "b_v"
-      ],
-      "dictColumnStats": {
-        "hip": {
-          "fMean": 57546.08186528498,
-          "fStd": 35084.4743058324,
-          "fMin": 171.0,
-          "fMax": 118281.0
-        },
-        "ra": {
-          "fMean": 176.62438681331605,
-          "fStd": 106.04437401165156,
-          "fMin": 0.54018776,
-          "fMax": 359.87222432
-        },
-        "de": {
-          "fMean": 0.5624740922590675,
-          "fStd": 39.91685683453401,
-          "fMin": -85.66323432,
-          "fMax": 86.96802383
-        },
-        "plx": {
-          "fMean": 42.899803108808285,
-          "fStd": 46.05386802500807,
-          "fMin": 20.01,
-          "fMax": 742.12
-        },
-        "vmag": {
-          "fMean": 4.69018652849741,
-          "fStd": 1.1141900408244567,
-          "fMin": -1.44,
-          "fMax": 5.99
-        },
-        "b_v": {
-          "fMean": 0.4968963730569948,
-          "fStd": 0.31317041270875456,
-          "fMin": -0.158,
-          "fMax": 1.6
-        }
-      },
-      "iBytes": 45896
-    },
     "targetCatalog.csv": {
       "sKind": "csv",
       "saColumns": [
         "sSourceId",
+        "sHipName",
+        "sSimbadName",
+        "sSpectralType",
         "ra",
         "dec",
-        "fEclipticLatDeg",
-        "parallax",
-        "fGmag",
+        "fVmag",
         "fTeffK",
         "fRadiusRsun",
         "fLuminosityLsun",
         "fMassMsun",
-        "logg_gspphot",
+        "fLogg",
         "fDistancePc",
+        "fWdsSepArcsec",
+        "bKnownBinary",
         "sCatalogSource",
+        "fEclipticLatDeg",
         "fEeidAu",
         "fEeidArcsec"
       ],
-      "iRows": 8709,
+      "iRows": 11757,
       "saFiniteColumns": [
         "ra",
         "dec",
-        "fEclipticLatDeg",
-        "fGmag",
+        "fVmag",
         "fTeffK",
         "fRadiusRsun",
         "fLuminosityLsun",
+        "fMassMsun",
+        "fLogg",
         "fDistancePc",
+        "bKnownBinary",
+        "fEclipticLatDeg",
         "fEeidAu",
         "fEeidArcsec"
       ],
       "dictColumnStats": {
         "ra": {
-          "fMean": 178.50212922737015,
-          "fStd": 105.1701147072255,
-          "fMin": 0.0051209692069888,
-          "fMax": 359.9576636759044
+          "fMean": 178.21701681593163,
+          "fStd": 104.85089190331051,
+          "fMin": 0.00434642638,
+          "fMax": 359.9640611743
         },
         "dec": {
-          "fMean": -0.1238459676219655,
-          "fStd": 39.264926521212956,
-          "fMin": -87.96726181571509,
-          "fMax": 88.30368206594339
+          "fMean": 0.3281803902388943,
+          "fStd": 38.944264117680916,
+          "fMin": -89.00996070059,
+          "fMax": 89.3068041602
         },
-        "fEclipticLatDeg": {
-          "fMean": -0.3573885653978473,
-          "fStd": 39.25795172075125,
-          "fMin": -88.85512282647657,
-          "fMax": 87.68764152821672
-        },
-        "fGmag": {
-          "fMean": 9.156603959926512,
-          "fStd": 2.3815311635596217,
-          "fMin": -1.44,
-          "fMax": 12.999628
+        "fVmag": {
+          "fMean": 9.834752593348645,
+          "fStd": 2.3100184454550035,
+          "fMin": -1.46,
+          "fMax": 16.13
         },
         "fTeffK": {
-          "fMean": 4695.83297174204,
-          "fStd": 1280.32137850283,
-          "fMin": 2829.3542,
-          "fMax": 11884.809
+          "fMean": 4662.484625943617,
+          "fStd": 1085.8809408475256,
+          "fMin": 2849.0,
+          "fMax": 14150.0
         },
         "fRadiusRsun": {
-          "fMean": 0.8837568570983533,
-          "fStd": 0.46374352219061893,
-          "fMin": 0.1521,
-          "fMax": 2.986247221581368
+          "fMean": 0.8037606613427519,
+          "fStd": 0.40005946965449535,
+          "fMin": 0.0111271039301546,
+          "fMax": 2.988685043037252
         },
         "fLuminosityLsun": {
-          "fMean": 1.4490915739933252,
-          "fStd": 4.983419171793594,
-          "fMin": 0.0014102381,
-          "fMax": 119.68707
+          "fMean": 1.0337317703746376,
+          "fStd": 4.289197471555398,
+          "fMin": 0.0003334836145461,
+          "fMax": 222.1345598019016
+        },
+        "fMassMsun": {
+          "fMean": 0.756926129072441,
+          "fStd": 0.30664722985019,
+          "fMin": 0.1054721362223003,
+          "fMax": 3.997109416252593
+        },
+        "fLogg": {
+          "fMean": 4.563694126552685,
+          "fStd": 0.24037649658039995,
+          "fMin": 3.537059336728801,
+          "fMax": 8.202877042460784
         },
         "fDistancePc": {
-          "fMean": 34.11988256764236,
-          "fStd": 11.13217446568122,
-          "fMin": 1.3019705311704333,
-          "fMax": 49.99986563617821
+          "fMean": 34.820412766670096,
+          "fStd": 11.088879779303358,
+          "fMin": 1.3019113540649414,
+          "fMax": 49.99839401245117
+        },
+        "bKnownBinary": {
+          "fMean": 0.32372203793484733,
+          "fStd": 0.46789537301640055,
+          "fMin": 0.0,
+          "fMax": 1.0
+        },
+        "fEclipticLatDeg": {
+          "fMean": 0.006683318833889762,
+          "fStd": 38.74594028094274,
+          "fMin": -88.85546158566441,
+          "fMax": 88.0663331696212
         },
         "fEeidAu": {
-          "fMean": 0.7849478019833818,
-          "fStd": 0.9126601350748169,
-          "fMin": 0.0375531370194288,
-          "fMax": 10.940158591172253
+          "fMean": 0.670497768587448,
+          "fStd": 0.7643065567518642,
+          "fMin": 0.0182615337402448,
+          "fMax": 14.904179273005996
         },
         "fEeidArcsec": {
-          "fMean": 0.025109591228829616,
-          "fStd": 0.041430536103460945,
-          "fMin": 0.0029638854846558,
-          "fMax": 1.933903345413043
+          "fMean": 0.0209230162532391,
+          "fStd": 0.03495925815386212,
+          "fMin": 0.0010030429230068,
+          "fMax": 1.954339455775394
         }
       },
-      "iBytes": 1819544
+      "iBytes": 2870241
     },
     "targetCatalogSummary.json": {
       "sKind": "json",
       "saTopLevelKeys": [
-        "bSupplementFetched",
+        "dictFgkCountsByDistance",
         "dictTeffPercentiles",
         "fMaxEeidArcsec",
         "fMedianDistancePc",
         "iCatalogRows",
         "iFgkStars",
-        "iGaiaRows",
-        "iHipparcosSupplementRows",
+        "iKnownBinaries",
         "iRawRows",
-        "sQuery",
-        "sSource"
+        "sArchiveSha256",
+        "sSource",
+        "sUrl"
       ],
       "listNumbers": [
         {
           "saPath": [
             "iRawRows"
           ],
-          "oValue": 8409.0
+          "oValue": 12944.0
         },
         {
           "saPath": [
             "iCatalogRows"
           ],
-          "oValue": 8709.0
-        },
-        {
-          "saPath": [
-            "iGaiaRows"
-          ],
-          "oValue": 8356.0
-        },
-        {
-          "saPath": [
-            "iHipparcosSupplementRows"
-          ],
-          "oValue": 353.0
-        },
-        {
-          "saPath": [
-            "bSupplementFetched"
-          ],
-          "oValue": true
+          "oValue": 11757.0
         },
         {
           "saPath": [
             "iFgkStars"
           ],
-          "oValue": 5542.0
+          "oValue": 7767.0
+        },
+        {
+          "saPath": [
+            "iKnownBinaries"
+          ],
+          "oValue": 3806.0
         },
         {
           "saPath": [
             "fMedianDistancePc"
           ],
-          "oValue": 35.86389302483663
+          "oValue": 37.04245376586914
         },
         {
           "saPath": [
             "fMaxEeidArcsec"
           ],
-          "oValue": 1.933903345413043
+          "oValue": 1.9543394557753941
+        },
+        {
+          "saPath": [
+            "dictFgkCountsByDistance",
+            "10"
+          ],
+          "oValue": 70.0
+        },
+        {
+          "saPath": [
+            "dictFgkCountsByDistance",
+            "15"
+          ],
+          "oValue": 218.0
+        },
+        {
+          "saPath": [
+            "dictFgkCountsByDistance",
+            "20"
+          ],
+          "oValue": 508.0
+        },
+        {
+          "saPath": [
+            "dictFgkCountsByDistance",
+            "30"
+          ],
+          "oValue": 1686.0
+        },
+        {
+          "saPath": [
+            "dictFgkCountsByDistance",
+            "50"
+          ],
+          "oValue": 7767.0
         },
         {
           "saPath": [
             "dictTeffPercentiles",
             "5"
           ],
-          "oValue": 3099.27524
+          "oValue": 3397.0
         },
         {
           "saPath": [
             "dictTeffPercentiles",
             "50"
           ],
-          "oValue": 4679.176
+          "oValue": 4392.447333734507
         },
         {
           "saPath": [
             "dictTeffPercentiles",
             "95"
           ],
-          "oValue": 6610.46079801322
+          "oValue": 6473.139999999999
         }
       ],
-      "iBytes": 851
+      "iBytes": 631
+    },
+    "stellarFluxPhotometryCheck.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictLuminosityConsistencyByTeff",
+        "dictLuminosityConsistencyDex",
+        "dictSunLikeResidual",
+        "dictVmagResidual",
+        "dictVmagResidualByTeff",
+        "fFluxBiasFactor",
+        "fMaxDistancePc",
+        "iStarsChecked",
+        "listWorstOffenders"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "iStarsChecked"
+          ],
+          "oValue": 3737.0
+        },
+        {
+          "saPath": [
+            "dictSunLikeResidual",
+            "iStars"
+          ],
+          "oValue": 674.0
+        },
+        {
+          "saPath": [
+            "dictSunLikeResidual",
+            "fMedian"
+          ],
+          "oValue": 0.018802625288957486
+        },
+        {
+          "saPath": [
+            "dictSunLikeResidual",
+            "fMean"
+          ],
+          "oValue": 0.02893866084866361
+        },
+        {
+          "saPath": [
+            "dictSunLikeResidual",
+            "fStdDev"
+          ],
+          "oValue": 0.22747245369188088
+        },
+        {
+          "saPath": [
+            "dictSunLikeResidual",
+            "fP16"
+          ],
+          "oValue": -0.008792780444865719
+        },
+        {
+          "saPath": [
+            "dictSunLikeResidual",
+            "fP84"
+          ],
+          "oValue": 0.05969226434560544
+        },
+        {
+          "saPath": [
+            "dictSunLikeResidual",
+            "fMaxAbs"
+          ],
+          "oValue": 2.228804460874138
+        },
+        {
+          "saPath": [
+            "fMaxDistancePc"
+          ],
+          "oValue": 30.0
+        },
+        {
+          "saPath": [
+            "dictVmagResidual",
+            "iStars"
+          ],
+          "oValue": 3737.0
+        },
+        {
+          "saPath": [
+            "dictVmagResidual",
+            "fMedian"
+          ],
+          "oValue": -0.37573047541298266
+        },
+        {
+          "saPath": [
+            "dictVmagResidual",
+            "fMean"
+          ],
+          "oValue": -0.3862335655063774
+        },
+        {
+          "saPath": [
+            "dictVmagResidual",
+            "fStdDev"
+          ],
+          "oValue": 0.46191368392399407
+        },
+        {
+          "saPath": [
+            "dictVmagResidual",
+            "fP16"
+          ],
+          "oValue": -0.7663243270696115
+        },
+        {
+          "saPath": [
+            "dictVmagResidual",
+            "fP84"
+          ],
+          "oValue": 0.013753283586342832
+        },
+        {
+          "saPath": [
+            "dictVmagResidual",
+            "fMaxAbs"
+          ],
+          "oValue": 4.081056294207601
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "3000-3900",
+            "iStars"
+          ],
+          "oValue": 1993.0
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "3000-3900",
+            "fMedian"
+          ],
+          "oValue": -0.6294535577294535
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "3000-3900",
+            "fStdDev"
+          ],
+          "oValue": 0.445995231787669
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "3900-4500",
+            "iStars"
+          ],
+          "oValue": 492.0
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "3900-4500",
+            "fMedian"
+          ],
+          "oValue": -0.32046728018785675
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "3900-4500",
+            "fStdDev"
+          ],
+          "oValue": 0.23471763193267703
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "4500-5300",
+            "iStars"
+          ],
+          "oValue": 520.0
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "4500-5300",
+            "fMedian"
+          ],
+          "oValue": -0.07481310586223255
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "4500-5300",
+            "fStdDev"
+          ],
+          "oValue": 0.2514317989044336
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "5300-6000",
+            "iStars"
+          ],
+          "oValue": 420.0
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "5300-6000",
+            "fMedian"
+          ],
+          "oValue": 0.006501542653198467
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "5300-6000",
+            "fStdDev"
+          ],
+          "oValue": 0.2677441402243854
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "6000-7300",
+            "iStars"
+          ],
+          "oValue": 254.0
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "6000-7300",
+            "fMedian"
+          ],
+          "oValue": 0.04364879530688803
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "6000-7300",
+            "fStdDev"
+          ],
+          "oValue": 0.12780456465906764
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "7300-10000",
+            "iStars"
+          ],
+          "oValue": 42.0
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "7300-10000",
+            "fMedian"
+          ],
+          "oValue": 0.13816049557863908
+        },
+        {
+          "saPath": [
+            "dictVmagResidualByTeff",
+            "7300-10000",
+            "fStdDev"
+          ],
+          "oValue": 0.0639120869210269
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyDex",
+            "iStars"
+          ],
+          "oValue": 3737.0
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyDex",
+            "fMedian"
+          ],
+          "oValue": -1.0320572951779502e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyDex",
+            "fMean"
+          ],
+          "oValue": -1.03205729467269e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyDex",
+            "fStdDev"
+          ],
+          "oValue": 1.7723393685347996e-15
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyDex",
+            "fP16"
+          ],
+          "oValue": -1.0320572954190327e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyDex",
+            "fP84"
+          ],
+          "oValue": -1.0320572941171876e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyDex",
+            "fMaxAbs"
+          ],
+          "oValue": 1.0320572959976306e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "3000-3900",
+            "iStars"
+          ],
+          "oValue": 1993.0
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "3000-3900",
+            "fMedian"
+          ],
+          "oValue": -1.0320572946957852e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "3000-3900",
+            "fStdDev"
+          ],
+          "oValue": 1.9362873490737095e-15
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "3900-4500",
+            "iStars"
+          ],
+          "oValue": 492.0
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "3900-4500",
+            "fMedian"
+          ],
+          "oValue": -1.0320572952261667e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "3900-4500",
+            "fStdDev"
+          ],
+          "oValue": 5.142024719364305e-16
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "4500-5300",
+            "iStars"
+          ],
+          "oValue": 520.0
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "4500-5300",
+            "fMedian"
+          ],
+          "oValue": -1.0320572953225995e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "4500-5300",
+            "fStdDev"
+          ],
+          "oValue": 6.91460180487564e-16
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "5300-6000",
+            "iStars"
+          ],
+          "oValue": 420.0
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "5300-6000",
+            "fMedian"
+          ],
+          "oValue": -1.0320572953708162e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "5300-6000",
+            "fStdDev"
+          ],
+          "oValue": 1.500350062062088e-16
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "6000-7300",
+            "iStars"
+          ],
+          "oValue": 254.0
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "6000-7300",
+            "fMedian"
+          ],
+          "oValue": -1.032057295346708e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "6000-7300",
+            "fStdDev"
+          ],
+          "oValue": 1.80515800860275e-16
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "7300-10000",
+            "iStars"
+          ],
+          "oValue": 42.0
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "7300-10000",
+            "fMedian"
+          ],
+          "oValue": -1.0320572953708162e-06
+        },
+        {
+          "saPath": [
+            "dictLuminosityConsistencyByTeff",
+            "7300-10000",
+            "fStdDev"
+          ],
+          "oValue": 2.8043423639919818e-15
+        },
+        {
+          "saPath": [
+            "fFluxBiasFactor"
+          ],
+          "oValue": 1.4134882093619543
+        }
+      ],
+      "iBytes": 4495
     }
   }
 }

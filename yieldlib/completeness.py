@@ -60,17 +60,66 @@ def fdictProjectOrbits(dictPlanets):
     return dict(faSepAu=faSepAu, faPhase=ph.faLambertianPhase(np.arccos(faCosPhase)))
 
 
+def fnSkyThroughputFor(dictMission):
+    """T_sky for this mission: the coronagraph's throughput for an extended source.
+
+    Stark et al. (2019) Eqs. 5 and 6 carry a factor T_sky(x,y) on the zodiacal and exozodiacal
+    count rates that the point-source terms do not. An explicit mission value overrides; otherwise
+    it is reconstructed from the core throughput and the photometric aperture. See
+    yieldlib.coronagraph.fnSkyThroughput for the derivation.
+    """
+    fExplicit = dictMission.get("fSkyThroughput")
+    if fExplicit is not None:
+        return float(fExplicit)
+    return cg.fnSkyThroughput(dictMission["fCoreThroughputMax"],
+                              dictMission["fApertureRadiusLamD"])
+
+
+def fnCollectingAreaM2(dictMission):
+    """Effective collecting area A in m^2 (Stark et al. 2019 Eq. 3).
+
+    A is "the effective collecting area of the telescope aperture accounting for segment gaps and
+    secondary mirror and strut obscurations" -- the FULL obscured primary, not the inscribed
+    circle. That pairing is not optional: Upsilon_c is normalised to "the light entering the
+    coronagraph... from the full obscured primary mirror, including the region exterior to the
+    inscribed diameter" (Ref. stark2019 Sec. 6.2), and the light the Lyot stop then discards is
+    exactly why Upsilon_c,max is 0.46 rather than 0.69. Taking A as the inscribed circle while
+    using an Upsilon_c normalised to the full primary charges that discard twice.
+
+    fApertureAreaM2 supplies the real figure when it is known; otherwise the area falls back to a
+    circle of the quoted diameter, which is what this pipeline assumed until the normalisation
+    was traced.
+    """
+    fArea = dictMission.get("fApertureAreaM2")
+    if fArea is not None:
+        return float(fArea)
+    fCircumscribed = dictMission["fDiameterM"] * dictMission.get("fCircumscribedRatio", 1.0)
+    return dictMission.get("fApertureFillFactor", 1.0) * np.pi * (fCircumscribed / 2.0) ** 2
+
+
 def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
-    """All count rates (planet, leaked starlight, zodi, exozodi, detector) in counts s^-1."""
+    """All count rates (planet, leaked starlight, zodi, exozodi, detector) in counts s^-1.
+
+    fCoronagraphScale converts a separation expressed in lambda/D, with D the diameter this
+    pipeline quotes (the INSCRIBED diameter, which is how Stark et al. 2024 label their
+    scenarios), into the units the published coronagraph curves are plotted in. Ref. stark2024
+    Sec. 6.1 states that the x-axis of its coronagraph figure is the CIRCUMSCRIBED diameter, and
+    that the DMVC6's apparent 3.5 lambda/D inner working angle is inflated relative to a circular
+    aperture for that reason -- Ref. stark2019 Sec. 6.2 adds that normalised to the inscribed
+    pupil the DMVC and the monolithic vortex "would look nearly identical", and the monolithic
+    vortex's IWA is ~3 lambda/D. The ratio between those two readings is D_circ/D_inscribed.
+    """
     fLamD = cg.fnLambdaOverDArcsec(dictBand["fLambdaM"], dictMission["fDiameterM"])
     faSepArcsec = dictGeom["faSepAu"] / dictStar["fDistancePc"]
     faSepLamD = faSepArcsec / fLamD
-    faUpsilon = cg.faCoreThroughput(faSepLamD, fIwaLamD=dictMission["fIwaLamD"],
+    faSepCurve = faSepLamD * dictMission.get("fCoronagraphScale",
+                                             dictMission.get("fCircumscribedRatio", 1.0))
+    faUpsilon = cg.faCoreThroughput(faSepCurve, fIwaLamD=dictMission["fIwaLamD"],
                                     fOwaLamD=dictMission["fOwaLamD"],
                                     fThroughputMax=dictMission["fCoreThroughputMax"])
-    faZeta = cg.faRawContrast(faSepLamD, fContrastFloor=dictMission["fContrastFloor"],
+    faZeta = cg.faRawContrast(faSepCurve, fContrastFloor=dictMission["fContrastFloor"],
                               fOwaLamD=dictMission["fOwaLamD"])
-    fArea = np.pi * (dictMission["fDiameterM"] / 2.0) ** 2
+    fArea = fnCollectingAreaM2(dictMission)
     fThroughput = dictBand["fOpticalThroughput"] * dictMission["fContaminationThroughput"] * \
         dictMission["fDetectiveQuantumEfficiency"] * dictMission["fQuantumEfficiency"] * \
         dictMission.get("fThroughputCalibration", 1.0)
@@ -87,14 +136,16 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     fOmega = ph.fnPhotometricApertureSolidAngle(dictBand["fLambdaM"], dictMission["fDiameterM"],
                                                 dictMission["fApertureRadiusLamD"])
     fZeroMag = ph.fnZeroMagPhotonFlux(dictBand["fLambdaM"]) * (fBandwidthM * 1e6)
-    fZodi = fZeroMag * 10 ** (-0.4 * dictMission["fZodiMagArcsec2"]) * fOmega * fArea * fThroughput
-    faExozodiMag = dictMission["fExozodiMagArcsec2"] + \
-        5.0 * np.log10(np.atleast_1d(dictPlanets["faAxisScaled"])[:, None])
+    fBackground = fOmega * fArea * fThroughput * fnSkyThroughputFor(dictMission)
+    fZodi = fZeroMag * 10 ** (-0.4 * dictMission["fZodiMagArcsec2"]) * fBackground
+    fExozodiScale = ph.fnExozodiSurfaceBrightnessScale(
+        dictBand["fLambdaM"], dictStar["fTeffK"], dictStar["fRadiusRsun"],
+        dictStar["fLuminosityLsun"])
     fExozodiLevel = dictStar.get("fExozodiLevel", dictMission["fExozodiLevel"])
-    faExozodi = fExozodiLevel * fZeroMag * 10 ** (-0.4 * faExozodiMag) * \
-        fOmega * fArea * fThroughput
+    fExozodi = fExozodiLevel * fZeroMag * 10 ** (-0.4 * dictMission["fExozodiMagArcsec2"]) * \
+        fExozodiScale * fBackground
     return dict(faPlanet=fStarRate * faUpsilon * faFluxRatio,
-                faLeak=fStarRate * faUpsilon * faZeta, fZodi=fZodi, faExozodi=faExozodi,
+                faLeak=fStarRate * faUpsilon * faZeta, fZodi=fZodi, fExozodi=fExozodi,
                 faFluxRatio=faFluxRatio, faSepLamD=faSepLamD, faUpsilon=faUpsilon)
 
 
@@ -106,7 +157,7 @@ def faRequiredExposureTime(listBandRates, listBands, fSignalToNoise, dictMission
     """
     faInverseTau = np.zeros_like(listBandRates[0]["faPlanet"])
     for dictRates, dictBand in zip(listBandRates, listBands):
-        faAstro = dictRates["faLeak"] + dictRates["fZodi"] + dictRates["faExozodi"]
+        faAstro = dictRates["faLeak"] + dictRates["fZodi"] + dictRates["fExozodi"]
         faBrightest = (faAstro + dictRates["faPlanet"]) / dictBand["iNumPixels"]
         faDetector = ph.faDetectorCountRate(faBrightest, dictBand["iNumPixels"],
                                             dictMission["fDarkCurrent"],

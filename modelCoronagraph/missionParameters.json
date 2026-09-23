@@ -1,6 +1,8 @@
 {
   "dictMission": {
     "fDiameterM": 6.0,
+    "fCircumscribedRatio": 1.1940298507462686,
+    "fApertureFillFactor": 0.785,
     "fIwaLamD": 3.89,
     "fOwaLamD": 32.0,
     "fCoreThroughputMax": 0.46,

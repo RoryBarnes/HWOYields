@@ -1,71 +1,71 @@
 {
   "fTargetYield": 22.5,
   "iStarsScreened": 1500,
-  "fCalibratedThroughputFactor": 1.4859320860199425,
-  "fCalibratedYield": 22.500600000000002,
-  "fRelativeError": 2.6666666666762415e-05,
+  "fCalibratedThroughputFactor": 1.4289121427167732,
+  "fCalibratedYield": 22.500199999999992,
+  "fRelativeError": 8.888888888552376e-06,
   "bTargetReached": true,
   "fMaxPlausibleFactor": 2.0,
   "bFactorPlausible": true,
   "bCalibrationGatePassed": true,
   "sGateNote": "The gate requires BOTH that the target was reached AND that the fitted factor stays within a factor of two of unity. Hitting the target with an implausible factor means the scalar is absorbing missing physics rather than an instrumental unknown, which is not a pass.",
-  "fUncalibratedYield": 19.490700000000004,
+  "fUncalibratedYield": 19.628800000000005,
   "listTrace": [
     {
       "fCalibration": 1.0,
-      "fYield": 19.490700000000004
+      "fYield": 19.628800000000005
     },
     {
       "fCalibration": 4.47213595499958,
-      "fYield": 31.405800000000003
+      "fYield": 32.1252
     },
     {
       "fCalibration": 2.114742526881128,
-      "fYield": 25.2516
+      "fYield": 25.7254
     },
     {
       "fCalibration": 1.4542154334489537,
-      "fYield": 22.341599999999996
+      "fYield": 22.64019999999999
     },
     {
-      "fCalibration": 1.7536508262369037,
-      "fYield": 23.7822
+      "fCalibration": 1.2059085510306964,
+      "fYield": 21.133
     },
     {
-      "fCalibration": 1.5969302102453364,
-      "fYield": 23.053499999999996
+      "fCalibration": 1.3242548192235903,
+      "fYield": 21.878200000000003
     },
     {
-      "fCalibration": 1.5239030670878153,
-      "fYield": 22.6869
+      "fCalibration": 1.3877145945525324,
+      "fYield": 22.262400000000003
     },
     {
-      "fCalibration": 1.4886515237755602,
-      "fYield": 22.512599999999996
+      "fCalibration": 1.420575932719068,
+      "fYield": 22.452999999999996
     },
     {
-      "fCalibration": 1.471332736297851,
-      "fYield": 22.43220000000001
+      "fCalibration": 1.4372972711816476,
+      "fYield": 22.544999999999998
     },
     {
-      "fCalibration": 1.4799667968811532,
-      "fYield": 22.474500000000013
+      "fCalibration": 1.4289121427167732,
+      "fYield": 22.500199999999992
     },
     {
-      "fCalibration": 1.4843028084977687,
-      "fYield": 22.49280000000001
+      "fCalibration": 1.424737940785421,
+      "fYield": 22.475999999999992
     },
     {
-      "fCalibration": 1.4864755758553676,
-      "fYield": 22.503
+      "fCalibration": 1.4268235152875703,
+      "fYield": 22.488199999999992
     },
     {
-      "fCalibration": 1.4853887948969657,
-      "fYield": 22.497900000000005
+      "fCalibration": 1.4278674471071329,
+      "fYield": 22.492799999999985
     },
     {
-      "fCalibration": 1.4859320860199425,
-      "fYield": 22.500600000000002
+      "fCalibration": 1.4283896994032763,
+      "fYield": 22.495199999999983
     }
   ]
 }

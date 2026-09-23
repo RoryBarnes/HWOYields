@@ -29,6 +29,8 @@ the exact opposite of observed behaviour.
 | F10 | A direct `project.json` write was silently blanked for the newest step | Confirmed | Its whole test suite was disabled with no error. |
 | F9 | `create-step` silently overrides the supplied `sDirectory`, capitalising it | Confirmed | Directory did not exist on disk; `update-step` will not set it back. |
 | F8 | Determinism scanner cannot see unseeded global-RNG use | Working as documented | Included because the quantitative tier caught it — a design win worth knowing about. |
+| F11 | `generate-tests-deterministic` fails for **every** step and category | **Confirmed, new** | The canonical test generator is unusable; the substitute script stays load-bearing. |
+| F12 | `vaibify-do` became usable mid-session with no signal | **Confirmed, new** | Everything in §3 was compensation for a condition that silently cleared. |
 
 ---
 
@@ -273,6 +275,7 @@ clean common factor; recorded as observations rather than a diagnosis.
 | `run-step A02` | succeeded | Includes a plot command; emitted `[testResult]`. |
 | `run-selected-steps A06 A07` | succeeded | Both have plot commands. |
 | `run-test-category` ×24 | succeeded | Always, every time. |
+| `run-from-step A02` | **hung**, 16 min at zero CPU | New, 2026-09-22. See below — the first instance with a plausible cause. |
 
 **Two corrections to earlier drafts of this report, both mine.** I first wrote that the common
 factor was "actions that fan out over sub-commands without running data commands". That was
@@ -290,6 +293,32 @@ timeout, which is why each instance cost several minutes.
 **A trap for whoever reads the logs.** The shell task wrapping a killed `vaibify-do` can report
 **exit code 0** when a later chained command succeeds. Taking that at face value suggests the
 action completed. It did not. One of these four nearly made me retract a correct finding.
+
+**A fifth instance, with a candidate cause (2026-09-22).** `run-from-step A02` sat for sixteen
+minutes at 0:00 CPU having started no step. This one was diagnosable from inside the container,
+and the two read-only actions `CLAUDE.md` prescribes did their job:
+
+```
+$ vaibify-do get-pipeline-state
+  "bRunning": false,  "sPhase": "terminal",  "iActiveStep": -1,
+  "sEndTime": "2026-09-22T23:15:30", "sAction": "runFrom:2"
+```
+
+The recorded state was the **previous** run, already finished — so the new dispatch had never
+reached the runner at all, rather than starting and stalling. That is a materially different
+failure from the earlier four, where outputs showed steps had partly executed.
+
+The candidate cause is contention: this container was simultaneously running a **different
+project's** pipeline (`dataRunShieldsBitzBenchmarks.py`, not part of `hwoYieldRederivation`),
+visible in `ps` but invisible to every `vaibify-do` action I can call. Killing the hung client
+and re-issuing the identical command worked immediately. If the runner is per-container rather
+than per-project, a second project's run would produce exactly this signature, and an agent
+has no way to see it — `get-pipeline-state` reports only its own project.
+
+*Suggested fix.* Have a run action that cannot acquire the runner return a refusal naming the
+holder, instead of blocking silently. `sFailureReason` already exists for the symptom vocabulary;
+a `runner_busy` value with the occupying project would turn sixteen minutes of ambiguity into
+one line.
 
 ## 8. F7 — the resolved path is visible in exactly one place
 
@@ -415,6 +444,73 @@ Stated for balance, since a report of only friction is a distorted one.
   they belong in `pythonPackages` in `vaibify.yml`. Note `pytest` being absent from an image
   whose `CLAUDE.md` says "Test changes with `pytest` before committing" is its own small
   inconsistency.
+
+## 11b. F11 — `generate-tests-deterministic` fails for every step and every category
+
+**Status: confirmed, new on 2026-09-22.** Once `vaibify-do` became usable (F12) I tried to
+retire my substitute generator in favour of the canonical action, as `CLAUDE.md` instructs
+("Prefer the generator over hand-writing a test"). Every invocation fails:
+
+```
+$ vaibify-do generate-tests-deterministic A01
+{"detail":[{"input":null,"loc":["body"],"msg":"Field required","type":"missing"}]}
+
+$ vaibify-do generate-tests-deterministic A01 sCategory=integrity
+{"detail": "Pipeline action failed. Check server logs for details."}
+```
+
+The first response is informative: with no arguments the CLI sends no request body and the
+endpoint requires one, so `sCategory` is effectively mandatory even though `--describe` says
+"omit sCategory for all three". The second is the real failure, and it is **not** specific to
+one step or one category — `A01` and `A02`, and `integrity`, `qualitative` and `quantitative`,
+all return it identically.
+
+`vaibify-do get-host-log-tail --lines 100` returns `{"bSanitized": true, "listIncidents": []}`.
+Per `CLAUDE.md` an empty incident list does not mean nothing went wrong, and that is the case
+here: something failed server-side and left no container-tagged record. **From inside the
+container there is no further diagnostic step available** — which is itself the finding, because
+the documented escalation path ("use these BEFORE asking the researcher to investigate from the
+host") terminates with no information.
+
+*Impact.* The generator is the one route that derives assertions from the data rather than from
+the agent's reading of the data, and `CLAUDE.md` rightly tells agents to reach for it first. With
+it unavailable, test content is AI-authored by whatever the agent writes instead. In this project
+that is `explorations/generateStepTests.py`, which introspects the same declared output files and
+pins real columns, keys and values — but it is my code, reviewed by nobody, and it is now
+load-bearing for all thirty test categories in the project.
+
+*Suggested fix.* Make the CLI send `{}` when no arguments are given, so the documented "omit
+sCategory" form works; and surface the server-side exception through `get-host-log-tail`, which
+is the action an agent is told to use and which currently reports nothing for this failure.
+
+---
+
+## 11c. F12 — `vaibify-do` became usable mid-session, with no signal either way
+
+**Status: confirmed, new on 2026-09-22.** Sections 2 and 3 of this report describe a long
+sequence of compensations for `vaibify-do` refusing every project-scoped action. Partway through
+the following session `vaibify-do --list` began working and every action became available, with
+no message, no state change I could observe, and nothing I did to cause it. The most likely
+explanation is that the researcher opened the project in the dashboard, which is exactly the
+gating condition §2 describes — but the container is never told, before or after.
+
+Two consequences worth designing against:
+
+1. **An agent cannot distinguish "not yet connected" from "broken".** `CLAUDE.md` says to read a
+   missing `/tmp/vaibify-session.env` as "not connected yet". Here the file existed throughout
+   and the actions refused anyway, which is a third state the documentation does not name.
+2. **Work done during the blind period does not get retrofitted.** Ten steps, their commands,
+   outputs, input-data declarations and test categories were all written directly into
+   `project.json`. They work, but they were never validated by the schema on the way in, and
+   `F10` is what that costs: one step's whole test block was silently blanked and nothing
+   reported it.
+
+*Suggested fix.* A single read-only action — or a line in `vaibify-do --list` output — stating
+whether a project is currently open and which one. An agent that can ask "am I connected to a
+project?" can branch correctly; an agent that can only discover it by having an action refused
+will write a workaround instead, and the workaround is what persists.
+
+---
 
 ## 12. The one-paragraph version
 

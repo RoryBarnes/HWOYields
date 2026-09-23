@@ -54,3 +54,40 @@ def faRawContrast(faSeparationLamD, fContrastFloor=F_DEFAULT_CONTRAST_FLOOR,
 def fnLambdaOverDArcsec(fLambdaM, fDiameterM):
     """Diffraction scale lambda/D in arcseconds."""
     return (fLambdaM / fDiameterM) * 206264.80624709636
+
+
+def fnAiryEncircledEnergy(fApertureRadiusLamD):
+    """Fraction of an unobscured Airy pattern inside a circular aperture of the given radius.
+
+    EE(r) = 1 - J0(u)^2 - J1(u)^2 with u = pi * r in units of lambda/D. At Stark's photometric
+    aperture radius of 0.7 lambda/D this returns 0.679, which is the 0.69 that Ref. stark2019
+    quotes as the value Upsilon took before it became a simulated, separation-dependent curve.
+    """
+    from scipy.special import j0, j1
+    fU = np.pi * float(fApertureRadiusLamD)
+    return float(1.0 - j0(fU) ** 2 - j1(fU) ** 2)
+
+
+def fnSkyThroughput(fThroughputMax=F_DEFAULT_CORE_THROUGHPUT_MAX,
+                    fApertureRadiusLamD=0.7):
+    """T_sky, the coronagraph's throughput for an extended source (Stark et al. 2019 Eqs. 5-6).
+
+    Both the zodiacal and exozodiacal count rates carry a factor T_sky(x,y) that the point-source
+    terms do not, because a uniform background is attenuated by the coronagraph masks without
+    also paying the core-fraction penalty a planet PSF pays. Stark computes it by convolving the
+    spatially-dependent PSF with a normalised uniform background; that map is not published, so
+    it is reconstructed here from the two numbers that are.
+
+    Upsilon_c differs from an ideal system's encircled energy by exactly the coronagraph's own
+    transmission loss -- the focal-plane mask, the Lyot stop, and for the DMVC the light beyond
+    the inscribed pupil diameter that the Lyot stop must discard (Ref. stark2019 Sec. 6.2). That
+    loss applies to an extended source too, while the encircled-energy penalty does not, so
+
+        T_sky = Upsilon_c,max / EE(X)  =  0.46 / 0.679  =  0.677.
+
+    Omitting it, as this pipeline did until this was found, overstates the zodiacal and
+    exozodiacal backgrounds by a factor of 1.48. The error is nearly harmless for the nearest
+    stars, whose noise budget is dominated by leaked starlight, and severe for distant ones,
+    whose planets are faint enough that the zodiacal terms set the exposure time.
+    """
+    return min(1.0, float(fThroughputMax) / fnAiryEncircledEnergy(fApertureRadiusLamD))

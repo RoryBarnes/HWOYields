@@ -1,145 +1,139 @@
 {
-  "iMatched": 145,
+  "iMatched": 141,
   "iPublishedTargets": 154,
-  "iModelStarsUsed": 169,
+  "iModelStarsUsed": 168,
   "fPublishedSummedCompleteness": 77.39915074309978,
-  "fModelSummedCompleteness": 93.75133333333335,
+  "fModelSummedCompleteness": 93.67066666666666,
   "fMedianPublished": 0.5010615711252654,
-  "fMedianModel": 0.04933333333333333,
-  "fMedianRatio": 0.13149105986006737,
-  "fTrendWithDistance": -0.0067100939501439465,
+  "fMedianModel": 0.20866666666666667,
+  "fMedianRatio": 0.5140415921288014,
+  "fTrendWithDistance": -0.012024372930482467,
   "listRows": [
     {
       "fDistancePc": 4.241773794463272,
       "fLuminosityLsun": 8.448518911238173,
       "fCompletenessPublished": 0.18259023354564755,
-      "fCompletenessModel": 0.3446666666666667
+      "fCompletenessModel": 0.21666666666666667
     },
     {
       "fDistancePc": 2.070896515266705,
       "fLuminosityLsun": 1.9448930004413993,
       "fCompletenessPublished": 0.4288747346072187,
-      "fCompletenessModel": 0.31666666666666665
+      "fCompletenessModel": 0.21533333333333332
     },
     {
       "fDistancePc": 12.163418432627887,
       "fLuminosityLsun": 10.301993560924709,
       "fCompletenessPublished": 0.2760084925690021,
-      "fCompletenessModel": 0.312
+      "fCompletenessModel": 0.2986666666666667
     },
     {
       "fDistancePc": 16.234351876755007,
       "fLuminosityLsun": 9.685115200656437,
       "fCompletenessPublished": 0.267515923566879,
-      "fCompletenessModel": 0.2673333333333333
+      "fCompletenessModel": 0.202
     },
     {
       "fDistancePc": 14.766603847610051,
       "fLuminosityLsun": 3.705897118474596,
       "fCompletenessPublished": 0.7430997876857749,
-      "fCompletenessModel": 0.4686666666666667
+      "fCompletenessModel": 0.0
     },
     {
       "fDistancePc": 3.2813001317759785,
       "fLuminosityLsun": 0.028004597841292375,
       "fCompletenessPublished": 0.9957537154989384,
-      "fCompletenessModel": 0.954
+      "fCompletenessModel": 0.624
     },
     {
       "fDistancePc": 13.256576169766747,
       "fLuminosityLsun": 10.214955393842882,
       "fCompletenessPublished": 0.28874734607218683,
-      "fCompletenessModel": 0.312
+      "fCompletenessModel": 0.2986666666666667
     },
     {
       "fDistancePc": 14.374484955361295,
       "fLuminosityLsun": 9.260003229593021,
       "fCompletenessPublished": 0.33121019108280253,
-      "fCompletenessModel": 0.14866666666666667
+      "fCompletenessModel": 0.344
     },
     {
       "fDistancePc": 17.271188765968823,
       "fLuminosityLsun": 12.777474723472004,
       "fCompletenessPublished": 0.18259023354564755,
-      "fCompletenessModel": 0.08333333333333333
+      "fCompletenessModel": 0.094
     },
     {
       "fDistancePc": 15.213211684526462,
       "fLuminosityLsun": 10.750566965280102,
       "fCompletenessPublished": 0.22505307855626328,
-      "fCompletenessModel": 0.14866666666666667
+      "fCompletenessModel": 0.202
     },
     {
       "fDistancePc": 9.887896054541143,
       "fLuminosityLsun": 3.8602125754481906,
       "fCompletenessPublished": 0.7749469214437367,
-      "fCompletenessModel": 0.802
+      "fCompletenessModel": 0.8006666666666666
     },
     {
       "fDistancePc": 8.813739225077752,
       "fLuminosityLsun": 3.346125221896587,
       "fCompletenessPublished": 0.8386411889596603,
-      "fCompletenessModel": 0.802
+      "fCompletenessModel": 0.8006666666666666
     },
     {
       "fDistancePc": 9.125885362900208,
       "fLuminosityLsun": 3.1368501932202277,
       "fCompletenessPublished": 0.7473460721868365,
-      "fCompletenessModel": 0.802
+      "fCompletenessModel": 0.8006666666666666
     },
     {
       "fDistancePc": 4.39823190229991,
       "fLuminosityLsun": 0.609268042514917,
       "fCompletenessPublished": 0.9469214437367304,
-      "fCompletenessModel": 0.974
+      "fCompletenessModel": 0.9873333333333333
     },
     {
       "fDistancePc": 6.868861815299871,
       "fLuminosityLsun": 1.467327518218759,
       "fCompletenessPublished": 0.6178343949044586,
-      "fCompletenessModel": 0.9846666666666667
+      "fCompletenessModel": 0.98
     },
     {
       "fDistancePc": 6.689795307336039,
       "fLuminosityLsun": 1.4846998301841703,
       "fCompletenessPublished": 0.9745222929936306,
-      "fCompletenessModel": 0.9846666666666667
-    },
-    {
-      "fDistancePc": 20.561320940412784,
-      "fLuminosityLsun": 15.827739776689935,
-      "fCompletenessPublished": 0.06369426751592357,
-      "fCompletenessModel": 0.08533333333333333
+      "fCompletenessModel": 0.98
     },
     {
       "fDistancePc": 3.960978984684683,
       "fLuminosityLsun": 0.4008320841138482,
       "fCompletenessPublished": 0.9830148619957537,
-      "fCompletenessModel": 0.996
+      "fCompletenessModel": 0.9926666666666667
     },
     {
       "fDistancePc": 11.81528218062419,
       "fLuminosityLsun": 4.319580256489775,
       "fCompletenessPublished": 0.7282377919320594,
-      "fCompletenessModel": 0.636
+      "fCompletenessModel": 0.6286666666666667
     },
     {
       "fDistancePc": 9.699043790769297,
       "fLuminosityLsun": 2.762952562633979,
       "fCompletenessPublished": 0.8938428874734607,
-      "fCompletenessModel": 0.8933333333333333
+      "fCompletenessModel": 0.8006666666666666
     },
     {
       "fDistancePc": 11.979637826948325,
       "fLuminosityLsun": 3.474585908139285,
       "fCompletenessPublished": 0.8259023354564756,
-      "fCompletenessModel": 0.736
+      "fCompletenessModel": 0.7226666666666667
     },
     {
       "fDistancePc": 15.807983178419553,
       "fLuminosityLsun": 6.633107318688733,
       "fCompletenessPublished": 0.5201698513800425,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.202
     },
     {
       "fDistancePc": 23.27937008204804,
@@ -151,97 +145,97 @@
       "fDistancePc": 20.025397642457285,
       "fLuminosityLsun": 9.756194510946699,
       "fCompletenessPublished": 0.19745222929936304,
-      "fCompletenessModel": 0.017333333333333333
+      "fCompletenessModel": 0.11333333333333333
     },
     {
       "fDistancePc": 5.872890956104111,
       "fLuminosityLsun": 0.602735722933773,
       "fCompletenessPublished": 0.4968152866242038,
-      "fCompletenessModel": 0.9886666666666667
+      "fCompletenessModel": 0.9773333333333334
     },
     {
       "fDistancePc": 11.38516147302448,
       "fLuminosityLsun": 2.6472413340168144,
       "fCompletenessPublished": 0.6815286624203821,
-      "fCompletenessModel": 0.5353333333333333
+      "fCompletenessModel": 0.8373333333333334
     },
     {
       "fDistancePc": 22.43140241867328,
       "fLuminosityLsun": 10.794438903135156,
       "fCompletenessPublished": 0.19745222929936304,
-      "fCompletenessModel": 0.08266666666666667
+      "fCompletenessModel": 0.0
     },
     {
       "fDistancePc": 6.81057234985578,
       "fLuminosityLsun": 0.7768075231924167,
       "fCompletenessPublished": 0.9915074309978769,
-      "fCompletenessModel": 0.9893333333333333
+      "fCompletenessModel": 0.9773333333333334
     },
     {
       "fDistancePc": 22.942123477185604,
       "fLuminosityLsun": 10.790186270562762,
       "fCompletenessPublished": 0.08067940552016985,
-      "fCompletenessModel": 0.08266666666666667
+      "fCompletenessModel": 0.0
     },
     {
       "fDistancePc": 11.962495961837773,
       "fLuminosityLsun": 2.7253200851954578,
       "fCompletenessPublished": 0.8704883227176221,
-      "fCompletenessModel": 0.5353333333333333
+      "fCompletenessModel": 0.8373333333333334
     },
     {
       "fDistancePc": 14.501123749063408,
       "fLuminosityLsun": 3.9716816687084457,
       "fCompletenessPublished": 0.7473460721868365,
-      "fCompletenessModel": 0.018666666666666668
+      "fCompletenessModel": 0.656
     },
     {
       "fDistancePc": 5.768840886531251,
       "fLuminosityLsun": 0.5020452764878932,
       "fCompletenessPublished": 0.9957537154989384,
-      "fCompletenessModel": 0.9906666666666667
+      "fCompletenessModel": 0.9633333333333334
     },
     {
       "fDistancePc": 20.378608944966693,
       "fLuminosityLsun": 8.339615463637045,
       "fCompletenessPublished": 0.3036093418259023,
-      "fCompletenessModel": 0.04933333333333333
+      "fCompletenessModel": 0.11333333333333333
     },
     {
       "fDistancePc": 15.825389651778393,
       "fLuminosityLsun": 5.088382989832646,
       "fCompletenessPublished": 0.016985138004246284,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.5166666666666667
     },
     {
       "fDistancePc": 20.533618492264594,
       "fLuminosityLsun": 10.394639841145159,
       "fCompletenessPublished": 0.2208067940552017,
-      "fCompletenessModel": 0.017333333333333333
+      "fCompletenessModel": 0.11333333333333333
     },
     {
       "fDistancePc": 4.384481772146323,
       "fLuminosityLsun": 0.2599975867135281,
       "fCompletenessPublished": 0.9639065817409767,
-      "fCompletenessModel": 0.9946666666666667
+      "fCompletenessModel": 0.994
     },
     {
       "fDistancePc": 9.996453284609919,
       "fLuminosityLsun": 1.663261021082621,
       "fCompletenessPublished": 0.9511677282377919,
-      "fCompletenessModel": 0.9113333333333333
+      "fCompletenessModel": 0.96
     },
     {
       "fDistancePc": 10.056373483194443,
       "fLuminosityLsun": 1.7127565777696725,
       "fCompletenessPublished": 0.9554140127388535,
-      "fCompletenessModel": 0.9113333333333333
+      "fCompletenessModel": 0.96
     },
     {
       "fDistancePc": 15.4798723429501,
       "fLuminosityLsun": 4.366583735418203,
       "fCompletenessPublished": 0.5987261146496815,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.286
     },
     {
       "fDistancePc": 18.662383593434626,
@@ -253,7 +247,7 @@
       "fDistancePc": 6.529600795336981,
       "fLuminosityLsun": 0.507685517113487,
       "fCompletenessPublished": 0.9957537154989384,
-      "fCompletenessModel": 0.9873333333333333
+      "fCompletenessModel": 0.9773333333333334
     },
     {
       "fDistancePc": 21.321784691525224,
@@ -265,31 +259,31 @@
       "fDistancePc": 7.5273903273777325,
       "fLuminosityLsun": 0.6495400884769728,
       "fCompletenessPublished": 0.15711252653927812,
-      "fCompletenessModel": 0.9873333333333333
+      "fCompletenessModel": 0.9773333333333334
     },
     {
       "fDistancePc": 16.762296218300442,
       "fLuminosityLsun": 3.7095965305778926,
       "fCompletenessPublished": 0.7473460721868365,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.532
     },
     {
       "fDistancePc": 4.239754969225345,
       "fLuminosityLsun": 0.18489283984559035,
       "fCompletenessPublished": 0.9957537154989384,
-      "fCompletenessModel": 0.994
+      "fCompletenessModel": 0.996
     },
     {
       "fDistancePc": 9.325437298660704,
       "fLuminosityLsun": 0.9855044450446103,
       "fCompletenessPublished": 0.9787685774946921,
-      "fCompletenessModel": 0.782
+      "fCompletenessModel": 0.9706666666666667
     },
     {
       "fDistancePc": 16.61190035328046,
       "fLuminosityLsun": 3.7748464820986416,
       "fCompletenessPublished": 0.6326963906581741,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.532
     },
     {
       "fDistancePc": 23.724112091572636,
@@ -301,7 +295,7 @@
       "fDistancePc": 13.39024404411582,
       "fLuminosityLsun": 2.091805084689796,
       "fCompletenessPublished": 0.7430997876857749,
-      "fCompletenessModel": 0.564
+      "fCompletenessModel": 0.0
     },
     {
       "fDistancePc": 21.29311879796019,
@@ -319,25 +313,25 @@
       "fDistancePc": 21.357462703670016,
       "fLuminosityLsun": 5.031031559067879,
       "fCompletenessPublished": 0.3205944798301486,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.058666666666666666
     },
     {
       "fDistancePc": 10.072436560831177,
       "fLuminosityLsun": 1.0334004910632453,
       "fCompletenessPublished": 0.9723991507430998,
-      "fCompletenessModel": 0.636
+      "fCompletenessModel": 0.948
     },
     {
       "fDistancePc": 12.518522701836625,
       "fLuminosityLsun": 1.7406266197002342,
       "fCompletenessPublished": 0.9044585987261147,
-      "fCompletenessModel": 0.564
+      "fCompletenessModel": 0.0
     },
     {
       "fDistancePc": 18.27254101060388,
       "fLuminosityLsun": 3.907636376449855,
       "fCompletenessPublished": 0.34182590233545646,
-      "fCompletenessModel": 0.22066666666666668
+      "fCompletenessModel": 0.18933333333333333
     },
     {
       "fDistancePc": 19.79212172469323,
@@ -349,7 +343,7 @@
       "fDistancePc": 13.779628651132212,
       "fLuminosityLsun": 1.907428688393765,
       "fCompletenessPublished": 0.8301486199575372,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.20866666666666667
     },
     {
       "fDistancePc": 22.697106416506934,
@@ -373,7 +367,7 @@
       "fDistancePc": 12.894330870267554,
       "fLuminosityLsun": 1.567877323675267,
       "fCompletenessPublished": 0.8471337579617835,
-      "fCompletenessModel": 0.21866666666666668
+      "fCompletenessModel": 0.8733333333333333
     },
     {
       "fDistancePc": 24.42871297057438,
@@ -385,37 +379,37 @@
       "fDistancePc": 15.805771324856897,
       "fLuminosityLsun": 2.360300238077045,
       "fCompletenessPublished": 0.2526539278131635,
-      "fCompletenessModel": 0.234
+      "fCompletenessModel": 0.0
     },
     {
       "fDistancePc": 18.04570728596172,
       "fLuminosityLsun": 3.184264550316143,
       "fCompletenessPublished": 0.3078556263269639,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.32466666666666666
     },
     {
       "fDistancePc": 19.340350634521677,
       "fLuminosityLsun": 3.4594422950566415,
       "fCompletenessPublished": 0.2802547770700637,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.054
     },
     {
       "fDistancePc": 6.77932279421511,
       "fLuminosityLsun": 0.30454228609427747,
       "fCompletenessPublished": 0.11040339702760085,
-      "fCompletenessModel": 0.9893333333333333
+      "fCompletenessModel": 0.9853333333333333
     },
     {
       "fDistancePc": 15.428053227659452,
       "fLuminosityLsun": 2.0825437557353075,
       "fCompletenessPublished": 0.4734607218683652,
-      "fCompletenessModel": 0.036
+      "fCompletenessModel": 0.17533333333333334
     },
     {
       "fDistancePc": 8.42678697849758,
       "fLuminosityLsun": 0.5368822189962988,
       "fCompletenessPublished": 0.31634819532908703,
-      "fCompletenessModel": 0.928
+      "fCompletenessModel": 0.9173333333333333
     },
     {
       "fDistancePc": 16.459011064382345,
@@ -427,19 +421,19 @@
       "fDistancePc": 15.769034879718935,
       "fLuminosityLsun": 1.9937965411557965,
       "fCompletenessPublished": 0.861995753715499,
-      "fCompletenessModel": 0.292
+      "fCompletenessModel": 0.16466666666666666
     },
     {
       "fDistancePc": 19.69527849823156,
       "fLuminosityLsun": 3.2452927610066133,
       "fCompletenessPublished": 0.36942675159235666,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.054
     },
     {
       "fDistancePc": 20.37696701686191,
       "fLuminosityLsun": 3.3062765864600303,
       "fCompletenessPublished": 0.23354564755838642,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.034666666666666665
     },
     {
       "fDistancePc": 21.120692600063137,
@@ -451,25 +445,25 @@
       "fDistancePc": 20.477555467760958,
       "fLuminosityLsun": 3.48505014973423,
       "fCompletenessPublished": 0.1613588110403397,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.034666666666666665
     },
     {
       "fDistancePc": 7.314753852980514,
       "fLuminosityLsun": 0.3395785382840375,
       "fCompletenessPublished": 0.9554140127388535,
-      "fCompletenessModel": 0.9766666666666667
+      "fCompletenessModel": 0.984
     },
     {
       "fDistancePc": 4.2395616016592825,
       "fLuminosityLsun": 0.12230507802502279,
       "fCompletenessPublished": 0.9087048832271762,
-      "fCompletenessModel": 0.9846666666666667
+      "fCompletenessModel": 0.986
     },
     {
       "fDistancePc": 12.867225486884747,
       "fLuminosityLsun": 1.191834117600035,
       "fCompletenessPublished": 0.7664543524416135,
-      "fCompletenessModel": 0.13133333333333333
+      "fCompletenessModel": 0.024666666666666667
     },
     {
       "fDistancePc": 26.224554873121583,
@@ -493,13 +487,13 @@
       "fDistancePc": 6.652116788985884,
       "fLuminosityLsun": 0.2611800351845471,
       "fCompletenessPublished": 0.9872611464968153,
-      "fCompletenessModel": 0.9706666666666667
+      "fCompletenessModel": 0.9853333333333333
     },
     {
       "fDistancePc": 12.051662156685518,
       "fLuminosityLsun": 0.9393967128377991,
       "fCompletenessPublished": 0.692144373673036,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.196
     },
     {
       "fDistancePc": 17.480731359309083,
@@ -511,25 +505,25 @@
       "fDistancePc": 15.778065484295281,
       "fLuminosityLsun": 1.6057688105755428,
       "fCompletenessPublished": 0.7133757961783439,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.5613333333333334
     },
     {
       "fDistancePc": 15.429769788859913,
       "fLuminosityLsun": 1.5204446832802314,
       "fCompletenessPublished": 0.7834394904458598,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.5586666666666666
     },
     {
       "fDistancePc": 9.585740574298447,
       "fLuminosityLsun": 0.5400226382156494,
       "fCompletenessPublished": 0.910828025477707,
-      "fCompletenessModel": 0.5533333333333333
+      "fCompletenessModel": 0.9566666666666667
     },
     {
       "fDistancePc": 13.724810642360916,
       "fLuminosityLsun": 1.1705841007703341,
       "fCompletenessPublished": 0.6178343949044586,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.6646666666666666
     },
     {
       "fDistancePc": 18.380725075194306,
@@ -541,19 +535,19 @@
       "fDistancePc": 16.377063925334177,
       "fLuminosityLsun": 1.6153868760918433,
       "fCompletenessPublished": 0.3927813163481953,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.068
     },
     {
       "fDistancePc": 8.008763617223662,
       "fLuminosityLsun": 0.33088910166447755,
       "fCompletenessPublished": 0.9681528662420382,
-      "fCompletenessModel": 0.6613333333333333
+      "fCompletenessModel": 0.756
     },
     {
       "fDistancePc": 14.073964618396518,
       "fLuminosityLsun": 1.132579641402381,
       "fCompletenessPublished": 0.613588110403397,
-      "fCompletenessModel": 0.068
+      "fCompletenessModel": 0.6646666666666666
     },
     {
       "fDistancePc": 21.303509760325845,
@@ -571,7 +565,7 @@
       "fDistancePc": 10.846249458828654,
       "fLuminosityLsun": 0.6282976613150127,
       "fCompletenessPublished": 0.9596602972399151,
-      "fCompletenessModel": 0.30266666666666664
+      "fCompletenessModel": 0.35533333333333333
     },
     {
       "fDistancePc": 18.681815337616946,
@@ -583,13 +577,13 @@
       "fDistancePc": 9.605372470873698,
       "fLuminosityLsun": 0.47495187960799856,
       "fCompletenessPublished": 0.1889596602972399,
-      "fCompletenessModel": 0.4513333333333333
+      "fCompletenessModel": 0.4633333333333333
     },
     {
       "fDistancePc": 8.979065101645626,
       "fLuminosityLsun": 0.40471601787625694,
       "fCompletenessPublished": 0.3354564755838641,
-      "fCompletenessModel": 0.2653333333333333
+      "fCompletenessModel": 0.9606666666666667
     },
     {
       "fDistancePc": 18.22416519495448,
@@ -607,13 +601,13 @@
       "fDistancePc": 10.697780484642392,
       "fLuminosityLsun": 0.5387992604361674,
       "fCompletenessPublished": 0.9723991507430998,
-      "fCompletenessModel": 0.30266666666666664
+      "fCompletenessModel": 0.35533333333333333
     },
     {
       "fDistancePc": 8.986355398127428,
       "fLuminosityLsun": 0.3570797578796199,
       "fCompletenessPublished": 0.29936305732484075,
-      "fCompletenessModel": 0.922
+      "fCompletenessModel": 0.9606666666666667
     },
     {
       "fDistancePc": 21.512356908910974,
@@ -625,7 +619,7 @@
       "fDistancePc": 4.718454358798141,
       "fLuminosityLsun": 0.12259368056518903,
       "fCompletenessPublished": 0.9872611464968153,
-      "fCompletenessModel": 0.9846666666666667
+      "fCompletenessModel": 0.986
     },
     {
       "fDistancePc": 11.920772668943515,
@@ -643,7 +637,7 @@
       "fDistancePc": 13.41380096304074,
       "fLuminosityLsun": 0.7442205227081528,
       "fCompletenessPublished": 0.5774946921443737,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.4093333333333333
     },
     {
       "fDistancePc": 15.900026139864112,
@@ -655,25 +649,25 @@
       "fDistancePc": 10.360055549484985,
       "fLuminosityLsun": 0.4351760601335803,
       "fCompletenessPublished": 0.6581740976645435,
-      "fCompletenessModel": 0.017333333333333333
+      "fCompletenessModel": 0.6473333333333333
     },
     {
       "fDistancePc": 9.63892683220527,
       "fLuminosityLsun": 0.3400112672078031,
       "fCompletenessPublished": 0.9639065817409767,
-      "fCompletenessModel": 0.14666666666666667
+      "fCompletenessModel": 0.7706666666666667
     },
     {
       "fDistancePc": 13.408525760142089,
       "fLuminosityLsun": 0.7140943635321098,
       "fCompletenessPublished": 0.15074309978768577,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.4093333333333333
     },
     {
       "fDistancePc": 11.169736434779862,
       "fLuminosityLsun": 0.47022010367911904,
       "fCompletenessPublished": 0.9447983014861996,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.35533333333333333
     },
     {
       "fDistancePc": 14.986445808153084,
@@ -709,7 +703,7 @@
       "fDistancePc": 8.384391987742278,
       "fLuminosityLsun": 0.22976202167595863,
       "fCompletenessPublished": 0.9681528662420382,
-      "fCompletenessModel": 0.3586666666666667
+      "fCompletenessModel": 0.2886666666666667
     },
     {
       "fDistancePc": 19.00875579044971,
@@ -721,13 +715,13 @@
       "fDistancePc": 13.093855666720524,
       "fLuminosityLsun": 0.5589905866821349,
       "fCompletenessPublished": 0.8471337579617835,
-      "fCompletenessModel": 0.03133333333333333
+      "fCompletenessModel": 0.0
     },
     {
       "fDistancePc": 5.627869146046628,
       "fLuminosityLsun": 0.1376912232517273,
       "fCompletenessPublished": 0.8025477707006369,
-      "fCompletenessModel": 0.9673333333333334
+      "fCompletenessModel": 0.9386666666666666
     },
     {
       "fDistancePc": 18.658936901379946,
@@ -739,13 +733,13 @@
       "fDistancePc": 10.87346339944152,
       "fLuminosityLsun": 0.34051510151069175,
       "fCompletenessPublished": 0.7707006369426751,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.21266666666666667
     },
     {
       "fDistancePc": 11.911161961668997,
       "fLuminosityLsun": 0.4255937401833105,
       "fCompletenessPublished": 0.7473460721868365,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.10466666666666667
     },
     {
       "fDistancePc": 4.030507176612982,
@@ -757,7 +751,7 @@
       "fDistancePc": 9.538830281254976,
       "fLuminosityLsun": 0.25722825683588607,
       "fCompletenessPublished": 0.8980891719745223,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.1
     },
     {
       "fDistancePc": 13.667879160016723,
@@ -769,13 +763,13 @@
       "fDistancePc": 9.96857443096288,
       "fLuminosityLsun": 0.2753570989303144,
       "fCompletenessPublished": 0.524416135881104,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.462
     },
     {
       "fDistancePc": 13.62469712934343,
       "fLuminosityLsun": 0.4720835597079494,
       "fCompletenessPublished": 0.37367303609341823,
-      "fCompletenessModel": 0.0
+      "fCompletenessModel": 0.19266666666666668
     },
     {
       "fDistancePc": 17.568045296418767,
@@ -799,13 +793,13 @@
       "fDistancePc": 6.468710366508704,
       "fLuminosityLsun": 0.06965461367590599,
       "fCompletenessPublished": 0.9447983014861996,
-      "fCompletenessModel": 0.08866666666666667
+      "fCompletenessModel": 0.8653333333333333
     },
     {
       "fDistancePc": 7.1044513590297615,
       "fLuminosityLsun": 0.0828887070671267,
       "fCompletenessPublished": 0.81104033970276,
-      "fCompletenessModel": 0.30133333333333334
+      "fCompletenessModel": 0.9646666666666667
     },
     {
       "fDistancePc": 12.26706684044949,
@@ -817,19 +811,19 @@
       "fDistancePc": 4.3060155885285685,
       "fLuminosityLsun": 0.027978724365739546,
       "fCompletenessPublished": 0.9830148619957537,
-      "fCompletenessModel": 0.38066666666666665
+      "fCompletenessModel": 0.624
     },
     {
       "fDistancePc": 6.933683372822001,
       "fLuminosityLsun": 0.07223660451221668,
       "fCompletenessPublished": 0.8577494692144374,
-      "fCompletenessModel": 0.30133333333333334
+      "fCompletenessModel": 0.8653333333333333
     },
     {
       "fDistancePc": 6.527673226020569,
       "fLuminosityLsun": 0.06039509588046661,
       "fCompletenessPublished": 0.9044585987261147,
-      "fCompletenessModel": 0.08866666666666667
+      "fCompletenessModel": 0.728
     },
     {
       "fDistancePc": 9.021466877227807,
@@ -844,40 +838,22 @@
       "fCompletenessModel": 0.0
     },
     {
-      "fDistancePc": 5.097532135302195,
-      "fLuminosityLsun": 0.02739606510590845,
-      "fCompletenessPublished": 0.861995753715499,
-      "fCompletenessModel": 0.38066666666666665
-    },
-    {
       "fDistancePc": 5.72431851330794,
       "fLuminosityLsun": 0.03486829755986434,
       "fCompletenessPublished": 0.7367303609341825,
-      "fCompletenessModel": 0.306
+      "fCompletenessModel": 0.068
     },
     {
       "fDistancePc": 4.267257604221921,
       "fLuminosityLsun": 0.01880061035273965,
       "fCompletenessPublished": 0.8492569002123143,
-      "fCompletenessModel": 0.38066666666666665
-    },
-    {
-      "fDistancePc": 5.3038940018014475,
-      "fLuminosityLsun": 0.02512786970436845,
-      "fCompletenessPublished": 0.47770700636942676,
-      "fCompletenessModel": 0.38066666666666665
+      "fCompletenessModel": 0.7926666666666666
     },
     {
       "fDistancePc": 4.682110076653798,
       "fLuminosityLsun": 0.018889952499447183,
       "fCompletenessPublished": 0.6326963906581741,
-      "fCompletenessModel": 0.38066666666666665
-    },
-    {
-      "fDistancePc": 5.307264703795081,
-      "fLuminosityLsun": 0.019941729036620837,
-      "fCompletenessPublished": 0.2611464968152866,
-      "fCompletenessModel": 0.38066666666666665
+      "fCompletenessModel": 0.7926666666666666
     }
   ]
 }

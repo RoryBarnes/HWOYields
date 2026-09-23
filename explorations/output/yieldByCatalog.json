@@ -1,0 +1,621 @@
+{
+  "fCalibration": 1.0,
+  "listCatalogs": [
+    {
+      "sLabel": "gaiaLegacy",
+      "iScreened": 1500,
+      "fYieldPlanning": 19.503199999999993,
+      "fYieldAlbedoDrawn": 18.7778,
+      "iStarsObserved": 151,
+      "fTotalTimeDays": 730.1501653123959,
+      "fSumCompleteness": 81.26333333333334,
+      "dictCumulativeYieldByRank": {
+        "10": 1.056,
+        "25": 3.605,
+        "50": 5.495,
+        "100": 10.293,
+        "200": 13.33,
+        "400": 17.166,
+        "800": 18.977,
+        "1500": 19.503
+      },
+      "dictYieldByDistance": {
+        "0-5": {
+          "iScreened": 17,
+          "iObserved": 17,
+          "fYield": 3.393
+        },
+        "5-10": {
+          "iScreened": 70,
+          "iObserved": 67,
+          "fYield": 11.823
+        },
+        "10-15": {
+          "iScreened": 108,
+          "iObserved": 48,
+          "fYield": 3.814
+        },
+        "15-20": {
+          "iScreened": 141,
+          "iObserved": 18,
+          "fYield": 0.467
+        },
+        "20-25": {
+          "iScreened": 169,
+          "iObserved": 1,
+          "fYield": 0.007
+        },
+        "25-30": {
+          "iScreened": 194,
+          "iObserved": 0,
+          "fYield": 0.0
+        },
+        "30-50": {
+          "iScreened": 801,
+          "iObserved": 0,
+          "fYield": 0.0
+        }
+      },
+      "listTopStars": [
+        {
+          "iRank": 0,
+          "sName": "HIP71683",
+          "fDistancePc": 1.35,
+          "fTeffK": 5568.0,
+          "fLuminosityLsun": 1.614,
+          "fEeidLamD": 49.87,
+          "fCompleteness": 0.315,
+          "fTimeDays": 0.97
+        },
+        {
+          "iRank": 1,
+          "sName": "HIP37279",
+          "fDistancePc": 3.5,
+          "fTeffK": 6714.0,
+          "fLuminosityLsun": 6.54,
+          "fEeidLamD": 38.67,
+          "fCompleteness": 0.3433,
+          "fTimeDays": 1.02
+        },
+        {
+          "iRank": 2,
+          "sName": "HIP71681",
+          "fDistancePc": 1.35,
+          "fTeffK": 4996.0,
+          "fLuminosityLsun": 0.537,
+          "fEeidLamD": 28.77,
+          "fCompleteness": 0.7825,
+          "fTimeDays": 1.09
+        },
+        {
+          "iRank": 3,
+          "sName": "HIP67927",
+          "fDistancePc": 11.34,
+          "fTeffK": 6047.0,
+          "fLuminosityLsun": 8.888,
+          "fEeidLamD": 13.9,
+          "fCompleteness": 0.2825,
+          "fTimeDays": 2.76
+        },
+        {
+          "iRank": 4,
+          "sName": "HIP81693",
+          "fDistancePc": 10.8,
+          "fTeffK": 5778.0,
+          "fLuminosityLsun": 7.42,
+          "fEeidLamD": 13.35,
+          "fCompleteness": 0.2742,
+          "fTimeDays": 7.31
+        },
+        {
+          "iRank": 5,
+          "sName": "HIP2021",
+          "fDistancePc": 7.47,
+          "fTeffK": 5898.0,
+          "fLuminosityLsun": 3.461,
+          "fEeidLamD": 13.16,
+          "fCompleteness": 0.8167,
+          "fTimeDays": 4.3
+        },
+        {
+          "iRank": 6,
+          "sName": "HIP61941",
+          "fDistancePc": 11.83,
+          "fTeffK": 7055.0,
+          "fLuminosityLsun": 8.574,
+          "fEeidLamD": 13.09,
+          "fCompleteness": 0.3033,
+          "fTimeDays": 2.69
+        },
+        {
+          "iRank": 7,
+          "sName": "HIP77952",
+          "fDistancePc": 12.31,
+          "fTeffK": 7368.0,
+          "fLuminosityLsun": 8.521,
+          "fEeidLamD": 12.54,
+          "fCompleteness": 0.33,
+          "fTimeDays": 2.45
+        },
+        {
+          "iRank": 8,
+          "sName": "1014058103758571520",
+          "fDistancePc": 14.71,
+          "fTeffK": 7498.0,
+          "fLuminosityLsun": 9.632,
+          "fEeidLamD": 11.16,
+          "fCompleteness": 0.0967,
+          "fTimeDays": 3.82
+        },
+        {
+          "iRank": 9,
+          "sName": "3288921720025503360",
+          "fDistancePc": 8.02,
+          "fTeffK": 6154.0,
+          "fLuminosityLsun": 2.854,
+          "fEeidLamD": 11.14,
+          "fCompleteness": 0.8542,
+          "fTimeDays": 2.83
+        },
+        {
+          "iRank": 10,
+          "sName": "HIP46853",
+          "fDistancePc": 13.49,
+          "fTeffK": 6504.0,
+          "fLuminosityLsun": 7.674,
+          "fEeidLamD": 10.86,
+          "fCompleteness": 0.2767,
+          "fTimeDays": 5.9
+        },
+        {
+          "iRank": 11,
+          "sName": "HIP22449",
+          "fDistancePc": 8.03,
+          "fTeffK": 6462.0,
+          "fLuminosityLsun": 2.676,
+          "fEeidLamD": 10.78,
+          "fCompleteness": 0.8658,
+          "fTimeDays": 5.85
+        },
+        {
+          "iRank": 12,
+          "sName": "HIP17378",
+          "fDistancePc": 9.04,
+          "fTeffK": 4957.0,
+          "fLuminosityLsun": 3.353,
+          "fEeidLamD": 10.71,
+          "fCompleteness": 0.7942,
+          "fTimeDays": 4.15
+        },
+        {
+          "iRank": 13,
+          "sName": "HIP86974",
+          "fDistancePc": 8.4,
+          "fTeffK": 5436.0,
+          "fLuminosityLsun": 2.745,
+          "fEeidLamD": 10.43,
+          "fCompleteness": 0.8542,
+          "fTimeDays": 2.84
+        },
+        {
+          "iRank": 14,
+          "sName": "425040000962559616",
+          "fDistancePc": 5.92,
+          "fTeffK": 5726.0,
+          "fLuminosityLsun": 1.266,
+          "fEeidLamD": 10.05,
+          "fCompleteness": 0.9875,
+          "fTimeDays": 5.21
+        },
+        {
+          "iRank": 15,
+          "sName": "HIP8102",
+          "fDistancePc": 3.65,
+          "fTeffK": 5511.0,
+          "fLuminosityLsun": 0.477,
+          "fEeidLamD": 10.01,
+          "fCompleteness": 0.9992,
+          "fTimeDays": 1.4
+        },
+        {
+          "iRank": 16,
+          "sName": "HIP32362",
+          "fDistancePc": 17.54,
+          "fTeffK": 6659.0,
+          "fLuminosityLsun": 10.896,
+          "fEeidLamD": 9.95,
+          "fCompleteness": 0.0217,
+          "fTimeDays": 1.33
+        },
+        {
+          "iRank": 17,
+          "sName": "HIP99240",
+          "fDistancePc": 6.11,
+          "fTeffK": 5433.0,
+          "fLuminosityLsun": 1.288,
+          "fEeidLamD": 9.83,
+          "fCompleteness": 0.9775,
+          "fTimeDays": 3.77
+        },
+        {
+          "iRank": 18,
+          "sName": "HIP95501",
+          "fDistancePc": 15.37,
+          "fTeffK": 7343.0,
+          "fLuminosityLsun": 8.157,
+          "fEeidLamD": 9.83,
+          "fCompleteness": 0.1958,
+          "fTimeDays": 4.79
+        },
+        {
+          "iRank": 19,
+          "sName": "HIP3821",
+          "fDistancePc": 5.95,
+          "fTeffK": 6019.0,
+          "fLuminosityLsun": 1.198,
+          "fEeidLamD": 9.72,
+          "fCompleteness": 0.9842,
+          "fTimeDays": 3.82
+        },
+        {
+          "iRank": 20,
+          "sName": "6427464123776727168",
+          "fDistancePc": 6.1,
+          "fTeffK": 5438.0,
+          "fLuminosityLsun": 1.254,
+          "fEeidLamD": 9.71,
+          "fCompleteness": 0.9917,
+          "fTimeDays": 2.52
+        },
+        {
+          "iRank": 21,
+          "sName": "HIP8796",
+          "fDistancePc": 19.66,
+          "fTeffK": 6444.0,
+          "fLuminosityLsun": 13.007,
+          "fEeidLamD": 9.7,
+          "fCompleteness": 0.0708,
+          "fTimeDays": 3.1
+        },
+        {
+          "iRank": 22,
+          "sName": "HIP16537",
+          "fDistancePc": 3.22,
+          "fTeffK": 5048.0,
+          "fLuminosityLsun": 0.345,
+          "fEeidLamD": 9.65,
+          "fCompleteness": 0.9983,
+          "fTimeDays": 1.4
+        },
+        {
+          "iRank": 23,
+          "sName": "5164707970261890560",
+          "fDistancePc": 3.22,
+          "fTeffK": 5002.0,
+          "fLuminosityLsun": 0.34,
+          "fEeidLamD": 9.57,
+          "fCompleteness": 0.9983,
+          "fTimeDays": 1.06
+        },
+        {
+          "iRank": 24,
+          "sName": "3683687763520080384",
+          "fDistancePc": 12.02,
+          "fTeffK": 6740.0,
+          "fLuminosityLsun": 4.552,
+          "fEeidLamD": 9.39,
+          "fCompleteness": 0.6075,
+          "fTimeDays": 6.37
+        }
+      ]
+    },
+    {
+      "sLabel": "hpic",
+      "iScreened": 1500,
+      "fYieldPlanning": 14.570599999999997,
+      "fYieldAlbedoDrawn": 14.370399999999997,
+      "iStarsObserved": 132,
+      "fTotalTimeDays": 707.4126279052766,
+      "fSumCompleteness": 60.71083333333333,
+      "dictCumulativeYieldByRank": {
+        "10": 1.216,
+        "25": 3.255,
+        "50": 4.946,
+        "100": 8.049,
+        "200": 10.44,
+        "400": 13.031,
+        "800": 14.006,
+        "1500": 14.571
+      },
+      "dictYieldByDistance": {
+        "0-5": {
+          "iScreened": 15,
+          "iObserved": 15,
+          "fYield": 2.887
+        },
+        "5-10": {
+          "iScreened": 59,
+          "iObserved": 55,
+          "fYield": 8.32
+        },
+        "10-15": {
+          "iScreened": 95,
+          "iObserved": 40,
+          "fYield": 2.873
+        },
+        "15-20": {
+          "iScreened": 133,
+          "iObserved": 21,
+          "fYield": 0.486
+        },
+        "20-25": {
+          "iScreened": 164,
+          "iObserved": 1,
+          "fYield": 0.005
+        },
+        "25-30": {
+          "iScreened": 205,
+          "iObserved": 0,
+          "fYield": 0.0
+        },
+        "30-50": {
+          "iScreened": 829,
+          "iObserved": 0,
+          "fYield": 0.0
+        }
+      },
+      "listTopStars": [
+        {
+          "iRank": 0,
+          "sName": "TIC 471011145",
+          "fDistancePc": 1.35,
+          "fTeffK": 5776.0,
+          "fLuminosityLsun": 1.659,
+          "fEeidLamD": 50.56,
+          "fCompleteness": 0.3075,
+          "fTimeDays": 0.96
+        },
+        {
+          "iRank": 1,
+          "sName": "TIC 280310048",
+          "fDistancePc": 3.5,
+          "fTeffK": 6584.0,
+          "fLuminosityLsun": 7.208,
+          "fEeidLamD": 40.6,
+          "fCompleteness": 0.2908,
+          "fTimeDays": 1.14
+        },
+        {
+          "iRank": 2,
+          "sName": "TIC 471011144",
+          "fDistancePc": 1.35,
+          "fTeffK": 5244.0,
+          "fLuminosityLsun": 0.552,
+          "fEeidLamD": 29.15,
+          "fCompleteness": 0.7717,
+          "fTimeDays": 3.69
+        },
+        {
+          "iRank": 3,
+          "sName": "TIC 367758676",
+          "fDistancePc": 11.34,
+          "fTeffK": 6054.0,
+          "fLuminosityLsun": 8.789,
+          "fEeidLamD": 13.82,
+          "fCompleteness": 0.2867,
+          "fTimeDays": 2.78
+        },
+        {
+          "iRank": 4,
+          "sName": "TIC 267211065",
+          "fDistancePc": 7.48,
+          "fTeffK": 5806.0,
+          "fLuminosityLsun": 3.571,
+          "fEeidLamD": 13.36,
+          "fCompleteness": 0.7608,
+          "fTimeDays": 9.63
+        },
+        {
+          "iRank": 5,
+          "sName": "TIC 43255143",
+          "fDistancePc": 10.8,
+          "fTeffK": 5759.0,
+          "fLuminosityLsun": 7.265,
+          "fEeidLamD": 13.2,
+          "fCompleteness": 0.4017,
+          "fTimeDays": 5.04
+        },
+        {
+          "iRank": 6,
+          "sName": "TIC 341149986",
+          "fDistancePc": 12.42,
+          "fTeffK": 7108.0,
+          "fLuminosityLsun": 8.713,
+          "fEeidLamD": 12.57,
+          "fCompleteness": 0.2883,
+          "fTimeDays": 2.91
+        },
+        {
+          "iRank": 7,
+          "sName": "TIC 399665349",
+          "fDistancePc": 8.02,
+          "fTeffK": 6443.0,
+          "fLuminosityLsun": 2.854,
+          "fEeidLamD": 11.13,
+          "fCompleteness": 0.875,
+          "fTimeDays": 2.48
+        },
+        {
+          "iRank": 8,
+          "sName": "TIC 150226696",
+          "fDistancePc": 13.53,
+          "fTeffK": 6316.0,
+          "fLuminosityLsun": 7.9,
+          "fEeidLamD": 10.99,
+          "fCompleteness": 0.2842,
+          "fTimeDays": 5.99
+        },
+        {
+          "iRank": 9,
+          "sName": "TIC 38511251",
+          "fDistancePc": 9.09,
+          "fTeffK": 5045.0,
+          "fLuminosityLsun": 3.293,
+          "fEeidLamD": 10.56,
+          "fCompleteness": 0.7983,
+          "fTimeDays": 3.51
+        },
+        {
+          "iRank": 10,
+          "sName": "TIC 419015728",
+          "fDistancePc": 3.65,
+          "fTeffK": 5356.0,
+          "fLuminosityLsun": 0.52,
+          "fEeidLamD": 10.44,
+          "fCompleteness": 0.9992,
+          "fTimeDays": 2.23
+        },
+        {
+          "iRank": 11,
+          "sName": "TIC 460067868",
+          "fDistancePc": 8.33,
+          "fTeffK": 5513.0,
+          "fLuminosityLsun": 2.675,
+          "fEeidLamD": 10.38,
+          "fCompleteness": 0.87,
+          "fTimeDays": 6.62
+        },
+        {
+          "iRank": 12,
+          "sName": "TIC 372480991",
+          "fDistancePc": 18.42,
+          "fTeffK": 6485.0,
+          "fLuminosityLsun": 12.499,
+          "fEeidLamD": 10.15,
+          "fCompleteness": 0.0842,
+          "fTimeDays": 3.99
+        },
+        {
+          "iRank": 13,
+          "sName": "TIC 445258206",
+          "fDistancePc": 5.92,
+          "fTeffK": 5907.0,
+          "fLuminosityLsun": 1.266,
+          "fEeidLamD": 10.05,
+          "fCompleteness": 0.9908,
+          "fTimeDays": 2.44
+        },
+        {
+          "iRank": 14,
+          "sName": "TIC 228896480",
+          "fDistancePc": 15.37,
+          "fTeffK": 7087.0,
+          "fLuminosityLsun": 8.261,
+          "fEeidLamD": 9.89,
+          "fCompleteness": 0.0,
+          "fTimeDays": 0.0
+        },
+        {
+          "iRank": 15,
+          "sName": "TIC 409891396",
+          "fDistancePc": 6.1,
+          "fTeffK": 5576.0,
+          "fLuminosityLsun": 1.252,
+          "fEeidLamD": 9.7,
+          "fCompleteness": 0.9933,
+          "fTimeDays": 2.82
+        },
+        {
+          "iRank": 16,
+          "sName": "TIC 118572803",
+          "fDistancePc": 3.22,
+          "fTeffK": 5098.0,
+          "fLuminosityLsun": 0.342,
+          "fEeidLamD": 9.61,
+          "fCompleteness": 1.0,
+          "fTimeDays": 3.24
+        },
+        {
+          "iRank": 17,
+          "sName": "TIC 502564326",
+          "fDistancePc": 12.74,
+          "fTeffK": 7090.0,
+          "fLuminosityLsun": 5.269,
+          "fEeidLamD": 9.53,
+          "fCompleteness": 0.3508,
+          "fTimeDays": 6.5
+        },
+        {
+          "iRank": 18,
+          "sName": "TIC 341873045",
+          "fDistancePc": 8.3,
+          "fTeffK": 6101.0,
+          "fLuminosityLsun": 2.194,
+          "fEeidLamD": 9.44,
+          "fCompleteness": 0.9175,
+          "fTimeDays": 5.4
+        },
+        {
+          "iRank": 19,
+          "sName": "TIC 51735845",
+          "fDistancePc": 12.02,
+          "fTeffK": 7147.0,
+          "fLuminosityLsun": 4.552,
+          "fEeidLamD": 9.38,
+          "fCompleteness": 0.3567,
+          "fTimeDays": 6.75
+        },
+        {
+          "iRank": 20,
+          "sName": "TIC 184842719",
+          "fDistancePc": 18.6,
+          "fTeffK": 6939.0,
+          "fLuminosityLsun": 10.588,
+          "fEeidLamD": 9.25,
+          "fCompleteness": 0.1242,
+          "fTimeDays": 3.59
+        },
+        {
+          "iRank": 21,
+          "sName": "TIC 366661076",
+          "fDistancePc": 11.0,
+          "fTeffK": 6123.0,
+          "fLuminosityLsun": 3.685,
+          "fEeidLamD": 9.23,
+          "fCompleteness": 0.745,
+          "fTimeDays": 4.99
+        },
+        {
+          "iRank": 22,
+          "sName": "TIC 93280676",
+          "fDistancePc": 8.9,
+          "fTeffK": 6313.0,
+          "fLuminosityLsun": 2.357,
+          "fEeidLamD": 9.12,
+          "fCompleteness": 0.9042,
+          "fTimeDays": 7.75
+        },
+        {
+          "iRank": 23,
+          "sName": "TIC 5295337",
+          "fDistancePc": 18.56,
+          "fTeffK": 6938.0,
+          "fLuminosityLsun": 9.87,
+          "fEeidLamD": 8.95,
+          "fCompleteness": 0.1617,
+          "fTimeDays": 4.14
+        },
+        {
+          "iRank": 24,
+          "sName": "TIC 86336880",
+          "fDistancePc": 23.73,
+          "fTeffK": 6748.0,
+          "fLuminosityLsun": 15.336,
+          "fEeidLamD": 8.73,
+          "fCompleteness": 0.0,
+          "fTimeDays": 0.0
+        }
+      ]
+    }
+  ]
+}

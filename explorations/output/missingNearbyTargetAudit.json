@@ -1,0 +1,189 @@
+{
+  "iLegacyStarsInShell": 195,
+  "dictFateTally": {
+    "absent-from-hpic": 13,
+    "in-screened-list": 176,
+    "cut-by-target-screen": 3,
+    "dwarf-flag-zero": 1,
+    "no-luminosity": 1,
+    "no-teff": 1
+  },
+  "listNotInScreen": [
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 18.670323555627927,
+      "sLegacyName": "HIP71683",
+      "fLegacyDistancePc": 1.35,
+      "fLegacyTeffK": 5568.0,
+      "fLegacyLumLsun": 1.614
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 19.65322778405618,
+      "sLegacyName": "HIP71681",
+      "fLegacyDistancePc": 1.35,
+      "fLegacyTeffK": 4996.0,
+      "fLegacyLumLsun": 0.537
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 17.521739283590456,
+      "sLegacyName": "HIP2021",
+      "fLegacyDistancePc": 7.47,
+      "fLegacyTeffK": 5898.0,
+      "fLegacyLumLsun": 3.461
+    },
+    {
+      "sFate": "cut-by-target-screen",
+      "sHpicName": "TIC 456332840",
+      "sSpectralType": "A6",
+      "fHpicDistancePc": 14.699090957641602,
+      "fHpicTeffK": 7907.0,
+      "fHpicLumLsun": 9.631541252136234,
+      "sLegacyName": "1014058103758571520",
+      "fLegacyDistancePc": 14.71,
+      "fLegacyTeffK": 7498.0,
+      "fLegacyLumLsun": 9.632
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 16.703304216594173,
+      "sLegacyName": "HIP8102",
+      "fLegacyDistancePc": 3.65,
+      "fLegacyTeffK": 5511.0,
+      "fLegacyLumLsun": 0.477
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 27.340369229839588,
+      "sLegacyName": "HIP15510",
+      "fLegacyDistancePc": 6.06,
+      "fLegacyTeffK": 5564.0,
+      "fLegacyLumLsun": 0.64
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 41.14551695573716,
+      "sLegacyName": "HIP108870",
+      "fLegacyDistancePc": 3.63,
+      "fLegacyTeffK": 4612.0,
+      "fLegacyLumLsun": 0.223
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 18.14196587556616,
+      "sLegacyName": "HIP1599",
+      "fLegacyDistancePc": 8.59,
+      "fLegacyTeffK": 6063.0,
+      "fLegacyLumLsun": 1.221
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 35.77177920145208,
+      "sLegacyName": "HIP19849",
+      "fLegacyDistancePc": 5.04,
+      "fLegacyTeffK": 5221.0,
+      "fLegacyLumLsun": 0.415
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 16.08279417323767,
+      "sLegacyName": "HIP96100",
+      "fLegacyDistancePc": 5.77,
+      "fLegacyTeffK": 5323.0,
+      "fLegacyLumLsun": 0.421
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 46.179631479670995,
+      "sLegacyName": "HIP104214",
+      "fLegacyDistancePc": 3.48,
+      "fLegacyTeffK": 4583.0,
+      "fLegacyLumLsun": 0.131
+    },
+    {
+      "sFate": "dwarf-flag-zero",
+      "sHpicName": "TIC 1102093580",
+      "sSpectralType": "G9:",
+      "fHpicDistancePc": 12.8025,
+      "fHpicRadiusRsun": 0.950419695681362,
+      "fHpicLogg": 4.476085439899904,
+      "sLegacyName": "HIP73695",
+      "fLegacyDistancePc": 12.76,
+      "fLegacyTeffK": 5789.0,
+      "fLegacyLumLsun": 1.609
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 31.823094421220727,
+      "sLegacyName": "HIP5336",
+      "fLegacyDistancePc": 7.55,
+      "fLegacyTeffK": 5588.0,
+      "fLegacyLumLsun": 0.428
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 18.32845825813655,
+      "sLegacyName": "HIP114622",
+      "fLegacyDistancePc": 6.53,
+      "fLegacyTeffK": 4743.0,
+      "fLegacyLumLsun": 0.298
+    },
+    {
+      "sFate": "no-luminosity",
+      "sHpicName": "GAIA DR3 798068940086479104",
+      "sSpectralType": "M5V",
+      "fHpicDistancePc": 11.23102855682373,
+      "fHpicRadiusRsun": NaN,
+      "fHpicLogg": NaN,
+      "sLegacyName": "HIP47080",
+      "fLegacyDistancePc": 11.18,
+      "fLegacyTeffK": 5373.0,
+      "fLegacyLumLsun": 0.798
+    },
+    {
+      "sFate": "no-teff",
+      "sHpicName": "TIC 2027018829",
+      "sSpectralType": "nan",
+      "fHpicDistancePc": 13.7018,
+      "fHpicRadiusRsun": NaN,
+      "fHpicLogg": NaN,
+      "sLegacyName": "HIP110109",
+      "fLegacyDistancePc": 13.61,
+      "fLegacyTeffK": 5913.0,
+      "fLegacyLumLsun": 1.104
+    },
+    {
+      "sFate": "cut-by-target-screen",
+      "sHpicName": "TIC 217157392",
+      "sSpectralType": "M0VpCa-3Cr-1",
+      "fHpicDistancePc": 8.824036598205566,
+      "fHpicTeffK": 3568.0,
+      "fHpicLumLsun": 0.08356465309276256,
+      "sLegacyName": "HIP84720",
+      "fLegacyDistancePc": 8.79,
+      "fLegacyTeffK": 5392.0,
+      "fLegacyLumLsun": 0.46
+    },
+    {
+      "sFate": "absent-from-hpic",
+      "fNearestArcsec": 20.14281996013589,
+      "sLegacyName": "HIP12114",
+      "fLegacyDistancePc": 7.21,
+      "fLegacyTeffK": 4949.0,
+      "fLegacyLumLsun": 0.265
+    },
+    {
+      "sFate": "cut-by-target-screen",
+      "sHpicName": "TIC 120461526",
+      "sSpectralType": "M2V",
+      "fHpicDistancePc": 4.345489501953125,
+      "fHpicTeffK": 3375.0,
+      "fHpicLumLsun": 0.023371238261461195,
+      "sLegacyName": "2306965202564744064",
+      "fLegacyDistancePc": 4.35,
+      "fLegacyTeffK": 3355.0,
+      "fLegacyLumLsun": 0.023
+    }
+  ]
+}

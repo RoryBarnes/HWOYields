@@ -1,0 +1,181 @@
+{
+  "iStarsChecked": 3737,
+  "dictSunLikeResidual": {
+    "sLabel": "model V minus catalog V over 5300-7300 K, the population carrying the yield",
+    "iStars": 674,
+    "fMedian": 0.018802625288957486,
+    "fMean": 0.02893866084866361,
+    "fStdDev": 0.22747245369188088,
+    "fP16": -0.008792780444865719,
+    "fP84": 0.05969226434560544,
+    "fMaxAbs": 2.228804460874138
+  },
+  "fMaxDistancePc": 30.0,
+  "dictVmagResidual": {
+    "sLabel": "model V minus catalog V, magnitudes",
+    "iStars": 3737,
+    "fMedian": -0.37573047541298266,
+    "fMean": -0.3862335655063774,
+    "fStdDev": 0.46191368392399407,
+    "fP16": -0.7663243270696115,
+    "fP84": 0.013753283586342832,
+    "fMaxAbs": 4.081056294207601
+  },
+  "dictVmagResidualByTeff": {
+    "3000-3900": {
+      "iStars": 1993,
+      "fMedian": -0.6294535577294535,
+      "fStdDev": 0.445995231787669
+    },
+    "3900-4500": {
+      "iStars": 492,
+      "fMedian": -0.32046728018785675,
+      "fStdDev": 0.23471763193267703
+    },
+    "4500-5300": {
+      "iStars": 520,
+      "fMedian": -0.07481310586223255,
+      "fStdDev": 0.2514317989044336
+    },
+    "5300-6000": {
+      "iStars": 420,
+      "fMedian": 0.006501542653198467,
+      "fStdDev": 0.2677441402243854
+    },
+    "6000-7300": {
+      "iStars": 254,
+      "fMedian": 0.04364879530688803,
+      "fStdDev": 0.12780456465906764
+    },
+    "7300-10000": {
+      "iStars": 42,
+      "fMedian": 0.13816049557863908,
+      "fStdDev": 0.0639120869210269
+    }
+  },
+  "dictLuminosityConsistencyDex": {
+    "sLabel": "log10 of (L from 4 pi R^2 sigma Teff^4) over (catalog L)",
+    "iStars": 3737,
+    "fMedian": -1.0320572951779502e-06,
+    "fMean": -1.03205729467269e-06,
+    "fStdDev": 1.7723393685347996e-15,
+    "fP16": -1.0320572954190327e-06,
+    "fP84": -1.0320572941171876e-06,
+    "fMaxAbs": 1.0320572959976306e-06
+  },
+  "dictLuminosityConsistencyByTeff": {
+    "3000-3900": {
+      "iStars": 1993,
+      "fMedian": -1.0320572946957852e-06,
+      "fStdDev": 1.9362873490737095e-15
+    },
+    "3900-4500": {
+      "iStars": 492,
+      "fMedian": -1.0320572952261667e-06,
+      "fStdDev": 5.142024719364305e-16
+    },
+    "4500-5300": {
+      "iStars": 520,
+      "fMedian": -1.0320572953225995e-06,
+      "fStdDev": 6.91460180487564e-16
+    },
+    "5300-6000": {
+      "iStars": 420,
+      "fMedian": -1.0320572953708162e-06,
+      "fStdDev": 1.500350062062088e-16
+    },
+    "6000-7300": {
+      "iStars": 254,
+      "fMedian": -1.032057295346708e-06,
+      "fStdDev": 1.80515800860275e-16
+    },
+    "7300-10000": {
+      "iStars": 42,
+      "fMedian": -1.0320572953708162e-06,
+      "fStdDev": 2.8043423639919818e-15
+    }
+  },
+  "fFluxBiasFactor": 1.4134882093619543,
+  "listWorstOffenders": [
+    {
+      "sName": "TIC 39564511",
+      "fTeffK": 3377.0,
+      "fDistancePc": 17.43,
+      "fCatalogVmag": 16.13,
+      "fModelVmag": 12.05,
+      "fResidual": -4.08
+    },
+    {
+      "sName": "TIC 454082373",
+      "fTeffK": 3225.0,
+      "fDistancePc": 9.31,
+      "fCatalogVmag": 15.43,
+      "fModelVmag": 12.08,
+      "fResidual": -3.35
+    },
+    {
+      "sName": "TIC 371272665",
+      "fTeffK": 3281.0,
+      "fDistancePc": 8.85,
+      "fCatalogVmag": 13.91,
+      "fModelVmag": 11.0,
+      "fResidual": -2.92
+    },
+    {
+      "sName": "TIC 219085795",
+      "fTeffK": 3252.0,
+      "fDistancePc": 7.6,
+      "fCatalogVmag": 13.67,
+      "fModelVmag": 10.79,
+      "fResidual": -2.88
+    },
+    {
+      "sName": "TIC 173095595",
+      "fTeffK": 3294.0,
+      "fDistancePc": 9.19,
+      "fCatalogVmag": 13.9,
+      "fModelVmag": 11.06,
+      "fResidual": -2.83
+    },
+    {
+      "sName": "TIC 389658692",
+      "fTeffK": 3549.0,
+      "fDistancePc": 22.26,
+      "fCatalogVmag": 14.54,
+      "fModelVmag": 11.75,
+      "fResidual": -2.79
+    },
+    {
+      "sName": "TIC 220433364",
+      "fTeffK": 3268.0,
+      "fDistancePc": 11.09,
+      "fCatalogVmag": 13.92,
+      "fModelVmag": 11.14,
+      "fResidual": -2.78
+    },
+    {
+      "sName": "TIC 115869504",
+      "fTeffK": 3287.0,
+      "fDistancePc": 11.02,
+      "fCatalogVmag": 13.79,
+      "fModelVmag": 11.03,
+      "fResidual": -2.77
+    },
+    {
+      "sName": "TIC 287376947",
+      "fTeffK": 3725.0,
+      "fDistancePc": 27.04,
+      "fCatalogVmag": 14.48,
+      "fModelVmag": 11.75,
+      "fResidual": -2.74
+    },
+    {
+      "sName": "TIC 233635503",
+      "fTeffK": 3369.0,
+      "fDistancePc": 14.36,
+      "fCatalogVmag": 13.96,
+      "fModelVmag": 11.23,
+      "fResidual": -2.73
+    }
+  ]
+}

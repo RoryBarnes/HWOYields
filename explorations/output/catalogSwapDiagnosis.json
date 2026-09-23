@@ -1,0 +1,255 @@
+{
+  "iScreenedLegacy": 1500,
+  "iScreenedHpic": 1500,
+  "dictTopLegacy": {
+    "iTop": 50,
+    "fMedianDistancePc": 11.253421861452516,
+    "fMedianTeffK": 6312.232792609137,
+    "fMedianLuminosityLsun": 4.3146829,
+    "fMedianEeidLamD": 9.32532672091774,
+    "fMedianRadiusRsun": 1.7637950388020476,
+    "fFractionInside15Pc": 0.74
+  },
+  "dictTopHpic": {
+    "iTop": 50,
+    "fMedianDistancePc": 12.581076528167724,
+    "fMedianTeffK": 6282.5,
+    "fMedianLuminosityLsun": 4.3102855665843025,
+    "fMedianEeidLamD": 8.57093389092065,
+    "fMedianRadiusRsun": 1.716443040058339,
+    "fFractionInside15Pc": 0.68
+  },
+  "dictParameterShiftsTopStars": {
+    "iMatched": 32,
+    "fMedianTeffRatioNewOverOld": 0.9980923957826454,
+    "fMedianLumRatioNewOverOld": 0.9961817088647187,
+    "fMedianRadiusRatioNewOverOld": 0.9844116260922909,
+    "fMedianDistRatioNewOverOld": 1.0000030580946984
+  },
+  "dictDuplicatesLegacy": {
+    "iRowsInsideLimit": 195,
+    "fMaxDistancePc": 15.0,
+    "fMatchArcsec": 10.0,
+    "iDuplicatePairs": 2
+  },
+  "dictDuplicatesHpic": {
+    "iRowsInsideLimit": 169,
+    "fMaxDistancePc": 15.0,
+    "fMatchArcsec": 10.0,
+    "iDuplicatePairs": 5
+  },
+  "listTopLegacy": [
+    {
+      "sName": "HIP71683",
+      "fDistancePc": 1.35,
+      "fTeffK": 5568.0,
+      "fLuminosityLsun": 1.614,
+      "fEeidLamD": 49.87
+    },
+    {
+      "sName": "HIP37279",
+      "fDistancePc": 3.5,
+      "fTeffK": 6714.0,
+      "fLuminosityLsun": 6.54,
+      "fEeidLamD": 38.67
+    },
+    {
+      "sName": "HIP71681",
+      "fDistancePc": 1.35,
+      "fTeffK": 4996.0,
+      "fLuminosityLsun": 0.537,
+      "fEeidLamD": 28.77
+    },
+    {
+      "sName": "HIP67927",
+      "fDistancePc": 11.34,
+      "fTeffK": 6047.0,
+      "fLuminosityLsun": 8.888,
+      "fEeidLamD": 13.9
+    },
+    {
+      "sName": "HIP81693",
+      "fDistancePc": 10.8,
+      "fTeffK": 5778.0,
+      "fLuminosityLsun": 7.42,
+      "fEeidLamD": 13.35
+    },
+    {
+      "sName": "HIP2021",
+      "fDistancePc": 7.47,
+      "fTeffK": 5898.0,
+      "fLuminosityLsun": 3.461,
+      "fEeidLamD": 13.16
+    },
+    {
+      "sName": "HIP61941",
+      "fDistancePc": 11.83,
+      "fTeffK": 7055.0,
+      "fLuminosityLsun": 8.574,
+      "fEeidLamD": 13.09
+    },
+    {
+      "sName": "HIP77952",
+      "fDistancePc": 12.31,
+      "fTeffK": 7368.0,
+      "fLuminosityLsun": 8.521,
+      "fEeidLamD": 12.54
+    },
+    {
+      "sName": "1014058103758571520",
+      "fDistancePc": 14.71,
+      "fTeffK": 7498.0,
+      "fLuminosityLsun": 9.632,
+      "fEeidLamD": 11.16
+    },
+    {
+      "sName": "3288921720025503360",
+      "fDistancePc": 8.02,
+      "fTeffK": 6154.0,
+      "fLuminosityLsun": 2.854,
+      "fEeidLamD": 11.14
+    },
+    {
+      "sName": "HIP46853",
+      "fDistancePc": 13.49,
+      "fTeffK": 6504.0,
+      "fLuminosityLsun": 7.674,
+      "fEeidLamD": 10.86
+    },
+    {
+      "sName": "HIP22449",
+      "fDistancePc": 8.03,
+      "fTeffK": 6462.0,
+      "fLuminosityLsun": 2.676,
+      "fEeidLamD": 10.78
+    },
+    {
+      "sName": "HIP17378",
+      "fDistancePc": 9.04,
+      "fTeffK": 4957.0,
+      "fLuminosityLsun": 3.353,
+      "fEeidLamD": 10.71
+    },
+    {
+      "sName": "HIP86974",
+      "fDistancePc": 8.4,
+      "fTeffK": 5436.0,
+      "fLuminosityLsun": 2.745,
+      "fEeidLamD": 10.43
+    },
+    {
+      "sName": "425040000962559616",
+      "fDistancePc": 5.92,
+      "fTeffK": 5726.0,
+      "fLuminosityLsun": 1.266,
+      "fEeidLamD": 10.05
+    }
+  ],
+  "listTopHpic": [
+    {
+      "sName": "TIC 471011145",
+      "fDistancePc": 1.35,
+      "fTeffK": 5776.0,
+      "fLuminosityLsun": 1.659,
+      "fEeidLamD": 50.56
+    },
+    {
+      "sName": "TIC 280310048",
+      "fDistancePc": 3.5,
+      "fTeffK": 6584.0,
+      "fLuminosityLsun": 7.208,
+      "fEeidLamD": 40.6
+    },
+    {
+      "sName": "TIC 471011144",
+      "fDistancePc": 1.35,
+      "fTeffK": 5244.0,
+      "fLuminosityLsun": 0.552,
+      "fEeidLamD": 29.15
+    },
+    {
+      "sName": "TIC 367758676",
+      "fDistancePc": 11.34,
+      "fTeffK": 6054.0,
+      "fLuminosityLsun": 8.789,
+      "fEeidLamD": 13.82
+    },
+    {
+      "sName": "TIC 267211065",
+      "fDistancePc": 7.48,
+      "fTeffK": 5806.0,
+      "fLuminosityLsun": 3.571,
+      "fEeidLamD": 13.36
+    },
+    {
+      "sName": "TIC 43255143",
+      "fDistancePc": 10.8,
+      "fTeffK": 5759.0,
+      "fLuminosityLsun": 7.265,
+      "fEeidLamD": 13.2
+    },
+    {
+      "sName": "TIC 341149986",
+      "fDistancePc": 12.42,
+      "fTeffK": 7108.0,
+      "fLuminosityLsun": 8.713,
+      "fEeidLamD": 12.57
+    },
+    {
+      "sName": "TIC 399665349",
+      "fDistancePc": 8.02,
+      "fTeffK": 6443.0,
+      "fLuminosityLsun": 2.854,
+      "fEeidLamD": 11.13
+    },
+    {
+      "sName": "TIC 150226696",
+      "fDistancePc": 13.53,
+      "fTeffK": 6316.0,
+      "fLuminosityLsun": 7.9,
+      "fEeidLamD": 10.99
+    },
+    {
+      "sName": "TIC 38511251",
+      "fDistancePc": 9.09,
+      "fTeffK": 5045.0,
+      "fLuminosityLsun": 3.293,
+      "fEeidLamD": 10.56
+    },
+    {
+      "sName": "TIC 419015728",
+      "fDistancePc": 3.65,
+      "fTeffK": 5356.0,
+      "fLuminosityLsun": 0.52,
+      "fEeidLamD": 10.44
+    },
+    {
+      "sName": "TIC 460067868",
+      "fDistancePc": 8.33,
+      "fTeffK": 5513.0,
+      "fLuminosityLsun": 2.675,
+      "fEeidLamD": 10.38
+    },
+    {
+      "sName": "TIC 372480991",
+      "fDistancePc": 18.42,
+      "fTeffK": 6485.0,
+      "fLuminosityLsun": 12.499,
+      "fEeidLamD": 10.15
+    },
+    {
+      "sName": "TIC 445258206",
+      "fDistancePc": 5.92,
+      "fTeffK": 5907.0,
+      "fLuminosityLsun": 1.266,
+      "fEeidLamD": 10.05
+    },
+    {
+      "sName": "TIC 228896480",
+      "fDistancePc": 15.37,
+      "fTeffK": 7087.0,
+      "fLuminosityLsun": 8.261,
+      "fEeidLamD": 9.89
+    }
+  ]
+}

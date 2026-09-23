@@ -34,19 +34,19 @@
           "saPath": [
             "fCalibratedThroughputFactor"
           ],
-          "oValue": 1.4859320860199425
+          "oValue": 1.4289121427167732
         },
         {
           "saPath": [
             "fCalibratedYield"
           ],
-          "oValue": 22.500600000000002
+          "oValue": 22.500199999999992
         },
         {
           "saPath": [
             "fRelativeError"
           ],
-          "oValue": 2.6666666666762415e-05
+          "oValue": 8.888888888552376e-06
         },
         {
           "saPath": [
@@ -76,10 +76,10 @@
           "saPath": [
             "fUncalibratedYield"
           ],
-          "oValue": 19.490700000000004
+          "oValue": 19.628800000000005
         }
       ],
-      "iBytes": 1853
+      "iBytes": 1863
     }
   }
 }

@@ -1,0 +1,235 @@
+{
+  "dictHpicParameterCompleteness": {
+    "iRows": 12801,
+    "iWithTeff": 12718,
+    "iWithLum": 12682,
+    "iWithRadius": 12666,
+    "iWithVmag": 12578,
+    "iWithAllFour": 12499
+  },
+  "iOurCatalogRows": 8709,
+  "dictFgkByDistance": {
+    "faEdgesPc": [
+      0.0,
+      5.0,
+      10.0,
+      15.0,
+      20.0,
+      25.0,
+      30.0,
+      40.0,
+      50.0
+    ],
+    "faHpicFgk": [
+      11,
+      60,
+      156,
+      303,
+      488,
+      751,
+      2365,
+      4182
+    ],
+    "faOursFgk": [
+      11,
+      66,
+      124,
+      225,
+      346,
+      498,
+      1566,
+      2706
+    ],
+    "faMissingFgk": [
+      0,
+      -6,
+      32,
+      78,
+      142,
+      253,
+      799,
+      1476
+    ]
+  },
+  "dictBrightestLost": {
+    "iCheckedTop": 400,
+    "iLost": 203,
+    "listLost": [
+      {
+        "sName": "TIC 179323446",
+        "sSimbad": "K0-IIIb",
+        "fDistancePc": 18.03,
+        "fTeffK": 4924.0,
+        "fEeidArcsec": 3.8353
+      },
+      {
+        "sName": "TIC 322899250",
+        "sSimbad": "A0mA1Va",
+        "fDistancePc": 2.64,
+        "fTeffK": 9712.0,
+        "fEeidArcsec": 1.9543
+      },
+      {
+        "sName": "TIC 230981971",
+        "sSimbad": "B6Vpe",
+        "fDistancePc": 42.75,
+        "fTeffK": 20230.0,
+        "fEeidArcsec": 1.4069
+      },
+      {
+        "sName": "TIC 459832522",
+        "sSimbad": "K1.5IIIFe-0.5",
+        "fDistancePc": 11.26,
+        "fTeffK": 4295.0,
+        "fEeidArcsec": 1.2305
+      },
+      {
+        "sName": "TIC 272314138",
+        "sSimbad": "M3.5III",
+        "fDistancePc": 27.15,
+        "fTeffK": 3689.0,
+        "fEeidArcsec": 1.0809
+      },
+      {
+        "sName": "TIC 245873777",
+        "sSimbad": "K5+III",
+        "fDistancePc": 20.43,
+        "fTeffK": 3903.0,
+        "fEeidArcsec": 0.9828
+      },
+      {
+        "sName": "TIC 471011145",
+        "sSimbad": "G2V",
+        "fDistancePc": 1.35,
+        "fTeffK": 5776.0,
+        "fEeidArcsec": 0.9559
+      },
+      {
+        "sName": "TIC 357348164",
+        "sSimbad": "B8IVn",
+        "fDistancePc": 23.76,
+        "fTeffK": 11535.0,
+        "fEeidArcsec": 0.9125
+      },
+      {
+        "sName": "TIC 368326352",
+        "sSimbad": "G3III:",
+        "fDistancePc": 13.0,
+        "fTeffK": 5205.0,
+        "fEeidArcsec": 0.8886
+      },
+      {
+        "sName": "TIC 280310048",
+        "sSimbad": "F5IV-V+DQZ",
+        "fDistancePc": 3.5,
+        "fTeffK": 6584.0,
+        "fEeidArcsec": 0.7676
+      },
+      {
+        "sName": "TIC 285473140",
+        "sSimbad": "B7III",
+        "fDistancePc": 40.18,
+        "fTeffK": 13960.0,
+        "fEeidArcsec": 0.6898
+      },
+      {
+        "sName": "TIC 279316667",
+        "sSimbad": "B6V",
+        "fDistancePc": 30.97,
+        "fTeffK": 12882.0,
+        "fEeidArcsec": 0.671
+      },
+      {
+        "sName": "TIC 423088367",
+        "sSimbad": "K0IIIb",
+        "fDistancePc": 10.36,
+        "fTeffK": 4860.0,
+        "fEeidArcsec": 0.6051
+      },
+      {
+        "sName": "TIC 471011144",
+        "sSimbad": "K1V",
+        "fDistancePc": 1.35,
+        "fTeffK": 5244.0,
+        "fEeidArcsec": 0.5512
+      },
+      {
+        "sName": "TIC 229540730",
+        "sSimbad": "K4-III",
+        "fDistancePc": 38.77,
+        "fTeffK": 4043.0,
+        "fEeidArcsec": 0.5289
+      },
+      {
+        "sName": "TIC 99843265",
+        "sSimbad": "G9III+A7.5",
+        "fDistancePc": 37.68,
+        "fTeffK": 4627.0,
+        "fEeidArcsec": 0.5041
+      },
+      {
+        "sName": "TIC 427733653",
+        "sSimbad": "B8IV-VHgMn",
+        "fDistancePc": 29.74,
+        "fTeffK": 13076.0,
+        "fEeidArcsec": 0.5011
+      },
+      {
+        "sName": "TIC 57334718",
+        "sSimbad": "M2III",
+        "fDistancePc": 41.92,
+        "fTeffK": 3600.0,
+        "fEeidArcsec": 0.4834
+      },
+      {
+        "sName": "TIC 329269366",
+        "sSimbad": "K5III",
+        "fDistancePc": 45.25,
+        "fTeffK": 3936.0,
+        "fEeidArcsec": 0.4795
+      },
+      {
+        "sName": "TIC 95431294",
+        "sSimbad": "K1-III+G7IIIb",
+        "fDistancePc": 39.89,
+        "fTeffK": 4341.0,
+        "fEeidArcsec": 0.4661
+      },
+      {
+        "sName": "TIC 290374453",
+        "sSimbad": "A1III-",
+        "fDistancePc": 34.7,
+        "fTeffK": 8910.0,
+        "fEeidArcsec": 0.4581
+      },
+      {
+        "sName": "TIC 1203373581",
+        "sSimbad": "M0.5III",
+        "fDistancePc": 48.99,
+        "fTeffK": 3945.0,
+        "fEeidArcsec": 0.4492
+      },
+      {
+        "sName": "TIC 306349516",
+        "sSimbad": "K2-IIIbCa-1",
+        "fDistancePc": 20.21,
+        "fTeffK": 4537.0,
+        "fEeidArcsec": 0.4459
+      },
+      {
+        "sName": "TIC 150387644",
+        "sSimbad": "A1III-IVpkB9",
+        "fDistancePc": 24.34,
+        "fTeffK": 9333.0,
+        "fEeidArcsec": 0.4344
+      },
+      {
+        "sName": "TIC 440388263",
+        "sSimbad": "A1IV-Vp",
+        "fDistancePc": 24.87,
+        "fTeffK": 8849.0,
+        "fEeidArcsec": 0.4205
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "fCalibration": 1.4289121427167732,
+  "listMethods": [
+    {
+      "sMethod": "recompute",
+      "fYieldPlanning": 22.5,
+      "fYieldAlbedoDrawn": 21.32,
+      "fAlbedoPenalty": 0.0524,
+      "fPublishedPenalty": 0.12,
+      "fRatioToPublished": 0.437
+    },
+    {
+      "sMethod": "perVisitThreshold",
+      "fYieldPlanning": 22.5,
+      "fYieldAlbedoDrawn": 21.749,
+      "fAlbedoPenalty": 0.0334,
+      "fPublishedPenalty": 0.12,
+      "fRatioToPublished": 0.278
+    }
+  ]
+}

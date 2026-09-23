@@ -30,6 +30,15 @@ def fdictSolarTwin(fDistancePc):
             "fDistancePc": fDistancePc}
 
 
+def fdictMinimalCountRateInputs():
+    """One solar twin, one Earth twin at quadrature: the smallest input fdictCountRates accepts."""
+    dictStar = fdictSolarTwin(10.0)
+    dictPlanets = {"faRadiusEarth": np.array([1.0]), "faAxisAu": np.array([1.0]),
+                   "faAxisScaled": np.array([1.0])}
+    dictGeom = {"faSepAu": np.array([[1.0]]), "faPhase": np.array([[0.5]])}
+    return dictStar, dictPlanets, dictGeom, LIST_BANDS_DET[0], DICT_MISSION
+
+
 def test_power_law_sampler_matches_its_analytic_quantiles():
     """The inverse-CDF draw must reproduce the density it claims to sample."""
     rng = np.random.default_rng(3)
@@ -136,3 +145,75 @@ def test_visit_epochs_are_not_degenerate():
     dictPlanets = cp.fdictInjectPlanets(DICT_BOX, 1.0, 400, -0.19, 0.26, rng, iVisits=4)
     faSep = cp.fdictProjectOrbits(dictPlanets)["faSepAu"]
     assert not np.allclose(faSep[:, 0], faSep[:, 2])
+
+
+def test_background_count_rates_carry_the_sky_throughput():
+    """Zodi and exozodi are attenuated by T_sky; the planet and leaked-starlight terms are not.
+
+    Stark et al. (2019) Eqs. 5 and 6 put T_sky(x,y) on the extended-source terms only. Omitting it
+    -- which this pipeline did until the equations were re-read -- overstates both backgrounds by
+    1/T_sky = 1.48, which is harmless where leaked starlight dominates and severe for the distant
+    targets whose exposure times the zodiacal terms set.
+    """
+    dictStar, dictPlanets, dictGeom, dictBand, dictMission = fdictMinimalCountRateInputs()
+    dictRates = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission)
+    dictNoAttenuation = dict(dictMission, fSkyThroughput=1.0)
+    dictBare = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictNoAttenuation)
+    fSkyThroughput = cp.fnSkyThroughputFor(dictMission)
+    assert np.isclose(dictRates["fZodi"], dictBare["fZodi"] * fSkyThroughput, rtol=1e-12)
+    assert np.isclose(dictRates["fExozodi"], dictBare["fExozodi"] * fSkyThroughput, rtol=1e-12)
+    assert np.allclose(dictRates["faPlanet"], dictBare["faPlanet"], rtol=1e-12)
+    assert np.allclose(dictRates["faLeak"], dictBare["faLeak"], rtol=1e-12)
+
+
+def test_exozodi_is_one_brightness_per_star_not_a_radial_profile():
+    """Stark et al. (2014) apply the EEID surface brightness to every planet around a star.
+
+    They computed the self-consistent radial and geometric treatment with ZODIPIC, found it moved
+    the yield by a few percent, and deliberately did not adopt it. An earlier version of this
+    module carried a 5*log10(a/sqrt(L)) radial term that is not in the published model.
+    """
+    dictStar, dictPlanets, dictGeom, dictBand, dictMission = fdictMinimalCountRateInputs()
+    dictRates = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission)
+    assert np.ndim(dictRates["fExozodi"]) == 0
+
+
+def test_collecting_area_uses_the_full_primary_not_the_inscribed_circle():
+    """Upsilon_c is normalised to the light entering from the whole obscured primary.
+
+    Stark et al. (2019) Sec. 6.2 says the DMVC's apparently low core throughput is caused by the
+    Lyot stop discarding the pupil outside the inscribed diameter, which is already inside
+    Upsilon_c. Pairing that with a collecting area taken as the inscribed circle would charge the
+    same discard twice, so A must be the larger, full-primary area.
+    """
+    dictMission = dict(DICT_MISSION, fCircumscribedRatio=8.0 / 6.7, fApertureFillFactor=0.785)
+    fArea = cp.fnCollectingAreaM2(dictMission)
+    fInscribedCircle = np.pi * (DICT_MISSION["fDiameterM"] / 2.0) ** 2
+    assert fArea > fInscribedCircle
+    assert np.isclose(fArea / fInscribedCircle, 0.785 * (8.0 / 6.7) ** 2, rtol=1e-12)
+
+
+def test_collecting_area_scales_with_the_square_of_the_diameter():
+    """The aperture study varies the inscribed diameter; the area must follow it as D^2."""
+    dictMission = dict(DICT_MISSION, fCircumscribedRatio=8.0 / 6.7, fApertureFillFactor=0.785)
+    fSmall = cp.fnCollectingAreaM2(dict(dictMission, fDiameterM=6.0))
+    fLarge = cp.fnCollectingAreaM2(dict(dictMission, fDiameterM=9.0))
+    assert np.isclose(fLarge / fSmall, (9.0 / 6.0) ** 2, rtol=1e-12)
+
+
+def test_coronagraph_curves_are_evaluated_in_circumscribed_lambda_over_d():
+    """A planet at a fixed angle sits at MORE lambda/D once the circumscribed scale is applied.
+
+    The published core-throughput and contrast curves are plotted against the circumscribed
+    diameter while the scenarios are labelled by inscribed diameter. Applying the curves at
+    inscribed lambda/D placed this pipeline's inner working angle 19% too far out in angle, which
+    suppressed exactly the distant targets whose completeness fell short of Stark's Fig. 11.
+    """
+    dictStar, dictPlanets, dictGeom, dictBand, dictMission = fdictMinimalCountRateInputs()
+    dictScaled = dict(dictMission, fCircumscribedRatio=8.0 / 6.7)
+    dictPlain = dict(dictMission, fCircumscribedRatio=1.0)
+    fUpsilonScaled = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand,
+                                        dictScaled)["faUpsilon"]
+    fUpsilonPlain = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand,
+                                       dictPlain)["faUpsilon"]
+    assert np.all(fUpsilonScaled > fUpsilonPlain)

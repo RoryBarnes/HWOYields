@@ -20,6 +20,20 @@
         {
           "saPath": [
             "dictMission",
+            "fCircumscribedRatio"
+          ],
+          "oValue": 1.1940298507462686
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "fApertureFillFactor"
+          ],
+          "oValue": 0.785
+        },
+        {
+          "saPath": [
+            "dictMission",
             "fIwaLamD"
           ],
           "oValue": 3.89
@@ -346,7 +360,7 @@
           "oValue": 1.2
         }
       ],
-      "iBytes": 4559
+      "iBytes": 4640
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",

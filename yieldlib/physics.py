@@ -71,3 +71,32 @@ def faExposureTime(faCountRatePlanet, faCountRateBackground, fSignalToNoise):
     with np.errstate(divide="ignore", invalid="ignore"):
         faTau = fSignalToNoise ** 2 * (faPlanet + 2.0 * faBackground) / faPlanet ** 2
     return np.where(faPlanet > 0.0, faTau, np.inf)
+
+
+def fnExozodiSurfaceBrightnessScale(fLambdaM, fTeffK, fRadiusRsun, fLuminosityLsun):
+    """Stark et al. (2014) Eq. A6: exozodi surface brightness relative to a solar twin's.
+
+    One zodi is defined as a constant habitable-zone dust OPTICAL DEPTH, not a constant surface
+    brightness. Holding the optical depth at the EEID fixed, the disk's surface brightness at
+    wavelength lambda is
+
+        I_disk = 10^(-0.4 (M_lambda_star - M_lambda_sun)) * (L_sun / L_star) * I_zodiacal(1 AU),
+
+    with I_zodiacal(1 AU) = 22 mag/arcsec^2. The first factor is the starlight available to
+    illuminate the dust; the second undoes the habitable zone's outward march with luminosity,
+    since the EEID sits at sqrt(L) AU where the illumination is weaker.
+
+    The alternative -- a constant 22 mag/arcsec^2 for every star -- implies that late-type stars
+    carry dustier disks than early-type ones, for which Ref. stark2014 notes there is no
+    observational evidence, and it "unfairly penalizes late type stars"; adopting the constant
+    optical depth instead raised the number of observed K and M dwarfs by 15 and 20 percent. This
+    pipeline used the constant-surface-brightness form until that was found.
+
+    The magnitude difference is evaluated at the observing wavelength from the same blackbody the
+    count rates use, so it is self-consistent with them; against HPIC's measured V photometry that
+    blackbody is unbiased to 0.04 mag over 5300-7300 K, and too bright by 0.6 mag for M dwarfs,
+    which is the accuracy this factor inherits.
+    """
+    fStarFlux = float(faStellarPhotonFlux(fLambdaM, fTeffK, fRadiusRsun, 10.0))
+    fSunFlux = float(faStellarPhotonFlux(fLambdaM, F_TEFF_SUN_K, 1.0, 10.0))
+    return (fStarFlux / fSunFlux) / float(fLuminosityLsun)
