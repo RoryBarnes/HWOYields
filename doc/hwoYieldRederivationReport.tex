@@ -187,11 +187,14 @@ principled propagation of the same rate law onto a \emph{different} integration 
 
 \subsection{Ledger: every hypothesis tested, and its outcome}
 
-This section grew by accretion as each check failed, so the ledger comes first. Twenty-one
-distinct causes have been proposed for the disagreements with the published record. Ten were
-rejected on evidence and eleven were real defects, of which five moved the result materially ---
+This section grew by accretion as each check failed, so the ledger comes first. Twenty-nine
+distinct causes have been proposed for the disagreements with the published record. Twelve were
+rejected on evidence and seventeen were real defects, of which eight moved the result materially:
 the characterization-time statistic, the missing revisits, the over-cap characterization charge,
-and the two halves of the aperture-geometry convention. The distinction between "rejected" and
+the reconstructed target catalog, the two halves of the aperture-geometry convention, the
+characterization phase, and the characterization budget under the albedo draw. The full ledger,
+including the twelve rows added after this table was last typeset, is in
+\texttt{doc/handoffToNextAgent.md}. The distinction between "rejected" and
 "real error but not the cause" is load-bearing: a defect can be genuine, worth fixing, and
 irrelevant to the symptom that led you to it. Four separate times an apparent agreement turned
 out to rest on errors that cancelled, which is why every entry below records the evidence and not
@@ -236,21 +239,26 @@ Characterization need not succeed to count & Rejected on source & Stark (2019) S
 and fixed. Five of the eleven moved the result.}
 \end{table}
 
-\textbf{What is still wrong, in one place.} Twenty-one of the twenty-six independent published
-checks now agree. Three do not, and they are one symptom seen three ways: $P_{25}$ is
-38.9\% against a published 32\%, the realized-yield distribution peaks near
-21.7 against $\sim$10, and the albedo penalty is 8.6\% against a published
-12\%. All three say the same thing --- this survey is still too concentrated. Against the 141
-targets matched to Stark's Fig.~11, mean completeness inside 10\,pc is now 0.787 against his
-0.764, a ratio of 1.03; but it falls to 0.55 of his value at 10--15\,pc, 0.35 at 15--20\,pc and
-0.13 at 20--30\,pc. A survey whose yield sits on a few saturated nearby stars is insensitive to a
-factor of 2.5 in planet albedo, which is exactly why this pipeline's albedo penalty is half of
-Stark's: his median per-target completeness is 0.501 against a mean of 0.503, every target on the
-steep part of $C(\tau)$, where a change in planet brightness costs real yield. This model's
-median is 0.209 against a mean of 0.558.
+\textbf{What is still wrong, in one place.} Fifteen of the sixteen independent published checks
+now agree. \emph{One} does not: the mode of the realized-yield distribution, 21.7 against
+a published $\sim$10.
 
-The aperture exponent, $D^{1.83}$ against $\sim D^{1.9}$, now sits inside its
-tolerance and is no longer counted as a disagreement.
+What makes that specific is what agrees alongside it. The mean of the same distribution is 23.3
+against a published 21, and its standard deviation is 4.5 against 5 --- both inside tolerance. A
+mode at half the mean therefore says Stark's realized yield distribution is strongly right-skewed
+where this model's is close to symmetric. It is a question about the \emph{shape} of the
+distribution, not its level, and nothing that shifts the level will touch it.
+
+Three candidate explanations are untested. The first is the shape of the $\eta_\oplus$ posterior:
+Stark marginalises over a $3\times3$ grid of pessimistic, nominal and optimistic scenarios
+spanning $-1.5\sigma$ to $+1.5\sigma$, where this pipeline marginalises a full emcee posterior on
+the SAG13 power law, which may be too narrow in its left tail to produce a mode near 10 with a
+mean near 21. The second is how the per-star Poisson draws are aggregated, since each star
+contributes only $\eta C \approx 0.12$ expected detections and the counts are almost all zero or
+one. The third is the cheapest and should be done first: confirm that the published 10 is read
+from the distribution that includes $\sigma_{\eta_\oplus}$ rather than the narrower one that
+excludes it. Comparing against the wrong published curve has already cost this project weeks once,
+in the Fig.~11 completeness metric.
 
 \subsection{What has not been tried}
 
