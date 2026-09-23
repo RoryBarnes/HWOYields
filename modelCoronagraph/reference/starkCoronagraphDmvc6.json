@@ -1,0 +1,948 @@
+{
+  "sSource": "Stark et al. (2024) Fig. 12, digitized from the PDF vector content stream",
+  "sCurve": "DMVC6, the coronagraph adopted for the LUVOIR-B baseline",
+  "sContrastNote": "raw contrast for an on-axis source of diameter 0.1 lambda/D",
+  "dictXCalibration": {
+    "fSlope": 0.011904950114130227,
+    "fIntercept": -6.428940818163268,
+    "fMaxResidual": 0.0012389302172479688
+  },
+  "dictContrastCalibration": {
+    "fSlope": 0.0015282350481276308,
+    "fIntercept": -11.961233242654892,
+    "fMaxResidual": 0.00013478655538712303
+  },
+  "dictThroughputCalibration": {
+    "fSlope": 0.0004629629629629629,
+    "fIntercept": -0.19999999999999993,
+    "fMaxResidual": 1.1102230246251565e-16
+  },
+  "listCoreThroughput": [
+    {
+      "fSeparationLamD": 0.1246,
+      "fUpsilon": 0.0
+    },
+    {
+      "fSeparationLamD": 0.3743,
+      "fUpsilon": 0.0
+    },
+    {
+      "fSeparationLamD": 0.624,
+      "fUpsilon": 0.00013
+    },
+    {
+      "fSeparationLamD": 0.8738,
+      "fUpsilon": 0.00079
+    },
+    {
+      "fSeparationLamD": 1.1235,
+      "fUpsilon": 0.00341
+    },
+    {
+      "fSeparationLamD": 1.3732,
+      "fUpsilon": 0.00958
+    },
+    {
+      "fSeparationLamD": 1.6263,
+      "fUpsilon": 0.02218
+    },
+    {
+      "fSeparationLamD": 1.876,
+      "fUpsilon": 0.04239
+    },
+    {
+      "fSeparationLamD": 2.1257,
+      "fUpsilon": 0.06444
+    },
+    {
+      "fSeparationLamD": 2.3755,
+      "fUpsilon": 0.08675
+    },
+    {
+      "fSeparationLamD": 2.6252,
+      "fUpsilon": 0.10774
+    },
+    {
+      "fSeparationLamD": 2.8749,
+      "fUpsilon": 0.12493
+    },
+    {
+      "fSeparationLamD": 3.1246,
+      "fUpsilon": 0.14252
+    },
+    {
+      "fSeparationLamD": 3.3744,
+      "fUpsilon": 0.15984
+    },
+    {
+      "fSeparationLamD": 3.6241,
+      "fUpsilon": 0.1752
+    },
+    {
+      "fSeparationLamD": 3.8738,
+      "fUpsilon": 0.18924
+    },
+    {
+      "fSeparationLamD": 4.1235,
+      "fUpsilon": 0.20092
+    },
+    {
+      "fSeparationLamD": 4.3733,
+      "fUpsilon": 0.21129
+    },
+    {
+      "fSeparationLamD": 4.6264,
+      "fUpsilon": 0.22087
+    },
+    {
+      "fSeparationLamD": 4.8761,
+      "fUpsilon": 0.23058
+    },
+    {
+      "fSeparationLamD": 5.1258,
+      "fUpsilon": 0.2399
+    },
+    {
+      "fSeparationLamD": 5.3756,
+      "fUpsilon": 0.24764
+    },
+    {
+      "fSeparationLamD": 5.6253,
+      "fUpsilon": 0.25433
+    },
+    {
+      "fSeparationLamD": 5.8749,
+      "fUpsilon": 0.26063
+    },
+    {
+      "fSeparationLamD": 6.1247,
+      "fUpsilon": 0.26706
+    },
+    {
+      "fSeparationLamD": 6.3744,
+      "fUpsilon": 0.2731
+    },
+    {
+      "fSeparationLamD": 6.6241,
+      "fUpsilon": 0.27822
+    },
+    {
+      "fSeparationLamD": 6.8739,
+      "fUpsilon": 0.2832
+    },
+    {
+      "fSeparationLamD": 7.1235,
+      "fUpsilon": 0.2878
+    },
+    {
+      "fSeparationLamD": 7.3733,
+      "fUpsilon": 0.29213
+    },
+    {
+      "fSeparationLamD": 7.6264,
+      "fUpsilon": 0.29633
+    },
+    {
+      "fSeparationLamD": 7.8762,
+      "fUpsilon": 0.30026
+    },
+    {
+      "fSeparationLamD": 8.1259,
+      "fUpsilon": 0.30394
+    },
+    {
+      "fSeparationLamD": 8.3756,
+      "fUpsilon": 0.30735
+    },
+    {
+      "fSeparationLamD": 8.6253,
+      "fUpsilon": 0.3105
+    },
+    {
+      "fSeparationLamD": 8.8751,
+      "fUpsilon": 0.31338
+    },
+    {
+      "fSeparationLamD": 9.1248,
+      "fUpsilon": 0.31627
+    },
+    {
+      "fSeparationLamD": 9.3744,
+      "fUpsilon": 0.31916
+    },
+    {
+      "fSeparationLamD": 9.6242,
+      "fUpsilon": 0.32179
+    },
+    {
+      "fSeparationLamD": 9.8739,
+      "fUpsilon": 0.32428
+    },
+    {
+      "fSeparationLamD": 10.1236,
+      "fUpsilon": 0.32664
+    },
+    {
+      "fSeparationLamD": 10.3733,
+      "fUpsilon": 0.32887
+    },
+    {
+      "fSeparationLamD": 10.6264,
+      "fUpsilon": 0.33097
+    },
+    {
+      "fSeparationLamD": 10.8762,
+      "fUpsilon": 0.33307
+    },
+    {
+      "fSeparationLamD": 11.126,
+      "fUpsilon": 0.33517
+    },
+    {
+      "fSeparationLamD": 11.3756,
+      "fUpsilon": 0.33701
+    },
+    {
+      "fSeparationLamD": 11.6254,
+      "fUpsilon": 0.33885
+    },
+    {
+      "fSeparationLamD": 11.8752,
+      "fUpsilon": 0.34042
+    },
+    {
+      "fSeparationLamD": 12.1248,
+      "fUpsilon": 0.34213
+    },
+    {
+      "fSeparationLamD": 12.3746,
+      "fUpsilon": 0.3437
+    },
+    {
+      "fSeparationLamD": 12.6243,
+      "fUpsilon": 0.34528
+    },
+    {
+      "fSeparationLamD": 12.874,
+      "fUpsilon": 0.34672
+    },
+    {
+      "fSeparationLamD": 13.1236,
+      "fUpsilon": 0.34803
+    },
+    {
+      "fSeparationLamD": 13.3734,
+      "fUpsilon": 0.34948
+    },
+    {
+      "fSeparationLamD": 13.6265,
+      "fUpsilon": 0.35079
+    },
+    {
+      "fSeparationLamD": 13.8763,
+      "fUpsilon": 0.3521
+    },
+    {
+      "fSeparationLamD": 14.126,
+      "fUpsilon": 0.35328
+    },
+    {
+      "fSeparationLamD": 14.3757,
+      "fUpsilon": 0.35446
+    },
+    {
+      "fSeparationLamD": 14.6254,
+      "fUpsilon": 0.35564
+    },
+    {
+      "fSeparationLamD": 14.8752,
+      "fUpsilon": 0.35669
+    },
+    {
+      "fSeparationLamD": 15.1249,
+      "fUpsilon": 0.35775
+    },
+    {
+      "fSeparationLamD": 15.3746,
+      "fUpsilon": 0.35879
+    },
+    {
+      "fSeparationLamD": 15.6244,
+      "fUpsilon": 0.35984
+    },
+    {
+      "fSeparationLamD": 15.874,
+      "fUpsilon": 0.36076
+    },
+    {
+      "fSeparationLamD": 16.1238,
+      "fUpsilon": 0.36168
+    },
+    {
+      "fSeparationLamD": 16.3734,
+      "fUpsilon": 0.3626
+    },
+    {
+      "fSeparationLamD": 16.6265,
+      "fUpsilon": 0.36352
+    },
+    {
+      "fSeparationLamD": 16.8763,
+      "fUpsilon": 0.36431
+    },
+    {
+      "fSeparationLamD": 17.1261,
+      "fUpsilon": 0.36522
+    },
+    {
+      "fSeparationLamD": 17.3757,
+      "fUpsilon": 0.36601
+    },
+    {
+      "fSeparationLamD": 17.6255,
+      "fUpsilon": 0.3668
+    },
+    {
+      "fSeparationLamD": 17.8753,
+      "fUpsilon": 0.36758
+    },
+    {
+      "fSeparationLamD": 18.1249,
+      "fUpsilon": 0.36824
+    },
+    {
+      "fSeparationLamD": 18.3747,
+      "fUpsilon": 0.36903
+    },
+    {
+      "fSeparationLamD": 18.6244,
+      "fUpsilon": 0.36969
+    },
+    {
+      "fSeparationLamD": 18.8741,
+      "fUpsilon": 0.37034
+    },
+    {
+      "fSeparationLamD": 19.1238,
+      "fUpsilon": 0.371
+    },
+    {
+      "fSeparationLamD": 19.3736,
+      "fUpsilon": 0.37165
+    },
+    {
+      "fSeparationLamD": 19.6266,
+      "fUpsilon": 0.37231
+    },
+    {
+      "fSeparationLamD": 19.8764,
+      "fUpsilon": 0.37283
+    },
+    {
+      "fSeparationLamD": 20.1261,
+      "fUpsilon": 0.37349
+    },
+    {
+      "fSeparationLamD": 20.3758,
+      "fUpsilon": 0.37402
+    },
+    {
+      "fSeparationLamD": 20.6255,
+      "fUpsilon": 0.37454
+    },
+    {
+      "fSeparationLamD": 20.8753,
+      "fUpsilon": 0.3752
+    },
+    {
+      "fSeparationLamD": 21.1249,
+      "fUpsilon": 0.37572
+    },
+    {
+      "fSeparationLamD": 21.3747,
+      "fUpsilon": 0.37625
+    },
+    {
+      "fSeparationLamD": 21.6245,
+      "fUpsilon": 0.37664
+    },
+    {
+      "fSeparationLamD": 21.8741,
+      "fUpsilon": 0.37717
+    },
+    {
+      "fSeparationLamD": 22.1239,
+      "fUpsilon": 0.37769
+    },
+    {
+      "fSeparationLamD": 22.3737,
+      "fUpsilon": 0.37808
+    },
+    {
+      "fSeparationLamD": 22.6266,
+      "fUpsilon": 0.37861
+    },
+    {
+      "fSeparationLamD": 22.8764,
+      "fUpsilon": 0.379
+    },
+    {
+      "fSeparationLamD": 23.1262,
+      "fUpsilon": 0.3794
+    },
+    {
+      "fSeparationLamD": 23.3758,
+      "fUpsilon": 0.37979
+    },
+    {
+      "fSeparationLamD": 23.6256,
+      "fUpsilon": 0.38031
+    },
+    {
+      "fSeparationLamD": 23.8753,
+      "fUpsilon": 0.38071
+    },
+    {
+      "fSeparationLamD": 24.125,
+      "fUpsilon": 0.3811
+    },
+    {
+      "fSeparationLamD": 24.3748,
+      "fUpsilon": 0.38137
+    },
+    {
+      "fSeparationLamD": 24.6245,
+      "fUpsilon": 0.38176
+    },
+    {
+      "fSeparationLamD": 24.8742,
+      "fUpsilon": 0.38215
+    },
+    {
+      "fSeparationLamD": 25.1239,
+      "fUpsilon": 0.38255
+    },
+    {
+      "fSeparationLamD": 25.3737,
+      "fUpsilon": 0.38281
+    },
+    {
+      "fSeparationLamD": 25.6267,
+      "fUpsilon": 0.3832
+    },
+    {
+      "fSeparationLamD": 25.8765,
+      "fUpsilon": 0.3836
+    },
+    {
+      "fSeparationLamD": 26.1262,
+      "fUpsilon": 0.38386
+    },
+    {
+      "fSeparationLamD": 26.3759,
+      "fUpsilon": 0.38412
+    },
+    {
+      "fSeparationLamD": 26.6256,
+      "fUpsilon": 0.38451
+    },
+    {
+      "fSeparationLamD": 26.8754,
+      "fUpsilon": 0.38478
+    },
+    {
+      "fSeparationLamD": 27.125,
+      "fUpsilon": 0.38504
+    },
+    {
+      "fSeparationLamD": 27.3748,
+      "fUpsilon": 0.38544
+    },
+    {
+      "fSeparationLamD": 27.6246,
+      "fUpsilon": 0.3857
+    },
+    {
+      "fSeparationLamD": 27.8742,
+      "fUpsilon": 0.38596
+    },
+    {
+      "fSeparationLamD": 28.124,
+      "fUpsilon": 0.38622
+    },
+    {
+      "fSeparationLamD": 28.3738,
+      "fUpsilon": 0.38648
+    },
+    {
+      "fSeparationLamD": 28.6267,
+      "fUpsilon": 0.38675
+    },
+    {
+      "fSeparationLamD": 28.8765,
+      "fUpsilon": 0.38701
+    },
+    {
+      "fSeparationLamD": 29.1263,
+      "fUpsilon": 0.38727
+    },
+    {
+      "fSeparationLamD": 29.3759,
+      "fUpsilon": 0.38753
+    },
+    {
+      "fSeparationLamD": 29.6257,
+      "fUpsilon": 0.38767
+    },
+    {
+      "fSeparationLamD": 29.8754,
+      "fUpsilon": 0.38793
+    },
+    {
+      "fSeparationLamD": 30.0002,
+      "fUpsilon": 0.38806
+    }
+  ],
+  "listRawContrast": [
+    {
+      "fSeparationLamD": 1.9064,
+      "fContrast": 9.989e-09
+    },
+    {
+      "fSeparationLamD": 2.1257,
+      "fContrast": 5.817e-09
+    },
+    {
+      "fSeparationLamD": 2.3755,
+      "fContrast": 3.178e-09
+    },
+    {
+      "fSeparationLamD": 2.6252,
+      "fContrast": 1.425e-09
+    },
+    {
+      "fSeparationLamD": 2.8749,
+      "fContrast": 6.964e-10
+    },
+    {
+      "fSeparationLamD": 3.1246,
+      "fContrast": 4.981e-10
+    },
+    {
+      "fSeparationLamD": 3.3744,
+      "fContrast": 4.71e-10
+    },
+    {
+      "fSeparationLamD": 3.6241,
+      "fContrast": 4.06e-10
+    },
+    {
+      "fSeparationLamD": 3.8738,
+      "fContrast": 3.18e-10
+    },
+    {
+      "fSeparationLamD": 4.1235,
+      "fContrast": 2.579e-10
+    },
+    {
+      "fSeparationLamD": 4.3733,
+      "fContrast": 2.313e-10
+    },
+    {
+      "fSeparationLamD": 4.6264,
+      "fContrast": 2.279e-10
+    },
+    {
+      "fSeparationLamD": 4.8761,
+      "fContrast": 2.028e-10
+    },
+    {
+      "fSeparationLamD": 5.1258,
+      "fContrast": 1.916e-10
+    },
+    {
+      "fSeparationLamD": 5.3756,
+      "fContrast": 1.617e-10
+    },
+    {
+      "fSeparationLamD": 5.6253,
+      "fContrast": 1.443e-10
+    },
+    {
+      "fSeparationLamD": 5.8749,
+      "fContrast": 1.169e-10
+    },
+    {
+      "fSeparationLamD": 6.1247,
+      "fContrast": 9.221e-11
+    },
+    {
+      "fSeparationLamD": 6.3744,
+      "fContrast": 7.367e-11
+    },
+    {
+      "fSeparationLamD": 6.6241,
+      "fContrast": 7.1e-11
+    },
+    {
+      "fSeparationLamD": 6.8739,
+      "fContrast": 7.471e-11
+    },
+    {
+      "fSeparationLamD": 7.1235,
+      "fContrast": 7.244e-11
+    },
+    {
+      "fSeparationLamD": 7.3733,
+      "fContrast": 6.212e-11
+    },
+    {
+      "fSeparationLamD": 7.6264,
+      "fContrast": 5.17e-11
+    },
+    {
+      "fSeparationLamD": 7.8762,
+      "fContrast": 5.165e-11
+    },
+    {
+      "fSeparationLamD": 8.1259,
+      "fContrast": 6.701e-11
+    },
+    {
+      "fSeparationLamD": 8.3756,
+      "fContrast": 9.23e-11
+    },
+    {
+      "fSeparationLamD": 8.6253,
+      "fContrast": 1.079e-10
+    },
+    {
+      "fSeparationLamD": 8.8751,
+      "fContrast": 1.311e-10
+    },
+    {
+      "fSeparationLamD": 9.1248,
+      "fContrast": 1.385e-10
+    },
+    {
+      "fSeparationLamD": 9.3744,
+      "fContrast": 1.34e-10
+    },
+    {
+      "fSeparationLamD": 9.6242,
+      "fContrast": 1.224e-10
+    },
+    {
+      "fSeparationLamD": 9.8739,
+      "fContrast": 1.151e-10
+    },
+    {
+      "fSeparationLamD": 10.1236,
+      "fContrast": 1.188e-10
+    },
+    {
+      "fSeparationLamD": 10.3733,
+      "fContrast": 9.454e-11
+    },
+    {
+      "fSeparationLamD": 10.6264,
+      "fContrast": 9.148e-11
+    },
+    {
+      "fSeparationLamD": 10.8762,
+      "fContrast": 7.375e-11
+    },
+    {
+      "fSeparationLamD": 11.126,
+      "fContrast": 6.414e-11
+    },
+    {
+      "fSeparationLamD": 11.3756,
+      "fContrast": 5.053e-11
+    },
+    {
+      "fSeparationLamD": 11.6254,
+      "fContrast": 4.07e-11
+    },
+    {
+      "fSeparationLamD": 11.8752,
+      "fContrast": 3.462e-11
+    },
+    {
+      "fSeparationLamD": 12.1248,
+      "fContrast": 3.023e-11
+    },
+    {
+      "fSeparationLamD": 12.3746,
+      "fContrast": 2.674e-11
+    },
+    {
+      "fSeparationLamD": 12.6243,
+      "fContrast": 2.489e-11
+    },
+    {
+      "fSeparationLamD": 12.874,
+      "fContrast": 2.289e-11
+    },
+    {
+      "fSeparationLamD": 13.1236,
+      "fContrast": 2.132e-11
+    },
+    {
+      "fSeparationLamD": 13.3734,
+      "fContrast": 2.18e-11
+    },
+    {
+      "fSeparationLamD": 13.6265,
+      "fContrast": 2.337e-11
+    },
+    {
+      "fSeparationLamD": 13.8763,
+      "fContrast": 2.613e-11
+    },
+    {
+      "fSeparationLamD": 14.126,
+      "fContrast": 3.09e-11
+    },
+    {
+      "fSeparationLamD": 14.3757,
+      "fContrast": 4.506e-11
+    },
+    {
+      "fSeparationLamD": 14.6254,
+      "fContrast": 6.925e-11
+    },
+    {
+      "fSeparationLamD": 14.8752,
+      "fContrast": 1.026e-10
+    },
+    {
+      "fSeparationLamD": 15.1249,
+      "fContrast": 1.346e-10
+    },
+    {
+      "fSeparationLamD": 15.3746,
+      "fContrast": 1.631e-10
+    },
+    {
+      "fSeparationLamD": 15.6244,
+      "fContrast": 1.698e-10
+    },
+    {
+      "fSeparationLamD": 15.874,
+      "fContrast": 1.514e-10
+    },
+    {
+      "fSeparationLamD": 16.1238,
+      "fContrast": 1.252e-10
+    },
+    {
+      "fSeparationLamD": 16.3734,
+      "fContrast": 9.693e-11
+    },
+    {
+      "fSeparationLamD": 16.6265,
+      "fContrast": 8.387e-11
+    },
+    {
+      "fSeparationLamD": 16.8763,
+      "fContrast": 8.48e-11
+    },
+    {
+      "fSeparationLamD": 17.1261,
+      "fContrast": 1.041e-10
+    },
+    {
+      "fSeparationLamD": 17.3757,
+      "fContrast": 1.352e-10
+    },
+    {
+      "fSeparationLamD": 17.6255,
+      "fContrast": 1.625e-10
+    },
+    {
+      "fSeparationLamD": 17.8753,
+      "fContrast": 2.056e-10
+    },
+    {
+      "fSeparationLamD": 18.1249,
+      "fContrast": 2.03e-10
+    },
+    {
+      "fSeparationLamD": 18.3747,
+      "fContrast": 1.931e-10
+    },
+    {
+      "fSeparationLamD": 18.6244,
+      "fContrast": 1.751e-10
+    },
+    {
+      "fSeparationLamD": 18.8741,
+      "fContrast": 1.422e-10
+    },
+    {
+      "fSeparationLamD": 19.1238,
+      "fContrast": 1.098e-10
+    },
+    {
+      "fSeparationLamD": 19.3736,
+      "fContrast": 8.825e-11
+    },
+    {
+      "fSeparationLamD": 19.6266,
+      "fContrast": 7.1e-11
+    },
+    {
+      "fSeparationLamD": 19.8764,
+      "fContrast": 6.065e-11
+    },
+    {
+      "fSeparationLamD": 20.1261,
+      "fContrast": 5.816e-11
+    },
+    {
+      "fSeparationLamD": 20.3758,
+      "fContrast": 6.491e-11
+    },
+    {
+      "fSeparationLamD": 20.6255,
+      "fContrast": 7.171e-11
+    },
+    {
+      "fSeparationLamD": 20.8753,
+      "fContrast": 8.337e-11
+    },
+    {
+      "fSeparationLamD": 21.1249,
+      "fContrast": 8.86e-11
+    },
+    {
+      "fSeparationLamD": 21.3747,
+      "fContrast": 9.304e-11
+    },
+    {
+      "fSeparationLamD": 21.6245,
+      "fContrast": 9.435e-11
+    },
+    {
+      "fSeparationLamD": 21.8741,
+      "fContrast": 9.111e-11
+    },
+    {
+      "fSeparationLamD": 22.1239,
+      "fContrast": 9.23e-11
+    },
+    {
+      "fSeparationLamD": 22.3737,
+      "fContrast": 1.26e-10
+    },
+    {
+      "fSeparationLamD": 22.6266,
+      "fContrast": 2.343e-10
+    },
+    {
+      "fSeparationLamD": 22.8764,
+      "fContrast": 3.882e-10
+    },
+    {
+      "fSeparationLamD": 23.1262,
+      "fContrast": 6.999e-10
+    },
+    {
+      "fSeparationLamD": 23.3758,
+      "fContrast": 7.905e-10
+    },
+    {
+      "fSeparationLamD": 23.6256,
+      "fContrast": 8.57e-10
+    },
+    {
+      "fSeparationLamD": 23.8753,
+      "fContrast": 7.929e-10
+    },
+    {
+      "fSeparationLamD": 24.125,
+      "fContrast": 6.142e-10
+    },
+    {
+      "fSeparationLamD": 24.3748,
+      "fContrast": 5.492e-10
+    },
+    {
+      "fSeparationLamD": 24.6245,
+      "fContrast": 3.921e-10
+    },
+    {
+      "fSeparationLamD": 24.8742,
+      "fContrast": 2.782e-10
+    },
+    {
+      "fSeparationLamD": 25.1239,
+      "fContrast": 1.964e-10
+    },
+    {
+      "fSeparationLamD": 25.3737,
+      "fContrast": 1.256e-10
+    },
+    {
+      "fSeparationLamD": 25.6267,
+      "fContrast": 9.416e-11
+    },
+    {
+      "fSeparationLamD": 25.8765,
+      "fContrast": 6.674e-11
+    },
+    {
+      "fSeparationLamD": 26.1262,
+      "fContrast": 7.258e-11
+    },
+    {
+      "fSeparationLamD": 26.3759,
+      "fContrast": 9.454e-11
+    },
+    {
+      "fSeparationLamD": 26.6256,
+      "fContrast": 1.255e-10
+    },
+    {
+      "fSeparationLamD": 26.8754,
+      "fContrast": 1.899e-10
+    },
+    {
+      "fSeparationLamD": 27.125,
+      "fContrast": 2.288e-10
+    },
+    {
+      "fSeparationLamD": 27.3748,
+      "fContrast": 3.471e-10
+    },
+    {
+      "fSeparationLamD": 27.6246,
+      "fContrast": 4.397e-10
+    },
+    {
+      "fSeparationLamD": 27.8742,
+      "fContrast": 5.884e-10
+    },
+    {
+      "fSeparationLamD": 28.124,
+      "fContrast": 7.664e-10
+    },
+    {
+      "fSeparationLamD": 28.3738,
+      "fContrast": 1.161e-09
+    },
+    {
+      "fSeparationLamD": 28.6267,
+      "fContrast": 2.347e-09
+    },
+    {
+      "fSeparationLamD": 28.8765,
+      "fContrast": 4.852e-09
+    },
+    {
+      "fSeparationLamD": 29.1094,
+      "fContrast": 9.989e-09
+    }
+  ]
+}

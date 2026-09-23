@@ -71,8 +71,10 @@ def fnSkyThroughputFor(dictMission):
     fExplicit = dictMission.get("fSkyThroughput")
     if fExplicit is not None:
         return float(fExplicit)
-    return cg.fnSkyThroughput(dictMission["fCoreThroughputMax"],
-                              dictMission["fApertureRadiusLamD"])
+    dictTable = dictMission.get("dictCoronagraphTable")
+    fMax = (max(dictTable["faUpsilon"]) if dictTable
+            else dictMission["fCoreThroughputMax"])
+    return cg.fnSkyThroughput(fMax, dictMission["fApertureRadiusLamD"])
 
 
 def fnCollectingAreaM2(dictMission):
@@ -114,11 +116,16 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     faSepLamD = faSepArcsec / fLamD
     faSepCurve = faSepLamD * dictMission.get("fCoronagraphScale",
                                              dictMission.get("fCircumscribedRatio", 1.0))
-    faUpsilon = cg.faCoreThroughput(faSepCurve, fIwaLamD=dictMission["fIwaLamD"],
-                                    fOwaLamD=dictMission["fOwaLamD"],
-                                    fThroughputMax=dictMission["fCoreThroughputMax"])
-    faZeta = cg.faRawContrast(faSepCurve, fContrastFloor=dictMission["fContrastFloor"],
-                              fOwaLamD=dictMission["fOwaLamD"])
+    dictTable = dictMission.get("dictCoronagraphTable")
+    if dictTable:
+        faUpsilon = cg.faCoreThroughputTable(faSepCurve, dictTable)
+        faZeta = cg.faRawContrastTable(faSepCurve, dictTable, dictMission["fContrastFloor"])
+    else:
+        faUpsilon = cg.faCoreThroughput(faSepCurve, fIwaLamD=dictMission["fIwaLamD"],
+                                        fOwaLamD=dictMission["fOwaLamD"],
+                                        fThroughputMax=dictMission["fCoreThroughputMax"])
+        faZeta = cg.faRawContrast(faSepCurve, fContrastFloor=dictMission["fContrastFloor"],
+                                  fOwaLamD=dictMission["fOwaLamD"])
     fArea = fnCollectingAreaM2(dictMission)
     fThroughput = dictBand["fOpticalThroughput"] * dictMission["fContaminationThroughput"] * \
         dictMission["fDetectiveQuantumEfficiency"] * dictMission["fQuantumEfficiency"] * \

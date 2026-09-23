@@ -185,52 +185,52 @@
           "fMax": 50.555194028119544
         },
         "faComp_canonical": {
-          "fMean": 0.032575656543209874,
+          "fMean": 0.03267678049382716,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_canonical": {
-          "fMean": 157848.92779091315,
+          "fMean": 165167.70121994158,
           "fMin": 0.0,
-          "fMax": 5177359.342077994
+          "fMax": 5183075.501981118
         },
         "faCompAlbedo_canonical": {
-          "fMean": 0.032192686666666664,
+          "fMean": 0.0323610649382716,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faComp_redefined": {
-          "fMean": 0.03531762296296296,
+          "fMean": 0.03489645925925926,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_redefined": {
-          "fMean": 118014.11019945604,
+          "fMean": 126042.21494727091,
           "fMin": 0.0,
-          "fMax": 5157907.663244381
+          "fMax": 5145539.132508966
         },
         "faCompAlbedo_redefined": {
-          "fMean": 0.03491698049382716,
+          "fMean": 0.03471760493827161,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faComp_hzOnly": {
-          "fMean": 0.03881500790123456,
+          "fMean": 0.03859622197530863,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_hzOnly": {
-          "fMean": 154428.178068891,
+          "fMean": 161420.46316169144,
           "fMin": 0.0,
-          "fMax": 5171837.897769562
+          "fMax": 5139983.703445807
         },
         "faCompAlbedo_hzOnly": {
-          "fMean": 0.038207365925925926,
+          "fMean": 0.03810813925925926,
           "fMin": 0.0,
           "fMax": 1.0
         }
       },
-      "iBytes": 2981943
+      "iBytes": 3100630
     },
     "completenessSummary.json": {
       "sKind": "json",
@@ -257,7 +257,7 @@
           "saPath": [
             "fThroughputCalibration"
           ],
-          "oValue": 1.2317590696470277
+          "oValue": 1.6576211711504056
         },
         {
           "saPath": [
@@ -273,7 +273,7 @@
             "canonical",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 8269.540666666668
+          "oValue": 8302.720000000001
         },
         {
           "saPath": [
@@ -281,7 +281,7 @@
             "canonical",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 17665.0
+          "oValue": 18236.0
         },
         {
           "saPath": [
@@ -289,7 +289,7 @@
             "canonical",
             "fMedianTauCharDays"
           ],
-          "oValue": 26.049594612514355
+          "oValue": 28.361207700994413
         },
         {
           "saPath": [
@@ -305,7 +305,7 @@
             "redefined",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 8942.874333333333
+          "oValue": 8853.589333333333
         },
         {
           "saPath": [
@@ -313,7 +313,7 @@
             "redefined",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 13927.0
+          "oValue": 14300.0
         },
         {
           "saPath": [
@@ -321,7 +321,7 @@
             "redefined",
             "fMedianTauCharDays"
           ],
-          "oValue": 26.500461839634475
+          "oValue": 27.012478728323618
         },
         {
           "saPath": [
@@ -337,7 +337,7 @@
             "hzOnly",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 9792.577999999998
+          "oValue": 9758.25333333333
         },
         {
           "saPath": [
@@ -345,7 +345,7 @@
             "hzOnly",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 17601.0
+          "oValue": 18029.0
         },
         {
           "saPath": [
@@ -353,7 +353,7 @@
             "hzOnly",
             "fMedianTauCharDays"
           ],
-          "oValue": 26.22801166359956
+          "oValue": 27.509336410156372
         }
       ],
       "iBytes": 726

@@ -1,0 +1,81 @@
+{
+  "iStarsTallied": 174,
+  "listBins": [
+    {
+      "fAlbedo": 0.09,
+      "iInjected": 17274,
+      "iDetected": 4086,
+      "fDetectionRate": 0.2365
+    },
+    {
+      "fAlbedo": 0.11,
+      "iInjected": 17345,
+      "iDetected": 5010,
+      "fDetectionRate": 0.2888
+    },
+    {
+      "fAlbedo": 0.13,
+      "iInjected": 17278,
+      "iDetected": 5962,
+      "fDetectionRate": 0.3451
+    },
+    {
+      "fAlbedo": 0.15,
+      "iInjected": 17633,
+      "iDetected": 7073,
+      "fDetectionRate": 0.4011
+    },
+    {
+      "fAlbedo": 0.17,
+      "iInjected": 17670,
+      "iDetected": 7818,
+      "fDetectionRate": 0.4424
+    },
+    {
+      "fAlbedo": 0.19,
+      "iInjected": 17244,
+      "iDetected": 8280,
+      "fDetectionRate": 0.4802
+    },
+    {
+      "fAlbedo": 0.21,
+      "iInjected": 17413,
+      "iDetected": 9260,
+      "fDetectionRate": 0.5318
+    },
+    {
+      "fAlbedo": 0.23,
+      "iInjected": 17392,
+      "iDetected": 9894,
+      "fDetectionRate": 0.5689
+    },
+    {
+      "fAlbedo": 0.25,
+      "iInjected": 17377,
+      "iDetected": 10334,
+      "fDetectionRate": 0.5947
+    },
+    {
+      "fAlbedo": 0.27,
+      "iInjected": 17413,
+      "iDetected": 10892,
+      "fDetectionRate": 0.6255
+    },
+    {
+      "fAlbedo": 0.29,
+      "iInjected": 17448,
+      "iDetected": 11420,
+      "fDetectionRate": 0.6545
+    },
+    {
+      "fAlbedo": 0.31,
+      "iInjected": 17313,
+      "iDetected": 11755,
+      "fDetectionRate": 0.679
+    }
+  ],
+  "fMeanRateAboveTwoTenths": 0.6091,
+  "fMeanRateBelowTwoTenths": 0.3657,
+  "fRatioBelowOverAbove": 0.6004,
+  "sPublished": "Stark et al. (2024) Sec. 3.2: flat above A_G = 0.2, falling linearly below"
+}

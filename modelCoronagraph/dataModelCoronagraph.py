@@ -10,6 +10,7 @@ separation, and useful throughput down to ~1.5 lambda/D, with contrast floored a
 
 import argparse
 import json
+import os
 import sys
 
 import numpy as np
@@ -22,8 +23,26 @@ F_YEAR_S = 365.25 * 86400.0
 F_HOUR_S = 3600.0
 
 
+S_CORONAGRAPH_REFERENCE = "reference/starkCoronagraphDmvc6.json"
 F_CIRCUMSCRIBED_RATIO = 8.0 / 6.7
 F_APERTURE_FILL_FACTOR = 0.785
+
+
+def fdictCoronagraphTableFromReference():
+    """The DMVC6 core-throughput and raw-contrast curves digitized from Stark et al. (2024) Fig. 12.
+
+    These replace the parametric stand-in that four hand-fitted constants used to define. The
+    parametric form was fitted to points read off the figure by eye under a 0.75 relative
+    tolerance, which is loose enough to accept a curve of the wrong SHAPE, and it was: optimistic
+    on contrast by a factor of 5 at 2 lambda/D and by a factor of 2 from 4 to 10 lambda/D, and
+    high on core throughput by 22 percent at 20 lambda/D. Returns None if the reference file is
+    absent, in which case the parametric curves are used and the provenance says so.
+    """
+    sPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), S_CORONAGRAPH_REFERENCE)
+    if not os.path.exists(sPath):
+        return None
+    with open(sPath) as oFile:
+        return cg.fdictCoronagraphTable(json.load(oFile))
 
 
 def fdictMissionParameters(fDiameterM, fExozodiLevel):
@@ -64,6 +83,7 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
         "fIwaLamD": cg.F_DEFAULT_IWA_LAMD,
         "fOwaLamD": cg.F_DEFAULT_OWA_LAMD,
         "fCoreThroughputMax": cg.F_DEFAULT_CORE_THROUGHPUT_MAX,
+        "dictCoronagraphTable": fdictCoronagraphTableFromReference(),
         "fContrastFloor": cg.F_DEFAULT_CONTRAST_FLOOR,
         "fNoiseFloorDeltaMag": 26.5,
         "fContaminationThroughput": 0.95,

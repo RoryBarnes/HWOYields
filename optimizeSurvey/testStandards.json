@@ -26,7 +26,7 @@
           "saPath": [
             "fThroughputCalibration"
           ],
-          "oValue": 1.2317590696470277
+          "oValue": 1.6576211711504056
         },
         {
           "saPath": [
@@ -38,34 +38,34 @@
           "saPath": [
             "fYieldBaseline"
           ],
-          "oValue": 21.385359999999995
+          "oValue": 21.411040000000007
         },
         {
           "saPath": [
             "fYieldPlanningBaseline"
           ],
-          "oValue": 22.463439999999995
+          "oValue": 22.46903999999999
         },
         {
           "saPath": [
             "fSummedCompletenessBaseline"
           ],
-          "oValue": 93.59766666666665
+          "oValue": 93.62099999999995
         },
         {
           "saPath": [
             "iStarsUsedBaseline"
           ],
-          "oValue": 169.0
+          "oValue": 174.0
         },
         {
           "saPath": [
             "fTimeUsedFractionBaseline"
           ],
-          "oValue": 0.9991261912802566
+          "oValue": 0.9999493500930086
         }
       ],
-      "iBytes": 1526
+      "iBytes": 1514
     }
   }
 }

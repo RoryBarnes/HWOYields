@@ -136,3 +136,62 @@ def test_exozodi_scale_tracks_band_flux_over_bolometric_luminosity():
     fOne = ph.fnExozodiSurfaceBrightnessScale(ph.F_VBAND_LAMBDA_M, ph.F_TEFF_SUN_K, 1.0, 1.0)
     fTwo = ph.fnExozodiSurfaceBrightnessScale(ph.F_VBAND_LAMBDA_M, ph.F_TEFF_SUN_K, 1.0, 2.0)
     assert np.isclose(fTwo, 0.5 * fOne, rtol=1e-12)
+
+
+def fdictReferenceTable():
+    """The digitized DMVC6 curves, as the coronagraph step embeds them."""
+    import json
+    sPath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                         "modelCoronagraph", "reference", "starkCoronagraphDmvc6.json")
+    with open(sPath) as oFile:
+        return cg.fdictCoronagraphTable(json.load(oFile))
+
+
+def test_digitised_core_throughput_reproduces_starks_quoted_numbers():
+    """Stark et al. (2024) Sec. 6.1 quote two values for the DMVC6 core throughput.
+
+    It is "~5% at 2 lambda/D" and reaches "a relatively high maximum value of ~0.45". The
+    digitized curve gives 0.053 and 0.388, the latter still rising at the 30 lambda/D edge of the
+    plotted range, which is consistent with a quoted asymptote slightly above it.
+    """
+    dictTable = fdictReferenceTable()
+    assert np.isclose(float(cg.faCoreThroughputTable(np.array([2.0]), dictTable)[0]), 0.05,
+                      atol=0.015)
+    assert 0.35 < max(dictTable["faUpsilon"]) < 0.46
+
+
+def test_digitised_curve_puts_the_half_maximum_near_the_quoted_iwa():
+    """The IWA is where core throughput reaches half its maximum; Stark quotes ~3.5 lambda/D."""
+    dictTable = fdictReferenceTable()
+    faSep = np.linspace(0.2, 29.0, 2000)
+    faUpsilon = cg.faCoreThroughputTable(faSep, dictTable)
+    fHalf = float(np.interp(0.5 * max(dictTable["faUpsilon"]), faUpsilon, faSep))
+    assert 3.0 < fHalf < 4.5
+
+
+def test_digitised_contrast_is_floored_but_not_flat():
+    """Stark takes the greater of the simulated contrast and the floor, so it is a bound.
+
+    The simulated curve is still worse than the floor at 10 lambda/D and only crosses it further
+    out, so a model that snaps to 1e-10 outside a knee -- as the parametric form did -- makes
+    well-separated planets about twice as easy as published.
+    """
+    dictTable = fdictReferenceTable()
+    fAtTen = float(cg.faRawContrastTable(np.array([10.0]), dictTable)[0])
+    fAtTwenty = float(cg.faRawContrastTable(np.array([20.0]), dictTable)[0])
+    assert fAtTen > cg.F_DEFAULT_CONTRAST_FLOOR
+    assert np.isclose(fAtTwenty, cg.F_DEFAULT_CONTRAST_FLOOR, rtol=1e-9)
+
+
+def test_digitised_contrast_degrades_steeply_inside_the_inner_edge():
+    """Below the figure's inner edge the contrast runs off the top of its axis, not to the floor."""
+    dictTable = fdictReferenceTable()
+    assert float(cg.faRawContrastTable(np.array([1.5]), dictTable)[0]) > 1e-8
+    assert dictTable["fInnerLogSlope"] < -3.0
+
+
+def test_nothing_is_detectable_beyond_the_outer_working_angle():
+    """The dark hole ends at the outer edge of the digitized curve; throughput goes to zero."""
+    dictTable = fdictReferenceTable()
+    fBeyond = dictTable["fOuterEdgeLamD"] * 1.05
+    assert float(cg.faCoreThroughputTable(np.array([fBeyond]), dictTable)[0]) == 0.0

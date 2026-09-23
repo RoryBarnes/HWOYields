@@ -21,16 +21,16 @@
           "saPath": [
             "iIndependent"
           ],
-          "oValue": 26.0
+          "oValue": 16.0
         },
         {
           "saPath": [
             "iIndependentAgreeing"
           ],
-          "oValue": 21.0
+          "oValue": 11.0
         }
       ],
-      "iBytes": 8990
+      "iBytes": 10566
     }
   }
 }

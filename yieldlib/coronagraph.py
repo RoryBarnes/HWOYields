@@ -91,3 +91,68 @@ def fnSkyThroughput(fThroughputMax=F_DEFAULT_CORE_THROUGHPUT_MAX,
     whose planets are faint enough that the zodiacal terms set the exposure time.
     """
     return min(1.0, float(fThroughputMax) / fnAiryEncircledEnergy(fApertureRadiusLamD))
+
+
+def fdictCoronagraphTable(dictDigitised):
+    """Condense the digitized DMVC6 curves into the arrays the count-rate code interpolates.
+
+    Reading the published figure's vector content stream rather than fitting three points read off
+    it by eye removes four hand-tuned constants -- the logistic ramp index, the contrast knee, the
+    inner power-law index and the throughput maximum -- and replaces them with the curve Stark et
+    al. actually used. The two are not close: the parametric contrast was optimistic by a factor
+    of 5 at 2 lambda/D and by a factor of 2 from 4 to 10 lambda/D, and the parametric core
+    throughput was 22 percent high at 20 lambda/D.
+
+    Separations are in CIRCUMSCRIBED lambda/D, which is the convention the figure's abscissa uses.
+    """
+    faSepU = np.array([d["fSeparationLamD"] for d in dictDigitised["listCoreThroughput"]])
+    faUpsilon = np.array([d["fUpsilon"] for d in dictDigitised["listCoreThroughput"]])
+    faSepC = np.array([d["fSeparationLamD"] for d in dictDigitised["listRawContrast"]])
+    faContrast = np.array([d["fContrast"] for d in dictDigitised["listRawContrast"]])
+    return {
+        "faSeparationUpsilon": [float(f) for f in faSepU],
+        "faUpsilon": [float(f) for f in faUpsilon],
+        "faSeparationContrast": [float(f) for f in faSepC],
+        "faContrast": [float(f) for f in faContrast],
+        "fInnerEdgeLamD": float(faSepC[0]),
+        "fOuterEdgeLamD": float(faSepC[-1]),
+        "fInnerLogSlope": float(np.log10(faContrast[1] / faContrast[0]) /
+                                np.log10(faSepC[1] / faSepC[0])),
+    }
+
+
+def faCoreThroughputTable(faSeparationLamD, dictTable):
+    """Core throughput interpolated from the published DMVC6 curve, zero beyond the dark hole.
+
+    The published throughput curve runs in to 0.125 lambda/D, well inside where the contrast goes
+    off the top of its axis, so there is no need to cut it off at the inner edge: a planet there
+    is excluded by its contrast, not by a hard geometric limit, which is how Stark describes it --
+    "VCs can detect planets inside of their classically-defined IWA, as long as one can pay the
+    throughput penalty".
+    """
+    faSep = np.asarray(faSeparationLamD, dtype=float)
+    faOut = np.interp(faSep, dictTable["faSeparationUpsilon"], dictTable["faUpsilon"])
+    return np.where(faSep <= dictTable["fOuterEdgeLamD"], faOut, 0.0)
+
+
+def faRawContrastTable(faSeparationLamD, dictTable, fContrastFloor=F_DEFAULT_CONTRAST_FLOOR):
+    """Raw contrast interpolated in log space, floored as Stark et al. (2019) floor it.
+
+    They "set the contrast to the greater of zeta and zeta_floor", so the floor is a bound on how
+    good the contrast may be, not a value it settles at: the simulated curve is still 1.2e-10 at
+    10 lambda/D and only crosses the floor near 15. Treating the floor as universal outside a
+    knee, which the parametric form did, made every well-separated planet about twice as easy as
+    published.
+    """
+    faSep = np.asarray(faSeparationLamD, dtype=float)
+    faSepC = np.asarray(dictTable["faSeparationContrast"])
+    faLogC = np.log10(np.asarray(dictTable["faContrast"]))
+    faLog = np.interp(faSep, faSepC, faLogC)
+    fInner = dictTable["fInnerEdgeLamD"]
+    bInside = faSep < fInner
+    if bInside.any():
+        faLog = np.where(bInside,
+                         faLogC[0] + dictTable["fInnerLogSlope"] *
+                         np.log10(np.maximum(faSep, 1e-6) / fInner), faLog)
+    faOut = np.maximum(10.0 ** faLog, fContrastFloor)
+    return np.where(faSep <= dictTable["fOuterEdgeLamD"], faOut, 1.0)

@@ -1,55 +1,55 @@
 {
   "sBox": "canonical",
   "iStarsAvailable": 1500,
-  "fThroughputCalibration": 1.2317590696470277,
+  "fThroughputCalibration": 1.6576211711504056,
   "fEtaEarthBaseline": 0.24,
-  "fYieldBaseline": 21.385359999999995,
-  "fYieldPlanningBaseline": 22.463439999999995,
-  "fSummedCompletenessBaseline": 93.59766666666665,
-  "iStarsUsedBaseline": 169,
-  "fTimeUsedFractionBaseline": 0.9991261912802566,
+  "fYieldBaseline": 21.411040000000007,
+  "fYieldPlanningBaseline": 22.46903999999999,
+  "fSummedCompletenessBaseline": 93.62099999999995,
+  "iStarsUsedBaseline": 174,
+  "fTimeUsedFractionBaseline": 0.9999493500930086,
   "listEtaScan": [
     {
       "fEtaEarth": 0.02,
-      "fYield": 1.9258199999999996,
-      "fSummedCompleteness": 99.50399999999989,
-      "iStarsUsed": 191,
-      "fTimeUsedFraction": 0.9998711482010653
+      "fYield": 1.9540800000000005,
+      "fSummedCompleteness": 101.058,
+      "iStarsUsed": 199,
+      "fTimeUsedFraction": 0.9995915252310461
     },
     {
       "fEtaEarth": 0.06,
-      "fYield": 5.744959999999998,
-      "fSummedCompleteness": 99.16666666666663,
-      "iStarsUsed": 189,
-      "fTimeUsedFraction": 0.9994695415996837
+      "fYield": 5.817199999999999,
+      "fSummedCompleteness": 100.52633333333338,
+      "iStarsUsed": 197,
+      "fTimeUsedFraction": 0.9997279911507508
     },
     {
       "fEtaEarth": 0.12,
-      "fYield": 11.320320000000004,
-      "fSummedCompleteness": 98.20199999999994,
-      "iStarsUsed": 186,
-      "fTimeUsedFraction": 0.9994811358639417
+      "fYield": 11.406680000000003,
+      "fSummedCompleteness": 99.09733333333332,
+      "iStarsUsed": 189,
+      "fTimeUsedFraction": 0.9999671640383289
     },
     {
       "fEtaEarth": 0.24,
-      "fYield": 21.385359999999995,
-      "fSummedCompleteness": 93.59766666666665,
-      "iStarsUsed": 169,
-      "fTimeUsedFraction": 0.9991261912802566
+      "fYield": 21.411040000000007,
+      "fSummedCompleteness": 93.62099999999995,
+      "iStarsUsed": 174,
+      "fTimeUsedFraction": 0.9999493500930086
     },
     {
       "fEtaEarth": 0.4,
-      "fYield": 32.07840000000001,
-      "fSummedCompleteness": 84.74966666666668,
-      "iStarsUsed": 145,
-      "fTimeUsedFraction": 0.9999688994568253
+      "fYield": 32.03466666666667,
+      "fSummedCompleteness": 84.46233333333333,
+      "iStarsUsed": 151,
+      "fTimeUsedFraction": 0.999577207164789
     },
     {
       "fEtaEarth": 0.6,
-      "fYield": 43.421199999999985,
-      "fSummedCompleteness": 76.14866666666666,
-      "iStarsUsed": 130,
-      "fTimeUsedFraction": 0.9991152598671164
+      "fYield": 43.28300000000001,
+      "fSummedCompleteness": 75.86866666666668,
+      "iStarsUsed": 134,
+      "fTimeUsedFraction": 0.9991986980738595
     }
   ]
 }

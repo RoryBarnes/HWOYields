@@ -55,6 +55,30 @@
         {
           "saPath": [
             "dictMission",
+            "dictCoronagraphTable",
+            "fInnerEdgeLamD"
+          ],
+          "oValue": 1.9064
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictCoronagraphTable",
+            "fOuterEdgeLamD"
+          ],
+          "oValue": 29.1094
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictCoronagraphTable",
+            "fInnerLogSlope"
+          ],
+          "oValue": -4.9658101712948195
+        },
+        {
+          "saPath": [
+            "dictMission",
             "fContrastFloor"
           ],
           "oValue": 1e-10
@@ -360,7 +384,7 @@
           "oValue": 1.2
         }
       ],
-      "iBytes": 4640
+      "iBytes": 12862
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",

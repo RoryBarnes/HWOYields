@@ -20,9 +20,8 @@ sys.path.insert(0, "..")
 from yieldlib import coronagraph as cg  # noqa: E402
 from yieldlib import occurrence as oc  # noqa: E402
 
-LIST_THROUGHPUT_READOFF = [(2.0, 0.05), (3.0, 0.15), (3.5, 0.20), (5.0, 0.30), (10.0, 0.42),
-                           (20.0, 0.45)]
-LIST_CONTRAST_READOFF = [(2.0, 3.0e-9), (3.0, 2.5e-10), (4.0, 1.2e-10), (10.0, 1.0e-10)]
+LIST_THROUGHPUT_READOFF = [(2.0, 0.05334), (3.0, 0.13374), (3.5, 0.16757), (5.0, 0.2352), (10.0, 0.32547), (20.0, 0.37316)]
+LIST_CONTRAST_READOFF = [(2.0, 7.93e-09), (3.0, 5.888e-10), (4.0, 2.861e-10), (10.0, 1.17e-10)]
 
 
 def fdictCheck(sName, fPublished, fModel, fRelTol, sSource, bTuned=False, sNote=""):
@@ -34,17 +33,38 @@ def fdictCheck(sName, fPublished, fModel, fRelTol, sSource, bTuned=False, sNote=
             "sSource": sSource, "sNote": sNote}
 
 
-def flistCoronagraphChecks():
-    """Core throughput and raw contrast against the DMVC curves of Stark et al. (2019)."""
+def flistCoronagraphChecks(dictMission=None):
+    """Core throughput and raw contrast against the DMVC6 curves of Stark et al. (2024) Fig. 12.
+
+    These used to compare the parametric stand-in against a handful of points read off the figure
+    by eye, at tolerances of 0.35 and 0.75. Those tolerances were loose enough to pass a curve of
+    the wrong shape, and did: the read-off itself was wrong by a factor of three at 2 lambda/D
+    against the figure's own vector data. The model now interpolates the digitized curve, so the
+    comparison is against the same numbers it was built from and the tolerance can be tight --
+    what it tests is that the table survived the round trip into the mission parameters intact,
+    not that a fit is good.
+    """
+    dictTable = (dictMission or {}).get("dictCoronagraphTable")
     listOut = []
     for fSep, fPub in LIST_THROUGHPUT_READOFF:
-        listOut.append(fdictCheck(f"Upsilon_c at {fSep:g} lambda/D", fPub,
-                                  float(cg.faCoreThroughput(fSep)), 0.35,
-                                  "Stark+2019 DMVC figure (read off)"))
+        fModel = (float(cg.faCoreThroughputTable(np.array([fSep]), dictTable)[0]) if dictTable
+                  else float(cg.faCoreThroughput(fSep)))
+        listOut.append(fdictCheck(f"Upsilon_c at {fSep:g} lambda/D", fPub, fModel,
+                                  0.02 if dictTable else 0.35,
+                                  "Stark+2024 Fig. 12 (digitized from the PDF content stream)",
+                                  bTuned=bool(dictTable),
+                                  sNote="Round-trip of the digitized table into the mission "
+                                        "parameters; the curve itself is tested against Stark's "
+                                        "quoted 5% at 2 lambda/D, 0.45 maximum and 3.5 lambda/D "
+                                        "IWA in tests/testPhysics.py." if dictTable else ""))
     for fSep, fPub in LIST_CONTRAST_READOFF:
-        listOut.append(fdictCheck(f"zeta at {fSep:g} lambda/D", fPub,
-                                  float(cg.faRawContrast(fSep)), 0.75,
-                                  "Stark+2019 DMVC figure (read off)"))
+        fModel = (float(cg.faRawContrastTable(np.array([fSep]), dictTable)[0]) if dictTable
+                  else float(cg.faRawContrast(fSep)))
+        listOut.append(fdictCheck(f"zeta at {fSep:g} lambda/D", fPub, fModel,
+                                  0.05 if dictTable else 0.75,
+                                  "Stark+2024 Fig. 12 (digitized from the PDF content stream)",
+                                  bTuned=bool(dictTable),
+                                  sNote="Round-trip of the digitized table." if dictTable else ""))
     return listOut
 
 
@@ -146,7 +166,7 @@ def main():
                 ("mission_parameters", "calibration", "survey", "prediction", "aperture")}
     dictNpz = np.load(dictArgs["completeness"], allow_pickle=True)
     faRealized = np.load(dictArgs["yield_samples"])["faObserved_canonical"].astype(float)
-    listChecks = (flistCoronagraphChecks() +
+    listChecks = (flistCoronagraphChecks(dictLoad["mission_parameters"]["dictMission"]) +
                   flistPopulationChecks(dictLoad["mission_parameters"]["dictBoxes"]) +
                   flistYieldChecks(dictLoad["calibration"], dictLoad["survey"],
                                    dictLoad["prediction"], dictLoad["aperture"], rng,

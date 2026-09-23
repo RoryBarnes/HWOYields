@@ -19,13 +19,13 @@
           "saPath": [
             "fFrozenCalibrationFactor"
           ],
-          "oValue": 1.2317590696470277
+          "oValue": 1.6576211711504056
         },
         {
           "saPath": [
             "fCrossingDiameterM"
           ],
-          "oValue": 6.60392351626521
+          "oValue": 6.599852434825381
         },
         {
           "saPath": [
@@ -103,7 +103,7 @@
             "6",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 21.43642850112527
+          "oValue": 21.469275738980624
         },
         {
           "saPath": [
@@ -111,7 +111,7 @@
             "6",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 24.176229185447735
+          "oValue": 24.167580830172422
         },
         {
           "saPath": [
@@ -119,7 +119,7 @@
             "6",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.42347222222222225
+          "oValue": 0.42569444444444443
         },
         {
           "saPath": [
@@ -127,7 +127,7 @@
             "6",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.25458333333333333
+          "oValue": 0.25631944444444443
         },
         {
           "saPath": [
@@ -143,7 +143,7 @@
             "7",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 28.893514039801268
+          "oValue": 28.894981069232266
         },
         {
           "saPath": [
@@ -151,7 +151,7 @@
             "7",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 32.667334523199884
+          "oValue": 32.668286539125894
         },
         {
           "saPath": [
@@ -159,7 +159,7 @@
             "7",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.6794444444444444
+          "oValue": 0.6773611111111111
         },
         {
           "saPath": [
@@ -167,7 +167,7 @@
             "7",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.7902083333333333
+          "oValue": 0.7903472222222222
         },
         {
           "saPath": [
@@ -183,7 +183,7 @@
             "8",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 36.44268206748854
+          "oValue": 36.347223486693665
         },
         {
           "saPath": [
@@ -191,7 +191,7 @@
             "8",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 41.413559008756565
+          "oValue": 41.30323564246934
         },
         {
           "saPath": [
@@ -199,7 +199,7 @@
             "8",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.8345138888888889
+          "oValue": 0.8338888888888889
         },
         {
           "saPath": [
@@ -207,7 +207,7 @@
             "8",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.9811111111111112
+          "oValue": 0.9809722222222222
         },
         {
           "saPath": [
@@ -223,7 +223,7 @@
             "9",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 44.047964768136666
+          "oValue": 43.8549288228725
         },
         {
           "saPath": [
@@ -231,7 +231,7 @@
             "9",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 50.265011962135745
+          "oValue": 49.974135213830515
         },
         {
           "saPath": [
@@ -239,7 +239,7 @@
             "9",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.9151388888888888
+          "oValue": 0.913125
         },
         {
           "saPath": [
@@ -247,7 +247,7 @@
             "9",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.9986805555555556
+          "oValue": 0.9993055555555556
         },
         {
           "saPath": [
@@ -263,7 +263,7 @@
             "6",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.10347222222222224
+          "oValue": 0.10569444444444442
         },
         {
           "saPath": [
@@ -271,7 +271,7 @@
             "6",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.19458333333333333
+          "oValue": 0.19631944444444444
         },
         {
           "saPath": [
@@ -279,7 +279,7 @@
             "7",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.14944444444444438
+          "oValue": 0.14736111111111105
         },
         {
           "saPath": [
@@ -287,7 +287,7 @@
             "7",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.3002083333333333
+          "oValue": 0.3003472222222222
         },
         {
           "saPath": [
@@ -295,7 +295,7 @@
             "8",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.16451388888888885
+          "oValue": 0.16388888888888886
         },
         {
           "saPath": [
@@ -303,7 +303,7 @@
             "8",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.09111111111111114
+          "oValue": 0.09097222222222223
         },
         {
           "saPath": [
@@ -311,7 +311,7 @@
             "9",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.1351388888888888
+          "oValue": 0.13312499999999994
         },
         {
           "saPath": [
@@ -319,10 +319,10 @@
             "9",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.003680555555555576
+          "oValue": 0.0043055555555555625
         }
       ],
-      "iBytes": 5827
+      "iBytes": 5848
     }
   }
 }
