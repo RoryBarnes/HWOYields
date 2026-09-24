@@ -4,7 +4,8 @@
 The model is deliberately modest about what it infers. The SHAPE parameters alpha and beta carry
 Gaussian priors taken from the SAG13 fit; the single likelihood term is the eta_Earth that Stark
 et al. (2024) obtain by integrating the Bryson et al. (2021) Kepler DR25 posterior over the
-canonical EEC box, 0.26 (+0.29/-0.14) at 86 percent confidence. The posterior is therefore
+canonical EEC box, quoted as 0.26 (+0.29/-0.14) at 86 percent confidence (but see
+F_Z_INTERVAL_DEFAULT: this step reads that interval as one sigma). The posterior is therefore
 prior-dominated in alpha and beta and likelihood-dominated in the normalisation, which is the
 honest structure of the available evidence: there is one well-characterised integral constraint
 and no published per-parameter posterior to re-fit. Redefining the selection box changes which
@@ -22,6 +23,16 @@ sys.path.insert(0, "..")
 from yieldlib import occurrence as oc  # noqa: E402
 
 F_Z_86_PERCENT = 1.4757910281791712  # two-sided 86 percent interval of a standard normal
+F_Z_INTERVAL_DEFAULT = 1.0
+# Stark et al. (2024) Sec. 3.5 label 0.26 (+0.29/-0.14) an 86 percent interval, but their own
+# Fig. 10 does not support that width. Holding this pipeline's yield-vs-eta curve at Stark's
+# fixed-eta level (his red curve), the lognormal eta law that turns red into his purple curve has
+# median 0.26 and ln-sigma 0.80 (total-variation distance 0.019; mode 11, median 17 against his
+# 10 and 18). Reading the quoted interval as one sigma (68 percent) gives ln-sigma 0.76 and
+# reproduces the figure nearly as well (0.024); reading it as 86 percent gives 0.52 and does not
+# (0.142, mode 15). Bryson et al. (2021) Fig. 13 shows per-case ln-widths of about 0.8 too. The
+# posterior chains that would settle it are not published. See
+# explorations/inferEtaLawFromStarkFigure10.py. Pass --eta-interval-z 1.4758 for the text's reading.
 
 
 def fnLogSplitNormal(fValue, fCentre, fSigmaLow, fSigmaHigh):
@@ -66,7 +77,7 @@ def faRunSampler(dictBoxes, dictPriors, dictLikelihood, iWalkers, iSteps, iBurn,
     return oSampler, oSampler.get_chain(discard=iBurn, thin=10, flat=True)
 
 
-def faSampleEtaFromPublished(fCentre, fMinus, fPlus, iDraws, rng):
+def faSampleEtaFromPublished(fCentre, fMinus, fPlus, iDraws, rng, fZ=F_Z_INTERVAL_DEFAULT):
     """Draw eta for the canonical box directly from the published posterior summary.
 
     The value this pipeline must reproduce is already a POSTERIOR -- Stark et al. (2024) obtain
@@ -79,7 +90,7 @@ def faSampleEtaFromPublished(fCentre, fMinus, fPlus, iDraws, rng):
     """
     fLo, fHi = fCentre - fMinus, fCentre + fPlus
     fMu = 0.5 * (np.log(fLo) + np.log(fHi))
-    fSigma = (np.log(fHi) - np.log(fLo)) / (2.0 * F_Z_86_PERCENT)
+    fSigma = (np.log(fHi) - np.log(fLo)) / (2.0 * fZ)
     return np.exp(rng.normal(fMu, fSigma, iDraws)), fMu, fSigma
 
 
@@ -107,6 +118,9 @@ def fdictParseArgs():
     p.add_argument("--eta-centre", type=float, default=0.26)
     p.add_argument("--eta-plus", type=float, default=0.29)
     p.add_argument("--eta-minus", type=float, default=0.14)
+    p.add_argument("--eta-interval-z", type=float, default=F_Z_INTERVAL_DEFAULT,
+                   help="standard-normal z of the quoted eta interval: 1.0 reads it as one sigma "
+                        "(what Stark's Fig. 10 implies), 1.4758 as the stated 86 percent")
     p.add_argument("--gamma-prior-mean", type=float, default=0.38)
     p.add_argument("--gamma-prior-lnsigma", type=float, default=1.0)
     p.add_argument("--alpha-prior-mean", type=float, default=-0.19)
@@ -133,8 +147,8 @@ def main():
                   "fBetaMean": dictArgs["beta_prior_mean"],
                   "fBetaSigma": dictArgs["beta_prior_sigma"]}
     dictLikelihood = {"fEtaCentre": dictArgs["eta_centre"],
-                      "fSigmaHigh": dictArgs["eta_plus"] / F_Z_86_PERCENT,
-                      "fSigmaLow": dictArgs["eta_minus"] / F_Z_86_PERCENT}
+                      "fSigmaHigh": dictArgs["eta_plus"] / dictArgs["eta_interval_z"],
+                      "fSigmaLow": dictArgs["eta_minus"] / dictArgs["eta_interval_z"]}
     oSampler, faChain = faRunSampler(dictBoxes, dictPriors, dictLikelihood,
                                      dictArgs["walkers"], dictArgs["steps"],
                                      dictArgs["burn"], dictArgs["seed"])
@@ -143,7 +157,7 @@ def main():
     rngEta = np.random.default_rng(dictArgs["seed"] + 1)
     faEtaCanonical, fMu, fSigma = faSampleEtaFromPublished(
         dictArgs["eta_centre"], dictArgs["eta_minus"], dictArgs["eta_plus"],
-        faRatio.size, rngEta)
+        faRatio.size, rngEta, dictArgs["eta_interval_z"])
     dictEta = {"canonical": faEtaCanonical, "redefined": faEtaCanonical * faRatio,
                "hzOnly": faEtaCanonical * (dictEtaShape["hzOnly"] /
                                            dictEtaShape["canonical"])}
@@ -151,8 +165,9 @@ def main():
                         **{f"faEta_{k}": v for k, v in dictEta.items()})
     dictSummary = {
         "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior "
-                             "(lognormal matched to its 86 percent interval); other boxes follow "
+                             f"(lognormal matched to its quoted interval read at z = {dictArgs['eta_interval_z']:g}); other boxes follow "
                              "by the Gamma-independent ratio from the shape chain.",
+        "fEtaIntervalZ": float(dictArgs["eta_interval_z"]),
         "fEtaLogNormalMu": float(fMu), "fEtaLogNormalSigma": float(fSigma),
         "fEtaModeImplied": float(np.exp(fMu - fSigma ** 2)),
         "fEtaMeanImplied": float(np.exp(fMu + 0.5 * fSigma ** 2)),

@@ -1,0 +1,104 @@
+{
+  "skyFollowsCore": {
+    "fPlanningFixedExozodi9m": 44.40679999999997,
+    "fMeanCharDaysPriorityFirst18_9m": 1.2965265189482098,
+    "fUncalibratedPlanning": 22.61499999999999,
+    "fCalibration": 0.9868016261952176,
+    "fPlanningFixedExozodi": 22.49379999999999,
+    "fPlanningDrawnExozodi": 20.537599999999987,
+    "fFixedEtaYield": 18.736799999999995,
+    "fExozodiPenalty": 0.08696618623798569,
+    "fMeanCharDaysPriorityFirst18": 13.1210956213439,
+    "iStarsUsed": 160,
+    "dictByLuminosity": {
+      "0-0.6": {
+        "fSummed": 41.315,
+        "iUsed": 61
+      },
+      "0.6-1": {
+        "fSummed": 8.890833333333333,
+        "iUsed": 16
+      },
+      "1-2": {
+        "fSummed": 13.3075,
+        "iUsed": 26
+      },
+      "2-5": {
+        "fSummed": 17.27083333333333,
+        "iUsed": 38
+      },
+      "5-100": {
+        "fSummed": 4.789166666666667,
+        "iUsed": 19
+      }
+    }
+  },
+  "current": {
+    "fPlanningFixedExozodi9m": 46.2382,
+    "fMeanCharDaysPriorityFirst18_9m": 1.1153489858797563,
+    "fUncalibratedPlanning": 18.650799999999997,
+    "fCalibration": 1.6226362141876287,
+    "fPlanningFixedExozodi": 22.502000000000002,
+    "fPlanningDrawnExozodi": 21.1876,
+    "fFixedEtaYield": 19.301600000000004,
+    "fExozodiPenalty": 0.05841258554795137,
+    "fMeanCharDaysPriorityFirst18": 12.580202653596242,
+    "iStarsUsed": 161,
+    "dictByLuminosity": {
+      "0-0.6": {
+        "fSummed": 39.508333333333326,
+        "iUsed": 55
+      },
+      "0.6-1": {
+        "fSummed": 9.348333333333333,
+        "iUsed": 16
+      },
+      "1-2": {
+        "fSummed": 13.906666666666668,
+        "iUsed": 27
+      },
+      "2-5": {
+        "fSummed": 19.52,
+        "iUsed": 40
+      },
+      "5-100": {
+        "fSummed": 5.998333333333333,
+        "iUsed": 23
+      }
+    }
+  },
+  "exozodiRadial": {
+    "fPlanningFixedExozodi9m": 44.1238,
+    "fMeanCharDaysPriorityFirst18_9m": 1.3216238786670897,
+    "fUncalibratedPlanning": 23.116799999999998,
+    "fCalibration": 0.9361817886201873,
+    "fPlanningFixedExozodi": 22.488599999999998,
+    "fPlanningDrawnExozodi": 20.4408,
+    "fFixedEtaYield": 18.4982,
+    "fExozodiPenalty": 0.09105947013153326,
+    "fMeanCharDaysPriorityFirst18": 13.324589961795438,
+    "iStarsUsed": 158,
+    "dictByLuminosity": {
+      "0-0.6": {
+        "fSummed": 41.92333333333333,
+        "iUsed": 61
+      },
+      "0.6-1": {
+        "fSummed": 9.075,
+        "iUsed": 16
+      },
+      "1-2": {
+        "fSummed": 13.423333333333332,
+        "iUsed": 26
+      },
+      "2-5": {
+        "fSummed": 16.621666666666666,
+        "iUsed": 36
+      },
+      "5-100": {
+        "fSummed": 4.126666666666667,
+        "iUsed": 19
+      }
+    }
+  }
+}

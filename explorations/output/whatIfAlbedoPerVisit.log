@@ -1,0 +1,11 @@
+== albedoPerVisit
+    factor 1.342 -> planning yield 25.34
+    factor 0.634 -> planning yield 18.52
+    factor 0.923 -> planning yield 21.88
+    factor 1.113 -> planning yield 23.60
+    factor 1.013 -> planning yield 22.73
+    factor 0.967 -> planning yield 22.31
+    factor 0.990 -> planning yield 22.51
+    factor 0.978 -> planning yield 22.41
+    factor 0.984 -> planning yield 22.47
+{"fPlanningFixedExozodi9m": 44.40679999999999, "fMeanCharDaysPriorityFirst18_9m": 1.2965265189482098, "fUncalibratedPlanning": 22.615, "fCalibration": 0.9868016261952176, "fPlanningFixedExozodi": 22.493799999999997, "fPlanningDrawnExozodi": 20.537599999999998, "fFixedEtaYield": 19.7922, "fExozodiPenalty": 0.08696618623798558, "fMeanCharDaysPriorityFirst18": 13.1210956213439, "iStarsUsed": 160, "dictByLuminosity": {"0-0.6": {"fSummed": 41.315, "iUsed": 61}, "0.6-1": {"fSummed": 8.890833333333333, "iUsed": 16}, "1-2": {"fSummed": 13.3075, "iUsed": 26}, "2-5": {"fSummed": 17.27083333333333, "iUsed": 38}, "5-100": {"fSummed": 4.789166666666667, "iUsed": 19}}}

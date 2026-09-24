@@ -1,6 +1,165 @@
 {
   "sStep": "verifyAgainstPublished",
   "dictFiles": {
+    "starkFigure10Digitised.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictCalibration",
+        "excluding",
+        "fMeanLineIncluding",
+        "including",
+        "sSource"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "dictCalibration",
+            "fX0"
+          ],
+          "oValue": 629.293
+        },
+        {
+          "saPath": [
+            "dictCalibration",
+            "fScale"
+          ],
+          "oValue": 70.03854
+        },
+        {
+          "saPath": [
+            "dictCalibration",
+            "dictLabelX",
+            "0"
+          ],
+          "oValue": 599.293
+        },
+        {
+          "saPath": [
+            "dictCalibration",
+            "dictLabelX",
+            "10"
+          ],
+          "oValue": 1269.73
+        },
+        {
+          "saPath": [
+            "dictCalibration",
+            "dictLabelX",
+            "20"
+          ],
+          "oValue": 1970.18
+        },
+        {
+          "saPath": [
+            "dictCalibration",
+            "dictLabelX",
+            "30"
+          ],
+          "oValue": 2670.34
+        },
+        {
+          "saPath": [
+            "dictCalibration",
+            "dictLabelX",
+            "40"
+          ],
+          "oValue": 3370.7799999999997
+        },
+        {
+          "saPath": [
+            "dictCalibration",
+            "dictLabelX",
+            "50"
+          ],
+          "oValue": 4071.2200000000003
+        },
+        {
+          "saPath": [
+            "fMeanLineIncluding"
+          ],
+          "oValue": 21.001251596620946
+        },
+        {
+          "saPath": [
+            "excluding",
+            "fHeightAtAxisEnd"
+          ],
+          "oValue": 0.0
+        },
+        {
+          "saPath": [
+            "excluding",
+            "dictSummary",
+            "iMode"
+          ],
+          "oValue": 17.0
+        },
+        {
+          "saPath": [
+            "excluding",
+            "dictSummary",
+            "iMedian"
+          ],
+          "oValue": 17.0
+        },
+        {
+          "saPath": [
+            "excluding",
+            "dictSummary",
+            "fMeanTruncated"
+          ],
+          "oValue": 17.347085112793607
+        },
+        {
+          "saPath": [
+            "excluding",
+            "dictSummary",
+            "fP25"
+          ],
+          "oValue": 0.06288302939945828
+        },
+        {
+          "saPath": [
+            "including",
+            "fHeightAtAxisEnd"
+          ],
+          "oValue": 0.09909175464405744
+        },
+        {
+          "saPath": [
+            "including",
+            "dictSummary",
+            "iMode"
+          ],
+          "oValue": 10.0
+        },
+        {
+          "saPath": [
+            "including",
+            "dictSummary",
+            "iMedian"
+          ],
+          "oValue": 18.0
+        },
+        {
+          "saPath": [
+            "including",
+            "dictSummary",
+            "fMeanTruncated"
+          ],
+          "oValue": 19.2964248820783
+        },
+        {
+          "saPath": [
+            "including",
+            "dictSummary",
+            "fP25"
+          ],
+          "oValue": 0.29918472753240166
+        }
+      ],
+      "iBytes": 4584
+    },
     "publishedVerification.json": {
       "sKind": "json",
       "saTopLevelKeys": [
@@ -15,22 +174,22 @@
           "saPath": [
             "iChecks"
           ],
-          "oValue": 27.0
+          "oValue": 35.0
         },
         {
           "saPath": [
             "iIndependent"
           ],
-          "oValue": 16.0
+          "oValue": 23.0
         },
         {
           "saPath": [
             "iIndependentAgreeing"
           ],
-          "oValue": 15.0
+          "oValue": 19.0
         }
       ],
-      "iBytes": 10428
+      "iBytes": 13677
     }
   }
 }

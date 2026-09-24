@@ -5,6 +5,7 @@
       "sKind": "json",
       "saTopLevelKeys": [
         "bCalibrationGatePassed",
+        "bExozodiDrawnDuringCalibration",
         "bFactorPlausible",
         "bTargetReached",
         "fCalibratedThroughputFactor",
@@ -26,6 +27,12 @@
         },
         {
           "saPath": [
+            "bExozodiDrawnDuringCalibration"
+          ],
+          "oValue": false
+        },
+        {
+          "saPath": [
             "iStarsScreened"
           ],
           "oValue": 1500.0
@@ -34,19 +41,19 @@
           "saPath": [
             "fCalibratedThroughputFactor"
           ],
-          "oValue": 1.6643025302115202
+          "oValue": 0.9876435169533048
         },
         {
           "saPath": [
             "fCalibratedYield"
           ],
-          "oValue": 22.501999999999995
+          "oValue": 22.4998
         },
         {
           "saPath": [
             "fRelativeError"
           ],
-          "oValue": 8.888888888868173e-05
+          "oValue": 8.888888888868173e-06
         },
         {
           "saPath": [
@@ -76,10 +83,10 @@
           "saPath": [
             "fUncalibratedYield"
           ],
-          "oValue": 18.296999999999997
+          "oValue": 22.615
         }
       ],
-      "iBytes": 1875
+      "iBytes": 1824
     }
   }
 }

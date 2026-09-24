@@ -1,0 +1,102 @@
+{
+  "dictAll": {
+    "iTargets": 141,
+    "fMedianPublished": 0.5010615711252654,
+    "fMedianModel": 0.19066666666666668,
+    "fSumPublished": 74.23142250530786,
+    "fSumModel": 54.766666666666666,
+    "fFractionModelNearZero": 0.41134751773049644
+  },
+  "dictByLuminosity": {
+    "0-0.3": {
+      "iTargets": 22,
+      "fMedianPublished": 0.9012738853503185,
+      "fMedianModel": 0.9259999999999999,
+      "fSumPublished": 17.43312101910828,
+      "fSumModel": 16.704,
+      "fFractionModelNearZero": 0.13636363636363635
+    },
+    "0.3-0.6": {
+      "iTargets": 22,
+      "fMedianPublished": 0.7590233545647558,
+      "fMedianModel": 0.6613333333333333,
+      "fSumPublished": 13.989384288747345,
+      "fSumModel": 11.925333333333334,
+      "fFractionModelNearZero": 0.2727272727272727
+    },
+    "0.6-1": {
+      "iTargets": 13,
+      "fMedianPublished": 0.5774946921443737,
+      "fMedianModel": 0.614,
+      "fSumPublished": 7.138004246284502,
+      "fSumModel": 7.446666666666666,
+      "fFractionModelNearZero": 0.3076923076923077
+    },
+    "1-2": {
+      "iTargets": 25,
+      "fMedianPublished": 0.6178343949044586,
+      "fMedianModel": 0.17133333333333334,
+      "fSumPublished": 13.891719745222929,
+      "fSumModel": 9.11,
+      "fFractionModelNearZero": 0.48
+    },
+    "2-5": {
+      "iTargets": 33,
+      "fMedianPublished": 0.4734607218683652,
+      "fMedianModel": 0.0,
+      "fSumPublished": 16.072186836518046,
+      "fSumModel": 6.712,
+      "fFractionModelNearZero": 0.5757575757575758
+    },
+    "5-100": {
+      "iTargets": 26,
+      "fMedianPublished": 0.2208067940552017,
+      "fMedianModel": 0.0,
+      "fSumPublished": 5.707006369426751,
+      "fSumModel": 2.868666666666667,
+      "fFractionModelNearZero": 0.5384615384615384
+    }
+  },
+  "dictByDistance": {
+    "0-6": {
+      "iTargets": 17,
+      "fMedianPublished": 0.9469214437367304,
+      "fMedianModel": 0.9706666666666667,
+      "fSumPublished": 13.881104033970276,
+      "fSumModel": 14.690666666666669,
+      "fFractionModelNearZero": 0.0
+    },
+    "6-10": {
+      "iTargets": 29,
+      "fMedianPublished": 0.8938428874734607,
+      "fMedianModel": 0.8966666666666666,
+      "fSumPublished": 21.280254777070063,
+      "fSumModel": 18.545333333333335,
+      "fFractionModelNearZero": 0.13793103448275862
+    },
+    "10-15": {
+      "iTargets": 35,
+      "fMedianPublished": 0.7282377919320594,
+      "fMedianModel": 0.5126666666666667,
+      "fSumPublished": 22.144373673036092,
+      "fSumModel": 17.176666666666666,
+      "fFractionModelNearZero": 0.22857142857142856
+    },
+    "15-20": {
+      "iTargets": 39,
+      "fMedianPublished": 0.28450106157112526,
+      "fMedianModel": 0.0,
+      "fSumPublished": 13.329087048832273,
+      "fSumModel": 3.667333333333333,
+      "fFractionModelNearZero": 0.7692307692307693
+    },
+    "20-50": {
+      "iTargets": 21,
+      "fMedianPublished": 0.19745222929936304,
+      "fMedianModel": 0.0,
+      "fSumPublished": 3.5966029723991517,
+      "fSumModel": 0.6866666666666665,
+      "fFractionModelNearZero": 0.7619047619047619
+    }
+  }
+}

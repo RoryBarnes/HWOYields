@@ -1,0 +1,36 @@
+{
+  "albedoPerVisit": {
+    "fPlanningFixedExozodi9m": 44.40679999999999,
+    "fMeanCharDaysPriorityFirst18_9m": 1.2965265189482098,
+    "fUncalibratedPlanning": 22.615,
+    "fCalibration": 0.9868016261952176,
+    "fPlanningFixedExozodi": 22.493799999999997,
+    "fPlanningDrawnExozodi": 20.537599999999998,
+    "fFixedEtaYield": 19.7922,
+    "fExozodiPenalty": 0.08696618623798558,
+    "fMeanCharDaysPriorityFirst18": 13.1210956213439,
+    "iStarsUsed": 160,
+    "dictByLuminosity": {
+      "0-0.6": {
+        "fSummed": 41.315,
+        "iUsed": 61
+      },
+      "0.6-1": {
+        "fSummed": 8.890833333333333,
+        "iUsed": 16
+      },
+      "1-2": {
+        "fSummed": 13.3075,
+        "iUsed": 26
+      },
+      "2-5": {
+        "fSummed": 17.27083333333333,
+        "iUsed": 38
+      },
+      "5-100": {
+        "fSummed": 4.789166666666667,
+        "iUsed": 19
+      }
+    }
+  }
+}

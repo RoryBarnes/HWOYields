@@ -1,0 +1,90 @@
+{
+  "eps Eri": {
+    "fDistancePc": 3.219777107238769,
+    "fLuminosityLsun": 0.3419588830940211,
+    "fTeffK": 5098.0,
+    "fVmag": 3.73,
+    "fBestCompletenessA04": 0.999,
+    "dictGates": {
+      "fNoiseFloor": 0.1364,
+      "fZeroThroughput": 0.0001,
+      "fDetectionOverCap": 0.0008,
+      "fCharacterizationOverCap": 0.0,
+      "fDetectable": 0.8626,
+      "fMedianCharDaysWhereFinite": 0.06,
+      "fMedianDetDaysWhereFinite": 0.004
+    },
+    "dictNearestStarkFig11": {
+      "fDistancePc": 3.960978984684683,
+      "fLuminosityLsun": 0.4008320841138482,
+      "fCompleteness": 0.9830148619957537,
+      "fSeparationDex": 0.11338093785082007
+    }
+  },
+  "tet Boo": {
+    "fDistancePc": 14.473700523376465,
+    "fLuminosityLsun": 4.179215007435714,
+    "fTeffK": 6280.0,
+    "fVmag": 4.05,
+    "fBestCompletenessA04": 0.0,
+    "dictGates": {
+      "fNoiseFloor": 0.6586,
+      "fZeroThroughput": 0.0001,
+      "fDetectionOverCap": 0.0046,
+      "fCharacterizationOverCap": 0.0205,
+      "fDetectable": 0.3163,
+      "fMedianCharDaysWhereFinite": 25.98,
+      "fMedianDetDaysWhereFinite": 0.215
+    },
+    "dictNearestStarkFig11": {
+      "fDistancePc": 14.501123749063408,
+      "fLuminosityLsun": 3.9716816687084457,
+      "fCompleteness": 0.7473460721868365,
+      "fSeparationDex": 0.022135552913248865
+    }
+  },
+  "72 Her": {
+    "fDistancePc": 14.576581954956056,
+    "fLuminosityLsun": 1.2967992915697455,
+    "fTeffK": 5704.0,
+    "fVmag": 5.39,
+    "fBestCompletenessA04": 0.0,
+    "dictGates": {
+      "fNoiseFloor": 0.3271,
+      "fZeroThroughput": 0.0008,
+      "fDetectionOverCap": 0.0144,
+      "fCharacterizationOverCap": 0.4671,
+      "fDetectable": 0.1905,
+      "fMedianCharDaysWhereFinite": 118.27,
+      "fMedianDetDaysWhereFinite": 0.831
+    },
+    "dictNearestStarkFig11": {
+      "fDistancePc": 13.724810642360916,
+      "fLuminosityLsun": 1.1705841007703341,
+      "fCompleteness": 0.6178343949044586,
+      "fSeparationDex": 0.05158857925421056
+    }
+  },
+  "110 Her": {
+    "fDistancePc": 19.3423080444336,
+    "fLuminosityLsun": 6.188885678263879,
+    "fTeffK": 6367.0,
+    "fVmag": 4.19,
+    "fBestCompletenessA04": 0.0,
+    "dictGates": {
+      "fNoiseFloor": 0.7898,
+      "fZeroThroughput": 0.0001,
+      "fDetectionOverCap": 0.0055,
+      "fCharacterizationOverCap": 0.1051,
+      "fDetectable": 0.0995,
+      "fMedianCharDaysWhereFinite": 74.76,
+      "fMedianDetDaysWhereFinite": 0.441
+    },
+    "dictNearestStarkFig11": {
+      "fDistancePc": 18.662383593434626,
+      "fLuminosityLsun": 6.0403188812345165,
+      "fCompleteness": 0.5010615711252654,
+      "fSeparationDex": 0.018785250310463877
+    }
+  }
+}

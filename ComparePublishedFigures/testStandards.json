@@ -1,0 +1,111 @@
+{
+  "sStep": "comparePublishedFigures",
+  "dictFiles": {
+    "publishedComparisonSeries.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "fig04",
+        "fig07",
+        "fig09",
+        "fig10",
+        "fig11",
+        "fig12",
+        "fig14",
+        "fig15",
+        "fig25",
+        "iYieldMax",
+        "sPublishedSource"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "iYieldMax"
+          ],
+          "oValue": 60.0
+        },
+        {
+          "saPath": [
+            "fig04",
+            "fMean"
+          ],
+          "oValue": 22.51472
+        },
+        {
+          "saPath": [
+            "fig07",
+            "fMeanAlbedo"
+          ],
+          "oValue": 20.6028
+        },
+        {
+          "saPath": [
+            "fig07",
+            "fMeanAlbedoExozodi"
+          ],
+          "oValue": 18.298333718092042
+        },
+        {
+          "saPath": [
+            "fig09",
+            "fMedianZodi"
+          ],
+          "oValue": 2.9954122602133157
+        },
+        {
+          "saPath": [
+            "fig10",
+            "fMeanIncluding"
+          ],
+          "oValue": 22.516286500493774
+        },
+        {
+          "saPath": [
+            "fig10",
+            "fMeanExcluding"
+          ],
+          "oValue": 18.35315730531719
+        },
+        {
+          "saPath": [
+            "fig11",
+            "iRepresentativeDraw"
+          ],
+          "oValue": 99.0
+        },
+        {
+          "saPath": [
+            "fig14",
+            "6",
+            "fMeanDays"
+          ],
+          "oValue": 13.82457326511124
+        },
+        {
+          "saPath": [
+            "fig14",
+            "7",
+            "fMeanDays"
+          ],
+          "oValue": 6.703697263615666
+        },
+        {
+          "saPath": [
+            "fig14",
+            "8",
+            "fMeanDays"
+          ],
+          "oValue": 3.2734811911224444
+        },
+        {
+          "saPath": [
+            "fig14",
+            "9",
+            "fMeanDays"
+          ],
+          "oValue": 1.8494033900023745
+        }
+      ],
+      "iBytes": 323544
+    }
+  }
+}

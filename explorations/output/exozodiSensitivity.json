@@ -1,0 +1,205 @@
+{
+  "fYieldPlanning": 22.701800000000016,
+  "iStarsUsed": 179,
+  "dictYieldWeighted": {
+    "fLeakShare": 0.23724522870376655,
+    "fZodiShare": 0.10148724106530245,
+    "fExozodiShare": 0.6501282031979569,
+    "fDetectorShare": 0.01055214687924265,
+    "fPlanetOverBackground": 0.1617899675880499,
+    "fElasticity": 0.5895743616536344
+  },
+  "listTopStars": [
+    {
+      "sName": "* eps Ind",
+      "fDistancePc": 3.638480424880981,
+      "fEec": 0.239,
+      "fLeakShare": 0.2662691248764553,
+      "fZodiShare": 0.10377485875780318,
+      "fExozodiShare": 0.6155441668018097,
+      "fDetectorShare": 0.014649243555195013,
+      "fPlanetOverBackground": 0.6375771349770696,
+      "fElasticity": 0.443431567355761
+    },
+    {
+      "sName": "*  61 Cyg B",
+      "fDistancePc": 3.49606728553772,
+      "fEec": 0.239,
+      "fLeakShare": 0.16212959706049876,
+      "fZodiShare": 0.14501609013181643,
+      "fExozodiShare": 0.6727233251478449,
+      "fDetectorShare": 0.014943708703627224,
+      "fPlanetOverBackground": 0.6458441536982638,
+      "fElasticity": 0.49087649126013
+    },
+    {
+      "sName": "* tau Cet",
+      "fDistancePc": 3.652167797088623,
+      "fEec": 0.23879999999999998,
+      "fLeakShare": 0.47214200660697314,
+      "fZodiShare": 0.06306701660266195,
+      "fExozodiShare": 0.4493561322538886,
+      "fDetectorShare": 0.013138401067561752,
+      "fPlanetOverBackground": 0.48781701260409494,
+      "fElasticity": 0.3237303629171596
+    },
+    {
+      "sName": "* del Equ",
+      "fDistancePc": 4.5079,
+      "fEec": 0.23859999999999998,
+      "fLeakShare": 0.22155151780078683,
+      "fZodiShare": 0.08697968505701202,
+      "fExozodiShare": 0.6786033882270079,
+      "fDetectorShare": 0.013534486365773622,
+      "fPlanetOverBackground": 0.5123574258202092,
+      "fElasticity": 0.521689553131652
+    },
+    {
+      "sName": "* eps Eri",
+      "fDistancePc": 3.219777107238769,
+      "fEec": 0.2382,
+      "fLeakShare": 0.42743079078981916,
+      "fZodiShare": 0.07151942239575568,
+      "fExozodiShare": 0.4840640161537903,
+      "fDetectorShare": 0.014782670353798577,
+      "fPlanetOverBackground": 0.6740823003950976,
+      "fElasticity": 0.3337635943135639
+    },
+    {
+      "sName": "HD  95735",
+      "fDistancePc": 2.5461,
+      "fEec": 0.23779999999999998,
+      "fLeakShare": 0.09534761915153019,
+      "fZodiShare": 0.22995032981589136,
+      "fExozodiShare": 0.6488041782945372,
+      "fDetectorShare": 0.016699753710118226,
+      "fPlanetOverBackground": 0.8041551103054031,
+      "fElasticity": 0.4106230650336715
+    },
+    {
+      "sName": "*  61 Cyg A",
+      "fDistancePc": 3.496245622634888,
+      "fEec": 0.23759999999999998,
+      "fLeakShare": 0.21583228774137553,
+      "fZodiShare": 0.11843426884967449,
+      "fExozodiShare": 0.6494952958896665,
+      "fDetectorShare": 0.015360101534241243,
+      "fPlanetOverBackground": 0.7048961590245573,
+      "fElasticity": 0.45288527246621607
+    },
+    {
+      "sName": "* e Eri",
+      "fDistancePc": 6.04108190536499,
+      "fEec": 0.23719999999999997,
+      "fLeakShare": 0.28966461726879367,
+      "fZodiShare": 0.08504042905816121,
+      "fExozodiShare": 0.6135484090448324,
+      "fDetectorShare": 0.011108979267100302,
+      "fPlanetOverBackground": 0.23440950900330032,
+      "fElasticity": 0.5356495819386544
+    },
+    {
+      "sName": "* omi02 Eri",
+      "fDistancePc": 5.009246349334717,
+      "fEec": 0.23719999999999997,
+      "fLeakShare": 0.2757912327717719,
+      "fZodiShare": 0.09102645869084167,
+      "fExozodiShare": 0.6209377132237429,
+      "fDetectorShare": 0.011669020722726247,
+      "fPlanetOverBackground": 0.29682168230684086,
+      "fElasticity": 0.5081465936623333
+    },
+    {
+      "sName": "V* AX Mic",
+      "fDistancePc": 3.9691498279571538,
+      "fEec": 0.23719999999999997,
+      "fLeakShare": 0.13369424817319933,
+      "fZodiShare": 0.2026658508239581,
+      "fExozodiShare": 0.6481483927379459,
+      "fDetectorShare": 0.013839476332215273,
+      "fPlanetOverBackground": 0.4801017566470954,
+      "fElasticity": 0.49979909530287026
+    },
+    {
+      "sName": "*  70 Oph A",
+      "fDistancePc": 5.112358570098877,
+      "fEec": 0.237,
+      "fLeakShare": 0.3068198513004896,
+      "fZodiShare": 0.08454973887649195,
+      "fExozodiShare": 0.5962402116402022,
+      "fDetectorShare": 0.012326716901048376,
+      "fPlanetOverBackground": 0.37526651487193624,
+      "fElasticity": 0.48841051409338077
+    },
+    {
+      "sName": "*  36 Oph B",
+      "fDistancePc": 5.947053909301758,
+      "fEec": 0.237,
+      "fLeakShare": 0.1647490002718086,
+      "fZodiShare": 0.1050327765890667,
+      "fExozodiShare": 0.7182055284912183,
+      "fDetectorShare": 0.011586349811635026,
+      "fPlanetOverBackground": 0.2791137588674124,
+      "fElasticity": 0.6008987128074958
+    },
+    {
+      "sName": "* del Pav",
+      "fDistancePc": 6.099270343780518,
+      "fEec": 0.2368,
+      "fLeakShare": 0.4367850381160177,
+      "fZodiShare": 0.06600911624470837,
+      "fExozodiShare": 0.48624802325656447,
+      "fDetectorShare": 0.010594075295947277,
+      "fPlanetOverBackground": 0.19019664316103946,
+      "fElasticity": 0.4194404301469528
+    },
+    {
+      "sName": "HD  88230",
+      "fDistancePc": 4.869897365570068,
+      "fEec": 0.2368,
+      "fLeakShare": 0.12796557195925617,
+      "fZodiShare": 0.1530707634580522,
+      "fExozodiShare": 0.7059665553076371,
+      "fDetectorShare": 0.01214021262626429,
+      "fPlanetOverBackground": 0.3159014469946499,
+      "fElasticity": 0.5981587353902907
+    },
+    {
+      "sName": "* sig Dra",
+      "fDistancePc": 5.763694763183594,
+      "fEec": 0.2362,
+      "fLeakShare": 0.22056830794731458,
+      "fZodiShare": 0.0953771038485981,
+      "fExozodiShare": 0.6725942071493385,
+      "fDetectorShare": 0.011549809856573275,
+      "fPlanetOverBackground": 0.2832522971665783,
+      "fElasticity": 0.566051755915721
+    }
+  ],
+  "dictByDistance": {
+    "<8 pc": {
+      "fLeakShare": 0.22075833815544998,
+      "fZodiShare": 0.12223296367342568,
+      "fExozodiShare": 0.6438792571667258,
+      "fDetectorShare": 0.01189215126177706,
+      "fPlanetOverBackground": 0.30503538591736606,
+      "fElasticity": 0.5400801718338573
+    },
+    "8-15 pc": {
+      "fLeakShare": 0.24784907339812737,
+      "fZodiShare": 0.08856497855562456,
+      "fExozodiShare": 0.6536477791018344,
+      "fDetectorShare": 0.009744413927881822,
+      "fPlanetOverBackground": 0.07568460794282271,
+      "fElasticity": 0.6182191125735851
+    },
+    ">=15 pc": {
+      "fLeakShare": 0.24811621801006614,
+      "fZodiShare": 0.08525849916311765,
+      "fExozodiShare": 0.6572758280640113,
+      "fDetectorShare": 0.009340648402039702,
+      "fPlanetOverBackground": 0.0308233376404562,
+      "fElasticity": 0.641530692064367
+    }
+  }
+}

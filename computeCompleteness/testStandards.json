@@ -13,14 +13,22 @@
         "faDistancePc",
         "faEeidLamD",
         "faLuminosityLsun",
+        "faTauCharMeanGrid_canonical",
+        "faTauCharMeanGrid_redefined",
         "faTauCharMean_canonical",
         "faTauCharMean_hzOnly",
         "faTauCharMean_redefined",
-        "faTauChar_canonical",
-        "faTauChar_hzOnly",
-        "faTauChar_redefined",
         "faTauGridS",
         "faTeffK",
+        "faZodiDraws",
+        "faZodiGrid",
+        "iNumPlanets",
+        "iaCompAlbedoCounts_canonical",
+        "iaCompAlbedoCounts_redefined",
+        "iaCompCounts_canonical",
+        "iaCompCounts_redefined",
+        "iaGridStar_canonical",
+        "iaGridStar_redefined",
         "saBoxNames",
         "saSourceId"
       ],
@@ -75,9 +83,11 @@
           ],
           "sDtype": "float64"
         },
-        "faTauChar_canonical": {
+        "faCompAlbedo_canonical": {
           "listShape": [
-            1500
+            1500,
+            6,
+            150
           ],
           "sDtype": "float64"
         },
@@ -89,29 +99,50 @@
           ],
           "sDtype": "float64"
         },
-        "faCompAlbedo_canonical": {
+        "iaGridStar_canonical": {
           "listShape": [
-            1500,
+            250
+          ],
+          "sDtype": "int32"
+        },
+        "iaCompCounts_canonical": {
+          "listShape": [
+            250,
+            23,
             6,
             150
           ],
+          "sDtype": "uint16"
+        },
+        "iaCompAlbedoCounts_canonical": {
+          "listShape": [
+            250,
+            23,
+            6,
+            150
+          ],
+          "sDtype": "uint16"
+        },
+        "faTauCharMeanGrid_canonical": {
+          "listShape": [
+            250,
+            23,
+            6,
+            150
+          ],
+          "sDtype": "float32"
+        },
+        "faZodiGrid": {
+          "listShape": [
+            23
+          ],
           "sDtype": "float64"
+        },
+        "iNumPlanets": {
+          "listShape": [],
+          "sDtype": "int64"
         },
         "faComp_redefined": {
-          "listShape": [
-            1500,
-            6,
-            150
-          ],
-          "sDtype": "float64"
-        },
-        "faTauChar_redefined": {
-          "listShape": [
-            1500
-          ],
-          "sDtype": "float64"
-        },
-        "faTauCharMean_redefined": {
           "listShape": [
             1500,
             6,
@@ -127,7 +158,7 @@
           ],
           "sDtype": "float64"
         },
-        "faComp_hzOnly": {
+        "faTauCharMean_redefined": {
           "listShape": [
             1500,
             6,
@@ -135,13 +166,40 @@
           ],
           "sDtype": "float64"
         },
-        "faTauChar_hzOnly": {
+        "iaGridStar_redefined": {
           "listShape": [
-            1500
+            205
           ],
-          "sDtype": "float64"
+          "sDtype": "int32"
         },
-        "faTauCharMean_hzOnly": {
+        "iaCompCounts_redefined": {
+          "listShape": [
+            205,
+            23,
+            6,
+            150
+          ],
+          "sDtype": "uint16"
+        },
+        "iaCompAlbedoCounts_redefined": {
+          "listShape": [
+            205,
+            23,
+            6,
+            150
+          ],
+          "sDtype": "uint16"
+        },
+        "faTauCharMeanGrid_redefined": {
+          "listShape": [
+            205,
+            23,
+            6,
+            150
+          ],
+          "sDtype": "float32"
+        },
+        "faComp_hzOnly": {
           "listShape": [
             1500,
             6,
@@ -154,6 +212,21 @@
             1500,
             6,
             150
+          ],
+          "sDtype": "float64"
+        },
+        "faTauCharMean_hzOnly": {
+          "listShape": [
+            1500,
+            6,
+            150
+          ],
+          "sDtype": "float64"
+        },
+        "faZodiDraws": {
+          "listShape": [
+            200,
+            1500
           ],
           "sDtype": "float64"
         }
@@ -185,58 +258,96 @@
           "fMax": 50.555194028119544
         },
         "faComp_canonical": {
-          "fMean": 0.03268874074074074,
+          "fMean": 0.03270759382716049,
+          "fMin": 0.0,
+          "fMax": 1.0
+        },
+        "faCompAlbedo_canonical": {
+          "fMean": 0.03163199209876543,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_canonical": {
-          "fMean": 165241.10380251662,
+          "fMean": 181132.4587165823,
           "fMin": 0.0,
-          "fMax": 5181402.53373638
+          "fMax": 5180400.0
         },
-        "faCompAlbedo_canonical": {
-          "fMean": 0.03156039432098765,
+        "iaGridStar_canonical": {
+          "fMean": 261.736,
+          "fMin": 0.0,
+          "fMax": 1457.0
+        },
+        "faTauCharMeanGrid_canonical": {
+          "fMean": 688442.7836717776,
+          "fMin": 0.0,
+          "fMax": 5183370.5
+        },
+        "faZodiGrid": {
+          "fMean": 151.91304347826087,
+          "fMin": 0.0,
+          "fMax": 1024.0
+        },
+        "iNumPlanets": {
+          "fMean": 3000.0,
+          "fMin": 3000.0,
+          "fMax": 3000.0
+        },
+        "faComp_redefined": {
+          "fMean": 0.0350295061728395,
           "fMin": 0.0,
           "fMax": 1.0
         },
-        "faComp_redefined": {
-          "fMean": 0.03490174049382715,
+        "faCompAlbedo_redefined": {
+          "fMean": 0.03390587382716049,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_redefined": {
-          "fMean": 126110.7737091901,
+          "fMean": 133686.8501613854,
           "fMin": 0.0,
-          "fMax": 5153669.377904955
+          "fMax": 5170738.5
         },
-        "faCompAlbedo_redefined": {
-          "fMean": 0.03371768222222222,
+        "iaGridStar_redefined": {
+          "fMean": 235.00975609756097,
+          "fMin": 0.0,
+          "fMax": 1457.0
+        },
+        "faTauCharMeanGrid_redefined": {
+          "fMean": 612400.7190452418,
+          "fMin": 0.0,
+          "fMax": 5182803.5
+        },
+        "faComp_hzOnly": {
+          "fMean": 0.03896296345679013,
           "fMin": 0.0,
           "fMax": 1.0
         },
-        "faComp_hzOnly": {
-          "fMean": 0.038609861728395055,
+        "faCompAlbedo_hzOnly": {
+          "fMean": 0.037771758024691356,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_hzOnly": {
-          "fMean": 161504.93055891455,
+          "fMean": 176663.03736397857,
           "fMin": 0.0,
-          "fMax": 5170471.501354646
+          "fMax": 5181454.0
         },
-        "faCompAlbedo_hzOnly": {
-          "fMean": 0.03737496691358025,
-          "fMin": 0.0,
-          "fMax": 1.0
+        "faZodiDraws": {
+          "fMean": 48.375889425294346,
+          "fMin": 4.947686972110125e-05,
+          "fMax": 588.0
         }
       },
-      "iBytes": 3052097
+      "iBytes": 17800363
     },
     "completenessSummary.json": {
       "sKind": "json",
       "saTopLevelKeys": [
         "dictByBox",
+        "fFractionDrawnAbove100Zodi",
+        "fMedianDrawnZodi",
         "fThroughputCalibration",
+        "iExozodiDraws",
         "iNumPlanetsPerStar",
         "iStarsScreened"
       ],
@@ -257,7 +368,7 @@
           "saPath": [
             "fThroughputCalibration"
           ],
-          "oValue": 1.6643025302115202
+          "oValue": 0.9876435169533048
         },
         {
           "saPath": [
@@ -273,7 +384,7 @@
             "canonical",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 8304.757
+          "oValue": 106.15533333333335
         },
         {
           "saPath": [
@@ -281,7 +392,15 @@
             "canonical",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 18244.0
+          "oValue": 218.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "iStarsWithAnyCompletenessAtZeroZodi"
+          ],
+          "oValue": 250.0
         },
         {
           "saPath": [
@@ -289,7 +408,7 @@
             "canonical",
             "fMedianTauCharDays"
           ],
-          "oValue": 28.43901208272784
+          "oValue": 33.49466001157408
         },
         {
           "saPath": [
@@ -305,7 +424,7 @@
             "redefined",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 8854.051333333337
+          "oValue": 109.92766666666667
         },
         {
           "saPath": [
@@ -313,7 +432,15 @@
             "redefined",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 14305.0
+          "oValue": 171.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "iStarsWithAnyCompletenessAtZeroZodi"
+          ],
+          "oValue": 205.0
         },
         {
           "saPath": [
@@ -321,7 +448,7 @@
             "redefined",
             "fMedianTauCharDays"
           ],
-          "oValue": 27.01557793805374
+          "oValue": 32.07510127314815
         },
         {
           "saPath": [
@@ -337,7 +464,7 @@
             "hzOnly",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 9760.849999999999
+          "oValue": 121.152
         },
         {
           "saPath": [
@@ -345,7 +472,15 @@
             "hzOnly",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 18037.0
+          "oValue": 215.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "hzOnly",
+            "iStarsWithAnyCompletenessAtZeroZodi"
+          ],
+          "oValue": 215.0
         },
         {
           "saPath": [
@@ -353,10 +488,28 @@
             "hzOnly",
             "fMedianTauCharDays"
           ],
-          "oValue": 27.58589631684144
+          "oValue": 32.48175347222222
+        },
+        {
+          "saPath": [
+            "iExozodiDraws"
+          ],
+          "oValue": 200.0
+        },
+        {
+          "saPath": [
+            "fMedianDrawnZodi"
+          ],
+          "oValue": 2.9954122602133157
+        },
+        {
+          "saPath": [
+            "fFractionDrawnAbove100Zodi"
+          ],
+          "oValue": 0.21446666666666667
         }
       ],
-      "iBytes": 715
+      "iBytes": 979
     }
   }
 }

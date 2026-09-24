@@ -1,10 +1,10 @@
 {
   "iStateSchemaVersion": 3,
-  "sLastUpdated": "2026-09-23T18:50:59Z",
+  "sLastUpdated": "2026-09-24T05:09:47Z",
   "dictWorkflowState": {
     ".vaibify/projects/hwoYieldRederivation.json": {
       "iStateSchemaVersion": 3,
-      "sLastUpdated": "2026-09-23T18:50:59Z",
+      "sLastUpdated": "2026-09-24T05:09:46Z",
       "dictStepState": {
         "buildtargetcatalog": {
           "dictVerification": {
@@ -21,7 +21,7 @@
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "3d4171b54998de35d0c057ff04ba871b791bf7f0ecba16026bede3337e79a296"
+            "dictVerification": "8e72ea29191d698ec0f33f67f87e691ec47cb0c3fb069ad27fcdfbcbf6ef71af"
           }
         },
         "modelcoronagraph": {
@@ -32,14 +32,14 @@
             "sQuantitative": "passed"
           },
           "dictRunStats": {
-            "fWallClock": 3.6,
-            "sFinishedUtc": "2026-09-23T07:10:15Z",
+            "fWallClock": 3.2,
+            "sFinishedUtc": "2026-09-24T02:49:51Z",
             "fCpuTime": 1.3,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "e2a6d8ac6a276733c23a47306920c3a1b1bc59d9afb59051b878eab4e3cc7fef"
+            "dictVerification": "98c090767a536d0e5b925d32687b03ce9912c7636149a851b3e6e10eaf50bbdb"
           }
         },
         "calibratetostark": {
@@ -50,14 +50,14 @@
             "sQuantitative": "passed"
           },
           "dictRunStats": {
-            "fWallClock": 738.8,
-            "sFinishedUtc": "2026-09-23T18:23:25Z",
-            "fCpuTime": 642.8,
+            "fWallClock": 1190.7,
+            "sFinishedUtc": "2026-09-24T03:09:42Z",
+            "fCpuTime": 620.6,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "a92fc7b111ff0d3b16949fb5ba349813930081ab7dde2ed6d8dce361e429e617"
+            "dictVerification": "43c43f352188769f2d22376882eae00e8cd2641ce883b82a9bbce1cf8516608f"
           }
         },
         "computecompleteness": {
@@ -68,14 +68,14 @@
             "sQuantitative": "passed"
           },
           "dictRunStats": {
-            "fWallClock": 432.8,
-            "sFinishedUtc": "2026-09-23T18:30:38Z",
-            "fCpuTime": 375.4,
+            "fWallClock": 474.6,
+            "sFinishedUtc": "2026-09-24T03:17:37Z",
+            "fCpuTime": 444.2,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "0fcb7fe0396d095532b1c45d9b45c73710b216e31fa78e2bbb120e5047e368d2"
+            "dictVerification": "720f96000b2b2f22bbe5031fb6b77393bb18f76f2a382ebdcb0cd4af028e3ca4"
           }
         },
         "optimizesurvey": {
@@ -86,14 +86,14 @@
             "sQuantitative": "passed"
           },
           "dictRunStats": {
-            "fWallClock": 24.0,
-            "sFinishedUtc": "2026-09-23T18:31:02Z",
-            "fCpuTime": 19.1,
+            "fWallClock": 81.0,
+            "sFinishedUtc": "2026-09-24T03:18:58Z",
+            "fCpuTime": 75.1,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "efa7821332c4b7a25b542b5d9c7511d39537181e7f5aee9ea9ba83d1ba9b4ad6"
+            "dictVerification": "1afd1577b68e9ee09e2eb58f5ab5a662fa35744d4c6bf20edb521547d7b1053c"
           }
         },
         "sampleoccurrenceposterior": {
@@ -104,14 +104,14 @@
             "sQuantitative": "passed"
           },
           "dictRunStats": {
-            "fWallClock": 7.4,
-            "sFinishedUtc": "2026-09-23T18:31:09Z",
-            "fCpuTime": 4.4,
+            "fWallClock": 5.8,
+            "sFinishedUtc": "2026-09-24T03:19:04Z",
+            "fCpuTime": 3.8,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "6f8d97f096e5f5862e269780af3fd9db07fb0be14b727ef04f744902c89c5d7b"
+            "dictVerification": "2f9ca179b871a5e10eb2800eef2a33c8d5e32d05ca01d602b68974062c333a4a"
           }
         },
         "predictredefinedyield": {
@@ -122,14 +122,14 @@
             "sQuantitative": "passed"
           },
           "dictRunStats": {
-            "fWallClock": 152.2,
-            "sFinishedUtc": "2026-09-23T18:33:42Z",
-            "fCpuTime": 131.4,
+            "fWallClock": 486.0,
+            "sFinishedUtc": "2026-09-24T03:27:10Z",
+            "fCpuTime": 459.2,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "e2cf29054e2914e50e5fec61cfd11afa4a7e64f1fa016e54a1cd2ea3864da75b"
+            "dictVerification": "51d94fab306b895b23fc349a7198e3caea6ad6bbb728bc39a4ff6f1f63d5f1af"
           }
         },
         "compareaperturescaling": {
@@ -141,14 +141,14 @@
             "sIntegrity": "passed"
           },
           "dictRunStats": {
-            "fWallClock": 808.2,
-            "sFinishedUtc": "2026-09-23T18:47:10Z",
-            "fCpuTime": 708.6,
+            "fWallClock": 2808.1,
+            "sFinishedUtc": "2026-09-24T05:08:32Z",
+            "fCpuTime": 2584.6,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "41c686b9d25fc7429c859d83cc40fa386c99e36e08d200e45b2e13080f862c70"
+            "dictVerification": "7f63f29f23cdeea3367930a0729122c022051d02abb5a01d93f8677eb6cc26fc"
           }
         },
         "verifyagainstpublished": {
@@ -161,32 +161,64 @@
           },
           "dictRunStats": {
             "fWallClock": 3.7,
-            "sFinishedUtc": "2026-09-23T18:47:14Z",
-            "fCpuTime": 1.5,
+            "sFinishedUtc": "2026-09-24T05:08:35Z",
+            "fCpuTime": 1.7,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "3d37ba357a4ba051281efa2dd66c1c1640fa4d17bf34eb5dc7b038acd1f1e678"
+            "dictVerification": "35e9275771f66ef04f8bcbc1fc8c85bb0557db01a74abac4ccfd842dda169ec2"
           }
         },
         "comparetargetcompleteness": {
           "dictVerification": {
-            "sUnitTest": "untested",
+            "sUnitTest": "passed",
             "sUser": "untested",
             "sQualitative": "passed",
-            "sQuantitative": "untested",
+            "sQuantitative": "passed",
             "sIntegrity": "passed"
           },
           "dictRunStats": {
-            "fWallClock": 82.9,
-            "sFinishedUtc": "2026-09-23T18:48:37Z",
-            "fCpuTime": 72.0,
+            "fWallClock": 25.2,
+            "sFinishedUtc": "2026-09-24T04:06:02Z",
+            "fCpuTime": 20.5,
             "iExitCode": 0,
             "bDeterminismEnvApplied": true
           },
           "dictDefinitionProducers": {
-            "dictVerification": "adce8e9a99e90b62e101e14641b06000e3c151f98c925ebd6c17b77a013c3d55"
+            "dictVerification": "8d503780307fa2f3057ffb4656322fb748ab75e4c76e0190fbb8e7c48cf5aaaf"
+          }
+        },
+        "tabulateearthzones": {
+          "dictVerification": {
+            "sUnitTest": "unnecessary",
+            "sUser": "untested",
+            "sQualitative": "unnecessary",
+            "sQuantitative": "unnecessary",
+            "sIntegrity": "unnecessary"
+          },
+          "dictRunStats": {
+            "fWallClock": 37.5,
+            "sFinishedUtc": "2026-09-24T04:06:40Z",
+            "fCpuTime": 32.2,
+            "iExitCode": 0,
+            "bDeterminismEnvApplied": true
+          }
+        },
+        "comparepublishedfigures": {
+          "dictVerification": {
+            "sUnitTest": "unnecessary",
+            "sUser": "untested",
+            "sQualitative": "unnecessary",
+            "sQuantitative": "unnecessary",
+            "sIntegrity": "unnecessary"
+          },
+          "dictRunStats": {
+            "fWallClock": 2.9,
+            "sFinishedUtc": "2026-09-24T05:08:38Z",
+            "fCpuTime": 2.5,
+            "iExitCode": 0,
+            "bDeterminismEnvApplied": true
           }
         }
       },

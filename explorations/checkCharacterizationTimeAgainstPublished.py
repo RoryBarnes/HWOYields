@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Test the characterization-time model against the two figures Stark et al. (2024) publish for it.
 
-Sec. 5.2: "the mean spectral characterization time of the first 18 EECs is 22 days for a 6 m ID
+Sec. 4.1: "the mean spectral characterization time of the first 18 EECs is 22 days for a 6 m ID
 telescope, but can be shortened to just 3.5 days for a 9 m ID telescope" -- a value and a ratio,
 both unused by this pipeline until now, and both bearing directly on the checks that still fail.
 
@@ -50,19 +50,29 @@ def faStarCharacterizationTimes(listStars, dictMission, fEtaEarth, fSlope):
             continue
         listRows.append({"iStar": iStar,
                          "fCompleteness": float(dictCurve["faComp"][iVertex]),
-                         "fCharSeconds": float(dictCurve["faTauCharMeanS"][iVertex])})
+                         "fCharSeconds": float(dictCurve["faTauCharMeanS"][iVertex]),
+                         "fPriority": float(dictCurve["faComp"][iVertex] /
+                                            dictCurve["faCost"][iVertex])})
     return listRows
 
 
-def fnMeanCharOfFirstN(listRows, fEtaEarth, iFirstN):
-    """Mean characterization time over the first N expected EECs, best targets first.
+def fnMeanCharOfFirstN(listRows, fEtaEarth, iFirstN, sOrder="cheapestChar"):
+    """Mean characterization time over the first N expected EECs under a stated target ordering.
 
     Each star contributes eta_Earth * C expected detections at its own mean characterization cost,
-    so the statistic is a weighted mean over stars taken in increasing cost until N detections have
-    accumulated -- which is the order a survey acquires them in.
+    and stars are taken in order until N detections have accumulated. sOrder chooses the order:
+    "cheapestChar" (the original choice) sorts by characterization time, which is the most
+    favourable subset possible and biases the mean LOW by construction; "priority" sorts by
+    completeness per unit total survey cost, the benefit-to-cost ranking the optimizer uses;
+    "all" takes every counted EEC. Stark (2024) Sec. 4.1 take "the first 18 EECs of any
+    simulation" so that harder targets added by larger telescopes do not dominate, which is a
+    priority ordering, not a characterization-cost ordering.
     """
     listOk = [d for d in listRows if np.isfinite(d["fCharSeconds"]) and d["fCharSeconds"] > 0]
-    listOk.sort(key=lambda d: d["fCharSeconds"])
+    if sOrder == "all":
+        iFirstN = 10 ** 9
+    listOk.sort(key=(lambda d: d["fCharSeconds"]) if sOrder == "cheapestChar"
+                else (lambda d: -d["fPriority"]))
     fAccrued, fWeighted = 0.0, 0.0
     for dictRow in listOk:
         fCount = fEtaEarth * dictRow["fCompleteness"]
@@ -124,6 +134,10 @@ def main():
         listOut.append({
             "fDiameterM": float(sDiam),
             "fMeanCharDaysFirstN": round(float(fMean), 2),
+            "fMeanCharDaysFirstNPriority": round(float(fnMeanCharOfFirstN(
+                listRows, dictArgs["eta_earth"], dictArgs["first_n"], "priority")), 2),
+            "fMeanCharDaysAll": round(float(fnMeanCharOfFirstN(
+                listRows, dictArgs["eta_earth"], dictArgs["first_n"], "all")), 2),
             "fPublishedDays": dictPublished.get(sDiam),
             "iFirstN": dictArgs["first_n"],
             "fYieldPlanning": round(float(dictResult["fYieldPlanning"]), 2),

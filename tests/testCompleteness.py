@@ -274,3 +274,28 @@ def test_bright_flux_bound_can_only_remove_detections():
     faWith = cp.faStarkAlbedoTimes(faTauDet, faFlux, faSep, faDrawn, bBrightBound=True)
     assert np.all(faWith >= faWithout)
     assert np.isinf(faWith[0, 0]) and np.isfinite(faWithout[0, 0])
+
+
+def test_exozodi_radial_factor_is_unity_at_the_eeid_and_falls_outward():
+    """(s/EEID)^-q: 1 at the EEID, dimmer outside it, brighter inside, off by default."""
+    dictStar = {"fLuminosityLsun": 4.0}
+    faSep = np.array([1.0, 2.0, 4.0])
+    faOn = cp.faExozodiRadialFactor(faSep, dictStar, {"fExozodiRadialIndex": 2.34})
+    assert np.isclose(faOn[1], 1.0)
+    assert faOn[0] > 1.0 > faOn[2]
+    assert np.isclose(faOn[2], 2.0 ** -2.34)
+    assert cp.faExozodiRadialFactor(faSep, dictStar, {}) == 1.0
+
+
+def test_star_gate_counts_long_spectra_that_the_planet_gate_rejects():
+    """Under the per-star gate a detectable planet with a 90-day spectrum still counts."""
+    faDet = np.array([[1.0e5], [1.0e5]])
+    faChar = np.array([[90 * 86400.0], [np.inf]])
+    fCap = 60 * 86400.0
+    _, _, bPlanet = cp.faCountedTimes(faDet, faChar, fCap, 1)
+    _, _, bStar = cp.faCountedTimes(faDet, faChar, fCap, 1,
+                                    cp.ffPlanetCharacterizationCap(
+                                        {"sCharacterizationGate": "star",
+                                         "fExposureLimitS": fCap}))
+    assert list(bPlanet[:, 0]) == [False, False]
+    assert list(bStar[:, 0]) == [True, False]

@@ -4,15 +4,20 @@
     "surveyResult.json": {
       "sKind": "json",
       "saTopLevelKeys": [
+        "dictDraws",
         "fEtaEarthBaseline",
-        "fSummedCompletenessBaseline",
         "fThroughputCalibration",
         "fTimeUsedFractionBaseline",
         "fYieldBaseline",
+        "fYieldFixedExozodi",
         "fYieldPlanningBaseline",
+        "fYieldPlanningFixedExozodi",
+        "iExozodiDraws",
         "iStarsAvailable",
         "iStarsUsedBaseline",
+        "iStarsUsedFixedExozodi",
         "listEtaScan",
+        "sBaselineNote",
         "sBox"
       ],
       "listNumbers": [
@@ -26,7 +31,7 @@
           "saPath": [
             "fThroughputCalibration"
           ],
-          "oValue": 1.6643025302115202
+          "oValue": 0.9876435169533048
         },
         {
           "saPath": [
@@ -36,36 +41,110 @@
         },
         {
           "saPath": [
+            "iExozodiDraws"
+          ],
+          "oValue": 200.0
+        },
+        {
+          "saPath": [
+            "fYieldPlanningFixedExozodi"
+          ],
+          "oValue": 22.51472
+        },
+        {
+          "saPath": [
+            "fYieldFixedExozodi"
+          ],
+          "oValue": 20.6028
+        },
+        {
+          "saPath": [
+            "iStarsUsedFixedExozodi"
+          ],
+          "oValue": 179.0
+        },
+        {
+          "saPath": [
             "fYieldBaseline"
           ],
-          "oValue": 20.52848
+          "oValue": 18.298333718092042
         },
         {
           "saPath": [
             "fYieldPlanningBaseline"
           ],
-          "oValue": 22.471600000000002
-        },
-        {
-          "saPath": [
-            "fSummedCompletenessBaseline"
-          ],
-          "oValue": 93.63166666666667
+          "oValue": 19.983952372810858
         },
         {
           "saPath": [
             "iStarsUsedBaseline"
           ],
-          "oValue": 174.0
+          "oValue": 159.0
         },
         {
           "saPath": [
             "fTimeUsedFractionBaseline"
           ],
-          "oValue": 0.9993114224550328
+          "oValue": 0.9999325430659975
+        },
+        {
+          "saPath": [
+            "dictDraws",
+            "fYieldPlanningDrawnMean"
+          ],
+          "oValue": 19.983952372810858
+        },
+        {
+          "saPath": [
+            "dictDraws",
+            "fYieldPlanningDrawnStd"
+          ],
+          "oValue": 0.605653709153522
+        },
+        {
+          "saPath": [
+            "dictDraws",
+            "fYieldDrawnMean"
+          ],
+          "oValue": 18.298333718092042
+        },
+        {
+          "saPath": [
+            "dictDraws",
+            "fYieldDrawnStd"
+          ],
+          "oValue": 0.573430533117731
+        },
+        {
+          "saPath": [
+            "dictDraws",
+            "fStarsUsedDrawnMean"
+          ],
+          "oValue": 158.695
+        },
+        {
+          "saPath": [
+            "dictDraws",
+            "fExozodiPenalty"
+          ],
+          "oValue": 0.11240502334424507
+        },
+        {
+          "saPath": [
+            "dictDraws",
+            "fAlbedoPenalty"
+          ],
+          "oValue": 0.08434861249029912
+        },
+        {
+          "saPath": [
+            "dictDraws",
+            "iRepresentativeDraw"
+          ],
+          "oValue": 165.0
         }
       ],
-      "iBytes": 1509
+      "iBytes": 12187
     }
   }
 }

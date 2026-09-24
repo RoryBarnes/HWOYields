@@ -1,0 +1,128 @@
+{
+  "dictEta": {
+    "canonical": 0.25505412554383095,
+    "redefined": 0.052039614383052185
+  },
+  "fEtaRatio": 0.20403361157986522,
+  "fZoneWidthRatio": 0.3333333333333333,
+  "fYieldClassicHz": 19.302605887022107,
+  "fYieldEarthZone": 4.629002668567225,
+  "fYieldRatio": 0.23981231838129607,
+  "iStarsObservedClassicHz": 184,
+  "iStarsObservedEarthZone": 171,
+  "fMeanCompletenessObservedClassicHz": 0.4451856779065808,
+  "fMeanCompletenessObservedEarthZone": 0.5407320073835478,
+  "dictPerStarYieldRatio": {
+    "iStars": 178,
+    "fMedian": 0.24052619737653097,
+    "fP16": 0.20077652057530257,
+    "fP84": 0.3250786573692881
+  },
+  "fShareOfYieldTop20ClassicHz": 0.23699798367212446,
+  "fShareOfYieldTop20EarthZone": 0.2200546473400802,
+  "dictByLuminosity": {
+    "L < 0.3": {
+      "iStars": 47,
+      "iObservedClassicHz": 36,
+      "iObservedEarthZone": 33,
+      "fYieldClassicHz": 5.572534048418506,
+      "fYieldEarthZone": 1.1497061353942588,
+      "fYieldRatio": 0.20631657436360523
+    },
+    "0.3-0.6": {
+      "iStars": 75,
+      "iObservedClassicHz": 30,
+      "iObservedEarthZone": 26,
+      "fYieldClassicHz": 4.108333155493096,
+      "fYieldEarthZone": 0.9127277607638578,
+      "fYieldRatio": 0.22216498181105013
+    },
+    "0.6-1": {
+      "iStars": 102,
+      "iObservedClassicHz": 19,
+      "iObservedEarthZone": 17,
+      "fYieldClassicHz": 1.9484756580240292,
+      "fYieldEarthZone": 0.4396555039453728,
+      "fYieldRatio": 0.2256407474914171
+    },
+    "1-2": {
+      "iStars": 294,
+      "iObservedClassicHz": 33,
+      "iObservedEarthZone": 30,
+      "fYieldClassicHz": 3.131405445996693,
+      "fYieldEarthZone": 0.7846163196114904,
+      "fYieldRatio": 0.2505636312967947
+    },
+    "2-5": {
+      "iStars": 665,
+      "iObservedClassicHz": 44,
+      "iObservedEarthZone": 42,
+      "fYieldClassicHz": 3.717392111822675,
+      "fYieldEarthZone": 1.0699134764219203,
+      "fYieldRatio": 0.2878129194440376
+    },
+    "L > 5": {
+      "iStars": 317,
+      "iObservedClassicHz": 22,
+      "iObservedEarthZone": 23,
+      "fYieldClassicHz": 0.8244654672671108,
+      "fYieldEarthZone": 0.2723834724303266,
+      "fYieldRatio": 0.3303758413717523
+    }
+  },
+  "dictByDistance": {
+    "< 5 pc": {
+      "iStars": 15,
+      "iObservedClassicHz": 15,
+      "iObservedEarthZone": 15,
+      "fYieldClassicHz": 2.9659593030195848,
+      "fYieldEarthZone": 0.6578458016875022,
+      "fYieldRatio": 0.22179866089793016
+    },
+    "5-10 pc": {
+      "iStars": 59,
+      "iObservedClassicHz": 59,
+      "iObservedEarthZone": 57,
+      "fYieldClassicHz": 9.602424959796421,
+      "fYieldEarthZone": 2.16108857179283,
+      "fYieldRatio": 0.22505654361694138
+    },
+    "10-15 pc": {
+      "iStars": 95,
+      "iObservedClassicHz": 65,
+      "iObservedEarthZone": 58,
+      "fYieldClassicHz": 5.156250942478416,
+      "fYieldEarthZone": 1.370559575872675,
+      "fYieldRatio": 0.2658054449176786
+    },
+    "15-20 pc": {
+      "iStars": 133,
+      "iObservedClassicHz": 42,
+      "iObservedEarthZone": 37,
+      "fYieldClassicHz": 1.500856136880648,
+      "fYieldEarthZone": 0.4234090988507231,
+      "fYieldRatio": 0.28211171507132515
+    },
+    "> 20 pc": {
+      "iStars": 1198,
+      "iObservedClassicHz": 3,
+      "iObservedEarthZone": 4,
+      "fYieldClassicHz": 0.07711454484704076,
+      "fYieldEarthZone": 0.016099620363496714,
+      "fYieldRatio": 0.20877540541062442
+    }
+  },
+  "dictAngular": {
+    "fIwaInscribedLamD": 2.9312500000000004,
+    "iStarsConsidered": 229,
+    "fEarthZoneMeanFractionOutsideIwa550": 0.9149624300920146,
+    "fEarthZoneFractionFullyOutsideIwa550": 0.8820960698689956,
+    "fEarthZoneMeanFractionOutsideIwa1000": 0.47340216410709307,
+    "fEarthZoneFractionFullyOutsideIwa1000": 0.3537117903930131,
+    "fClassicHzMeanFractionOutsideIwa550": 0.9571965895617265,
+    "fClassicHzFractionFullyOutsideIwa550": 0.8733624454148472,
+    "fClassicHzMeanFractionOutsideIwa1000": 0.6405681851905743,
+    "fClassicHzFractionFullyOutsideIwa1000": 0.3537117903930131
+  },
+  "iStarsTabulated": 1500
+}

@@ -1,0 +1,158 @@
+{
+  "tau Cet": {
+    "dictCharacterization": {
+      "fPlanet": 0.00761173408363732,
+      "fLeak": 0.0034255540923539647,
+      "fZodi": 0.0011950166186980946,
+      "fExozodi": 0.009851885435870653,
+      "fDark": 0.00288,
+      "fSepLamD": 5.7414450611941135,
+      "fCic_scene": 0.00019321458032716974,
+      "fTauDays_scene": 0.21326432149553246,
+      "fCic_earthTwin": 0.0006659506149774291,
+      "fTauDays_earthTwin": 0.21798612330515332
+    },
+    "dictDetection": {
+      "fPlanet": 0.24032594805438579,
+      "fLeak": 0.10815531990617729,
+      "fZodi": 0.013206064153337253,
+      "fExozodi": 0.09409396908097725,
+      "fDark": 0.00012,
+      "fSepLamD": 10.438991020352933,
+      "fCic_scene": 0.0039876306041539845,
+      "fTauDays_scene": 0.006671749572432688,
+      "fCic_earthTwin": 0.02102611719527821,
+      "fTauDays_earthTwin": 0.0070063619652413036
+    }
+  },
+  "eps Eri": {
+    "dictCharacterization": {
+      "fPlanet": 0.009905453058092165,
+      "fLeak": 0.0029336197313161077,
+      "fZodi": 0.00114712554531029,
+      "fExozodi": 0.009964608955865543,
+      "fDark": 0.00288,
+      "fSepLamD": 5.28308081313674,
+      "fCic_scene": 0.0002095456129853203,
+      "fTauDays_scene": 0.13027366183262212,
+      "fCic_earthTwin": 0.0008666280880524836,
+      "fTauDays_earthTwin": 0.1341491593035399
+    },
+    "dictDetection": {
+      "fPlanet": 0.2881213564189483,
+      "fLeak": 0.08533062458094011,
+      "fZodi": 0.012954120851182076,
+      "fExozodi": 0.08767721487270963,
+      "fDark": 0.00012,
+      "fSepLamD": 9.605601478430435,
+      "fCic_scene": 0.004147754938016352,
+      "fTauDays_scene": 0.004567571224346565,
+      "fCic_earthTwin": 0.02520773747309379,
+      "fTauDays_earthTwin": 0.004855323945024673
+    }
+  },
+  "61 Vir": {
+    "dictCharacterization": {
+      "fPlanet": 0.0008576585440015753,
+      "fLeak": 0.002279721458933347,
+      "fZodi": 0.0007660829995317051,
+      "fExozodi": 0.006058168387897565,
+      "fDark": 0.00288,
+      "fSepLamD": 3.126248228012547,
+      "fCic_scene": 8.715431303429632e-05,
+      "fTauDays_scene": 9.834129530161464,
+      "fCic_earthTwin": 7.503654601469783e-05,
+      "fTauDays_earthTwin": 9.824596081693777
+    },
+    "dictDetection": {
+      "fPlanet": 0.03710308329631356,
+      "fLeak": 0.027017980903130068,
+      "fZodi": 0.01079700701829901,
+      "fExozodi": 0.07927975554738995,
+      "fDark": 0.00012,
+      "fSepLamD": 5.6840876872955395,
+      "fCic_scene": 0.001349076786368145,
+      "fTauDays_scene": 0.11297398413059753,
+      "fCic_earthTwin": 0.0032461487575944736,
+      "fTauDays_earthTwin": 0.11453704588966582
+    }
+  },
+  "tet Boo": {
+    "dictCharacterization": {
+      "fPlanet": 0.0003233318496576592,
+      "fLeak": 0.002357398369506617,
+      "fZodi": 0.0009789237731888667,
+      "fExozodi": 0.006572671864851561,
+      "fDark": 0.00288,
+      "fSepLamD": 4.108600287931048,
+      "fCic_scene": 8.952261892468394e-05,
+      "fTauDays_scene": 72.18433496061833,
+      "fCic_earthTwin": 2.8288303526548602e-05,
+      "fTauDays_earthTwin": 71.84537050851851
+    },
+    "dictDetection": {
+      "fPlanet": 0.01526667821319567,
+      "fLeak": 0.07315590715338659,
+      "fZodi": 0.012040949072002047,
+      "fExozodi": 0.09387790626418752,
+      "fDark": 0.00012,
+      "fSepLamD": 7.470182341692814,
+      "fCic_scene": 0.0017002932647085507,
+      "fTauDays_scene": 0.9174871695634023,
+      "fCic_earthTwin": 0.0013356816768724893,
+      "fTauDays_earthTwin": 0.915712760705996
+    }
+  },
+  "72 Her": {
+    "dictCharacterization": {
+      "fPlanet": 0.00017842612678651193,
+      "fLeak": 0.0022171803427891174,
+      "fZodi": 0.00048089034409989613,
+      "fExozodi": 0.0036787827818882957,
+      "fDark": 0.00288,
+      "fSepLamD": 2.2725152211008206,
+      "fCic_scene": 5.735214118158787e-05,
+      "fTauDays_scene": 170.9326944567671,
+      "fCic_earthTwin": 1.5610501832551928e-05,
+      "fTauDays_earthTwin": 170.17392670082396
+    },
+    "dictDetection": {
+      "fPlanet": 0.010708822085835219,
+      "fLeak": 0.02407474690806856,
+      "fZodi": 0.008927245920228706,
+      "fExozodi": 0.06679020545640615,
+      "fDark": 0.00012,
+      "fSepLamD": 4.1318458565469465,
+      "fCic_scene": 0.0009667734272218426,
+      "fTauDays_scene": 1.0507271090341124,
+      "fCic_earthTwin": 0.0009369148442897234,
+      "fTauDays_earthTwin": 1.050431785457751
+    }
+  },
+  "110 Her": {
+    "dictCharacterization": {
+      "fPlanet": 0.0001645378219074083,
+      "fLeak": 0.0020287213744885385,
+      "fZodi": 0.0009077610014602297,
+      "fExozodi": 0.005973331739205038,
+      "fDark": 0.00288,
+      "fSepLamD": 3.7413130764105937,
+      "fCic_scene": 7.939150509734855e-05,
+      "fTauDays_scene": 255.473739031404,
+      "fCic_earthTwin": 1.4395414038679152e-05,
+      "fTauDays_earthTwin": 254.08438792147777
+    },
+    "dictDetection": {
+      "fPlanet": 0.008299144232619755,
+      "fLeak": 0.044483746448530315,
+      "fZodi": 0.01165700553959424,
+      "fExozodi": 0.09114011706351377,
+      "fDark": 0.00012,
+      "fSepLamD": 6.802387411655625,
+      "fCic_scene": 0.0013611695362239743,
+      "fTauDays_scene": 2.518176527835395,
+      "fCic_earthTwin": 0.0007260921289119023,
+      "fTauDays_earthTwin": 2.5077179562914345
+    }
+  }
+}

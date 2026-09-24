@@ -1,0 +1,11 @@
+== detectionPhase
+    factor 1.342 -> planning yield 23.80
+    factor 0.634 -> planning yield 17.52
+    factor 0.923 -> planning yield 20.61
+    factor 1.113 -> planning yield 22.19
+    factor 1.222 -> planning yield 22.99
+    factor 1.166 -> planning yield 22.58
+    factor 1.139 -> planning yield 22.38
+    factor 1.152 -> planning yield 22.48
+    factor 1.159 -> planning yield 22.54
+{"fPlanningFixedExozodi9m": 43.95819999999999, "fMeanCharDaysPriorityFirst18_9m": 1.5470197603836935, "fUncalibratedPlanning": 21.275000000000002, "fCalibration": 1.155683360043523, "fPlanningFixedExozodi": 22.5068, "fPlanningDrawnExozodi": 20.672399999999996, "fFixedEtaYield": 18.584, "fExozodiPenalty": 0.08150425649137161, "fMeanCharDaysPriorityFirst18": 12.878674431098277, "iStarsUsed": 157, "dictByLuminosity": {"0-0.6": {"fSummed": 41.07833333333333, "iUsed": 59}, "0.6-1": {"fSummed": 9.011666666666667, "iUsed": 16}, "1-2": {"fSummed": 13.627500000000001, "iUsed": 26}, "2-5": {"fSummed": 17.5475, "iUsed": 37}, "5-100": {"fSummed": 4.87, "iUsed": 19}}}

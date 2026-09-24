@@ -1,0 +1,1061 @@
+{
+  "sStep": "tabulateEarthZones",
+  "dictFiles": {
+    "earthZoneTable.csv": {
+      "sKind": "csv",
+      "saColumns": [
+        "sSourceId",
+        "sSpectralType",
+        "fVmag",
+        "fTeffK",
+        "fRadiusRsun",
+        "fMassMsun",
+        "fLuminosityLsun",
+        "fDistancePc",
+        "sName",
+        "sHip",
+        "fEeidAu",
+        "fEeidMas",
+        "fEarthZoneInnerAu",
+        "fEarthZoneInnerMas",
+        "fEarthZoneInnerLamD550",
+        "fEarthZoneInnerLamD1000",
+        "fEarthZoneOuterAu",
+        "fEarthZoneOuterMas",
+        "fEarthZoneOuterLamD550",
+        "fEarthZoneOuterLamD1000",
+        "fClassicHzInnerAu",
+        "fClassicHzInnerMas",
+        "fClassicHzInnerLamD550",
+        "fClassicHzInnerLamD1000",
+        "fClassicHzOuterAu",
+        "fClassicHzOuterMas",
+        "fClassicHzOuterLamD550",
+        "fClassicHzOuterLamD1000",
+        "fCompClassicHz",
+        "fCompAlbedoClassicHz",
+        "fObservedFractionClassicHz",
+        "fTimeDaysClassicHz",
+        "fCharDaysClassicHz",
+        "fYieldClassicHz",
+        "fCompMaxReachableClassicHz",
+        "fCompEarthZone",
+        "fCompAlbedoEarthZone",
+        "fObservedFractionEarthZone",
+        "fTimeDaysEarthZone",
+        "fCharDaysEarthZone",
+        "fYieldEarthZone",
+        "fCompMaxReachableEarthZone"
+      ],
+      "iRows": 1500,
+      "saFiniteColumns": [
+        "fVmag",
+        "fTeffK",
+        "fRadiusRsun",
+        "fMassMsun",
+        "fLuminosityLsun",
+        "fDistancePc",
+        "fEeidAu",
+        "fEeidMas",
+        "fEarthZoneInnerAu",
+        "fEarthZoneInnerMas",
+        "fEarthZoneInnerLamD550",
+        "fEarthZoneInnerLamD1000",
+        "fEarthZoneOuterAu",
+        "fEarthZoneOuterMas",
+        "fEarthZoneOuterLamD550",
+        "fEarthZoneOuterLamD1000",
+        "fClassicHzInnerAu",
+        "fClassicHzInnerMas",
+        "fClassicHzInnerLamD550",
+        "fClassicHzInnerLamD1000",
+        "fClassicHzOuterAu",
+        "fClassicHzOuterMas",
+        "fClassicHzOuterLamD550",
+        "fClassicHzOuterLamD1000",
+        "fCompClassicHz",
+        "fCompAlbedoClassicHz",
+        "fObservedFractionClassicHz",
+        "fTimeDaysClassicHz",
+        "fCharDaysClassicHz",
+        "fYieldClassicHz",
+        "fCompMaxReachableClassicHz",
+        "fCompEarthZone",
+        "fCompAlbedoEarthZone",
+        "fObservedFractionEarthZone",
+        "fTimeDaysEarthZone",
+        "fCharDaysEarthZone",
+        "fYieldEarthZone",
+        "fCompMaxReachableEarthZone"
+      ],
+      "dictColumnStats": {
+        "fVmag": {
+          "fMean": 6.12418016,
+          "fStd": 0.9034679427226188,
+          "fMin": 0.01,
+          "fMax": 8.94
+        },
+        "fTeffK": {
+          "fMean": 6132.893133333334,
+          "fStd": 595.1067862216961,
+          "fMin": 3282.0,
+          "fMax": 7499.0
+        },
+        "fRadiusRsun": {
+          "fMean": 1.4614119540000001,
+          "fStd": 0.4428843965618868,
+          "fMin": 0.218154,
+          "fMax": 2.98869
+        },
+        "fMassMsun": {
+          "fMean": 1.1845170753333332,
+          "fStd": 0.23488584984194127,
+          "fMin": 0.331462,
+          "fMax": 2.25
+        },
+        "fLuminosityLsun": {
+          "fMean": 3.4145946778666665,
+          "fStd": 2.6266823310284133,
+          "fMin": 0.0160376,
+          "fMax": 20.3348
+        },
+        "fDistancePc": {
+          "fMean": 31.301464306666666,
+          "fStd": 12.004843209339898,
+          "fMin": 1.34749,
+          "fMax": 49.9984
+        },
+        "fEeidAu": {
+          "fMean": 1.7145851779999999,
+          "fStd": 0.6890518277555486,
+          "fMin": 0.12664,
+          "fMax": 4.50941
+        },
+        "fEeidMas": {
+          "fMean": 60.805713533333325,
+          "fStd": 42.69621634940842,
+          "fMin": 35.3669,
+          "fMax": 955.878
+        },
+        "fEarthZoneInnerAu": {
+          "fMean": 1.6460017146666666,
+          "fStd": 0.6614897755578901,
+          "fMin": 0.121574,
+          "fMax": 4.32904
+        },
+        "fEarthZoneInnerMas": {
+          "fMean": 58.37348866666666,
+          "fStd": 40.98836913452764,
+          "fMin": 33.9522,
+          "fMax": 917.643
+        },
+        "fEarthZoneInnerLamD550": {
+          "fMean": 3.0873018,
+          "fStd": 2.167825175690995,
+          "fMin": 1.79569,
+          "fMax": 48.533
+        },
+        "fEarthZoneInnerLamD1000": {
+          "fMean": 1.6980158686666664,
+          "fStd": 1.1923025631577207,
+          "fMin": 0.987629,
+          "fMax": 26.6931
+        },
+        "fEarthZoneOuterAu": {
+          "fMean": 2.057502118,
+          "fStd": 0.8268622629513036,
+          "fMin": 0.151967,
+          "fMax": 5.4113
+        },
+        "fEarthZoneOuterMas": {
+          "fMean": 72.96685626666667,
+          "fStd": 51.23541014125245,
+          "fMin": 42.4402,
+          "fMax": 1147.05
+        },
+        "fEarthZoneOuterLamD550": {
+          "fMean": 3.859126993333333,
+          "fStd": 2.7097792511121073,
+          "fMin": 2.24461,
+          "fMax": 60.6662
+        },
+        "fEarthZoneOuterLamD1000": {
+          "fMean": 2.1225198733333333,
+          "fStd": 1.490378750605871,
+          "fMin": 1.23454,
+          "fMax": 33.3664
+        },
+        "fClassicHzInnerAu": {
+          "fMean": 1.6288558993333335,
+          "fStd": 0.6545992995749476,
+          "fMin": 0.120308,
+          "fMax": 4.28394
+        },
+        "fClassicHzInnerMas": {
+          "fMean": 57.7654298,
+          "fStd": 40.561408227799305,
+          "fMin": 33.5985,
+          "fMax": 908.084
+        },
+        "fClassicHzInnerLamD550": {
+          "fMean": 3.055142226666667,
+          "fStd": 2.145241950798179,
+          "fMin": 1.77698,
+          "fMax": 48.0274
+        },
+        "fClassicHzInnerLamD1000": {
+          "fMean": 1.6803282986666666,
+          "fStd": 1.179883025736411,
+          "fMin": 0.977341,
+          "fMax": 26.4151
+        },
+        "fClassicHzOuterAu": {
+          "fMean": 2.8633571840000003,
+          "fStd": 1.1507166326954983,
+          "fMin": 0.211488,
+          "fMax": 7.53072
+        },
+        "fClassicHzOuterMas": {
+          "fMean": 101.54554813333333,
+          "fStd": 71.30274376503756,
+          "fMin": 59.0627,
+          "fMax": 1596.32
+        },
+        "fClassicHzOuterLamD550": {
+          "fMean": 5.370618459999999,
+          "fStd": 3.7711106367233995,
+          "fMin": 3.12375,
+          "fMax": 84.4272
+        },
+        "fClassicHzOuterLamD1000": {
+          "fMean": 2.953840046666667,
+          "fStd": 2.0741105026347877,
+          "fMin": 1.71806,
+          "fMax": 46.4349
+        },
+        "fCompClassicHz": {
+          "fMean": 0.05510753196666667,
+          "fStd": 0.17720789477288745,
+          "fMin": 0.0,
+          "fMax": 0.980552
+        },
+        "fCompAlbedoClassicHz": {
+          "fMean": 0.0504536216,
+          "fStd": 0.16593782611566119,
+          "fMin": 0.0,
+          "fMax": 0.968054
+        },
+        "fObservedFractionClassicHz": {
+          "fMean": 0.10456333333333333,
+          "fStd": 0.2658570279722209,
+          "fMin": 0.0,
+          "fMax": 1.0
+        },
+        "fTimeDaysClassicHz": {
+          "fMean": 0.4868049550533334,
+          "fStd": 1.3577826370088555,
+          "fMin": 0.0,
+          "fMax": 6.37905
+        },
+        "fCharDaysClassicHz": {
+          "fMean": 4.513293411466667,
+          "fStd": 12.231333313367525,
+          "fMin": 0.0,
+          "fMax": 53.915
+        },
+        "fYieldClassicHz": {
+          "fMean": 0.012868399394200002,
+          "fStd": 0.04232311103402782,
+          "fMin": 0.0,
+          "fMax": 0.246906
+        },
+        "fCompMaxReachableClassicHz": {
+          "fMean": 0.070770219118,
+          "fStd": 0.2196445862099535,
+          "fMin": 0.0,
+          "fMax": 1.0
+        },
+        "fCompEarthZone": {
+          "fMean": 0.0619289515788,
+          "fStd": 0.20130409142517905,
+          "fMin": 0.0,
+          "fMax": 0.998446
+        },
+        "fCompAlbedoEarthZone": {
+          "fMean": 0.0593010143084,
+          "fStd": 0.19538885944770282,
+          "fMin": 0.0,
+          "fMax": 0.994657
+        },
+        "fObservedFractionEarthZone": {
+          "fMean": 0.09641666666666669,
+          "fStd": 0.26153319047918605,
+          "fMin": 0.0,
+          "fMax": 1.0
+        },
+        "fTimeDaysEarthZone": {
+          "fMean": 0.4867202291799999,
+          "fStd": 1.3828267209522327,
+          "fMin": 0.0,
+          "fMax": 6.81011
+        },
+        "fCharDaysEarthZone": {
+          "fMean": 4.191156537413334,
+          "fStd": 12.566274162554693,
+          "fMin": 0.0,
+          "fMax": 58.8062
+        },
+        "fYieldEarthZone": {
+          "fMean": 0.0030860022134249327,
+          "fStd": 0.01016796208252607,
+          "fMin": 0.0,
+          "fMax": 0.0517616
+        },
+        "fCompMaxReachableEarthZone": {
+          "fMean": 0.07328511311333333,
+          "fStd": 0.2389313987607035,
+          "fMin": 0.0,
+          "fMax": 1.0
+        }
+      },
+      "iBytes": 390305
+    },
+    "earthZoneSummary.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictAngular",
+        "dictByDistance",
+        "dictByLuminosity",
+        "dictEta",
+        "dictPerStarYieldRatio",
+        "fEtaRatio",
+        "fMeanCompletenessObservedClassicHz",
+        "fMeanCompletenessObservedEarthZone",
+        "fShareOfYieldTop20ClassicHz",
+        "fShareOfYieldTop20EarthZone",
+        "fYieldClassicHz",
+        "fYieldEarthZone",
+        "fYieldRatio",
+        "fZoneWidthRatio",
+        "iStarsObservedClassicHz",
+        "iStarsObservedEarthZone",
+        "iStarsTabulated"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "dictEta",
+            "canonical"
+          ],
+          "oValue": 0.25505412554383095
+        },
+        {
+          "saPath": [
+            "dictEta",
+            "redefined"
+          ],
+          "oValue": 0.052039614383052185
+        },
+        {
+          "saPath": [
+            "fEtaRatio"
+          ],
+          "oValue": 0.20403361157986522
+        },
+        {
+          "saPath": [
+            "fZoneWidthRatio"
+          ],
+          "oValue": 0.3333333333333333
+        },
+        {
+          "saPath": [
+            "fYieldClassicHz"
+          ],
+          "oValue": 19.302605887022107
+        },
+        {
+          "saPath": [
+            "fYieldEarthZone"
+          ],
+          "oValue": 4.629002668567225
+        },
+        {
+          "saPath": [
+            "fYieldRatio"
+          ],
+          "oValue": 0.23981231838129607
+        },
+        {
+          "saPath": [
+            "iStarsObservedClassicHz"
+          ],
+          "oValue": 184.0
+        },
+        {
+          "saPath": [
+            "iStarsObservedEarthZone"
+          ],
+          "oValue": 171.0
+        },
+        {
+          "saPath": [
+            "fMeanCompletenessObservedClassicHz"
+          ],
+          "oValue": 0.4451856779065808
+        },
+        {
+          "saPath": [
+            "fMeanCompletenessObservedEarthZone"
+          ],
+          "oValue": 0.5407320073835478
+        },
+        {
+          "saPath": [
+            "dictPerStarYieldRatio",
+            "iStars"
+          ],
+          "oValue": 178.0
+        },
+        {
+          "saPath": [
+            "dictPerStarYieldRatio",
+            "fMedian"
+          ],
+          "oValue": 0.24052619737653097
+        },
+        {
+          "saPath": [
+            "dictPerStarYieldRatio",
+            "fP16"
+          ],
+          "oValue": 0.20077652057530257
+        },
+        {
+          "saPath": [
+            "dictPerStarYieldRatio",
+            "fP84"
+          ],
+          "oValue": 0.3250786573692881
+        },
+        {
+          "saPath": [
+            "fShareOfYieldTop20ClassicHz"
+          ],
+          "oValue": 0.23699798367212446
+        },
+        {
+          "saPath": [
+            "fShareOfYieldTop20EarthZone"
+          ],
+          "oValue": 0.2200546473400802
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L < 0.3",
+            "iStars"
+          ],
+          "oValue": 47.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L < 0.3",
+            "iObservedClassicHz"
+          ],
+          "oValue": 36.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L < 0.3",
+            "iObservedEarthZone"
+          ],
+          "oValue": 33.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L < 0.3",
+            "fYieldClassicHz"
+          ],
+          "oValue": 5.572534048418506
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L < 0.3",
+            "fYieldEarthZone"
+          ],
+          "oValue": 1.1497061353942588
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L < 0.3",
+            "fYieldRatio"
+          ],
+          "oValue": 0.20631657436360523
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.3-0.6",
+            "iStars"
+          ],
+          "oValue": 75.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.3-0.6",
+            "iObservedClassicHz"
+          ],
+          "oValue": 30.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.3-0.6",
+            "iObservedEarthZone"
+          ],
+          "oValue": 26.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.3-0.6",
+            "fYieldClassicHz"
+          ],
+          "oValue": 4.108333155493096
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.3-0.6",
+            "fYieldEarthZone"
+          ],
+          "oValue": 0.9127277607638578
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.3-0.6",
+            "fYieldRatio"
+          ],
+          "oValue": 0.22216498181105013
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.6-1",
+            "iStars"
+          ],
+          "oValue": 102.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.6-1",
+            "iObservedClassicHz"
+          ],
+          "oValue": 19.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.6-1",
+            "iObservedEarthZone"
+          ],
+          "oValue": 17.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.6-1",
+            "fYieldClassicHz"
+          ],
+          "oValue": 1.9484756580240292
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.6-1",
+            "fYieldEarthZone"
+          ],
+          "oValue": 0.4396555039453728
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "0.6-1",
+            "fYieldRatio"
+          ],
+          "oValue": 0.2256407474914171
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "1-2",
+            "iStars"
+          ],
+          "oValue": 294.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "1-2",
+            "iObservedClassicHz"
+          ],
+          "oValue": 33.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "1-2",
+            "iObservedEarthZone"
+          ],
+          "oValue": 30.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "1-2",
+            "fYieldClassicHz"
+          ],
+          "oValue": 3.131405445996693
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "1-2",
+            "fYieldEarthZone"
+          ],
+          "oValue": 0.7846163196114904
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "1-2",
+            "fYieldRatio"
+          ],
+          "oValue": 0.2505636312967947
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "2-5",
+            "iStars"
+          ],
+          "oValue": 665.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "2-5",
+            "iObservedClassicHz"
+          ],
+          "oValue": 44.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "2-5",
+            "iObservedEarthZone"
+          ],
+          "oValue": 42.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "2-5",
+            "fYieldClassicHz"
+          ],
+          "oValue": 3.717392111822675
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "2-5",
+            "fYieldEarthZone"
+          ],
+          "oValue": 1.0699134764219203
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "2-5",
+            "fYieldRatio"
+          ],
+          "oValue": 0.2878129194440376
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L > 5",
+            "iStars"
+          ],
+          "oValue": 317.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L > 5",
+            "iObservedClassicHz"
+          ],
+          "oValue": 22.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L > 5",
+            "iObservedEarthZone"
+          ],
+          "oValue": 23.0
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L > 5",
+            "fYieldClassicHz"
+          ],
+          "oValue": 0.8244654672671108
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L > 5",
+            "fYieldEarthZone"
+          ],
+          "oValue": 0.2723834724303266
+        },
+        {
+          "saPath": [
+            "dictByLuminosity",
+            "L > 5",
+            "fYieldRatio"
+          ],
+          "oValue": 0.3303758413717523
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "< 5 pc",
+            "iStars"
+          ],
+          "oValue": 15.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "< 5 pc",
+            "iObservedClassicHz"
+          ],
+          "oValue": 15.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "< 5 pc",
+            "iObservedEarthZone"
+          ],
+          "oValue": 15.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "< 5 pc",
+            "fYieldClassicHz"
+          ],
+          "oValue": 2.9659593030195848
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "< 5 pc",
+            "fYieldEarthZone"
+          ],
+          "oValue": 0.6578458016875022
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "< 5 pc",
+            "fYieldRatio"
+          ],
+          "oValue": 0.22179866089793016
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "5-10 pc",
+            "iStars"
+          ],
+          "oValue": 59.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "5-10 pc",
+            "iObservedClassicHz"
+          ],
+          "oValue": 59.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "5-10 pc",
+            "iObservedEarthZone"
+          ],
+          "oValue": 57.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "5-10 pc",
+            "fYieldClassicHz"
+          ],
+          "oValue": 9.602424959796421
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "5-10 pc",
+            "fYieldEarthZone"
+          ],
+          "oValue": 2.16108857179283
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "5-10 pc",
+            "fYieldRatio"
+          ],
+          "oValue": 0.22505654361694138
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "10-15 pc",
+            "iStars"
+          ],
+          "oValue": 95.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "10-15 pc",
+            "iObservedClassicHz"
+          ],
+          "oValue": 65.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "10-15 pc",
+            "iObservedEarthZone"
+          ],
+          "oValue": 58.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "10-15 pc",
+            "fYieldClassicHz"
+          ],
+          "oValue": 5.156250942478416
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "10-15 pc",
+            "fYieldEarthZone"
+          ],
+          "oValue": 1.370559575872675
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "10-15 pc",
+            "fYieldRatio"
+          ],
+          "oValue": 0.2658054449176786
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "15-20 pc",
+            "iStars"
+          ],
+          "oValue": 133.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "15-20 pc",
+            "iObservedClassicHz"
+          ],
+          "oValue": 42.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "15-20 pc",
+            "iObservedEarthZone"
+          ],
+          "oValue": 37.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "15-20 pc",
+            "fYieldClassicHz"
+          ],
+          "oValue": 1.500856136880648
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "15-20 pc",
+            "fYieldEarthZone"
+          ],
+          "oValue": 0.4234090988507231
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "15-20 pc",
+            "fYieldRatio"
+          ],
+          "oValue": 0.28211171507132515
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "> 20 pc",
+            "iStars"
+          ],
+          "oValue": 1198.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "> 20 pc",
+            "iObservedClassicHz"
+          ],
+          "oValue": 3.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "> 20 pc",
+            "iObservedEarthZone"
+          ],
+          "oValue": 4.0
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "> 20 pc",
+            "fYieldClassicHz"
+          ],
+          "oValue": 0.07711454484704076
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "> 20 pc",
+            "fYieldEarthZone"
+          ],
+          "oValue": 0.016099620363496714
+        },
+        {
+          "saPath": [
+            "dictByDistance",
+            "> 20 pc",
+            "fYieldRatio"
+          ],
+          "oValue": 0.20877540541062442
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fIwaInscribedLamD"
+          ],
+          "oValue": 2.9312500000000004
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "iStarsConsidered"
+          ],
+          "oValue": 229.0
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fEarthZoneMeanFractionOutsideIwa550"
+          ],
+          "oValue": 0.9149624300920146
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fEarthZoneFractionFullyOutsideIwa550"
+          ],
+          "oValue": 0.8820960698689956
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fEarthZoneMeanFractionOutsideIwa1000"
+          ],
+          "oValue": 0.47340216410709307
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fEarthZoneFractionFullyOutsideIwa1000"
+          ],
+          "oValue": 0.3537117903930131
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fClassicHzMeanFractionOutsideIwa550"
+          ],
+          "oValue": 0.9571965895617265
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fClassicHzFractionFullyOutsideIwa550"
+          ],
+          "oValue": 0.8733624454148472
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fClassicHzMeanFractionOutsideIwa1000"
+          ],
+          "oValue": 0.6405681851905743
+        },
+        {
+          "saPath": [
+            "dictAngular",
+            "fClassicHzFractionFullyOutsideIwa1000"
+          ],
+          "oValue": 0.3537117903930131
+        },
+        {
+          "saPath": [
+            "iStarsTabulated"
+          ],
+          "oValue": 1500.0
+        }
+      ],
+      "iBytes": 4044
+    }
+  }
+}

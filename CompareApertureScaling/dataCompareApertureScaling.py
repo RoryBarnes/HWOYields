@@ -6,12 +6,17 @@ so the 7, 8 and 9 m points are out-of-sample predictions rather than fits. Two c
 produced: including eta_Earth uncertainty (marginalized over the occurrence posterior) and
 excluding it (eta fixed at the baseline 0.24, Poisson counting only).
 
-A caution recorded before the comparison was run: the excluding-sigma curve is NOT expected to
-match. Stark's excluding-sigma distribution still carries albedo and exozodi uncertainty, which
-together pull the expected yield from 22.5 down to 17.3 and are why their 6 m point sits at
-~6 percent rather than the ~30 percent that Poisson counting on 22.5 alone would give. This
-pipeline models neither source, so it should overshoot that curve. The including-sigma curve is
-the meaningful test, because eta_Earth uncertainty dominates it.
+Both curves carry albedo (through the albedo-drawn completeness) and exozodi: at every diameter
+the survey is re-optimized over the same exozodi draws A04 uses (the per-star levels are redrawn
+with the same seeds over that diameter's own screened list), which is how Stark's 498 runs per
+diameter are built. The excluding-sigma curve is therefore comparable with his red curve, not
+just the including-sigma one.
+
+It also writes, per diameter, the realized-yield histograms (Stark Fig. 12: including and
+excluding sigma_eta) and the characterization times of the first 18 expected EECs over the draws
+(Stark Fig. 14, whose means are the 22 d and 3.5 d of Sec. 4.1). The histogram is over individual
+planets, as Stark's is, re-derived for a subset of draws; its mean is also computed from star
+means over all draws, and the two are reported side by side.
 """
 
 import argparse
@@ -22,8 +27,9 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, "..")
-from yieldlib import optimizer as opt  # noqa: E402
+from yieldlib import exozodi as ez  # noqa: E402
 from yieldlib import survey as sv  # noqa: E402
+from yieldlib import yielddistribution as yd  # noqa: E402
 
 DICT_PUBLISHED = {
     "sSource": "Stark et al. (2024) Fig. 15; the 6 m pair is also stated in Sec. 3.5 text",
@@ -35,38 +41,96 @@ DICT_PUBLISHED = {
 }
 
 
-def fdictYieldCurveAtDiameter(dfCatalog, dictParams, fDiameterM, faTauGridS, faEtaGrid,
-                              dictArgs):
-    """Screen, compute completeness and optimize the survey at one aperture."""
+def fdictGridAtDiameter(dfCatalog, dictParams, fDiameterM, faTauGridS, dictArgs):
+    """Screen at one aperture, tabulate completeness over exozodi, and draw the levels."""
     dictParams["dictMission"]["fDiameterM"] = fDiameterM
+    dictBox = dictParams["dictBoxes"]["canonical"]
     dfTargets = sv.fdfScreenTargets(dfCatalog, dictParams["dictMission"],
                                     dictParams["dictBands"]["listBandsDetection"][0],
                                     dictArgs["min_eeid_lamd"], dictArgs["max_stars"],
-                                    dictArgs["teff_min"], dictArgs["teff_max"],
-                                    dictParams["dictBoxes"]["canonical"])
-    dictTable = sv.fdictCompletenessTable(dfTargets, dictParams,
-                                          dictParams["dictBoxes"]["canonical"], faTauGridS,
-                                          dictArgs["num_planets"], dictArgs["seed"])
-    listStars = sv.flistStarsFromTable(dictTable, faTauGridS)
-    faYields = np.array([opt.fdictOptimizeSurvey(listStars, float(f),
-                                                 dictParams["dictMission"])["fYield"]
-                         for f in faEtaGrid])
-    return {"iStarsScreened": int(len(dfTargets)), "faYieldGrid": faYields}
+                                    dictArgs["teff_min"], dictArgs["teff_max"], dictBox)
+    dictGrid = ez.fdictCompletenessZodiGrid(dfTargets, dictParams, dictBox, faTauGridS,
+                                            dictArgs["num_planets"], dictArgs["seed"])
+    faDraws = ez.faDrawZodiLevels(dictParams["dictMission"], len(dfTargets),
+                                  dictArgs["num_draws"], dictArgs["seed"] + 977,
+                                  sv.flistHipNumbers(dfTargets))
+    return dfTargets, dictGrid, faDraws
 
 
-def fdictProbabilities(faEtaGrid, faYields, faEtaPosterior, fEtaBaseline, fGoal, rng):
-    """P25 with and without eta_Earth uncertainty, both including Poisson counting."""
-    faExpectedMarginal = np.interp(np.log(np.clip(faEtaPosterior, faEtaGrid[0], faEtaGrid[-1])),
-                                   np.log(faEtaGrid), faYields)
+def fdictAtDiameter(dfCatalog, dictParams, fDiameterM, faTauGridS, faEtaGrid, faEtaPosterior,
+                    dictArgs, rng):
+    """Yield curves over the draws, P25 both ways, histograms and first-18 char times."""
+    dfTargets, dictGrid, faDraws = fdictGridAtDiameter(dfCatalog, dictParams, fDiameterM,
+                                                       faTauGridS, dictArgs)
+    dictMission = dictParams["dictMission"]
+    faByDraw = ez.fdictSurveyOverDraws(dictGrid, faDraws, faTauGridS, faEtaGrid, dictMission,
+                                       dictArgs["processes"])["faYield"]
+    dictProb = fdictProbabilities(faEtaGrid, faByDraw, faEtaPosterior, dictArgs["eta_baseline"],
+                                  dictArgs["yield_goal"], rng)
+    dictPerStar = ez.fdictPerStarOverDraws(dictGrid, faDraws, faTauGridS,
+                                           dictArgs["eta_baseline"], dictMission,
+                                           dictArgs["processes"])
+    iaSubset = np.arange(min(dictArgs["planet_draws"], faDraws.shape[0]))
+    faT, faW = ez.fdictPlanetCharacterizationFirstN(
+        dfTargets, dictParams, dictParams["dictBoxes"]["canonical"], dictGrid, faDraws,
+        dictPerStar, iaSubset, dictArgs["eta_baseline"], dictArgs["first_n"], dictArgs["seed"])
+    return {**dictProb, **fdictFirstNCharacterization(dictPerStar, dictArgs),
+            **fdictPlanetHistogram(faT, faW),
+            "iStarsScreened": int(len(dfTargets)), "faYieldGrid": faByDraw.mean(axis=0).tolist(),
+            "fStarsUsedMean": float(np.mean(np.sum(dictPerStar["faStarComp"] > 0, axis=1)))}
+
+
+def fdictFirstNCharacterization(dictPerStar, dictArgs):
+    """Characterization times of the first N EECs pooled over draws, and their mean."""
+    listTimes, listWeights = [], []
+    for j in range(dictPerStar["faStarComp"].shape[0]):
+        faComp, faTime = dictPerStar["faStarComp"][j], dictPerStar["faStarTimeS"][j]
+        faPriority = np.where(faTime > 0, faComp / np.maximum(faTime, 1e-30), 0.0)
+        faT, faW = ez.faFirstNCharacterizationTimes(
+            faComp, dictPerStar["faStarTauCharMeanS"][j], dictArgs["eta_baseline"],
+            dictArgs["first_n"], faPriority)
+        listTimes.append(faT / 86400.0)
+        listWeights.append(faW)
+    faT, faW = np.concatenate(listTimes), np.concatenate(listWeights)
+    return {"fMeanCharDaysFirstN": float(np.sum(faT * faW) / np.sum(faW))}
+
+
+def fdictPlanetHistogram(faT, faW):
+    """Fig. 14's quantity: individual EEC characterization times in 1-day bins, and their mean.
+
+    The mean should agree with fMeanCharDaysFirstN (star means over all draws) to within the
+    sampling of the draw subset; it is reported so the two routes can be compared.
+    """
+    faEdges = np.linspace(0.0, 60.0, 61)
+    return {"fMeanCharDaysFirstNPlanets": float(np.sum(faT * faW) / np.sum(faW)),
+            "fMedianCharDaysFirstNPlanets": float(np.interp(0.5, np.cumsum(faW[np.argsort(faT)]) /
+                                                            np.sum(faW), np.sort(faT))),
+            "faCharDaysEdges": faEdges.tolist(),
+            "faCharDaysHistogram": (np.histogram(faT, faEdges, weights=faW)[0] /
+                                    np.sum(faW)).tolist()}
+
+
+def fdictProbabilities(faEtaGrid, faByDraw, faEtaPosterior, fEtaBaseline, fGoal, rng):
+    """P25 with and without eta_Earth uncertainty, over the exozodi draws and Poisson counting."""
+    iaDraw = rng.permutation(np.arange(faEtaPosterior.size) % faByDraw.shape[0])
+    faLog = np.log(np.clip(faEtaPosterior, faEtaGrid[0], faEtaGrid[-1]))
+    faExpectedMarginal = np.empty(faEtaPosterior.size)
+    for j in range(faByDraw.shape[0]):
+        faExpectedMarginal[iaDraw == j] = np.interp(faLog[iaDraw == j], np.log(faEtaGrid),
+                                                    faByDraw[j])
+    faFixedByDraw = np.array([np.interp(np.log(fEtaBaseline), np.log(faEtaGrid), f)
+                              for f in faByDraw])
     faObservedMarginal = rng.poisson(np.maximum(faExpectedMarginal, 0.0))
-    fExpectedFixed = float(np.interp(np.log(fEtaBaseline), np.log(faEtaGrid), faYields))
-    faObservedFixed = rng.poisson(fExpectedFixed, size=faEtaPosterior.size)
+    faObservedFixed = rng.poisson(np.maximum(faFixedByDraw[iaDraw], 0.0))
     return {
-        "fExpectedYieldAtBaselineEta": fExpectedFixed,
+        "fExpectedYieldAtBaselineEta": float(np.mean(faFixedByDraw)),
         "fMeanExpectedMarginal": float(np.mean(faExpectedMarginal)),
         "fProbability25IncludingSigmaEta": float(np.mean(faObservedMarginal >= fGoal)),
         "fProbability25ExcludingSigmaEta": float(np.mean(faObservedFixed >= fGoal)),
+        "faPmfIncludingSigmaEta": yd.faPoissonMixturePmf(faExpectedMarginal).tolist(),
+        "faPmfExcludingSigmaEta": yd.faPoissonMixturePmf(faFixedByDraw).tolist(),
     }
+
 
 
 def fnCrossingDiameter(faDiameters, faIncluding, faExcluding):
@@ -107,6 +171,11 @@ def fdictParseArgs():
     p.add_argument("--eta-grid-min", type=float, default=0.003)
     p.add_argument("--eta-grid-max", type=float, default=1.2)
     p.add_argument("--eta-grid-points", type=int, default=24)
+    p.add_argument("--num-draws", type=int, default=100)
+    p.add_argument("--first-n", type=int, default=18)
+    p.add_argument("--planet-draws", type=int, default=20,
+                   help="draws re-derived planet by planet for the Fig. 14 distribution")
+    p.add_argument("--processes", type=int, default=8)
     p.add_argument("--seed", type=int, default=20260921)
     p.add_argument("--out-comparison", default="apertureScaling.json")
     return vars(p.parse_args())
@@ -129,12 +198,11 @@ def main():
     rng = np.random.default_rng(dictArgs["seed"])
     dictByDiameter = {}
     for sDiameter in [d.strip() for d in dictArgs["diameters"].split(",")]:
-        dictCurve = fdictYieldCurveAtDiameter(dfCatalog, dictParams, float(sDiameter),
-                                              faTauGridS, faEtaGrid, dictArgs)
-        dictProb = fdictProbabilities(faEtaGrid, dictCurve["faYieldGrid"], faEtaPosterior,
-                                      dictArgs["eta_baseline"], dictArgs["yield_goal"], rng)
-        dictByDiameter[sDiameter] = {**dictProb, "iStarsScreened": dictCurve["iStarsScreened"],
-                                     "faYieldGrid": dictCurve["faYieldGrid"].tolist()}
+        dictByDiameter[sDiameter] = fdictAtDiameter(dfCatalog, dictParams, float(sDiameter),
+                                                    faTauGridS, faEtaGrid, faEtaPosterior,
+                                                    dictArgs, rng)
+        print(sDiameter, {k: v for k, v in dictByDiameter[sDiameter].items()
+                          if not k.startswith("fa")}, flush=True)
     faDiameters = [float(s) for s in dictByDiameter]
     fCrossing = fnCrossingDiameter(
         faDiameters,
@@ -149,6 +217,8 @@ def main():
         "sCalibrationNote": "Fitted at 6 m only; 7, 8 and 9 m are out-of-sample predictions.",
         "faEtaGrid": faEtaGrid.tolist(),
         "dictPublished": DICT_PUBLISHED,
+        "dictPublishedCharDaysFirst18": {"6": 22.0, "9": 3.5,
+                                         "sSource": "Stark+2024 Sec. 4.1 (means of Fig. 14)"},
         "dictByDiameter": dictByDiameter,
         "dictResiduals": {
             s: {"fIncludingSigmaEta": dictByDiameter[s]["fProbability25IncludingSigmaEta"]

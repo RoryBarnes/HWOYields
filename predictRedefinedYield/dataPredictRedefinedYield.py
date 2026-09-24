@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
-"""Marginalize the calibrated AYO survey over the occurrence posterior for both selection boxes.
+"""Marginalize the calibrated AYO survey over the occurrence posterior AND the exozodi draws.
 
 The survey optimization is run on a grid of eta_Earth values and interpolated, rather than once
 per posterior draw: yield(eta) is smooth and monotonic, and re-optimizing thousands of times
 would buy no accuracy. Because characterization time is charged against the same budget, the
 grid is genuinely curved -- yield is not proportional to eta -- which is the whole reason the
 redefined box cannot be evaluated by rescaling Stark's published number.
+
+The grid is computed once per exozodi draw from A04, since each draw re-optimizes the survey.
+Each posterior sample of eta is paired with one draw (cycling through them in a shuffled order),
+so the expected yield carries both uncertainties, and the realized yield adds Poisson counting on
+top. The same pairing at eta fixed to the baseline gives the fixed-eta distribution, the analogue
+of Stark et al. (2024) Fig. 10's red curve.
 """
 
 import argparse
@@ -15,23 +21,23 @@ import sys
 import numpy as np
 
 sys.path.insert(0, "..")
-from yieldlib import optimizer as opt  # noqa: E402
+from yieldlib import exozodi as ez  # noqa: E402
 
 
-def flistStarsForBox(dictNpz, sBox):
-    """Per-star completeness dicts for one selection box."""
-    faTauGridS = dictNpz["faTauGridS"]
-    faComp, faTauChar = dictNpz[f"faComp_{sBox}"], dictNpz[f"faTauChar_{sBox}"]
-    faCharMean, faCompAlb = dictNpz[f"faTauCharMean_{sBox}"], dictNpz[f"faCompAlbedo_{sBox}"]
-    return [dict(faTauGridS=faTauGridS, faComp=faComp[i], faCompYield=faCompAlb[i],
-                 faTauCharMeanS=faCharMean[i], fTauCharS=float(faTauChar[i]))
-            for i in range(faComp.shape[0])]
+def faYieldGridByDraw(dictNpz, sBox, faEtaGrid, dictMission, iProcesses):
+    """Expected (albedo-drawn) yield on the eta grid for every exozodi draw, (draws, eta)."""
+    return ez.fdictSurveyOverDraws(ez.fdictLoadGrid(dictNpz, sBox), dictNpz["faZodiDraws"],
+                                   dictNpz["faTauGridS"], faEtaGrid, dictMission,
+                                   iProcesses)["faYield"]
 
 
-def faYieldGrid(listStars, faEtaGrid, dictMission):
-    """Expected yield at each eta_Earth on the grid."""
-    return np.array([opt.fdictOptimizeSurvey(listStars, float(f), dictMission)["fYield"]
-                     for f in faEtaGrid])
+def faExpectedPerSample(faEtaGrid, faYieldByDraw, faEtaSamples, iaDraw):
+    """Expected yield for each posterior sample, read off its paired draw's eta curve."""
+    faOut = np.empty(faEtaSamples.size)
+    for j in np.unique(iaDraw):
+        bThis = iaDraw == j
+        faOut[bThis] = faInterpolateYield(faEtaGrid, faYieldByDraw[j], faEtaSamples[bThis])
+    return faOut
 
 
 def faInterpolateYield(faEtaGrid, faYields, faEtaSamples):
@@ -54,6 +60,32 @@ def fdictDistributionSummary(faExpected, faObserved, fGoal):
     }
 
 
+def fdictPredictBox(dictNpz, dictPosterior, sBox, faEtaGrid, dictMission, iaDraw, rng,
+                    dictArgs):
+    """Summary and samples for one box: eta-marginalized and eta-fixed, both over the draws."""
+    faByDraw = faYieldGridByDraw(dictNpz, sBox, faEtaGrid, dictMission, dictArgs["processes"])
+    faEtaSamples = dictPosterior[f"faEta_{sBox}"]
+    faExpected = faExpectedPerSample(faEtaGrid, faByDraw, faEtaSamples, iaDraw)
+    fEtaFixed = dictArgs["eta_fixed"] * float(np.median(faEtaSamples) /
+                                              np.median(dictPosterior["faEta_canonical"]))
+    faExpectedFixed = np.array([faInterpolateYield(faEtaGrid, f, np.array([fEtaFixed]))[0]
+                                for f in faByDraw])[iaDraw]
+    dictSamples = {"faExpected": faExpected, "faObserved": rng.poisson(np.maximum(faExpected, 0)),
+                   "faExpectedFixedEta": faExpectedFixed,
+                   "faObservedFixedEta": rng.poisson(np.maximum(faExpectedFixed, 0)),
+                   "faYieldGridByDraw": faByDraw}
+    fGoal = dictArgs["yield_goal"]
+    return {"faEtaGrid": faEtaGrid.tolist(), "faYieldGrid": faByDraw.mean(axis=0).tolist(),
+            "faYieldGridP16": np.percentile(faByDraw, 16, axis=0).tolist(),
+            "faYieldGridP84": np.percentile(faByDraw, 84, axis=0).tolist(),
+            "dictDistribution": fdictDistributionSummary(faExpected, dictSamples["faObserved"],
+                                                         fGoal),
+            "fEtaFixed": fEtaFixed,
+            "dictDistributionFixedEta": fdictDistributionSummary(
+                faExpectedFixed, dictSamples["faObservedFixedEta"], fGoal),
+            "fEtaMedian": float(np.median(faEtaSamples))}, dictSamples
+
+
 def fdictParseArgs():
     """Command-line configuration for the marginalized yield prediction."""
     p = argparse.ArgumentParser(description=__doc__)
@@ -66,6 +98,10 @@ def fdictParseArgs():
     p.add_argument("--eta-grid-max", type=float, default=1.2)
     p.add_argument("--eta-grid-points", type=int, default=24)
     p.add_argument("--yield-goal", type=float, default=25.0)
+    p.add_argument("--eta-fixed", type=float, default=0.24,
+                   help="canonical-box eta for the fixed-eta distribution (Fig. 10 red curve); "
+                        "other boxes scale it by their posterior median ratio")
+    p.add_argument("--processes", type=int, default=8)
     p.add_argument("--seed", type=int, default=20260921)
     p.add_argument("--out-prediction", default="yieldPrediction.json")
     p.add_argument("--out-samples", default="yieldSamples.npz")
@@ -83,20 +119,16 @@ def main():
     rng = np.random.default_rng(dictArgs["seed"])
     faEtaGrid = np.logspace(np.log10(dictArgs["eta_grid_min"]),
                             np.log10(dictArgs["eta_grid_max"]), dictArgs["eta_grid_points"])
-    dictOut, dictSamples = {"dictByBox": {}, "fYieldGoal": dictArgs["yield_goal"]}, {}
+    iDraws = int(dictNpz["faZodiDraws"].shape[0])
+    iSamples = int(dictPosterior["faEta_canonical"].size)
+    iaDraw = rng.permutation(np.arange(iSamples) % iDraws)
+    dictOut = {"dictByBox": {}, "fYieldGoal": dictArgs["yield_goal"], "iExozodiDraws": iDraws,
+               "fEtaFixed": dictArgs["eta_fixed"]}
+    dictSamples = {"iaDraw": iaDraw}
     for sBox in [b.strip() for b in dictArgs["boxes"].split(",")]:
-        faYields = faYieldGrid(flistStarsForBox(dictNpz, sBox), faEtaGrid, dictMission)
-        faEtaSamples = dictPosterior[f"faEta_{sBox}"]
-        faExpected = faInterpolateYield(faEtaGrid, faYields, faEtaSamples)
-        faObserved = rng.poisson(np.maximum(faExpected, 0.0))
-        dictOut["dictByBox"][sBox] = {
-            "faEtaGrid": faEtaGrid.tolist(), "faYieldGrid": faYields.tolist(),
-            "dictDistribution": fdictDistributionSummary(faExpected, faObserved,
-                                                         dictArgs["yield_goal"]),
-            "fEtaMedian": float(np.median(faEtaSamples)),
-        }
-        dictSamples[f"faExpected_{sBox}"] = faExpected
-        dictSamples[f"faObserved_{sBox}"] = faObserved
+        dictOut["dictByBox"][sBox], dictBoxSamples = fdictPredictBox(
+            dictNpz, dictPosterior, sBox, faEtaGrid, dictMission, iaDraw, rng, dictArgs)
+        dictSamples.update({f"{k}_{sBox}": v for k, v in dictBoxSamples.items()})
     faRatio = dictSamples["faExpected_redefined"] / dictSamples["faExpected_canonical"]
     dictOut["dictYieldRatio"] = {
         "fMedian": float(np.median(faRatio)), "fP16": float(np.percentile(faRatio, 16)),

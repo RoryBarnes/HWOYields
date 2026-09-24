@@ -8,6 +8,11 @@ bisection against the 22.5 EEC expected yield that Stark et al. (2024) report fo
 6 m LUVOIR-B-like design, and the fitted value is itself the headline diagnostic: a factor near
 unity means the parametrized coronagraph stands in for the simulated one, and a factor far from
 unity means it does not and nothing downstream should be trusted.
+
+The 22.5 comes from a single AYO run with every star at the median exozodi level, before Stark
+introduces exozodi sampling (Sec. 3.3), so the calibration holds exozodi fixed. Calibrating with
+drawn levels would fit the factor to a yield that already carries the sampling penalty, and the
+factor would then silently cancel that penalty downstream.
 """
 
 import argparse
@@ -68,6 +73,7 @@ def main():
     with open(dictArgs["mission_parameters"]) as oFile:
         dictParams = json.load(oFile)
     dictParams["fAlpha"], dictParams["fBeta"] = -0.19, 0.26
+    dictParams["dictMission"]["bDrawExozodiLevels"] = False
     dictBox = dictParams["dictBoxes"][dictArgs["box"]]
     dfTargets = sv.fdfScreenTargets(pd.read_csv(dictArgs["target_catalog"]),
                                     dictParams["dictMission"],
@@ -81,6 +87,7 @@ def main():
     fRelativeError = abs(dictBest["fYield"] - dictArgs["target_yield"]) / dictArgs["target_yield"]
     dictOut = {
         "fTargetYield": dictArgs["target_yield"],
+        "bExozodiDrawnDuringCalibration": False,
         "iStarsScreened": int(len(dfTargets)),
         "fCalibratedThroughputFactor": dictBest["fCalibration"],
         "fCalibratedYield": dictBest["fYield"],

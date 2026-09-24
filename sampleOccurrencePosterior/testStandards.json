@@ -45,32 +45,32 @@
       },
       "dictArrayStats": {
         "faChain": {
-          "fMean": -0.3416280860434188,
-          "fMin": -4.091851802362458,
-          "fMax": 1.4363148700328803
+          "fMean": -0.38826049368497606,
+          "fMin": -5.070862840094029,
+          "fMax": 1.446868975209075
         },
         "faRatio": {
-          "fMean": 0.20352045278060632,
-          "fMin": 0.14099058178605114,
-          "fMax": 0.27199668308709374
+          "fMean": 0.20439239801265185,
+          "fMin": 0.1419409564190637,
+          "fMax": 0.2751563352359547
         },
         "faEta_canonical": {
-          "fMean": 0.2919290192658408,
-          "fMin": 0.0379133266757716,
-          "fMax": 1.782314060021193
+          "fMean": 0.340727829916702,
+          "fMin": 0.015255239446719377,
+          "fMax": 4.479458131968651
         },
         "faEta_redefined": {
-          "fMean": 0.05940724695533123,
-          "fMin": 0.007817019056823723,
-          "fMax": 0.363370363917705
+          "fMean": 0.0696135623768814,
+          "fMin": 0.003196671775464296,
+          "fMax": 0.9801449249457344
         },
         "faEta_hzOnly": {
-          "fMean": 0.09398770586326054,
-          "fMin": 0.01245145804755511,
-          "fMax": 0.582502886816197
+          "fMean": 0.11011996273862464,
+          "fMin": 0.0050097427982333615,
+          "fMax": 1.5287434525030241
         }
       },
-      "iBytes": 764963
+      "iBytes": 765949
     },
     "occurrencePosteriorSummary.json": {
       "sKind": "json",
@@ -79,6 +79,7 @@
         "dictParameters",
         "dictRatioRedefinedOverCanonical",
         "fAcceptanceFraction",
+        "fEtaIntervalZ",
         "fEtaLogNormalMu",
         "fEtaLogNormalSigma",
         "fEtaMeanImplied",
@@ -90,6 +91,12 @@
       "listNumbers": [
         {
           "saPath": [
+            "fEtaIntervalZ"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
             "fEtaLogNormalMu"
           ],
           "oValue": -1.3590502684778558
@@ -98,19 +105,19 @@
           "saPath": [
             "fEtaLogNormalSigma"
           ],
-          "oValue": 0.5158001730512071
+          "oValue": 0.7612132677222353
         },
         {
           "saPath": [
             "fEtaModeImplied"
           ],
-          "oValue": 0.19689196789208732
+          "oValue": 0.1439202564520882
         },
         {
           "saPath": [
             "fEtaMeanImplied"
           ],
-          "oValue": 0.2934566475276453
+          "oValue": 0.3432392857332488
         },
         {
           "saPath": [
@@ -122,13 +129,13 @@
           "saPath": [
             "fAcceptanceFraction"
           ],
-          "oValue": 0.6436458333333333
+          "oValue": 0.6439531249999999
         },
         {
           "saPath": [
             "fMaxAutocorrSteps"
           ],
-          "oValue": 36.78834226559994
+          "oValue": 39.39698868380835
         },
         {
           "saPath": [
@@ -136,7 +143,7 @@
             "lnGamma",
             "fMedian"
           ],
-          "oValue": -1.0825710075946717
+          "oValue": -1.1722857690634654
         },
         {
           "saPath": [
@@ -144,7 +151,7 @@
             "lnGamma",
             "fP16"
           ],
-          "oValue": -1.5477366092870628
+          "oValue": -1.8276664844149035
         },
         {
           "saPath": [
@@ -152,7 +159,7 @@
             "lnGamma",
             "fP84"
           ],
-          "oValue": -0.6174287800427471
+          "oValue": -0.5963322543737133
         },
         {
           "saPath": [
@@ -160,7 +167,7 @@
             "lnGamma",
             "fMean"
           ],
-          "oValue": -1.1011247199042877
+          "oValue": -1.222710939569385
         },
         {
           "saPath": [
@@ -168,7 +175,7 @@
             "alpha",
             "fMedian"
           ],
-          "oValue": -0.18713925478410204
+          "oValue": -0.19264994096910254
         },
         {
           "saPath": [
@@ -176,7 +183,7 @@
             "alpha",
             "fP16"
           ],
-          "oValue": -0.4531544355716044
+          "oValue": -0.4579141528722371
         },
         {
           "saPath": [
@@ -184,7 +191,7 @@
             "alpha",
             "fP84"
           ],
-          "oValue": 0.07744334688823788
+          "oValue": 0.07820103742538238
         },
         {
           "saPath": [
@@ -192,7 +199,7 @@
             "alpha",
             "fMean"
           ],
-          "oValue": -0.18833296309052205
+          "oValue": -0.19128832338469162
         },
         {
           "saPath": [
@@ -200,7 +207,7 @@
             "beta",
             "fMedian"
           ],
-          "oValue": 0.26275076563120436
+          "oValue": 0.24722153534212143
         },
         {
           "saPath": [
@@ -208,7 +215,7 @@
             "beta",
             "fP16"
           ],
-          "oValue": -0.027259323295514375
+          "oValue": -0.03836065872468424
         },
         {
           "saPath": [
@@ -216,7 +223,7 @@
             "beta",
             "fP84"
           ],
-          "oValue": 0.5541729491124299
+          "oValue": 0.535793923171501
         },
         {
           "saPath": [
@@ -224,7 +231,7 @@
             "beta",
             "fMean"
           ],
-          "oValue": 0.2645734248645533
+          "oValue": 0.24921778189914817
         },
         {
           "saPath": [
@@ -232,7 +239,7 @@
             "canonical",
             "fMedian"
           ],
-          "oValue": 0.2556492691802682
+          "oValue": 0.25505412554383095
         },
         {
           "saPath": [
@@ -240,7 +247,7 @@
             "canonical",
             "fP16"
           ],
-          "oValue": 0.15469494416183774
+          "oValue": 0.12152379758471757
         },
         {
           "saPath": [
@@ -248,7 +255,7 @@
             "canonical",
             "fP84"
           ],
-          "oValue": 0.423668577412398
+          "oValue": 0.5375190942901951
         },
         {
           "saPath": [
@@ -256,7 +263,7 @@
             "canonical",
             "fMean"
           ],
-          "oValue": 0.2919290192658408
+          "oValue": 0.340727829916702
         },
         {
           "saPath": [
@@ -264,7 +271,7 @@
             "redefined",
             "fMedian"
           ],
-          "oValue": 0.05197086363264328
+          "oValue": 0.052039614383052185
         },
         {
           "saPath": [
@@ -272,7 +279,7 @@
             "redefined",
             "fP16"
           ],
-          "oValue": 0.03123435936565548
+          "oValue": 0.024680016020596954
         },
         {
           "saPath": [
@@ -280,7 +287,7 @@
             "redefined",
             "fP84"
           ],
-          "oValue": 0.08647564838899434
+          "oValue": 0.10974212808495745
         },
         {
           "saPath": [
@@ -288,7 +295,7 @@
             "redefined",
             "fMean"
           ],
-          "oValue": 0.05940724695533123
+          "oValue": 0.0696135623768814
         },
         {
           "saPath": [
@@ -296,7 +303,7 @@
             "hzOnly",
             "fMedian"
           ],
-          "oValue": 0.08219555377718488
+          "oValue": 0.08219950232863493
         },
         {
           "saPath": [
@@ -304,7 +311,7 @@
             "hzOnly",
             "fP16"
           ],
-          "oValue": 0.04945378793516375
+          "oValue": 0.03906616071116097
         },
         {
           "saPath": [
@@ -312,7 +319,7 @@
             "hzOnly",
             "fP84"
           ],
-          "oValue": 0.136406626027829
+          "oValue": 0.17362393863008171
         },
         {
           "saPath": [
@@ -320,38 +327,38 @@
             "hzOnly",
             "fMean"
           ],
-          "oValue": 0.09398770586326054
+          "oValue": 0.11011996273862464
         },
         {
           "saPath": [
             "dictRatioRedefinedOverCanonical",
             "fMedian"
           ],
-          "oValue": 0.20334323541972582
+          "oValue": 0.20419311247330102
         },
         {
           "saPath": [
             "dictRatioRedefinedOverCanonical",
             "fP16"
           ],
-          "oValue": 0.18681361673777727
+          "oValue": 0.18787613196342662
         },
         {
           "saPath": [
             "dictRatioRedefinedOverCanonical",
             "fP84"
           ],
-          "oValue": 0.2204945874828882
+          "oValue": 0.22104178231602994
         },
         {
           "saPath": [
             "dictRatioRedefinedOverCanonical",
             "fMean"
           ],
-          "oValue": 0.20352045278060632
+          "oValue": 0.20439239801265185
         }
       ],
-      "iBytes": 1713
+      "iBytes": 1749
     }
   }
 }

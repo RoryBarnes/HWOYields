@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
-"""Compute single-visit exoEarth-candidate completeness C(tau) for every screened target star.
+"""Compute exoEarth-candidate completeness C(tau, visits, exozodi) for every screened target star.
 
 For each star this injects EECs over the chosen selection box, propagates them through the
-radiometric model of Stark et al. (2019), and records the fraction detectable as a function of
-exposure time, together with the characterization time a detected planet would demand.
+radiometric model of Stark et al. (2019), and records the fraction detected and characterizable
+as a function of exposure time and visit count, together with the characterization time a
+counted planet demands.
+
+Exozodi is a random variable (Stark et al. 2024 Sec. 3.3), so the curves are tabulated on a grid
+of exozodi levels (yieldlib.exozodi.LIST_ZODI_GRID) rather than at one drawn level, and this step
+also draws the per-star levels for every survey realization downstream steps average over. The
+fixed-level arrays (faComp_<box> etc.) are the grid at the planning level, 3 zodis, which is the
+survey Stark's 22.5 describes.
 """
 
 import argparse
@@ -14,6 +21,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, "..")
+from yieldlib import exozodi as ez  # noqa: E402
 from yieldlib import survey as sv  # noqa: E402
 
 
@@ -34,10 +42,48 @@ def fdictParseArgs():
     p.add_argument("--calibration-json", default=None,
                    help="calibration.json whose fCalibratedThroughputFactor is applied")
     p.add_argument("--throughput-calibration", type=float, default=1.0)
+    p.add_argument("--grid-boxes", default="canonical,redefined",
+                   help="boxes tabulated over exozodi level; others only at the planning level")
+    p.add_argument("--num-draws", type=int, default=200,
+                   help="exozodi realizations drawn for downstream survey averaging")
     p.add_argument("--seed", type=int, default=20260921)
     p.add_argument("--out-completeness", default="completeness.npz")
     p.add_argument("--out-summary", default="completenessSummary.json")
     return vars(p.parse_args())
+
+
+def fdictBoxArrays(sBox, dictGrid, iStars, faTauGridS, fPlanningZodi, bKeepGrid):
+    """Planning-level curves for every screened star, plus the exozodi grid when kept."""
+    iLevel = int(np.argmin(np.abs(dictGrid["faZodiGrid"] - fPlanningZodi)))
+    iVisits, iTau = dictGrid["iaCompCounts"].shape[2:]
+    dictOut = {}
+    for sKey, sGridKey, fScale in (("faComp", "iaCompCounts", 1.0 / dictGrid["iNumPlanets"]),
+                                   ("faCompAlbedo", "iaCompAlbedoCounts",
+                                    1.0 / dictGrid["iNumPlanets"]),
+                                   ("faTauCharMean", "faTauCharMean", 1.0)):
+        faFull = np.zeros((iStars, iVisits, iTau))
+        faFull[dictGrid["iaStar"]] = dictGrid[sGridKey][:, iLevel].astype(float) * fScale
+        dictOut[f"{sKey}_{sBox}"] = faFull
+    if bKeepGrid:
+        dictOut.update({f"iaGridStar_{sBox}": dictGrid["iaStar"],
+                        f"iaCompCounts_{sBox}": dictGrid["iaCompCounts"],
+                        f"iaCompAlbedoCounts_{sBox}": dictGrid["iaCompAlbedoCounts"],
+                        f"faTauCharMeanGrid_{sBox}": dictGrid["faTauCharMean"],
+                        "faZodiGrid": dictGrid["faZodiGrid"],
+                        "iNumPlanets": dictGrid["iNumPlanets"]})
+    return dictOut
+
+
+def fdictBoxSummary(dictArrays, sBox, dictGrid):
+    """Headline numbers for one box at the planning exozodi level."""
+    faMax = dictArrays[f"faComp_{sBox}"][:, -1, -1]
+    faChar = dictArrays[f"faTauCharMean_{sBox}"][:, -1, -1]
+    return {"fMaxCompletenessBest": float(np.max(faMax)) if len(faMax) else 0.0,
+            "fSummedMaxCompleteness": float(np.sum(faMax)),
+            "iStarsWithAnyCompleteness": int(np.sum(faMax > 0)),
+            "iStarsWithAnyCompletenessAtZeroZodi": int(dictGrid["iaStar"].size),
+            "fMedianTauCharDays": float(np.median(faChar[faChar > 0]) / 86400.0)
+            if np.any(faChar > 0) else 0.0}
 
 
 def main():
@@ -70,21 +116,25 @@ def main():
                    "iNumPlanetsPerStar": dictArgs["num_planets"],
                    "fThroughputCalibration": fCalibration,
                    "dictByBox": {}}
+    listGridBoxes = [b.strip() for b in dictArgs["grid_boxes"].split(",")]
     for sBoxName in listBoxNames:
-        dictAll = sv.fdictCompletenessTable(dfTargets, dictParams,
-                                            dictParams["dictBoxes"][sBoxName], faTauGridS,
-                                            dictArgs["num_planets"], dictArgs["seed"])
-        dictArrays[f"faComp_{sBoxName}"] = dictAll["faComp"]
-        dictArrays[f"faTauChar_{sBoxName}"] = dictAll["faTauChar"]
-        dictArrays[f"faTauCharMean_{sBoxName}"] = dictAll["faTauCharMean"]
-        dictArrays[f"faCompAlbedo_{sBoxName}"] = dictAll["faCompAlbedo"]
-        faMax = dictAll["faComp"][:, -1]
-        dictSummary["dictByBox"][sBoxName] = {
-            "fMaxCompletenessBest": float(np.max(faMax)) if len(faMax) else 0.0,
-            "fSummedMaxCompleteness": float(np.sum(faMax)),
-            "iStarsWithAnyCompleteness": int(np.sum(faMax > 0)),
-            "fMedianTauCharDays": float(np.nanmedian(np.where(
-                np.isfinite(dictAll["faTauChar"]), dictAll["faTauChar"], np.nan)) / 86400.0)}
+        faZodiGrid = ez.LIST_ZODI_GRID if sBoxName in listGridBoxes else [
+            dictParams["dictMission"]["fExozodiLevel"]]
+        dictGrid = ez.fdictCompletenessZodiGrid(dfTargets, dictParams,
+                                                dictParams["dictBoxes"][sBoxName], faTauGridS,
+                                                dictArgs["num_planets"], dictArgs["seed"],
+                                                faZodiGrid)
+        dictArrays.update(fdictBoxArrays(sBoxName, dictGrid, len(dfTargets), faTauGridS,
+                                         dictParams["dictMission"]["fExozodiLevel"],
+                                         sBoxName in listGridBoxes))
+        dictSummary["dictByBox"][sBoxName] = fdictBoxSummary(dictArrays, sBoxName, dictGrid)
+    dictArrays["faZodiDraws"] = ez.faDrawZodiLevels(
+        dictParams["dictMission"], len(dfTargets), dictArgs["num_draws"],
+        int(dictParams["dictMission"].get("iExozodiSeed", dictArgs["seed"] + 977)),
+        sv.flistHipNumbers(dfTargets))
+    dictSummary["iExozodiDraws"] = dictArgs["num_draws"]
+    dictSummary["fMedianDrawnZodi"] = float(np.median(dictArrays["faZodiDraws"]))
+    dictSummary["fFractionDrawnAbove100Zodi"] = float(np.mean(dictArrays["faZodiDraws"] > 100))
     np.savez_compressed(dictArgs["out_completeness"], **dictArrays)
     with open(dictArgs["out_summary"], "w") as oFile:
         json.dump(dictSummary, oFile, indent=2)

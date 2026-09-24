@@ -43,7 +43,7 @@ def main():
                      for i in range(0, len(faOrder) - 14, 15)]
         oAxesPair[1].plot(faCentres, faBinned, "-o", ms=4, color=sColour, label=sLabel)
     ps.fnFinishAxes(oAxesPair[1], "distance (pc)", "median completeness",
-                    "Completeness collapses beyond ~10 pc")
+                    "Median completeness by distance")
     oAxesPair[1].legend(loc="upper right", fontsize=8)
     oFig.tight_layout()
     oFig.savefig(dictArgs["sPlotPath"])

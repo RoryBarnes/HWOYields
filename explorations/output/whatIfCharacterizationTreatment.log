@@ -1,0 +1,33 @@
+== current
+    factor 1.342 -> planning yield 20.97
+    factor 2.837 -> planning yield 27.14
+    factor 1.951 -> planning yield 24.01
+    factor 1.618 -> planning yield 22.48
+    factor 1.777 -> planning yield 23.24
+    factor 1.695 -> planning yield 22.86
+    factor 1.656 -> planning yield 22.67
+    factor 1.637 -> planning yield 22.57
+    factor 1.627 -> planning yield 22.53
+{"fCalibration": 1.6226362141876287, "fPlanningFixedExozodi": 22.502000000000013, "fPlanningDrawnExozodi": 21.187600000000007, "fFixedEtaYield": 19.301600000000008, "fExozodiPenalty": 0.05841258554795159, "fMeanCharDaysPriorityFirst18": 12.580202653596242, "iStarsUsed": 161, "dictByLuminosity": {"0-0.6": {"fSummed": 39.508333333333326, "iUsed": 55}, "0.6-1": {"fSummed": 9.348333333333333, "iUsed": 16}, "1-2": {"fSummed": 13.906666666666668, "iUsed": 27}, "2-5": {"fSummed": 19.52, "iUsed": 40}, "5-100": {"fSummed": 5.998333333333333, "iUsed": 23}}}
+== spectraUncalibrated
+    factor 1.342 -> planning yield 18.95
+    factor 2.837 -> planning yield 19.35
+    factor 4.126 -> planning yield 19.43
+    factor 4.976 -> planning yield 19.45
+    factor 5.464 -> planning yield 19.46
+    factor 5.726 -> planning yield 19.46
+    factor 5.861 -> planning yield 19.47
+    factor 5.930 -> planning yield 19.47
+    factor 5.965 -> planning yield 19.47
+{"fCalibration": 5.982472532187672, "fPlanningFixedExozodi": 19.467000000000017, "fPlanningDrawnExozodi": 17.974800000000002, "fFixedEtaYield": 17.4092, "fExozodiPenalty": 0.07665279704114725, "fMeanCharDaysPriorityFirst18": 18.211075215507808, "iStarsUsed": 154, "dictByLuminosity": {"0-0.6": {"fSummed": 35.526666666666664, "iUsed": 53}, "0.6-1": {"fSummed": 7.735833333333334, "iUsed": 15}, "1-2": {"fSummed": 11.177499999999998, "iUsed": 25}, "2-5": {"fSummed": 15.770833333333332, "iUsed": 38}, "5-100": {"fSummed": 4.684166666666666, "iUsed": 23}}}
+== spectraUncalibratedDetectionPhase
+    factor 1.342 -> planning yield 17.91
+    factor 2.837 -> planning yield 18.03
+    factor 4.126 -> planning yield 18.03
+    factor 4.976 -> planning yield 18.03
+    factor 5.464 -> planning yield 18.03
+    factor 5.726 -> planning yield 18.03
+    factor 5.861 -> planning yield 18.03
+    factor 5.930 -> planning yield 18.03
+    factor 5.965 -> planning yield 18.03
+{"fCalibration": 5.982472532187672, "fPlanningFixedExozodi": 18.031, "fPlanningDrawnExozodi": 16.56039999999999, "fFixedEtaYield": 15.2378, "fExozodiPenalty": 0.08155953635405733, "fMeanCharDaysPriorityFirst18": 18.161887807471658, "iStarsUsed": 154, "dictByLuminosity": {"0-0.6": {"fSummed": 33.149166666666666, "iUsed": 53}, "0.6-1": {"fSummed": 6.989166666666667, "iUsed": 15}, "1-2": {"fSummed": 10.281666666666666, "iUsed": 25}, "2-5": {"fSummed": 14.404166666666665, "iUsed": 38}, "5-100": {"fSummed": 4.1775, "iUsed": 23}}}

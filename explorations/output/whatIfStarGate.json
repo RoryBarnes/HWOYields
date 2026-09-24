@@ -1,0 +1,36 @@
+{
+  "starGate": {
+    "fPlanningFixedExozodi9m": 44.227,
+    "fMeanCharDaysPriorityFirst18_9m": 1.3053278627703973,
+    "fUncalibratedPlanning": 22.6464,
+    "fCalibration": 0.9810446693214381,
+    "fPlanningFixedExozodi": 22.479599999999998,
+    "fPlanningDrawnExozodi": 20.710200000000004,
+    "fFixedEtaYield": 19.385799999999996,
+    "fExozodiPenalty": 0.0787113649709067,
+    "fMeanCharDaysPriorityFirst18": 15.571312903362802,
+    "iStarsUsed": 149,
+    "dictByLuminosity": {
+      "0-0.6": {
+        "fSummed": 41.9975,
+        "iUsed": 55
+      },
+      "0.6-1": {
+        "fSummed": 8.738333333333333,
+        "iUsed": 15
+      },
+      "1-2": {
+        "fSummed": 13.650833333333333,
+        "iUsed": 25
+      },
+      "2-5": {
+        "fSummed": 17.316666666666666,
+        "iUsed": 35
+      },
+      "5-100": {
+        "fSummed": 4.589166666666666,
+        "iUsed": 19
+      }
+    }
+  }
+}

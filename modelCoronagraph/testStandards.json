@@ -226,18 +226,61 @@
         {
           "saPath": [
             "dictMission",
-            "dictExozodiDistribution",
-            "fMedianZodi"
+            "bSkyThroughputFollowsCore"
           ],
-          "oValue": 3.0
+          "oValue": true
         },
         {
           "saPath": [
             "dictMission",
             "dictExozodiDistribution",
-            "fLogSigma"
+            "fOffAxisZodi"
           ],
-          "oValue": 1.2
+          "oValue": 1000.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictExozodiDistribution",
+            "fMedianZodi"
+          ],
+          "oValue": 2.980268667125316
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictPinnedExozodi",
+            "16537",
+            "fZodi"
+          ],
+          "oValue": 297.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictPinnedExozodi",
+            "70497",
+            "fZodi"
+          ],
+          "oValue": 148.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictPinnedExozodi",
+            "84862",
+            "fZodi"
+          ],
+          "oValue": 588.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "dictPinnedExozodi",
+            "92043",
+            "fZodi"
+          ],
+          "oValue": 235.0
         },
         {
           "saPath": [
@@ -384,7 +427,7 @@
           "oValue": 1.2
         }
       ],
-      "iBytes": 12862
+      "iBytes": 27119
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",

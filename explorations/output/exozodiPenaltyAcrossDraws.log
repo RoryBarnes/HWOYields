@@ -1,0 +1,19 @@
+draw 0: {'fPlanning': 21.18480000000001, 'fAlbedoDrawn': 19.2988, 'iStarsUsed': 161}
+draw 1: {'fPlanning': 21.20359999999999, 'fAlbedoDrawn': 19.420399999999994, 'iStarsUsed': 164}
+draw 2: {'fPlanning': 20.18039999999998, 'fAlbedoDrawn': 18.382600000000004, 'iStarsUsed': 157}
+draw 3: {'fPlanning': 20.1284, 'fAlbedoDrawn': 18.393999999999995, 'iStarsUsed': 160}
+draw 4: {'fPlanning': 20.732000000000003, 'fAlbedoDrawn': 19.041800000000002, 'iStarsUsed': 154}
+draw 5: {'fPlanning': 20.633399999999995, 'fAlbedoDrawn': 18.763000000000005, 'iStarsUsed': 159}
+draw 6: {'fPlanning': 20.1126, 'fAlbedoDrawn': 18.231600000000014, 'iStarsUsed': 163}
+draw 7: {'fPlanning': 21.326799999999995, 'fAlbedoDrawn': 19.334200000000006, 'iStarsUsed': 163}
+{
+  "iDraws": 8,
+  "fPlanningMean": 20.687749999999994,
+  "fPlanningStd": 0.5109557962429703,
+  "fAlbedoDrawnMean": 18.858300000000003,
+  "fAlbedoDrawnStd": 0.4801561769734007,
+  "fExozodiPenaltyMean": 0.08061799500484468,
+  "fExozodiPenaltyPublished": 0.1111,
+  "fCombinedPenaltyMean": 0.16192037970295736,
+  "fCombinedPenaltyPublished": 0.2289
+}

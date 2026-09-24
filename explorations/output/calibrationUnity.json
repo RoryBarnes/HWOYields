@@ -1,0 +1,73 @@
+{
+  "fTargetYield": 22.5,
+  "bExozodiDrawnDuringCalibration": false,
+  "iStarsScreened": 1500,
+  "fCalibratedThroughputFactor": 1.0,
+  "fCalibratedYield": 22.50180000000001,
+  "fRelativeError": 8.000000000044515e-05,
+  "bTargetReached": true,
+  "fMaxPlausibleFactor": 2.0,
+  "bFactorPlausible": true,
+  "bCalibrationGatePassed": true,
+  "sGateNote": "The gate requires BOTH that the target was reached AND that the fitted factor stays within a factor of two of unity. Hitting the target with an implausible factor means the scalar is absorbing missing physics rather than an instrumental unknown, which is not a pass.",
+  "fUncalibratedYield": 18.650799999999997,
+  "listTrace": [
+    {
+      "fCalibration": 1.0,
+      "fYield": 18.650799999999997
+    },
+    {
+      "fCalibration": 4.47213595499958,
+      "fYield": 31.18579999999999
+    },
+    {
+      "fCalibration": 2.114742526881128,
+      "fYield": 24.66540000000002
+    },
+    {
+      "fCalibration": 1.4542154334489537,
+      "fYield": 21.615800000000007
+    },
+    {
+      "fCalibration": 1.7536508262369037,
+      "fYield": 23.132599999999993
+    },
+    {
+      "fCalibration": 1.5969302102453364,
+      "fYield": 22.370600000000007
+    },
+    {
+      "fCalibration": 1.6734568959609943,
+      "fYield": 22.752600000000008
+    },
+    {
+      "fCalibration": 1.6347458128722945,
+      "fYield": 22.56359999999999
+    },
+    {
+      "fCalibration": 1.6157273825270886,
+      "fYield": 22.4658
+    },
+    {
+      "fCalibration": 1.6252087783818023,
+      "fYield": 22.515400000000014
+    },
+    {
+      "fCalibration": 1.620461145956569,
+      "fYield": 22.493200000000012
+    },
+    {
+      "fCalibration": 1.6228332260079132,
+      "fYield": 22.502200000000013
+    },
+    {
+      "fCalibration": 1.6216467522593132,
+      "fYield": 22.496000000000016
+    },
+    {
+      "fCalibration": 1.6222398806632257,
+      "fYield": 22.50180000000001
+    }
+  ],
+  "sNote": "what-if copy: uncalibrated throughput"
+}

@@ -181,3 +181,54 @@ def test_concave_envelope_discards_no_reachable_yield():
     fHull = fnExactOptimumByDynamicProgramming(listHull, fBudget)
     fFull = fnExactOptimumByDynamicProgramming(listFull, fBudget)
     assert fHull >= 0.99 * fFull
+
+
+def test_sorted_allocation_matches_the_bisection_reference():
+    """The one-sort solver must choose the same allocation as the 80-step slope bisection."""
+    for iVisits, fChar in ((1, np.inf), (3, 2.0e5), (6, 8.0e5)):
+        listStars = flistToyStars(60, fChar, iSeed=11, iVisits=iVisits)
+        for fEta in (0.05, 0.24, 0.6):
+            dictNew = opt.fdictOptimizeSurvey(listStars, fEta, DICT_MISSION)
+            dictOld = opt.fdictOptimizeSurveyBisection(listStars, fEta, DICT_MISSION)
+            assert np.isclose(dictNew["fSummedCompleteness"], dictOld["fSummedCompleteness"],
+                              rtol=1e-9)
+            assert dictNew["iStarsUsed"] == dictOld["iStarsUsed"]
+
+
+def test_pareto_front_keeps_only_improvements():
+    """Points that do not beat every cheaper point are dropped; the first is always kept."""
+    faKeep = opt.faParetoFront(np.array([0.0, 0.2, 0.2, 0.1, 0.5, 0.5]))
+    assert list(faKeep) == [0, 1, 4]
+
+
+def test_per_star_breakdown_sums_to_the_totals():
+    """The per-star completeness and time at the allocation add up to the survey totals."""
+    listStars = flistToyStars(50, 3.0e5, iSeed=5, iVisits=3)
+    dictResult = opt.fdictOptimizeSurvey(listStars, 0.24, DICT_MISSION, bPerStar=True)
+    assert np.isclose(dictResult["faStarComp"].sum(), dictResult["fSummedCompleteness"])
+    assert np.isclose(dictResult["faStarTimeS"].sum(), dictResult["fTotalTimeS"])
+    assert int(np.sum(dictResult["faStarComp"] > 0)) == dictResult["iStarsUsed"]
+
+
+def test_recorded_allocation_reproduces_its_completeness():
+    """A star's (visits, exposure) at the allocation reads back its allocated completeness."""
+    listStars = flistToyStars(30, 3.0e5, iSeed=9, iVisits=4)
+    dictResult = opt.fdictOptimizeSurvey(listStars, 0.24, DICT_MISSION, bPerStar=True)
+    for i, dictStar in enumerate(listStars):
+        if dictResult["faStarComp"][i] == 0:
+            continue
+        iVisits = int(dictResult["faStarVisits"][i])
+        iTau = int(np.argmin(np.abs(dictStar["faTauGridS"] - dictResult["faStarTauS"][i])))
+        assert np.isclose(dictStar["faComp"][iVisits - 1][iTau], dictResult["faStarComp"][i])
+
+
+def test_star_gate_forbids_allocations_whose_expected_spectrum_exceeds_the_cap():
+    """eta * C * <t_c> above the limit makes an option unavailable under the per-star gate."""
+    listStars = flistToyStars(5, 400 * 86400.0, iSeed=3)
+    dictStar = dict(DICT_MISSION, fExposureLimitS=60 * 86400.0)
+    dictPlanet = opt.fdictStarCostCurve(listStars[0], 0.6, dictStar)
+    dictGate = opt.fdictStarCostCurve(listStars[0], 0.6,
+                                      dict(dictStar, sCharacterizationGate="star"))
+    fMaxAllowed = 60 * 86400.0 / (0.6 * (1.1 * 400 * 86400.0 + 13320.0))
+    assert dictGate["faComp"].max() <= fMaxAllowed + 1e-12
+    assert dictPlanet["faComp"].max() > dictGate["faComp"].max()

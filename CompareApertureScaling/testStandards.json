@@ -6,6 +6,7 @@
       "saTopLevelKeys": [
         "dictByDiameter",
         "dictPublished",
+        "dictPublishedCharDaysFirst18",
         "dictResiduals",
         "fCrossingDiameterM",
         "fCrossingDiameterPublishedM",
@@ -19,13 +20,13 @@
           "saPath": [
             "fFrozenCalibrationFactor"
           ],
-          "oValue": 1.6643025302115202
+          "oValue": 0.9876435169533048
         },
         {
           "saPath": [
             "fCrossingDiameterM"
           ],
-          "oValue": 6.678919182083739
+          "oValue": 7.085740072202166
         },
         {
           "saPath": [
@@ -99,11 +100,25 @@
         },
         {
           "saPath": [
+            "dictPublishedCharDaysFirst18",
+            "6"
+          ],
+          "oValue": 22.0
+        },
+        {
+          "saPath": [
+            "dictPublishedCharDaysFirst18",
+            "9"
+          ],
+          "oValue": 3.5
+        },
+        {
+          "saPath": [
             "dictByDiameter",
             "6",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 20.581758827420913
+          "oValue": 18.354419491478065
         },
         {
           "saPath": [
@@ -111,7 +126,7 @@
             "6",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 23.310944113209327
+          "oValue": 22.519996710557855
         },
         {
           "saPath": [
@@ -119,7 +134,7 @@
             "6",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.3892361111111111
+          "oValue": 0.35847222222222225
         },
         {
           "saPath": [
@@ -127,7 +142,31 @@
             "6",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.19555555555555557
+          "oValue": 0.08131944444444444
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fMeanCharDaysFirstN"
+          ],
+          "oValue": 13.82457326511124
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fMeanCharDaysFirstNPlanets"
+          ],
+          "oValue": 13.840223558987011
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fMedianCharDaysFirstNPlanets"
+          ],
+          "oValue": 7.942359146897248
         },
         {
           "saPath": [
@@ -140,10 +179,18 @@
         {
           "saPath": [
             "dictByDiameter",
+            "6",
+            "fStarsUsedMean"
+          ],
+          "oValue": 158.91
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
             "7",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 28.073771907444815
+          "oValue": 24.846890935022724
         },
         {
           "saPath": [
@@ -151,7 +198,7 @@
             "7",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 31.921040871050167
+          "oValue": 30.42971831635939
         },
         {
           "saPath": [
@@ -159,7 +206,7 @@
             "7",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.6520833333333333
+          "oValue": 0.5383333333333333
         },
         {
           "saPath": [
@@ -167,7 +214,31 @@
             "7",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.7436805555555556
+          "oValue": 0.5185416666666667
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fMeanCharDaysFirstN"
+          ],
+          "oValue": 6.703697263615666
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fMeanCharDaysFirstNPlanets"
+          ],
+          "oValue": 6.708008872705729
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fMedianCharDaysFirstNPlanets"
+          ],
+          "oValue": 3.18364949552961
         },
         {
           "saPath": [
@@ -180,10 +251,18 @@
         {
           "saPath": [
             "dictByDiameter",
+            "7",
+            "fStarsUsedMean"
+          ],
+          "oValue": 194.89
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
             "8",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 35.55135732421053
+          "oValue": 31.062408150854182
         },
         {
           "saPath": [
@@ -191,7 +270,7 @@
             "8",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 40.585168208394286
+          "oValue": 38.30693610867403
         },
         {
           "saPath": [
@@ -199,7 +278,7 @@
             "8",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.8165972222222222
+          "oValue": 0.6686111111111112
         },
         {
           "saPath": [
@@ -207,7 +286,31 @@
             "8",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.974375
+          "oValue": 0.8796527777777777
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fMeanCharDaysFirstN"
+          ],
+          "oValue": 3.2734811911224444
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fMeanCharDaysFirstNPlanets"
+          ],
+          "oValue": 3.2913574268543266
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fMedianCharDaysFirstNPlanets"
+          ],
+          "oValue": 1.5185421878180436
         },
         {
           "saPath": [
@@ -220,10 +323,18 @@
         {
           "saPath": [
             "dictByDiameter",
+            "8",
+            "fStarsUsedMean"
+          ],
+          "oValue": 240.14
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
             "9",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 43.15559868013744
+          "oValue": 37.50545249700843
         },
         {
           "saPath": [
@@ -231,7 +342,7 @@
             "9",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 49.29952000161449
+          "oValue": 46.19827535842765
         },
         {
           "saPath": [
@@ -239,7 +350,7 @@
             "9",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.9044444444444445
+          "oValue": 0.7665277777777778
         },
         {
           "saPath": [
@@ -247,7 +358,31 @@
             "9",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.9983333333333333
+          "oValue": 0.9865972222222222
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fMeanCharDaysFirstN"
+          ],
+          "oValue": 1.8494033900023745
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fMeanCharDaysFirstNPlanets"
+          ],
+          "oValue": 1.8615344425911247
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fMedianCharDaysFirstNPlanets"
+          ],
+          "oValue": 0.8256401952308545
         },
         {
           "saPath": [
@@ -256,6 +391,14 @@
             "iStarsScreened"
           ],
           "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fStarsUsedMean"
+          ],
+          "oValue": 282.41
         },
         {
           "saPath": [
@@ -263,7 +406,7 @@
             "6",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.06923611111111111
+          "oValue": 0.03847222222222224
         },
         {
           "saPath": [
@@ -271,7 +414,7 @@
             "6",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.13555555555555557
+          "oValue": 0.021319444444444446
         },
         {
           "saPath": [
@@ -279,7 +422,7 @@
             "7",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.12208333333333332
+          "oValue": 0.008333333333333304
         },
         {
           "saPath": [
@@ -287,7 +430,7 @@
             "7",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.2536805555555556
+          "oValue": 0.028541666666666687
         },
         {
           "saPath": [
@@ -295,7 +438,7 @@
             "8",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.14659722222222216
+          "oValue": -0.001388888888888884
         },
         {
           "saPath": [
@@ -303,7 +446,7 @@
             "8",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.08437499999999998
+          "oValue": -0.010347222222222285
         },
         {
           "saPath": [
@@ -311,7 +454,7 @@
             "9",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.12444444444444447
+          "oValue": -0.013472222222222219
         },
         {
           "saPath": [
@@ -319,10 +462,10 @@
             "9",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.0033333333333332993
+          "oValue": -0.008402777777777759
         }
       ],
-      "iBytes": 5827
+      "iBytes": 42016
     }
   }
 }

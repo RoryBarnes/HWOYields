@@ -1,0 +1,50 @@
+{
+  "fGridSeconds": 155.62358474731445,
+  "iStarsStored": 293,
+  "iStarsScreened": 1500,
+  "listDraws": [
+    {
+      "fYieldPlanning": {
+        "fGrid": 21.238373408138987,
+        "fDirect": 21.226799999999997
+      },
+      "fYield": {
+        "fGrid": 19.348431445536864,
+        "fDirect": 19.317600000000002
+      },
+      "iStarsUsed": {
+        "fGrid": 161.0,
+        "fDirect": 161.0
+      }
+    },
+    {
+      "fYieldPlanning": {
+        "fGrid": 19.517961115136274,
+        "fDirect": 19.4868
+      },
+      "fYield": {
+        "fGrid": 17.828405671294888,
+        "fDirect": 17.796480000000003
+      },
+      "iStarsUsed": {
+        "fGrid": 165.0,
+        "fDirect": 162.0
+      }
+    },
+    {
+      "fYieldPlanning": {
+        "fGrid": 20.61728703753897,
+        "fDirect": 20.585279999999997
+      },
+      "fYield": {
+        "fGrid": 18.931584804395964,
+        "fDirect": 18.88704
+      },
+      "iStarsUsed": {
+        "fGrid": 161.0,
+        "fDirect": 160.0
+      }
+    }
+  ],
+  "fMaxRelativeYieldError": 0.002358485204455807
+}

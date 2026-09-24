@@ -34,7 +34,7 @@ def fdictCheck(sName, fPublished, fModel, fRelTol, sSource, bTuned=False, sNote=
 
 
 def flistCoronagraphChecks(dictMission=None):
-    """Core throughput and raw contrast against the DMVC6 curves of Stark et al. (2024) Fig. 12.
+    """Core throughput and raw contrast against the DMVC6 curves of Stark et al. (2024) Fig. 25.
 
     These used to compare the parametric stand-in against a handful of points read off the figure
     by eye, at tolerances of 0.35 and 0.75. Those tolerances were loose enough to pass a curve of
@@ -51,7 +51,7 @@ def flistCoronagraphChecks(dictMission=None):
                   else float(cg.faCoreThroughput(fSep)))
         listOut.append(fdictCheck(f"Upsilon_c at {fSep:g} lambda/D", fPub, fModel,
                                   0.02 if dictTable else 0.35,
-                                  "Stark+2024 Fig. 12 (digitized from the PDF content stream)",
+                                  "Stark+2024 Fig. 25 (digitized from the PDF content stream)",
                                   bTuned=bool(dictTable),
                                   sNote="Round-trip of the digitized table into the mission "
                                         "parameters; the curve itself is tested against Stark's "
@@ -62,7 +62,7 @@ def flistCoronagraphChecks(dictMission=None):
                   else float(cg.faRawContrast(fSep)))
         listOut.append(fdictCheck(f"zeta at {fSep:g} lambda/D", fPub, fModel,
                                   0.05 if dictTable else 0.75,
-                                  "Stark+2024 Fig. 12 (digitized from the PDF content stream)",
+                                  "Stark+2024 Fig. 25 (digitized from the PDF content stream)",
                                   bTuned=bool(dictTable),
                                   sNote="Round-trip of the digitized table." if dictTable else ""))
     return listOut
@@ -75,17 +75,56 @@ def flistPopulationChecks(dictBoxes):
                        0.03, "Stark+2024 Table 1")]
 
 
-def fnDistributionMode(faValues, iBins=80):
-    """Histogram mode of a sample."""
-    faCounts, faEdges = np.histogram(faValues, bins=iBins)
-    i = int(np.argmax(faCounts))
-    return float(0.5 * (faEdges[i] + faEdges[i + 1]))
+def fdictFigure10Published(dictFig10):
+    """Median, P(yield < 12) and fixed-eta mean read from the digitized Stark+2024 Fig. 10."""
+    dictPurple, dictRed = dictFig10["including"], dictFig10["excluding"]
+    faK, faP = np.array(dictPurple["iaYield"]), np.array(dictPurple["faProbability"])
+    return {"fMedian": float(dictPurple["dictSummary"]["iMedian"]),
+            "fBelow12": float(faP[faK < 12].sum()),
+            "fFixedEtaMean": float(dictRed["dictSummary"]["fMeanTruncated"]),
+            "fMode": fnSmoothedIntegerMode(faP)}
+
+
+def fnSmoothedIntegerMode(faP):
+    """Peak of a 3-bin running mean over P(yield = k); the same estimator for model and paper."""
+    return float(np.argmax(np.convolve(faP, np.ones(3) / 3.0, mode="same")))
+
+
+def faIntegerHistogram(faRealized, iMax=50):
+    """P(yield = k), k = 0..iMax-1, from integer yield samples."""
+    faCounts = np.bincount(np.clip(np.round(faRealized), 0, iMax).astype(int),
+                           minlength=iMax + 1)[:iMax]
+    return faCounts / float(len(faRealized))
+
+
+def flistFigure10Checks(dictSurvey, faRealized, dictFig10):
+    """Level and shape of the realized-yield distribution against digitized Fig. 10."""
+    dictPub = fdictFigure10Published(dictFig10)
+    sSource = "Stark+2024 Fig. 10 (digitized from the PDF content stream)"
+    return [
+        fdictCheck("Fixed-eta yield mean (Fig. 10 red)", dictPub["fFixedEtaMean"],
+                   dictSurvey["fYieldBaseline"], 0.10, sSource,
+                   sNote="Albedo and exozodi drawn, eta fixed: the level every other "
+                         "distribution check rests on."),
+        fdictCheck("Realized-yield distribution median", dictPub["fMedian"],
+                   float(np.median(faRealized)), 0.15, sSource),
+        fdictCheck("Realized-yield fraction below 12 EECs", dictPub["fBelow12"],
+                   float(np.mean(faRealized < 12)), 0.35, sSource,
+                   sNote="The low tail that the published mode near 10 reflects."),
+        fdictCheck("Realized-yield distribution mean", 21.0,
+                   float(np.mean(faRealized)), 0.30, "Stark+2024 Fig. 10 (dotted line)"),
+        fdictCheck("Realized-yield distribution mode", dictPub["fMode"],
+                   fnSmoothedIntegerMode(faIntegerHistogram(faRealized)), 0.25, sSource,
+                   sNote="Peak of a 3-bin running mean, same estimator for both. Stark's curve "
+                         "rests on 498 runs x 1000 planet draws, so its peak is well determined; "
+                         "the tolerance reflects its flat top, not sampling noise."),
+    ]
 
 
 def flistYieldChecks(dictCal, dictSurvey, dictPred, dictAperture, rng, faRealized):
     """Yields, the sampling distribution, the albedo penalty and the aperture scaling."""
     fPlanning = dictSurvey.get("fYieldPlanningBaseline", dictSurvey["fYieldBaseline"])
-    faPoisson = rng.poisson(dictSurvey["fYieldBaseline"], size=400000).astype(float)
+    faPoisson = rng.poisson(dictCal["fCalibratedYield"], size=400000).astype(float)
     dictCanon = dictPred["dictByBox"]["canonical"]["dictDistribution"]
     faD = ("6", "7", "8", "9")
     fExponent = np.log(dictAperture["dictByDiameter"]["9"]["fExpectedYieldAtBaselineEta"] /
@@ -101,7 +140,10 @@ def flistYieldChecks(dictCal, dictSurvey, dictPred, dictAperture, rng, faRealize
                    "Plausibility band, not a published value",
                    sNote="A factor beyond 2x absorbs physics rather than an unknown."),
         fdictCheck("Sampling distribution mean (Fig. 4)", 22.5, float(np.mean(faPoisson)), 0.20,
-                   "Stark+2024 Fig. 4"),
+                   "Stark+2024 Fig. 4", bTuned=True,
+                   sNote="Fig. 4 is sampling only, at A_G = 0.2 and fixed exozodi, i.e. around "
+                         "the calibrated 22.5; its mean is therefore tuned. It was previously "
+                         "compared against the albedo-drawn yield, the wrong quantity."),
         fdictCheck("Sampling distribution sigma (Fig. 4)", 5.0, float(np.std(faPoisson)), 0.25,
                    "Stark+2024 Fig. 4 (read off)"),
         fdictCheck("Albedo penalty on expected yield", 0.12,
@@ -109,22 +151,45 @@ def flistYieldChecks(dictCal, dictSurvey, dictPred, dictAperture, rng, faRealize
                    "Stark+2024 Sec. 3.2 (22.5 -> 19.8)"),
         fdictCheck("P25 including sigma_eta, 6 m", 0.32,
                    dictCanon["fProbabilityAtLeastGoal"], 0.25, "Stark+2024 Sec. 3.5"),
-        fdictCheck("Realized-yield distribution mode", 10.0,
-                   fnDistributionMode(faRealized), 0.40, "Stark+2024 Fig. 10 (read off)",
-                   sNote="Marginalized over the eta posterior. Stark's distribution carries "
-                         "albedo and exozodi biases this pipeline under-models, so it should "
-                         "sit higher; the size of the offset is the diagnostic."),
-        fdictCheck("Realized-yield distribution mean", 21.0,
-                   float(np.mean(faRealized)), 0.30, "Stark+2024 Fig. 10 (dotted line)"),
         fdictCheck("Yield-aperture exponent", 1.90, float(fExponent), 0.15,
                    "Stark+2019 DMVC band and Stark+2024 Fig. 15"),
     ]
+    listOut += flistDustAndCharacterizationChecks(dictSurvey, dictPred, dictAperture)
     for s, fPub in zip(faD, (0.32, 0.53, 0.67, 0.78)):
         listOut.append(fdictCheck(
             f"P25 including sigma_eta at {s} m", fPub,
             dictAperture["dictByDiameter"][s]["fProbability25IncludingSigmaEta"], 0.25,
             "Stark+2024 Fig. 15" + ("" if s == "6" else " (read off)")))
     return listOut
+
+
+def flistDustAndCharacterizationChecks(dictSurvey, dictPred, dictAperture):
+    """Exozodi penalty, the eta-fixed P25, and Sec. 4.1's characterization times.
+
+    These became checkable when exozodi became a random variable of the pipeline (2026-09-24):
+    the penalty is the mean over draws, not one seed, and the eta-fixed P25 is Stark's red curve
+    at 6 m. The characterization times are the means of Stark's Fig. 14 over the first 18 EECs,
+    which the aperture step now reproduces draw by draw.
+    """
+    dictDraws = dictSurvey.get("dictDraws", {})
+    dictByD = dictAperture["dictByDiameter"]
+    fSix, fNine = (dictByD[s].get("fMeanCharDaysFirstN", float("nan")) for s in ("6", "9"))
+    dictFixed = dictPred["dictByBox"]["canonical"].get("dictDistributionFixedEta", {})
+    return [
+        fdictCheck("Exozodi-sampling penalty on expected yield", 0.111,
+                   dictDraws.get("fExozodiPenalty", 0.0), 0.5,
+                   "Stark+2024 Sec. 3.3 (19.8 -> 17.6)",
+                   sNote=f"Mean over {dictSurvey.get('iExozodiDraws', 0)} exozodi draws."),
+        fdictCheck("P25 excluding sigma_eta, 6 m", 0.06,
+                   dictFixed.get("fProbabilityAtLeastGoal", 0.0), 0.5, "Stark+2024 Sec. 3.5",
+                   sNote="Fig. 10 red curve: eta fixed, albedo and exozodi drawn."),
+        fdictCheck("Mean characterization time, first 18 EECs, 6 m (days)", 22.0, fSix, 0.3,
+                   "Stark+2024 Sec. 4.1"),
+        fdictCheck("Mean characterization time, first 18 EECs, 9 m (days)", 3.5, fNine, 0.3,
+                   "Stark+2024 Sec. 4.1"),
+        fdictCheck("Characterization-time ratio 6 m / 9 m", 6.2, fSix / fNine, 0.2,
+                   "Stark+2024 Sec. 4.1"),
+    ]
 
 
 def flistTargetChecks(dfCatalog, dictNpz):
@@ -154,6 +219,7 @@ def fdictParseArgs():
     p.add_argument("--completeness", required=True)
     p.add_argument("--yield-samples", required=True)
     p.add_argument("--target-catalog", required=True)
+    p.add_argument("--fig10-digitised", default="starkFigure10Digitised.json")
     p.add_argument("--seed", type=int, default=20260921)
     p.add_argument("--out-verification", default="publishedVerification.json")
     return vars(p.parse_args())
@@ -166,11 +232,14 @@ def main():
                 ("mission_parameters", "calibration", "survey", "prediction", "aperture")}
     dictNpz = np.load(dictArgs["completeness"], allow_pickle=True)
     faRealized = np.load(dictArgs["yield_samples"])["faObserved_canonical"].astype(float)
+    with open(dictArgs["fig10_digitised"]) as oFile:
+        dictFig10 = json.load(oFile)
     listChecks = (flistCoronagraphChecks(dictLoad["mission_parameters"]["dictMission"]) +
                   flistPopulationChecks(dictLoad["mission_parameters"]["dictBoxes"]) +
                   flistYieldChecks(dictLoad["calibration"], dictLoad["survey"],
                                    dictLoad["prediction"], dictLoad["aperture"], rng,
                                    faRealized) +
+                  flistFigure10Checks(dictLoad["survey"], faRealized, dictFig10) +
                   flistTargetChecks(pd.read_csv(dictArgs["target_catalog"]), dictNpz))
     listIndependent = [d for d in listChecks if not d["bTuned"]]
     dictOut = {

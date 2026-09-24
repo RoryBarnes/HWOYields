@@ -1,0 +1,11 @@
+== exozodiRadial
+    factor 1.342 -> planning yield 25.91
+    factor 0.634 -> planning yield 18.91
+    factor 0.923 -> planning yield 22.35
+    factor 1.113 -> planning yield 24.13
+    factor 1.013 -> planning yield 23.23
+    factor 0.967 -> planning yield 22.80
+    factor 0.944 -> planning yield 22.57
+    factor 0.933 -> planning yield 22.47
+    factor 0.939 -> planning yield 22.53
+{"fPlanningFixedExozodi9m": 44.1238, "fMeanCharDaysPriorityFirst18_9m": 1.3216238786670897, "fUncalibratedPlanning": 23.116799999999998, "fCalibration": 0.9361817886201873, "fPlanningFixedExozodi": 22.488599999999998, "fPlanningDrawnExozodi": 20.4408, "fFixedEtaYield": 18.4982, "fExozodiPenalty": 0.09105947013153326, "fMeanCharDaysPriorityFirst18": 13.324589961795438, "iStarsUsed": 158, "dictByLuminosity": {"0-0.6": {"fSummed": 41.92333333333333, "iUsed": 61}, "0.6-1": {"fSummed": 9.075, "iUsed": 16}, "1-2": {"fSummed": 13.423333333333332, "iUsed": 26}, "2-5": {"fSummed": 16.621666666666666, "iUsed": 36}, "5-100": {"fSummed": 4.126666666666667, "iUsed": 19}}}

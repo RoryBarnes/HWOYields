@@ -24,6 +24,12 @@ F_HOUR_S = 3600.0
 
 
 S_CORONAGRAPH_REFERENCE = "reference/starkCoronagraphDmvc6.json"
+S_EXOZODI_REFERENCE = "reference/starkExozodiHostsMaxLikelihood.json"
+F_OFF_AXIS_ZODI = 1000.0
+DICT_PINNED_EXOZODI = {
+    "16537": {"sName": "eps Eri", "fZodi": 297.0}, "70497": {"sName": "tet Boo", "fZodi": 148.0},
+    "84862": {"sName": "72 Her", "fZodi": 588.0}, "92043": {"sName": "110 Her", "fZodi": 235.0},
+}
 F_CIRCUMSCRIBED_RATIO = 8.0 / 6.7
 F_APERTURE_FILL_FACTOR = 0.785
 
@@ -43,6 +49,27 @@ def fdictCoronagraphTableFromReference():
         return None
     with open(sPath) as oFile:
         return cg.fdictCoronagraphTable(json.load(oFile))
+
+
+def fdictExozodiDistributionFromReference():
+    """The LBTI HOSTS maximum-likelihood exozodi distribution digitized from Stark+2024 Fig. 9.
+
+    Binned probabilities to 1000 zodis, renormalized to unit mass. The digitized histogram sums
+    to 0.948 of the 10k x 500 draws the caption implies, but that shortfall is not mass beyond
+    the axis: the last bins before 1000 zodis sit near the 10^2 plotting floor, and a 0.02 dex
+    error in the log-count calibration alone accounts for 5 percent. Renormalizing reproduces the
+    three-zodi median Stark quotes (2.98); putting the shortfall at 1000 zodis would move it to
+    3.4. F_OFF_AXIS_ZODI therefore receives no mass here. Pinned stars (Stark Sec. 3.3: eps Eri 297, tet Boo 148, 72 Her 588 and
+    110 Her 235 zodis) are listed separately in dictPinnedExozodi, keyed by HIP number.
+    """
+    sPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), S_EXOZODI_REFERENCE)
+    with open(sPath) as oFile:
+        dictRef = json.load(oFile)
+    faProb = np.asarray(dictRef["faProbability"], dtype=float)
+    return {"faEdgesZodi": dictRef["faEdgesZodi"], "faProbability": (faProb / faProb.sum()).tolist(),
+            "fOffAxisZodi": F_OFF_AXIS_ZODI, "fMedianZodi": dictRef["dictSummary"]["fMedianZodi"],
+            "sSource": dictRef["sSource"] + ", digitized by "
+                       "explorations/digitiseStarkExozodiDistributionFigure.py"}
 
 
 def fdictMissionParameters(fDiameterM, fExozodiLevel):
@@ -75,6 +102,15 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
     detections sufficing: it lowers the yield from 20.4 to 18.8 without steepening C(tau) or
     strengthening the albedo penalty, so it does not explain the shortfall and Stark et al.
     (2024) drop the visit mandate in any case. The option is kept so the test can be repeated.
+
+    bSkyThroughputFollowsCore makes the extended-source throughput T_sky, which multiplies the
+    zodiacal and exozodiacal backgrounds, a function of separation as Stark et al. (2019) Eqs. 5-6
+    define it, instead of its large-separation value everywhere (yieldlib.completeness.
+    faSkyThroughputAt). Adopted 2026-09-24: with it the uncalibrated 6 m yield is 22.6 against
+    the published 22.5, so the throughput calibration A03 fits falls from 1.62 to 0.99. The
+    constant form had been charging planets near the inner working angle for background the
+    coronagraph mask removes, and the calibration factor was absorbing it
+    (explorations/whatIfCharacterizationTreatment.py, variant skyFollowsCore).
     """
     return {
         "fDiameterM": fDiameterM,
@@ -105,10 +141,9 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
         "fThroughputCalibration": 1.0,
         "iMaxVisits": 6,
         "iRequiredDetections": 1,
-        "dictExozodiDistribution": {"fMedianZodi": 3.0, "fLogSigma": 1.2,
-                                    "sSource": "Right-skewed stand-in for the LBTI HOSTS best "
-                                               "fit used by Stark et al. 2024 Sec. 3.3: median "
-                                               "three zodis with a tail to higher levels."},
+        "bSkyThroughputFollowsCore": True,
+        "dictExozodiDistribution": fdictExozodiDistributionFromReference(),
+        "dictPinnedExozodi": DICT_PINNED_EXOZODI,
         "dictAlbedoDistribution": {"fMin": 0.08, "fMax": 0.32,
                                    "sSource": "Stark et al. 2024 Sec. 3.2: the adopted uniform "
                                               "distribution, mean 0.20, quoted as reducing the "

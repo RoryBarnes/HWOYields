@@ -86,6 +86,51 @@ def fnSkyThroughputFor(dictMission):
     return cg.fnSkyThroughput(fMax, dictMission["fApertureRadiusLamD"])
 
 
+def faSkyThroughputAt(faUpsilon, dictMission):
+    """T_sky at each planet's position: constant, or following the core-throughput curve.
+
+    Stark et al. (2019) Eqs. 5-6 write the zodiacal and exozodiacal count rates with
+    T_sky(x,y), "the instrument's throughput for extended sources", obtained "by first convolving
+    the spatially-dependent PSF at all locations with a normalized uniform background". It is a
+    map, not a number: background light near the inner working angle is attenuated by the same
+    focal-plane mask that attenuates a planet there. This pipeline used the large-separation value
+    (0.678) everywhere, which overcharges background for every planet observed near the IWA --
+    the distant and luminous targets, and characterization at 1 um above all -- by a factor of up
+    to Upsilon_c,max / Upsilon_c(r).
+
+    With bSkyThroughputFollowsCore the map is reconstructed as T_sky(r) = T_sky,max *
+    Upsilon_c(r) / Upsilon_c,max, i.e. the total off-axis transmission at r under the assumption
+    that the fraction of an off-axis PSF inside the photometric core does not change with
+    separation. The PSF convolution in Stark's definition smooths this over about one lambda/D,
+    which the reconstruction omits; the published 2-D maps that would supply it are not public.
+    """
+    fMax = fnSkyThroughputFor(dictMission)
+    if not dictMission.get("bSkyThroughputFollowsCore", False):
+        return fMax
+    dictTable = dictMission.get("dictCoronagraphTable")
+    fUpsilonMax = (max(dictTable["faUpsilon"]) if dictTable
+                   else dictMission["fCoreThroughputMax"])
+    return fMax * np.asarray(faUpsilon) / fUpsilonMax
+
+
+def faExozodiRadialFactor(faSepAu, dictStar, dictMission):
+    """Exozodi surface brightness at the planet's projected separation relative to the EEID.
+
+    Stark et al. (2019) Eq. 6 writes the exozodi term with z'(x,y), and its Table 1 notes the
+    surface brightness "varies with spectral type and planet-star separation". Stark (2014)
+    App. C had evaluated every planet at the EEID instead. With fExozodiRadialIndex = q the
+    brightness scales as (s / EEID)^-q at projected separation s: q = 2.34 is 1/r^2 illumination
+    times the zodiacal cloud's face-on optical depth, which falls as r^-0.34 for the Kelsall
+    density profile (proportional to r^-1.34) that ZODIPIC uses. Inclination and scattering-phase
+    effects are not modelled. q = 0 (the default) is the EEID treatment.
+    """
+    fIndex = float(dictMission.get("fExozodiRadialIndex", 0.0))
+    if fIndex == 0.0:
+        return 1.0
+    faScaled = np.asarray(faSepAu) / np.sqrt(dictStar["fLuminosityLsun"])
+    return np.maximum(faScaled, 1e-3) ** (-fIndex)
+
+
 def fnCollectingAreaM2(dictMission):
     """Effective collecting area A in m^2 (Stark et al. 2019 Eq. 3).
 
@@ -136,9 +181,11 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
         faZeta = cg.faRawContrast(faSepCurve, fContrastFloor=dictMission["fContrastFloor"],
                                   fOwaLamD=dictMission["fOwaLamD"])
     fArea = fnCollectingAreaM2(dictMission)
+    fCalibration = (dictMission.get("fThroughputCalibration", 1.0)
+                    if dictBand.get("bApplyThroughputCalibration", True) else 1.0)
     fThroughput = dictBand["fOpticalThroughput"] * dictMission["fContaminationThroughput"] * \
         dictMission["fDetectiveQuantumEfficiency"] * dictMission["fQuantumEfficiency"] * \
-        dictMission.get("fThroughputCalibration", 1.0)
+        fCalibration
     fBandwidthM = dictBand["fLambdaM"] * dictBand["fBandwidthFraction"]
     fStarFlux = float(ph.faStellarPhotonFlux(dictBand["fLambdaM"], dictStar["fTeffK"],
                                              dictStar["fRadiusRsun"], dictStar["fDistancePc"]))
@@ -152,28 +199,34 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     fOmega = ph.fnPhotometricApertureSolidAngle(dictBand["fLambdaM"], dictMission["fDiameterM"],
                                                 dictMission["fApertureRadiusLamD"])
     fZeroMag = ph.fnZeroMagPhotonFlux(dictBand["fLambdaM"]) * (fBandwidthM * 1e6)
-    fBackground = fOmega * fArea * fThroughput * fnSkyThroughputFor(dictMission)
+    fBackground = fOmega * fArea * fThroughput * faSkyThroughputAt(faUpsilon, dictMission)
     fZodi = fZeroMag * 10 ** (-0.4 * dictMission["fZodiMagArcsec2"]) * fBackground
     fExozodiScale = ph.fnExozodiSurfaceBrightnessScale(
         dictBand["fLambdaM"], dictStar["fTeffK"], dictStar["fRadiusRsun"],
         dictStar["fLuminosityLsun"])
     fExozodiLevel = dictStar.get("fExozodiLevel", dictMission["fExozodiLevel"])
     fExozodi = fExozodiLevel * fZeroMag * 10 ** (-0.4 * dictMission["fExozodiMagArcsec2"]) * \
-        fExozodiScale * fBackground
+        fExozodiScale * fBackground * faExozodiRadialFactor(dictGeom["faSepAu"], dictStar,
+                                                            dictMission)
     return dict(faPlanet=fStarRate * faUpsilon * faFluxRatio,
                 faLeak=fStarRate * faUpsilon * faZeta, fZodi=fZodi, fExozodi=fExozodi,
                 faFluxRatio=faFluxRatio, faSepLamD=faSepLamD, faUpsilon=faUpsilon)
 
 
-def faRequiredExposureTime(listBandRates, listBands, fSignalToNoise, dictMission):
+def faRequiredExposureTime(listBandRates, listBands, fSignalToNoise, dictMission,
+                           fExozodiScale=1.0):
     """Combined exposure time over parallel coronagraph channels, infinite where undetectable.
 
     Stark et al. (2024) Table 2 requires S/N = 7 "summed over both coronagraphs", so the
     channels add in quadrature: 1/tau is the sum of each channel's CR_p^2 / (CR_p + 2 CR_b).
+
+    fExozodiScale multiplies the exozodi count rate. Rates computed once at one zodi can then be
+    re-used at any exozodi level, which is how completeness is tabulated over a grid of levels.
     """
     faInverseTau = np.zeros_like(listBandRates[0]["faPlanet"])
     for dictRates, dictBand in zip(listBandRates, listBands):
-        faAstro = dictRates["faLeak"] + dictRates["fZodi"] + dictRates["fExozodi"]
+        faAstro = (dictRates["faLeak"] + dictRates["fZodi"] +
+                   fExozodiScale * dictRates["fExozodi"])
         faBrightest = (faAstro + dictRates["faPlanet"]) / dictBand["iNumPixels"]
         faDetector = ph.faDetectorCountRate(faBrightest, dictBand["iNumPixels"],
                                             dictMission["fDarkCurrent"],
@@ -236,7 +289,24 @@ def faNthSmallestAccumulated(faValues, iRequired):
     return faOut
 
 
-def faCountedTimes(faTauDet, faTauChar, fCap, iRequiredDetections=1):
+def ffPlanetCharacterizationCap(dictMission):
+    """The cap a single planet's spectrum must meet to count: the time limit, or none.
+
+    sCharacterizationGate "planet" (default) applies the two-month limit to each planet's own
+    characterization time, the reading of Stark et al. (2019) Sec. 3 ("Any planets that did not
+    meet this criteria did not count toward the yield"). "star" drops the per-planet gate; the
+    limit is instead applied by the optimizer to the star's probabilistic characterization time
+    eta * C * <t_c> of Stark et al. (2015) Eq. 12 (see optimizer.fdictStarCostCurve). Stark et
+    al. (2025)'s benchmark shows AYO's own spectra of Earth twins at 12-18 pc take 37-104 days,
+    which under the per-planet gate would exclude most planets at stars Stark (2024) Fig. 11
+    completes to 0.5-0.8; the "star" reading is the diagnostic alternative.
+    """
+    if dictMission.get("sCharacterizationGate", "planet") == "star":
+        return np.inf
+    return dictMission["fExposureLimitS"]
+
+
+def faCountedTimes(faTauDet, faTauChar, fCap, iRequiredDetections=1, fCharCap=None):
     """Per-planet detection time using the first k visits, for every k, infinite where it fails.
 
     A planet counts once it has been detected iRequiredDetections times. One detection suffices
@@ -245,10 +315,11 @@ def faCountedTimes(faTauDet, faTauChar, fCap, iRequiredDetections=1):
     to constrain an orbit. Requiring two makes the second-cheapest epoch the binding one rather
     than the cheapest, which steepens C(tau): a marginal single detection no longer counts.
     """
+    fCharCap = fCap if fCharCap is None else fCharCap
     faBestDet = faNthSmallestAccumulated(faTauDet, iRequiredDetections)
     faBestChar = np.minimum.accumulate(faTauChar, axis=1)
     bCounts = (np.isfinite(faBestDet) & (faBestDet <= fCap) &
-               np.isfinite(faBestChar) & (faBestChar <= fCap))
+               np.isfinite(faBestChar) & (faBestChar <= fCharCap))
     return np.where(bCounts, faBestDet, np.inf), faBestChar, bCounts
 
 
@@ -272,6 +343,43 @@ def faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS, fCap=np.inf):
     return faOut
 
 
+def flistCharacterizationRates(dictStar, dictPlanets, dictGeom, listCharOptions, dictMission,
+                               bBestPhase, iPhaseSamples):
+    """Count rates for every characterization option, over orbital phase or at the visit epochs.
+
+    With bBestPhase the orbit is resolved into iPhaseSamples epochs (see
+    faCharacterizationTimeAtBestPhase); otherwise the rates are at the epochs of dictGeom.
+    """
+    if not bBestPhase:
+        return [fdictCountRates(dictStar, dictPlanets, dictGeom, o, dictMission)
+                for o in listCharOptions]
+    faTheta = np.linspace(0.0, 2.0 * np.pi, iPhaseSamples, endpoint=False)
+    dictOrbit = dict(dictPlanets)
+    dictOrbit["faTheta"] = np.tile(faTheta, (len(np.atleast_1d(dictPlanets["faAxisAu"])), 1))
+    dictGeomAll = fdictProjectOrbits(dictOrbit)
+    return [fdictCountRates(dictStar, dictOrbit, dictGeomAll, o, dictMission)
+            for o in listCharOptions]
+
+
+def faCharacterizationTimeFromRates(listCharRates, listCharOptions, dictMission, bBestPhase,
+                                    iVisits, fExozodiScale=1.0):
+    """Cheapest characterization time over the options, per planet per visit epoch."""
+    faBest = None
+    for dictRates, dictOption in zip(listCharRates, listCharOptions):
+        faTau = faRequiredExposureTime([dictRates], [dictOption], dictOption["fSignalToNoise"],
+                                       dictMission, fExozodiScale)
+        faBest = faTau if faBest is None else np.minimum(faBest, faTau)
+    if not bBestPhase:
+        return faBest
+    return np.repeat(np.min(faBest, axis=1)[:, None], iVisits, axis=1)
+
+
+def fiPhaseSamples(dictMission):
+    """Orbital phases resolved when characterization is scheduled at its best phase."""
+    return int(dictMission.get("iCharacterizationPhaseSamples",
+                               I_DEFAULT_CHARACTERIZATION_PHASES))
+
+
 def faCharacterizationTimeAtBestPhase(dictStar, dictPlanets, listCharOptions, dictMission,
                                       iPhaseSamples):
     """Characterization time for each planet at the most favourable phase on its orbit.
@@ -288,16 +396,9 @@ def faCharacterizationTimeAtBestPhase(dictStar, dictPlanets, listCharOptions, di
     anomalies AYO uses, and the minimum over them is returned. The result depends only on the
     planet's orbit, not on which visit detected it, so it is one number per planet.
     """
-    faTheta = np.linspace(0.0, 2.0 * np.pi, iPhaseSamples, endpoint=False)
-    dictOrbit = dict(dictPlanets)
-    dictOrbit["faTheta"] = np.tile(faTheta, (len(np.atleast_1d(dictPlanets["faAxisAu"])), 1))
-    dictGeomAll = fdictProjectOrbits(dictOrbit)
-    faBest = np.full((len(np.atleast_1d(dictPlanets["faAxisAu"])), iPhaseSamples), np.inf)
-    for dictOption in listCharOptions:
-        faBest = np.minimum(faBest, faRequiredExposureTime(
-            [fdictCountRates(dictStar, dictOrbit, dictGeomAll, dictOption, dictMission)],
-            [dictOption], dictOption["fSignalToNoise"], dictMission))
-    return np.min(faBest, axis=1)
+    listRates = flistCharacterizationRates(dictStar, dictPlanets, None, listCharOptions,
+                                           dictMission, True, iPhaseSamples)
+    return faCharacterizationTimeFromRates(listRates, listCharOptions, dictMission, True, 1)[:, 0]
 
 
 def faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet, listCharOptions,
@@ -316,18 +417,11 @@ def faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet, listCharOpti
                                       listBandsDet[0]["fSignalToNoise"], dictMission)
     if not bCharacterization:
         return faTauDet, np.full(faTauDet.shape, np.inf)
-    if dictMission.get("bOptimizeCharacterizationPhase", True):
-        faBestPhase = faCharacterizationTimeAtBestPhase(
-            dictStar, dictPlanets, listCharOptions, dictMission,
-            int(dictMission.get("iCharacterizationPhaseSamples",
-                                I_DEFAULT_CHARACTERIZATION_PHASES)))
-        return faTauDet, np.repeat(faBestPhase[:, None], faTauDet.shape[1], axis=1)
-    faTauChar = np.full(faTauDet.shape, np.inf)
-    for dictOption in listCharOptions:
-        faTauChar = np.minimum(faTauChar, faRequiredExposureTime(
-            [fdictCountRates(dictStar, dictPlanets, dictGeom, dictOption, dictMission)],
-            [dictOption], dictOption["fSignalToNoise"], dictMission))
-    return faTauDet, faTauChar
+    bBest = dictMission.get("bOptimizeCharacterizationPhase", True)
+    listCharRates = flistCharacterizationRates(dictStar, dictPlanets, dictGeom, listCharOptions,
+                                               dictMission, bBest, fiPhaseSamples(dictMission))
+    return faTauDet, faCharacterizationTimeFromRates(listCharRates, listCharOptions, dictMission,
+                                                     bBest, faTauDet.shape[1])
 
 
 def faStarkAlbedoTimes(faTauDet, faFlux, faSepLamD, faFluxDrawn, bBrightBound=False):
@@ -373,6 +467,110 @@ def faStarkAlbedoTimes(faTauDet, faFlux, faSepLamD, faFluxDrawn, bBrightBound=Fa
     return faOut
 
 
+def fdictStarRates(dictStar, dictBox, listBandsDet, dictBandChar, dictMission, iNumPlanets,
+                   fAlpha, fBeta, iSeed):
+    """Inject one star's planets and compute every count rate once, with exozodi at ONE zodi.
+
+    Everything expensive about a star's completeness -- the orbits, the coronagraph lookups, and
+    characterization over orbital phase -- is independent of its exozodi level, which enters
+    the exposure time only as a multiplier on one background term. Separating the two lets the
+    completeness be evaluated at many exozodi levels for little more than the cost of one.
+    """
+    rng = np.random.default_rng(iSeed)
+    iVisits = int(dictMission.get("iMaxVisits", 1))
+    dictPlanets = fdictInjectPlanets(dictBox, np.sqrt(dictStar["fLuminosityLsun"]),
+                                     iNumPlanets, fAlpha, fBeta, rng, iVisits=iVisits)
+    dictGeom = fdictProjectOrbits(dictPlanets)
+    dictUnit = dict(dictStar, fExozodiLevel=1.0)
+    listCharOptions = dictMission.get("listBandsCharacterization") or [dictBandChar]
+    bBest = dictMission.get("bOptimizeCharacterizationPhase", True)
+    dictOut = dict(iVisits=iVisits, listCharOptions=listCharOptions, bBestPhase=bBest,
+                   listDetRates=[fdictCountRates(dictUnit, dictPlanets, dictGeom, b, dictMission)
+                                 for b in listBandsDet],
+                   listCharRates=flistCharacterizationRates(
+                       dictUnit, dictPlanets, dictGeom, listCharOptions, dictMission, bBest,
+                       fiPhaseSamples(dictMission)))
+    dictAlbedoRange = dictMission.get("dictAlbedoDistribution")
+    if dictAlbedoRange:
+        dictOut.update(fdictAlbedoRates(dictUnit, dictPlanets, dictGeom, listBandsDet,
+                                        dictAlbedoRange, dictOut, dictMission))
+    return dictOut
+
+
+def fdictAlbedoRates(dictUnit, dictPlanets, dictGeom, listBandsDet, dictAlbedoRange, dictRates,
+                     dictMission):
+    """Count rates for the same planets with drawn albedos, plus what Stark's method needs."""
+    dictPlanets["faAlbedoDrawn"] = (dictAlbedoRange["fMin"] + dictPlanets["faAlbedo"] *
+                                    (dictAlbedoRange["fMax"] - dictAlbedoRange["fMin"]))
+    dictOut = dict(listDetRatesAlbedo=[fdictCountRates(dictUnit, dictPlanets, dictGeom, b,
+                                                       dictMission) for b in listBandsDet])
+    if dictMission.get("bAdjustCharacterizationForAlbedo", False):
+        dictOut["listCharRatesAlbedo"] = flistCharacterizationRates(
+            dictUnit, dictPlanets, dictGeom, dictRates["listCharOptions"], dictMission,
+            dictRates["bBestPhase"], fiPhaseSamples(dictMission))
+    if dictMission.get("sAlbedoMethod", "recompute") == "perVisitThreshold":
+        dictPlan = dictOut["listDetRatesAlbedo"][0]
+        dictOut["faFluxPlan"] = dictPlan["faFluxRatio"] * (
+            dictMission["fGeometricAlbedo"] / np.atleast_1d(dictPlanets["faAlbedoDrawn"])[:, None])
+        dictOut["faFluxDrawn"] = dictPlan["faFluxRatio"]
+        dictOut["faSepLamD"] = dictPlan["faSepLamD"]
+    return dictOut
+
+
+def fdictCompletenessAtZodi(dictRates, fZodi, listBandsDet, dictMission, faTauGridS,
+                            iNumPlanets):
+    """Completeness curves for one star at one exozodi level, from rates at one zodi."""
+    fCap = dictMission["fExposureLimitS"]
+    iRequired = int(dictMission.get("iRequiredDetections", 1))
+    faTauDet = faRequiredExposureTime(dictRates["listDetRates"], listBandsDet,
+                                      listBandsDet[0]["fSignalToNoise"], dictMission, fZodi)
+    faTauChar = faCharacterizationTimeFromRates(
+        dictRates["listCharRates"], dictRates["listCharOptions"], dictMission,
+        dictRates["bBestPhase"], dictRates["iVisits"], fZodi)
+    fCharCap = ffPlanetCharacterizationCap(dictMission)
+    faBestDet, faBestChar, bCounts = faCountedTimes(faTauDet, faTauChar, fCap, iRequired,
+                                                    fCharCap)
+    faComp = faCompletenessPerVisitCount(faBestDet, faTauGridS, iNumPlanets)
+    faDetOnly = faNthSmallestAccumulated(
+        np.where(np.isfinite(faTauDet) & (faTauDet <= fCap), faTauDet, np.inf), iRequired)
+    if not dictMission.get("bYieldRequiresCharacterization", True):
+        faBestDet = faDetOnly
+        faComp = faCompletenessPerVisitCount(faBestDet, faTauGridS, iNumPlanets)
+    faCompDetectionOnly = faCompletenessPerVisitCount(faDetOnly, faTauGridS, iNumPlanets)
+    faCompAlbedo = faComp
+    if "listDetRatesAlbedo" in dictRates:
+        faCompAlbedo = faAlbedoCompleteness(dictRates, fZodi, faTauDet, faTauChar, listBandsDet,
+                                            dictMission, faTauGridS, iNumPlanets)
+    return dict(faComp=faComp, faCompAlbedo=faCompAlbedo,
+                faCompDetectionOnly=faCompDetectionOnly,
+                faTauCharMeanS=faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS,
+                                                       fCharCap),
+                fTauCharS=float(np.median(faBestChar[:, -1][bCounts[:, -1]]))
+                if bCounts[:, -1].any() else np.inf,
+                fMaxCompleteness=float(faComp[-1, -1]))
+
+
+def faAlbedoCompleteness(dictRates, fZodi, faTauDet, faTauChar, listBandsDet, dictMission,
+                         faTauGridS, iNumPlanets):
+    """Completeness of the same planets re-evaluated with drawn albedos (see below)."""
+    fCap = dictMission["fExposureLimitS"]
+    faTauDetA = faRequiredExposureTime(dictRates["listDetRatesAlbedo"], listBandsDet,
+                                       listBandsDet[0]["fSignalToNoise"], dictMission, fZodi)
+    if "faFluxPlan" in dictRates:
+        faTauDetA = faStarkAlbedoTimes(
+            faTauDet, dictRates["faFluxPlan"], dictRates["faSepLamD"], dictRates["faFluxDrawn"],
+            bBrightBound=bool(dictMission.get("bAlbedoBrightBound", False)))
+    faTauCharA = faTauChar
+    if "listCharRatesAlbedo" in dictRates:
+        faTauCharA = faCharacterizationTimeFromRates(
+            dictRates["listCharRatesAlbedo"], dictRates["listCharOptions"], dictMission,
+            dictRates["bBestPhase"], dictRates["iVisits"], fZodi)
+    faBestDetA, _, _ = faCountedTimes(faTauDetA, faTauCharA, fCap,
+                                      int(dictMission.get("iRequiredDetections", 1)),
+                                      ffPlanetCharacterizationCap(dictMission))
+    return faCompletenessPerVisitCount(faBestDetA, faTauGridS, iNumPlanets)
+
+
 def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMission,
                           faTauGridS, iNumPlanets, fAlpha, fBeta, iSeed):
     """Completeness for one star against exposure time AND visit count.
@@ -400,52 +598,23 @@ def fdictStarCompleteness(dictStar, dictBox, listBandsDet, dictBandChar, dictMis
     above A_G = 0.2, where Stark's detection rate is flat; that rising tail cancels the loss from
     dark planets. bAdjustCharacterizationForAlbedo restores the old behaviour for comparison.
     """
-    rng = np.random.default_rng(iSeed)
-    iVisits = int(dictMission.get("iMaxVisits", 1))
-    dictPlanets = fdictInjectPlanets(dictBox, np.sqrt(dictStar["fLuminosityLsun"]),
-                                     iNumPlanets, fAlpha, fBeta, rng, iVisits=iVisits)
-    dictGeom = fdictProjectOrbits(dictPlanets)
-    listCharOptions = dictMission.get("listBandsCharacterization") or [dictBandChar]
-    fCap = dictMission["fExposureLimitS"]
-    faTauDet, faTauChar = faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet,
-                                           listCharOptions, dictMission, iNumPlanets)
-    iRequired = int(dictMission.get("iRequiredDetections", 1))
-    faBestDet, faBestChar, bCounts = faCountedTimes(faTauDet, faTauChar, fCap, iRequired)
-    faComp = faCompletenessPerVisitCount(faBestDet, faTauGridS, iNumPlanets)
-    if not dictMission.get("bYieldRequiresCharacterization", True):
-        faDetCount = np.where(np.isfinite(faTauDet) & (faTauDet <= fCap), faTauDet, np.inf)
-        faBestDet = faNthSmallestAccumulated(faDetCount, iRequired)
-        faComp = faCompletenessPerVisitCount(faBestDet, faTauGridS, iNumPlanets)
-    faDetOnly = np.where(np.isfinite(faTauDet) & (faTauDet <= fCap), faTauDet, np.inf)
-    faDetOnly = faNthSmallestAccumulated(faDetOnly, iRequired)
-    faCompDetectionOnly = faCompletenessPerVisitCount(faDetOnly, faTauGridS, iNumPlanets)
-    faCompAlbedo = faComp
-    dictAlbedoRange = dictMission.get("dictAlbedoDistribution")
-    if dictAlbedoRange:
-        dictPlanets["faAlbedoDrawn"] = (
-            dictAlbedoRange["fMin"] + dictPlanets["faAlbedo"] *
-            (dictAlbedoRange["fMax"] - dictAlbedoRange["fMin"]))
-        bNeedChar = bool(dictMission.get("bAdjustCharacterizationForAlbedo", False))
-        faTauDetA, faTauCharA = faDetectionTimes(dictStar, dictPlanets, dictGeom, listBandsDet,
-                                                 listCharOptions, dictMission, iNumPlanets,
-                                                 bCharacterization=bNeedChar)
-        if dictMission.get("sAlbedoMethod", "recompute") == "perVisitThreshold":
-            dictRatesPlan = fdictCountRates(dictStar, dictPlanets, dictGeom, listBandsDet[0],
-                                            dict(dictMission, listBandsCharacterization=None))
-            faFluxPlan = dictRatesPlan["faFluxRatio"] * (
-                dictMission["fGeometricAlbedo"] /
-                np.atleast_1d(dictPlanets["faAlbedoDrawn"])[:, None])
-            faTauDetA = faStarkAlbedoTimes(
-                faTauDet, faFluxPlan, dictRatesPlan["faSepLamD"], dictRatesPlan["faFluxRatio"],
-                bBrightBound=bool(dictMission.get("bAlbedoBrightBound", False)))
-        if not bNeedChar:
-            faTauCharA = faTauChar
-        faBestDetA, _, _ = faCountedTimes(faTauDetA, faTauCharA, fCap, iRequired)
-        faCompAlbedo = faCompletenessPerVisitCount(faBestDetA, faTauGridS, iNumPlanets)
-    return dict(faComp=faComp, faCompAlbedo=faCompAlbedo,
-                faCompDetectionOnly=faCompDetectionOnly,
-                faTauCharMeanS=faCharMeanPerVisitCount(faBestDet, faBestChar, faTauGridS,
-                                                       fCap),
-                fTauCharS=float(np.median(faBestChar[:, -1][bCounts[:, -1]]))
-                if bCounts[:, -1].any() else np.inf,
-                fMaxCompleteness=float(faComp[-1, -1]))
+    dictRates = fdictStarRates(dictStar, dictBox, listBandsDet, dictBandChar, dictMission,
+                               iNumPlanets, fAlpha, fBeta, iSeed)
+    fZodi = dictStar.get("fExozodiLevel", dictMission["fExozodiLevel"])
+    return fdictCompletenessAtZodi(dictRates, fZodi, listBandsDet, dictMission, faTauGridS,
+                                   iNumPlanets)
+
+
+def fdictStarCompletenessZodiGrid(dictStar, dictBox, listBandsDet, dictBandChar, dictMission,
+                                  faTauGridS, iNumPlanets, fAlpha, fBeta, iSeed, faZodiLevels):
+    """Completeness curves at every exozodi level in faZodiLevels, shape (levels, visits, grid).
+
+    The planets, orbits and count rates are those fdictStarCompleteness would use with the same
+    seed, so the curve at any level equals a single-level evaluation at that level exactly.
+    """
+    dictRates = fdictStarRates(dictStar, dictBox, listBandsDet, dictBandChar, dictMission,
+                               iNumPlanets, fAlpha, fBeta, iSeed)
+    listLevels = [fdictCompletenessAtZodi(dictRates, float(f), listBandsDet, dictMission,
+                                          faTauGridS, iNumPlanets) for f in faZodiLevels]
+    return {sKey: np.stack([d[sKey] for d in listLevels])
+            for sKey in ("faComp", "faCompAlbedo", "faCompDetectionOnly", "faTauCharMeanS")}

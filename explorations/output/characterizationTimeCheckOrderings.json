@@ -1,0 +1,28 @@
+{
+  "listRuns": [
+    {
+      "fDiameterM": 6.0,
+      "fMeanCharDaysFirstN": 12.44,
+      "fMeanCharDaysFirstNPriority": 12.58,
+      "fMeanCharDaysAll": 16.22,
+      "fPublishedDays": 22.0,
+      "iFirstN": 18,
+      "fYieldPlanning": 21.18,
+      "iStarsUsed": 161
+    },
+    {
+      "fDiameterM": 9.0,
+      "fMeanCharDaysFirstN": 1.18,
+      "fMeanCharDaysFirstNPriority": 1.3,
+      "fMeanCharDaysAll": 8.4,
+      "fPublishedDays": 3.5,
+      "iFirstN": 18,
+      "fYieldPlanning": 43.07,
+      "iStarsUsed": 300
+    },
+    {
+      "fRatio6over9": 10.54,
+      "fRatioPublished": 6.2
+    }
+  ]
+}
