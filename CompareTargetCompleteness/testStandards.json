@@ -118,7 +118,7 @@
           "saPath": [
             "iRepresentativeDraw"
           ],
-          "oValue": 99.0
+          "oValue": 14.0
         },
         {
           "saPath": [
@@ -159,7 +159,7 @@
             "dictRepresentative",
             "fModelSummedCompleteness"
           ],
-          "oValue": 83.45647048568185
+          "oValue": 76.95977681763091
         },
         {
           "saPath": [
@@ -173,21 +173,21 @@
             "dictRepresentative",
             "fMedianModel"
           ],
-          "oValue": 0.2400005793698624
+          "oValue": 0.09370961746335342
         },
         {
           "saPath": [
             "dictRepresentative",
             "fMedianRatio"
           ],
-          "oValue": 0.5258972352696003
+          "oValue": 0.28502538250200227
         },
         {
           "saPath": [
             "dictRepresentative",
             "fTrendWithDistance"
           ],
-          "oValue": -0.008838463093656159
+          "oValue": -0.009673947865175702
         },
         {
           "saPath": [
@@ -208,7 +208,7 @@
             "dictDrawMean",
             "iModelStarsUsed"
           ],
-          "oValue": 229.0
+          "oValue": 222.0
         },
         {
           "saPath": [
@@ -222,7 +222,7 @@
             "dictDrawMean",
             "fModelSummedCompleteness"
           ],
-          "oValue": 83.26646822004525
+          "oValue": 76.6472527966027
         },
         {
           "saPath": [
@@ -236,21 +236,21 @@
             "dictDrawMean",
             "fMedianModel"
           ],
-          "oValue": 0.24087352723110642
+          "oValue": 0.17099887324164448
         },
         {
           "saPath": [
             "dictDrawMean",
             "fMedianRatio"
           ],
-          "oValue": 0.4440334354481622
+          "oValue": 0.3977507706367528
         },
         {
           "saPath": [
             "dictDrawMean",
             "fTrendWithDistance"
           ],
-          "oValue": -0.0067740702779798025
+          "oValue": -0.007483840030025117
         },
         {
           "saPath": [
@@ -280,7 +280,7 @@
           "saPath": [
             "fModelSummedCompleteness"
           ],
-          "oValue": 83.45647048568185
+          "oValue": 76.95977681763091
         },
         {
           "saPath": [
@@ -292,22 +292,22 @@
           "saPath": [
             "fMedianModel"
           ],
-          "oValue": 0.2400005793698624
+          "oValue": 0.09370961746335342
         },
         {
           "saPath": [
             "fMedianRatio"
           ],
-          "oValue": 0.5258972352696003
+          "oValue": 0.28502538250200227
         },
         {
           "saPath": [
             "fTrendWithDistance"
           ],
-          "oValue": -0.008838463093656159
+          "oValue": -0.009673947865175702
         }
       ],
-      "iBytes": 202377
+      "iBytes": 201998
     }
   }
 }

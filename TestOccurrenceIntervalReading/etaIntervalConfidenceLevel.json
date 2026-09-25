@@ -1,0 +1,16 @@
+{
+ "fMean": 0.26000000000000006,
+ "fMedian": 0.18327079239715288,
+ "fMassInQuotedInterval": 0.59380625,
+ "fImpliedConfidencePercent": 59.380624999999995,
+ "faInterval68": [
+  0.07628607245821283,
+  0.4292705011951718
+ ],
+ "faInterval86": [
+  0.047331967634113924,
+  0.6530428903375293
+ ],
+ "sSource": "Bryson et al. (2021) arXiv:2010.14812 Fig. 13 left (conservative HZ, model 1, hab2, with input uncertainty; 0.5-1.5 R_Earth, 4800-6300 K)",
+ "iSamplesPerCase": 400000
+}

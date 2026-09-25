@@ -503,6 +503,11 @@
     "iMaxVisits": 6,
     "iRequiredDetections": 1,
     "bSkyThroughputFollowsCore": true,
+    "sZodiModel": "stark2014",
+    "sNoiseFloorModel": "denominator",
+    "fNoiseFloorSignalToNoise": 7.0,
+    "iNoiseFloorChannels": 2,
+    "bTimeLimitIncludesOverheads": true,
     "dictExozodiDistribution": {
       "faEdgesZodi": [
         0.0,

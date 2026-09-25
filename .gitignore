@@ -6,3 +6,22 @@ doc/*.log
 doc/*.out
 doc/*.toc
 explorations/output/targetCatalogGaiaLegacy.csv
+
+# Regenerable intermediates of A14 CompareModelVariants: each variant's completeness grid is
+# 14-18 MB and is rebuilt by the step; the declared outputs are the summary JSONs.
+CompareModelVariants/variants/*/completeness.npz
+# Machine-specific absolute symlinks to the baseline step outputs.
+CompareModelVariants/variants/_baselineLinks/
+
+# Superseded by the step directories A13-A15, which now own these scripts and outputs.
+explorations/output/oneVariableExperiments/
+explorations/output/calibrationDegeneracy.json
+explorations/output/calibrationDegeneracyChains.npz
+explorations/output/calibrationDegeneracyCorner.pdf
+explorations/output/calibrationDegeneracySummary.json
+explorations/output/calibrationDegeneracyDesign/
+explorations/output/calibrationDegeneracyDesign.log
+explorations/output/oneVariableExperimentsSummary.json
+explorations/output/settingInteractions.json
+explorations/output/yieldPeakComparison.json
+explorations/output/etaIntervalConfidenceLevel.json

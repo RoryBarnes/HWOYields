@@ -31,7 +31,7 @@
           "saPath": [
             "fThroughputCalibration"
           ],
-          "oValue": 0.9876435169533048
+          "oValue": 1.0
         },
         {
           "saPath": [
@@ -49,92 +49,92 @@
           "saPath": [
             "fYieldPlanningFixedExozodi"
           ],
-          "oValue": 22.51472
+          "oValue": 20.944399999999998
         },
         {
           "saPath": [
             "fYieldFixedExozodi"
           ],
-          "oValue": 20.6028
+          "oValue": 19.10024
         },
         {
           "saPath": [
             "iStarsUsedFixedExozodi"
           ],
-          "oValue": 179.0
+          "oValue": 174.0
         },
         {
           "saPath": [
             "fYieldBaseline"
           ],
-          "oValue": 18.298333718092042
+          "oValue": 16.806844687474086
         },
         {
           "saPath": [
             "fYieldPlanningBaseline"
           ],
-          "oValue": 19.983952372810858
+          "oValue": 18.39534067118465
         },
         {
           "saPath": [
             "iStarsUsedBaseline"
           ],
-          "oValue": 159.0
+          "oValue": 155.0
         },
         {
           "saPath": [
             "fTimeUsedFractionBaseline"
           ],
-          "oValue": 0.9999325430659975
+          "oValue": 0.9999011341868527
         },
         {
           "saPath": [
             "dictDraws",
             "fYieldPlanningDrawnMean"
           ],
-          "oValue": 19.983952372810858
+          "oValue": 18.39534067118465
         },
         {
           "saPath": [
             "dictDraws",
             "fYieldPlanningDrawnStd"
           ],
-          "oValue": 0.605653709153522
+          "oValue": 0.5847247961536176
         },
         {
           "saPath": [
             "dictDraws",
             "fYieldDrawnMean"
           ],
-          "oValue": 18.298333718092042
+          "oValue": 16.806844687474086
         },
         {
           "saPath": [
             "dictDraws",
             "fYieldDrawnStd"
           ],
-          "oValue": 0.573430533117731
+          "oValue": 0.5484249093225566
         },
         {
           "saPath": [
             "dictDraws",
             "fStarsUsedDrawnMean"
           ],
-          "oValue": 158.695
+          "oValue": 155.285
         },
         {
           "saPath": [
             "dictDraws",
             "fExozodiPenalty"
           ],
-          "oValue": 0.11240502334424507
+          "oValue": 0.12170600870950465
         },
         {
           "saPath": [
             "dictDraws",
             "fAlbedoPenalty"
           ],
-          "oValue": 0.08434861249029912
+          "oValue": 0.08635317019156152
         },
         {
           "saPath": [
@@ -144,7 +144,7 @@
           "oValue": 165.0
         }
       ],
-      "iBytes": 12187
+      "iBytes": 12179
     }
   }
 }

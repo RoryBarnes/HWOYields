@@ -14,6 +14,14 @@ F_TEFF_SUN_K = 5772.0
 F_VBAND_ZERO_PHOTONS = 1.0e11  # photons s^-1 m^-2 um^-1 for a V=0 star
 F_VBAND_LAMBDA_M = 550e-9
 F_GEIGER_CIC_FACTOR = 6.73  # -[1 + W_{-1}(-q/e)]^{-1} at q = 0.99 (Stark+2019 Eq. 9)
+F_SR_PER_ARCSEC2 = 1.0 / F_ARCSEC_PER_RAD ** 2
+# Leinert et al. (1998) Table 19: zodiacal specific intensity at solar elongation 90 deg in the
+# ecliptic, W m^-2 sr^-1 um^-1, as tabulated in EXOSIMS (Prototypes/ZodiacalLight.py).
+FA_LEINERT_LAMBDA_UM = np.array([0.2, 0.3, 0.4, 0.5, 0.7, 0.9, 1.0, 1.2, 2.2, 3.5])
+FA_LEINERT_I90_W = np.array([2.5e-8, 5.3e-7, 2.2e-6, 2.6e-6, 2.0e-6, 1.3e-6, 1.2e-6, 8.1e-7,
+                             1.7e-7, 5.2e-8])
+F_ZODI_135_OVER_90 = 0.69  # Stark et al. (2014) App. B, from Leinert Table 17
+FA_ZODI_F135_COEFFS = (1.02, -0.566, -0.884, 0.853)  # Stark (2014) App. B, in sin|beta|
 
 
 def faPlanckPhotonRadiance(faLambdaM, faTeffK):
@@ -42,6 +50,29 @@ def fnZeroMagPhotonFlux(fLambdaM):
     fShape = faPlanckPhotonRadiance(fLambdaM, F_TEFF_SUN_K)
     fShapeV = faPlanckPhotonRadiance(F_VBAND_LAMBDA_M, F_TEFF_SUN_K)
     return F_VBAND_ZERO_PHOTONS * float(fShape / fShapeV)
+
+
+def ffZodiLatitudeFactor(fEclipticLatDeg):
+    """f_135(beta) of Stark et al. (2014) Eq. B3: latitude dependence at solar longitude 135 deg."""
+    fSin = abs(np.sin(np.radians(float(fEclipticLatDeg))))
+    return sum(c * fSin ** k for k, c in enumerate(FA_ZODI_F135_COEFFS))
+
+
+def fnZodiPhotonSurfaceBrightness(fLambdaM, fEclipticLatDeg):
+    """Local zodiacal light in photons s^-1 m^-2 um^-1 arcsec^-2, as AYO computes it.
+
+    Stark et al. (2014) App. B, which Stark et al. (2019, 2024) retain ("varies with ecliptic
+    latitude"): I = 0.69 I_90(lambda) f_135(beta). I_90 is Leinert et al. (1998) Table 19,
+    interpolated linearly in log-log space, so the zodi carries its own (slightly redder than
+    solar) colour. This gives 22.5 mag arcsec^-2 in the ecliptic and 23.4 at the poles in V,
+    against the uniform 23 of the default treatment.
+    """
+    fLambdaUm = fLambdaM * 1e6
+    fIntensity = 10 ** np.interp(np.log10(fLambdaUm), np.log10(FA_LEINERT_LAMBDA_UM),
+                                 np.log10(FA_LEINERT_I90_W))
+    fIntensity *= F_ZODI_135_OVER_90 * ffZodiLatitudeFactor(fEclipticLatDeg)
+    fPhotonJ = F_PLANCK_H * F_LIGHT_C / fLambdaM
+    return float(fIntensity * F_SR_PER_ARCSEC2 / fPhotonJ)
 
 
 def fnPhotometricApertureSolidAngle(fLambdaM, fDiameterM, fApertureRadiusLamD):

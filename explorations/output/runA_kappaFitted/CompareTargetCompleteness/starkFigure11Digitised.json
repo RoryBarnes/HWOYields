@@ -1,0 +1,790 @@
+{
+  "sSource": "Stark et al. (2024) Fig. 11, digitized from the PDF content stream",
+  "iColourBarSamples": 472,
+  "dictXTicks": {
+    "0.0": 618.0,
+    "10.0": 1195.46,
+    "20.0": 1802.93,
+    "30.0": 2410.4,
+    "40.0": 3018.1400000000003
+  },
+  "dictYTicks": {
+    "0.01": 794.836,
+    "0.1": 1370.8400000000001,
+    "1.0": 1946.84,
+    "10.0": 2522.84
+  },
+  "iPoints": 154,
+  "listPoints": [
+    {
+      "fDistancePc": 4.241773794463272,
+      "fLuminosityLsun": 8.448518911238173,
+      "fCompleteness": 0.18259023354564755
+    },
+    {
+      "fDistancePc": 2.070896515266705,
+      "fLuminosityLsun": 1.9448930004413993,
+      "fCompleteness": 0.4288747346072187
+    },
+    {
+      "fDistancePc": 5.88923797874576,
+      "fLuminosityLsun": 12.210152209965393,
+      "fCompleteness": 0.14225053078556263
+    },
+    {
+      "fDistancePc": 8.48920738578713,
+      "fLuminosityLsun": 20.16102342412169,
+      "fCompleteness": 0.03184713375796178
+    },
+    {
+      "fDistancePc": 12.163418432627887,
+      "fLuminosityLsun": 10.301993560924709,
+      "fCompleteness": 0.2760084925690021
+    },
+    {
+      "fDistancePc": 11.909920338350085,
+      "fLuminosityLsun": 16.131389945706385,
+      "fCompleteness": 0.09978768577494691
+    },
+    {
+      "fDistancePc": 16.234351876755007,
+      "fLuminosityLsun": 9.685115200656437,
+      "fCompleteness": 0.267515923566879
+    },
+    {
+      "fDistancePc": 14.766603847610051,
+      "fLuminosityLsun": 3.705897118474596,
+      "fCompleteness": 0.7430997876857749
+    },
+    {
+      "fDistancePc": 3.2813001317759785,
+      "fLuminosityLsun": 0.028004597841292375,
+      "fCompleteness": 0.9957537154989384
+    },
+    {
+      "fDistancePc": 5.662584391257239,
+      "fLuminosityLsun": 0.027352985179491838,
+      "fCompleteness": 0.38641188959660294
+    },
+    {
+      "fDistancePc": 4.267257604221921,
+      "fLuminosityLsun": 0.009825500582144563,
+      "fCompleteness": 0.05307855626326964
+    },
+    {
+      "fDistancePc": 13.256576169766747,
+      "fLuminosityLsun": 10.214955393842882,
+      "fCompleteness": 0.28874734607218683
+    },
+    {
+      "fDistancePc": 14.374484955361295,
+      "fLuminosityLsun": 9.260003229593021,
+      "fCompleteness": 0.33121019108280253
+    },
+    {
+      "fDistancePc": 17.271188765968823,
+      "fLuminosityLsun": 12.777474723472004,
+      "fCompleteness": 0.18259023354564755
+    },
+    {
+      "fDistancePc": 15.213211684526462,
+      "fLuminosityLsun": 10.750566965280102,
+      "fCompleteness": 0.22505307855626328
+    },
+    {
+      "fDistancePc": 9.887896054541143,
+      "fLuminosityLsun": 3.8602125754481906,
+      "fCompleteness": 0.7749469214437367
+    },
+    {
+      "fDistancePc": 8.813739225077752,
+      "fLuminosityLsun": 3.346125221896587,
+      "fCompleteness": 0.8386411889596603
+    },
+    {
+      "fDistancePc": 9.125885362900208,
+      "fLuminosityLsun": 3.1368501932202277,
+      "fCompleteness": 0.7473460721868365
+    },
+    {
+      "fDistancePc": 4.39823190229991,
+      "fLuminosityLsun": 0.609268042514917,
+      "fCompleteness": 0.9469214437367304
+    },
+    {
+      "fDistancePc": 6.868861815299871,
+      "fLuminosityLsun": 1.467327518218759,
+      "fCompleteness": 0.6178343949044586
+    },
+    {
+      "fDistancePc": 6.689795307336039,
+      "fLuminosityLsun": 1.4846998301841703,
+      "fCompleteness": 0.9745222929936306
+    },
+    {
+      "fDistancePc": 20.561320940412784,
+      "fLuminosityLsun": 15.827739776689935,
+      "fCompleteness": 0.06369426751592357
+    },
+    {
+      "fDistancePc": 3.960978984684683,
+      "fLuminosityLsun": 0.4008320841138482,
+      "fCompleteness": 0.9830148619957537
+    },
+    {
+      "fDistancePc": 11.81528218062419,
+      "fLuminosityLsun": 4.319580256489775,
+      "fCompleteness": 0.7282377919320594
+    },
+    {
+      "fDistancePc": 9.699043790769297,
+      "fLuminosityLsun": 2.762952562633979,
+      "fCompleteness": 0.8938428874734607
+    },
+    {
+      "fDistancePc": 11.979637826948325,
+      "fLuminosityLsun": 3.474585908139285,
+      "fCompleteness": 0.8259023354564756
+    },
+    {
+      "fDistancePc": 15.807983178419553,
+      "fLuminosityLsun": 6.633107318688733,
+      "fCompleteness": 0.5201698513800425
+    },
+    {
+      "fDistancePc": 23.27937008204804,
+      "fLuminosityLsun": 18.140217435260155,
+      "fCompleteness": 0.027600849256900213
+    },
+    {
+      "fDistancePc": 20.025397642457285,
+      "fLuminosityLsun": 9.756194510946699,
+      "fCompleteness": 0.19745222929936304
+    },
+    {
+      "fDistancePc": 5.872890956104111,
+      "fLuminosityLsun": 0.602735722933773,
+      "fCompleteness": 0.4968152866242038
+    },
+    {
+      "fDistancePc": 11.38516147302448,
+      "fLuminosityLsun": 2.6472413340168144,
+      "fCompleteness": 0.6815286624203821
+    },
+    {
+      "fDistancePc": 22.43140241867328,
+      "fLuminosityLsun": 10.794438903135156,
+      "fCompleteness": 0.19745222929936304
+    },
+    {
+      "fDistancePc": 6.81057234985578,
+      "fLuminosityLsun": 0.7768075231924167,
+      "fCompleteness": 0.9915074309978769
+    },
+    {
+      "fDistancePc": 22.942123477185604,
+      "fLuminosityLsun": 10.790186270562762,
+      "fCompleteness": 0.08067940552016985
+    },
+    {
+      "fDistancePc": 11.962495961837773,
+      "fLuminosityLsun": 2.7253200851954578,
+      "fCompleteness": 0.8704883227176221
+    },
+    {
+      "fDistancePc": 14.501123749063408,
+      "fLuminosityLsun": 3.9716816687084457,
+      "fCompleteness": 0.7473460721868365
+    },
+    {
+      "fDistancePc": 5.768840886531251,
+      "fLuminosityLsun": 0.5020452764878932,
+      "fCompleteness": 0.9957537154989384
+    },
+    {
+      "fDistancePc": 20.378608944966693,
+      "fLuminosityLsun": 8.339615463637045,
+      "fCompleteness": 0.3036093418259023
+    },
+    {
+      "fDistancePc": 15.825389651778393,
+      "fLuminosityLsun": 5.088382989832646,
+      "fCompleteness": 0.016985138004246284
+    },
+    {
+      "fDistancePc": 20.533618492264594,
+      "fLuminosityLsun": 10.394639841145159,
+      "fCompleteness": 0.2208067940552017
+    },
+    {
+      "fDistancePc": 4.384481772146323,
+      "fLuminosityLsun": 0.2599975867135281,
+      "fCompleteness": 0.9639065817409767
+    },
+    {
+      "fDistancePc": 9.996453284609919,
+      "fLuminosityLsun": 1.663261021082621,
+      "fCompleteness": 0.9511677282377919
+    },
+    {
+      "fDistancePc": 10.056373483194443,
+      "fLuminosityLsun": 1.7127565777696725,
+      "fCompleteness": 0.9554140127388535
+    },
+    {
+      "fDistancePc": 15.4798723429501,
+      "fLuminosityLsun": 4.366583735418203,
+      "fCompleteness": 0.5987261146496815
+    },
+    {
+      "fDistancePc": 18.662383593434626,
+      "fLuminosityLsun": 6.0403188812345165,
+      "fCompleteness": 0.5010615711252654
+    },
+    {
+      "fDistancePc": 6.529600795336981,
+      "fLuminosityLsun": 0.507685517113487,
+      "fCompleteness": 0.9957537154989384
+    },
+    {
+      "fDistancePc": 21.321784691525224,
+      "fLuminosityLsun": 7.560517349875406,
+      "fCompleteness": 0.29936305732484075
+    },
+    {
+      "fDistancePc": 7.5273903273777325,
+      "fLuminosityLsun": 0.6495400884769728,
+      "fCompleteness": 0.15711252653927812
+    },
+    {
+      "fDistancePc": 16.762296218300442,
+      "fLuminosityLsun": 3.7095965305778926,
+      "fCompleteness": 0.7473460721868365
+    },
+    {
+      "fDistancePc": 4.239754969225345,
+      "fLuminosityLsun": 0.18489283984559035,
+      "fCompleteness": 0.9957537154989384
+    },
+    {
+      "fDistancePc": 9.325437298660704,
+      "fLuminosityLsun": 0.9855044450446103,
+      "fCompleteness": 0.9787685774946921
+    },
+    {
+      "fDistancePc": 16.61190035328046,
+      "fLuminosityLsun": 3.7748464820986416,
+      "fCompleteness": 0.6326963906581741
+    },
+    {
+      "fDistancePc": 23.724112091572636,
+      "fLuminosityLsun": 7.526337506412905,
+      "fCompleteness": 0.08067940552016985
+    },
+    {
+      "fDistancePc": 13.39024404411582,
+      "fLuminosityLsun": 2.091805084689796,
+      "fCompleteness": 0.7430997876857749
+    },
+    {
+      "fDistancePc": 21.29311879796019,
+      "fLuminosityLsun": 6.2909426414296306,
+      "fCompleteness": 0.2526539278131635
+    },
+    {
+      "fDistancePc": 22.242919927966348,
+      "fLuminosityLsun": 6.604176074612067,
+      "fCompleteness": 0.3078556263269639
+    },
+    {
+      "fDistancePc": 21.357462703670016,
+      "fLuminosityLsun": 5.031031559067879,
+      "fCompleteness": 0.3205944798301486
+    },
+    {
+      "fDistancePc": 10.072436560831177,
+      "fLuminosityLsun": 1.0334004910632453,
+      "fCompleteness": 0.9723991507430998
+    },
+    {
+      "fDistancePc": 12.518522701836625,
+      "fLuminosityLsun": 1.7406266197002342,
+      "fCompleteness": 0.9044585987261147
+    },
+    {
+      "fDistancePc": 18.27254101060388,
+      "fLuminosityLsun": 3.907636376449855,
+      "fCompleteness": 0.34182590233545646
+    },
+    {
+      "fDistancePc": 19.79212172469323,
+      "fLuminosityLsun": 4.2408748164662695,
+      "fCompleteness": 0.44798301486199577
+    },
+    {
+      "fDistancePc": 13.779628651132212,
+      "fLuminosityLsun": 1.907428688393765,
+      "fCompleteness": 0.8301486199575372
+    },
+    {
+      "fDistancePc": 22.697106416506934,
+      "fLuminosityLsun": 5.759041790395042,
+      "fCompleteness": 0.07218683651804671
+    },
+    {
+      "fDistancePc": 24.69315159819505,
+      "fLuminosityLsun": 6.681308179572391,
+      "fCompleteness": 0.2208067940552017
+    },
+    {
+      "fDistancePc": 22.11666108456948,
+      "fLuminosityLsun": 5.141134306263549,
+      "fCompleteness": 0.19745222929936304
+    },
+    {
+      "fDistancePc": 12.894330870267554,
+      "fLuminosityLsun": 1.567877323675267,
+      "fCompleteness": 0.8471337579617835
+    },
+    {
+      "fDistancePc": 24.42871297057438,
+      "fLuminosityLsun": 6.642622045041563,
+      "fCompleteness": 0.08280254777070063
+    },
+    {
+      "fDistancePc": 15.805771324856897,
+      "fLuminosityLsun": 2.360300238077045,
+      "fCompleteness": 0.2526539278131635
+    },
+    {
+      "fDistancePc": 18.04570728596172,
+      "fLuminosityLsun": 3.184264550316143,
+      "fCompleteness": 0.3078556263269639
+    },
+    {
+      "fDistancePc": 19.340350634521677,
+      "fLuminosityLsun": 3.4594422950566415,
+      "fCompleteness": 0.2802547770700637
+    },
+    {
+      "fDistancePc": 6.77932279421511,
+      "fLuminosityLsun": 0.30454228609427747,
+      "fCompleteness": 0.11040339702760085
+    },
+    {
+      "fDistancePc": 15.428053227659452,
+      "fLuminosityLsun": 2.0825437557353075,
+      "fCompleteness": 0.4734607218683652
+    },
+    {
+      "fDistancePc": 8.42678697849758,
+      "fLuminosityLsun": 0.5368822189962988,
+      "fCompleteness": 0.31634819532908703
+    },
+    {
+      "fDistancePc": 16.459011064382345,
+      "fLuminosityLsun": 2.225547683610458,
+      "fCompleteness": 0.28874734607218683
+    },
+    {
+      "fDistancePc": 15.769034879718935,
+      "fLuminosityLsun": 1.9937965411557965,
+      "fCompleteness": 0.861995753715499
+    },
+    {
+      "fDistancePc": 19.69527849823156,
+      "fLuminosityLsun": 3.2452927610066133,
+      "fCompleteness": 0.36942675159235666
+    },
+    {
+      "fDistancePc": 20.37696701686191,
+      "fLuminosityLsun": 3.3062765864600303,
+      "fCompleteness": 0.23354564755838642
+    },
+    {
+      "fDistancePc": 21.120692600063137,
+      "fLuminosityLsun": 3.443240869692724,
+      "fCompleteness": 0.1464968152866242
+    },
+    {
+      "fDistancePc": 20.477555467760958,
+      "fLuminosityLsun": 3.48505014973423,
+      "fCompleteness": 0.1613588110403397
+    },
+    {
+      "fDistancePc": 7.314753852980514,
+      "fLuminosityLsun": 0.3395785382840375,
+      "fCompleteness": 0.9554140127388535
+    },
+    {
+      "fDistancePc": 4.2395616016592825,
+      "fLuminosityLsun": 0.12230507802502279,
+      "fCompleteness": 0.9087048832271762
+    },
+    {
+      "fDistancePc": 12.867225486884747,
+      "fLuminosityLsun": 1.191834117600035,
+      "fCompleteness": 0.7664543524416135
+    },
+    {
+      "fDistancePc": 26.224554873121583,
+      "fLuminosityLsun": 5.387733794606346,
+      "fCompleteness": 0.05307855626326964
+    },
+    {
+      "fDistancePc": 19.09715190744666,
+      "fLuminosityLsun": 2.840237754589331,
+      "fCompleteness": 0.39702760084925687
+    },
+    {
+      "fDistancePc": 16.78326472577092,
+      "fLuminosityLsun": 2.09873486646796,
+      "fCompleteness": 0.5010615711252654
+    },
+    {
+      "fDistancePc": 6.652116788985884,
+      "fLuminosityLsun": 0.2611800351845471,
+      "fCompleteness": 0.9872611464968153
+    },
+    {
+      "fDistancePc": 12.051662156685518,
+      "fLuminosityLsun": 0.9393967128377991,
+      "fCompleteness": 0.692144373673036
+    },
+    {
+      "fDistancePc": 17.480731359309083,
+      "fLuminosityLsun": 2.1336286964703888,
+      "fCompleteness": 0.5095541401273885
+    },
+    {
+      "fDistancePc": 15.778065484295281,
+      "fLuminosityLsun": 1.6057688105755428,
+      "fCompleteness": 0.7133757961783439
+    },
+    {
+      "fDistancePc": 15.429769788859913,
+      "fLuminosityLsun": 1.5204446832802314,
+      "fCompleteness": 0.7834394904458598
+    },
+    {
+      "fDistancePc": 9.585740574298447,
+      "fLuminosityLsun": 0.5400226382156494,
+      "fCompleteness": 0.910828025477707
+    },
+    {
+      "fDistancePc": 13.724810642360916,
+      "fLuminosityLsun": 1.1705841007703341,
+      "fCompleteness": 0.6178343949044586
+    },
+    {
+      "fDistancePc": 18.380725075194306,
+      "fLuminosityLsun": 2.1320452796408063,
+      "fCompleteness": 0.2802547770700637
+    },
+    {
+      "fDistancePc": 16.377063925334177,
+      "fLuminosityLsun": 1.6153868760918433,
+      "fCompleteness": 0.3927813163481953
+    },
+    {
+      "fDistancePc": 8.008763617223662,
+      "fLuminosityLsun": 0.33088910166447755,
+      "fCompleteness": 0.9681528662420382
+    },
+    {
+      "fDistancePc": 14.073964618396518,
+      "fLuminosityLsun": 1.132579641402381,
+      "fCompleteness": 0.613588110403397
+    },
+    {
+      "fDistancePc": 21.303509760325845,
+      "fLuminosityLsun": 2.868622180248046,
+      "fCompleteness": 0.1040339702760085
+    },
+    {
+      "fDistancePc": 19.591874344177604,
+      "fLuminosityLsun": 2.357354002516381,
+      "fCompleteness": 0.11889596602972399
+    },
+    {
+      "fDistancePc": 10.846249458828654,
+      "fLuminosityLsun": 0.6282976613150127,
+      "fCompleteness": 0.9596602972399151
+    },
+    {
+      "fDistancePc": 18.681815337616946,
+      "fLuminosityLsun": 2.041904749788862,
+      "fCompleteness": 0.2484076433121019
+    },
+    {
+      "fDistancePc": 9.605372470873698,
+      "fLuminosityLsun": 0.47495187960799856,
+      "fCompleteness": 0.1889596602972399
+    },
+    {
+      "fDistancePc": 8.979065101645626,
+      "fLuminosityLsun": 0.40471601787625694,
+      "fCompleteness": 0.3354564755838641
+    },
+    {
+      "fDistancePc": 18.22416519495448,
+      "fLuminosityLsun": 1.8190276354466148,
+      "fCompleteness": 0.1040339702760085
+    },
+    {
+      "fDistancePc": 16.415347311000616,
+      "fLuminosityLsun": 1.414643451099808,
+      "fCompleteness": 0.12738853503184713
+    },
+    {
+      "fDistancePc": 10.697780484642392,
+      "fLuminosityLsun": 0.5387992604361674,
+      "fCompleteness": 0.9723991507430998
+    },
+    {
+      "fDistancePc": 8.986355398127428,
+      "fLuminosityLsun": 0.3570797578796199,
+      "fCompleteness": 0.29936305732484075
+    },
+    {
+      "fDistancePc": 21.512356908910974,
+      "fLuminosityLsun": 2.408659101198723,
+      "fCompleteness": 0.036093418259023353
+    },
+    {
+      "fDistancePc": 4.718454358798141,
+      "fLuminosityLsun": 0.12259368056518903,
+      "fCompleteness": 0.9872611464968153
+    },
+    {
+      "fDistancePc": 11.920772668943515,
+      "fLuminosityLsun": 0.6200525439552976,
+      "fCompleteness": 0.692144373673036
+    },
+    {
+      "fDistancePc": 18.27658476742394,
+      "fLuminosityLsun": 1.5051288016177777,
+      "fCompleteness": 0.044585987261146494
+    },
+    {
+      "fDistancePc": 13.41380096304074,
+      "fLuminosityLsun": 0.7442205227081528,
+      "fCompleteness": 0.5774946921443737
+    },
+    {
+      "fDistancePc": 15.900026139864112,
+      "fLuminosityLsun": 1.090206495868743,
+      "fCompleteness": 0.524416135881104
+    },
+    {
+      "fDistancePc": 10.360055549484985,
+      "fLuminosityLsun": 0.4351760601335803,
+      "fCompleteness": 0.6581740976645435
+    },
+    {
+      "fDistancePc": 9.63892683220527,
+      "fLuminosityLsun": 0.3400112672078031,
+      "fCompleteness": 0.9639065817409767
+    },
+    {
+      "fDistancePc": 13.408525760142089,
+      "fLuminosityLsun": 0.7140943635321098,
+      "fCompleteness": 0.15074309978768577
+    },
+    {
+      "fDistancePc": 11.169736434779862,
+      "fLuminosityLsun": 0.47022010367911904,
+      "fCompleteness": 0.9447983014861996
+    },
+    {
+      "fDistancePc": 14.986445808153084,
+      "fLuminosityLsun": 0.9414659204839537,
+      "fCompleteness": 0.16985138004246284
+    },
+    {
+      "fDistancePc": 17.678637974551343,
+      "fLuminosityLsun": 1.222146235848136,
+      "fCompleteness": 0.23991507430997877
+    },
+    {
+      "fDistancePc": 16.095602167073338,
+      "fLuminosityLsun": 0.9556317266948388,
+      "fCompleteness": 0.28450106157112526
+    },
+    {
+      "fDistancePc": 17.984922021950076,
+      "fLuminosityLsun": 1.2110597153951104,
+      "fCompleteness": 0.1740976645435244
+    },
+    {
+      "fDistancePc": 18.42737415240292,
+      "fLuminosityLsun": 1.2785794663380623,
+      "fCompleteness": 0.2484076433121019
+    },
+    {
+      "fDistancePc": 8.384391987742278,
+      "fLuminosityLsun": 0.22976202167595863,
+      "fCompleteness": 0.9681528662420382
+    },
+    {
+      "fDistancePc": 19.00875579044971,
+      "fLuminosityLsun": 1.3316648064125562,
+      "fCompleteness": 0.059447983014861996
+    },
+    {
+      "fDistancePc": 13.093855666720524,
+      "fLuminosityLsun": 0.5589905866821349,
+      "fCompleteness": 0.8471337579617835
+    },
+    {
+      "fDistancePc": 5.627869146046628,
+      "fLuminosityLsun": 0.1376912232517273,
+      "fCompleteness": 0.8025477707006369
+    },
+    {
+      "fDistancePc": 18.658936901379946,
+      "fLuminosityLsun": 1.1760651659033097,
+      "fCompleteness": 0.13800424628450106
+    },
+    {
+      "fDistancePc": 10.87346339944152,
+      "fLuminosityLsun": 0.34051510151069175,
+      "fCompleteness": 0.7707006369426751
+    },
+    {
+      "fDistancePc": 11.911161961668997,
+      "fLuminosityLsun": 0.4255937401833105,
+      "fCompleteness": 0.7473460721868365
+    },
+    {
+      "fDistancePc": 4.030507176612982,
+      "fLuminosityLsun": 0.048436030209162664,
+      "fCompleteness": 0.9915074309978769
+    },
+    {
+      "fDistancePc": 9.538830281254976,
+      "fLuminosityLsun": 0.25722825683588607,
+      "fCompleteness": 0.8980891719745223
+    },
+    {
+      "fDistancePc": 13.667879160016723,
+      "fLuminosityLsun": 0.52286580575878,
+      "fCompleteness": 0.3205944798301486
+    },
+    {
+      "fDistancePc": 9.96857443096288,
+      "fLuminosityLsun": 0.2753570989303144,
+      "fCompleteness": 0.524416135881104
+    },
+    {
+      "fDistancePc": 13.62469712934343,
+      "fLuminosityLsun": 0.4720835597079494,
+      "fCompleteness": 0.37367303609341823
+    },
+    {
+      "fDistancePc": 17.568045296418767,
+      "fLuminosityLsun": 0.8274662685458477,
+      "fCompleteness": 0.040339702760084924
+    },
+    {
+      "fDistancePc": 12.644011467382699,
+      "fLuminosityLsun": 0.3993150279272235,
+      "fCompleteness": 0.2484076433121019
+    },
+    {
+      "fDistancePc": 15.204381232343044,
+      "fLuminosityLsun": 0.49726462527422455,
+      "fCompleteness": 0.08280254777070063
+    },
+    {
+      "fDistancePc": 6.468710366508704,
+      "fLuminosityLsun": 0.06965461367590599,
+      "fCompleteness": 0.9447983014861996
+    },
+    {
+      "fDistancePc": 7.1044513590297615,
+      "fLuminosityLsun": 0.0828887070671267,
+      "fCompleteness": 0.81104033970276
+    },
+    {
+      "fDistancePc": 12.26706684044949,
+      "fLuminosityLsun": 0.27079198451866965,
+      "fCompleteness": 0.21656050955414013
+    },
+    {
+      "fDistancePc": 4.3060155885285685,
+      "fLuminosityLsun": 0.027978724365739546,
+      "fCompleteness": 0.9830148619957537
+    },
+    {
+      "fDistancePc": 6.933683372822001,
+      "fLuminosityLsun": 0.07223660451221668,
+      "fCompleteness": 0.8577494692144374
+    },
+    {
+      "fDistancePc": 6.527673226020569,
+      "fLuminosityLsun": 0.06039509588046661,
+      "fCompleteness": 0.9044585987261147
+    },
+    {
+      "fDistancePc": 9.021466877227807,
+      "fLuminosityLsun": 0.11787373040968047,
+      "fCompleteness": 0.4140127388535032
+    },
+    {
+      "fDistancePc": 11.270331670505788,
+      "fLuminosityLsun": 0.16329645359520878,
+      "fCompleteness": 0.059447983014861996
+    },
+    {
+      "fDistancePc": 5.097532135302195,
+      "fLuminosityLsun": 0.02739606510590845,
+      "fCompleteness": 0.861995753715499
+    },
+    {
+      "fDistancePc": 5.72431851330794,
+      "fLuminosityLsun": 0.03486829755986434,
+      "fCompleteness": 0.7367303609341825
+    },
+    {
+      "fDistancePc": 4.267257604221921,
+      "fLuminosityLsun": 0.01880061035273965,
+      "fCompleteness": 0.8492569002123143
+    },
+    {
+      "fDistancePc": 5.3038940018014475,
+      "fLuminosityLsun": 0.02512786970436845,
+      "fCompleteness": 0.47770700636942676
+    },
+    {
+      "fDistancePc": 2.5562294300793926,
+      "fLuminosityLsun": 0.0044739231341372155,
+      "fCompleteness": 0.4288747346072187
+    },
+    {
+      "fDistancePc": 6.680856637163908,
+      "fLuminosityLsun": 0.03541686092962668,
+      "fCompleteness": 0.15498938428874734
+    },
+    {
+      "fDistancePc": 4.682110076653798,
+      "fLuminosityLsun": 0.018889952499447183,
+      "fCompleteness": 0.6326963906581741
+    },
+    {
+      "fDistancePc": 6.6841079262044705,
+      "fLuminosityLsun": 0.03541686092962668,
+      "fCompleteness": 0.1337579617834395
+    },
+    {
+      "fDistancePc": 6.67567642184156,
+      "fLuminosityLsun": 0.03388097701147357,
+      "fCompleteness": 0.07218683651804671
+    },
+    {
+      "fDistancePc": 5.307264703795081,
+      "fLuminosityLsun": 0.019941729036620837,
+      "fCompleteness": 0.2611464968152866
+    }
+  ]
+}

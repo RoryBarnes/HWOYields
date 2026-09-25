@@ -1,0 +1,90 @@
+### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --eta-law brysonMixture --bryson-digitised /workspace/yields/explorations/brysonFigure13EtaEarthDigitised.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/occurrencePosterior.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/occurrencePosteriorSummary.json
+{
+  "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior (uniform mixture of the two digitized Bryson 2021 cases, rescaled to the published mean 0.26); other boxes follow by the Gamma-independent ratio from the shape chain.",
+  "sEtaLaw": "brysonMixture",
+  "fEtaIntervalZ": 1.0,
+  "fEtaLogNormalMu": -1.7242822277451393,
+  "fEtaLogNormalSigma": 0.9244919582519654,
+  "fEtaModeImplied": 0.07852534274467808,
+  "fEtaMeanImplied": 0.26,
+  "iSamples": 14400,
+  "fAcceptanceFraction": 0.6439531249999999,
+  "fMaxAutocorrSteps": 39.39698868380835,
+  "dictParameters": {
+    "lnGamma": {
+      "fMedian": -1.1722857690634654,
+      "fP16": -1.8276664844149035,
+      "fP84": -0.5963322543737133,
+      "fMean": -1.222710939569385
+    },
+    "alpha": {
+      "fMedian": -0.19264994096910254,
+      "fP16": -0.4579141528722371,
+      "fP84": 0.07820103742538238,
+      "fMean": -0.19128832338469162
+    },
+    "beta": {
+      "fMedian": 0.24722153534212143,
+      "fP16": -0.03836065872468424,
+      "fP84": 0.535793923171501,
+      "fMean": 0.24921778189914817
+    }
+  },
+  "dictEtaByBox": {
+    "canonical": {
+      "fMedian": 0.18410258761456094,
+      "fP16": 0.07778630516608784,
+      "fP84": 0.4271778077021095,
+      "fMean": 0.26
+    },
+    "redefined": {
+      "fMedian": 0.037733425717943095,
+      "fP16": 0.015781204876251086,
+      "fP84": 0.08694440267843008,
+      "fMean": 0.053136151557322056
+    },
+    "hzOnly": {
+      "fMedian": 0.05961965386410055,
+      "fP16": 0.024899100215468612,
+      "fP84": 0.13741116839415934,
+      "fMean": 0.0840387304369966
+    }
+  },
+  "dictRatioRedefinedOverCanonical": {
+    "fMedian": 0.20419311247330102,
+    "fP16": 0.18787613196342662,
+    "fP84": 0.22104178231602994,
+    "fMean": 0.20439239801265185
+  }
+}
+### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/computeCompleteness/completeness.npz --occurrence-posterior /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/occurrencePosterior.npz --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 6 --out-prediction /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/yieldPrediction.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/yieldSamples.npz
+{
+  "dictYieldRatio": {
+    "fMedian": 0.23436481634308787,
+    "fP16": 0.2124788560932774,
+    "fP84": 0.26215036169170824,
+    "fOccurrenceRatioMedian": 0.20419311247330102
+  },
+  "dictByBox": {
+    "canonical": {
+      "fMeanExpected": 16.71047901632598,
+      "fMedianExpected": 13.215449726560546,
+      "fP16Expected": 5.731976079648728,
+      "fP84Expected": 27.888272639772687,
+      "fP05Expected": 3.14573128197955,
+      "fP95Expected": 43.50912196421347,
+      "fProbabilityAtLeastGoal": 0.2129861111111111,
+      "fProbabilityAtLeastOne": 0.9854166666666667
+    },
+    "redefined": {
+      "fMeanExpected": 4.216546239050568,
+      "fMedianExpected": 3.040042916363303,
+      "fP16Expected": 1.2767068669644632,
+      "fP84Expected": 6.946387394536348,
+      "fP05Expected": 0.6874917939826708,
+      "fP95Expected": 12.150405515902987,
+      "fProbabilityAtLeastGoal": 0.0044444444444444444,
+      "fProbabilityAtLeastOne": 0.8733333333333333
+    }
+  }
+}

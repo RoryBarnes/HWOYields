@@ -1,0 +1,31 @@
+{
+  "iStarsScreened": 1500,
+  "iNumPlanetsPerStar": 3000,
+  "fThroughputCalibration": 1.0,
+  "dictByBox": {
+    "canonical": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 72.81266666666667,
+      "iStarsWithAnyCompleteness": 162,
+      "iStarsWithAnyCompletenessAtZeroZodi": 228,
+      "fMedianTauCharDays": 29.793674768518517
+    },
+    "redefined": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 75.46466666666666,
+      "iStarsWithAnyCompleteness": 109,
+      "iStarsWithAnyCompletenessAtZeroZodi": 177,
+      "fMedianTauCharDays": 22.034989872685184
+    },
+    "hzOnly": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 83.29433333333333,
+      "iStarsWithAnyCompleteness": 157,
+      "iStarsWithAnyCompletenessAtZeroZodi": 157,
+      "fMedianTauCharDays": 28.933938078703704
+    }
+  },
+  "iExozodiDraws": 200,
+  "fMedianDrawnZodi": 2.9954122602133157,
+  "fFractionDrawnAbove100Zodi": 0.21446666666666667
+}

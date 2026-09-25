@@ -124,8 +124,8 @@
     {
       "sName": "Uncalibrated 6 m yield",
       "fPublished": 22.5,
-      "fModel": 22.615,
-      "fRelativeDifference": 0.005111111111111042,
+      "fModel": 20.9152,
+      "fRelativeDifference": 0.07043555555555561,
       "fTolerance": 0.2,
       "bAgrees": true,
       "bTuned": false,
@@ -133,43 +133,32 @@
       "sNote": "Independent: no fitted parameter."
     },
     {
-      "sName": "Calibrated 6 m yield",
-      "fPublished": 22.5,
-      "fModel": 22.4998,
-      "fRelativeDifference": 8.888888888868173e-06,
-      "fTolerance": 0.02,
-      "bAgrees": true,
-      "bTuned": true,
-      "sSource": "Stark+2024 Sec. 3.1",
-      "sNote": "Fitted to this value."
-    },
-    {
-      "sName": "Calibration throughput factor",
+      "sName": "Throughput factor needed to reach 22.5",
       "fPublished": 1.0,
-      "fModel": 0.9876435169533048,
-      "fRelativeDifference": 0.012356483046695232,
+      "fModel": 1.1953711317899447,
+      "fRelativeDifference": 0.1953711317899447,
       "fTolerance": 1.0,
       "bAgrees": true,
       "bTuned": false,
       "sSource": "Plausibility band, not a published value",
-      "sNote": "A factor beyond 2x absorbs physics rather than an unknown."
+      "sNote": "Diagnostic. A factor beyond 2x would absorb physics rather than an unknown. Not applied downstream."
     },
     {
       "sName": "Sampling distribution mean (Fig. 4)",
       "fPublished": 22.5,
-      "fModel": 22.4962175,
-      "fRelativeDifference": 0.00016811111111110223,
+      "fModel": 20.9118025,
+      "fRelativeDifference": 0.07058655555555554,
       "fTolerance": 0.2,
       "bAgrees": true,
-      "bTuned": true,
+      "bTuned": false,
       "sSource": "Stark+2024 Fig. 4",
-      "sNote": "Fig. 4 is sampling only, at A_G = 0.2 and fixed exozodi, i.e. around the calibrated 22.5; its mean is therefore tuned. It was previously compared against the albedo-drawn yield, the wrong quantity."
+      "sNote": "Fig. 4 is sampling only, at A_G = 0.2 and fixed exozodi, i.e. around the 6 m planning yield, which is tuned only when the throughput factor is fitted. It was previously compared against the albedo-drawn yield, the wrong quantity."
     },
     {
       "sName": "Sampling distribution sigma (Fig. 4)",
       "fPublished": 5.0,
-      "fModel": 4.736813347884182,
-      "fRelativeDifference": 0.052637330423163674,
+      "fModel": 4.567233703347547,
+      "fRelativeDifference": 0.08655325933049056,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -179,8 +168,8 @@
     {
       "sName": "Albedo penalty on expected yield",
       "fPublished": 0.12,
-      "fModel": 0.08434861249029912,
-      "fRelativeDifference": 0.29709489591417393,
+      "fModel": 0.08635317019156152,
+      "fRelativeDifference": 0.28039024840365395,
       "fTolerance": 0.5,
       "bAgrees": true,
       "bTuned": false,
@@ -190,8 +179,8 @@
     {
       "sName": "P25 including sigma_eta, 6 m",
       "fPublished": 0.32,
-      "fModel": 0.3572222222222222,
-      "fRelativeDifference": 0.1163194444444444,
+      "fModel": 0.3215277777777778,
+      "fRelativeDifference": 0.004774305555555608,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -201,8 +190,8 @@
     {
       "sName": "Yield-aperture exponent",
       "fPublished": 1.9,
-      "fModel": 1.7624597488470133,
-      "fRelativeDifference": 0.07238960586999296,
+      "fModel": 1.8022874831356774,
+      "fRelativeDifference": 0.05142764045490657,
       "fTolerance": 0.15,
       "bAgrees": true,
       "bTuned": false,
@@ -212,8 +201,8 @@
     {
       "sName": "Exozodi-sampling penalty on expected yield",
       "fPublished": 0.111,
-      "fModel": 0.11240502334424507,
-      "fRelativeDifference": 0.012657867966171786,
+      "fModel": 0.12170600870950465,
+      "fRelativeDifference": 0.09645052891445632,
       "fTolerance": 0.5,
       "bAgrees": true,
       "bTuned": false,
@@ -223,8 +212,8 @@
     {
       "sName": "P25 excluding sigma_eta, 6 m",
       "fPublished": 0.06,
-      "fModel": 0.07777777777777778,
-      "fRelativeDifference": 0.2962962962962964,
+      "fModel": 0.03770833333333334,
+      "fRelativeDifference": 0.3715277777777777,
       "fTolerance": 0.5,
       "bAgrees": true,
       "bTuned": false,
@@ -234,8 +223,8 @@
     {
       "sName": "Mean characterization time, first 18 EECs, 6 m (days)",
       "fPublished": 22.0,
-      "fModel": 13.82457326511124,
-      "fRelativeDifference": 0.37161030613130724,
+      "fModel": 14.341403846814805,
+      "fRelativeDifference": 0.3481180069629634,
       "fTolerance": 0.3,
       "bAgrees": false,
       "bTuned": false,
@@ -245,8 +234,8 @@
     {
       "sName": "Mean characterization time, first 18 EECs, 9 m (days)",
       "fPublished": 3.5,
-      "fModel": 1.8494033900023745,
-      "fRelativeDifference": 0.471599031427893,
+      "fModel": 2.052534915106237,
+      "fRelativeDifference": 0.4135614528267894,
       "fTolerance": 0.3,
       "bAgrees": false,
       "bTuned": false,
@@ -256,10 +245,10 @@
     {
       "sName": "Characterization-time ratio 6 m / 9 m",
       "fPublished": 6.2,
-      "fModel": 7.475152981683185,
-      "fRelativeDifference": 0.2056698357553524,
+      "fModel": 6.9871668156604825,
+      "fRelativeDifference": 0.12696238962265843,
       "fTolerance": 0.2,
-      "bAgrees": false,
+      "bAgrees": true,
       "bTuned": false,
       "sSource": "Stark+2024 Sec. 4.1",
       "sNote": ""
@@ -267,8 +256,8 @@
     {
       "sName": "P25 including sigma_eta at 6 m",
       "fPublished": 0.32,
-      "fModel": 0.35847222222222225,
-      "fRelativeDifference": 0.1202256944444445,
+      "fModel": 0.3203472222222222,
+      "fRelativeDifference": 0.0010850694444444406,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -278,8 +267,8 @@
     {
       "sName": "P25 including sigma_eta at 7 m",
       "fPublished": 0.53,
-      "fModel": 0.5383333333333333,
-      "fRelativeDifference": 0.015723270440251517,
+      "fModel": 0.4884722222222222,
+      "fRelativeDifference": 0.07835429769392042,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -289,8 +278,8 @@
     {
       "sName": "P25 including sigma_eta at 8 m",
       "fPublished": 0.67,
-      "fModel": 0.6686111111111112,
-      "fRelativeDifference": 0.002072968490878931,
+      "fModel": 0.6304861111111111,
+      "fRelativeDifference": 0.058975953565505904,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -300,8 +289,8 @@
     {
       "sName": "P25 including sigma_eta at 9 m",
       "fPublished": 0.78,
-      "fModel": 0.7665277777777778,
-      "fRelativeDifference": 0.017272079772079767,
+      "fModel": 0.7284722222222222,
+      "fRelativeDifference": 0.06606125356125364,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -311,8 +300,8 @@
     {
       "sName": "Fixed-eta yield mean (Fig. 10 red)",
       "fPublished": 17.347085112793607,
-      "fModel": 18.298333718092042,
-      "fRelativeDifference": 0.054836221711789604,
+      "fModel": 16.806844687474086,
+      "fRelativeDifference": 0.031143008857499023,
       "fTolerance": 0.1,
       "bAgrees": true,
       "bTuned": false,
@@ -322,8 +311,8 @@
     {
       "sName": "Realized-yield distribution median",
       "fPublished": 18.0,
-      "fModel": 19.0,
-      "fRelativeDifference": 0.05555555555555555,
+      "fModel": 18.0,
+      "fRelativeDifference": 0.0,
       "fTolerance": 0.15,
       "bAgrees": true,
       "bTuned": false,
@@ -333,8 +322,8 @@
     {
       "sName": "Realized-yield fraction below 12 EECs",
       "fPublished": 0.2906507959397014,
-      "fModel": 0.246875,
-      "fRelativeDifference": 0.15061302618549557,
+      "fModel": 0.2825,
+      "fRelativeDifference": 0.028043260343909006,
       "fTolerance": 0.35,
       "bAgrees": true,
       "bTuned": false,
@@ -344,8 +333,8 @@
     {
       "sName": "Realized-yield distribution mean",
       "fPublished": 21.0,
-      "fModel": 22.472083333333334,
-      "fRelativeDifference": 0.07009920634920637,
+      "fModel": 21.040069444444445,
+      "fRelativeDifference": 0.0019080687830687957,
       "fTolerance": 0.3,
       "bAgrees": true,
       "bTuned": false,
@@ -355,10 +344,10 @@
     {
       "sName": "Realized-yield distribution mode",
       "fPublished": 10.0,
-      "fModel": 14.0,
-      "fRelativeDifference": 0.4,
+      "fModel": 12.0,
+      "fRelativeDifference": 0.2,
       "fTolerance": 0.25,
-      "bAgrees": false,
+      "bAgrees": true,
       "bTuned": false,
       "sSource": "Stark+2024 Fig. 10 (digitized from the PDF content stream)",
       "sNote": "Peak of a 3-bin running mean, same estimator for both. Stark's curve rests on 498 runs x 1000 planet draws, so its peak is well determined; the tolerance reflects its flat top, not sampling noise."
@@ -366,8 +355,8 @@
     {
       "sName": "Maximum luminosity among reachable targets",
       "fPublished": 20.0,
-      "fModel": 15.336415462166798,
-      "fRelativeDifference": 0.2331792268916601,
+      "fModel": 12.4989933115188,
+      "fRelativeDifference": 0.37505033442406,
       "fTolerance": 0.6,
       "bAgrees": true,
       "bTuned": false,
@@ -377,8 +366,8 @@
     {
       "sName": "Maximum distance among reachable targets",
       "fPublished": 25.0,
-      "fModel": 23.72869682312012,
-      "fRelativeDifference": 0.05085212707519517,
+      "fModel": 22.01656723022461,
+      "fRelativeDifference": 0.11933731079101563,
       "fTolerance": 0.6,
       "bAgrees": true,
       "bTuned": false,
@@ -386,13 +375,11 @@
       "sNote": ""
     }
   ],
-  "iChecks": 35,
-  "iIndependent": 23,
-  "iIndependentAgreeing": 19,
+  "iChecks": 34,
+  "iIndependent": 24,
+  "iIndependentAgreeing": 22,
   "listDisagreeing": [
     "Mean characterization time, first 18 EECs, 6 m (days)",
-    "Mean characterization time, first 18 EECs, 9 m (days)",
-    "Characterization-time ratio 6 m / 9 m",
-    "Realized-yield distribution mode"
+    "Mean characterization time, first 18 EECs, 9 m (days)"
   ]
 }

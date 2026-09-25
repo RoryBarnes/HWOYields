@@ -2,8 +2,134 @@
 
 **For:** the next agent picking this up
 **Repo:** `/workspace/yields`, vaibify project `hwoYieldRederivation`
-**State at handoff:** commit `5023b17` plus uncommitted 2026-09-23/24 work; 19 of 23 independent published checks agree
+**State at handoff:** commit `4b0617b` plus uncommitted 2026-09-24 evening work (below); κ REMOVED; 22 of 24 independent published checks agree
 **Sessions:** 2026-09-21 through 2026-09-24
+
+---
+
+## 0. Read first: state at the end of 2026-09-24 (supersedes §2–§4 where they conflict)
+
+**Memory backup.** `~/.claude` is NOT on the persistent disk; a copy of the agent memory is in
+`/workspace/.claudeMemoryBackup/`. If `~/.claude/projects/-workspace-yields/memory/` is empty
+after a restart, copy it back.
+
+**Term-by-term ETC comparison** (`explorations/compareEtcBenchmarkTermByTerm.py`). Stark+2025's ETC
+benchmark is the USORT telescope (7.87/6.5 m, vortex coronagraph), NOT the 6 m EAC. Given the same
+inputs the model's code reproduces AYO's per-observation times to 0.94–1.02 — the equations are
+right. Form differences found: zodi latitude, noise floor, cap-with-overheads (all fixed, below);
+leak normalization and T_sky shape (tested, rejected below); no binary stray-light term (not
+implemented; ~10% of background for HIP 77052).
+
+**Adopted in A02 (researcher-approved):** `sZodiModel "stark2014"` (Leinert ×0.69×f135(β); matches
+AYO zodi 0.93–1.01), `sNoiseFloorModel "denominator"` (Δmag 26.5 floor as CR_nf in the
+exposure-time equation), `bTimeLimitIncludesOverheads` (two-month limits include overheads).
+
+**κ removed (researcher's decision).** No Stark paper has a throughput calibration; κ let every
+near-uniform lever hide (`explorations/measureLeverTimeMultipliers.py`: at refitted κ each tested
+lever changes per-planet times by a flat ~1.0 ± 0.05). A03 now adopts 1 and records the fitted
+value (1.195) as a diagnostic only; `--fit-throughput` restores the old behaviour. A09 drops the
+tuned "Calibrated 6 m yield" check when κ is not fitted.
+
+**Run B (κ = 1) vs run A (κ fitted), only κ differs** (`explorations/compareKappaFittedVsUnity.py`;
+run A snapshot in `explorations/output/runA_kappaFitted/`; current step outputs are run B):
+planning yield 20.9 (−7%); realized median 18 (Stark 18), mean 21.04 (21.0), P(<12) 0.28 (0.29),
+P25 6 m 0.32 (0.32), Fig. 10 red 16.8 (17.35), mode 12 (10); 22/24 independent checks agree.
+Still failing: first-18 characterization time 14.3 d (22) and 2.05 d at 9 m (3.5); Fig. 11 hard
+zeros beyond 15 pc and above 2 L☉. Yield ratio (deliverable) 0.239 (was 0.242).
+
+**Levers #1/#2 rejected** (`explorations/whatIfLeakAndSkyThroughput.py`): leak ×1.78 (Stark 2019
+Eq. 4 PSF_peak·Ω), PSF-convolved T_sky, AYO-vortex-shaped T_sky — library options
+`sLeakNormalization`/`fLeakFactor`, `bSkyThroughputConvolved`, `dictSkyThroughputShape`, all off.
+After refitting κ none moved char times, target mix or fixed-η level.
+
+**Done 2026-09-24 evening: the κ degeneracy is closed.** All 56 design points evaluated
+(`explorations/runCalibrationDegeneracyDesign.py`, then `fitCalibrationDegeneracy.py`,
+`plotCalibrationDegeneracyCorner.py`, `summariseCalibrationDegeneracy.py`; outputs
+`output/calibrationDegeneracy{,Summary}.json`, `calibrationDegeneracyCorner.pdf`). **No point in
+the (κ, κ_c, f_leak, s_sky) box reaches Stark's first-18 characterization time**: over the 56
+directly evaluated points it spans 3.1–16.9 d against his 22 d, and the Fig. 11 10–15 pc median
+completeness spans 0.00–0.64 against his 0.73. Constrained on the yield alone the posterior gives
+κ 1.47, κ_c 1.05, corr(ln κ, ln κ_c) −0.81 and a 6 m char time of 9.8 d [6.5, 12.7] — 2.2× too
+fast; constrained on everything, nothing is reached and the yield falls to 16.4. Sensitivity
+Sharpest form, free of emulator and prior bound: **of the 20
+points (of 56) that reproduce the 22.5 yield to 10%, the first-18 char time spans only 7.0–11.6 d
+against Stark's 22**, and 0.79–1.49 d at 9 m against 3.5 — no overlap. Characterization time can
+be bought (the all-constraints posterior drives κ_c onto its 0.4 prior floor doing it) but only
+by surrendering the yield. Sensitivity
+singular values 31.7 / 2.31 / 1.50 / 0.90: the published observables constrain one parameter
+combination, the κ/κ_c anticorrelation. Emulator leave-one-out RMS is 0.010–0.049 in ln against
+0.10 tolerances, so this is not surrogate error. **Throughput-shaped levers are exhausted for the
+characterization-time problem.**
+
+**Done 2026-09-24 evening: the three one-variable experiments** (`explorations/
+runOneVariableExperiments.py`, `summariseOneVariableExperiments.py`, outputs under
+`output/oneVariableExperiments/`). Each changes ONE setting adopted because it matched a published
+number, with every other setting, input and seed fixed and κ held at 1; unaffected stages reuse
+the baseline step outputs. **The deliverable is robust:** yield ratio 0.2386 → 0.2316 (albedo,
+−2.9%), 0.2363 (η, −1.0%), 0.2299 (T_sky, −3.6%), all far inside the 90% interval.
+- *albedo* — Stark's per-visit method fits his level (17.75 vs 17.35) and Fig. 10 shape slightly
+  better, but its albedo penalty is 3.5% against his reported 12%; "recompute" (8.6%) stays.
+- *η interval* — the paper's stated 86% reading costs 1% on the ratio but wrecks the Fig. 10
+  agreement (TV 0.038 → 0.132, mode 11 → 16, P(<12) 0.28 → 0.22). The adopted 68% reading moves
+  the SHAPE, not the answer: report it as a stated limitation.
+- *T_sky* — strongly load-bearing (planning yield −19%, level −16%, 20 fewer stars) and sourced
+  from Stark 2019 Eqs. 5–6 rather than fitted; the best-justified of the three.
+
+**The EEC yield peak (2026-09-25, `explorations/plotYieldPeakComparison.py`, figure
+`output/oneVariableExperiments/figures/figYieldPeakComparison.pdf`, per-variant A07 figures
+alongside it).** Build the PMF as the EXACT Poisson mixture over `faExpected_canonical`
+(`yieldlib.yielddistribution`), not as a histogram of the 14400 realized draws: the histogram's
+argmax bootstraps to [10, 16], the exact mixture's to [11, 12]. **Adopted model peaks at 11
+against Stark's 10**, with mean 21.08 vs 21.0, median 18 vs 18, plateau 8–16 vs 8–14. A level scan
+(shape held fixed, expected yields scaled) moves the peak one bin per ~5–10% of level — 0.85–0.90
+gives peak 10, 1.05 gives 12 — so one bin is the resolution of this statistic and the peak should
+now be reported as reproduced, not as an open discrepancy. The variants do not help: albedo
+per-visit 12, η-86% 15, constant T_sky 9 (nominally closest, but only by dropping the level 16%).
+
+**Combining the variants (2026-09-25).** Asked whether all three together would be the most
+honest model, the answer is no, and the run shows it. Two variants move TOWARD the papers
+(per-visit albedo, 86% η interval); constant T_sky moves AWAY, because T_sky(r) is Stark 2019
+Eqs. 5–6, sourced physics. So `paperFaithful` (both paper-ward changes, T_sky(r) kept) and
+`allThreeCombined` (plus T_sky(r) removed) were both run. **Following every documented Stark
+choice at once makes agreement with his own Fig. 10 markedly worse**: peak 11 → 15 against his 10,
+shape distance 0.038 → 0.128. `allThreeCombined` peaks at 12 — nearer his 10 in POSITION — but its
+peak height is 0.051 against his 0.037 and its shape distance 0.149 is the worst of the six, so
+peak position alone misleads; always quote the shape distance with it. Deliverable holds
+throughout: worst case 0.2201, −7.7%, inside the 90% interval.
+
+**Consequence worth putting in the report:** Stark's stated 86% η⊕ interval, pushed through his own
+described method, does not reproduce his own Fig. 10. The adopted 68% reading therefore follows
+his FIGURE against his TEXT — a finding about the paper rather than a fudge in this model, and a
+stronger statement than the earlier "adopted to match the width" framing.
+
+**The eta_Earth law, settled as far as published information allows (2026-09-25).** Stark's text
+really does say "mean and 86% confidence interval eta = 0.26 +0.29/-0.14" (verified in the e-print
+source; "86% confidence" occurs exactly once in the paper and he speaks in standard deviations
+elsewhere). A06 anchors 0.26 at the GEOMETRIC CENTRE of [0.12, 0.55], i.e. treats it as the
+MEDIAN, so the pipeline departs from his text in TWO places, not one. His actual law is a uniform
+mixture of Bryson's two cases, not a lognormal, so his three stated facts are not inconsistent for
+him even though no lognormal can hold them at once. A06 now has
+`--eta-law {lognormal,brysonMixture}` (default lognormal, verified bit-identical) implementing his
+own construction. **It does not rescue the peak: 7 against his 10, shape distance 0.173, the worst
+of every variant.** The three laws bracket him — Bryson mixture 7, lognormal-68% 11, lognormal-86%
+15, published 10 — and the adopted 68% lognormal is much the closest. Likely cause of the failure:
+Bryson's published figure is for his own radius/Teff selection, Stark recomputed from the chains
+for a different one, so rescaling fixes the mean but not the shape; the transferred mixture puts
+59% of its mass in his quoted interval, matching neither reading. **Keep the 68% lognormal, show
+all three in the report, ask Stark.** Deliverable robust throughout: 0.2201–0.2386 across all six
+variants.
+
+**Still unaudited:** aperture fill factor 0.785 is unsourced and now sets the absolute scale.
+
+**Environment.** Container CPU is capped by cgroup (`/sys/fs/cgroup/cpu.max`), which `nproc`
+ignores — read the cgroup and size `--workers` from it. Raised to **8 CPUs** on the evening of
+2026-09-24 (`800000 100000`, `nproc` still says 9); process pools now genuinely parallelise.
+Disk `/workspace` is back to 81% (18 GB free). **`pip install`s do not survive a container
+restart** — `emcee` and `pytest` were gone after the 2026-09-24 restart and were reinstalled for
+that session only; `EXOSIMS>=3.6.5` is still absent. They belong in `pythonPackages` in the
+host's `vaibify.yml`. The
+first `vaibify-do run-from-step` dispatch can hang silently: check `get-pipeline-state`
+`bRunning` within a minute, kill the client by PID and rerun.
 
 ---
 

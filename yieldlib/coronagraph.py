@@ -156,3 +156,49 @@ def faRawContrastTable(faSeparationLamD, dictTable, fContrastFloor=F_DEFAULT_CON
                          np.log10(np.maximum(faSep, 1e-6) / fInner), faLog)
     faOut = np.maximum(10.0 ** faLog, fContrastFloor)
     return np.where(faSep <= dictTable["fOuterEdgeLamD"], faOut, 1.0)
+
+
+def fnAiryPeakOmegaOverCore(fApertureRadiusLamD):
+    """PSF_peak * Omega / Upsilon_c for an Airy core: the leak factor the model's form omits.
+
+    Stark et al. (2019) Eq. 4 writes leaked starlight as zeta * PSF_peak * Omega (their
+    I/theta^2 replaces Stark 2014's "zeta PSF_peak"), with zeta the raw contrast relative to the
+    off-axis PSF peak. Writing it as zeta * Upsilon_c instead assumes the core is flat across the
+    photometric aperture. For an Airy pattern the peak is pi/4 of the total per (lambda/D)^2, so
+    the ratio is (pi/4)(pi X^2) / EE(X) = 1.78 at X = 0.7. A distorted PSF near the inner working
+    angle has a flatter core and a smaller ratio, so this is an upper bound for the DMVC6.
+    """
+    fPeakOmega = (np.pi / 4.0) * np.pi * float(fApertureRadiusLamD) ** 2
+    return fPeakOmega / fnAiryEncircledEnergy(fApertureRadiusLamD)
+
+
+def faAiryKernel(fStepLamD, fRadiusLamD):
+    """Unit-sum 2-D Airy PSF sampled on a square grid, separations in lambda/D."""
+    from scipy.special import j1
+    faX = np.arange(-fRadiusLamD, fRadiusLamD + 0.5 * fStepLamD, fStepLamD)
+    faR = np.hypot(*np.meshgrid(faX, faX))
+    faU = np.pi * np.maximum(faR, 1e-9)
+    faK = (2.0 * j1(faU) / faU) ** 2
+    return faK / faK.sum()
+
+
+def fdictConvolvedSkyThroughput(faSepCirc, faTotal, fCircumscribedRatio, fStepLamD=0.1,
+                                fKernelLamD=12.0):
+    """Radial T_sky(r) = (T_total convolved with the PSF)(r), separations in circumscribed lambda/D.
+
+    Stark et al. (2019) obtain T_sky "by first convolving the spatially-dependent PSF at all
+    locations with a normalized uniform background". A uniform background at sky position s
+    passes the coronagraph with total transmission T_total(s) and lands spread by the PSF, so the
+    light reaching position r is (T_total * PSF)(r). The PSF is the Airy pattern of the Lyot pupil,
+    whose diameter is the inscribed one, so the kernel is built in inscribed lambda/D and the
+    result returned on the circumscribed grid of the published curves.
+    """
+    from scipy.signal import fftconvolve
+    fOuter = float(faSepCirc[-1]) / fCircumscribedRatio + fKernelLamD
+    faX = np.arange(-fOuter, fOuter + 0.5 * fStepLamD, fStepLamD)
+    faRCirc = np.hypot(*np.meshgrid(faX, faX)) * fCircumscribedRatio
+    faMap = np.interp(faRCirc, faSepCirc, faTotal, right=0.0)
+    faConv = fftconvolve(faMap, faAiryKernel(fStepLamD, fKernelLamD), mode="same")
+    iMid = faX.size // 2
+    faOutSep = faX[iMid:] * fCircumscribedRatio
+    return {"faSeparation": faOutSep, "faSkyThroughput": faConv[iMid, iMid:]}

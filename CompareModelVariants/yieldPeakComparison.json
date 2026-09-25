@@ -1,0 +1,120 @@
+{
+ "baseline": {
+  "iMode": 11,
+  "iModeP05": 11,
+  "iModeP95": 12,
+  "iaPlateau": [
+   8,
+   16
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "albedoPerVisit": {
+  "iMode": 12,
+  "iModeP05": 12,
+  "iModeP95": 12,
+  "iaPlateau": [
+   8,
+   16
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "etaInterval86": {
+  "iMode": 15,
+  "iModeP05": 14,
+  "iModeP95": 15,
+  "iaPlateau": [
+   12,
+   18
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "skyThroughputConstant": {
+  "iMode": 9,
+  "iModeP05": 9,
+  "iModeP95": 9,
+  "iaPlateau": [
+   7,
+   13
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "paperFaithful": {
+  "iMode": 15,
+  "iModeP05": 15,
+  "iModeP95": 16,
+  "iaPlateau": [
+   12,
+   19
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "allThreeCombined": {
+  "iMode": 12,
+  "iModeP05": 12,
+  "iModeP95": 13,
+  "iaPlateau": [
+   10,
+   16
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "brysonMixtureEta": {
+  "iMode": 7,
+  "iModeP05": 7,
+  "iModeP95": 7,
+  "iaPlateau": [
+   5,
+   11
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "published": {
+  "iMode": 10,
+  "iMedian": 18,
+  "fMeanTruncated": 19.2964248820783,
+  "fP25": 0.29918472753240166,
+  "iaPlateau90": [
+   8,
+   14
+  ]
+ },
+ "listLevelScan": [
+  {
+   "fScale": 0.8,
+   "iMode": 9,
+   "fMeanExpected": 16.861692016042003
+  },
+  {
+   "fScale": 0.85,
+   "iMode": 10,
+   "fMeanExpected": 17.91554776704463
+  },
+  {
+   "fScale": 0.9,
+   "iMode": 10,
+   "fMeanExpected": 18.969403518047258
+  },
+  {
+   "fScale": 0.95,
+   "iMode": 11,
+   "fMeanExpected": 20.023259269049873
+  },
+  {
+   "fScale": 1.0,
+   "iMode": 11,
+   "fMeanExpected": 21.0771150200525
+  },
+  {
+   "fScale": 1.05,
+   "iMode": 12,
+   "fMeanExpected": 22.13097077105513
+  },
+  {
+   "fScale": 1.1,
+   "iMode": 13,
+   "fMeanExpected": 23.184826522057758
+  }
+ ],
+ "sLevelScanModel": "baseline"
+}

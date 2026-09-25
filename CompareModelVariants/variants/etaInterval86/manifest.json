@@ -1,0 +1,11 @@
+{
+ "sVariant": "etaInterval86",
+ "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%",
+ "dictMissionOverrides": {},
+ "fEtaIntervalZ": 1.4758,
+ "listStagesRerun": [
+  "occurrence",
+  "prediction"
+ ],
+ "sMissionParameters": "/workspace/yields/modelCoronagraph/missionParameters.json"
+}

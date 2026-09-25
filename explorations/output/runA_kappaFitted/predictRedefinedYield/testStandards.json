@@ -1,0 +1,540 @@
+{
+  "sStep": "predictRedefinedYield",
+  "dictFiles": {
+    "yieldPrediction.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictByBox",
+        "dictYieldRatio",
+        "fEtaFixed",
+        "fYieldGoal",
+        "iExozodiDraws"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fMeanExpected"
+          ],
+          "oValue": 22.516286500493774
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fMedianExpected"
+          ],
+          "oValue": 19.34020457279813
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fP16Expected"
+          ],
+          "oValue": 9.72840372217818
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fP84Expected"
+          ],
+          "oValue": 35.3133606273116
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fP05Expected"
+          ],
+          "oValue": 5.911583455616448
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fP95Expected"
+          ],
+          "oValue": 51.59663733274789
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fProbabilityAtLeastGoal"
+          ],
+          "oValue": 0.3572222222222222
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistribution",
+            "fProbabilityAtLeastOne"
+          ],
+          "oValue": 0.9989583333333333
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "fEtaFixed"
+          ],
+          "oValue": 0.24
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistributionFixedEta",
+            "fMeanExpected"
+          ],
+          "oValue": 18.35315730531719
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistributionFixedEta",
+            "fMedianExpected"
+          ],
+          "oValue": 18.399016892329204
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistributionFixedEta",
+            "fP16Expected"
+          ],
+          "oValue": 17.790569700012316
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistributionFixedEta",
+            "fP84Expected"
+          ],
+          "oValue": 18.909054760792216
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistributionFixedEta",
+            "fP05Expected"
+          ],
+          "oValue": 17.294846472981927
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistributionFixedEta",
+            "fP95Expected"
+          ],
+          "oValue": 19.215509854533188
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistributionFixedEta",
+            "fProbabilityAtLeastGoal"
+          ],
+          "oValue": 0.07777777777777778
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "dictDistributionFixedEta",
+            "fProbabilityAtLeastOne"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "fEtaMedian"
+          ],
+          "oValue": 0.25505412554383095
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fMeanExpected"
+          ],
+          "oValue": 6.03634727461641
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fMedianExpected"
+          ],
+          "oValue": 4.638289361722983
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fP16Expected"
+          ],
+          "oValue": 2.2078001218259358
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fP84Expected"
+          ],
+          "oValue": 9.663579696638191
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fP05Expected"
+          ],
+          "oValue": 1.3190404532119937
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fP95Expected"
+          ],
+          "oValue": 15.50160564185956
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fProbabilityAtLeastGoal"
+          ],
+          "oValue": 0.011944444444444445
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistribution",
+            "fProbabilityAtLeastOne"
+          ],
+          "oValue": 0.9434722222222223
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "fEtaFixed"
+          ],
+          "oValue": 0.04896806677916765
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistributionFixedEta",
+            "fMeanExpected"
+          ],
+          "oValue": 4.386264302501219
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistributionFixedEta",
+            "fMedianExpected"
+          ],
+          "oValue": 4.3847127667297165
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistributionFixedEta",
+            "fP16Expected"
+          ],
+          "oValue": 4.215530851176678
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistributionFixedEta",
+            "fP84Expected"
+          ],
+          "oValue": 4.55659567076167
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistributionFixedEta",
+            "fP05Expected"
+          ],
+          "oValue": 4.129390269178572
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistributionFixedEta",
+            "fP95Expected"
+          ],
+          "oValue": 4.630886028412319
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistributionFixedEta",
+            "fProbabilityAtLeastGoal"
+          ],
+          "oValue": 0.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "dictDistributionFixedEta",
+            "fProbabilityAtLeastOne"
+          ],
+          "oValue": 0.9874305555555556
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "fEtaMedian"
+          ],
+          "oValue": 0.052039614383052185
+        },
+        {
+          "saPath": [
+            "fYieldGoal"
+          ],
+          "oValue": 25.0
+        },
+        {
+          "saPath": [
+            "iExozodiDraws"
+          ],
+          "oValue": 200.0
+        },
+        {
+          "saPath": [
+            "fEtaFixed"
+          ],
+          "oValue": 0.24
+        },
+        {
+          "saPath": [
+            "dictYieldRatio",
+            "fMedian"
+          ],
+          "oValue": 0.24469980827207488
+        },
+        {
+          "saPath": [
+            "dictYieldRatio",
+            "fP16"
+          ],
+          "oValue": 0.2196992747494758
+        },
+        {
+          "saPath": [
+            "dictYieldRatio",
+            "fP84"
+          ],
+          "oValue": 0.27950634983522626
+        },
+        {
+          "saPath": [
+            "dictYieldRatio",
+            "fOccurrenceRatioMedian"
+          ],
+          "oValue": 0.20419311247330102
+        }
+      ],
+      "iBytes": 7679
+    },
+    "yieldSamples.npz": {
+      "sKind": "npz",
+      "saArrays": [
+        "faEtaGrid",
+        "faExpectedFixedEta_canonical",
+        "faExpectedFixedEta_redefined",
+        "faExpected_canonical",
+        "faExpected_redefined",
+        "faObservedFixedEta_canonical",
+        "faObservedFixedEta_redefined",
+        "faObserved_canonical",
+        "faObserved_redefined",
+        "faYieldGridByDraw_canonical",
+        "faYieldGridByDraw_redefined",
+        "iaDraw"
+      ],
+      "dictArrayMeta": {
+        "faEtaGrid": {
+          "listShape": [
+            24
+          ],
+          "sDtype": "float64"
+        },
+        "iaDraw": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "int64"
+        },
+        "faExpected_canonical": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faObserved_canonical": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "int64"
+        },
+        "faExpectedFixedEta_canonical": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faObservedFixedEta_canonical": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "int64"
+        },
+        "faYieldGridByDraw_canonical": {
+          "listShape": [
+            200,
+            24
+          ],
+          "sDtype": "float64"
+        },
+        "faExpected_redefined": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faObserved_redefined": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "int64"
+        },
+        "faExpectedFixedEta_redefined": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "float64"
+        },
+        "faObservedFixedEta_redefined": {
+          "listShape": [
+            14400
+          ],
+          "sDtype": "int64"
+        },
+        "faYieldGridByDraw_redefined": {
+          "listShape": [
+            200,
+            24
+          ],
+          "sDtype": "float64"
+        }
+      },
+      "dictArrayStats": {
+        "faEtaGrid": {
+          "fMean": 0.21760384028484822,
+          "fMin": 0.003000000000000001,
+          "fMax": 1.2
+        },
+        "iaDraw": {
+          "fMean": 99.5,
+          "fMin": 0.0,
+          "fMax": 199.0
+        },
+        "faExpected_canonical": {
+          "fMean": 22.516286500493774,
+          "fMin": 1.2304908648000994,
+          "fMax": 69.54519327657786
+        },
+        "faObserved_canonical": {
+          "fMean": 22.472083333333334,
+          "fMin": 0.0,
+          "fMax": 89.0
+        },
+        "faExpectedFixedEta_canonical": {
+          "fMean": 18.35315730531719,
+          "fMin": 16.63764166158866,
+          "fMax": 19.58901437910656
+        },
+        "faObservedFixedEta_canonical": {
+          "fMean": 18.340694444444445,
+          "fMin": 5.0,
+          "fMax": 38.0
+        },
+        "faYieldGridByDraw_canonical": {
+          "fMean": 14.012472681742587,
+          "fMin": 0.22222977702412397,
+          "fMax": 69.54519327657786
+        },
+        "faExpected_redefined": {
+          "fMean": 6.03634727461641,
+          "fMin": 0.2556990267408602,
+          "fMax": 61.1130239630332
+        },
+        "faObserved_redefined": {
+          "fMean": 6.003263888888889,
+          "fMin": 0.0,
+          "fMax": 58.0
+        },
+        "faExpectedFixedEta_redefined": {
+          "fMean": 4.386264302501219,
+          "fMin": 3.897151033184137,
+          "fMax": 4.716330761064268
+        },
+        "faObservedFixedEta_redefined": {
+          "fMean": 4.396111111111111,
+          "fMin": 0.0,
+          "fMax": 16.0
+        },
+        "faYieldGridByDraw_redefined": {
+          "fMean": 14.990087699929115,
+          "fMin": 0.238436181268569,
+          "fMax": 75.17433473200886
+        }
+      },
+      "iBytes": 422678
+    }
+  }
+}

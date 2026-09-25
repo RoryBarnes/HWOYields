@@ -1,0 +1,51 @@
+{
+  "sStep": "testOccurrenceIntervalReading",
+  "dictFiles": {
+    "etaIntervalConfidenceLevel.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "fImpliedConfidencePercent",
+        "fMassInQuotedInterval",
+        "fMean",
+        "fMedian",
+        "faInterval68",
+        "faInterval86",
+        "iSamplesPerCase",
+        "sSource"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "fMean"
+          ],
+          "oValue": 0.26000000000000006
+        },
+        {
+          "saPath": [
+            "fMedian"
+          ],
+          "oValue": 0.18327079239715288
+        },
+        {
+          "saPath": [
+            "fMassInQuotedInterval"
+          ],
+          "oValue": 0.59380625
+        },
+        {
+          "saPath": [
+            "fImpliedConfidencePercent"
+          ],
+          "oValue": 59.380624999999995
+        },
+        {
+          "saPath": [
+            "iSamplesPerCase"
+          ],
+          "oValue": 400000.0
+        }
+      ],
+      "iBytes": 470
+    }
+  }
+}

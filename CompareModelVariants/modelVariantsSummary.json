@@ -1,0 +1,253 @@
+{
+ "dictBaseline": {
+  "iYieldMode": 11,
+  "iYieldMedian": 18,
+  "fYieldMean": 21.040069444444445,
+  "fProbBelow12": 0.2825,
+  "fProbAtLeast25": 0.3215277777777778,
+  "fTailAboveFigureAxis": 0.05305555555555554,
+  "fShapeDistanceToFig10": 0.03833754525889671,
+  "fYieldRatio": 0.23863778227841975,
+  "fYieldRatioP16": 0.21597086614589142,
+  "fYieldRatioP84": 0.26860078452333475,
+  "fOccurrenceRatio": 0.20419311247330102,
+  "fEtaCanonical": 0.25505412554383095,
+  "fEtaRedefined": 0.052039614383052185,
+  "fYieldPlanningFixedExozodi": 20.944399999999998,
+  "fYieldFixedEta": 16.806844687474086,
+  "fExozodiPenalty": 0.12170600870950465,
+  "fAlbedoPenalty": 0.08635317019156152,
+  "iStarsUsed": 155,
+  "bSurveyRerun": true,
+  "bPredictionRerun": true
+ },
+ "dictVariants": {
+  "albedoPerVisit": {
+   "iYieldMode": 11,
+   "iYieldMedian": 19,
+   "fYieldMean": 22.54652777777778,
+   "fProbBelow12": 0.25993055555555555,
+   "fProbAtLeast25": 0.35,
+   "fTailAboveFigureAxis": 0.07291666666666666,
+   "fShapeDistanceToFig10": 0.034210571907494124,
+   "fYieldRatio": 0.23162395278149955,
+   "fYieldRatioP16": 0.21014137363025348,
+   "fYieldRatioP84": 0.2590551508383536,
+   "fOccurrenceRatio": 0.20419311247330102,
+   "fEtaCanonical": 0.25505412554383095,
+   "fEtaRedefined": 0.052039614383052185,
+   "fYieldPlanningFixedExozodi": 20.944399999999998,
+   "fYieldFixedEta": 17.75192813789333,
+   "fExozodiPenalty": 0.12170600870950465,
+   "fAlbedoPenalty": 0.03497692947318942,
+   "iStarsUsed": 155,
+   "bSurveyRerun": true,
+   "bPredictionRerun": true
+  },
+  "etaInterval86": {
+   "iYieldMode": 16,
+   "iYieldMedian": 18,
+   "fYieldMean": 19.459583333333335,
+   "fProbBelow12": 0.21847222222222223,
+   "fProbAtLeast25": 0.25743055555555555,
+   "fTailAboveFigureAxis": 0.011944444444444445,
+   "fShapeDistanceToFig10": 0.1316238459207428,
+   "fYieldRatio": 0.23629707483029377,
+   "fYieldRatioP16": 0.21500303094942408,
+   "fYieldRatioP84": 0.2605143064706367,
+   "fOccurrenceRatio": 0.20334323541972582,
+   "fEtaCanonical": 0.25564927679342464,
+   "fEtaRedefined": 0.05197086281326746,
+   "fYieldPlanningFixedExozodi": 20.944399999999998,
+   "fYieldFixedEta": 16.806844687474086,
+   "fExozodiPenalty": 0.12170600870950465,
+   "fAlbedoPenalty": 0.08635317019156152,
+   "iStarsUsed": 155,
+   "bSurveyRerun": false,
+   "bPredictionRerun": true
+  },
+  "skyThroughputConstant": {
+   "iYieldMode": 9,
+   "iYieldMedian": 15,
+   "fYieldMean": 17.89326388888889,
+   "fProbBelow12": 0.3680555555555556,
+   "fProbAtLeast25": 0.23576388888888888,
+   "fTailAboveFigureAxis": 0.02854166666666667,
+   "fShapeDistanceToFig10": 0.11345752118343996,
+   "fYieldRatio": 0.2299351193791615,
+   "fYieldRatioP16": 0.20864710882026957,
+   "fYieldRatioP84": 0.25691375558332347,
+   "fOccurrenceRatio": 0.20419311247330102,
+   "fEtaCanonical": 0.25505412554383095,
+   "fEtaRedefined": 0.052039614383052185,
+   "fYieldPlanningFixedExozodi": 16.885759999999998,
+   "fYieldFixedEta": 14.05262120856711,
+   "fExozodiPenalty": 0.10256038626693398,
+   "fAlbedoPenalty": 0.07267601703614535,
+   "iStarsUsed": 135,
+   "bSurveyRerun": true,
+   "bPredictionRerun": true
+  },
+  "paperFaithful": {
+   "iYieldMode": 17,
+   "iYieldMedian": 19,
+   "fYieldMean": 20.639583333333334,
+   "fProbBelow12": 0.1920138888888889,
+   "fProbAtLeast25": 0.29618055555555556,
+   "fTailAboveFigureAxis": 0.018819444444444444,
+   "fShapeDistanceToFig10": 0.12815775017764106,
+   "fYieldRatio": 0.22933306856683727,
+   "fYieldRatioP16": 0.20887807897466407,
+   "fYieldRatioP84": 0.25212788463416824,
+   "fOccurrenceRatio": 0.20334323541972582,
+   "fEtaCanonical": 0.25564927679342464,
+   "fEtaRedefined": 0.05197086281326746,
+   "fYieldPlanningFixedExozodi": 20.944399999999998,
+   "fYieldFixedEta": 17.75192813789333,
+   "fExozodiPenalty": 0.12170600870950465,
+   "fAlbedoPenalty": 0.03497692947318942,
+   "iStarsUsed": 155,
+   "bSurveyRerun": true,
+   "bPredictionRerun": true
+  },
+  "allThreeCombined": {
+   "iYieldMode": 15,
+   "iYieldMedian": 16,
+   "fYieldMean": 17.50701388888889,
+   "fProbBelow12": 0.2945138888888889,
+   "fProbAtLeast25": 0.196875,
+   "fTailAboveFigureAxis": 0.008888888888888889,
+   "fShapeDistanceToFig10": 0.14905186422485575,
+   "fYieldRatio": 0.22014576167304906,
+   "fYieldRatioP16": 0.20122355752882454,
+   "fYieldRatioP84": 0.24073666217353298,
+   "fOccurrenceRatio": 0.20334323541972582,
+   "fEtaCanonical": 0.25564927679342464,
+   "fEtaRedefined": 0.05197086281326746,
+   "fYieldPlanningFixedExozodi": 16.885759999999998,
+   "fYieldFixedEta": 14.805794126105608,
+   "fExozodiPenalty": 0.10256038626693398,
+   "fAlbedoPenalty": 0.022974591274629086,
+   "iStarsUsed": 135,
+   "bSurveyRerun": true,
+   "bPredictionRerun": true
+  },
+  "brysonMixtureEta": {
+   "iYieldMode": 8,
+   "iYieldMedian": 13,
+   "fYieldMean": 16.672916666666666,
+   "fProbBelow12": 0.439375,
+   "fProbAtLeast25": 0.2129861111111111,
+   "fTailAboveFigureAxis": 0.034513888888888886,
+   "fShapeDistanceToFig10": 0.172885095228843,
+   "fYieldRatio": 0.23436481634308787,
+   "fYieldRatioP16": 0.2124788560932774,
+   "fYieldRatioP84": 0.26215036169170824,
+   "fOccurrenceRatio": 0.20419311247330102,
+   "fEtaCanonical": 0.18410258761456094,
+   "fEtaRedefined": 0.037733425717943095,
+   "fYieldPlanningFixedExozodi": 20.944399999999998,
+   "fYieldFixedEta": 16.806844687474086,
+   "fExozodiPenalty": 0.12170600870950465,
+   "fAlbedoPenalty": 0.08635317019156152,
+   "iStarsUsed": 155,
+   "bSurveyRerun": false,
+   "bPredictionRerun": true
+  }
+ },
+ "dictManifests": {
+  "albedoPerVisit": {
+   "sVariant": "albedoPerVisit",
+   "sWhy": "Stark 2024 Sec. 3.2 per-visit flux test vs recomputing at the drawn albedo",
+   "dictMissionOverrides": {
+    "sAlbedoMethod": "perVisitThreshold"
+   },
+   "fEtaIntervalZ": null,
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/albedoPerVisit/missionParameters.json"
+  },
+  "etaInterval86": {
+   "sVariant": "etaInterval86",
+   "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%",
+   "dictMissionOverrides": {},
+   "fEtaIntervalZ": 1.4758,
+   "listStagesRerun": [
+    "occurrence",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/modelCoronagraph/missionParameters.json"
+  },
+  "skyThroughputConstant": {
+   "sVariant": "skyThroughputConstant",
+   "sWhy": "constant large-separation T_sky vs the reconstructed T_sky(r)",
+   "dictMissionOverrides": {
+    "bSkyThroughputFollowsCore": false
+   },
+   "fEtaIntervalZ": null,
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/missionParameters.json"
+  },
+  "paperFaithful": {
+   "sVariant": "paperFaithful",
+   "sWhy": "every documented Stark choice followed at once: his per-visit albedo test AND his stated 86% eta interval, with the sourced T_sky(r) of Stark 2019 Eqs. 5-6 KEPT",
+   "dictMissionOverrides": {
+    "sAlbedoMethod": "perVisitThreshold"
+   },
+   "fEtaIntervalZ": 1.4758,
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "occurrence",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/missionParameters.json"
+  },
+  "allThreeCombined": {
+   "sVariant": "allThreeCombined",
+   "sWhy": "all three one-variable changes at once, T_sky(r) removed too -- NOT more faithful, since that removes sourced physics",
+   "dictMissionOverrides": {
+    "sAlbedoMethod": "perVisitThreshold",
+    "bSkyThroughputFollowsCore": false
+   },
+   "fEtaIntervalZ": 1.4758,
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "occurrence",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/missionParameters.json"
+  },
+  "brysonMixtureEta": {
+   "sVariant": "brysonMixtureEta",
+   "sWhy": "Stark's OWN eta construction -- the uniform mixture of Bryson's two cases rescaled to his stated mean 0.26 -- instead of a lognormal fitted to his quoted interval, removing both the 86-vs-68 percent and mean-vs-median readings",
+   "dictMissionOverrides": {},
+   "fEtaIntervalZ": null,
+   "sEtaLaw": "brysonMixture",
+   "listStagesRerun": [
+    "occurrence",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/modelCoronagraph/missionParameters.json"
+  }
+ },
+ "dictPublished": {
+  "fYieldPlanningFixedExozodi": 22.5,
+  "fYieldFixedEta": 17.35,
+  "fExozodiPenalty": 0.111,
+  "fAlbedoPenalty": 0.12,
+  "iYieldMode": 10,
+  "iYieldMedian": 18,
+  "fYieldMean": 21.0,
+  "fProbBelow12": 0.29,
+  "fProbAtLeast25": 0.32
+ }
+}

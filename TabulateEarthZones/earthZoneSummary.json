@@ -5,69 +5,69 @@
   },
   "fEtaRatio": 0.20403361157986522,
   "fZoneWidthRatio": 0.3333333333333333,
-  "fYieldClassicHz": 19.302605887022107,
-  "fYieldEarthZone": 4.629002668567225,
-  "fYieldRatio": 0.23981231838129607,
-  "iStarsObservedClassicHz": 184,
-  "iStarsObservedEarthZone": 171,
-  "fMeanCompletenessObservedClassicHz": 0.4451856779065808,
-  "fMeanCompletenessObservedEarthZone": 0.5407320073835478,
+  "fYieldClassicHz": 17.770929130374167,
+  "fYieldEarthZone": 4.1617520880844125,
+  "fYieldRatio": 0.23418877299843166,
+  "iStarsObservedClassicHz": 180,
+  "iStarsObservedEarthZone": 157,
+  "fMeanCompletenessObservedClassicHz": 0.42124487061653887,
+  "fMeanCompletenessObservedEarthZone": 0.5302686628758178,
   "dictPerStarYieldRatio": {
-    "iStars": 178,
-    "fMedian": 0.24052619737653097,
-    "fP16": 0.20077652057530257,
-    "fP84": 0.3250786573692881
+    "iStars": 158,
+    "fMedian": 0.23153480605262228,
+    "fP16": 0.17978740596434223,
+    "fP84": 0.32155747201978696
   },
-  "fShareOfYieldTop20ClassicHz": 0.23699798367212446,
-  "fShareOfYieldTop20EarthZone": 0.2200546473400802,
+  "fShareOfYieldTop20ClassicHz": 0.2583277170216594,
+  "fShareOfYieldTop20EarthZone": 0.24406786714500756,
   "dictByLuminosity": {
     "L < 0.3": {
       "iStars": 47,
       "iObservedClassicHz": 36,
       "iObservedEarthZone": 33,
-      "fYieldClassicHz": 5.572534048418506,
-      "fYieldEarthZone": 1.1497061353942588,
-      "fYieldRatio": 0.20631657436360523
+      "fYieldClassicHz": 5.567419948945264,
+      "fYieldEarthZone": 1.1216338596417192,
+      "fYieldRatio": 0.20146385038804382
     },
     "0.3-0.6": {
       "iStars": 75,
-      "iObservedClassicHz": 30,
-      "iObservedEarthZone": 26,
-      "fYieldClassicHz": 4.108333155493096,
-      "fYieldEarthZone": 0.9127277607638578,
-      "fYieldRatio": 0.22216498181105013
+      "iObservedClassicHz": 31,
+      "iObservedEarthZone": 25,
+      "fYieldClassicHz": 4.081602585041612,
+      "fYieldEarthZone": 0.8921711088937749,
+      "fYieldRatio": 0.21858353191058635
     },
     "0.6-1": {
       "iStars": 102,
       "iObservedClassicHz": 19,
-      "iObservedEarthZone": 17,
-      "fYieldClassicHz": 1.9484756580240292,
-      "fYieldEarthZone": 0.4396555039453728,
-      "fYieldRatio": 0.2256407474914171
+      "iObservedEarthZone": 15,
+      "fYieldClassicHz": 1.8696941263851978,
+      "fYieldEarthZone": 0.4149346675536297,
+      "fYieldRatio": 0.22192649679862345
     },
     "1-2": {
       "iStars": 294,
       "iObservedClassicHz": 33,
-      "iObservedEarthZone": 30,
-      "fYieldClassicHz": 3.131405445996693,
-      "fYieldEarthZone": 0.7846163196114904,
-      "fYieldRatio": 0.2505636312967947
+      "iObservedEarthZone": 28,
+      "fYieldClassicHz": 2.8953628710830777,
+      "fYieldEarthZone": 0.7185533717225936,
+      "fYieldRatio": 0.2481738572042274
     },
     "2-5": {
       "iStars": 665,
       "iObservedClassicHz": 44,
-      "iObservedEarthZone": 42,
-      "fYieldClassicHz": 3.717392111822675,
-      "fYieldEarthZone": 1.0699134764219203,
-      "fYieldRatio": 0.2878129194440376
+      "iObservedEarthZone": 40,
+      "fYieldClassicHz": 2.9179844980366587,
+      "fYieldEarthZone": 0.8698123354982719,
+      "fYieldRatio": 0.29808668828896034
     },
     "L > 5": {
       "iStars": 317,
-      "iObservedClassicHz": 22,
-      "iObservedEarthZone": 23,
-      "fYieldClassicHz": 0.8244654672671108,
-      "fYieldEarthZone": 0.2723834724303266,
-      "fYieldRatio": 0.3303758413717523
+      "iObservedClassicHz": 17,
+      "iObservedEarthZone": 16,
+      "fYieldClassicHz": 0.4388651008823591,
+      "fYieldEarthZone": 0.1446467447744235,
+      "fYieldRatio": 0.32959272560885877
     }
   },
   "dictByDistance": {
@@ -75,54 +75,54 @@
       "iStars": 15,
       "iObservedClassicHz": 15,
       "iObservedEarthZone": 15,
-      "fYieldClassicHz": 2.9659593030195848,
-      "fYieldEarthZone": 0.6578458016875022,
-      "fYieldRatio": 0.22179866089793016
+      "fYieldClassicHz": 2.9801081777907252,
+      "fYieldEarthZone": 0.6531657577021486,
+      "fYieldRatio": 0.2191751838305302
     },
     "5-10 pc": {
       "iStars": 59,
       "iObservedClassicHz": 59,
       "iObservedEarthZone": 57,
-      "fYieldClassicHz": 9.602424959796421,
-      "fYieldEarthZone": 2.16108857179283,
-      "fYieldRatio": 0.22505654361694138
+      "fYieldClassicHz": 9.40734911913602,
+      "fYieldEarthZone": 2.1127388586035165,
+      "fYieldRatio": 0.22458386861670468
     },
     "10-15 pc": {
       "iStars": 95,
-      "iObservedClassicHz": 65,
-      "iObservedEarthZone": 58,
-      "fYieldClassicHz": 5.156250942478416,
-      "fYieldEarthZone": 1.370559575872675,
-      "fYieldRatio": 0.2658054449176786
+      "iObservedClassicHz": 66,
+      "iObservedEarthZone": 54,
+      "fYieldClassicHz": 4.397748903531275,
+      "fYieldEarthZone": 1.1776993156814797,
+      "fYieldRatio": 0.26779594322354755
     },
     "15-20 pc": {
       "iStars": 133,
-      "iObservedClassicHz": 42,
-      "iObservedEarthZone": 37,
-      "fYieldClassicHz": 1.500856136880648,
-      "fYieldEarthZone": 0.4234090988507231,
-      "fYieldRatio": 0.28211171507132515
+      "iObservedClassicHz": 40,
+      "iObservedEarthZone": 31,
+      "fYieldClassicHz": 0.9689972302715595,
+      "fYieldEarthZone": 0.21769314045503868,
+      "fYieldRatio": 0.22465816583813208
     },
     "> 20 pc": {
       "iStars": 1198,
-      "iObservedClassicHz": 3,
-      "iObservedEarthZone": 4,
-      "fYieldClassicHz": 0.07711454484704076,
-      "fYieldEarthZone": 0.016099620363496714,
-      "fYieldRatio": 0.20877540541062442
+      "iObservedClassicHz": 0,
+      "iObservedEarthZone": 0,
+      "fYieldClassicHz": 0.016725699644589524,
+      "fYieldEarthZone": 0.0004550156422289885,
+      "fYieldRatio": 0.02720458048977211
     }
   },
   "dictAngular": {
     "fIwaInscribedLamD": 2.9312500000000004,
-    "iStarsConsidered": 229,
-    "fEarthZoneMeanFractionOutsideIwa550": 0.9149624300920146,
-    "fEarthZoneFractionFullyOutsideIwa550": 0.8820960698689956,
-    "fEarthZoneMeanFractionOutsideIwa1000": 0.47340216410709307,
-    "fEarthZoneFractionFullyOutsideIwa1000": 0.3537117903930131,
-    "fClassicHzMeanFractionOutsideIwa550": 0.9571965895617265,
-    "fClassicHzFractionFullyOutsideIwa550": 0.8733624454148472,
-    "fClassicHzMeanFractionOutsideIwa1000": 0.6405681851905743,
-    "fClassicHzFractionFullyOutsideIwa1000": 0.3537117903930131
+    "iStarsConsidered": 221,
+    "fEarthZoneMeanFractionOutsideIwa550": 0.9118841470184225,
+    "fEarthZoneFractionFullyOutsideIwa550": 0.8778280542986425,
+    "fEarthZoneMeanFractionOutsideIwa1000": 0.4653994879649149,
+    "fEarthZoneFractionFullyOutsideIwa1000": 0.35294117647058826,
+    "fClassicHzMeanFractionOutsideIwa550": 0.9556471448399789,
+    "fClassicHzFractionFullyOutsideIwa550": 0.8687782805429864,
+    "fClassicHzMeanFractionOutsideIwa1000": 0.6323678781084804,
+    "fClassicHzFractionFullyOutsideIwa1000": 0.35294117647058826
   },
   "iStarsTabulated": 1500
 }

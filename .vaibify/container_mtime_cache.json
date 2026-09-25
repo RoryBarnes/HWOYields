@@ -1,62 +1,206 @@
 {
+  "CalibrationDegeneracy/calibrationDegeneracy.json": {
+    "iMtime": 1790298311,
+    "sSha256": "0ff05444e791c42bbfa8b3790114f25101060655011fc0a7d306b5a498fc8d4f"
+  },
+  "CalibrationDegeneracy/calibrationDegeneracyChains.npz": {
+    "iMtime": 1790298311,
+    "sSha256": "716bfde04deb3783e96e143ae7a43ac152d1048e1928412c329ce93adb9b1c99"
+  },
+  "CalibrationDegeneracy/calibrationDegeneracyDesign.json": {
+    "iMtime": 1790298304,
+    "sSha256": "ed9ed1ae7b5f5e863bc6e1f57c3c47b172d7b8c2b2ca432e648e3696c9362348"
+  },
+  "CalibrationDegeneracy/calibrationDegeneracySummary.json": {
+    "iMtime": 1790298312,
+    "sSha256": "d5d7e1525a4f4362e6a5999576412ad807917064f61104194e3eb3c5576c3ce3"
+  },
+  "CalibrationDegeneracy/reference/figureElevenPublishedBins.json": {
+    "iMtime": 1790298299,
+    "sSha256": "d209273aefa5ba5b21c6d033f31088970467c562a6211afb0ef825b012eebd25"
+  },
+  "CalibrationDegeneracy/reference/skyThroughputConvolutionTest.json": {
+    "iMtime": 1790298266,
+    "sSha256": "b7bcafe7611eeeb83f0c12b8af09fc4facfe09a7ec2f759897a83a9ae83bf126"
+  },
   "CompareApertureScaling/apertureScaling.json": {
-    "iMtime": 1790201836,
-    "sSha256": "dc9b3e10e7338170a40445548302470ae18946c7cd2f1650cdd0889fd809cda9"
+    "iMtime": 1790286150,
+    "sSha256": "3981ab50dfd74b91692832f9935b1ca0813b805dfeb94a357f272181f1381789"
+  },
+  "CompareModelVariants/modelVariantsSummary.json": {
+    "iMtime": 1790298380,
+    "sSha256": "5bf8415f83027a02a0ecec87600118eb52c3ffeb30adfb718d19bd7728b9e7df"
+  },
+  "CompareModelVariants/reference/brysonFigure13EtaEarthDigitised.json": {
+    "iMtime": 1790298457,
+    "sSha256": "5da258333a1e03effa767ab4bba333a47971c86f2faff9c81cecd7c2308cc2ef"
+  },
+  "CompareModelVariants/settingInteractions.json": {
+    "iMtime": 1790298380,
+    "sSha256": "87e6138ab6d9ee6721c33b6e97884a8956dc9c786ee505f787cd5170799aa2c5"
+  },
+  "CompareModelVariants/yieldPeakComparison.json": {
+    "iMtime": 1790298445,
+    "sSha256": "fe6377ebce9f376c227e84efadc010616e5ea1831f0b3c84b9e6f0751f570f33"
+  },
+  "ComparePublishedFigures/publishedComparisonSeries.json": {
+    "iMtime": 1790286205,
+    "sSha256": "821cd175bb8082e39ac9972797cd65964571efa51f579d78df1c6014a212b268"
+  },
+  "ComparePublishedFigures/reference/starkFigure04.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "844a1c3fadb75419c54a2d568f6382e249f3c3bcc2c465aa92fc6d9721e1b75d"
+  },
+  "ComparePublishedFigures/reference/starkFigure07.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "4c860f0c898b407be24a3019dad8f441927a0efbe8772aa58da3c12b98565220"
+  },
+  "ComparePublishedFigures/reference/starkFigure09.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "dc233bd0498291e5aaf0425b6191483f41d72c6300dc6999e3dfbb509cdf171a"
+  },
+  "ComparePublishedFigures/reference/starkFigure10.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "fab2b655e65ce36c1331fba7c9f7142a723007c9cae045448a2ea77594f1754d"
+  },
+  "ComparePublishedFigures/reference/starkFigure11.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "12d87423014dda9f8df9946bc82bdb55ba64b82532e64be518cc6ad137f850b0"
+  },
+  "ComparePublishedFigures/reference/starkFigure12.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "efc8fa5aeb52381d76278cb42cc964c9094c219b77a0ed0f4552a3cac642d4d1"
+  },
+  "ComparePublishedFigures/reference/starkFigure14.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "7544ad066f57e341dc2109c8e2a642d61ad92251e2cacc1240e592b679ca691e"
+  },
+  "ComparePublishedFigures/reference/starkFigure15.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "3016ffad5fc433c1f5296a1bc7e09ee64d633afe7ff9d01283630068ddc20c9f"
+  },
+  "ComparePublishedFigures/reference/starkFigure25.pdf": {
+    "iMtime": 1790217852,
+    "sSha256": "311c75a8d120959fd0882da8a49c3aaeacefeb226a9141db86bf25623c271d6d"
   },
   "CompareTargetCompleteness/reference/starkFigure11.pdf": {
     "iMtime": 1790097512,
     "sSha256": "12d87423014dda9f8df9946bc82bdb55ba64b82532e64be518cc6ad137f850b0"
   },
   "CompareTargetCompleteness/starkFigure11Digitised.json": {
-    "iMtime": 1790201844,
+    "iMtime": 1790286157,
     "sSha256": "5689a989146350f1ea4ddec24e46e3a63dff981734455a7fb14ffb1bbea69e1f"
   },
   "CompareTargetCompleteness/targetCompletenessComparison.json": {
-    "iMtime": 1790201914,
-    "sSha256": "58f2c3beda991e000bf081697e7ccd131af89312e20afc5abc59659f31e37cba"
+    "iMtime": 1790286172,
+    "sSha256": "271b1dee8775c740082406693c74d5640caccbe60775b27896ff18f474832c9f"
   },
   "Plot/figApertureScaling.pdf": {
-    "iMtime": 1790201839,
-    "sSha256": "dc0541086783555d7454ff0e4c0508b78c6e01ab3e007e64c8d574c1bac19a56"
+    "iMtime": 1790286152,
+    "sSha256": "1f5c5404e022bc26f134e4295e3045c7c3c20d2ad289a770bde09fd2c405a16e"
   },
   "Plot/figCalibration.pdf": {
-    "iMtime": 1790191883,
-    "sSha256": "bda1cfe7031d9af7a1bd3db8811ed252bbc30dc8b327d5bb5fa4b88940fd59b3"
+    "iMtime": 1790282338,
+    "sSha256": "99a8707b067b2419608b329b7e7944f13fab47d896ff9054f6669da9171b5cb4"
+  },
+  "Plot/figCalibrationDegeneracyCorner.pdf": {
+    "iMtime": 1790298312,
+    "sSha256": "910efddb91eaddb2a4931b72d51591b0e5d5b18cba713e8b4e94f595ef3e1096"
   },
   "Plot/figCompleteness.pdf": {
-    "iMtime": 1790192239,
-    "sSha256": "2973548b6ffa0c79d4fc3a9c18f80c854540dc7459c2dbf776ece83a21bdd2b1"
+    "iMtime": 1790282833,
+    "sSha256": "97181d1d32a7bb0a33207a0b5be1e28c4c0f42b41d85af45390f56886d5c8d88"
   },
   "Plot/figCoronagraphModel.pdf": {
-    "iMtime": 1790191241,
-    "sSha256": "56962d3ff6e7029daf641d4314a6f673c4cac635ec5896c221b63272e973223a"
+    "iMtime": 1790270709,
+    "sSha256": "2338ff3c7bc2cd7451d09f8bf12ee3e8d043333f45d4ead141f25472c40be5d2"
+  },
+  "Plot/figEarthZones.pdf": {
+    "iMtime": 1790286204,
+    "sSha256": "5dea67e8d902b99706d9cbde3fbd26de3dd1c26992e9ec36ea0a1b1c19780a09"
+  },
+  "Plot/figMatchStarkFig04.pdf": {
+    "iMtime": 1790286207,
+    "sSha256": "e7d23ec0edc5aea77c5582b5dfac4e8ffeacbe0f185d27d65fede94eedde9519"
+  },
+  "Plot/figMatchStarkFig07.pdf": {
+    "iMtime": 1790286207,
+    "sSha256": "78421e8adfb6202377f43ce2c276e7678c960e95c18476cde249996c4baf8117"
+  },
+  "Plot/figMatchStarkFig09.pdf": {
+    "iMtime": 1790286208,
+    "sSha256": "3dd10fab7c74ca6f6b8e9ee255c92c662f0eaab7c9aaa2e76f7f53022f7567b2"
+  },
+  "Plot/figMatchStarkFig10.pdf": {
+    "iMtime": 1790286208,
+    "sSha256": "1b5696746fa8c26aec49118c5398987d45f20941ebd249fff9d625acd5c9e04c"
+  },
+  "Plot/figMatchStarkFig11.pdf": {
+    "iMtime": 1790286208,
+    "sSha256": "33b69b390643ceb549d3e6b1c2c4cf62d7ac8aa370e37660e482890802f857bf"
+  },
+  "Plot/figMatchStarkFig12.pdf": {
+    "iMtime": 1790286208,
+    "sSha256": "076625310cf08561a8e9d3a8f8e7c33ea1ce0d2dfc7a831d3c6c4dffcf659b22"
+  },
+  "Plot/figMatchStarkFig14.pdf": {
+    "iMtime": 1790286208,
+    "sSha256": "9e48a52054e13bf9fd9ae73c58e47c79c367570f1819f0520457662bd0f284ba"
+  },
+  "Plot/figMatchStarkFig15.pdf": {
+    "iMtime": 1790286208,
+    "sSha256": "bbe93fb000ff5885fe623ef24c924a91d9c16c2841108700f09bad4e9f866d54"
+  },
+  "Plot/figMatchStarkFig25.pdf": {
+    "iMtime": 1790286208,
+    "sSha256": "1673659e6568e06609e1de2aead53bcca9de01609ce5e63a8732531b159b1a76"
   },
   "Plot/figOccurrencePosterior.pdf": {
-    "iMtime": 1790200978,
-    "sSha256": "324f2a87692f320261f32368f35f3661cb97bcb7c43d1a3853fc5e7f3ccc1678"
+    "iMtime": 1790282946,
+    "sSha256": "481b421de7fb9ffed532883d190e2bd435686450043f38b13a1e7c33dd6e498d"
   },
   "Plot/figTargetCompleteness.pdf": {
-    "iMtime": 1790201916,
-    "sSha256": "0932455aeebbac920c69c59eb96427276b21d8a9bb596bd0b6d8b60dfc9d0fb9"
+    "iMtime": 1790286175,
+    "sSha256": "f5cfac9b7f3bbab97aa81ba133f24a0216ebdf7bd771a8ac94e55e90707569f8"
   },
   "Plot/figVerification.pdf": {
-    "iMtime": 1790201843,
-    "sSha256": "b2dd1bb2929e0fed0e36aa77803088ea78efed81e0f521f4694434027da0ba2e"
+    "iMtime": 1790286156,
+    "sSha256": "6cb1270255100def473c363368f281c0302c7c2c1286075c2849d91ada56f8c3"
+  },
+  "Plot/figYieldPeakComparison.pdf": {
+    "iMtime": 1790298445,
+    "sSha256": "f8830e1ef5efc4714f06418bd557ed49be9b729ed93974a2e26014ea03217c11"
   },
   "Plot/figYieldPrediction.pdf": {
-    "iMtime": 1790201115,
-    "sSha256": "c13c72c040dd1030e227f85e4829268efd10a422f42749a1bf9217a4819ce05c"
+    "iMtime": 1790283513,
+    "sSha256": "755821f990c31db1d3f175ada3b55d2fb53ea131669a8165618eb5d831401c40"
+  },
+  "TabulateEarthZones/earthZoneSummary.json": {
+    "iMtime": 1790286201,
+    "sSha256": "727152c2be587e678303514b3f4c180c6fc81fb919fecc47fe9232cc1d5863d3"
+  },
+  "TabulateEarthZones/earthZoneTable.csv": {
+    "iMtime": 1790286201,
+    "sSha256": "6ca2b6a2f0a22c4893ee1a574a310a605b195fc7534732487d33ac570e1fd60e"
+  },
+  "TestOccurrenceIntervalReading/etaIntervalConfidenceLevel.json": {
+    "iMtime": 1790298464,
+    "sSha256": "167afbf681728774640b85d52fdfd6fb6b7619b4db2559c21a07dd743029039f"
+  },
+  "TestOccurrenceIntervalReading/reference/brysonFigure13EtaEarthDigitised.json": {
+    "iMtime": 1790298464,
+    "sSha256": "5da258333a1e03effa767ab4bba333a47971c86f2faff9c81cecd7c2308cc2ef"
   },
   "VerifyAgainstPublished/publishedVerification.json": {
-    "iMtime": 1790201840,
-    "sSha256": "8fe56389b2a69b97a6933fb592eb9330c8a3650bb041cebbf04ca11cc7873933"
+    "iMtime": 1790286154,
+    "sSha256": "f77402a54ef5c329b7dca5e19032c7bbfee7abb129acaf94a0b60816ec1fa118"
   },
   "VerifyAgainstPublished/reference/starkFigure10.pdf": {
     "iMtime": 1790191151,
     "sSha256": "fab2b655e65ce36c1331fba7c9f7142a723007c9cae045448a2ea77594f1754d"
   },
   "VerifyAgainstPublished/starkFigure10Digitised.json": {
-    "iMtime": 1790201839,
+    "iMtime": 1790286153,
     "sSha256": "3de32fa26b5f097e2c658f2ffc3aad7e192385d31892629991d830fa7e7c5147"
   },
   "buildTargetCatalog/gaiaRawQuery.csv": {
@@ -80,24 +224,24 @@
     "sSha256": "c3a0cb6f00924e5dc872ee67863e1065a2e621606bd86eacf00ce2b678529be2"
   },
   "calibrateToStark/calibration.json": {
-    "iMtime": 1790191879,
-    "sSha256": "acdf483a0613193e0dd698e709564133413c244e9f0941d3d986fd535e29f920"
+    "iMtime": 1790282334,
+    "sSha256": "d832031d11d5d4db88e6d7bc9ee0830c29ffdf7000f794026025906247c0ad79"
   },
   "computeCompleteness/completeness.npz": {
-    "iMtime": 1790192235,
-    "sSha256": "d8d43151e3f5c9a2b7cd44a35865736423ab91027d176a519df2f179691b08a7"
+    "iMtime": 1790282829,
+    "sSha256": "5f471508029b9378e1b17f97f017aba9d3456195c4c3b35e6ea88478d5c3fbbf"
   },
   "computeCompleteness/completenessSummary.json": {
-    "iMtime": 1790192235,
-    "sSha256": "69d7e936a05d7337394cc57aea9e6f2ba961949d94e915fd757fbae4bc3310c8"
+    "iMtime": 1790282829,
+    "sSha256": "316f532a800cd6fd2722f29011e20bfd26f472faee8937ad4b58354b61c4a30d"
   },
   "modelCoronagraph/coronagraphCurves.csv": {
-    "iMtime": 1790191238,
+    "iMtime": 1790270706,
     "sSha256": "17f48c05d9f5cf27ecc484b3199daace0b5562bf5052a429c5f8824b093f0d0a"
   },
   "modelCoronagraph/missionParameters.json": {
-    "iMtime": 1790191238,
-    "sSha256": "2cb8b5f0f5b9f2521966b7a80a79c06517f12180bf0d7c94f1612d20e7b49bd4"
+    "iMtime": 1790270706,
+    "sSha256": "20d0c2eaf6218484fda8c08d5db3f84195a3ea2898e661eaf4af18780b6c651d"
   },
   "modelCoronagraph/reference/starkCoronagraphDmvc6.json": {
     "iMtime": 1790146511,
@@ -108,23 +252,23 @@
     "sSha256": "869a17ef25dc0597be375481fcd070a016d2a1dd3ac0b3cd327d2170aee68d13"
   },
   "optimizeSurvey/surveyResult.json": {
-    "iMtime": 1790192259,
-    "sSha256": "e291f75fbc19659a9cb7117357fb4e612f863fb59c7badb972f55f50571e88cb"
+    "iMtime": 1790282937,
+    "sSha256": "27f809ec2b68aaa438c9534b1f905b52a1f4b80a7de29f02383ea0e844be8449"
   },
   "predictRedefinedYield/yieldPrediction.json": {
-    "iMtime": 1790201112,
-    "sSha256": "906d6a09d8c9b2119f231dd4f10d9345b797c7fe766436ad26a7b11b91548969"
+    "iMtime": 1790283510,
+    "sSha256": "3a8e5d6e3c30435842dd7eb3aa5aaabb2e40b80bc2297ea66fbf2b2aca87fe3c"
   },
   "predictRedefinedYield/yieldSamples.npz": {
-    "iMtime": 1790201112,
-    "sSha256": "e7d942e52e8b962994fa601c5bc37776d0292ff7e41109a064c350eb19ce74fe"
+    "iMtime": 1790283510,
+    "sSha256": "e09094e179704eb7b73f8fa051c92f0dd1b7ccb3f785c158fded86025d2c8ee9"
   },
   "sampleOccurrencePosterior/occurrencePosterior.npz": {
-    "iMtime": 1790200975,
+    "iMtime": 1790282943,
     "sSha256": "61fc39bbe17a2961ec25cd467c8878574111527879639bdcfabce289cfbf547a"
   },
   "sampleOccurrencePosterior/occurrencePosteriorSummary.json": {
-    "iMtime": 1790200975,
+    "iMtime": 1790282943,
     "sSha256": "a57f23c0593056cc69295ca2adccd82dbd7a802422caa599c9112784df64ca26"
   }
 }

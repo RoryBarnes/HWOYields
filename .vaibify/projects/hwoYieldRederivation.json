@@ -240,19 +240,22 @@
           "sFilePath": "testIntegrity.py",
           "saCommands": [
             "python3 -m pytest testIntegrity.py -q"
-          ]
+          ],
+          "sLastOutput": "........                                                                 [100%]\n8 passed in 0.24s\n"
         },
         "dictQualitative": {
           "sFilePath": "testQualitative.py",
           "saCommands": [
             "python3 -m pytest testQualitative.py -q"
-          ]
+          ],
+          "sLastOutput": "..s.                                                                     [100%]\n3 passed, 1 skipped in 0.26s\n"
         },
         "dictQuantitative": {
           "sFilePath": "testQuantitative.py",
           "saCommands": [
             "python3 -m pytest testQuantitative.py -q"
-          ]
+          ],
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.21s\n"
         }
       },
       "sStepId": "sampleoccurrenceposterior",
@@ -552,7 +555,166 @@
       },
       "saDependencies": [],
       "sStepId": "comparepublishedfigures"
+    },
+    {
+      "sName": "calibrationDegeneracy",
+      "sDirectory": "CalibrationDegeneracy",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bInteractive": false,
+      "saDataCommands": [
+        "python3 dataCalibrationDegeneracyDesign.py --target-catalog {step:buildtargetcatalog.targetCatalog} --mission-parameters {step:modelcoronagraph.missionParameters} --figure-eleven {step:comparetargetcompleteness.starkFigure11Digitised} --out-design calibrationDegeneracyDesign.json",
+        "python3 dataFitCalibrationDegeneracy.py --out-json calibrationDegeneracy.json --out-chains calibrationDegeneracyChains.npz",
+        "python3 dataSummariseCalibrationDegeneracy.py --out-json calibrationDegeneracySummary.json"
+      ],
+      "saOutputDataFiles": [
+        "calibrationDegeneracyDesign.json",
+        "calibrationDegeneracy.json",
+        "calibrationDegeneracyChains.npz",
+        "calibrationDegeneracySummary.json"
+      ],
+      "saTestCommands": [],
+      "saPlotCommands": [
+        "python3 plotCalibrationDegeneracyCorner.py --out-pdf ../Plot/figCalibrationDegeneracyCorner.pdf"
+      ],
+      "saPlotFiles": [
+        "../Plot/figCalibrationDegeneracyCorner.pdf"
+      ],
+      "saInputDataFiles": [
+        "CalibrationDegeneracy/reference/skyThroughputConvolutionTest.json",
+        "CalibrationDegeneracy/reference/figureElevenPublishedBins.json"
+      ],
+      "bNoInputData": false,
+      "listRemoteData": [],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ],
+          "sLastOutput": "................                                                         [100%]\n16 passed in 0.21s\n"
+        },
+        "dictQualitative": {
+          "sFilePath": "testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ],
+          "sLastOutput": ".....s..                                                                 [100%]\n7 passed, 1 skipped in 0.28s\n"
+        },
+        "dictQuantitative": {
+          "sFilePath": "testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ],
+          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.23s\n"
+        }
+      },
+      "saDependencies": [],
+      "sStepId": "calibrationdegeneracy"
+    },
+    {
+      "sName": "compareModelVariants",
+      "sDirectory": "CompareModelVariants",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bInteractive": false,
+      "saDataCommands": [
+        "python3 dataCompareModelVariants.py --target-catalog {step:buildtargetcatalog.targetCatalog} --mission-parameters {step:modelcoronagraph.missionParameters} --calibration-json {step:calibratetostark.calibration} --completeness {step:computecompleteness.completeness} --occurrence-posterior {step:sampleoccurrenceposterior.occurrencePosterior} --bryson-digitised reference/brysonFigure13EtaEarthDigitised.json --out-root variants",
+        "python3 dataSummariseModelVariants.py --out-root variants --digitised-figure-ten {step:verifyagainstpublished.starkFigure10Digitised} --survey {step:optimizesurvey.surveyResult} --prediction {step:predictredefinedyield.yieldPrediction} --yield-samples {step:predictredefinedyield.yieldSamples} --out-json modelVariantsSummary.json",
+        "python3 dataAnalyseSettingInteractions.py --summary modelVariantsSummary.json --out-json settingInteractions.json"
+      ],
+      "saOutputDataFiles": [
+        "modelVariantsSummary.json",
+        "settingInteractions.json",
+        "yieldPeakComparison.json"
+      ],
+      "saTestCommands": [],
+      "saPlotCommands": [
+        "python3 plotYieldPeakComparison.py --baseline-samples {step:predictredefinedyield.yieldSamples} --digitised-figure-ten {step:verifyagainstpublished.starkFigure10Digitised} --out-pdf ../Plot/figYieldPeakComparison.pdf --out-json yieldPeakComparison.json"
+      ],
+      "saPlotFiles": [
+        "../Plot/figYieldPeakComparison.pdf"
+      ],
+      "saInputDataFiles": [
+        "CompareModelVariants/reference/brysonFigure13EtaEarthDigitised.json"
+      ],
+      "bNoInputData": false,
+      "listRemoteData": [],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ],
+          "sLastOutput": "............                                                             [100%]\n12 passed in 0.19s\n"
+        },
+        "dictQualitative": {
+          "sFilePath": "testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ],
+          "sLastOutput": "......                                                                   [100%]\n6 passed in 0.25s\n"
+        },
+        "dictQuantitative": {
+          "sFilePath": "testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ],
+          "sLastOutput": "...                                                                      [100%]\n3 passed in 0.21s\n"
+        }
+      },
+      "saDependencies": [],
+      "sStepId": "comparemodelvariants"
+    },
+    {
+      "sName": "testOccurrenceIntervalReading",
+      "sDirectory": "TestOccurrenceIntervalReading",
+      "bRunEnabled": true,
+      "bPlotOnly": false,
+      "bInteractive": false,
+      "saDataCommands": [
+        "python3 dataTestOccurrenceIntervalReading.py --bryson reference/brysonFigure13EtaEarthDigitised.json --out-json etaIntervalConfidenceLevel.json"
+      ],
+      "saOutputDataFiles": [
+        "etaIntervalConfidenceLevel.json"
+      ],
+      "saTestCommands": [],
+      "saPlotCommands": [],
+      "saPlotFiles": [],
+      "saInputDataFiles": [
+        "TestOccurrenceIntervalReading/reference/brysonFigure13EtaEarthDigitised.json"
+      ],
+      "bNoInputData": false,
+      "listRemoteData": [],
+      "dictTests": {
+        "dictIntegrity": {
+          "sFilePath": "testIntegrity.py",
+          "saCommands": [
+            "python3 -m pytest testIntegrity.py -q"
+          ],
+          "sLastOutput": "....                                                                     [100%]\n4 passed in 0.15s\n"
+        },
+        "dictQualitative": {
+          "sFilePath": "testQualitative.py",
+          "saCommands": [
+            "python3 -m pytest testQualitative.py -q"
+          ],
+          "sLastOutput": "..                                                                       [100%]\n2 passed in 0.19s\n"
+        },
+        "dictQuantitative": {
+          "sFilePath": "testQuantitative.py",
+          "saCommands": [
+            "python3 -m pytest testQuantitative.py -q"
+          ],
+          "sLastOutput": ".                                                                        [100%]\n1 passed in 0.20s\n"
+        }
+      },
+      "saDependencies": [],
+      "sStepId": "testoccurrenceintervalreading"
     }
   ],
-  "iWorkflowSchemaVersion": 13
+  "iWorkflowSchemaVersion": 13,
+  "fTolerance": 1e-06,
+  "bAutoArchive": false,
+  "fDefaultWallClockBudgetSeconds": 0.0
 }

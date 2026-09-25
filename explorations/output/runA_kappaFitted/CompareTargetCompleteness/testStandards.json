@@ -1,0 +1,313 @@
+{
+  "sStep": "compareTargetCompleteness",
+  "dictFiles": {
+    "starkFigure11Digitised.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictXTicks",
+        "dictYTicks",
+        "iColourBarSamples",
+        "iPoints",
+        "listPoints",
+        "sSource"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "iColourBarSamples"
+          ],
+          "oValue": 472.0
+        },
+        {
+          "saPath": [
+            "dictXTicks",
+            "0.0"
+          ],
+          "oValue": 618.0
+        },
+        {
+          "saPath": [
+            "dictXTicks",
+            "10.0"
+          ],
+          "oValue": 1195.46
+        },
+        {
+          "saPath": [
+            "dictXTicks",
+            "20.0"
+          ],
+          "oValue": 1802.93
+        },
+        {
+          "saPath": [
+            "dictXTicks",
+            "30.0"
+          ],
+          "oValue": 2410.4
+        },
+        {
+          "saPath": [
+            "dictXTicks",
+            "40.0"
+          ],
+          "oValue": 3018.1400000000003
+        },
+        {
+          "saPath": [
+            "dictYTicks",
+            "0.01"
+          ],
+          "oValue": 794.836
+        },
+        {
+          "saPath": [
+            "dictYTicks",
+            "0.1"
+          ],
+          "oValue": 1370.8400000000001
+        },
+        {
+          "saPath": [
+            "dictYTicks",
+            "1.0"
+          ],
+          "oValue": 1946.84
+        },
+        {
+          "saPath": [
+            "dictYTicks",
+            "10.0"
+          ],
+          "oValue": 2522.84
+        },
+        {
+          "saPath": [
+            "iPoints"
+          ],
+          "oValue": 154.0
+        }
+      ],
+      "iBytes": 22066
+    },
+    "targetCompletenessComparison.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictDrawMean",
+        "dictRepresentative",
+        "fMedianModel",
+        "fMedianPublished",
+        "fMedianRatio",
+        "fModelSummedCompleteness",
+        "fPublishedSummedCompleteness",
+        "fTrendWithDistance",
+        "faCompletenessDrawMean",
+        "faCompletenessRepresentative",
+        "faDistancePc",
+        "faFractionOfDrawsObserved",
+        "faLuminosityLsun",
+        "iExozodiDraws",
+        "iMatched",
+        "iModelStarsUsed",
+        "iPublishedTargets",
+        "iRepresentativeDraw",
+        "listRows"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "iRepresentativeDraw"
+          ],
+          "oValue": 99.0
+        },
+        {
+          "saPath": [
+            "iExozodiDraws"
+          ],
+          "oValue": 200.0
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "iMatched"
+          ],
+          "oValue": 141.0
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "iPublishedTargets"
+          ],
+          "oValue": 154.0
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "iModelStarsUsed"
+          ],
+          "oValue": 157.0
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "fPublishedSummedCompleteness"
+          ],
+          "oValue": 77.39915074309978
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "fModelSummedCompleteness"
+          ],
+          "oValue": 83.45647048568185
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "fMedianPublished"
+          ],
+          "oValue": 0.5010615711252654
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "fMedianModel"
+          ],
+          "oValue": 0.2400005793698624
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "fMedianRatio"
+          ],
+          "oValue": 0.5258972352696003
+        },
+        {
+          "saPath": [
+            "dictRepresentative",
+            "fTrendWithDistance"
+          ],
+          "oValue": -0.008838463093656159
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "iMatched"
+          ],
+          "oValue": 141.0
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "iPublishedTargets"
+          ],
+          "oValue": 154.0
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "iModelStarsUsed"
+          ],
+          "oValue": 229.0
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "fPublishedSummedCompleteness"
+          ],
+          "oValue": 77.39915074309978
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "fModelSummedCompleteness"
+          ],
+          "oValue": 83.26646822004525
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "fMedianPublished"
+          ],
+          "oValue": 0.5010615711252654
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "fMedianModel"
+          ],
+          "oValue": 0.24087352723110642
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "fMedianRatio"
+          ],
+          "oValue": 0.4440334354481622
+        },
+        {
+          "saPath": [
+            "dictDrawMean",
+            "fTrendWithDistance"
+          ],
+          "oValue": -0.0067740702779798025
+        },
+        {
+          "saPath": [
+            "iMatched"
+          ],
+          "oValue": 141.0
+        },
+        {
+          "saPath": [
+            "iPublishedTargets"
+          ],
+          "oValue": 154.0
+        },
+        {
+          "saPath": [
+            "iModelStarsUsed"
+          ],
+          "oValue": 157.0
+        },
+        {
+          "saPath": [
+            "fPublishedSummedCompleteness"
+          ],
+          "oValue": 77.39915074309978
+        },
+        {
+          "saPath": [
+            "fModelSummedCompleteness"
+          ],
+          "oValue": 83.45647048568185
+        },
+        {
+          "saPath": [
+            "fMedianPublished"
+          ],
+          "oValue": 0.5010615711252654
+        },
+        {
+          "saPath": [
+            "fMedianModel"
+          ],
+          "oValue": 0.2400005793698624
+        },
+        {
+          "saPath": [
+            "fMedianRatio"
+          ],
+          "oValue": 0.5258972352696003
+        },
+        {
+          "saPath": [
+            "fTrendWithDistance"
+          ],
+          "oValue": -0.008838463093656159
+        }
+      ],
+      "iBytes": 202377
+    }
+  }
+}

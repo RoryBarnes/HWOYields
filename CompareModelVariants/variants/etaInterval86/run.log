@@ -1,0 +1,89 @@
+### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --eta-interval-z 1.4758 --out-samples /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/occurrencePosterior.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/occurrencePosteriorSummary.json
+{
+  "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior (lognormal matched to its quoted interval read at z = 1.4758); other boxes follow by the Gamma-independent ratio from the shape chain.",
+  "fEtaIntervalZ": 1.4758,
+  "fEtaLogNormalMu": -1.3590502684778558,
+  "fEtaLogNormalSigma": 0.515797037350749,
+  "fEtaModeImplied": 0.19689260479528684,
+  "fEtaMeanImplied": 0.29345617289420467,
+  "iSamples": 14400,
+  "fAcceptanceFraction": 0.6436458333333333,
+  "fMaxAutocorrSteps": 36.78834226559994,
+  "dictParameters": {
+    "lnGamma": {
+      "fMedian": -1.0825710075946717,
+      "fP16": -1.5477366092870628,
+      "fP84": -0.6174287800427471,
+      "fMean": -1.1011247199042877
+    },
+    "alpha": {
+      "fMedian": -0.18713925478410204,
+      "fP16": -0.4531544355716044,
+      "fP84": 0.07744334688823788,
+      "fMean": -0.18833296309052205
+    },
+    "beta": {
+      "fMedian": 0.26275076563120436,
+      "fP16": -0.027259323295514375,
+      "fP84": 0.5541729491124299,
+      "fMean": 0.2645734248645533
+    }
+  },
+  "dictEtaByBox": {
+    "canonical": {
+      "fMedian": 0.25564927679342464,
+      "fP16": 0.1546954211986281,
+      "fP84": 0.42366728897676537,
+      "fMean": 0.29192855598325096
+    },
+    "redefined": {
+      "fMedian": 0.05197086281326746,
+      "fP16": 0.031234452058130982,
+      "fP84": 0.08647535966938152,
+      "fMean": 0.059407152670311415
+    },
+    "hzOnly": {
+      "fMedian": 0.08219555489701415,
+      "fP16": 0.04945394011702464,
+      "fP84": 0.1364062570920089,
+      "fMean": 0.09398755666694696
+    }
+  },
+  "dictRatioRedefinedOverCanonical": {
+    "fMedian": 0.20334323541972582,
+    "fP16": 0.18681361673777727,
+    "fP84": 0.2204945874828882,
+    "fMean": 0.20352045278060632
+  }
+}
+### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/computeCompleteness/completeness.npz --occurrence-posterior /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/occurrencePosterior.npz --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 2 --out-prediction /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/yieldPrediction.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/yieldSamples.npz
+{
+  "dictYieldRatio": {
+    "fMedian": 0.23629707483029377,
+    "fP16": 0.21500303094942408,
+    "fP84": 0.2605143064706367,
+    "fOccurrenceRatioMedian": 0.20334323541972582
+  },
+  "dictByBox": {
+    "canonical": {
+      "fMeanExpected": 19.47472579475852,
+      "fMedianExpected": 17.845465613060576,
+      "fP16Expected": 11.102551437016025,
+      "fP84Expected": 27.707356069530366,
+      "fP05Expected": 7.933099352547209,
+      "fP95Expected": 36.17323227201007,
+      "fProbabilityAtLeastGoal": 0.25743055555555555,
+      "fProbabilityAtLeastOne": 0.9997916666666666
+    },
+    "redefined": {
+      "fMeanExpected": 4.750109832887598,
+      "fMedianExpected": 4.161420226449108,
+      "fP16Expected": 2.5142164127805846,
+      "fP84Expected": 6.897407197121364,
+      "fP05Expected": 1.7656817956277895,
+      "fP95Expected": 9.691480916731146,
+      "fProbabilityAtLeastGoal": 0.0005555555555555556,
+      "fProbabilityAtLeastOne": 0.9582638888888889
+    }
+  }
+}

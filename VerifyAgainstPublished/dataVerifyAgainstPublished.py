@@ -130,20 +130,21 @@ def flistYieldChecks(dictCal, dictSurvey, dictPred, dictAperture, rng, faRealize
     fExponent = np.log(dictAperture["dictByDiameter"]["9"]["fExpectedYieldAtBaselineEta"] /
                        dictAperture["dictByDiameter"]["6"]["fExpectedYieldAtBaselineEta"]) / \
         np.log(1.5)
+    bFitted = dictCal.get("bThroughputFitted", True)
     listOut = [
         fdictCheck("Uncalibrated 6 m yield", 22.5, dictCal["fUncalibratedYield"], 0.20,
                    "Stark+2024 Sec. 3.1", sNote="Independent: no fitted parameter."),
-        fdictCheck("Calibrated 6 m yield", 22.5, dictCal["fCalibratedYield"], 0.02,
-                   "Stark+2024 Sec. 3.1", bTuned=True, sNote="Fitted to this value."),
-        fdictCheck("Calibration throughput factor", 1.0,
-                   dictCal["fCalibratedThroughputFactor"], 1.0,
-                   "Plausibility band, not a published value",
-                   sNote="A factor beyond 2x absorbs physics rather than an unknown."),
+        fdictCheck("Throughput factor needed to reach 22.5", 1.0,
+                   dictCal.get("fFittedThroughputFactor", dictCal["fCalibratedThroughputFactor"]),
+                   1.0, "Plausibility band, not a published value",
+                   sNote="Diagnostic. A factor beyond 2x would absorb physics rather than an "
+                         "unknown." + ("" if bFitted else " Not applied downstream.")),
         fdictCheck("Sampling distribution mean (Fig. 4)", 22.5, float(np.mean(faPoisson)), 0.20,
-                   "Stark+2024 Fig. 4", bTuned=True,
+                   "Stark+2024 Fig. 4", bTuned=bFitted,
                    sNote="Fig. 4 is sampling only, at A_G = 0.2 and fixed exozodi, i.e. around "
-                         "the calibrated 22.5; its mean is therefore tuned. It was previously "
-                         "compared against the albedo-drawn yield, the wrong quantity."),
+                         "the 6 m planning yield, which is tuned only when the throughput "
+                         "factor is fitted. It was previously compared against the albedo-drawn "
+                         "yield, the wrong quantity."),
         fdictCheck("Sampling distribution sigma (Fig. 4)", 5.0, float(np.std(faPoisson)), 0.25,
                    "Stark+2024 Fig. 4 (read off)"),
         fdictCheck("Albedo penalty on expected yield", 0.12,
@@ -154,6 +155,10 @@ def flistYieldChecks(dictCal, dictSurvey, dictPred, dictAperture, rng, faRealize
         fdictCheck("Yield-aperture exponent", 1.90, float(fExponent), 0.15,
                    "Stark+2019 DMVC band and Stark+2024 Fig. 15"),
     ]
+    if bFitted:
+        listOut.insert(1, fdictCheck("Calibrated 6 m yield", 22.5, dictCal["fCalibratedYield"],
+                                     0.02, "Stark+2024 Sec. 3.1", bTuned=True,
+                                     sNote="Fitted to this value."))
     listOut += flistDustAndCharacterizationChecks(dictSurvey, dictPred, dictAperture)
     for s, fPub in zip(faD, (0.32, 0.53, 0.67, 0.78)):
         listOut.append(fdictCheck(

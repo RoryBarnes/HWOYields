@@ -1,0 +1,14 @@
+{
+ "sVariant": "skyThroughputConstant",
+ "sWhy": "constant large-separation T_sky vs the reconstructed T_sky(r)",
+ "dictMissionOverrides": {
+  "bSkyThroughputFollowsCore": false
+ },
+ "fEtaIntervalZ": null,
+ "listStagesRerun": [
+  "completeness",
+  "survey",
+  "prediction"
+ ],
+ "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/missionParameters.json"
+}

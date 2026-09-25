@@ -3,3 +3,6 @@ state.json
 manuscript/
 syncStatus.json
 l3_attestations/
+pipeline_state.json
+pipeline_state.json.*.tmp
+logs/

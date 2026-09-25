@@ -1,0 +1,11 @@
+== base
+    factor 1.342 -> planning yield 23.53
+    factor 0.634 -> planning yield 17.00
+    factor 0.923 -> planning yield 20.21
+    factor 1.113 -> planning yield 21.86
+    factor 1.222 -> planning yield 22.69
+    factor 1.166 -> planning yield 22.28
+    factor 1.193 -> planning yield 22.49
+    factor 1.208 -> planning yield 22.59
+    factor 1.200 -> planning yield 22.54
+{"fPlanningFixedExozodi9m": 44.2642, "fMeanCharDaysPriorityFirst18_9m": 1.1543266106094094, "fUncalibratedPlanning": 20.9152, "fCalibration": 1.1969756218325291, "fPlanningFixedExozodi": 22.514999999999997, "fPlanningDrawnExozodi": 20.394199999999998, "fFixedEtaYield": 18.5538, "fExozodiPenalty": 0.09419498112369529, "fMeanCharDaysPriorityFirst18": 11.879557388397297, "iStarsUsed": 164}

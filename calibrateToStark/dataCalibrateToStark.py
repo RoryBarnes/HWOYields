@@ -9,6 +9,15 @@ bisection against the 22.5 EEC expected yield that Stark et al. (2024) report fo
 unity means the parametrized coronagraph stands in for the simulated one, and a factor far from
 unity means it does not and nothing downstream should be trusted.
 
+The factor is no longer applied by default (2026-09-24). No published paper has such a factor:
+AYO computes exposure times from the stated instrument parameters, and the Stark et al. (2025) ETC
+benchmark shows this model's exposure-time equations reproduce AYO's to 2-6% given the same
+inputs, so there is no known process for the scalar to stand in for. Fitting it to 22.5 also
+turned the most throughput-insensitive published number into a fit, letting any lever that
+rescales all exposure times uniformly hide inside it. The bisection still runs and its result is
+recorded as a diagnostic (fFittedThroughputFactor); the adopted factor, which every downstream
+step applies as fCalibratedThroughputFactor, is 1 unless --fit-throughput is given.
+
 The 22.5 comes from a single AYO run with every star at the median exozodi level, before Stark
 introduces exozodi sampling (Sec. 3.3), so the calibration holds exozodi fixed. Calibrating with
 drawn levels would fit the factor to a yield that already carries the sampling penalty, and the
@@ -63,6 +72,8 @@ def fdictParseArgs():
     p.add_argument("--tolerance-fraction", type=float, default=0.10)
     p.add_argument("--max-plausible-factor", type=float, default=2.0,
                    help="a fitted factor beyond this band absorbs physics, not an unknown")
+    p.add_argument("--fit-throughput", action="store_true",
+                   help="apply the fitted factor downstream instead of 1 (the old behaviour)")
     p.add_argument("--seed", type=int, default=20260921)
     p.add_argument("--out-calibration", default="calibration.json")
     return vars(p.parse_args())
@@ -84,13 +95,20 @@ def main():
                              dictArgs["num_tau_points"])
     listTrace = fdictBisectCalibration(dfTargets, dictParams, dictBox, faTauGridS, dictArgs)
     dictBest = min(listTrace, key=lambda d: abs(d["fYield"] - dictArgs["target_yield"]))
+    fUncalibrated = sv.fnYieldForCalibration(dfTargets, dictParams, dictBox, faTauGridS,
+                                             dictArgs["num_planets"], dictArgs["seed"],
+                                             dictArgs["eta_earth"], 1.0)
+    bFit = dictArgs["fit_throughput"]
     fRelativeError = abs(dictBest["fYield"] - dictArgs["target_yield"]) / dictArgs["target_yield"]
     dictOut = {
         "fTargetYield": dictArgs["target_yield"],
         "bExozodiDrawnDuringCalibration": False,
         "iStarsScreened": int(len(dfTargets)),
-        "fCalibratedThroughputFactor": dictBest["fCalibration"],
-        "fCalibratedYield": dictBest["fYield"],
+        "bThroughputFitted": bFit,
+        "fCalibratedThroughputFactor": dictBest["fCalibration"] if bFit else 1.0,
+        "fCalibratedYield": dictBest["fYield"] if bFit else fUncalibrated,
+        "fFittedThroughputFactor": dictBest["fCalibration"],
+        "fFittedYield": dictBest["fYield"],
         "fRelativeError": fRelativeError,
         "bTargetReached": bool(fRelativeError <= dictArgs["tolerance_fraction"]),
         "fMaxPlausibleFactor": dictArgs["max_plausible_factor"],
@@ -105,9 +123,7 @@ def main():
                      "factor stays within a factor of two of unity. Hitting the target with an "
                      "implausible factor means the scalar is absorbing missing physics rather "
                      "than an instrumental unknown, which is not a pass.",
-        "fUncalibratedYield": sv.fnYieldForCalibration(
-            dfTargets, dictParams, dictBox, faTauGridS, dictArgs["num_planets"],
-            dictArgs["seed"], dictArgs["eta_earth"], 1.0),
+        "fUncalibratedYield": fUncalibrated,
         "listTrace": listTrace,
     }
     with open(dictArgs["out_calibration"], "w") as oFile:

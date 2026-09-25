@@ -299,3 +299,89 @@ def test_star_gate_counts_long_spectra_that_the_planet_gate_rejects():
                                          "fExposureLimitS": fCap}))
     assert list(bPlanet[:, 0]) == [False, False]
     assert list(bStar[:, 0]) == [True, False]
+
+
+def test_latitude_zodi_spans_stark2014_range_in_v():
+    """Stark (2014) App. B: about 22.5 mag arcsec^-2 in the ecliptic and 23.4 at the poles in V."""
+    from yieldlib import physics as ph
+    fZero = ph.fnZeroMagPhotonFlux(550e-9)
+    faMag = [-2.5 * np.log10(ph.fnZodiPhotonSurfaceBrightness(550e-9, b) / fZero)
+             for b in (0.0, 90.0)]
+    assert abs(faMag[0] - 22.5) < 0.15 and abs(faMag[1] - 23.4) < 0.15
+
+
+def test_uniform_zodi_is_the_default():
+    """Without sZodiModel the zodi term is the conventional uniform 23 mag, latitude ignored."""
+    dictStar, dictPlanets, dictGeom, dictBand, dictMission = fdictMinimalCountRateInputs()
+    fBase = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission)["fZodi"]
+    dictStar["fEclipticLatDeg"] = 0.0
+    fAgain = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission)["fZodi"]
+    dictLat = dict(dictMission, sZodiModel="stark2014")
+    fLat = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictLat)["fZodi"]
+    assert fBase == fAgain and fLat > fBase
+
+
+def test_noise_floor_solver_reduces_to_floor_free_time():
+    """With CR_nf = 0 the quadratic root equals S^2 / sum(a_i / v_i)."""
+    faA, faV = [np.array([4.0]), np.array([1.0])], [np.array([3.0]), np.array([2.0])]
+    faTau = cp.faTimeWithNoiseFloor(faA, faV, [np.zeros(1), np.zeros(1)], 7.0)
+    assert np.isclose(faTau[0], 49.0 / (4.0 / 3.0 + 1.0 / 2.0))
+
+
+def test_noise_floor_solver_matches_single_channel_closed_form():
+    """One channel: tau = S^2 v / (a - S^2 n^2), Stark et al. (2025) Eq. 1."""
+    faTau = cp.faTimeWithNoiseFloor([np.array([4.0])], [np.array([3.0])], [np.array([0.2])], 5.0)
+    assert np.isclose(faTau[0], 25.0 * 3.0 / (4.0 - 25.0 * 0.04))
+
+
+def test_noise_floor_solver_diverges_below_the_floor():
+    """A planet whose S/N cannot reach the target at infinite time is undetectable."""
+    faTau = cp.faTimeWithNoiseFloor([np.array([1.0])], [np.array([3.0])], [np.array([0.2])], 5.0)
+    assert np.isinf(faTau[0])
+
+
+def test_denominator_floor_matches_screen_far_above_floor():
+    """A bright planet's time is essentially unchanged by the smooth noise floor."""
+    dictStar, dictPlanets, dictGeom, dictBand, dictMission = fdictMinimalCountRateInputs()
+    dictRates = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission)
+    fScreen = cp.faRequiredExposureTime([dictRates], [dictBand], 7.0, dictMission)[0, 0]
+    dictFloor = dict(dictMission, sNoiseFloorModel="denominator", iNoiseFloorChannels=1)
+    fFloor = cp.faRequiredExposureTime([dictRates], [dictBand], 7.0, dictFloor)[0, 0]
+    assert fScreen <= fFloor < 1.1 * fScreen
+
+
+def test_time_limit_including_overheads():
+    """Stark (2024) Table 2: two months including overheads leaves (limit - static) / 1.1."""
+    dictM = dict(DICT_MISSION, fSlewOverheadS=3600.0, fWavefrontOverheadS=9720.0,
+                 fWavefrontMultiplier=1.1)
+    assert cp.ffScienceTimeCap(dictM) == DICT_MISSION["fExposureLimitS"]
+    dictM["bTimeLimitIncludesOverheads"] = True
+    assert np.isclose(cp.ffScienceTimeCap(dictM), (60 * 86400.0 - 13320.0) / 1.1)
+
+
+def test_convolved_sky_throughput_matches_unconvolved_far_from_the_mask():
+    """The PSF convolution only redistributes light near the inner working angle."""
+    from yieldlib import coronagraph as cg
+    faSep = np.linspace(0.05, 30.0, 600)
+    faTotal = 0.68 / (1.0 + (3.5 / faSep) ** 3)
+    dictConv = cg.fdictConvolvedSkyThroughput(faSep, faTotal, 1.194)
+    fAtTwelve = np.interp(12.0, dictConv["faSeparation"], dictConv["faSkyThroughput"])
+    fAtTwo = np.interp(2.0, dictConv["faSeparation"], dictConv["faSkyThroughput"])
+    assert abs(fAtTwelve / np.interp(12.0, faSep, faTotal) - 1.0) < 0.02
+    assert fAtTwo > np.interp(2.0, faSep, faTotal)
+
+
+def test_airy_peak_leak_factor():
+    """PSF_peak * Omega / EE for an Airy core in a 0.7 lambda/D aperture is 1.78."""
+    from yieldlib import coronagraph as cg
+    assert abs(cg.fnAiryPeakOmegaOverCore(0.7) - 1.782) < 0.002
+
+
+def test_leak_normalization_scales_only_the_leak():
+    """sLeakNormalization airyPeak multiplies leaked starlight and nothing else."""
+    dictStar, dictPlanets, dictGeom, dictBand, dictMission = fdictMinimalCountRateInputs()
+    dictBase = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission)
+    dictPeak = cp.fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand,
+                                  dict(dictMission, sLeakNormalization="airyPeak"))
+    assert np.allclose(dictPeak["faLeak"] / dictBase["faLeak"], 1.782, rtol=1e-3)
+    assert np.allclose(dictPeak["faPlanet"], dictBase["faPlanet"])

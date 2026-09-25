@@ -1,0 +1,127 @@
+### computeCompleteness: dataComputeCompleteness.py --target-catalog /workspace/yields/buildTargetCatalog/targetCatalog.csv --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --out-completeness /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/completeness.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/completenessSummary.json
+{
+  "iStarsScreened": 1500,
+  "iNumPlanetsPerStar": 3000,
+  "fThroughputCalibration": 1.0,
+  "dictByBox": {
+    "canonical": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 72.81266666666667,
+      "iStarsWithAnyCompleteness": 162,
+      "iStarsWithAnyCompletenessAtZeroZodi": 228,
+      "fMedianTauCharDays": 29.793674768518517
+    },
+    "redefined": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 75.46466666666666,
+      "iStarsWithAnyCompleteness": 109,
+      "iStarsWithAnyCompletenessAtZeroZodi": 177,
+      "fMedianTauCharDays": 22.034989872685184
+    },
+    "hzOnly": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 83.29433333333333,
+      "iStarsWithAnyCompleteness": 157,
+      "iStarsWithAnyCompletenessAtZeroZodi": 157,
+      "fMedianTauCharDays": 28.933938078703704
+    }
+  },
+  "iExozodiDraws": 200,
+  "fMedianDrawnZodi": 2.9954122602133157,
+  "fFractionDrawnAbove100Zodi": 0.21446666666666667
+}
+### optimizeSurvey: dataOptimizeSurvey.py --completeness /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/completeness.npz --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --box canonical --processes 2 --out-survey /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/surveyResult.json
+{
+  "sBox": "canonical",
+  "iStarsAvailable": 1500,
+  "fThroughputCalibration": 1.0,
+  "fEtaEarthBaseline": 0.24,
+  "iExozodiDraws": 200,
+  "sBaselineNote": "fYieldBaseline and fYieldPlanningBaseline are means over the exozodi draws (albedo-drawn and planning albedo respectively); the fixed-exozodi survey is reported separately.",
+  "fYieldPlanningFixedExozodi": 16.885759999999998,
+  "fYieldFixedExozodi": 15.514479999999999,
+  "iStarsUsedFixedExozodi": 146,
+  "fYieldBaseline": 14.05262120856711,
+  "fYieldPlanningBaseline": 15.153949931989255,
+  "iStarsUsedBaseline": 135,
+  "fTimeUsedFractionBaseline": 0.9997368008375238,
+  "listEtaScan": [
+    {
+      "fEtaEarth": 0.02,
+      "fYield": 1.2168170649897294,
+      "fYieldPlanning": 1.2802146781447659,
+      "fStarsUsed": 141.115
+    },
+    {
+      "fEtaEarth": 0.06,
+      "fYield": 3.6325789507505304,
+      "fYieldPlanning": 3.83513969638988,
+      "fStarsUsed": 140.495
+    },
+    {
+      "fEtaEarth": 0.12,
+      "fYield": 7.200561297115506,
+      "fYieldPlanning": 7.6490331789903685,
+      "fStarsUsed": 139.01
+    },
+    {
+      "fEtaEarth": 0.24,
+      "fYield": 14.05262120856711,
+      "fYieldPlanning": 15.153949931989255,
+      "fStarsUsed": 134.645
+    },
+    {
+      "fEtaEarth": 0.4,
+      "fYield": 22.42426122865359,
+      "fYieldPlanning": 24.538514101679816,
+      "fStarsUsed": 125.045
+    },
+    {
+      "fEtaEarth": 0.6,
+      "fYield": 31.44172479668746,
+      "fYieldPlanning": 34.5189608302306,
+      "fStarsUsed": 108.035
+    }
+  ]
+}
+{
+  "fYieldPlanningDrawnMean": 15.153949931989255,
+  "fYieldPlanningDrawnStd": 0.6339224049983192,
+  "fYieldDrawnMean": 14.05262120856711,
+  "fYieldDrawnStd": 0.5727533334324594,
+  "fStarsUsedDrawnMean": 134.645,
+  "fExozodiPenalty": 0.10256038626693398,
+  "fAlbedoPenalty": 0.07267601703614535,
+  "iRepresentativeDraw": 140
+}
+### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/completeness.npz --occurrence-posterior /workspace/yields/sampleOccurrencePosterior/occurrencePosterior.npz --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 2 --out-prediction /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/yieldPrediction.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/yieldSamples.npz
+{
+  "dictYieldRatio": {
+    "fMedian": 0.2299351193791615,
+    "fP16": 0.20864710882026957,
+    "fP84": 0.25691375558332347,
+    "fOccurrenceRatioMedian": 0.20419311247330102
+  },
+  "dictByBox": {
+    "canonical": {
+      "fMeanExpected": 17.916670136238483,
+      "fMedianExpected": 14.914007139360717,
+      "fP16Expected": 7.277793132404834,
+      "fP84Expected": 28.88288863983946,
+      "fP05Expected": 4.377224018239991,
+      "fP95Expected": 42.68269648135146,
+      "fProbabilityAtLeastGoal": 0.23576388888888888,
+      "fProbabilityAtLeastOne": 0.9967361111111112
+    },
+    "redefined": {
+      "fMeanExpected": 4.4783009349025695,
+      "fMedianExpected": 3.3704714698894307,
+      "fP16Expected": 1.5974750555134507,
+      "fP84Expected": 7.096921308257162,
+      "fP05Expected": 0.9468890060853833,
+      "fP95Expected": 11.709973504941832,
+      "fProbabilityAtLeastGoal": 0.005555555555555556,
+      "fProbabilityAtLeastOne": 0.9111805555555555
+    }
+  }
+}

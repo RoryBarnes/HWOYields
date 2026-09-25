@@ -8,8 +8,11 @@
         "bExozodiDrawnDuringCalibration",
         "bFactorPlausible",
         "bTargetReached",
+        "bThroughputFitted",
         "fCalibratedThroughputFactor",
         "fCalibratedYield",
+        "fFittedThroughputFactor",
+        "fFittedYield",
         "fMaxPlausibleFactor",
         "fRelativeError",
         "fTargetYield",
@@ -39,21 +42,39 @@
         },
         {
           "saPath": [
+            "bThroughputFitted"
+          ],
+          "oValue": false
+        },
+        {
+          "saPath": [
             "fCalibratedThroughputFactor"
           ],
-          "oValue": 0.9876435169533048
+          "oValue": 1.0
         },
         {
           "saPath": [
             "fCalibratedYield"
           ],
-          "oValue": 22.4998
+          "oValue": 20.9152
+        },
+        {
+          "saPath": [
+            "fFittedThroughputFactor"
+          ],
+          "oValue": 1.1953711317899447
+        },
+        {
+          "saPath": [
+            "fFittedYield"
+          ],
+          "oValue": 22.5004
         },
         {
           "saPath": [
             "fRelativeError"
           ],
-          "oValue": 8.888888888868173e-06
+          "oValue": 1.7777777777736347e-05
         },
         {
           "saPath": [
@@ -83,10 +104,10 @@
           "saPath": [
             "fUncalibratedYield"
           ],
-          "oValue": 22.615
+          "oValue": 20.9152
         }
       ],
-      "iBytes": 1824
+      "iBytes": 1896
     }
   }
 }

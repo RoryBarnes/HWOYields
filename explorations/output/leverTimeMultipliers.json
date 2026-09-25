@@ -1,0 +1,118 @@
+{
+  "leakPeak": {
+    "dictDetection": {
+      "iPlanets": 135428,
+      "fMedianRatio": 1.0066461451737383,
+      "fLogStd": 0.044719969155245946,
+      "fSlopePerDexDistance": 0.020139144648854208,
+      "fSlopePerDexLuminosity": 0.014269001589631746,
+      "faPercentiles5_95": [
+        0.9265148276069791,
+        1.3085665385588963
+      ]
+    },
+    "dictCharacterization": {
+      "iPlanets": 32126,
+      "fMedianRatio": 0.9576304205872375,
+      "fLogStd": 0.02928605210595661,
+      "fSlopePerDexDistance": -0.030097364582338464,
+      "fSlopePerDexLuminosity": -0.008690262048403596,
+      "faPercentiles5_95": [
+        0.90098276304967,
+        1.1213306793200497
+      ]
+    },
+    "dictCharCapCrossings": {
+      "iLost": 278,
+      "iGained": 582,
+      "iUnderCapBase": 32126
+    }
+  },
+  "tskyConvolved": {
+    "dictDetection": {
+      "iPlanets": 135428,
+      "fMedianRatio": 0.9875226595339784,
+      "fLogStd": 0.010626410839555732,
+      "fSlopePerDexDistance": 0.012707458201909987,
+      "fSlopePerDexLuminosity": -0.003425570338639982,
+      "faPercentiles5_95": [
+        0.9700473919049776,
+        1.0409100959649242
+      ]
+    },
+    "dictCharacterization": {
+      "iPlanets": 32126,
+      "fMedianRatio": 0.9885525260892972,
+      "fLogStd": 0.01679148480336228,
+      "fSlopePerDexDistance": -0.012295193900704016,
+      "fSlopePerDexLuminosity": -0.019762367998943813,
+      "faPercentiles5_95": [
+        0.9668023594716538,
+        1.0895144977288862
+      ]
+    },
+    "dictCharCapCrossings": {
+      "iLost": 271,
+      "iGained": 97,
+      "iUnderCapBase": 32126
+    }
+  },
+  "tskyOvcShape": {
+    "dictDetection": {
+      "iPlanets": 135428,
+      "fMedianRatio": 1.1216513650600057,
+      "fLogStd": 0.04427171311856317,
+      "fSlopePerDexDistance": 0.08657341534068726,
+      "fSlopePerDexLuminosity": 0.0005685386153775129,
+      "faPercentiles5_95": [
+        0.8863156408109352,
+        1.2377942587135646
+      ]
+    },
+    "dictCharacterization": {
+      "iPlanets": 32126,
+      "fMedianRatio": 1.021385903793453,
+      "fLogStd": 0.03056335411879733,
+      "fSlopePerDexDistance": 0.06535250665270984,
+      "fSlopePerDexLuminosity": 0.003815013026978523,
+      "faPercentiles5_95": [
+        0.8856015805797919,
+        1.0988793110234587
+      ]
+    },
+    "dictCharCapCrossings": {
+      "iLost": 511,
+      "iGained": 197,
+      "iUnderCapBase": 32126
+    }
+  },
+  "leakPeakTskyOvcShape": {
+    "dictDetection": {
+      "iPlanets": 135428,
+      "fMedianRatio": 1.1233472851667605,
+      "fLogStd": 0.03842402311827065,
+      "fSlopePerDexDistance": 0.08945641122492891,
+      "fSlopePerDexLuminosity": 0.010885730963278453,
+      "faPercentiles5_95": [
+        0.9368041278301855,
+        1.2203334198764941
+      ]
+    },
+    "dictCharacterization": {
+      "iPlanets": 32126,
+      "fMedianRatio": 0.9917753873323611,
+      "fLogStd": 0.020719134580121392,
+      "fSlopePerDexDistance": 0.0313523513944479,
+      "fSlopePerDexLuminosity": -0.005852680491246175,
+      "faPercentiles5_95": [
+        0.893339008147278,
+        1.0436367238470394
+      ]
+    },
+    "dictCharCapCrossings": {
+      "iLost": 188,
+      "iGained": 135,
+      "iUnderCapBase": 32126
+    }
+  }
+}

@@ -1,0 +1,471 @@
+{
+  "sStep": "compareApertureScaling",
+  "dictFiles": {
+    "apertureScaling.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictByDiameter",
+        "dictPublished",
+        "dictPublishedCharDaysFirst18",
+        "dictResiduals",
+        "fCrossingDiameterM",
+        "fCrossingDiameterPublishedM",
+        "fFrozenCalibrationFactor",
+        "faEtaGrid",
+        "sCalibrationNote",
+        "sCrossingNote"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "fFrozenCalibrationFactor"
+          ],
+          "oValue": 0.9876435169533048
+        },
+        {
+          "saPath": [
+            "fCrossingDiameterM"
+          ],
+          "oValue": 7.085740072202166
+        },
+        {
+          "saPath": [
+            "fCrossingDiameterPublishedM"
+          ],
+          "oValue": 7.1
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictIncludingSigmaEta",
+            "6"
+          ],
+          "oValue": 0.32
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictIncludingSigmaEta",
+            "7"
+          ],
+          "oValue": 0.53
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictIncludingSigmaEta",
+            "8"
+          ],
+          "oValue": 0.67
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictIncludingSigmaEta",
+            "9"
+          ],
+          "oValue": 0.78
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictExcludingSigmaEta",
+            "6"
+          ],
+          "oValue": 0.06
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictExcludingSigmaEta",
+            "7"
+          ],
+          "oValue": 0.49
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictExcludingSigmaEta",
+            "8"
+          ],
+          "oValue": 0.89
+        },
+        {
+          "saPath": [
+            "dictPublished",
+            "dictExcludingSigmaEta",
+            "9"
+          ],
+          "oValue": 0.995
+        },
+        {
+          "saPath": [
+            "dictPublishedCharDaysFirst18",
+            "6"
+          ],
+          "oValue": 22.0
+        },
+        {
+          "saPath": [
+            "dictPublishedCharDaysFirst18",
+            "9"
+          ],
+          "oValue": 3.5
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fExpectedYieldAtBaselineEta"
+          ],
+          "oValue": 18.354419491478065
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fMeanExpectedMarginal"
+          ],
+          "oValue": 22.519996710557855
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fProbability25IncludingSigmaEta"
+          ],
+          "oValue": 0.35847222222222225
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fProbability25ExcludingSigmaEta"
+          ],
+          "oValue": 0.08131944444444444
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fMeanCharDaysFirstN"
+          ],
+          "oValue": 13.82457326511124
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fMeanCharDaysFirstNPlanets"
+          ],
+          "oValue": 13.840223558987011
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fMedianCharDaysFirstNPlanets"
+          ],
+          "oValue": 7.942359146897248
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "6",
+            "fStarsUsedMean"
+          ],
+          "oValue": 158.91
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fExpectedYieldAtBaselineEta"
+          ],
+          "oValue": 24.846890935022724
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fMeanExpectedMarginal"
+          ],
+          "oValue": 30.42971831635939
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fProbability25IncludingSigmaEta"
+          ],
+          "oValue": 0.5383333333333333
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fProbability25ExcludingSigmaEta"
+          ],
+          "oValue": 0.5185416666666667
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fMeanCharDaysFirstN"
+          ],
+          "oValue": 6.703697263615666
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fMeanCharDaysFirstNPlanets"
+          ],
+          "oValue": 6.708008872705729
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fMedianCharDaysFirstNPlanets"
+          ],
+          "oValue": 3.18364949552961
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "7",
+            "fStarsUsedMean"
+          ],
+          "oValue": 194.89
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fExpectedYieldAtBaselineEta"
+          ],
+          "oValue": 31.062408150854182
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fMeanExpectedMarginal"
+          ],
+          "oValue": 38.30693610867403
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fProbability25IncludingSigmaEta"
+          ],
+          "oValue": 0.6686111111111112
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fProbability25ExcludingSigmaEta"
+          ],
+          "oValue": 0.8796527777777777
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fMeanCharDaysFirstN"
+          ],
+          "oValue": 3.2734811911224444
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fMeanCharDaysFirstNPlanets"
+          ],
+          "oValue": 3.2913574268543266
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fMedianCharDaysFirstNPlanets"
+          ],
+          "oValue": 1.5185421878180436
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "8",
+            "fStarsUsedMean"
+          ],
+          "oValue": 240.14
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fExpectedYieldAtBaselineEta"
+          ],
+          "oValue": 37.50545249700843
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fMeanExpectedMarginal"
+          ],
+          "oValue": 46.19827535842765
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fProbability25IncludingSigmaEta"
+          ],
+          "oValue": 0.7665277777777778
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fProbability25ExcludingSigmaEta"
+          ],
+          "oValue": 0.9865972222222222
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fMeanCharDaysFirstN"
+          ],
+          "oValue": 1.8494033900023745
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fMeanCharDaysFirstNPlanets"
+          ],
+          "oValue": 1.8615344425911247
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fMedianCharDaysFirstNPlanets"
+          ],
+          "oValue": 0.8256401952308545
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "iStarsScreened"
+          ],
+          "oValue": 1500.0
+        },
+        {
+          "saPath": [
+            "dictByDiameter",
+            "9",
+            "fStarsUsedMean"
+          ],
+          "oValue": 282.41
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "6",
+            "fIncludingSigmaEta"
+          ],
+          "oValue": 0.03847222222222224
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "6",
+            "fExcludingSigmaEta"
+          ],
+          "oValue": 0.021319444444444446
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "7",
+            "fIncludingSigmaEta"
+          ],
+          "oValue": 0.008333333333333304
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "7",
+            "fExcludingSigmaEta"
+          ],
+          "oValue": 0.028541666666666687
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "8",
+            "fIncludingSigmaEta"
+          ],
+          "oValue": -0.001388888888888884
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "8",
+            "fExcludingSigmaEta"
+          ],
+          "oValue": -0.010347222222222285
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "9",
+            "fIncludingSigmaEta"
+          ],
+          "oValue": -0.013472222222222219
+        },
+        {
+          "saPath": [
+            "dictResiduals",
+            "9",
+            "fExcludingSigmaEta"
+          ],
+          "oValue": -0.008402777777777759
+        }
+      ],
+      "iBytes": 42016
+    }
+  }
+}

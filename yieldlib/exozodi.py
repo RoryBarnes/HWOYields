@@ -259,7 +259,7 @@ def faCountedCharDays(dictRates, fZodi, iVisits, fTauS, dictParams, dictMission)
         dictRates["listCharRates"], dictRates["listCharOptions"], dictMission,
         dictRates["bBestPhase"], dictRates["iVisits"], fZodi)
     faBestDet, faBestChar, _ = cp.faCountedTimes(faTauDet, faTauChar,
-                                                 dictMission["fExposureLimitS"],
+                                                 cp.ffScienceTimeCap(dictMission),
                                                  int(dictMission.get("iRequiredDetections", 1)),
                                                  cp.ffPlanetCharacterizationCap(dictMission))
     bCounted = faBestDet[:, iVisits - 1] <= fTauS * (1.0 + 1e-9)

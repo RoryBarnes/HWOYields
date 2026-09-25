@@ -29,10 +29,11 @@ def main():
                marker="o", ms=4, color=ps.LIST_SERIES[0], label="Rederived AYO model")
     oAxes.axhline(dictCal["fTargetYield"], color=ps.LIST_SERIES[1], lw=1.5, ls="--",
                   label="Stark et al. (2024): 22.5 EECs")
-    oAxes.axvline(dictCal["fCalibratedThroughputFactor"], color=ps.S_INK_SECONDARY,
-                  lw=1.0, ls=":")
-    oAxes.annotate(f"calibrated factor = {dictCal['fCalibratedThroughputFactor']:.3f}",
-                   xy=(dictCal["fCalibratedThroughputFactor"], 0.02),
+    fFitted = dictCal.get("fFittedThroughputFactor", dictCal["fCalibratedThroughputFactor"])
+    oAxes.axvline(fFitted, color=ps.S_INK_SECONDARY, lw=1.0, ls=":")
+    sAdopted = "" if dictCal.get("bThroughputFitted", True) else " (diagnostic; adopted 1)"
+    oAxes.annotate(f"factor needed = {fFitted:.3f}{sAdopted}",
+                   xy=(fFitted, 0.02),
                    xycoords=("data", "axes fraction"), xytext=(4, 6),
                    textcoords="offset points", color=ps.S_INK_SECONDARY, fontsize=8)
     oAxes.set_xscale("log")

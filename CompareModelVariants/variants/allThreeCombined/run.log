@@ -1,0 +1,185 @@
+### computeCompleteness: dataComputeCompleteness.py --target-catalog /workspace/yields/buildTargetCatalog/targetCatalog.csv --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --out-completeness /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/completeness.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/completenessSummary.json
+{
+  "iStarsScreened": 1500,
+  "iNumPlanetsPerStar": 3000,
+  "fThroughputCalibration": 1.0,
+  "dictByBox": {
+    "canonical": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 72.81266666666667,
+      "iStarsWithAnyCompleteness": 162,
+      "iStarsWithAnyCompletenessAtZeroZodi": 228,
+      "fMedianTauCharDays": 29.793674768518517
+    },
+    "redefined": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 75.46466666666666,
+      "iStarsWithAnyCompleteness": 109,
+      "iStarsWithAnyCompletenessAtZeroZodi": 177,
+      "fMedianTauCharDays": 22.034989872685184
+    },
+    "hzOnly": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 83.29433333333333,
+      "iStarsWithAnyCompleteness": 157,
+      "iStarsWithAnyCompletenessAtZeroZodi": 157,
+      "fMedianTauCharDays": 28.933938078703704
+    }
+  },
+  "iExozodiDraws": 200,
+  "fMedianDrawnZodi": 2.9954122602133157,
+  "fFractionDrawnAbove100Zodi": 0.21446666666666667
+}
+### optimizeSurvey: dataOptimizeSurvey.py --completeness /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/completeness.npz --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --box canonical --processes 3 --out-survey /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/surveyResult.json
+{
+  "sBox": "canonical",
+  "iStarsAvailable": 1500,
+  "fThroughputCalibration": 1.0,
+  "fEtaEarthBaseline": 0.24,
+  "iExozodiDraws": 200,
+  "sBaselineNote": "fYieldBaseline and fYieldPlanningBaseline are means over the exozodi draws (albedo-drawn and planning albedo respectively); the fixed-exozodi survey is reported separately.",
+  "fYieldPlanningFixedExozodi": 16.885759999999998,
+  "fYieldFixedExozodi": 16.39952,
+  "iStarsUsedFixedExozodi": 146,
+  "fYieldBaseline": 14.805794126105608,
+  "fYieldPlanningBaseline": 15.153949931989255,
+  "iStarsUsedBaseline": 135,
+  "fTimeUsedFractionBaseline": 0.9997368008375238,
+  "listEtaScan": [
+    {
+      "fEtaEarth": 0.02,
+      "fYield": 1.2633750824649403,
+      "fYieldPlanning": 1.2802146781447659,
+      "fStarsUsed": 141.115
+    },
+    {
+      "fEtaEarth": 0.06,
+      "fYield": 3.7792408890412843,
+      "fYieldPlanning": 3.83513969638988,
+      "fStarsUsed": 140.495
+    },
+    {
+      "fEtaEarth": 0.12,
+      "fYield": 7.517629183841768,
+      "fYieldPlanning": 7.6490331789903685,
+      "fStarsUsed": 139.01
+    },
+    {
+      "fEtaEarth": 0.24,
+      "fYield": 14.805794126105608,
+      "fYieldPlanning": 15.153949931989255,
+      "fStarsUsed": 134.645
+    },
+    {
+      "fEtaEarth": 0.4,
+      "fYield": 23.900741334560813,
+      "fYieldPlanning": 24.538514101679816,
+      "fStarsUsed": 125.045
+    },
+    {
+      "fEtaEarth": 0.6,
+      "fYield": 33.84236185899331,
+      "fYieldPlanning": 34.5189608302306,
+      "fStarsUsed": 108.035
+    }
+  ]
+}
+{
+  "fYieldPlanningDrawnMean": 15.153949931989255,
+  "fYieldPlanningDrawnStd": 0.6339224049983192,
+  "fYieldDrawnMean": 14.805794126105608,
+  "fYieldDrawnStd": 0.6012443210643298,
+  "fStarsUsedDrawnMean": 134.645,
+  "fExozodiPenalty": 0.10256038626693398,
+  "fAlbedoPenalty": 0.022974591274629086,
+  "iRepresentativeDraw": 152
+}
+### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/missionParameters.json --eta-interval-z 1.4758 --out-samples /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/occurrencePosterior.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/occurrencePosteriorSummary.json
+{
+  "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior (lognormal matched to its quoted interval read at z = 1.4758); other boxes follow by the Gamma-independent ratio from the shape chain.",
+  "fEtaIntervalZ": 1.4758,
+  "fEtaLogNormalMu": -1.3590502684778558,
+  "fEtaLogNormalSigma": 0.515797037350749,
+  "fEtaModeImplied": 0.19689260479528684,
+  "fEtaMeanImplied": 0.29345617289420467,
+  "iSamples": 14400,
+  "fAcceptanceFraction": 0.6436458333333333,
+  "fMaxAutocorrSteps": 36.78834226559994,
+  "dictParameters": {
+    "lnGamma": {
+      "fMedian": -1.0825710075946717,
+      "fP16": -1.5477366092870628,
+      "fP84": -0.6174287800427471,
+      "fMean": -1.1011247199042877
+    },
+    "alpha": {
+      "fMedian": -0.18713925478410204,
+      "fP16": -0.4531544355716044,
+      "fP84": 0.07744334688823788,
+      "fMean": -0.18833296309052205
+    },
+    "beta": {
+      "fMedian": 0.26275076563120436,
+      "fP16": -0.027259323295514375,
+      "fP84": 0.5541729491124299,
+      "fMean": 0.2645734248645533
+    }
+  },
+  "dictEtaByBox": {
+    "canonical": {
+      "fMedian": 0.25564927679342464,
+      "fP16": 0.1546954211986281,
+      "fP84": 0.42366728897676537,
+      "fMean": 0.29192855598325096
+    },
+    "redefined": {
+      "fMedian": 0.05197086281326746,
+      "fP16": 0.031234452058130982,
+      "fP84": 0.08647535966938152,
+      "fMean": 0.059407152670311415
+    },
+    "hzOnly": {
+      "fMedian": 0.08219555489701415,
+      "fP16": 0.04945394011702464,
+      "fP84": 0.1364062570920089,
+      "fMean": 0.09398755666694696
+    }
+  },
+  "dictRatioRedefinedOverCanonical": {
+    "fMedian": 0.20334323541972582,
+    "fP16": 0.18681361673777727,
+    "fP84": 0.2204945874828882,
+    "fMean": 0.20352045278060632
+  }
+}
+### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/completeness.npz --occurrence-posterior /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/occurrencePosterior.npz --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 3 --out-prediction /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/yieldPrediction.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/yieldSamples.npz
+{
+  "dictYieldRatio": {
+    "fMedian": 0.22014576167304906,
+    "fP16": 0.20122355752882454,
+    "fP84": 0.24073666217353298,
+    "fOccurrenceRatioMedian": 0.20334323541972582
+  },
+  "dictByBox": {
+    "canonical": {
+      "fMeanExpected": 17.49426213359263,
+      "fMedianExpected": 15.776796977792385,
+      "fP16Expected": 9.640001296464906,
+      "fP84Expected": 25.231531684796142,
+      "fP05Expected": 6.82137237528824,
+      "fP95Expected": 33.70811438294077,
+      "fProbabilityAtLeastGoal": 0.196875,
+      "fProbabilityAtLeastOne": 0.9997222222222222
+    },
+    "redefined": {
+      "fMeanExpected": 3.9371245298120323,
+      "fMedianExpected": 3.4332206407339134,
+      "fP16Expected": 2.067743604982404,
+      "fP84Expected": 5.734323988894122,
+      "fP05Expected": 1.4468946229455184,
+      "fP95Expected": 8.078547438939282,
+      "fProbabilityAtLeastGoal": 0.0001388888888888889,
+      "fProbabilityAtLeastOne": 0.9365972222222222
+    }
+  }
+}

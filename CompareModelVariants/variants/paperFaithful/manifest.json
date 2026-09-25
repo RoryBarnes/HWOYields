@@ -1,0 +1,15 @@
+{
+ "sVariant": "paperFaithful",
+ "sWhy": "every documented Stark choice followed at once: his per-visit albedo test AND his stated 86% eta interval, with the sourced T_sky(r) of Stark 2019 Eqs. 5-6 KEPT",
+ "dictMissionOverrides": {
+  "sAlbedoMethod": "perVisitThreshold"
+ },
+ "fEtaIntervalZ": 1.4758,
+ "listStagesRerun": [
+  "completeness",
+  "survey",
+  "occurrence",
+  "prediction"
+ ],
+ "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/missionParameters.json"
+}

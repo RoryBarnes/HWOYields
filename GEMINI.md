@@ -1,0 +1,1 @@
+.vaibify/AGENTS.md

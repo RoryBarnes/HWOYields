@@ -101,13 +101,13 @@
         },
         "iaGridStar_canonical": {
           "listShape": [
-            250
+            235
           ],
           "sDtype": "int32"
         },
         "iaCompCounts_canonical": {
           "listShape": [
-            250,
+            235,
             23,
             6,
             150
@@ -116,7 +116,7 @@
         },
         "iaCompAlbedoCounts_canonical": {
           "listShape": [
-            250,
+            235,
             23,
             6,
             150
@@ -125,7 +125,7 @@
         },
         "faTauCharMeanGrid_canonical": {
           "listShape": [
-            250,
+            235,
             23,
             6,
             150
@@ -168,13 +168,13 @@
         },
         "iaGridStar_redefined": {
           "listShape": [
-            205
+            188
           ],
           "sDtype": "int32"
         },
         "iaCompCounts_redefined": {
           "listShape": [
-            205,
+            188,
             23,
             6,
             150
@@ -183,7 +183,7 @@
         },
         "iaCompAlbedoCounts_redefined": {
           "listShape": [
-            205,
+            188,
             23,
             6,
             150
@@ -192,7 +192,7 @@
         },
         "faTauCharMeanGrid_redefined": {
           "listShape": [
-            205,
+            188,
             23,
             6,
             150
@@ -258,29 +258,29 @@
           "fMax": 50.555194028119544
         },
         "faComp_canonical": {
-          "fMean": 0.03270759382716049,
+          "fMean": 0.029928508888888886,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faCompAlbedo_canonical": {
-          "fMean": 0.03163199209876543,
+          "fMean": 0.02898492345679012,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_canonical": {
-          "fMean": 181132.4587165823,
+          "fMean": 156485.1842622559,
           "fMin": 0.0,
-          "fMax": 5180400.0
+          "fMax": 4697229.5
         },
         "iaGridStar_canonical": {
-          "fMean": 261.736,
+          "fMean": 258.67659574468087,
           "fMin": 0.0,
           "fMax": 1457.0
         },
         "faTauCharMeanGrid_canonical": {
-          "fMean": 688442.7836717776,
+          "fMean": 645192.4601135089,
           "fMin": 0.0,
-          "fMax": 5183370.5
+          "fMax": 4698256.0
         },
         "faZodiGrid": {
           "fMean": 151.91304347826087,
@@ -293,44 +293,44 @@
           "fMax": 3000.0
         },
         "faComp_redefined": {
-          "fMean": 0.0350295061728395,
+          "fMean": 0.031966046666666664,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faCompAlbedo_redefined": {
-          "fMean": 0.03390587382716049,
+          "fMean": 0.03098712666666666,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_redefined": {
-          "fMean": 133686.8501613854,
+          "fMean": 117874.2328763002,
           "fMin": 0.0,
-          "fMax": 5170738.5
+          "fMax": 4693750.5
         },
         "iaGridStar_redefined": {
-          "fMean": 235.00975609756097,
+          "fMean": 236.1595744680851,
           "fMin": 0.0,
           "fMax": 1457.0
         },
         "faTauCharMeanGrid_redefined": {
-          "fMean": 612400.7190452418,
+          "fMean": 579091.4676516405,
           "fMin": 0.0,
-          "fMax": 5182803.5
+          "fMax": 4700614.5
         },
         "faComp_hzOnly": {
-          "fMean": 0.03896296345679013,
+          "fMean": 0.0358698898765432,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faCompAlbedo_hzOnly": {
-          "fMean": 0.037771758024691356,
+          "fMean": 0.03480577604938272,
           "fMin": 0.0,
           "fMax": 1.0
         },
         "faTauCharMean_hzOnly": {
-          "fMean": 176663.03736397857,
+          "fMean": 151123.65355067962,
           "fMin": 0.0,
-          "fMax": 5181454.0
+          "fMax": 4700262.5
         },
         "faZodiDraws": {
           "fMean": 48.375889425294346,
@@ -338,7 +338,7 @@
           "fMax": 588.0
         }
       },
-      "iBytes": 17800363
+      "iBytes": 18631186
     },
     "completenessSummary.json": {
       "sKind": "json",
@@ -368,7 +368,7 @@
           "saPath": [
             "fThroughputCalibration"
           ],
-          "oValue": 0.9876435169533048
+          "oValue": 1.0
         },
         {
           "saPath": [
@@ -384,71 +384,71 @@
             "canonical",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 106.15533333333335
+          "oValue": 95.92333333333333
         },
         {
           "saPath": [
             "dictByBox",
             "canonical",
             "iStarsWithAnyCompleteness"
-          ],
-          "oValue": 218.0
-        },
-        {
-          "saPath": [
-            "dictByBox",
-            "canonical",
-            "iStarsWithAnyCompletenessAtZeroZodi"
-          ],
-          "oValue": 250.0
-        },
-        {
-          "saPath": [
-            "dictByBox",
-            "canonical",
-            "fMedianTauCharDays"
-          ],
-          "oValue": 33.49466001157408
-        },
-        {
-          "saPath": [
-            "dictByBox",
-            "redefined",
-            "fMaxCompletenessBest"
-          ],
-          "oValue": 1.0
-        },
-        {
-          "saPath": [
-            "dictByBox",
-            "redefined",
-            "fSummedMaxCompleteness"
-          ],
-          "oValue": 109.92766666666667
-        },
-        {
-          "saPath": [
-            "dictByBox",
-            "redefined",
-            "iStarsWithAnyCompleteness"
-          ],
-          "oValue": 171.0
-        },
-        {
-          "saPath": [
-            "dictByBox",
-            "redefined",
-            "iStarsWithAnyCompletenessAtZeroZodi"
           ],
           "oValue": 205.0
         },
         {
           "saPath": [
             "dictByBox",
+            "canonical",
+            "iStarsWithAnyCompletenessAtZeroZodi"
+          ],
+          "oValue": 235.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "canonical",
+            "fMedianTauCharDays"
+          ],
+          "oValue": 29.604638310185184
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "fMaxCompletenessBest"
+          ],
+          "oValue": 1.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "fSummedMaxCompleteness"
+          ],
+          "oValue": 98.88866666666667
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "iStarsWithAnyCompleteness"
+          ],
+          "oValue": 161.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
+            "redefined",
+            "iStarsWithAnyCompletenessAtZeroZodi"
+          ],
+          "oValue": 188.0
+        },
+        {
+          "saPath": [
+            "dictByBox",
             "redefined",
             "fMedianTauCharDays"
           ],
-          "oValue": 32.07510127314815
+          "oValue": 28.73560185185185
         },
         {
           "saPath": [
@@ -464,7 +464,7 @@
             "hzOnly",
             "fSummedMaxCompleteness"
           ],
-          "oValue": 121.152
+          "oValue": 110.17000000000002
         },
         {
           "saPath": [
@@ -472,7 +472,7 @@
             "hzOnly",
             "iStarsWithAnyCompleteness"
           ],
-          "oValue": 215.0
+          "oValue": 201.0
         },
         {
           "saPath": [
@@ -480,7 +480,7 @@
             "hzOnly",
             "iStarsWithAnyCompletenessAtZeroZodi"
           ],
-          "oValue": 215.0
+          "oValue": 201.0
         },
         {
           "saPath": [
@@ -488,7 +488,7 @@
             "hzOnly",
             "fMedianTauCharDays"
           ],
-          "oValue": 32.48175347222222
+          "oValue": 29.44152488425926
         },
         {
           "saPath": [
@@ -509,7 +509,7 @@
           "oValue": 0.21446666666666667
         }
       ],
-      "iBytes": 979
+      "iBytes": 974
     }
   }
 }

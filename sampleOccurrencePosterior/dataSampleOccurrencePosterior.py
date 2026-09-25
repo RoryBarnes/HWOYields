@@ -94,6 +94,48 @@ def faSampleEtaFromPublished(fCentre, fMinus, fPlus, iDraws, rng, fZ=F_Z_INTERVA
     return np.exp(rng.normal(fMu, fSigma, iDraws)), fMu, fSigma
 
 
+def faSampleEtaFromBrysonMixture(sPath, fTargetMean, iDraws, rng):
+    """Draw eta from Stark's own construction instead of a lognormal fitted to his interval.
+
+    Ref. stark2024 Sec. 3.6 builds eta_Earth from Ref. bryson2021 by "uniformly randomly drawing
+    from both cases" of the completeness extrapolation beyond 500 days, and reports the result has
+    mean 0.26. This samples the two digitized case histograms in equal proportion and rescales by
+    the single factor that sets that mean, so the law carries his shape and his stated
+    normalisation with no interval reading and no fitted parameter -- which removes both the
+    86-vs-68 percent ambiguity and the mean-vs-median one. The digitized cases are for Bryson's
+    own radius and Teff selection rather than Stark's, so the shape transfer is an assumption.
+    """
+    dictBryson = json.load(open(sPath))
+    iaCase = rng.integers(0, 2, size=iDraws)
+    faEta = np.empty(iDraws, dtype=float)
+    for iIndex, sCase in enumerate(("extrapZero", "extrapConst")):
+        iaWhich = np.flatnonzero(iaCase == iIndex)
+        faEdges = np.asarray(dictBryson[sCase]["faEdges"], dtype=float)
+        faWeights = np.asarray(dictBryson[sCase]["faProbability"], dtype=float)
+        iaBin = rng.choice(len(faWeights), size=iaWhich.size, p=faWeights / faWeights.sum())
+        faEta[iaWhich] = rng.uniform(faEdges[iaBin], faEdges[iaBin + 1])
+    return faEta * (fTargetMean / faEta.mean())
+
+
+def fdictEtaLaw(dictArgs, iDraws, rng):
+    """Canonical-box eta samples plus the summary fields describing the law that produced them."""
+    if dictArgs["eta_law"] == "brysonMixture":
+        faEta = faSampleEtaFromBrysonMixture(dictArgs["bryson_digitised"],
+                                             dictArgs["eta_centre"], iDraws, rng)
+        faLog = np.log(faEta)
+        faCounts, faEdges = np.histogram(faEta, bins=np.linspace(0.0, faEta.max(), 201))
+        fMode = float(0.5 * (faEdges[np.argmax(faCounts)] + faEdges[np.argmax(faCounts) + 1]))
+        return faEta, {"fEtaLogNormalMu": float(faLog.mean()),
+                       "fEtaLogNormalSigma": float(faLog.std()),
+                       "fEtaModeImplied": fMode, "fEtaMeanImplied": float(faEta.mean())}
+    faEta, fMu, fSigma = faSampleEtaFromPublished(
+        dictArgs["eta_centre"], dictArgs["eta_minus"], dictArgs["eta_plus"], iDraws, rng,
+        dictArgs["eta_interval_z"])
+    return faEta, {"fEtaLogNormalMu": float(fMu), "fEtaLogNormalSigma": float(fSigma),
+                   "fEtaModeImplied": float(np.exp(fMu - fSigma ** 2)),
+                   "fEtaMeanImplied": float(np.exp(fMu + 0.5 * fSigma ** 2))}
+
+
 def fdictBoxPosteriors(faChain, dictBoxes):
     """Integrate every posterior draw over each selection box."""
     dictOut = {}
@@ -127,6 +169,11 @@ def fdictParseArgs():
     p.add_argument("--alpha-prior-sigma", type=float, default=0.27)
     p.add_argument("--beta-prior-mean", type=float, default=0.26)
     p.add_argument("--beta-prior-sigma", type=float, default=0.29)
+    p.add_argument("--eta-law", choices=("lognormal", "brysonMixture"), default="lognormal",
+                   help="lognormal matched to the quoted interval, or Stark's own uniform "
+                        "mixture of the two Bryson (2021) cases rescaled to his stated mean")
+    p.add_argument("--bryson-digitised",
+                   default="../explorations/brysonFigure13EtaEarthDigitised.json")
     p.add_argument("--walkers", type=int, default=32)
     p.add_argument("--steps", type=int, default=6000)
     p.add_argument("--burn", type=int, default=1500)
@@ -155,22 +202,24 @@ def main():
     dictEtaShape = fdictBoxPosteriors(faChain, dictBoxes)
     faRatio = dictEtaShape["redefined"] / dictEtaShape["canonical"]
     rngEta = np.random.default_rng(dictArgs["seed"] + 1)
-    faEtaCanonical, fMu, fSigma = faSampleEtaFromPublished(
-        dictArgs["eta_centre"], dictArgs["eta_minus"], dictArgs["eta_plus"],
-        faRatio.size, rngEta, dictArgs["eta_interval_z"])
+    faEtaCanonical, dictEtaLaw = fdictEtaLaw(dictArgs, faRatio.size, rngEta)
     dictEta = {"canonical": faEtaCanonical, "redefined": faEtaCanonical * faRatio,
                "hzOnly": faEtaCanonical * (dictEtaShape["hzOnly"] /
                                            dictEtaShape["canonical"])}
     np.savez_compressed(dictArgs["out_samples"], faChain=faChain, faRatio=faRatio,
                         **{f"faEta_{k}": v for k, v in dictEta.items()})
     dictSummary = {
-        "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior "
-                             f"(lognormal matched to its quoted interval read at z = {dictArgs['eta_interval_z']:g}); other boxes follow "
-                             "by the Gamma-independent ratio from the shape chain.",
+        "sEtaNormalisation": (
+            "Canonical-box eta sampled directly from the published posterior "
+            + (f"(uniform mixture of the two digitized Bryson 2021 cases, rescaled to the "
+               f"published mean {dictArgs['eta_centre']:g})" if dictArgs["eta_law"] ==
+               "brysonMixture" else
+               f"(lognormal matched to its quoted interval read at z = "
+               f"{dictArgs['eta_interval_z']:g})")
+            + "; other boxes follow by the Gamma-independent ratio from the shape chain."),
+        "sEtaLaw": dictArgs["eta_law"],
         "fEtaIntervalZ": float(dictArgs["eta_interval_z"]),
-        "fEtaLogNormalMu": float(fMu), "fEtaLogNormalSigma": float(fSigma),
-        "fEtaModeImplied": float(np.exp(fMu - fSigma ** 2)),
-        "fEtaMeanImplied": float(np.exp(fMu + 0.5 * fSigma ** 2)),
+        **dictEtaLaw,
         "iSamples": int(faChain.shape[0]),
         "fAcceptanceFraction": float(np.mean(oSampler.acceptance_fraction)),
         "fMaxAutocorrSteps": float(np.max(oSampler.get_autocorr_time(quiet=True))),

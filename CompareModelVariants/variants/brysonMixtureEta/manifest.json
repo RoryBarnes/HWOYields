@@ -1,0 +1,12 @@
+{
+ "sVariant": "brysonMixtureEta",
+ "sWhy": "Stark's OWN eta construction -- the uniform mixture of Bryson's two cases rescaled to his stated mean 0.26 -- instead of a lognormal fitted to his quoted interval, removing both the 86-vs-68 percent and mean-vs-median readings",
+ "dictMissionOverrides": {},
+ "fEtaIntervalZ": null,
+ "sEtaLaw": "brysonMixture",
+ "listStagesRerun": [
+  "occurrence",
+  "prediction"
+ ],
+ "sMissionParameters": "/workspace/yields/modelCoronagraph/missionParameters.json"
+}

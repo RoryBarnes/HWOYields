@@ -1,0 +1,541 @@
+{
+  "sStep": "calibrationDegeneracy",
+  "dictFiles": {
+    "calibrationDegeneracyDesign.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "faHigh",
+        "faLow",
+        "listParams",
+        "listPoints"
+      ],
+      "listNumbers": [],
+      "iBytes": 27853
+    },
+    "calibrationDegeneracy.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictPosteriors",
+        "dictSensitivityAtAdopted",
+        "faEmulatorLooRms",
+        "faTargets",
+        "faTolerances",
+        "iDesignPoints",
+        "listObservables",
+        "listParams"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "iDesignPoints"
+          ],
+          "oValue": 56.0
+        }
+      ],
+      "iBytes": 5702
+    },
+    "calibrationDegeneracyChains.npz": {
+      "sKind": "npz",
+      "saArrays": [
+        "all",
+        "faDesignObs",
+        "faDesignTheta",
+        "yieldOnly"
+      ],
+      "dictArrayMeta": {
+        "yieldOnly": {
+          "listShape": [
+            9600,
+            4
+          ],
+          "sDtype": "float64"
+        },
+        "all": {
+          "listShape": [
+            9600,
+            4
+          ],
+          "sDtype": "float64"
+        },
+        "faDesignTheta": {
+          "listShape": [
+            56,
+            4
+          ],
+          "sDtype": "float64"
+        },
+        "faDesignObs": {
+          "listShape": [
+            56,
+            6
+          ],
+          "sDtype": "float64"
+        }
+      },
+      "dictArrayStats": {
+        "yieldOnly": {
+          "fMean": 0.5778085385346611,
+          "fMin": -0.914881953740702,
+          "fMax": 1.7819745429641332
+        },
+        "all": {
+          "fMean": 0.4227754376227164,
+          "fMin": -0.9162793622608458,
+          "fMax": 1.7819411109458412
+        },
+        "faDesignTheta": {
+          "fMean": 0.5459354603365636,
+          "fMin": -0.891403268091657,
+          "fMax": 1.7718062215585784
+        },
+        "faDesignObs": {
+          "fMean": 1.1217524217309336,
+          "fMin": -1.094424366586159,
+          "fMax": 3.456796061230252
+        }
+      },
+      "iBytes": 619902
+    },
+    "calibrationDegeneracySummary.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictDesignEnvelope",
+        "dictPosteriors",
+        "dictYieldGatedEnvelope",
+        "faLeadingDirection",
+        "faSensitivitySingularValues",
+        "iDesignPoints",
+        "listParams"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "iDesignPoints"
+          ],
+          "oValue": 56.0
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "iPoints"
+          ],
+          "oValue": 56.0
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "ln_yield6",
+            "fMin"
+          ],
+          "oValue": 10.142800000000001
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "ln_yield6",
+            "fMax"
+          ],
+          "oValue": 31.7152
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "ln_char18_6",
+            "fMin"
+          ],
+          "oValue": 3.134189058979259
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "ln_char18_6",
+            "fMax"
+          ],
+          "oValue": 16.941183123669123
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "ln_char18_9",
+            "fMin"
+          ],
+          "oValue": 0.33473223456074647
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "ln_char18_9",
+            "fMax"
+          ],
+          "oValue": 7.574817380485923
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "fig11_6-10",
+            "fMin"
+          ],
+          "oValue": 0.3591666666666667
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "fig11_6-10",
+            "fMax"
+          ],
+          "oValue": 0.9191666666666667
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "fig11_10-15",
+            "fMin"
+          ],
+          "oValue": 0.0
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "fig11_10-15",
+            "fMax"
+          ],
+          "oValue": 0.6391666666666667
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "fig11_15-20",
+            "fMin"
+          ],
+          "oValue": 0.0
+        },
+        {
+          "saPath": [
+            "dictDesignEnvelope",
+            "dictRange",
+            "fig11_15-20",
+            "fMax"
+          ],
+          "oValue": 0.25833333333333336
+        },
+        {
+          "saPath": [
+            "dictYieldGatedEnvelope",
+            "iPoints"
+          ],
+          "oValue": 20.0
+        },
+        {
+          "saPath": [
+            "dictYieldGatedEnvelope",
+            "fYieldTarget"
+          ],
+          "oValue": 22.5
+        },
+        {
+          "saPath": [
+            "dictYieldGatedEnvelope",
+            "fFraction"
+          ],
+          "oValue": 0.1
+        },
+        {
+          "saPath": [
+            "dictYieldGatedEnvelope",
+            "fChar6Min"
+          ],
+          "oValue": 6.9969205600883715
+        },
+        {
+          "saPath": [
+            "dictYieldGatedEnvelope",
+            "fChar6Max"
+          ],
+          "oValue": 11.57214849816046
+        },
+        {
+          "saPath": [
+            "dictYieldGatedEnvelope",
+            "fChar9Min"
+          ],
+          "oValue": 0.7852749804912481
+        },
+        {
+          "saPath": [
+            "dictYieldGatedEnvelope",
+            "fChar9Max"
+          ],
+          "oValue": 1.488159381728505
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "ln_kappa",
+            "fMean"
+          ],
+          "oValue": 0.3567969697187637
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "ln_kappa",
+            "fStd"
+          ],
+          "oValue": 0.4050195872575923
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "ln_kappa_c",
+            "fMean"
+          ],
+          "oValue": 0.07433694423415041
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "ln_kappa_c",
+            "fStd"
+          ],
+          "oValue": 0.4975456177906705
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "f_leak",
+            "fMean"
+          ],
+          "oValue": 1.3846370661276906
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "f_leak",
+            "fStd"
+          ],
+          "oValue": 0.22349524693266223
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "s_sky",
+            "fMean"
+          ],
+          "oValue": 0.49546317405804224
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "s_sky",
+            "fStd"
+          ],
+          "oValue": 0.2873719722667199
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "kappa",
+            "fMedian"
+          ],
+          "oValue": 1.4287457617506851
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "kappa",
+            "fLnStd"
+          ],
+          "oValue": 0.4050195872575923
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "kappa_c",
+            "fMedian"
+          ],
+          "oValue": 1.0771696904731929
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "dictParameters",
+            "kappa_c",
+            "fLnStd"
+          ],
+          "oValue": 0.4975456177906705
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "yieldOnly",
+            "fKappaKappaCCorrelation"
+          ],
+          "oValue": -0.7904243779599568
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "ln_kappa",
+            "fMean"
+          ],
+          "oValue": 0.31505951676241634
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "ln_kappa",
+            "fStd"
+          ],
+          "oValue": 0.22016183981397486
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "ln_kappa_c",
+            "fMean"
+          ],
+          "oValue": -0.6945156943623713
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "ln_kappa_c",
+            "fStd"
+          ],
+          "oValue": 0.18943502250692457
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "f_leak",
+            "fMean"
+          ],
+          "oValue": 1.406816714941775
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "f_leak",
+            "fStd"
+          ],
+          "oValue": 0.26894758666666574
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "s_sky",
+            "fMean"
+          ],
+          "oValue": 0.6637412131490468
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "s_sky",
+            "fStd"
+          ],
+          "oValue": 0.22492838693922665
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "kappa",
+            "fMedian"
+          ],
+          "oValue": 1.370340866781801
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "kappa",
+            "fLnStd"
+          ],
+          "oValue": 0.22016183981397486
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "kappa_c",
+            "fMedian"
+          ],
+          "oValue": 0.4993162110927841
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "dictParameters",
+            "kappa_c",
+            "fLnStd"
+          ],
+          "oValue": 0.18943502250692457
+        },
+        {
+          "saPath": [
+            "dictPosteriors",
+            "all",
+            "fKappaKappaCCorrelation"
+          ],
+          "oValue": -0.9055063436157403
+        }
+      ],
+      "iBytes": 5395
+    }
+  }
+}

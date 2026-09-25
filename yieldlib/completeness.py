@@ -86,7 +86,7 @@ def fnSkyThroughputFor(dictMission):
     return cg.fnSkyThroughput(fMax, dictMission["fApertureRadiusLamD"])
 
 
-def faSkyThroughputAt(faUpsilon, dictMission):
+def faSkyThroughputAt(faUpsilon, dictMission, faSepCurve=None):
     """T_sky at each planet's position: constant, or following the core-throughput curve.
 
     Stark et al. (2019) Eqs. 5-6 write the zodiacal and exozodiacal count rates with
@@ -103,6 +103,13 @@ def faSkyThroughputAt(faUpsilon, dictMission):
     that the fraction of an off-axis PSF inside the photometric core does not change with
     separation. The PSF convolution in Stark's definition smooths this over about one lambda/D,
     which the reconstruction omits; the published 2-D maps that would supply it are not public.
+
+    Two experimental refinements, both off by default (explorations/
+    validateSkyThroughputConvolution.py tests them against AYO's values for the ETC benchmark's
+    vortex coronagraph). bSkyThroughputConvolved adds the PSF convolution, which needs the
+    planet's separation in the published curves' units (faSepCurve). dictSkyThroughputShape
+    multiplies by a factor tabulated against Upsilon_c / Upsilon_c,max, standing in for an off-axis
+    core fraction that falls toward the inner working angle.
     """
     fMax = fnSkyThroughputFor(dictMission)
     if not dictMission.get("bSkyThroughputFollowsCore", False):
@@ -110,7 +117,34 @@ def faSkyThroughputAt(faUpsilon, dictMission):
     dictTable = dictMission.get("dictCoronagraphTable")
     fUpsilonMax = (max(dictTable["faUpsilon"]) if dictTable
                    else dictMission["fCoreThroughputMax"])
-    return fMax * np.asarray(faUpsilon) / fUpsilonMax
+    faFraction = np.asarray(faUpsilon) / fUpsilonMax
+    if dictMission.get("bSkyThroughputConvolved", False) and dictTable and faSepCurve is not None:
+        faSky = faConvolvedSkyAt(faSepCurve, dictMission, fMax / fUpsilonMax)
+    else:
+        faSky = fMax * faFraction
+    dictShape = dictMission.get("dictSkyThroughputShape")
+    if dictShape:
+        faSky = faSky * np.interp(faFraction, dictShape["faCoreFraction"], dictShape["faFactor"])
+    return faSky
+
+
+_DICT_CONVOLVED_CACHE = {}
+
+
+def faConvolvedSkyAt(faSepCurve, dictMission, fTotalPerUpsilon):
+    """The convolved T_sky profile for this mission's coronagraph, cached, at faSepCurve."""
+    dictTable = dictMission["dictCoronagraphTable"]
+    tKey = (tuple(dictTable["faSeparationUpsilon"]), tuple(dictTable["faUpsilon"]),
+            float(dictMission["fCircumscribedRatio"]), float(fTotalPerUpsilon))
+    if tKey not in _DICT_CONVOLVED_CACHE:
+        faSep = np.asarray(dictTable["faSeparationUpsilon"])
+        _DICT_CONVOLVED_CACHE[tKey] = cg.fdictConvolvedSkyThroughput(
+            faSep, np.asarray(dictTable["faUpsilon"]) * fTotalPerUpsilon,
+            dictMission["fCircumscribedRatio"])
+    dictConv = _DICT_CONVOLVED_CACHE[tKey]
+    return np.interp(faSepCurve, dictConv["faSeparation"], dictConv["faSkyThroughput"])
+
+
 
 
 def faExozodiRadialFactor(faSepAu, dictStar, dictMission):
@@ -153,6 +187,22 @@ def fnCollectingAreaM2(dictMission):
     return dictMission.get("fApertureFillFactor", 1.0) * np.pi * (fCircumscribed / 2.0) ** 2
 
 
+def ffZodiSurfaceBrightness(dictStar, dictBand, dictMission, fZeroMagBand):
+    """Local zodi in photons s^-1 m^-2 arcsec^-2 over the band.
+
+    sZodiModel "uniform" (default) is the conventional 23 mag arcsec^-2 in V with solar colour.
+    "stark2014" is what AYO does (Stark et al. 2014 App. B; Stark et al. 2024 Table 1 note d,
+    "varies with ecliptic latitude"): Leinert's spectrum at solar longitude 135 deg, scaled by
+    the star's ecliptic latitude. Checked against the AYO column of the Stark et al. (2025) ETC
+    benchmark (explorations/compareEtcBenchmarkTermByTerm.py).
+    """
+    if dictMission.get("sZodiModel", "uniform") != "stark2014":
+        return fZeroMagBand * 10 ** (-0.4 * dictMission["fZodiMagArcsec2"])
+    fBandwidthUm = dictBand["fLambdaM"] * dictBand["fBandwidthFraction"] * 1e6
+    return ph.fnZodiPhotonSurfaceBrightness(dictBand["fLambdaM"],
+                                            dictStar["fEclipticLatDeg"]) * fBandwidthUm
+
+
 def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     """All count rates (planet, leaked starlight, zodi, exozodi, detector) in counts s^-1.
 
@@ -183,6 +233,7 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     fArea = fnCollectingAreaM2(dictMission)
     fCalibration = (dictMission.get("fThroughputCalibration", 1.0)
                     if dictBand.get("bApplyThroughputCalibration", True) else 1.0)
+    fCalibration *= dictBand.get("fThroughputScale", 1.0)
     fThroughput = dictBand["fOpticalThroughput"] * dictMission["fContaminationThroughput"] * \
         dictMission["fDetectiveQuantumEfficiency"] * dictMission["fQuantumEfficiency"] * \
         fCalibration
@@ -199,8 +250,9 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     fOmega = ph.fnPhotometricApertureSolidAngle(dictBand["fLambdaM"], dictMission["fDiameterM"],
                                                 dictMission["fApertureRadiusLamD"])
     fZeroMag = ph.fnZeroMagPhotonFlux(dictBand["fLambdaM"]) * (fBandwidthM * 1e6)
-    fBackground = fOmega * fArea * fThroughput * faSkyThroughputAt(faUpsilon, dictMission)
-    fZodi = fZeroMag * 10 ** (-0.4 * dictMission["fZodiMagArcsec2"]) * fBackground
+    fBackground = fOmega * fArea * fThroughput * faSkyThroughputAt(faUpsilon, dictMission,
+                                                                   faSepCurve)
+    fZodi = ffZodiSurfaceBrightness(dictStar, dictBand, dictMission, fZeroMag) * fBackground
     fExozodiScale = ph.fnExozodiSurfaceBrightnessScale(
         dictBand["fLambdaM"], dictStar["fTeffK"], dictStar["fRadiusRsun"],
         dictStar["fLuminosityLsun"])
@@ -208,9 +260,63 @@ def fdictCountRates(dictStar, dictPlanets, dictGeom, dictBand, dictMission):
     fExozodi = fExozodiLevel * fZeroMag * 10 ** (-0.4 * dictMission["fExozodiMagArcsec2"]) * \
         fExozodiScale * fBackground * faExozodiRadialFactor(dictGeom["faSepAu"], dictStar,
                                                             dictMission)
+    fLeakFactor = (cg.fnAiryPeakOmegaOverCore(dictMission["fApertureRadiusLamD"])
+                   if dictMission.get("sLeakNormalization", "core") == "airyPeak"
+                   else dictMission.get("fLeakFactor", 1.0))
     return dict(faPlanet=fStarRate * faUpsilon * faFluxRatio,
-                faLeak=fStarRate * faUpsilon * faZeta, fZodi=fZodi, fExozodi=fExozodi,
-                faFluxRatio=faFluxRatio, faSepLamD=faSepLamD, faUpsilon=faUpsilon)
+                faLeak=fStarRate * faUpsilon * faZeta * fLeakFactor,
+                fZodi=fZodi, fExozodi=fExozodi,
+                faFluxRatio=faFluxRatio, faSepLamD=faSepLamD, faUpsilon=faUpsilon,
+                faStarCore=fStarRate * faUpsilon)
+
+
+def faChannelNoiseTerms(dictRates, dictBand, dictMission, fExozodiScale):
+    """Per-channel (CR_p^2, CR_p + 2 CR_b) for the exposure-time equation."""
+    faAstro = (dictRates["faLeak"] + dictRates["fZodi"] +
+               fExozodiScale * dictRates["fExozodi"])
+    faBrightest = (faAstro + dictRates["faPlanet"]) / dictBand["iNumPixels"]
+    faDetector = ph.faDetectorCountRate(faBrightest, dictBand["iNumPixels"],
+                                        dictMission["fDarkCurrent"], dictMission["fReadNoise"],
+                                        None, dictMission["fClockInducedCharge"])
+    return dictRates["faPlanet"] ** 2, dictRates["faPlanet"] + 2.0 * (faAstro + faDetector)
+
+
+def ffNoiseFloorContrast(dictMission):
+    """Noise-floor count rate per unit of (stellar count rate x core throughput), per channel.
+
+    Stark et al. (2024) Table 2 define the floor as the faintest point source detectable at
+    S/N_d (Delta mag 26.5), with S/N_d "summed over both coronagraphs". A source at the floor
+    therefore reaches S/N_d only in infinite time with every detection channel combined, which
+    fixes the per-channel floor at 10^(-0.4 Delta mag) sqrt(N_channels) / S/N_d.
+    """
+    fSnr = float(dictMission.get("fNoiseFloorSignalToNoise", 7.0))
+    iChannels = int(dictMission.get("iNoiseFloorChannels", 2))
+    return 10 ** (-0.4 * dictMission["fNoiseFloorDeltaMag"]) * np.sqrt(iChannels) / fSnr
+
+
+def faTimeWithNoiseFloor(listA, listV, listN, fSignalToNoise):
+    """tau solving sum_i a_i tau / (v_i + n_i^2 tau) = S^2 for one or two channels.
+
+    This is AYO's Eq. 1 of Stark et al. (2025), S^2 (CR_p + 2 CR_b) / (CR_p^2 - S^2 CR_nf^2),
+    generalized to channels summed in quadrature. With two channels clearing denominators gives
+    A tau^2 + B tau + C = 0 with C < 0; the root is taken in the cancellation-free form
+    -2C / (B + sqrt(B^2 - 4AC)), which reduces to the floor-free result when n = 0. Infinite
+    where the planet cannot reach S at any exposure (sum a_i / n_i^2 <= S^2).
+    """
+    fS2 = fSignalToNoise ** 2
+    if len(listA) == 1:
+        listA, listV, listN = listA + [0.0], listV + [1.0], listN + [0.0]
+    if len(listA) != 2:
+        raise ValueError("noise-floor exposure time supports one or two channels")
+    (a1, a2), (v1, v2), (n1, n2) = listA, listV, [np.square(n) for n in listN]
+    fA = a1 * n2 + a2 * n1 - fS2 * n1 * n2
+    fB = a1 * v2 + a2 * v1 - fS2 * (v1 * n2 + v2 * n1)
+    fC = -fS2 * v1 * v2
+    with np.errstate(divide="ignore", invalid="ignore"):
+        faReach = np.where(n1 > 0, a1 / n1, np.inf) + np.where(n2 > 0, a2 / n2, np.inf)
+        faDisc = np.sqrt(np.maximum(fB * fB - 4.0 * fA * fC, 0.0))
+        faTau = -2.0 * fC / (fB + faDisc)
+    return np.where((faReach > fS2) & (fB + faDisc > 0), faTau, np.inf)
 
 
 def faRequiredExposureTime(listBandRates, listBands, fSignalToNoise, dictMission,
@@ -220,26 +326,30 @@ def faRequiredExposureTime(listBandRates, listBands, fSignalToNoise, dictMission
     Stark et al. (2024) Table 2 requires S/N = 7 "summed over both coronagraphs", so the
     channels add in quadrature: 1/tau is the sum of each channel's CR_p^2 / (CR_p + 2 CR_b).
 
+    sNoiseFloorModel "screen" (default) treats the Delta mag 26.5 floor as a hard cut on the
+    planet's contrast. "denominator" is AYO's form: a systematic count rate CR_nf in the
+    denominator of the exposure time (Stark et al. 2025 Eq. 1), so times rise smoothly and
+    diverge as a planet approaches the floor; see ffNoiseFloorContrast.
+
     fExozodiScale multiplies the exozodi count rate. Rates computed once at one zodi can then be
     re-used at any exozodi level, which is how completeness is tabulated over a grid of levels.
     """
-    faInverseTau = np.zeros_like(listBandRates[0]["faPlanet"])
-    for dictRates, dictBand in zip(listBandRates, listBands):
-        faAstro = (dictRates["faLeak"] + dictRates["fZodi"] +
-                   fExozodiScale * dictRates["fExozodi"])
-        faBrightest = (faAstro + dictRates["faPlanet"]) / dictBand["iNumPixels"]
-        faDetector = ph.faDetectorCountRate(faBrightest, dictBand["iNumPixels"],
-                                            dictMission["fDarkCurrent"],
-                                            dictMission["fReadNoise"], None,
-                                            dictMission["fClockInducedCharge"])
-        faTotalBackground = faAstro + faDetector
+    listTerms = [faChannelNoiseTerms(d, b, dictMission, fExozodiScale)
+                 for d, b in zip(listBandRates, listBands)]
+    faPrimary = listBandRates[0]
+    if dictMission.get("sNoiseFloorModel", "screen") == "denominator":
+        fFloor = ffNoiseFloorContrast(dictMission)
+        faTau = faTimeWithNoiseFloor([t[0] for t in listTerms], [t[1] for t in listTerms],
+                                     [fFloor * d["faStarCore"] for d in listBandRates],
+                                     fSignalToNoise)
+        return np.where((faPrimary["faUpsilon"] <= 0.0) | (faPrimary["faPlanet"] <= 0.0),
+                        np.inf, faTau)
+    faInverseTau = np.zeros_like(faPrimary["faPlanet"])
+    for (faA, faV), dictRates in zip(listTerms, listBandRates):
         with np.errstate(divide="ignore", invalid="ignore"):
-            faTerm = dictRates["faPlanet"] ** 2 / (dictRates["faPlanet"] +
-                                                   2.0 * faTotalBackground)
-        faInverseTau += np.where(dictRates["faPlanet"] > 0.0, faTerm, 0.0)
+            faInverseTau += np.where(dictRates["faPlanet"] > 0.0, faA / faV, 0.0)
     with np.errstate(divide="ignore", invalid="ignore"):
         faTau = fSignalToNoise ** 2 / faInverseTau
-    faPrimary = listBandRates[0]
     faDeltaMag = -2.5 * np.log10(np.maximum(faPrimary["faFluxRatio"], 1e-30))
     faBlocked = ((faDeltaMag > dictMission["fNoiseFloorDeltaMag"]) |
                  (faPrimary["faUpsilon"] <= 0.0) | (faInverseTau <= 0.0))
@@ -289,6 +399,20 @@ def faNthSmallestAccumulated(faValues, iRequired):
     return faOut
 
 
+def ffScienceTimeCap(dictMission):
+    """Longest science exposure one observation may use, in seconds.
+
+    Stark et al. (2024) Table 2 set both two-month limits "including overheads". With
+    bTimeLimitIncludesOverheads the science exposure tau must satisfy
+    tau' tau + tau_slew + tau_WFC <= limit; otherwise (default) the limit applies to tau alone.
+    """
+    fLimit = dictMission["fExposureLimitS"]
+    if not dictMission.get("bTimeLimitIncludesOverheads", False):
+        return fLimit
+    fOverhead = dictMission["fSlewOverheadS"] + dictMission["fWavefrontOverheadS"]
+    return (fLimit - fOverhead) / dictMission["fWavefrontMultiplier"]
+
+
 def ffPlanetCharacterizationCap(dictMission):
     """The cap a single planet's spectrum must meet to count: the time limit, or none.
 
@@ -303,7 +427,7 @@ def ffPlanetCharacterizationCap(dictMission):
     """
     if dictMission.get("sCharacterizationGate", "planet") == "star":
         return np.inf
-    return dictMission["fExposureLimitS"]
+    return ffScienceTimeCap(dictMission)
 
 
 def faCountedTimes(faTauDet, faTauChar, fCap, iRequiredDetections=1, fCharCap=None):
@@ -520,7 +644,7 @@ def fdictAlbedoRates(dictUnit, dictPlanets, dictGeom, listBandsDet, dictAlbedoRa
 def fdictCompletenessAtZodi(dictRates, fZodi, listBandsDet, dictMission, faTauGridS,
                             iNumPlanets):
     """Completeness curves for one star at one exozodi level, from rates at one zodi."""
-    fCap = dictMission["fExposureLimitS"]
+    fCap = ffScienceTimeCap(dictMission)
     iRequired = int(dictMission.get("iRequiredDetections", 1))
     faTauDet = faRequiredExposureTime(dictRates["listDetRates"], listBandsDet,
                                       listBandsDet[0]["fSignalToNoise"], dictMission, fZodi)
@@ -553,7 +677,7 @@ def fdictCompletenessAtZodi(dictRates, fZodi, listBandsDet, dictMission, faTauGr
 def faAlbedoCompleteness(dictRates, fZodi, faTauDet, faTauChar, listBandsDet, dictMission,
                          faTauGridS, iNumPlanets):
     """Completeness of the same planets re-evaluated with drawn albedos (see below)."""
-    fCap = dictMission["fExposureLimitS"]
+    fCap = ffScienceTimeCap(dictMission)
     faTauDetA = faRequiredExposureTime(dictRates["listDetRatesAlbedo"], listBandsDet,
                                        listBandsDet[0]["fSignalToNoise"], dictMission, fZodi)
     if "faFluxPlan" in dictRates:

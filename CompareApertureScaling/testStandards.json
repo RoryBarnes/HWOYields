@@ -20,13 +20,13 @@
           "saPath": [
             "fFrozenCalibrationFactor"
           ],
-          "oValue": 0.9876435169533048
+          "oValue": 1.0
         },
         {
           "saPath": [
             "fCrossingDiameterM"
           ],
-          "oValue": 7.085740072202166
+          "oValue": 7.409638554216867
         },
         {
           "saPath": [
@@ -118,7 +118,7 @@
             "6",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 18.354419491478065
+          "oValue": 16.86401910033799
         },
         {
           "saPath": [
@@ -126,7 +126,7 @@
             "6",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 22.519996710557855
+          "oValue": 21.07734340154818
         },
         {
           "saPath": [
@@ -134,7 +134,7 @@
             "6",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.35847222222222225
+          "oValue": 0.3203472222222222
         },
         {
           "saPath": [
@@ -142,7 +142,7 @@
             "6",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.08131944444444444
+          "oValue": 0.03840277777777778
         },
         {
           "saPath": [
@@ -150,7 +150,7 @@
             "6",
             "fMeanCharDaysFirstN"
           ],
-          "oValue": 13.82457326511124
+          "oValue": 14.341403846814805
         },
         {
           "saPath": [
@@ -158,7 +158,7 @@
             "6",
             "fMeanCharDaysFirstNPlanets"
           ],
-          "oValue": 13.840223558987011
+          "oValue": 14.330456704138472
         },
         {
           "saPath": [
@@ -166,7 +166,7 @@
             "6",
             "fMedianCharDaysFirstNPlanets"
           ],
-          "oValue": 7.942359146897248
+          "oValue": 8.669472381160913
         },
         {
           "saPath": [
@@ -182,7 +182,7 @@
             "6",
             "fStarsUsedMean"
           ],
-          "oValue": 158.91
+          "oValue": 155.54
         },
         {
           "saPath": [
@@ -190,7 +190,7 @@
             "7",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 24.846890935022724
+          "oValue": 23.125798130826194
         },
         {
           "saPath": [
@@ -198,7 +198,7 @@
             "7",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 30.42971831635939
+          "oValue": 28.59207506692483
         },
         {
           "saPath": [
@@ -206,7 +206,7 @@
             "7",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.5383333333333333
+          "oValue": 0.4884722222222222
         },
         {
           "saPath": [
@@ -214,7 +214,7 @@
             "7",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.5185416666666667
+          "oValue": 0.3751388888888889
         },
         {
           "saPath": [
@@ -222,7 +222,7 @@
             "7",
             "fMeanCharDaysFirstN"
           ],
-          "oValue": 6.703697263615666
+          "oValue": 7.446015029060875
         },
         {
           "saPath": [
@@ -230,7 +230,7 @@
             "7",
             "fMeanCharDaysFirstNPlanets"
           ],
-          "oValue": 6.708008872705729
+          "oValue": 7.495418820746462
         },
         {
           "saPath": [
@@ -238,7 +238,7 @@
             "7",
             "fMedianCharDaysFirstNPlanets"
           ],
-          "oValue": 3.18364949552961
+          "oValue": 3.5294013930428583
         },
         {
           "saPath": [
@@ -254,7 +254,7 @@
             "7",
             "fStarsUsedMean"
           ],
-          "oValue": 194.89
+          "oValue": 194.81
         },
         {
           "saPath": [
@@ -262,7 +262,7 @@
             "8",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 31.062408150854182
+          "oValue": 29.01060245521441
         },
         {
           "saPath": [
@@ -270,7 +270,7 @@
             "8",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 38.30693610867403
+          "oValue": 36.03901139466172
         },
         {
           "saPath": [
@@ -278,7 +278,7 @@
             "8",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.6686111111111112
+          "oValue": 0.6304861111111111
         },
         {
           "saPath": [
@@ -286,7 +286,7 @@
             "8",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.8796527777777777
+          "oValue": 0.7938194444444444
         },
         {
           "saPath": [
@@ -294,7 +294,7 @@
             "8",
             "fMeanCharDaysFirstN"
           ],
-          "oValue": 3.2734811911224444
+          "oValue": 3.7061894559400805
         },
         {
           "saPath": [
@@ -302,7 +302,7 @@
             "8",
             "fMeanCharDaysFirstNPlanets"
           ],
-          "oValue": 3.2913574268543266
+          "oValue": 3.7430802968303345
         },
         {
           "saPath": [
@@ -310,7 +310,7 @@
             "8",
             "fMedianCharDaysFirstNPlanets"
           ],
-          "oValue": 1.5185421878180436
+          "oValue": 1.6367190349516119
         },
         {
           "saPath": [
@@ -326,7 +326,7 @@
             "8",
             "fStarsUsedMean"
           ],
-          "oValue": 240.14
+          "oValue": 240.19
         },
         {
           "saPath": [
@@ -334,7 +334,7 @@
             "9",
             "fExpectedYieldAtBaselineEta"
           ],
-          "oValue": 37.50545249700843
+          "oValue": 35.02096892233297
         },
         {
           "saPath": [
@@ -342,7 +342,7 @@
             "9",
             "fMeanExpectedMarginal"
           ],
-          "oValue": 46.19827535842765
+          "oValue": 43.48301719192286
         },
         {
           "saPath": [
@@ -350,7 +350,7 @@
             "9",
             "fProbability25IncludingSigmaEta"
           ],
-          "oValue": 0.7665277777777778
+          "oValue": 0.7284722222222222
         },
         {
           "saPath": [
@@ -358,7 +358,7 @@
             "9",
             "fProbability25ExcludingSigmaEta"
           ],
-          "oValue": 0.9865972222222222
+          "oValue": 0.9656944444444444
         },
         {
           "saPath": [
@@ -366,7 +366,7 @@
             "9",
             "fMeanCharDaysFirstN"
           ],
-          "oValue": 1.8494033900023745
+          "oValue": 2.052534915106237
         },
         {
           "saPath": [
@@ -374,7 +374,7 @@
             "9",
             "fMeanCharDaysFirstNPlanets"
           ],
-          "oValue": 1.8615344425911247
+          "oValue": 2.0600595157730535
         },
         {
           "saPath": [
@@ -382,7 +382,7 @@
             "9",
             "fMedianCharDaysFirstNPlanets"
           ],
-          "oValue": 0.8256401952308545
+          "oValue": 0.8694319117751017
         },
         {
           "saPath": [
@@ -398,7 +398,7 @@
             "9",
             "fStarsUsedMean"
           ],
-          "oValue": 282.41
+          "oValue": 280.21
         },
         {
           "saPath": [
@@ -406,7 +406,7 @@
             "6",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.03847222222222224
+          "oValue": 0.000347222222222221
         },
         {
           "saPath": [
@@ -414,7 +414,7 @@
             "6",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.021319444444444446
+          "oValue": -0.02159722222222222
         },
         {
           "saPath": [
@@ -422,7 +422,7 @@
             "7",
             "fIncludingSigmaEta"
           ],
-          "oValue": 0.008333333333333304
+          "oValue": -0.04152777777777783
         },
         {
           "saPath": [
@@ -430,7 +430,7 @@
             "7",
             "fExcludingSigmaEta"
           ],
-          "oValue": 0.028541666666666687
+          "oValue": -0.11486111111111108
         },
         {
           "saPath": [
@@ -438,7 +438,7 @@
             "8",
             "fIncludingSigmaEta"
           ],
-          "oValue": -0.001388888888888884
+          "oValue": -0.03951388888888896
         },
         {
           "saPath": [
@@ -446,7 +446,7 @@
             "8",
             "fExcludingSigmaEta"
           ],
-          "oValue": -0.010347222222222285
+          "oValue": -0.0961805555555556
         },
         {
           "saPath": [
@@ -454,7 +454,7 @@
             "9",
             "fIncludingSigmaEta"
           ],
-          "oValue": -0.013472222222222219
+          "oValue": -0.05152777777777784
         },
         {
           "saPath": [
@@ -462,10 +462,10 @@
             "9",
             "fExcludingSigmaEta"
           ],
-          "oValue": -0.008402777777777759
+          "oValue": -0.029305555555555585
         }
       ],
-      "iBytes": 42016
+      "iBytes": 41899
     }
   }
 }

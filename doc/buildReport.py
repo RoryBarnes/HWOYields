@@ -139,7 +139,68 @@ DICT_EXTRA_PATHS = {
     "etaLaw": "explorations/output/etaLawFromStarkFigure10.json",
     "lumBins": "explorations/output/targetCompletenessBinned.json",
     "twin": "explorations/output/characterizationNoiseBreakdown.json",
+    "degeneracy": "CalibrationDegeneracy/calibrationDegeneracySummary.json",
+    "variants": "CompareModelVariants/modelVariantsSummary.json",
+    "interactions": "CompareModelVariants/settingInteractions.json",
+    "peaks": "CompareModelVariants/yieldPeakComparison.json",
+    "etaInterval": "TestOccurrenceIntervalReading/etaIntervalConfidenceLevel.json",
 }
+
+
+def fdictDegeneracyTokens(dictDeg):
+    """Tokens from the throughput-degeneracy design (A13)."""
+    dictGate = dictDeg["dictYieldGatedEnvelope"]
+    faSv = dictDeg["faSensitivitySingularValues"]
+    dictPost = dictDeg["dictPosteriors"]["yieldOnly"]
+    dictChar = [d for d in dictPost["listObservables"] if "char time, 6" in d["sLabel"]][0]
+    return {
+        "DEGPOINTS": f"{dictDeg['iDesignPoints']:d}",
+        "DEGSVRATIO": f"{faSv[0] / faSv[1]:.1f}",
+        "DEGSVLIST": ", ".join(f"{f:.2f}" for f in faSv),
+        "DEGKAPPA": f"{dictPost['dictParameters']['kappa']['fMedian']:.2f}",
+        "DEGKAPPAC": f"{dictPost['dictParameters']['kappa_c']['fMedian']:.2f}",
+        "DEGCORR": f"{dictPost['fKappaKappaCCorrelation']:.2f}",
+        "DEGCHARSIX": f"{dictChar['fMedian']:.1f}",
+        "DEGCHARSIXLO": f"{dictChar['fLow']:.1f}",
+        "DEGCHARSIXHI": f"{dictChar['fHigh']:.1f}",
+        "DEGENVCHARMAX": f"{dictDeg['dictDesignEnvelope']['dictRange']['ln_char18_6']['fMax']:.1f}",
+        "DEGGATEN": f"{dictGate['iPoints']:d}",
+        "DEGGATECHARLO": f"{dictGate['fChar6Min']:.1f}",
+        "DEGGATECHARHI": f"{dictGate['fChar6Max']:.1f}",
+        "DEGGATECHARNINELO": f"{dictGate['fChar9Min']:.2f}",
+        "DEGGATECHARNINEHI": f"{dictGate['fChar9Max']:.2f}"}
+
+
+def fdictVariantTokens(dictVar, dictInt, dictPeaks, dictEta):
+    """Tokens from the one-variable experiments (A14) and the interval test (A15)."""
+    dictOut = {}
+    for sName, sTag in [("baseline", "BASE"), ("albedoPerVisit", "ALB"),
+                        ("etaInterval86", "ETA86"), ("skyThroughputConstant", "SKY"),
+                        ("paperFaithful", "FAITH"), ("allThreeCombined", "ALL3"),
+                        ("brysonMixtureEta", "BRY")]:
+        dictRun = dictVar["dictBaseline"] if sName == "baseline" else dictVar["dictVariants"][sName]
+        dictOut[f"VAR{sTag}RATIO"] = f"{dictRun['fYieldRatio']:.4f}"
+        dictOut[f"VAR{sTag}TV"] = f"{dictRun['fShapeDistanceToFig10']:.3f}"
+        dictOut[f"VAR{sTag}MEAN"] = f"{dictRun['fYieldMean']:.1f}"
+        dictOut[f"VAR{sTag}BELOW"] = f"{dictRun['fProbBelow12']:.2f}"
+        dictOut[f"PEAK{sTag}"] = f"{dictPeaks[sName]['iMode']:d}"
+    dictShape = dictInt["fShapeDistanceToFig10"]
+    fShare = abs(dictShape["fEffectEtaInterval"]) / (abs(dictShape["fEffectEtaInterval"]) +
+                                                     abs(dictShape["fEffectAlbedoMethod"]))
+    dictOut.update({
+        "INTETA": f"{dictShape['fEffectEtaInterval']:+.4f}",
+        "INTALB": f"{dictShape['fEffectAlbedoMethod']:+.4f}",
+        "INTCROSS": f"{dictShape['fInteraction']:+.4f}",
+        "INTETASHARE": f"{100 * fShare:.1f}",
+        "INTALBSHARE": f"{100 * (1 - fShare):.1f}",
+        "PEAKPUB": f"{dictPeaks['published']['iMode']:d}",
+        "ETAMASSPCT": f"{100 * dictEta['fMassInQuotedInterval']:.0f}",
+        "ETAMIXMEDIAN": f"{dictEta['fMedian']:.3f}",
+        "ETAMIX68LO": f"{dictEta['faInterval68'][0]:.3f}",
+        "ETAMIX68HI": f"{dictEta['faInterval68'][1]:.3f}",
+        "ETAMIX86LO": f"{dictEta['faInterval86'][0]:.3f}",
+        "ETAMIX86HI": f"{dictEta['faInterval86'][1]:.3f}"})
+    return dictOut
 
 
 def fdictLoadExtra(sRepoRoot):
@@ -466,8 +527,12 @@ def main():
     dictArgs = fdictParseArgs()
     sRepoRoot = os.path.abspath(dictArgs["repo_root"])
     dictResults = fdictLoadResults(sRepoRoot)
+    dictExtra = fdictLoadExtra(sRepoRoot)
     dictSubs = {**fdictSubstitutions(dictResults),
-                **fdictModelTokens(fdictLoadExtra(sRepoRoot), dictResults, sRepoRoot)}
+                **fdictModelTokens(dictExtra, dictResults, sRepoRoot),
+                **fdictDegeneracyTokens(dictExtra["degeneracy"]),
+                **fdictVariantTokens(dictExtra["variants"], dictExtra["interactions"],
+                                     dictExtra["peaks"], dictExtra["etaInterval"])}
     sRendered = fsRenderTemplate(dictArgs["template"], dictSubs)
     with open(dictArgs["out_tex"], "w") as oFile:
         oFile.write(sRendered)

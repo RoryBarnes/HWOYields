@@ -1,0 +1,11 @@
+== tskyConvolved
+    factor 1.342 -> planning yield 23.22
+    factor 0.634 -> planning yield 16.80
+    factor 0.923 -> planning yield 19.96
+    factor 1.113 -> planning yield 21.58
+    factor 1.222 -> planning yield 22.40
+    factor 1.280 -> planning yield 22.81
+    factor 1.251 -> planning yield 22.60
+    factor 1.236 -> planning yield 22.50
+    factor 1.229 -> planning yield 22.45
+{"fPlanningFixedExozodi9m": 44.4544, "fMeanCharDaysPriorityFirst18_9m": 1.1385090059960277, "fUncalibratedPlanning": 20.6442, "fCalibration": 1.2325106382007678, "fPlanningFixedExozodi": 22.4776, "fPlanningDrawnExozodi": 20.3856, "fFixedEtaYield": 18.5568, "fExozodiPenalty": 0.09307043456596786, "fMeanCharDaysPriorityFirst18": 11.852616785073305, "iStarsUsed": 164}

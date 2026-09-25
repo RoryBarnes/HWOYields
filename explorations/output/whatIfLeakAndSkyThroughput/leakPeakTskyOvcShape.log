@@ -1,0 +1,11 @@
+== leakPeakTskyOvcShape
+    factor 1.342 -> planning yield 20.23
+    factor 2.837 -> planning yield 26.37
+    factor 1.951 -> planning yield 23.24
+    factor 1.618 -> planning yield 21.73
+    factor 1.777 -> planning yield 22.49
+    factor 1.862 -> planning yield 22.86
+    factor 1.819 -> planning yield 22.68
+    factor 1.798 -> planning yield 22.58
+    factor 1.787 -> planning yield 22.54
+{"fPlanningFixedExozodi9m": 44.398199999999996, "fMeanCharDaysPriorityFirst18_9m": 1.1711781140946134, "fUncalibratedPlanning": 17.9876, "fCalibration": 1.7818795833631933, "fPlanningFixedExozodi": 22.5068, "fPlanningDrawnExozodi": 20.523399999999995, "fFixedEtaYield": 18.6302, "fExozodiPenalty": 0.08812447793555744, "fMeanCharDaysPriorityFirst18": 11.777248290254647, "iStarsUsed": 163}

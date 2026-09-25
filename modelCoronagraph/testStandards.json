@@ -233,6 +233,27 @@
         {
           "saPath": [
             "dictMission",
+            "fNoiseFloorSignalToNoise"
+          ],
+          "oValue": 7.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "iNoiseFloorChannels"
+          ],
+          "oValue": 2.0
+        },
+        {
+          "saPath": [
+            "dictMission",
+            "bTimeLimitIncludesOverheads"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "dictMission",
             "dictExozodiDistribution",
             "fOffAxisZodi"
           ],
@@ -427,7 +448,7 @@
           "oValue": 1.2
         }
       ],
-      "iBytes": 27119
+      "iBytes": 27297
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",

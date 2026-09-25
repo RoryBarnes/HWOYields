@@ -1,0 +1,205 @@
+{
+ "dictOvc": {
+  "faRampParams": [
+   0.37735492993181974,
+   3.007752784378345,
+   2.949428309283883
+  ],
+  "fCoreFitRmsFrac": 0.08655092616573208,
+  "listRows": [
+   {
+    "fSepCirc": 2.146546,
+    "fCoreAyo": 0.07872357,
+    "fTskyAyo": 0.25482708455335934,
+    "fUnconvolvedOverAyo": 0.5891596815890672,
+    "fConvolvedOverAyo": 0.7255737001927898
+   },
+   {
+    "fSepCirc": 2.221072,
+    "fCoreAyo": 0.1223112,
+    "fTskyAyo": 0.343920829811602,
+    "fUnconvolvedOverAyo": 0.4693500090041038,
+    "fConvolvedOverAyo": 0.5641274852147126
+   },
+   {
+    "fSepCirc": 2.396289,
+    "fCoreAyo": 0.1223112,
+    "fTskyAyo": 0.3439207011980489,
+    "fUnconvolvedOverAyo": 0.5472918292849083,
+    "fConvolvedOverAyo": 0.6275080591474246
+   },
+   {
+    "fSepCirc": 2.683182,
+    "fCoreAyo": 0.1595493,
+    "fTskyAyo": 0.4068380298379196,
+    "fUnconvolvedOverAyo": 0.5695084990380642,
+    "fConvolvedOverAyo": 0.6183331072541942
+   },
+   {
+    "fSepCirc": 2.77634,
+    "fCoreAyo": 0.1787462,
+    "fTskyAyo": 0.43298010447654495,
+    "fUnconvolvedOverAyo": 0.5667902525871856,
+    "fConvolvedOverAyo": 0.6073276074685124
+   },
+   {
+    "fSepCirc": 2.823378,
+    "fCoreAyo": 0.1787462,
+    "fTskyAyo": 0.4329800452357902,
+    "fUnconvolvedOverAyo": 0.582525141730041,
+    "fConvolvedOverAyo": 0.6205377440149653
+   },
+   {
+    "fSepCirc": 2.831302,
+    "fCoreAyo": 0.1792729,
+    "fTskyAyo": 0.43298010274232296,
+    "fUnconvolvedOverAyo": 0.5851574495270586,
+    "fConvolvedOverAyo": 0.6227279828731516
+   },
+   {
+    "fSepCirc": 2.995362,
+    "fCoreAyo": 0.1787462,
+    "fTskyAyo": 0.43298011358181576,
+    "fUnconvolvedOverAyo": 0.6383592277409753,
+    "fConvolvedOverAyo": 0.6676213016169047
+   },
+   {
+    "fSepCirc": 3.529222,
+    "fCoreAyo": 0.2328402,
+    "fTskyAyo": 0.5076277327793114,
+    "fUnconvolvedOverAyo": 0.6746473192418058,
+    "fConvolvedOverAyo": 0.6827164082202282
+   },
+   {
+    "fSepCirc": 3.539128,
+    "fCoreAyo": 0.232724,
+    "fTskyAyo": 0.5076276387755161,
+    "fUnconvolvedOverAyo": 0.676788455847025,
+    "fConvolvedOverAyo": 0.6846579892821355
+   },
+   {
+    "fSepCirc": 4.293091,
+    "fCoreAyo": 0.268933,
+    "fTskyAyo": 0.5357527520359395,
+    "fUnconvolvedOverAyo": 0.7689084388812254,
+    "fConvolvedOverAyo": 0.7655123073867948
+   },
+   {
+    "fSepCirc": 4.442144,
+    "fCoreAyo": 0.2843119,
+    "fTskyAyo": 0.5562261110768641,
+    "fUnconvolvedOverAyo": 0.7594676128740774,
+    "fConvolvedOverAyo": 0.7551585745832555
+   },
+   {
+    "fSepCirc": 4.792579,
+    "fCoreAyo": 0.2968371,
+    "fTskyAyo": 0.5863770228524668,
+    "fUnconvolvedOverAyo": 0.7569389096852084,
+    "fConvolvedOverAyo": 0.7514117337271417
+   },
+   {
+    "fSepCirc": 5.646756,
+    "fCoreAyo": 0.331502,
+    "fTskyAyo": 0.596384661243682,
+    "fUnconvolvedOverAyo": 0.806724961922716,
+    "fConvolvedOverAyo": 0.800503147865773
+   },
+   {
+    "fSepCirc": 5.662605,
+    "fCoreAyo": 0.331502,
+    "fTskyAyo": 0.596384723443812,
+    "fUnconvolvedOverAyo": 0.807622567853554,
+    "fConvolvedOverAyo": 0.8014043317852637
+   }
+  ]
+ },
+ "listDmvc6": [
+  {
+   "fSepCirc": 1.5,
+   "fUpsilon": 0.01589244567364678,
+   "fTskyUnconvolved": 0.023423725530273946,
+   "fTskyConvolved": 0.06975006159740572,
+   "fConvolvedOverUnconvolved": 2.9777526852958296
+  },
+  {
+   "fSepCirc": 2.0,
+   "fUpsilon": 0.05333993992791349,
+   "fTskyUnconvolved": 0.07861723351646016,
+   "fTskyConvolved": 0.11209466427470097,
+   "fConvolvedOverUnconvolved": 1.4258281455710549
+  },
+  {
+   "fSepCirc": 2.5,
+   "fUpsilon": 0.09721557869443331,
+   "fTskyUnconvolved": 0.1432851229676486,
+   "fTskyConvolved": 0.16233906282765007,
+   "fConvolvedOverUnconvolved": 1.1329791918753738
+  },
+  {
+   "fSepCirc": 3.0,
+   "fUpsilon": 0.13374261113336006,
+   "fTskyUnconvolved": 0.1971219709805134,
+   "fTskyConvolved": 0.21074903123912228,
+   "fConvolvedOverUnconvolved": 1.0691300933671974
+  },
+  {
+   "fSepCirc": 3.5,
+   "fUpsilon": 0.16756613536243492,
+   "fTskyUnconvolved": 0.24697414378499158,
+   "fTskyConvolved": 0.2538742562622032,
+   "fConvolvedOverUnconvolved": 1.027938602687165
+  },
+  {
+   "fSepCirc": 4.0,
+   "fUpsilon": 0.1951431477773328,
+   "fTskyUnconvolved": 0.28761964184213856,
+   "fTskyConvolved": 0.29068869474807263,
+   "fConvolvedOverUnconvolved": 1.010670526137497
+  },
+  {
+   "fSepCirc": 5.0,
+   "fUpsilon": 0.23520454144973968,
+   "fTskyUnconvolved": 0.34666575148521056,
+   "fTskyConvolved": 0.34756732636079596,
+   "fConvolvedOverUnconvolved": 1.0026007036222149
+  },
+  {
+   "fSepCirc": 6.0,
+   "fUpsilon": 0.2638501481184948,
+   "fTskyUnconvolved": 0.38888624051728893,
+   "fTskyConvolved": 0.3890799754721402,
+   "fConvolvedOverUnconvolved": 1.000498178990837
+  },
+  {
+   "fSepCirc": 8.0,
+   "fUpsilon": 0.3020845254305166,
+   "fTskyUnconvolved": 0.4452395280080131,
+   "fTskyConvolved": 0.4443279113753319,
+   "fConvolvedOverUnconvolved": 0.997952525381653
+  },
+  {
+   "fSepCirc": 12.0,
+   "fUpsilon": 0.341275,
+   "fTskyUnconvolved": 0.5030019982135263,
+   "fTskyConvolved": 0.5023488589514132,
+   "fConvolvedOverUnconvolved": 0.9987015175597059
+  }
+ ],
+ "dictEmpiricalShape": {
+  "faCoreFraction": [
+   0.0,
+   1.0
+  ],
+  "faFactor": [
+   2.19326879113243,
+   1.0820575185226824
+  ],
+  "fRmsFrac": 0.06374237777475447,
+  "fMaxUsed": 0.37735492993181974,
+  "fCoreFractionRange": [
+   0.2086194289663149,
+   0.8784885891378061
+  ]
+ }
+}

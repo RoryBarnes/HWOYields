@@ -28,21 +28,21 @@
             "fig04",
             "fMean"
           ],
-          "oValue": 22.51472
+          "oValue": 20.944399999999998
         },
         {
           "saPath": [
             "fig07",
             "fMeanAlbedo"
           ],
-          "oValue": 20.6028
+          "oValue": 19.10024
         },
         {
           "saPath": [
             "fig07",
             "fMeanAlbedoExozodi"
           ],
-          "oValue": 18.298333718092042
+          "oValue": 16.806844687474086
         },
         {
           "saPath": [
@@ -56,21 +56,21 @@
             "fig10",
             "fMeanIncluding"
           ],
-          "oValue": 22.516286500493774
+          "oValue": 21.0771150200525
         },
         {
           "saPath": [
             "fig10",
             "fMeanExcluding"
           ],
-          "oValue": 18.35315730531719
+          "oValue": 16.866545665927774
         },
         {
           "saPath": [
             "fig11",
             "iRepresentativeDraw"
           ],
-          "oValue": 99.0
+          "oValue": 14.0
         },
         {
           "saPath": [
@@ -78,7 +78,7 @@
             "6",
             "fMeanDays"
           ],
-          "oValue": 13.82457326511124
+          "oValue": 14.341403846814805
         },
         {
           "saPath": [
@@ -86,7 +86,7 @@
             "7",
             "fMeanDays"
           ],
-          "oValue": 6.703697263615666
+          "oValue": 7.446015029060875
         },
         {
           "saPath": [
@@ -94,7 +94,7 @@
             "8",
             "fMeanDays"
           ],
-          "oValue": 3.2734811911224444
+          "oValue": 3.7061894559400805
         },
         {
           "saPath": [
@@ -102,10 +102,10 @@
             "9",
             "fMeanDays"
           ],
-          "oValue": 1.8494033900023745
+          "oValue": 2.052534915106237
         }
       ],
-      "iBytes": 323544
+      "iBytes": 323463
     }
   }
 }
