@@ -25,19 +25,19 @@ from yieldlib import plotstyle as ps  # noqa: E402
 from yieldlib.yielddistribution import faPoissonMixturePmf  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
 
-DICT_LABELS = {"baseline": "Adopted model", "albedoPerVisit": "Albedo: Stark per-visit test",
-               "etaInterval86": r"$\eta_\oplus$ interval read as 86%",
+DICT_LABELS = {"baseline": "Adopted model", "albedoRecompute": "Albedo: recomputed exposure",
+               "etaInterval86": r"$\eta_\oplus$ interval as 86% (every documented choice)",
                "skyThroughputConstant": r"Constant $T_{\rm sky}$",
-               "paperFaithful": "Every documented Stark choice",
-               "allThreeCombined": r"All three, incl. constant $T_{\rm sky}$",
+               "albedoRecomputeEta86": r"Recomputed albedo and 86% $\eta_\oplus$",
+               "etaInterval86ConstantSky": r"86% $\eta_\oplus$ and constant $T_{\rm sky}$",
                "brysonMixtureEta": r"Stark's own $\eta_\oplus$ law (Bryson mixture)"}
 S_VIOLET = "#7a5bd6"
 S_TEAL = "#0e8f88"
-DICT_COLOUR = {"baseline": ps.LIST_SERIES[0], "albedoPerVisit": ps.LIST_SERIES[1],
+DICT_COLOUR = {"baseline": ps.LIST_SERIES[0], "albedoRecompute": ps.LIST_SERIES[1],
                "etaInterval86": ps.LIST_SERIES[2], "skyThroughputConstant": ps.LIST_SERIES[3],
-               "paperFaithful": ps.LIST_SERIES[4], "allThreeCombined": S_VIOLET,
+               "albedoRecomputeEta86": ps.LIST_SERIES[4], "etaInterval86ConstantSky": S_VIOLET,
                "brysonMixtureEta": S_TEAL}
-LIST_EMPHASIS = ["baseline", "brysonMixtureEta", "paperFaithful", "allThreeCombined"]
+LIST_EMPHASIS = ["baseline", "brysonMixtureEta", "etaInterval86", "etaInterval86ConstantSky"]
 
 
 def faPmf(faExpected, iGrid):
@@ -124,9 +124,9 @@ def main():
     p.add_argument("--baseline-samples", required=True)
     p.add_argument("--out-root", default="variants")
     p.add_argument("--digitised-figure-ten", required=True)
-    p.add_argument("--models", default="baseline,albedoPerVisit,etaInterval86,"
-                                       "skyThroughputConstant,paperFaithful,allThreeCombined,"
-                                       "brysonMixtureEta")
+    p.add_argument("--models", default="baseline,albedoRecompute,etaInterval86,"
+                                       "skyThroughputConstant,albedoRecomputeEta86,"
+                                       "etaInterval86ConstantSky,brysonMixtureEta")
     p.add_argument("--bootstrap", type=int, default=400)
     p.add_argument("--x-max", type=int, default=45)
     p.add_argument("--seed", type=int, default=20260925)

@@ -1,0 +1,16 @@
+{
+ "sVariant": "albedoRecomputeEta86",
+ "sWhy": "recomputed albedo AND the 86% interval: the fourth corner of the albedo x eta 2x2",
+ "dictMissionOverrides": {
+  "sAlbedoMethod": "recompute"
+ },
+ "fEtaIntervalZ": 1.4758,
+ "sEtaLaw": "lognormal",
+ "listStagesRerun": [
+  "completeness",
+  "survey",
+  "occurrence",
+  "prediction"
+ ],
+ "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/missionParameters.json"
+}

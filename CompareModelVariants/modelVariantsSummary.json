@@ -1,50 +1,116 @@
 {
  "dictBaseline": {
-  "iYieldMode": 11,
-  "iYieldMedian": 18,
-  "fYieldMean": 21.040069444444445,
-  "fProbBelow12": 0.2825,
-  "fProbAtLeast25": 0.3215277777777778,
-  "fTailAboveFigureAxis": 0.05305555555555554,
-  "fShapeDistanceToFig10": 0.03833754525889671,
-  "fYieldRatio": 0.23863778227841975,
-  "fYieldRatioP16": 0.21597086614589142,
-  "fYieldRatioP84": 0.26860078452333475,
+  "iYieldMode": 12,
+  "iYieldMedian": 19,
+  "fYieldMean": 22.445208333333333,
+  "fProbBelow12": 0.25972222222222224,
+  "fProbAtLeast25": 0.35138888888888886,
+  "fTailAboveFigureAxis": 0.06965277777777777,
+  "fShapeDistanceToFig10": 0.03713088445206878,
+  "fYieldRatio": 0.23151484477610138,
+  "fYieldRatioP16": 0.21005324257567407,
+  "fYieldRatioP84": 0.25896093030990713,
   "fOccurrenceRatio": 0.20419311247330102,
   "fEtaCanonical": 0.25505412554383095,
   "fEtaRedefined": 0.052039614383052185,
   "fYieldPlanningFixedExozodi": 20.944399999999998,
-  "fYieldFixedEta": 16.806844687474086,
+  "fYieldFixedEta": 17.731662357824792,
   "fExozodiPenalty": 0.12170600870950465,
-  "fAlbedoPenalty": 0.08635317019156152,
+  "fAlbedoPenalty": 0.036078609536135064,
   "iStarsUsed": 155,
   "bSurveyRerun": true,
   "bPredictionRerun": true
  },
  "dictVariants": {
-  "albedoPerVisit": {
-   "iYieldMode": 11,
+  "etaInterval86": {
+   "iYieldMode": 14,
    "iYieldMedian": 19,
-   "fYieldMean": 22.54652777777778,
-   "fProbBelow12": 0.25993055555555555,
-   "fProbAtLeast25": 0.35,
-   "fTailAboveFigureAxis": 0.07291666666666666,
-   "fShapeDistanceToFig10": 0.034210571907494124,
-   "fYieldRatio": 0.23162395278149955,
-   "fYieldRatioP16": 0.21014137363025348,
-   "fYieldRatioP84": 0.2590551508383536,
+   "fYieldMean": 20.631666666666668,
+   "fProbBelow12": 0.18645833333333334,
+   "fProbAtLeast25": 0.2986111111111111,
+   "fTailAboveFigureAxis": 0.01840277777777778,
+   "fShapeDistanceToFig10": 0.13106340909852376,
+   "fYieldRatio": 0.2292498259736025,
+   "fYieldRatioP16": 0.2087812523337771,
+   "fYieldRatioP84": 0.25201760639954873,
+   "fOccurrenceRatio": 0.20334323541972582,
+   "fEtaCanonical": 0.25564927679342464,
+   "fEtaRedefined": 0.05197086281326746,
+   "fYieldPlanningFixedExozodi": 20.944399999999998,
+   "fYieldFixedEta": 17.731662357824792,
+   "fExozodiPenalty": 0.12170600870950465,
+   "fAlbedoPenalty": 0.036078609536135064,
+   "iStarsUsed": 155,
+   "bSurveyRerun": false,
+   "bPredictionRerun": true
+  },
+  "skyThroughputConstant": {
+   "iYieldMode": 7,
+   "iYieldMedian": 16,
+   "fYieldMean": 19.170277777777777,
+   "fProbBelow12": 0.3448611111111111,
+   "fProbAtLeast25": 0.268125,
+   "fTailAboveFigureAxis": 0.04416666666666666,
+   "fShapeDistanceToFig10": 0.08860219520317619,
+   "fYieldRatio": 0.22254143056819503,
+   "fYieldRatioP16": 0.20265193871168122,
+   "fYieldRatioP84": 0.24633758569285472,
+   "fOccurrenceRatio": 0.20419311247330102,
+   "fEtaCanonical": 0.25505412554383095,
+   "fEtaRedefined": 0.052039614383052185,
+   "fYieldPlanningFixedExozodi": 16.885759999999998,
+   "fYieldFixedEta": 14.793529854506225,
+   "fExozodiPenalty": 0.10256038626693398,
+   "fAlbedoPenalty": 0.023783903147403196,
+   "iStarsUsed": 135,
+   "bSurveyRerun": true,
+   "bPredictionRerun": true
+  },
+  "brysonMixtureEta": {
+   "iYieldMode": 8,
+   "iYieldMedian": 14,
+   "fYieldMean": 17.775347222222223,
+   "fProbBelow12": 0.4136111111111111,
+   "fProbAtLeast25": 0.2361111111111111,
+   "fTailAboveFigureAxis": 0.04666666666666666,
+   "fShapeDistanceToFig10": 0.15458764608025274,
+   "fYieldRatio": 0.2278998595124308,
+   "fYieldRatioP16": 0.20698195777440853,
+   "fYieldRatioP84": 0.25363035182138705,
+   "fOccurrenceRatio": 0.20419311247330102,
+   "fEtaCanonical": 0.18410258761456094,
+   "fEtaRedefined": 0.037733425717943095,
+   "fYieldPlanningFixedExozodi": 20.944399999999998,
+   "fYieldFixedEta": 17.731662357824792,
+   "fExozodiPenalty": 0.12170600870950465,
+   "fAlbedoPenalty": 0.036078609536135064,
+   "iStarsUsed": 155,
+   "bSurveyRerun": false,
+   "bPredictionRerun": true
+  },
+  "albedoRecompute": {
+   "iYieldMode": 11,
+   "iYieldMedian": 18,
+   "fYieldMean": 21.040069444444445,
+   "fProbBelow12": 0.2825,
+   "fProbAtLeast25": 0.3215277777777778,
+   "fTailAboveFigureAxis": 0.05305555555555554,
+   "fShapeDistanceToFig10": 0.03833754525889671,
+   "fYieldRatio": 0.23863778227841975,
+   "fYieldRatioP16": 0.21597086614589142,
+   "fYieldRatioP84": 0.26860078452333475,
    "fOccurrenceRatio": 0.20419311247330102,
    "fEtaCanonical": 0.25505412554383095,
    "fEtaRedefined": 0.052039614383052185,
    "fYieldPlanningFixedExozodi": 20.944399999999998,
-   "fYieldFixedEta": 17.75192813789333,
+   "fYieldFixedEta": 16.806844687474086,
    "fExozodiPenalty": 0.12170600870950465,
-   "fAlbedoPenalty": 0.03497692947318942,
+   "fAlbedoPenalty": 0.08635317019156152,
    "iStarsUsed": 155,
    "bSurveyRerun": true,
    "bPredictionRerun": true
   },
-  "etaInterval86": {
+  "albedoRecomputeEta86": {
    "iYieldMode": 16,
    "iYieldMedian": 18,
    "fYieldMean": 19.459583333333335,
@@ -63,118 +129,39 @@
    "fExozodiPenalty": 0.12170600870950465,
    "fAlbedoPenalty": 0.08635317019156152,
    "iStarsUsed": 155,
-   "bSurveyRerun": false,
-   "bPredictionRerun": true
-  },
-  "skyThroughputConstant": {
-   "iYieldMode": 9,
-   "iYieldMedian": 15,
-   "fYieldMean": 17.89326388888889,
-   "fProbBelow12": 0.3680555555555556,
-   "fProbAtLeast25": 0.23576388888888888,
-   "fTailAboveFigureAxis": 0.02854166666666667,
-   "fShapeDistanceToFig10": 0.11345752118343996,
-   "fYieldRatio": 0.2299351193791615,
-   "fYieldRatioP16": 0.20864710882026957,
-   "fYieldRatioP84": 0.25691375558332347,
-   "fOccurrenceRatio": 0.20419311247330102,
-   "fEtaCanonical": 0.25505412554383095,
-   "fEtaRedefined": 0.052039614383052185,
-   "fYieldPlanningFixedExozodi": 16.885759999999998,
-   "fYieldFixedEta": 14.05262120856711,
-   "fExozodiPenalty": 0.10256038626693398,
-   "fAlbedoPenalty": 0.07267601703614535,
-   "iStarsUsed": 135,
    "bSurveyRerun": true,
    "bPredictionRerun": true
   },
-  "paperFaithful": {
-   "iYieldMode": 17,
-   "iYieldMedian": 19,
-   "fYieldMean": 20.639583333333334,
-   "fProbBelow12": 0.1920138888888889,
-   "fProbAtLeast25": 0.29618055555555556,
-   "fTailAboveFigureAxis": 0.018819444444444444,
-   "fShapeDistanceToFig10": 0.12815775017764106,
-   "fYieldRatio": 0.22933306856683727,
-   "fYieldRatioP16": 0.20887807897466407,
-   "fYieldRatioP84": 0.25212788463416824,
-   "fOccurrenceRatio": 0.20334323541972582,
-   "fEtaCanonical": 0.25564927679342464,
-   "fEtaRedefined": 0.05197086281326746,
-   "fYieldPlanningFixedExozodi": 20.944399999999998,
-   "fYieldFixedEta": 17.75192813789333,
-   "fExozodiPenalty": 0.12170600870950465,
-   "fAlbedoPenalty": 0.03497692947318942,
-   "iStarsUsed": 155,
-   "bSurveyRerun": true,
-   "bPredictionRerun": true
-  },
-  "allThreeCombined": {
-   "iYieldMode": 15,
+  "etaInterval86ConstantSky": {
+   "iYieldMode": 12,
    "iYieldMedian": 16,
-   "fYieldMean": 17.50701388888889,
-   "fProbBelow12": 0.2945138888888889,
-   "fProbAtLeast25": 0.196875,
-   "fTailAboveFigureAxis": 0.008888888888888889,
-   "fShapeDistanceToFig10": 0.14905186422485575,
-   "fYieldRatio": 0.22014576167304906,
-   "fYieldRatioP16": 0.20122355752882454,
-   "fYieldRatioP84": 0.24073666217353298,
+   "fYieldMean": 17.440694444444443,
+   "fProbBelow12": 0.2951388888888889,
+   "fProbAtLeast25": 0.19409722222222223,
+   "fTailAboveFigureAxis": 0.007430555555555555,
+   "fShapeDistanceToFig10": 0.14648343057220692,
+   "fYieldRatio": 0.2200795756125155,
+   "fYieldRatioP16": 0.20113852594202325,
+   "fYieldRatioP84": 0.24064813423123252,
    "fOccurrenceRatio": 0.20334323541972582,
    "fEtaCanonical": 0.25564927679342464,
    "fEtaRedefined": 0.05197086281326746,
    "fYieldPlanningFixedExozodi": 16.885759999999998,
-   "fYieldFixedEta": 14.805794126105608,
+   "fYieldFixedEta": 14.793529854506225,
    "fExozodiPenalty": 0.10256038626693398,
-   "fAlbedoPenalty": 0.022974591274629086,
+   "fAlbedoPenalty": 0.023783903147403196,
    "iStarsUsed": 135,
    "bSurveyRerun": true,
-   "bPredictionRerun": true
-  },
-  "brysonMixtureEta": {
-   "iYieldMode": 8,
-   "iYieldMedian": 13,
-   "fYieldMean": 16.672916666666666,
-   "fProbBelow12": 0.439375,
-   "fProbAtLeast25": 0.2129861111111111,
-   "fTailAboveFigureAxis": 0.034513888888888886,
-   "fShapeDistanceToFig10": 0.172885095228843,
-   "fYieldRatio": 0.23436481634308787,
-   "fYieldRatioP16": 0.2124788560932774,
-   "fYieldRatioP84": 0.26215036169170824,
-   "fOccurrenceRatio": 0.20419311247330102,
-   "fEtaCanonical": 0.18410258761456094,
-   "fEtaRedefined": 0.037733425717943095,
-   "fYieldPlanningFixedExozodi": 20.944399999999998,
-   "fYieldFixedEta": 16.806844687474086,
-   "fExozodiPenalty": 0.12170600870950465,
-   "fAlbedoPenalty": 0.08635317019156152,
-   "iStarsUsed": 155,
-   "bSurveyRerun": false,
    "bPredictionRerun": true
   }
  },
  "dictManifests": {
-  "albedoPerVisit": {
-   "sVariant": "albedoPerVisit",
-   "sWhy": "Stark 2024 Sec. 3.2 per-visit flux test vs recomputing at the drawn albedo",
-   "dictMissionOverrides": {
-    "sAlbedoMethod": "perVisitThreshold"
-   },
-   "fEtaIntervalZ": null,
-   "listStagesRerun": [
-    "completeness",
-    "survey",
-    "prediction"
-   ],
-   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/albedoPerVisit/missionParameters.json"
-  },
   "etaInterval86": {
    "sVariant": "etaInterval86",
-   "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%",
+   "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%; every documented Stark choice followed",
    "dictMissionOverrides": {},
    "fEtaIntervalZ": 1.4758,
+   "sEtaLaw": "lognormal",
    "listStagesRerun": [
     "occurrence",
     "prediction"
@@ -188,43 +175,13 @@
     "bSkyThroughputFollowsCore": false
    },
    "fEtaIntervalZ": null,
+   "sEtaLaw": "lognormal",
    "listStagesRerun": [
     "completeness",
     "survey",
     "prediction"
    ],
-   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/missionParameters.json"
-  },
-  "paperFaithful": {
-   "sVariant": "paperFaithful",
-   "sWhy": "every documented Stark choice followed at once: his per-visit albedo test AND his stated 86% eta interval, with the sourced T_sky(r) of Stark 2019 Eqs. 5-6 KEPT",
-   "dictMissionOverrides": {
-    "sAlbedoMethod": "perVisitThreshold"
-   },
-   "fEtaIntervalZ": 1.4758,
-   "listStagesRerun": [
-    "completeness",
-    "survey",
-    "occurrence",
-    "prediction"
-   ],
-   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/missionParameters.json"
-  },
-  "allThreeCombined": {
-   "sVariant": "allThreeCombined",
-   "sWhy": "all three one-variable changes at once, T_sky(r) removed too -- NOT more faithful, since that removes sourced physics",
-   "dictMissionOverrides": {
-    "sAlbedoMethod": "perVisitThreshold",
-    "bSkyThroughputFollowsCore": false
-   },
-   "fEtaIntervalZ": 1.4758,
-   "listStagesRerun": [
-    "completeness",
-    "survey",
-    "occurrence",
-    "prediction"
-   ],
-   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/missionParameters.json"
+   "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/skyThroughputConstant/missionParameters.json"
   },
   "brysonMixtureEta": {
    "sVariant": "brysonMixtureEta",
@@ -237,6 +194,53 @@
     "prediction"
    ],
    "sMissionParameters": "/workspace/yields/modelCoronagraph/missionParameters.json"
+  },
+  "albedoRecompute": {
+   "sVariant": "albedoRecompute",
+   "sWhy": "exposure recomputed at the drawn albedo vs Stark 2024 Sec. 3.2's per-visit flux test",
+   "dictMissionOverrides": {
+    "sAlbedoMethod": "recompute"
+   },
+   "fEtaIntervalZ": null,
+   "sEtaLaw": "lognormal",
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/albedoRecompute/missionParameters.json"
+  },
+  "albedoRecomputeEta86": {
+   "sVariant": "albedoRecomputeEta86",
+   "sWhy": "recomputed albedo AND the 86% interval: the fourth corner of the albedo x eta 2x2",
+   "dictMissionOverrides": {
+    "sAlbedoMethod": "recompute"
+   },
+   "fEtaIntervalZ": 1.4758,
+   "sEtaLaw": "lognormal",
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "occurrence",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/missionParameters.json"
+  },
+  "etaInterval86ConstantSky": {
+   "sVariant": "etaInterval86ConstantSky",
+   "sWhy": "the 86% interval with T_sky(r) removed too -- NOT more faithful, since that removes sourced physics",
+   "dictMissionOverrides": {
+    "bSkyThroughputFollowsCore": false
+   },
+   "fEtaIntervalZ": 1.4758,
+   "sEtaLaw": "lognormal",
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "occurrence",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/etaInterval86ConstantSky/missionParameters.json"
   }
  },
  "dictPublished": {

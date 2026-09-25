@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """Decompose the disagreement with Stark's Fig. 10 into main effects of the albedo method and the eta interval reading.
 
-The adopted model and the fully paper-faithful model differ in exactly two settings, so the four
-runs baseline / albedoPerVisit / etaInterval86 / paperFaithful form a complete 2x2 factorial:
+The adopted model follows Stark's per-visit albedo test and reads his eta_Earth interval as 68%.
+With the three variants that change one or both of those settings, the four runs form a complete
+2x2 factorial:
 
                         albedo "recompute"      albedo "perVisitThreshold" (Stark's)
-  eta at 68% (adopted)  baseline                albedoPerVisit
-  eta at 86% (his text) etaInterval86           paperFaithful
+  eta at 68% (adopted)  albedoRecompute         baseline
+  eta at 86% (his text) albedoRecomputeEta86    etaInterval86
 
 For each observable this reports the two main effects and the interaction, in the units of the
-observable. The question it answers is how much of the "faithful reproduction is worse" result is
-attributable to each setting -- which is what decides whether the adopted model rests on one
-documented departure or on a pattern of choosing whatever matches.
+observable, with each effect signed as (Stark's documented setting) minus (the alternative). The
+question it answers is how much of the disagreement with Fig. 10 each setting carries.
 """
 
 import argparse
 import json
 
-DICT_CELLS = {("recompute", "68"): "baseline", ("perVisit", "68"): "albedoPerVisit",
-              ("recompute", "86"): "etaInterval86", ("perVisit", "86"): "paperFaithful"}
+DICT_CELLS = {("recompute", "68"): "albedoRecompute", ("perVisit", "68"): "baseline",
+              ("recompute", "86"): "albedoRecomputeEta86", ("perVisit", "86"): "etaInterval86"}
 LIST_OBSERVABLES = [("fShapeDistanceToFig10", "shape distance to Fig. 10", 4),
                     ("iYieldMode", "realized yield mode", 2),
                     ("fYieldMean", "realized yield mean", 2),
@@ -35,10 +35,10 @@ def fdictEffects(dictCellValues):
     fBoth = dictCellValues[("perVisit", "86")]
     fEffectAlbedo = 0.5 * ((fAlbedo - fLowLow) + (fBoth - fEta))
     fEffectEta = 0.5 * ((fEta - fLowLow) + (fBoth - fAlbedo))
-    return {"fBaseline": fLowLow, "fBothChanged": fBoth,
+    return {"fAdopted": fAlbedo, "fAllDocumented": fBoth,
             "fEffectAlbedoMethod": fEffectAlbedo, "fEffectEtaInterval": fEffectEta,
             "fInteraction": (fBoth - fEta) - (fAlbedo - fLowLow),
-            "fTotalChange": fBoth - fLowLow}
+            "fAdoptedToAllDocumented": fBoth - fAlbedo}
 
 
 def fdictObservable(sKey, dictRuns, dictBaseline):
@@ -51,11 +51,11 @@ def fdictObservable(sKey, dictRuns, dictBaseline):
 
 def fnPrint(dictOut):
     """The decomposition table."""
-    print(f"{'observable':<28}{'adopted':>10}{'both changed':>14}"
+    print(f"{'observable':<28}{'adopted':>10}{'all documented':>16}"
           f"{'albedo effect':>15}{'eta effect':>12}{'interaction':>13}")
     for sKey, sLabel, iRound in LIST_OBSERVABLES:
         d = dictOut[sKey]
-        print(f"{sLabel:<28}{d['fBaseline']:>10.{iRound}f}{d['fBothChanged']:>14.{iRound}f}"
+        print(f"{sLabel:<28}{d['fAdopted']:>10.{iRound}f}{d['fAllDocumented']:>16.{iRound}f}"
               f"{d['fEffectAlbedoMethod']:>15.{iRound}f}{d['fEffectEtaInterval']:>12.{iRound}f}"
               f"{d['fInteraction']:>13.{iRound}f}")
     d = dictOut["fShapeDistanceToFig10"]

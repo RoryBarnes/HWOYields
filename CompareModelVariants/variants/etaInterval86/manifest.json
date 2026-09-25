@@ -1,8 +1,9 @@
 {
  "sVariant": "etaInterval86",
- "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%",
+ "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%; every documented Stark choice followed",
  "dictMissionOverrides": {},
  "fEtaIntervalZ": 1.4758,
+ "sEtaLaw": "lognormal",
  "listStagesRerun": [
   "occurrence",
   "prediction"

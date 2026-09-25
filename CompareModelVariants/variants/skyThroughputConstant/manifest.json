@@ -5,10 +5,11 @@
   "bSkyThroughputFollowsCore": false
  },
  "fEtaIntervalZ": null,
+ "sEtaLaw": "lognormal",
  "listStagesRerun": [
   "completeness",
   "survey",
   "prediction"
  ],
- "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/missionParameters.json"
+ "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/skyThroughputConstant/missionParameters.json"
 }

@@ -1,15 +1,5 @@
 {
  "baseline": {
-  "iMode": 11,
-  "iModeP05": 11,
-  "iModeP95": 12,
-  "iaPlateau": [
-   8,
-   16
-  ],
-  "fPlateauFraction": 0.9
- },
- "albedoPerVisit": {
   "iMode": 12,
   "iModeP05": 12,
   "iModeP95": 12,
@@ -19,7 +9,37 @@
   ],
   "fPlateauFraction": 0.9
  },
+ "albedoRecompute": {
+  "iMode": 11,
+  "iModeP05": 11,
+  "iModeP95": 12,
+  "iaPlateau": [
+   8,
+   16
+  ],
+  "fPlateauFraction": 0.9
+ },
  "etaInterval86": {
+  "iMode": 15,
+  "iModeP05": 15,
+  "iModeP95": 15,
+  "iaPlateau": [
+   12,
+   19
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "skyThroughputConstant": {
+  "iMode": 10,
+  "iModeP05": 9,
+  "iModeP95": 10,
+  "iaPlateau": [
+   7,
+   13
+  ],
+  "fPlateauFraction": 0.9
+ },
+ "albedoRecomputeEta86": {
   "iMode": 15,
   "iModeP05": 14,
   "iModeP95": 15,
@@ -29,27 +49,7 @@
   ],
   "fPlateauFraction": 0.9
  },
- "skyThroughputConstant": {
-  "iMode": 9,
-  "iModeP05": 9,
-  "iModeP95": 9,
-  "iaPlateau": [
-   7,
-   13
-  ],
-  "fPlateauFraction": 0.9
- },
- "paperFaithful": {
-  "iMode": 15,
-  "iModeP05": 15,
-  "iModeP95": 16,
-  "iaPlateau": [
-   12,
-   19
-  ],
-  "fPlateauFraction": 0.9
- },
- "allThreeCombined": {
+ "etaInterval86ConstantSky": {
   "iMode": 12,
   "iModeP05": 12,
   "iModeP95": 13,
@@ -62,7 +62,7 @@
  "brysonMixtureEta": {
   "iMode": 7,
   "iModeP05": 7,
-  "iModeP95": 7,
+  "iModeP95": 8,
   "iaPlateau": [
    5,
    11
@@ -83,37 +83,37 @@
   {
    "fScale": 0.8,
    "iMode": 9,
-   "fMeanExpected": 16.861692016042003
+   "fMeanExpected": 17.98975041957853
   },
   {
    "fScale": 0.85,
    "iMode": 10,
-   "fMeanExpected": 17.91554776704463
+   "fMeanExpected": 19.114109820802188
   },
   {
    "fScale": 0.9,
-   "iMode": 10,
-   "fMeanExpected": 18.969403518047258
+   "iMode": 11,
+   "fMeanExpected": 20.23846922202585
   },
   {
    "fScale": 0.95,
    "iMode": 11,
-   "fMeanExpected": 20.023259269049873
+   "fMeanExpected": 21.3628286232495
   },
   {
    "fScale": 1.0,
-   "iMode": 11,
-   "fMeanExpected": 21.0771150200525
+   "iMode": 12,
+   "fMeanExpected": 22.48718802447316
   },
   {
    "fScale": 1.05,
    "iMode": 12,
-   "fMeanExpected": 22.13097077105513
+   "fMeanExpected": 23.61154742569682
   },
   {
    "fScale": 1.1,
    "iMode": 13,
-   "fMeanExpected": 23.184826522057758
+   "fMeanExpected": 24.73590682692048
   }
  ],
  "sLevelScanModel": "baseline"

@@ -1,37 +1,33 @@
 #!/usr/bin/env python3
-"""Re-run the yield chain under variants of the choices adopted because they matched a published number.
+"""Re-run the yield chain under variants of the settings that the published record leaves open.
 
-Three settings entered the pipeline because they improved agreement with Stark et al. (2024), not
-because a source required them. This script measures what each is worth on its own, and what they
-do together, with every other setting, seed and input held fixed:
+The adopted model follows Stark et al. (2024) wherever the method is documented: his per-visit
+albedo test, and the separation-dependent T_sky(r) of Stark (2019) Eqs. 5-6. It departs from his
+text in one place, reading his eta_Earth interval as 68% rather than the stated 86% (A15). This
+script measures what each setting is worth, with every other setting, seed and input held fixed:
 
-  albedoPerVisit         sAlbedoMethod "perVisitThreshold" instead of "recompute" -- Stark's own
-                         per-visit flux test rather than re-deriving the exposure at the drawn
-                         albedo (affects A04, A05, A07).
-  etaInterval86          A06 --eta-interval-z 1.4758: read Stark's eta_Earth interval as the 86%
-                         his text states, instead of the 68% adopted on 2026-09-23 to match his
-                         Fig. 10 width (affects A06, A07).
-  skyThroughputConstant  bSkyThroughputFollowsCore false: the constant large-separation T_sky the
-                         model used before 2026-09-24, instead of the reconstructed T_sky(r)
-                         (affects A04, A05, A07).
-
-  paperFaithful          both changes that move TOWARD the papers at once -- his per-visit albedo
-                         test and his stated 86% interval -- while KEEPING the reconstructed
-                         T_sky(r), which is sourced physics (Stark 2019 Eqs. 5-6) rather than a
-                         tuning. This is the most faithful reading of the published method.
-  allThreeCombined       the above plus T_sky(r) removed. Included because the combination was
-                         asked for, but it is NOT more faithful: dropping T_sky(r) discards a
-                         term the papers state, so any agreement it buys is a cancellation.
+  albedoRecompute          sAlbedoMethod "recompute": re-derive each drawn-albedo planet's exposure
+                           time instead of Stark's per-visit flux test (affects A04, A05, A07).
+  etaInterval86            A06 --eta-interval-z 1.4758: Stark's interval read as the 86% his text
+                           states. With the albedo test already his, this is the model that follows
+                           every documented choice (affects A06, A07).
+  skyThroughputConstant    bSkyThroughputFollowsCore false: a constant large-separation T_sky
+                           instead of the reconstructed T_sky(r) (affects A04, A05, A07).
+  albedoRecomputeEta86     both of the first two at once; with the adopted model, albedoRecompute
+                           and etaInterval86 it completes the 2x2 in albedo method x eta reading
+                           that dataAnalyseSettingInteractions.py decomposes.
+  etaInterval86ConstantSky the 86% reading with T_sky(r) removed too. NOT more faithful: dropping
+                           T_sky(r) discards a term the papers state, so any agreement it buys is
+                           a cancellation.
+  brysonMixtureEta         Stark's own eta construction, the uniform mixture of Bryson's two cases
+                           rescaled to his stated mean, instead of a lognormal.
 
 Stages a variant does not change reuse the baseline step outputs, so a difference is attributable
-to the changed settings. The combined variants are not the sum of the individual ones: the albedo
-method raises the level while the eta width narrows the distribution, and constant T_sky lowers
-the level again, so they partly cancel -- which is the reason to run them together rather than
-add up the single-variable shifts. kappa stays at the adopted 1 in every variant, including skyThroughputConstant
--- refitting it would let the calibration absorb the change, which is what removing kappa was for.
+to the changed settings. kappa stays at the adopted 1 in every variant: refitting it would let the
+calibration absorb the change.
 
-Variants run concurrently. Outputs go under explorations/output/oneVariableExperiments/<variant>/;
-no pipeline step output is touched. summariseOneVariableExperiments.py tabulates the result.
+Variants run concurrently, under --out-root; no pipeline step output is touched.
+dataSummariseModelVariants.py tabulates the result.
 """
 
 import argparse
@@ -45,29 +41,29 @@ S_HERE = os.path.dirname(os.path.abspath(__file__))
 S_REPO = os.path.dirname(S_HERE)
 
 DICT_VARIANTS = {
-    "albedoPerVisit": {"dictMissionOverrides": {"sAlbedoMethod": "perVisitThreshold"},
-                       "listStages": ["completeness", "survey", "prediction"],
-                       "sWhy": "Stark 2024 Sec. 3.2 per-visit flux test vs recomputing at the "
-                               "drawn albedo"},
+    "albedoRecompute": {"dictMissionOverrides": {"sAlbedoMethod": "recompute"},
+                        "listStages": ["completeness", "survey", "prediction"],
+                        "sWhy": "exposure recomputed at the drawn albedo vs Stark 2024 Sec. 3.2's "
+                                "per-visit flux test"},
     "etaInterval86": {"dictMissionOverrides": {}, "fEtaIntervalZ": 1.4758,
                       "listStages": ["occurrence", "prediction"],
-                      "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%"},
+                      "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%; "
+                              "every documented Stark choice followed"},
     "skyThroughputConstant": {"dictMissionOverrides": {"bSkyThroughputFollowsCore": False},
                               "listStages": ["completeness", "survey", "prediction"],
                               "sWhy": "constant large-separation T_sky vs the reconstructed "
                                       "T_sky(r)"},
-    "paperFaithful": {"dictMissionOverrides": {"sAlbedoMethod": "perVisitThreshold"},
-                      "fEtaIntervalZ": 1.4758,
-                      "listStages": ["completeness", "survey", "occurrence", "prediction"],
-                      "sWhy": "every documented Stark choice followed at once: his per-visit "
-                              "albedo test AND his stated 86% eta interval, with the sourced "
-                              "T_sky(r) of Stark 2019 Eqs. 5-6 KEPT"},
-    "allThreeCombined": {"dictMissionOverrides": {"sAlbedoMethod": "perVisitThreshold",
-                                                  "bSkyThroughputFollowsCore": False},
-                         "fEtaIntervalZ": 1.4758,
-                         "listStages": ["completeness", "survey", "occurrence", "prediction"],
-                         "sWhy": "all three one-variable changes at once, T_sky(r) removed too "
-                                 "-- NOT more faithful, since that removes sourced physics"},
+    "albedoRecomputeEta86": {"dictMissionOverrides": {"sAlbedoMethod": "recompute"},
+                             "fEtaIntervalZ": 1.4758,
+                             "listStages": ["completeness", "survey", "occurrence", "prediction"],
+                             "sWhy": "recomputed albedo AND the 86% interval: the fourth corner of "
+                                     "the albedo x eta 2x2"},
+    "etaInterval86ConstantSky": {"dictMissionOverrides": {"bSkyThroughputFollowsCore": False},
+                                 "fEtaIntervalZ": 1.4758,
+                                 "listStages": ["completeness", "survey", "occurrence",
+                                                "prediction"],
+                                 "sWhy": "the 86% interval with T_sky(r) removed too -- NOT more "
+                                         "faithful, since that removes sourced physics"},
     "brysonMixtureEta": {"dictMissionOverrides": {}, "sEtaLaw": "brysonMixture",
                          "listStages": ["occurrence", "prediction"],
                          "sWhy": "Stark's OWN eta construction -- the uniform mixture of Bryson's "
@@ -190,7 +186,8 @@ def main():
     sManifests = os.path.join(sOutRoot, "manifests.json")
     dictKept = {}
     if os.path.exists(sManifests):
-        dictKept = {d["sVariant"]: d for d in json.load(open(sManifests))["listVariants"]}
+        dictKept = {d["sVariant"]: d for d in json.load(open(sManifests))["listVariants"]
+                    if d["sVariant"] in DICT_VARIANTS}
     dictKept.update({d["sVariant"]: d for d in listManifests})
     with open(sManifests, "w") as oFile:
         json.dump({"listVariants": list(dictKept.values())}, oFile, indent=1)

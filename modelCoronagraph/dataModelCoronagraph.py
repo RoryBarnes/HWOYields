@@ -111,6 +111,16 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
     constant form had been charging planets near the inner working angle for background the
     coronagraph mask removes, and the calibration factor was absorbing it
     (explorations/whatIfCharacterizationTreatment.py, variant skyFollowsCore).
+
+    sAlbedoMethod "perVisitThreshold" with bAlbedoBrightBound is Stark et al. (2024) Sec. 3.2's
+    own albedo test: the observation plan is fixed at fGeometricAlbedo, and a planet with a drawn
+    albedo counts only if its flux falls inside the range the visit actually detected -- above
+    the faintest flux the exposure reached, and below the brightest the inner working angle
+    allowed (yieldlib.completeness.faStarkAlbedoTimes). Adopted 2026-09-25 to follow the
+    published method; it replaced "recompute", which re-derived each drawn-albedo planet's
+    exposure time. A14 showed the recompute method contributes 3.9% of the disagreement with
+    Stark's Fig. 10 and does no useful work. Stark's test gives an albedo penalty of about 3.5%
+    here against his reported 12%, and that shortfall is reported rather than tuned away.
     """
     return {
         "fDiameterM": fDiameterM,
@@ -149,6 +159,8 @@ def fdictMissionParameters(fDiameterM, fExozodiLevel):
         "bTimeLimitIncludesOverheads": True,
         "dictExozodiDistribution": fdictExozodiDistributionFromReference(),
         "dictPinnedExozodi": DICT_PINNED_EXOZODI,
+        "sAlbedoMethod": "perVisitThreshold",
+        "bAlbedoBrightBound": True,
         "dictAlbedoDistribution": {"fMin": 0.08, "fMax": 0.32,
                                    "sSource": "Stark et al. 2024 Sec. 3.2: the adopted uniform "
                                               "distribution, mean 0.20, quoted as reducing the "

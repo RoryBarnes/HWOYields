@@ -60,77 +60,77 @@
   "yieldOnly": {
    "dictParameters": {
     "ln_kappa": {
-     "fMean": 0.3567969697187637,
-     "fStd": 0.4050195872575923
+     "fMean": 0.3622099192594064,
+     "fStd": 0.40674714757237246
     },
     "ln_kappa_c": {
-     "fMean": 0.07433694423415041,
-     "fStd": 0.4975456177906705
+     "fMean": 0.07217720726638399,
+     "fStd": 0.4948320170590643
     },
     "f_leak": {
-     "fMean": 1.3846370661276906,
-     "fStd": 0.22349524693266223
+     "fMean": 1.3910143919633664,
+     "fStd": 0.22207390751164183
     },
     "s_sky": {
-     "fMean": 0.49546317405804224,
-     "fStd": 0.2873719722667199
+     "fMean": 0.49473340260041426,
+     "fStd": 0.28638351448091337
     },
     "kappa": {
-     "fMedian": 1.4287457617506851,
-     "fLnStd": 0.4050195872575923
+     "fMedian": 1.4365004594246626,
+     "fLnStd": 0.40674714757237246
     },
     "kappa_c": {
-     "fMedian": 1.0771696904731929,
-     "fLnStd": 0.4975456177906705
+     "fMedian": 1.0748457976740236,
+     "fLnStd": 0.4948320170590643
     }
    },
-   "fKappaKappaCCorrelation": -0.7904243779599568,
+   "fKappaKappaCCorrelation": -0.7898888454392811,
    "listObservables": [
     {
      "sLabel": "6 m planning yield [EEC]",
-     "fLow": 19.275268554757453,
-     "fMedian": 22.395518991413347,
-     "fHigh": 26.21894909982878,
+     "fLow": 19.315779781543398,
+     "fMedian": 22.40861773300747,
+     "fHigh": 26.301644333561786,
      "fPublished": 22.499999999999996,
      "bTargetInsideInterval": true
     },
     {
      "sLabel": "first-18 mean char time, 6 m [d]",
-     "fLow": 6.448732967687431,
-     "fMedian": 9.750821300284434,
-     "fHigh": 12.69483004180275,
+     "fLow": 6.443774477279848,
+     "fMedian": 9.738511555933117,
+     "fHigh": 12.745095472177821,
      "fPublished": 22.000000000000004,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "first-18 mean char time, 9 m [d]",
-     "fLow": 0.6764191705645827,
-     "fMedian": 1.144144320575746,
-     "fHigh": 1.79277924286868,
+     "fLow": 0.6776031638074534,
+     "fMedian": 1.1435851703412059,
+     "fHigh": 1.7927895066483501,
      "fPublished": 3.5,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "Fig. 11 median completeness, 6-10 pc",
-     "fLow": 0.731991703747851,
-     "fMedian": 0.804331369132093,
-     "fHigh": 0.8671314872599857,
+     "fLow": 0.733000739098524,
+     "fMedian": 0.8036941008675975,
+     "fHigh": 0.8667691238677296,
      "fPublished": 0.8938428874734607,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "Fig. 11 median completeness, 10-15 pc",
-     "fLow": 0.2742299349718166,
-     "fMedian": 0.36854080001035416,
-     "fHigh": 0.47574029080640756,
+     "fLow": 0.2742537870435356,
+     "fMedian": 0.36940016567933665,
+     "fHigh": 0.47744109924761896,
      "fPublished": 0.7282377919320594,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "Fig. 11 median completeness, 15-20 pc",
-     "fLow": -0.008717446333839777,
-     "fMedian": 0.02976544056337998,
-     "fHigh": 0.09630116561191353,
+     "fLow": -0.008970267844441972,
+     "fMedian": 0.030455632876259756,
+     "fHigh": 0.09466248660900797,
      "fPublished": 0.28450106157112526,
      "bTargetInsideInterval": false
     }
@@ -139,77 +139,77 @@
   "all": {
    "dictParameters": {
     "ln_kappa": {
-     "fMean": 0.31505951676241634,
-     "fStd": 0.22016183981397486
+     "fMean": 0.29860306581716894,
+     "fStd": 0.22468790147174952
     },
     "ln_kappa_c": {
-     "fMean": -0.6945156943623713,
-     "fStd": 0.18943502250692457
+     "fMean": -0.6836307909563272,
+     "fStd": 0.19892371963530694
     },
     "f_leak": {
-     "fMean": 1.406816714941775,
-     "fStd": 0.26894758666666574
+     "fMean": 1.416246902983083,
+     "fStd": 0.26551621235258704
     },
     "s_sky": {
-     "fMean": 0.6637412131490468,
-     "fStd": 0.22492838693922665
+     "fMean": 0.6672505201026853,
+     "fStd": 0.21832461964529837
     },
     "kappa": {
-     "fMedian": 1.370340866781801,
-     "fLnStd": 0.22016183981397486
+     "fMedian": 1.3479744601268169,
+     "fLnStd": 0.22468790147174952
     },
     "kappa_c": {
-     "fMedian": 0.4993162110927841,
-     "fLnStd": 0.18943502250692457
+     "fMedian": 0.5047809072091151,
+     "fLnStd": 0.19892371963530694
     }
    },
-   "fKappaKappaCCorrelation": -0.9055063436157403,
+   "fKappaKappaCCorrelation": -0.9110140225108481,
    "listObservables": [
     {
      "sLabel": "6 m planning yield [EEC]",
-     "fLow": 15.385497980605448,
-     "fMedian": 16.42975453133925,
-     "fHigh": 17.52629726507488,
+     "fLow": 15.343220738069892,
+     "fMedian": 16.354077189720815,
+     "fHigh": 17.466656178352157,
      "fPublished": 22.499999999999996,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "first-18 mean char time, 6 m [d]",
-     "fLow": 14.448770097107849,
-     "fMedian": 15.359942030507943,
-     "fHigh": 16.275466042914857,
+     "fLow": 14.500425585713483,
+     "fMedian": 15.409254871699307,
+     "fHigh": 16.302398731538645,
      "fPublished": 22.000000000000004,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "first-18 mean char time, 9 m [d]",
-     "fLow": 2.3995522600184205,
-     "fMedian": 2.7463117969556707,
-     "fHigh": 3.140843966966665,
+     "fLow": 2.4117097021839555,
+     "fMedian": 2.767213031700644,
+     "fHigh": 3.170011683471632,
      "fPublished": 3.5,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "Fig. 11 median completeness, 6-10 pc",
-     "fLow": 0.6344273840713168,
-     "fMedian": 0.683001044388954,
-     "fHigh": 0.7283066828942878,
+     "fLow": 0.6323070134794075,
+     "fMedian": 0.6802611932911442,
+     "fHigh": 0.7251924245640137,
      "fPublished": 0.8938428874734607,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "Fig. 11 median completeness, 10-15 pc",
-     "fLow": 0.1453392973465599,
-     "fMedian": 0.18531287406964872,
-     "fHigh": 0.22564899051384457,
+     "fLow": 0.14253937068011546,
+     "fMedian": 0.1842061134979252,
+     "fHigh": 0.22343071930223318,
      "fPublished": 0.7282377919320594,
      "bTargetInsideInterval": false
     },
     {
      "sLabel": "Fig. 11 median completeness, 15-20 pc",
-     "fLow": -0.0446015686835273,
-     "fMedian": -0.012881575547641008,
-     "fHigh": 0.00464480487487259,
+     "fLow": -0.044519908604435186,
+     "fMedian": -0.013507912487202626,
+     "fHigh": 0.003993749336862826,
      "fPublished": 0.28450106157112526,
      "bTargetInsideInterval": false
     }

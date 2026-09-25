@@ -1,4 +1,4 @@
-### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --eta-law brysonMixture --bryson-digitised /workspace/yields/explorations/brysonFigure13EtaEarthDigitised.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/occurrencePosterior.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/occurrencePosteriorSummary.json
+### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --eta-law brysonMixture --bryson-digitised /workspace/yields/CompareModelVariants/reference/brysonFigure13EtaEarthDigitised.json --out-samples /workspace/yields/CompareModelVariants/variants/brysonMixtureEta/occurrencePosterior.npz --out-summary /workspace/yields/CompareModelVariants/variants/brysonMixtureEta/occurrencePosteriorSummary.json
 {
   "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior (uniform mixture of the two digitized Bryson 2021 cases, rescaled to the published mean 0.26); other boxes follow by the Gamma-independent ratio from the shape chain.",
   "sEtaLaw": "brysonMixture",
@@ -57,34 +57,34 @@
     "fMean": 0.20439239801265185
   }
 }
-### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/computeCompleteness/completeness.npz --occurrence-posterior /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/occurrencePosterior.npz --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 6 --out-prediction /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/yieldPrediction.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/brysonMixtureEta/yieldSamples.npz
+### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/computeCompleteness/completeness.npz --occurrence-posterior /workspace/yields/CompareModelVariants/variants/brysonMixtureEta/occurrencePosterior.npz --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 2 --out-prediction /workspace/yields/CompareModelVariants/variants/brysonMixtureEta/yieldPrediction.json --out-samples /workspace/yields/CompareModelVariants/variants/brysonMixtureEta/yieldSamples.npz
 {
   "dictYieldRatio": {
-    "fMedian": 0.23436481634308787,
-    "fP16": 0.2124788560932774,
-    "fP84": 0.26215036169170824,
+    "fMedian": 0.2278998595124308,
+    "fP16": 0.20698195777440853,
+    "fP84": 0.25363035182138705,
     "fOccurrenceRatioMedian": 0.20419311247330102
   },
   "dictByBox": {
     "canonical": {
-      "fMeanExpected": 16.71047901632598,
-      "fMedianExpected": 13.215449726560546,
-      "fP16Expected": 5.731976079648728,
-      "fP84Expected": 27.888272639772687,
-      "fP05Expected": 3.14573128197955,
-      "fP95Expected": 43.50912196421347,
-      "fProbabilityAtLeastGoal": 0.2129861111111111,
-      "fProbabilityAtLeastOne": 0.9854166666666667
+      "fMeanExpected": 17.779050820454326,
+      "fMedianExpected": 13.903311210572738,
+      "fP16Expected": 5.993900411569174,
+      "fP84Expected": 29.655859750980543,
+      "fP05Expected": 3.2790539751314665,
+      "fP95Expected": 47.096380791209754,
+      "fProbabilityAtLeastGoal": 0.2361111111111111,
+      "fProbabilityAtLeastOne": 0.9850694444444444
     },
     "redefined": {
-      "fMeanExpected": 4.216546239050568,
-      "fMedianExpected": 3.040042916363303,
-      "fP16Expected": 1.2767068669644632,
-      "fP84Expected": 6.946387394536348,
-      "fP05Expected": 0.6874917939826708,
-      "fP95Expected": 12.150405515902987,
-      "fProbabilityAtLeastGoal": 0.0044444444444444444,
-      "fProbabilityAtLeastOne": 0.8733333333333333
+      "fMeanExpected": 4.3360247845892115,
+      "fMedianExpected": 3.110674397173941,
+      "fP16Expected": 1.3051659958969744,
+      "fP84Expected": 7.124796593313128,
+      "fP05Expected": 0.7025194839474146,
+      "fP95Expected": 12.540909162156597,
+      "fProbabilityAtLeastGoal": 0.005694444444444445,
+      "fProbabilityAtLeastOne": 0.8797916666666666
     }
   }
 }

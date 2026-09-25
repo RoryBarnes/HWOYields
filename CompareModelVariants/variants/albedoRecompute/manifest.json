@@ -1,0 +1,15 @@
+{
+ "sVariant": "albedoRecompute",
+ "sWhy": "exposure recomputed at the drawn albedo vs Stark 2024 Sec. 3.2's per-visit flux test",
+ "dictMissionOverrides": {
+  "sAlbedoMethod": "recompute"
+ },
+ "fEtaIntervalZ": null,
+ "sEtaLaw": "lognormal",
+ "listStagesRerun": [
+  "completeness",
+  "survey",
+  "prediction"
+ ],
+ "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/albedoRecompute/missionParameters.json"
+}

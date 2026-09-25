@@ -10,6 +10,7 @@ is the quantity Stark et al. (2024) Fig. 10 plots.
 import argparse
 import sys
 
+import matplotlib
 import numpy as np
 
 sys.path.insert(0, "..")
@@ -20,6 +21,19 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 
 DICT_ZONE_LABEL = {"canonical": "Habitable Zone", "redefined": "Earth Zone"}
+DICT_ZONE_COLOUR = {"canonical": vplot.colors.pale_blue, "redefined": vplot.colors.dark_blue}
+LIST_FONT_KEYS = ["font.size", "axes.labelsize", "axes.titlesize", "xtick.labelsize",
+                  "ytick.labelsize", "legend.fontsize"]
+
+
+def fnScaleFonts(fFactor):
+    """Multiply every font size in the active style, resolving named sizes to points first."""
+    fBase = plt.rcParams["font.size"]
+    for sKey in LIST_FONT_KEYS:
+        fValue = plt.rcParams[sKey]
+        if isinstance(fValue, str):
+            fValue = fBase * matplotlib.font_manager.font_scalings.get(fValue, 1.0)
+        plt.rcParams[sKey] = fValue * fFactor
 
 
 def fnBoxAxes(oAxes):
@@ -33,12 +47,12 @@ def fnBoxAxes(oAxes):
 def fnDrawZone(oAxes, faExpected, sBox, iMaxYield):
     """One box's EEC yield distribution, as the exact Poisson mixture over expected yields."""
     faPmf = faPoissonMixturePmf(faExpected, iMax=iMaxYield + 1)
-    oAxes.plot(np.arange(faPmf.size), faPmf, linewidth=2.0, color=ps.DICT_BOX_COLOUR[sBox])
+    oAxes.plot(np.arange(faPmf.size), faPmf, linewidth=2.0, color=DICT_ZONE_COLOUR[sBox])
 
 
 def flistLegendHandles(listBoxes):
     """Plain horizontal rules, one per zone, in the order the boxes are drawn."""
-    return [Line2D([0], [0], color=ps.DICT_BOX_COLOUR[s], linewidth=2.0,
+    return [Line2D([0], [0], color=DICT_ZONE_COLOUR[s], linewidth=2.0,
                    label=DICT_ZONE_LABEL[s]) for s in listBoxes]
 
 
@@ -48,16 +62,18 @@ def main():
     p.add_argument("--boxes", default="canonical,redefined")
     p.add_argument("--max-yield", type=int, default=50,
                    help="x-axis limit; 50 matches Stark et al. (2024) Fig. 10")
+    p.add_argument("--font-scale", type=float, default=1.25)
     p.add_argument("sPlotPath")
     dictArgs = vars(p.parse_args())
     ps.fnApplyStyle()
+    fnScaleFonts(dictArgs["font_scale"])
     dictSamples = np.load(dictArgs["samples"])
     listBoxes = [s.strip() for s in dictArgs["boxes"].split(",") if s.strip()]
     oFigure, oAxes = plt.subplots(figsize=(4.4, 3.2))
     for sBox in listBoxes:
         fnDrawZone(oAxes, dictSamples[f"faExpected_{sBox}"], sBox, dictArgs["max_yield"])
     oAxes.set_xlim(0, dictArgs["max_yield"])
-    ps.fnFinishAxes(oAxes, "EEC Yield", "Frequency")
+    ps.fnFinishAxes(oAxes, "Expected Yield", "Frequency")
     oAxes.grid(False)
     fnBoxAxes(oAxes)
     oAxes.legend(handles=flistLegendHandles(listBoxes), loc="upper right")

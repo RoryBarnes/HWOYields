@@ -263,7 +263,7 @@
           "fMax": 1.0
         },
         "faCompAlbedo_canonical": {
-          "fMean": 0.02898492345679012,
+          "fMean": 0.030579018271604932,
           "fMin": 0.0,
           "fMax": 1.0
         },
@@ -298,7 +298,7 @@
           "fMax": 1.0
         },
         "faCompAlbedo_redefined": {
-          "fMean": 0.03098712666666666,
+          "fMean": 0.0321120249382716,
           "fMin": 0.0,
           "fMax": 1.0
         },
@@ -323,7 +323,7 @@
           "fMax": 1.0
         },
         "faCompAlbedo_hzOnly": {
-          "fMean": 0.03480577604938272,
+          "fMean": 0.036308100246913576,
           "fMin": 0.0,
           "fMax": 1.0
         },
@@ -338,7 +338,7 @@
           "fMax": 588.0
         }
       },
-      "iBytes": 18631186
+      "iBytes": 18133057
     },
     "completenessSummary.json": {
       "sKind": "json",

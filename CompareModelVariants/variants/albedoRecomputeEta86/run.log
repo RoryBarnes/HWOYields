@@ -1,4 +1,4 @@
-### computeCompleteness: dataComputeCompleteness.py --target-catalog /workspace/yields/buildTargetCatalog/targetCatalog.csv --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --out-completeness /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/completeness.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/completenessSummary.json
+### computeCompleteness: dataComputeCompleteness.py --target-catalog /workspace/yields/buildTargetCatalog/targetCatalog.csv --mission-parameters /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --out-completeness /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/completeness.npz --out-summary /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/completenessSummary.json
 {
   "iStarsScreened": 1500,
   "iNumPlanetsPerStar": 3000,
@@ -30,7 +30,7 @@
   "fMedianDrawnZodi": 2.9954122602133157,
   "fFractionDrawnAbove100Zodi": 0.21446666666666667
 }
-### optimizeSurvey: dataOptimizeSurvey.py --completeness /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/completeness.npz --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --box canonical --processes 3 --out-survey /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/surveyResult.json
+### optimizeSurvey: dataOptimizeSurvey.py --completeness /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/completeness.npz --mission-parameters /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --box canonical --processes 2 --out-survey /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/surveyResult.json
 {
   "sBox": "canonical",
   "iStarsAvailable": 1500,
@@ -39,46 +39,46 @@
   "iExozodiDraws": 200,
   "sBaselineNote": "fYieldBaseline and fYieldPlanningBaseline are means over the exozodi draws (albedo-drawn and planning albedo respectively); the fixed-exozodi survey is reported separately.",
   "fYieldPlanningFixedExozodi": 20.944399999999998,
-  "fYieldFixedExozodi": 20.171839999999996,
+  "fYieldFixedExozodi": 19.10024,
   "iStarsUsedFixedExozodi": 174,
-  "fYieldBaseline": 17.75192813789333,
+  "fYieldBaseline": 16.806844687474086,
   "fYieldPlanningBaseline": 18.39534067118465,
   "iStarsUsedBaseline": 155,
   "fTimeUsedFractionBaseline": 0.9999011341868527,
   "listEtaScan": [
     {
       "fEtaEarth": 0.02,
-      "fYield": 1.549247243459409,
+      "fYield": 1.4863671001462833,
       "fYieldPlanning": 1.5955411252679021,
       "fStarsUsed": 169.335
     },
     {
       "fEtaEarth": 0.06,
-      "fYield": 4.618879935700001,
+      "fYield": 4.419677473190855,
       "fYieldPlanning": 4.767551847203875,
       "fStarsUsed": 167.68
     },
     {
       "fEtaEarth": 0.12,
-      "fYield": 9.137654037685433,
+      "fYield": 8.709219358278224,
       "fYieldPlanning": 9.456594221744085,
       "fStarsUsed": 164.57
     },
     {
       "fEtaEarth": 0.24,
-      "fYield": 17.75192813789333,
+      "fYield": 16.806844687474086,
       "fYieldPlanning": 18.39534067118465,
       "fStarsUsed": 155.285
     },
     {
       "fEtaEarth": 0.4,
-      "fYield": 28.01707009834881,
+      "fYield": 26.347238624167723,
       "fYieldPlanning": 28.866806925928195,
       "fStarsUsed": 138.87
     },
     {
       "fEtaEarth": 0.6,
-      "fYield": 39.04748018190169,
+      "fYield": 36.35834108550944,
       "fYieldPlanning": 39.665734482461296,
       "fStarsUsed": 118.975
     }
@@ -87,16 +87,17 @@
 {
   "fYieldPlanningDrawnMean": 18.39534067118465,
   "fYieldPlanningDrawnStd": 0.5847247961536176,
-  "fYieldDrawnMean": 17.75192813789333,
-  "fYieldDrawnStd": 0.5702519900743814,
+  "fYieldDrawnMean": 16.806844687474086,
+  "fYieldDrawnStd": 0.5484249093225566,
   "fStarsUsedDrawnMean": 155.285,
   "fExozodiPenalty": 0.12170600870950465,
-  "fAlbedoPenalty": 0.03497692947318942,
-  "iRepresentativeDraw": 14
+  "fAlbedoPenalty": 0.08635317019156152,
+  "iRepresentativeDraw": 165
 }
-### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/missionParameters.json --eta-interval-z 1.4758 --out-samples /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/occurrencePosterior.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/occurrencePosteriorSummary.json
+### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/missionParameters.json --eta-interval-z 1.4758 --out-samples /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/occurrencePosterior.npz --out-summary /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/occurrencePosteriorSummary.json
 {
   "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior (lognormal matched to its quoted interval read at z = 1.4758); other boxes follow by the Gamma-independent ratio from the shape chain.",
+  "sEtaLaw": "lognormal",
   "fEtaIntervalZ": 1.4758,
   "fEtaLogNormalMu": -1.3590502684778558,
   "fEtaLogNormalSigma": 0.515797037350749,
@@ -152,34 +153,34 @@
     "fMean": 0.20352045278060632
   }
 }
-### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/completeness.npz --occurrence-posterior /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/occurrencePosterior.npz --mission-parameters /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 3 --out-prediction /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/yieldPrediction.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/yieldSamples.npz
+### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/completeness.npz --occurrence-posterior /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/occurrencePosterior.npz --mission-parameters /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 2 --out-prediction /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/yieldPrediction.json --out-samples /workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/yieldSamples.npz
 {
   "dictYieldRatio": {
-    "fMedian": 0.22933306856683727,
-    "fP16": 0.20887807897466407,
-    "fP84": 0.25212788463416824,
+    "fMedian": 0.23629707483029377,
+    "fP16": 0.21500303094942408,
+    "fP84": 0.2605143064706367,
     "fOccurrenceRatioMedian": 0.20334323541972582
   },
   "dictByBox": {
     "canonical": {
-      "fMeanExpected": 20.687194227435324,
-      "fMedianExpected": 18.866055535221022,
-      "fP16Expected": 11.670053480575218,
-      "fP84Expected": 29.49586852574717,
-      "fP05Expected": 8.311271221847592,
-      "fP95Expected": 38.88999352339464,
-      "fProbabilityAtLeastGoal": 0.29618055555555556,
-      "fProbabilityAtLeastOne": 0.9997222222222222
+      "fMeanExpected": 19.47472579475852,
+      "fMedianExpected": 17.845465613060576,
+      "fP16Expected": 11.102551437016025,
+      "fP84Expected": 27.707356069530366,
+      "fP05Expected": 7.933099352547209,
+      "fP95Expected": 36.17323227201007,
+      "fProbabilityAtLeastGoal": 0.25743055555555555,
+      "fProbabilityAtLeastOne": 0.9997916666666666
     },
     "redefined": {
-      "fMeanExpected": 4.881086950395704,
-      "fMedianExpected": 4.26711658204463,
-      "fP16Expected": 2.5750645372894763,
-      "fP84Expected": 7.088140394343886,
-      "fP05Expected": 1.8088857173105015,
-      "fP95Expected": 9.980186962900056,
-      "fProbabilityAtLeastGoal": 0.0007638888888888889,
-      "fProbabilityAtLeastOne": 0.9596527777777778
+      "fMeanExpected": 4.750109832887598,
+      "fMedianExpected": 4.161420226449108,
+      "fP16Expected": 2.5142164127805846,
+      "fP84Expected": 6.897407197121364,
+      "fP05Expected": 1.7656817956277895,
+      "fP95Expected": 9.691480916731146,
+      "fProbabilityAtLeastGoal": 0.0005555555555555556,
+      "fProbabilityAtLeastOne": 0.9582638888888889
     }
   }
 }

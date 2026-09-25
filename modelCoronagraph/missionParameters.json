@@ -1008,6 +1008,8 @@
         "fZodi": 235.0
       }
     },
+    "sAlbedoMethod": "perVisitThreshold",
+    "bAlbedoBrightBound": true,
     "dictAlbedoDistribution": {
       "fMin": 0.08,
       "fMax": 0.32,

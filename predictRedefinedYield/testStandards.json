@@ -18,7 +18,7 @@
             "dictDistribution",
             "fMeanExpected"
           ],
-          "oValue": 21.0771150200525
+          "oValue": 22.48718802447316
         },
         {
           "saPath": [
@@ -27,7 +27,7 @@
             "dictDistribution",
             "fMedianExpected"
           ],
-          "oValue": 17.80456349620443
+          "oValue": 18.806343932558075
         },
         {
           "saPath": [
@@ -36,7 +36,7 @@
             "dictDistribution",
             "fP16Expected"
           ],
-          "oValue": 8.808658140485266
+          "oValue": 9.235734533401676
         },
         {
           "saPath": [
@@ -45,7 +45,7 @@
             "dictDistribution",
             "fP84Expected"
           ],
-          "oValue": 33.5028502198637
+          "oValue": 35.83080390501887
         },
         {
           "saPath": [
@@ -54,7 +54,7 @@
             "dictDistribution",
             "fP05Expected"
           ],
-          "oValue": 5.333985406047169
+          "oValue": 5.56733750127833
         },
         {
           "saPath": [
@@ -63,7 +63,7 @@
             "dictDistribution",
             "fP95Expected"
           ],
-          "oValue": 49.21280733897415
+          "oValue": 53.423019104899666
         },
         {
           "saPath": [
@@ -72,7 +72,7 @@
             "dictDistribution",
             "fProbabilityAtLeastGoal"
           ],
-          "oValue": 0.3215277777777778
+          "oValue": 0.35138888888888886
         },
         {
           "saPath": [
@@ -81,7 +81,7 @@
             "dictDistribution",
             "fProbabilityAtLeastOne"
           ],
-          "oValue": 0.9988888888888889
+          "oValue": 0.9980555555555556
         },
         {
           "saPath": [
@@ -98,7 +98,7 @@
             "dictDistributionFixedEta",
             "fMeanExpected"
           ],
-          "oValue": 16.866545665927774
+          "oValue": 17.796415838939794
         },
         {
           "saPath": [
@@ -107,7 +107,7 @@
             "dictDistributionFixedEta",
             "fMedianExpected"
           ],
-          "oValue": 16.91808255007903
+          "oValue": 17.861901791850336
         },
         {
           "saPath": [
@@ -116,7 +116,7 @@
             "dictDistributionFixedEta",
             "fP16Expected"
           ],
-          "oValue": 16.330106046511467
+          "oValue": 17.227833681178804
         },
         {
           "saPath": [
@@ -125,7 +125,7 @@
             "dictDistributionFixedEta",
             "fP84Expected"
           ],
-          "oValue": 17.401489064026944
+          "oValue": 18.360689787199608
         },
         {
           "saPath": [
@@ -134,7 +134,7 @@
             "dictDistributionFixedEta",
             "fP05Expected"
           ],
-          "oValue": 15.872188541085668
+          "oValue": 16.751855560870343
         },
         {
           "saPath": [
@@ -143,7 +143,7 @@
             "dictDistributionFixedEta",
             "fP95Expected"
           ],
-          "oValue": 17.637342715894118
+          "oValue": 18.623792735781052
         },
         {
           "saPath": [
@@ -152,7 +152,7 @@
             "dictDistributionFixedEta",
             "fProbabilityAtLeastGoal"
           ],
-          "oValue": 0.03770833333333334
+          "oValue": 0.06263888888888888
         },
         {
           "saPath": [
@@ -178,7 +178,7 @@
             "dictDistribution",
             "fMeanExpected"
           ],
-          "oValue": 5.48196714862923
+          "oValue": 5.64684995438968
         },
         {
           "saPath": [
@@ -187,7 +187,7 @@
             "dictDistribution",
             "fMedianExpected"
           ],
-          "oValue": 4.166842994763914
+          "oValue": 4.26766794876519
         },
         {
           "saPath": [
@@ -196,7 +196,7 @@
             "dictDistribution",
             "fP16Expected"
           ],
-          "oValue": 1.982184874109023
+          "oValue": 2.0257204690668167
         },
         {
           "saPath": [
@@ -205,7 +205,7 @@
             "dictDistribution",
             "fP84Expected"
           ],
-          "oValue": 8.741226134309095
+          "oValue": 8.981053818941387
         },
         {
           "saPath": [
@@ -214,7 +214,7 @@
             "dictDistribution",
             "fP05Expected"
           ],
-          "oValue": 1.1787983201793624
+          "oValue": 1.2063264080647897
         },
         {
           "saPath": [
@@ -223,7 +223,7 @@
             "dictDistribution",
             "fP95Expected"
           ],
-          "oValue": 14.254615978541867
+          "oValue": 14.783018890703314
         },
         {
           "saPath": [
@@ -232,7 +232,7 @@
             "dictDistribution",
             "fProbabilityAtLeastGoal"
           ],
-          "oValue": 0.010416666666666666
+          "oValue": 0.012013888888888888
         },
         {
           "saPath": [
@@ -241,7 +241,7 @@
             "dictDistribution",
             "fProbabilityAtLeastOne"
           ],
-          "oValue": 0.9353472222222222
+          "oValue": 0.9379861111111111
         },
         {
           "saPath": [
@@ -258,7 +258,7 @@
             "dictDistributionFixedEta",
             "fMeanExpected"
           ],
-          "oValue": 3.943146250933013
+          "oValue": 4.0368142087261125
         },
         {
           "saPath": [
@@ -267,7 +267,7 @@
             "dictDistributionFixedEta",
             "fMedianExpected"
           ],
-          "oValue": 3.95461190427009
+          "oValue": 4.046418463943896
         },
         {
           "saPath": [
@@ -276,7 +276,7 @@
             "dictDistributionFixedEta",
             "fP16Expected"
           ],
-          "oValue": 3.7939526966465187
+          "oValue": 3.882679750302241
         },
         {
           "saPath": [
@@ -285,7 +285,7 @@
             "dictDistributionFixedEta",
             "fP84Expected"
           ],
-          "oValue": 4.095040503908646
+          "oValue": 4.189733406690278
         },
         {
           "saPath": [
@@ -294,7 +294,7 @@
             "dictDistributionFixedEta",
             "fP05Expected"
           ],
-          "oValue": 3.6944120078046554
+          "oValue": 3.7815404553178413
         },
         {
           "saPath": [
@@ -303,7 +303,7 @@
             "dictDistributionFixedEta",
             "fP95Expected"
           ],
-          "oValue": 4.152312518578626
+          "oValue": 4.2622919756613555
         },
         {
           "saPath": [
@@ -321,7 +321,7 @@
             "dictDistributionFixedEta",
             "fProbabilityAtLeastOne"
           ],
-          "oValue": 0.9820833333333333
+          "oValue": 0.983125
         },
         {
           "saPath": [
@@ -354,21 +354,21 @@
             "dictYieldRatio",
             "fMedian"
           ],
-          "oValue": 0.23863778227841975
+          "oValue": 0.23151484477610138
         },
         {
           "saPath": [
             "dictYieldRatio",
             "fP16"
           ],
-          "oValue": 0.21597086614589142
+          "oValue": 0.21005324257567407
         },
         {
           "saPath": [
             "dictYieldRatio",
             "fP84"
           ],
-          "oValue": 0.26860078452333475
+          "oValue": 0.25896093030990713
         },
         {
           "saPath": [
@@ -378,7 +378,7 @@
           "oValue": 0.20419311247330102
         }
       ],
-      "iBytes": 7682
+      "iBytes": 7680
     },
     "yieldSamples.npz": {
       "sKind": "npz",
@@ -484,57 +484,57 @@
           "fMax": 199.0
         },
         "faExpected_canonical": {
-          "fMean": 21.0771150200525,
-          "fMin": 1.0957687121139412,
-          "fMax": 66.49365910921361
+          "fMean": 22.48718802447316,
+          "fMin": 1.1400914493660776,
+          "fMax": 72.68925141017192
         },
         "faObserved_canonical": {
-          "fMean": 21.040069444444445,
+          "fMean": 22.445208333333333,
           "fMin": 0.0,
-          "fMax": 84.0
+          "fMax": 100.0
         },
         "faExpectedFixedEta_canonical": {
-          "fMean": 16.866545665927774,
-          "fMin": 15.098105385000814,
-          "fMax": 18.078448323714593
+          "fMean": 17.796415838939794,
+          "fMin": 15.900818694714893,
+          "fMax": 19.078901314986016
         },
         "faObservedFixedEta_canonical": {
-          "fMean": 16.848541666666666,
-          "fMin": 3.0,
-          "fMax": 35.0
+          "fMean": 17.77951388888889,
+          "fMin": 5.0,
+          "fMax": 38.0
         },
         "faYieldGridByDraw_canonical": {
-          "fMean": 13.175149188783992,
-          "fMin": 0.19772281452417104,
-          "fMax": 66.49365910921361
+          "fMean": 14.13764888171859,
+          "fMin": 0.20558249140079854,
+          "fMax": 72.68925141017192
         },
         "faExpected_redefined": {
-          "fMean": 5.48196714862923,
-          "fMin": 0.22640761805511733,
-          "fMax": 58.33894277639758
+          "fMean": 5.64684995438968,
+          "fMin": 0.23164138539681245,
+          "fMax": 62.5973473986689
         },
         "faObserved_redefined": {
-          "fMean": 5.467708333333333,
+          "fMean": 5.63,
           "fMin": 0.0,
-          "fMax": 58.0
+          "fMax": 73.0
         },
         "faExpectedFixedEta_redefined": {
-          "fMean": 3.943146250933013,
-          "fMin": 3.449562308850055,
-          "fMax": 4.249919080933966
+          "fMean": 4.0368142087261125,
+          "fMin": 3.5360093442437024,
+          "fMax": 4.353984562330619
         },
         "faObservedFixedEta_redefined": {
-          "fMean": 3.9575,
+          "fMean": 4.051180555555556,
           "fMin": 0.0,
-          "fMax": 13.0
+          "fMax": 14.0
         },
         "faYieldGridByDraw_redefined": {
-          "fMean": 14.128832956619302,
-          "fMin": 0.2110973706131659,
-          "fMax": 71.8492784786629
+          "fMean": 14.98181013102548,
+          "fMin": 0.2159771766598039,
+          "fMax": 77.22457540862194
         }
       },
-      "iBytes": 422114
+      "iBytes": 422651
     }
   }
 }

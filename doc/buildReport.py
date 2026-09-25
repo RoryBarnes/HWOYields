@@ -60,6 +60,7 @@ def fdictSubstitutions(dictResults):
         "CALUNCALFRAC": f"{100*dictCal['fUncalibratedYield']/22.5:.0f}",
         "ALBEDOPEN": f"{100*(1.0 - dictSurvey['fYieldBaseline']/dictSurvey['fYieldPlanningBaseline']):.1f}",
         "CALFACTOR": f"{dictCal['fCalibratedThroughputFactor']:.3f}",
+        "CALFITTED": f"{dictCal['fFittedThroughputFactor']:.2f}",
         "CALYIELD": f"{dictCal['fCalibratedYield']:.2f}",
         "CALUNCAL": f"{dictCal['fUncalibratedYield']:.2f}",
         "CALUNCALPCT": f"{100*(dictCal['fUncalibratedYield']/22.5-1):+.1f}",
@@ -171,19 +172,28 @@ def fdictDegeneracyTokens(dictDeg):
         "DEGGATECHARNINEHI": f"{dictGate['fChar9Max']:.2f}"}
 
 
+def fdictVariantRow(sName, sTag, dictVar, dictPeaks):
+    """One A14 model's row of tokens: yield ratio, Fig. 10 distance, mean, low tail and peak."""
+    dictRun = dictVar["dictBaseline"] if sName == "baseline" else dictVar["dictVariants"][sName]
+    return {f"VAR{sTag}RATIO": f"{dictRun['fYieldRatio']:.4f}",
+            f"VAR{sTag}TV": f"{dictRun['fShapeDistanceToFig10']:.3f}",
+            f"VAR{sTag}MEAN": f"{dictRun['fYieldMean']:.1f}",
+            f"VAR{sTag}BELOW": f"{dictRun['fProbBelow12']:.2f}",
+            f"VAR{sTag}ALBPEN": f"{100 * dictRun['fAlbedoPenalty']:.1f}",
+            f"PEAK{sTag}": f"{dictPeaks[sName]['iMode']:d}"}
+
+
 def fdictVariantTokens(dictVar, dictInt, dictPeaks, dictEta):
     """Tokens from the one-variable experiments (A14) and the interval test (A15)."""
     dictOut = {}
-    for sName, sTag in [("baseline", "BASE"), ("albedoPerVisit", "ALB"),
-                        ("etaInterval86", "ETA86"), ("skyThroughputConstant", "SKY"),
-                        ("paperFaithful", "FAITH"), ("allThreeCombined", "ALL3"),
-                        ("brysonMixtureEta", "BRY")]:
-        dictRun = dictVar["dictBaseline"] if sName == "baseline" else dictVar["dictVariants"][sName]
-        dictOut[f"VAR{sTag}RATIO"] = f"{dictRun['fYieldRatio']:.4f}"
-        dictOut[f"VAR{sTag}TV"] = f"{dictRun['fShapeDistanceToFig10']:.3f}"
-        dictOut[f"VAR{sTag}MEAN"] = f"{dictRun['fYieldMean']:.1f}"
-        dictOut[f"VAR{sTag}BELOW"] = f"{dictRun['fProbBelow12']:.2f}"
-        dictOut[f"PEAK{sTag}"] = f"{dictPeaks[sName]['iMode']:d}"
+    for sName, listTags in [("baseline", ["BASE"]), ("albedoRecompute", ["ALB"]),
+                            ("etaInterval86", ["ETA86", "FAITH"]),
+                            ("skyThroughputConstant", ["SKY"]),
+                            ("albedoRecomputeEta86", ["BOTH"]),
+                            ("etaInterval86ConstantSky", ["ALL3"]),
+                            ("brysonMixtureEta", ["BRY"])]:
+        for sTag in listTags:
+            dictOut.update(fdictVariantRow(sName, sTag, dictVar, dictPeaks))
     dictShape = dictInt["fShapeDistanceToFig10"]
     fShare = abs(dictShape["fEffectEtaInterval"]) / (abs(dictShape["fEffectEtaInterval"]) +
                                                      abs(dictShape["fEffectAlbedoMethod"]))
@@ -399,48 +409,56 @@ def fdictPairCaptions(dictX, dictResults):
     sChar = " / ".join(f"{dictAp['dictByDiameter'][s]['fMeanCharDaysFirstN']:.1f}"
                        for s in ("6", "7", "8", "9"))
     return {
-        4: ("Exoplanet sampling only: $A_G = 0.2$, exozodi fixed at 3 zodis, Poisson counting. "
-            f"Published mean 22.5, standard deviation 21\\% of the mean. Model mean "
-            f"{dictS['fig04']['fMean']:.1f}, which is \\emph{{tuned}}: $\\kappa$ is fitted to 22.5."),
-        7: ("Albedo drawn with exozodi fixed (green), and exozodi drawn as well (orange), $\\eta_\\oplus$ "
-            f"fixed. Published means 19.8 and 17.6. Model means {dictS['fig07']['fMeanAlbedo']:.1f} and "
-            f"{dictS['fig07']['fMeanAlbedoExozodi']:.1f} over {dictSurvey['iExozodiDraws']} draws."),
-        9: ("Left: exozodi levels drawn from the LBTI HOSTS maximum-likelihood distribution (red); the "
-            "model panel is the histogram of the levels the pipeline actually drew, scaled to "
-            f"Stark's $500\\times10^4$ draws (median {dictS['fig09']['fMedianZodi']:.2f} zodis; Stark's "
-            "other three distributions are not modelled). Right: the $\\eta_\\oplus$-fixed yield "
-            "those levels produce (red)."),
-        10: ("Realized yield including (purple) and excluding (red) $\\eta_\\oplus$ uncertainty; the "
-             "dotted line marks the purple mean. Total-variation distance, model to published: "
-             f"{fTvPur:.3f} (purple), {fTvRed:.3f} (red). Means: published "
+        4: ("Planet sampling as the only source of uncertainty: $A_G = 0.2$, exozodi fixed at 3 "
+            "zodis, and Poisson counting of planets. Published: mean 22.5, standard deviation 21\\% of "
+            f"the mean. Model: mean {dictS['fig04']['fMean']:.1f}, with nothing fitted to the "
+            "published yield."),
+        7: ("Yield with albedo drawn and exozodi fixed (green), and with exozodi drawn as well "
+            "(orange), both at fixed $\\eta_\\oplus$. Published means: 19.8 and 17.6. Model means: "
+            f"{dictS['fig07']['fMeanAlbedo']:.1f} and {dictS['fig07']['fMeanAlbedoExozodi']:.1f}, "
+            f"over {dictSurvey['iExozodiDraws']} draws."),
+        9: ("Left: exozodi levels drawn from the LBTI HOSTS maximum-likelihood distribution (red). "
+            "The model panel is a histogram of the levels the pipeline actually drew, scaled to "
+            f"Stark's $500\\times10^4$ draws; its median is {dictS['fig09']['fMedianZodi']:.2f} zodis. "
+            "Stark's other three distributions are not modeled. Right: the yield those levels "
+            "produce at fixed $\\eta_\\oplus$ (red)."),
+        10: ("Realized yield including (purple) and excluding (red) the uncertainty in "
+             "$\\eta_\\oplus$; the dotted line marks the mean of the purple curve. Total-variation "
+             f"distance between model and published curves: {fTvPur:.3f} (purple) and "
+             f"{fTvRed:.3f} (red). Means (purple / red): published "
              f"{dictF['fMeanLineIncluding']:.1f} / {dictF['excluding']['dictSummary']['fMeanTruncated']:.1f}, "
              f"model {dictS['fig10']['fMeanIncluding']:.1f} / {dictS['fig10']['fMeanExcluding']:.1f}."),
-        11: ("Targets selected in one representative exozodi draw, coloured by completeness, over the "
-             f"input list in grey. Published: {dictT['iPublishedTargets']} targets, summed completeness "
+        11: ("Targets selected in one representative exozodi draw, colored by completeness and "
+             "plotted over the full input list (gray). Published: "
+             f"{dictT['iPublishedTargets']} targets, summed completeness "
              f"{dictT['fPublishedSummedCompleteness']:.1f}, median {dictT['fMedianPublished']:.2f}. "
-             f"Model (draw {dictX['targets']['iRepresentativeDraw']}, the median-yield draw): "
-             f"{dictT['iModelStarsUsed']} targets, summed {dictT['fModelSummedCompleteness']:.1f}, "
-             f"median {dictT['fMedianModel']:.2f} over the {dictT['iMatched']} matched targets. Red "
-             "dashed lines: the noise floor for a 1.4\\,$R_\\oplus$ planet at the EEID, and the HZ outer "
-             "edge at 1.5\\,$\\lambda/D$ at 1\\,$\\mu$m; the spectral-type lines are not redrawn."),
-        12: ("Realized yield at 6, 7, 8 and 9\\,m inscribed diameter (solid, dotted, dashed, "
-             "dot-dashed), including (purple) and excluding (red) $\\sigma_{\\eta_\\oplus}$, with the "
-             "calibration frozen at 6\\,m. Published: excluding $\\sigma_{\\eta_\\oplus}$, 9\\,m gives "
-             f"2.2 times the 6\\,m yield; model {fYield9 / fYield6:.2f} times."),
-        14: ("Characterization times of individual EECs among the first 18 at 6--9\\,m (model: 20 exozodi "
-             "draws re-derived planet by planet, 1-day bins). Published means 22 and 3.5 days at 6 and "
-             f"9\\,m; model means at 6/7/8/9\\,m: {sChar} days. Stark does not state his normalization, "
-             "and with 1-day bins his 9\\,m plateau alone would exceed his stated mean, so compare shapes, "
-             "not heights: his distributions keep a plateau of 15--50-day spectra at every aperture, which "
-             "the model's lack."),
-        15: (f"$P_{{25}}$ against inscribed diameter. Published including $\\sigma_{{\\eta_\\oplus}}$ "
-             f"32/53/67/78\\%, model {sP25('fProbability25IncludingSigmaEta')}\\%; excluding, published "
-             f"6/49/89/99.5\\%, model {sP25('fProbability25ExcludingSigmaEta')}\\%."),
+             f"Model (draw {dictX['targets']['iRepresentativeDraw']}, the draw with the median yield): "
+             f"{dictT['iModelStarsUsed']} targets, summed completeness "
+             f"{dictT['fModelSummedCompleteness']:.1f}, and median {dictT['fMedianModel']:.2f} over "
+             f"the {dictT['iMatched']} targets that match. The red dashed lines are the noise floor "
+             "for a 1.4\\,$R_\\oplus$ planet at the EEID, and the outer edge of the habitable zone at "
+             "1.5\\,$\\lambda/D$ at 1\\,$\\mu$m. The spectral-type lines are not redrawn."),
+        12: ("Realized yield at inscribed diameters of 6, 7, 8 and 9\\,m (solid, dotted, dashed and "
+             "dot-dashed), including (purple) and excluding (red) the uncertainty in $\\eta_\\oplus$, "
+             "with no calibration at any aperture. Excluding that uncertainty, Stark's "
+             f"9\\,m yield is 2.2 times his 6\\,m yield; the model's is {fYield9 / fYield6:.2f} times."),
+        14: ("Characterization times of the individual EECs among the first 18, at 6--9\\,m. The "
+             "model uses 20 exozodi draws, recomputed planet by planet, in 1-day bins. Published "
+             "means: 22 days at 6\\,m and 3.5 days at 9\\,m. Model means at 6/7/8/9\\,m: "
+             f"{sChar} days. Stark does not state how his histograms are normalized, and with 1-day "
+             "bins his 9\\,m plateau alone would exceed his stated mean, so compare the shapes rather "
+             "than the heights. His distributions keep a plateau of 15--50-day spectra at every "
+             "aperture; the model's do not."),
+        15: (f"$P_{{25}}$, the probability of at least 25 candidates, against inscribed diameter "
+             "(6/7/8/9\\,m). Including the uncertainty in $\\eta_\\oplus$: published "
+             f"32/53/67/78\\%, model {sP25('fProbability25IncludingSigmaEta')}\\%. Excluding it: "
+             f"published 6/49/89/99.5\\%, model {sP25('fProbability25ExcludingSigmaEta')}\\%."),
         25: ("DMVC6 raw contrast (dotted) and core throughput (solid) against separation in "
              "circumscribed $\\lambda/D$. The model curves are the digitized published ones, so this "
-             "pair checks the digitization, not the model. The model's contrast is shown with the "
-             "$10^{-10}$ floor applied, as the exposure times use it; the published curve is the raw "
-             "simulation. The published figure also shows the PIAA-FPM2.5 (red), which is not used."),
+             "pair checks the digitization, not the model. The model's contrast is drawn with the "
+             "$10^{-10}$ floor applied, as the exposure-time calculation uses it; the published curve "
+             "is the raw simulation. The published figure also shows the PIAA-FPM2.5 coronagraph "
+             "(red), which is not used here."),
     }
 
 

@@ -5,69 +5,69 @@
   },
   "fEtaRatio": 0.20403361157986522,
   "fZoneWidthRatio": 0.3333333333333333,
-  "fYieldClassicHz": 17.770929130374167,
-  "fYieldEarthZone": 4.1617520880844125,
-  "fYieldRatio": 0.23418877299843166,
+  "fYieldClassicHz": 18.76092936313499,
+  "fYieldEarthZone": 4.261088425135585,
+  "fYieldRatio": 0.22712565793827755,
   "iStarsObservedClassicHz": 180,
   "iStarsObservedEarthZone": 157,
   "fMeanCompletenessObservedClassicHz": 0.42124487061653887,
   "fMeanCompletenessObservedEarthZone": 0.5302686628758178,
   "dictPerStarYieldRatio": {
-    "iStars": 158,
-    "fMedian": 0.23153480605262228,
-    "fP16": 0.17978740596434223,
-    "fP84": 0.32155747201978696
+    "iStars": 159,
+    "fMedian": 0.22815825519922278,
+    "fP16": 0.16871002792414463,
+    "fP84": 0.30495938108221493
   },
-  "fShareOfYieldTop20ClassicHz": 0.2583277170216594,
-  "fShareOfYieldTop20EarthZone": 0.24406786714500756,
+  "fShareOfYieldTop20ClassicHz": 0.2498102455368045,
+  "fShareOfYieldTop20EarthZone": 0.23985945256852254,
   "dictByLuminosity": {
     "L < 0.3": {
       "iStars": 47,
       "iObservedClassicHz": 36,
       "iObservedEarthZone": 33,
-      "fYieldClassicHz": 5.567419948945264,
-      "fYieldEarthZone": 1.1216338596417192,
-      "fYieldRatio": 0.20146385038804382
+      "fYieldClassicHz": 5.758805979150199,
+      "fYieldEarthZone": 1.129173096406518,
+      "fYieldRatio": 0.19607764187484314
     },
     "0.3-0.6": {
       "iStars": 75,
       "iObservedClassicHz": 31,
       "iObservedEarthZone": 25,
-      "fYieldClassicHz": 4.081602585041612,
-      "fYieldEarthZone": 0.8921711088937749,
-      "fYieldRatio": 0.21858353191058635
+      "fYieldClassicHz": 4.342068653416445,
+      "fYieldEarthZone": 0.9156492507322671,
+      "fYieldRatio": 0.21087857512612385
     },
     "0.6-1": {
       "iStars": 102,
       "iObservedClassicHz": 19,
       "iObservedEarthZone": 15,
-      "fYieldClassicHz": 1.8696941263851978,
-      "fYieldEarthZone": 0.4149346675536297,
-      "fYieldRatio": 0.22192649679862345
+      "fYieldClassicHz": 1.962876064873297,
+      "fYieldEarthZone": 0.4194283128587295,
+      "fYieldRatio": 0.21368048669226777
     },
     "1-2": {
       "iStars": 294,
       "iObservedClassicHz": 33,
       "iObservedEarthZone": 28,
-      "fYieldClassicHz": 2.8953628710830777,
-      "fYieldEarthZone": 0.7185533717225936,
-      "fYieldRatio": 0.2481738572042274
+      "fYieldClassicHz": 3.1525489092102434,
+      "fYieldEarthZone": 0.7475356444069752,
+      "fYieldRatio": 0.23712102997768972
     },
     "2-5": {
       "iStars": 665,
       "iObservedClassicHz": 44,
       "iObservedEarthZone": 40,
-      "fYieldClassicHz": 2.9179844980366587,
-      "fYieldEarthZone": 0.8698123354982719,
-      "fYieldRatio": 0.29808668828896034
+      "fYieldClassicHz": 3.0465053376139597,
+      "fYieldEarthZone": 0.8875482449229721,
+      "fYieldRatio": 0.2913332315439516
     },
     "L > 5": {
       "iStars": 317,
       "iObservedClassicHz": 17,
       "iObservedEarthZone": 16,
-      "fYieldClassicHz": 0.4388651008823591,
-      "fYieldEarthZone": 0.1446467447744235,
-      "fYieldRatio": 0.32959272560885877
+      "fYieldClassicHz": 0.49812441887084835,
+      "fYieldEarthZone": 0.16175387580812361,
+      "fYieldRatio": 0.3247258509727115
     }
   },
   "dictByDistance": {
@@ -75,41 +75,41 @@
       "iStars": 15,
       "iObservedClassicHz": 15,
       "iObservedEarthZone": 15,
-      "fYieldClassicHz": 2.9801081777907252,
-      "fYieldEarthZone": 0.6531657577021486,
-      "fYieldRatio": 0.2191751838305302
+      "fYieldClassicHz": 3.3173313534733344,
+      "fYieldEarthZone": 0.7063055475394499,
+      "fYieldRatio": 0.2129137768525683
     },
     "5-10 pc": {
       "iStars": 59,
       "iObservedClassicHz": 59,
       "iObservedEarthZone": 57,
-      "fYieldClassicHz": 9.40734911913602,
-      "fYieldEarthZone": 2.1127388586035165,
-      "fYieldRatio": 0.22458386861670468
+      "fYieldClassicHz": 9.687993821755448,
+      "fYieldEarthZone": 2.1248592234523587,
+      "fYieldRatio": 0.21932912660212017
     },
     "10-15 pc": {
       "iStars": 95,
       "iObservedClassicHz": 66,
       "iObservedEarthZone": 54,
-      "fYieldClassicHz": 4.397748903531275,
-      "fYieldEarthZone": 1.1776993156814797,
-      "fYieldRatio": 0.26779594322354755
+      "fYieldClassicHz": 4.687622584179894,
+      "fYieldEarthZone": 1.201133054943905,
+      "fYieldRatio": 0.25623501751134364
     },
     "15-20 pc": {
       "iStars": 133,
       "iObservedClassicHz": 40,
       "iObservedEarthZone": 31,
-      "fYieldClassicHz": 0.9689972302715595,
-      "fYieldEarthZone": 0.21769314045503868,
-      "fYieldRatio": 0.22465816583813208
+      "fYieldClassicHz": 1.0510585243087585,
+      "fYieldEarthZone": 0.22832579487847784,
+      "fYieldRatio": 0.21723414024793633
     },
     "> 20 pc": {
       "iStars": 1198,
       "iObservedClassicHz": 0,
       "iObservedEarthZone": 0,
-      "fYieldClassicHz": 0.016725699644589524,
-      "fYieldEarthZone": 0.0004550156422289885,
-      "fYieldRatio": 0.02720458048977211
+      "fYieldClassicHz": 0.016923079417556528,
+      "fYieldEarthZone": 0.0004648043213942666,
+      "fYieldRatio": 0.027465705852095935
     }
   },
   "dictAngular": {
@@ -117,11 +117,11 @@
     "iStarsConsidered": 221,
     "fEarthZoneMeanFractionOutsideIwa550": 0.9118841470184225,
     "fEarthZoneFractionFullyOutsideIwa550": 0.8778280542986425,
-    "fEarthZoneMeanFractionOutsideIwa1000": 0.4653994879649149,
+    "fEarthZoneMeanFractionOutsideIwa1000": 0.465399487964915,
     "fEarthZoneFractionFullyOutsideIwa1000": 0.35294117647058826,
     "fClassicHzMeanFractionOutsideIwa550": 0.9556471448399789,
     "fClassicHzFractionFullyOutsideIwa550": 0.8687782805429864,
-    "fClassicHzMeanFractionOutsideIwa1000": 0.6323678781084804,
+    "fClassicHzMeanFractionOutsideIwa1000": 0.6323678781084805,
     "fClassicHzFractionFullyOutsideIwa1000": 0.35294117647058826
   },
   "iStarsTabulated": 1500

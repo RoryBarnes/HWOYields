@@ -45,13 +45,12 @@ from it now carry architectural weight. We report an independent reimplementatio
 built from the published equations and parameter tables rather than from AYO itself, and use it
 to evaluate a counterfactual planet selection: planets of $0.5$--$2\,M_\oplus$ with
 $R = M^{0.27}$ in a habitable zone of $0.96$--$1.20$~AU scaled as $\sqrt{L_\star}$, against the
-canonical $R \le 1.4\,R_\oplus$ planets in $0.95$--$1.67$~AU. The reimplementation carries no
-fitted parameter: with the extended-source throughput treated as a function of separation, as
-Stark et al.\ (2019) define it, the uncalibrated $6\,$m yield is @@CALUNCAL@@ against a published
-22.5, and the throughput factor the pipeline formerly carried has been removed
-($\kappa = @@CALFACTOR@@$). Of @@NINDEP@@ independent comparisons against the published record,
-@@NAGREE@@ agree; the realized-yield distribution matches the published mean
-(@@VARBASEMEAN@@ against 21.0), median (18 against 18) and peak (@@PEAKBASE@@ against @@PEAKPUB@@).
+canonical $R \le 1.4\,R_\oplus$ planets in $0.95$--$1.67$~AU. The reimplementation follows
+every documented choice of the published method but one, and carries no parameter fitted to the
+published results: the $6\,$m yield is @@CALUNCAL@@ against a published 22.5. Of @@NINDEP@@
+independent comparisons against the published record, @@NAGREE@@ agree, and the realized-yield
+distribution lies within a total-variation distance of @@VARBASETV@@ of the published one (mean
+@@VARBASEMEAN@@ against 21.0, median @@MODELMEDIAN@@ against 18).
 
 Two disagreements survive every attempt we have made to remove them, and we argue that both are
 under-determination in the published description rather than defects we can locate. First,
@@ -67,10 +66,12 @@ that single choice. Following every documented choice simultaneously makes the a
 \emph{worse}, not better (peak @@PEAKFAITH@@ against @@PEAKPUB@@).
 
 Each discrepancy reduces to one question that only the AYO authors can answer, and we state both
-explicitly. Until they are answered the reproduction is an "almost", and we quantify what "almost"
-costs. The counterfactual result is meanwhile robust to both: the yield ratio is
-$@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}$, and across seven model variants spanning both
-readings it moves by less than 8\%.
+explicitly. Until they are answered the reproduction is an ``almost'', and we quantify what
+``almost'' costs. The counterfactual result is meanwhile robust to both: the yield ratio is
+$@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}$ (68\% interval), and across seven model variants
+spanning both readings it stays between @@VARALL3RATIO@@ and @@VARALBRATIO@@. Stark's own
+per-visit albedo test, which we adopt, gives an albedo penalty of @@ALBEDOPEN@@\% rather than the
+12\% he reports.
 \end{abstract}
 
 \tableofcontents
@@ -99,7 +100,8 @@ of AYO is sufficient to reconstruct AYO.
 Our finding is that it very nearly is. The model we built from the papers agrees with the
 published record on @@NAGREE@@ of @@NINDEP@@ independent comparisons, reproduces the shape of the
 published yield distribution, and lands within @@CALUNCALPCTABS@@\% of the headline $6\,$m yield
-with no parameter fitted to it. That level of agreement is not the interesting part of this paper.
+with no parameter fitted to it. Where the published text describes a method, we follow it, even
+where a substitute would agree better with a published number. That level of agreement is not the interesting part of this paper.
 The interesting part is the residue: two disagreements that we have been unable to remove, that
 are not independent of each other in their consequences, and that between them control the
 quantities a mission designer would care most about --- the target mix, the characterization time
@@ -112,12 +114,11 @@ that the choice materially changes the answer. Sections~\ref{sec:char} and~\ref{
 the evidence for that claim. Section~\ref{sec:discussion} states the two questions and argues
 that the reproduction hinges on them.
 
-We have deliberately resisted the temptation to close either gap by tuning. An earlier version of
-this pipeline carried a throughput calibration factor $\kappa$, fitted to the published $6\,$m
-yield. It has been removed, for reasons set out in Sec.~\ref{sec:kappa} that are themselves an
-argument about reproducibility: a free multiplier fitted to the quantity you are trying to
-reproduce does not merely inflate your agreement, it conceals every other error whose signature
-is a near-uniform change in exposure time.
+We have deliberately not closed either gap by tuning. In particular, the model carries no
+throughput calibration factor fitted to the published $6\,$m yield, for reasons set out in
+Sec.~\ref{sec:kappa} that are themselves an argument about reproducibility: a free multiplier
+fitted to the quantity one is trying to reproduce does not merely inflate the agreement, it
+conceals every other error whose signature is a near-uniform change in exposure time.
 
 %======================================================================
 \section{An independent implementation of AYO}
@@ -136,7 +137,9 @@ values read off a coronagraph figure proved wrong by up to a factor of three.
 The target sample is the real HPIC (Tuchow et al. 2024). The coronagraph is the DMVC6 design, with
 core throughput and raw contrast digitized from the published curves. Exozodi is drawn from the
 LBTI HOSTS maximum-likelihood distribution digitized from Stark et al. (2024) Fig.~9, with four
-stars pinned to their measured values. The occurrence prior follows SAG13, normalized to the
+stars pinned to their measured values. Planetary albedos are drawn from the published uniform
+distribution and counted with Stark et al.\ (2024) Sec.~3.2's per-visit flux test, including its
+upper bound set by the inner working angle. The occurrence prior follows SAG13, normalized to the
 $\eta_\oplus$ of Stark et al. (2024) Sec.~3.6 --- a choice that becomes the subject of
 Sec.~\ref{sec:eta}.
 
@@ -174,8 +177,6 @@ counterfactual of Sec.~\ref{sec:result} a re-optimization rather than a rescalin
   \node[det] (rho) at (2.2,-3.3) {$\rho_{\mathcal{B}}$};
   \node[det] (etaB) at (0.6,-4.8) {$\eta_{\mathcal{B}}$};
   \node[det] (lambda) at (0.6,-7.4) {$\lambda$};
-  \node[fitted] (kappa) at (15.6,-1.6) {$\kappa$};
-  \node[obs] (ypub) at (17.6,-1.6) {$Y^{\rm pub}$};
   % ---- star plate ----
   \node[obs] (s) at (4.6,-3.5) {$\mathbf{s}_i$};
   \node[latent] (z) at (8.4,-3.5) {$z_i$};
@@ -218,7 +219,6 @@ counterfactual of Sec.~\ref{sec:result} a re-optimization rather than a rescalin
   \draw[edge] (hBox) to[out=-60,in=110] (C);
   \draw[edge] (shape) to[out=-40,in=150] (C);
   \draw[edge] (hM) to[out=-120,in=40] (C);
-  \draw[edge] (kappa) to[out=-160,in=20] (C);
   \draw[edge] (s) to[out=-120,in=150] (o);
   \draw[edge] (shape) to[out=-100,in=160] (o);
   \draw[edge] (N) -- (o);
@@ -227,11 +227,10 @@ counterfactual of Sec.~\ref{sec:result} a re-optimization rather than a rescalin
   \draw[edge] (hA) -- (A);
   \draw[edge] (z) to[out=-60,in=110] (tau);
   \draw[edge] (hM) to[out=-80,in=80] (tau);
-  \draw[edge] (kappa) to[out=-110,in=60] (tau);
   \draw[edge] (tau) -- (D);
   \draw[edge] (a) to[out=-60,in=170] (D);
   \draw[edge] (D) -- (Y);
-  \draw[fitedge] (ypub) -- node[above,font=\scriptsize]{fit} (kappa);\end{tikzpicture}}
+\end{tikzpicture}}
 
 \vspace{0.6em}
 \begin{tikzpicture}[x=1cm,y=1cm]
@@ -239,8 +238,7 @@ counterfactual of Sec.~\ref{sec:result} a re-optimization rather than a rescalin
   \node[obs,minimum size=7mm] at (2.6,0) {}; \node[font=\scriptsize,anchor=west] at (3.1,0) {observed};
   \node[det,minimum size=7mm] at (5.4,0) {}; \node[font=\scriptsize,anchor=west] at (5.9,0) {deterministic};
   \node[dec,minimum size=6mm] at (8.4,0) {}; \node[font=\scriptsize,anchor=west] at (8.8,0) {decision};
-  \node[fitted,minimum size=8mm] at (10.9,0) {}; \node[font=\scriptsize,anchor=west] at (11.4,0) {fitted point estimate};
-  \node[fixed] at (14.6,0) {}; \node[font=\scriptsize,anchor=west] at (14.8,0) {fixed};
+  \node[fixed] at (11.0,0) {}; \node[font=\scriptsize,anchor=west] at (11.2,0) {fixed};
 \end{tikzpicture}
 \caption{The yield model as an influence diagram. Outer plate: the $N_\star$ screened HPIC stars;
 inner plate: the $N_i$ planets actually present around star $i$. The survey allocation
@@ -248,9 +246,8 @@ $\mathbf{a}_i = (\tau_i, k_i)$ --- exposure per visit and number of visits --- i
 node; it is set by the equal-slope multiplier $\lambda$ from the planner's completeness curves
 $C_i$ and the box occurrence rate $\eta_{\mathcal{B}}$. A planet is counted ($D_{ij} = 1$) when
 its detection time at some visit is within the allocation and its spectral characterization time
-is within the two-month cap; $Y = \sum_{ij} D_{ij}$. The throughput factor $\kappa$ is not a random
-variable: it is fitted once, at fixed exozodi, to the published expected yield $Y^{\rm pub} = 22.5$
-(dashed), and comes out at @@CALFACTOR@@, so the edge carries almost no information. Four stars with LBTI-measured exozodi have $z_i$ observed rather than drawn (not shown).
+is within the two-month cap; $Y = \sum_{ij} D_{ij}$. Four stars with LBTI-measured exozodi have
+$z_i$ observed rather than drawn (not shown).
 The edges that decide the uncertainty budget are the ones \emph{into} $\mathbf{a}_i$: $\eta_\oplus$
 and $z_i$ reach it (actionable), $A_{ij}$ and $N_i$ do not (static).}
 \label{fig:pgm}
@@ -276,11 +273,10 @@ $\lambda$ & deterministic & equal-slope multiplier closing the two-year budget &
 $\mathbf{a}_i$ & decision & $(\tau_i, k_i)$: the vertex of star $i$'s concave cost envelope at slope $\lambda$ & A05, A07 \\
 $N_i$ & random, per star & $N_i \sim \mathrm{Poisson}(\eta_\mathcal{B})$ & Stark+2024 Sec.~3.1; A07 \\
 $\mathbf{o}_{ij}$ & random, per planet & circular orbit: $a$, $R$ from SAG13 over $\mathcal{B}$; $\cos i \sim \mathcal{U}$; independent epoch per visit & ExoVista/AYO; A04 \\
-$A_{ij}$ & random, per planet & geometric albedo, $\mathcal{U}(0.08, 0.32)$ & Stark+2024 Sec.~3.2; A04 \\
+$A_{ij}$ & random, per planet & geometric albedo, $\mathcal{U}(0.08, 0.32)$, counted by Stark's per-visit flux test & Stark+2024 Sec.~3.2; A02, A04 \\
 $\boldsymbol{\tau}_{ij}$ & deterministic & detection time per visit (two channels in quadrature, S/N 7) and characterization time (R 140, best of nine bandpasses, best orbital phase) & Stark+2019 Eqs.~1--9; A04 \\
 $D_{ij}$ & deterministic & $\mathbb{1}[\min_{v \le k_i}\tau^{\rm det}_{ijv} \le \tau_i \ \wedge\ \tau^{\rm char}_{ij} \le 2\,\mathrm{mo}]$ & Stark+2019 Sec.~3; A04 \\
 $Y$ & deterministic & $\sum_{i,j} D_{ij}$ & A07 \\
-$\kappa$ & fitted & throughput factor on every band, fitted to $Y^{\rm pub}$: @@CALFACTOR@@ & A03 \\
 \bottomrule
 \end{tabular}
 \caption{Every node of Fig.~\ref{fig:pgm}, what it is, and where it comes from.}
@@ -290,28 +286,25 @@ $\kappa$ & fitted & throughput factor on every band, fitted to $Y^{\rm pub}$: @@
 \subsection{What we do not calibrate}
 \label{sec:kappa}
 
-Earlier versions of this pipeline carried a scalar throughput factor $\kappa$ applied to every
-band, fitted so that the canonical box reproduced the published 22.5 candidates. It reached 1.62
-at one stage. It has been removed, and the pipeline now adopts $\kappa = @@CALFACTOR@@$, with the
-fitted value retained only as a diagnostic.
+A common way to absorb the unpublished parts of a model is a scalar throughput factor $\kappa$
+on every band, fitted so that the canonical box reproduces the published 22.5 candidates. We do
+not use one, for two reasons. First, no Stark paper contains such a factor: 22.5 is an output of
+AYO, not an input to it, so a reproduction that fits to it is not reproducing the same quantity.
+Second, a fitted factor hides errors. We measured the effect of every alternative treatment we
+tested on the per-planet exposure times, and found that with $\kappa$ refitted each of them
+changes those times by a nearly uniform factor of $1.0 \pm 0.05$. Because the yield responds to
+throughput with an elasticity of only $\sim0.4$, a fitted factor can absorb any such change
+completely, and a whole class of modeling errors becomes invisible. Without it, the two residues of
+Secs.~\ref{sec:char} and~\ref{sec:eta} are visible as residues rather than silently rescaled
+away. For reference, the factor that would reproduce 22.5 is @@CALFITTED@@.
 
-Two things forced that decision. The first is that no Stark paper contains such a factor: 22.5 is
-an output of AYO, not an input to it, so a reproduction that fits to it is not reproducing the
-same quantity. The second is more serious. We measured the effect of every lever we had tested on
-the per-planet exposure times, and found that at refitted $\kappa$ each of them changes those
-times by a nearly uniform factor of $1.0 \pm 0.05$. A calibration with elasticity $\sim0.4$ in
-throughput can absorb any such lever completely. The factor was therefore not a harmless
-convenience; it was a mechanism that made a whole class of modelling errors invisible, and its
-removal is what allowed the two residues of Secs.~\ref{sec:char} and~\ref{sec:eta} to become
-visible as residues rather than being silently rescaled away.
-
-Most of what $\kappa$ had been absorbing turned out to be one missing term. Stark et al. (2019)
-Eqs.~5--6 multiply the zodiacal and exozodiacal backgrounds by an extended-source throughput
-$T_{\rm sky}(x,y)$, the PSF convolved with a uniform background, which the point-source terms do
-not carry. Our model had used its large-separation value everywhere. Reconstructing it as a
-function of separation raises the uncalibrated yield to @@CALUNCAL@@ against the published 22.5.
-We flag that this reconstruction is ours: the term is sourced, its radial shape is not published,
-and our shape is known to differ from AYO's in the inner working angles.
+One sourced term matters a great deal here. Stark et al. (2019) Eqs.~5--6 multiply the zodiacal
+and exozodiacal backgrounds by an extended-source throughput $T_{\rm sky}(x,y)$, the PSF convolved
+with a uniform background, which the point-source terms do not carry. We reconstruct it as a
+function of separation; replacing it with its large-separation value lowers the mean realized
+yield from @@VARBASEMEAN@@ to @@VARSKYMEAN@@ (Table~\ref{tab:variants}). The term is sourced, but
+its radial shape is not published, so the reconstruction is ours, and our shape is known to differ
+from AYO's in the inner working angles.
 
 %======================================================================
 \section{Agreement with the published record}
@@ -331,17 +324,27 @@ and because they frame the disagreements that follow.
 published 22.5, a difference of @@CALUNCALPCTABS@@\% with nothing fitted.
 
 \textbf{The realized-yield distribution.} Marginalizing over the occurrence posterior and
-Poisson counting reproduces the published Fig.~10 closely: mean @@VARBASEMEAN@@ against 21.0,
-median 18 against 18, $P(Y<12) = @@VARBASEBELOW@@$ against 0.29, and peak @@PEAKBASE@@ against
-@@PEAKPUB@@. We stress that the peak is a fragile statistic and should be computed as the exact
-Poisson mixture over the sampled expected yields rather than as the mode of a histogram of
-realized draws; the latter estimator, bootstrapped, cannot distinguish 10 from 16.
+Poisson counting reproduces the shape of the published Fig.~10 to a total-variation distance of
+@@VARBASETV@@: mean @@VARBASEMEAN@@ against 21.0, median @@MODELMEDIAN@@ against 18,
+$P(Y<12) = @@VARBASEBELOW@@$ against 0.29, and peak @@PEAKBASE@@ against @@PEAKPUB@@. We stress
+that the peak is a fragile statistic and should be computed as the exact Poisson mixture over the
+sampled expected yields rather than as the mode of a histogram of realized draws; the latter
+estimator, bootstrapped, cannot distinguish 10 from 16, and a 5--10\% change in the overall yield
+level moves the exact peak by one bin.
 
 \textbf{An independent implementation.} EXOSIMS (Savransky \& Garrett 2016), which shares no code and no
 scheduling method with either AYO or this work, agrees with our radiometry on identical stars and
 optics: local zodi 1.001, exozodi 0.975, stellar photon rate 0.979. EXOSIMS also \emph{found} two
 of our errors, by carrying terms we lacked, each then confirmed against Stark's own papers rather
 than against EXOSIMS.
+
+\textbf{The albedo penalty.} Following Stark et al.\ (2024) Sec.~3.2, the observation plan is
+fixed at $A_G = 0.2$, and a planet with a drawn albedo counts only if its flux falls inside the
+range the visit actually reached: above the faintest flux the exposure detected, and below the
+brightest the inner working angle allowed. With that test the albedo penalty is @@ALBEDOPEN@@\%,
+against the 12\% Stark reports; re-deriving each drawn-albedo planet's exposure time instead
+gives @@VARALBALBPEN@@\%. Neither reproduces the published value, and we report the shortfall
+of Stark's own method rather than substitute one that comes closer.
 
 Against that background, the two sections that follow concern what did not come out right.
 
@@ -448,10 +451,10 @@ The underlying distribution is built by uniformly mixing the two completeness-ex
 of Bryson et al. (2021), and is described as having a tail of large $\eta_\oplus$ values.
 
 Propagating this requires two interpretive decisions that the sentence does not settle for a
-reader building a parametric law. Is $0.26$ the mean, as stated, or the centre of the quoted
+reader building a parametric law. Is $0.26$ the mean, as stated, or the center of the quoted
 interval? And is $[0.12, 0.55]$ an 86\% interval, as stated, or the 68\% that is the near-universal
 convention and a digit transposition away? Our pipeline reads the interval at 68\%, giving a
-lognormal $\ln$-width of @@ETASIGMA@@, and anchors $0.26$ at the geometric centre --- that is, as
+lognormal $\ln$-width of @@ETASIGMA@@, and anchors $0.26$ at the geometric center --- that is, as
 a median. Both of those depart from the text.
 
 We flag this prominently because it is the kind of choice that reproductions usually bury. It was
@@ -460,19 +463,19 @@ the target is exactly the kind of choice that has to be justified on other groun
 
 \subsection{A factorial decomposition}
 
-Our pipeline differs from a fully text-faithful reading in two settings: the albedo method (we
-recompute detection at the drawn albedo; Stark et al. 2024 Sec.~3.2 describes a per-visit flux
-test) and the interval reading above. Those two settings form a complete $2\times2$, which we
-evaluated end to end (Table~\ref{tab:variants}).
+Our pipeline follows Stark's documented albedo method, and departs from a fully text-faithful
+reading in one setting: the interval reading above. To test whether that departure stands alone,
+we pair it with the albedo method, which is the other setting a reproduction could plausibly
+choose differently: re-deriving each drawn-albedo planet's exposure time instead of Stark's
+per-visit flux test. The two settings form a complete $2\times2$, which we evaluated end to end
+(Table~\ref{tab:variants}).
 
 The decomposition is unambiguous. On the total-variation distance to the published Fig.~10, the
 interval reading is worth @@INTETA@@, the albedo method @@INTALB@@, and the interaction
 @@INTCROSS@@. \textbf{The interval reading accounts for @@INTETASHARE@@\% of the disagreement and
-the albedo method @@INTALBSHARE@@\%} --- and the albedo effect runs in the direction that
-\emph{favours} Stark's own described method. Our departure from the published text on the albedo
-method is therefore not doing useful work, and should be abandoned; we retain it here only so
-that the factorial is complete, and note the cost, which is that our albedo penalty then falls to
-3.5\% against a published 12\%.
+the albedo method @@INTALBSHARE@@\%.} The albedo method affects the agreement with Fig.~10 hardly
+at all; it matters only for the albedo penalty (@@ALBEDOPEN@@\% with Stark's test,
+@@VARALBALBPEN@@\% with re-derived exposures, against a published 12\%).
 
 \begin{table}[htbp]
 \centering
@@ -483,30 +486,31 @@ that the factorial is complete, and note the cost, which is that our albedo pena
 \textbf{Yield ratio} \\
 \midrule
 Adopted                              & @@PEAKBASE@@  & @@VARBASEMEAN@@  & @@VARBASEBELOW@@  & @@VARBASETV@@  & @@VARBASERATIO@@ \\
-Albedo: Stark per-visit test         & @@PEAKALB@@   & @@VARALBMEAN@@   & @@VARALBBELOW@@   & @@VARALBTV@@   & @@VARALBRATIO@@ \\
-$\eta_\oplus$ interval as 86\%       & @@PEAKETA86@@ & @@VARETA86MEAN@@ & @@VARETA86BELOW@@ & @@VARETA86TV@@ & @@VARETA86RATIO@@ \\
+$\eta_\oplus$ as 86\% (every documented choice) & @@PEAKETA86@@ & @@VARETA86MEAN@@ & @@VARETA86BELOW@@ & @@VARETA86TV@@ & @@VARETA86RATIO@@ \\
+Albedo: exposure re-derived          & @@PEAKALB@@   & @@VARALBMEAN@@   & @@VARALBBELOW@@   & @@VARALBTV@@   & @@VARALBRATIO@@ \\
+Albedo re-derived and 86\%           & @@PEAKBOTH@@  & @@VARBOTHMEAN@@  & @@VARBOTHBELOW@@  & @@VARBOTHTV@@  & @@VARBOTHRATIO@@ \\
 Constant $T_{\rm sky}$               & @@PEAKSKY@@   & @@VARSKYMEAN@@   & @@VARSKYBELOW@@   & @@VARSKYTV@@   & @@VARSKYRATIO@@ \\
-Every documented choice at once      & @@PEAKFAITH@@ & @@VARFAITHMEAN@@ & @@VARFAITHBELOW@@ & @@VARFAITHTV@@ & @@VARFAITHRATIO@@ \\
-All three, incl.\ constant $T_{\rm sky}$ & @@PEAKALL3@@ & @@VARALL3MEAN@@ & @@VARALL3BELOW@@ & @@VARALL3TV@@ & @@VARALL3RATIO@@ \\
+86\% and constant $T_{\rm sky}$      & @@PEAKALL3@@  & @@VARALL3MEAN@@  & @@VARALL3BELOW@@  & @@VARALL3TV@@  & @@VARALL3RATIO@@ \\
 Stark's own $\eta_\oplus$ law        & @@PEAKBRY@@   & @@VARBRYMEAN@@   & @@VARBRYBELOW@@   & @@VARBRYTV@@   & @@VARBRYRATIO@@ \\
 \midrule
 Stark et al. (2024)                    & @@PEAKPUB@@   & 21.0             & 0.29              & ---            & --- \\
 \bottomrule
 \end{tabular}
 \caption{Seven models, each differing from the adopted one in named settings, evaluated end to
-end with every other setting, input file and random seed held fixed and $\kappa$ pinned at
-@@CALFACTOR@@. ``Peak'' is the mode of the exact Poisson mixture. The last column is the
-deliverable of Sec.~\ref{sec:result}; it moves by less than 8\% across the whole table.}
+end with every other setting, input file and random seed held fixed and nothing fitted.
+``Peak'' is the mode of the exact Poisson mixture. The last column is the deliverable of
+Sec.~\ref{sec:result}; it stays between @@VARALL3RATIO@@ and @@VARALBRATIO@@ across the whole
+table.}
 \label{tab:variants}
 \end{table}
 
 \subsection{Following every documented choice makes the agreement worse}
 
 The natural response to a reproduction that departs from its source in two places is to demand
-that it stop departing. We did that, and it fails (Fig.~\ref{fig:peaks}). Adopting the per-visit
-albedo test \emph{and} the 86\% interval together moves the peak from @@PEAKBASE@@ to
-@@PEAKFAITH@@ against a published @@PEAKPUB@@, and the total-variation distance from
-@@VARBASETV@@ to @@VARFAITHTV@@.
+that it stop departing. We did that, and it fails (Fig.~\ref{fig:peaks}). With the albedo test
+already Stark's, adopting the stated 86\% interval as well gives a model that follows every
+documented choice. It moves the peak from @@PEAKBASE@@ to @@PEAKFAITH@@ against a published
+@@PEAKPUB@@, and the total-variation distance from @@VARBASETV@@ to @@VARFAITHTV@@.
 
 This is the central empirical fact of this section, and we do not think it is a comfortable one
 for either side. Read one way it says our model is wrong in a manner that only the 68\% reading
@@ -521,8 +525,7 @@ excluded by anything we have.
 \caption{Realized EEC yield distributions for every model of Table~\ref{tab:variants}, against
 the digitized Stark et al. (2024) Fig.~10 (heavy black). Each curve is the exact Poisson mixture
 over that model's sampled expected yields. The one-at-a-time probes are drawn back; the combined
-models carry peak markers. The adopted model tracks the published curve across the whole range;
-every model that adopts the 86\% interval is displaced to the right and is too sharply peaked.}
+models carry peak markers.}
 \label{fig:peaks}
 \end{figure}
 
@@ -571,7 +574,7 @@ in a habitable zone of $0.96$--$1.20$~AU scaled as $\sqrt{L_\star}$.
 The occurrence rate over the redefined box is @@ETARMED@@ against @@ETACMED@@ over the canonical
 one, a ratio of @@OCCRATIO@@. The median realized canonical yield is @@CANONMED@@ (90\% interval
 @@CANONP5@@--@@CANONP95@@) and the median redefined yield is @@REDEFMED@@
-(@@REDEFP5@@--@@REDEFP95@@). The yield ratio is
+(@@REDEFP5@@--@@REDEFP95@@). The yield ratio, with its 68\% interval, is
 \[
   \frac{Y_{\rm redefined}}{Y_{\rm canonical}} = @@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}.
 \]
@@ -583,7 +586,9 @@ The probability of reaching 25 candidates falls from @@CANONP25@@\% to @@REDEFP2
 \caption{EEC yield distributions for the canonical habitable-zone selection and for the narrowed,
 mass-selected Earth zone, marginalized over the occurrence posterior and the exozodi draws and
 including exoplanet sampling uncertainty. Each curve is the exact Poisson mixture over the
-sampled expected yields. Axes follow Stark et al.\ (2024) Fig.~10.}
+sampled expected yields, so the plotted quantity carries the exoplanet sampling uncertainty that
+Stark et al.\ (2024) call inherent to a blind survey. The yield range follows their Fig.~10; the
+abscissa is labeled in plain English rather than with their ``EEC yield''.}
 \label{fig:zones}
 \end{figure}
 
@@ -596,8 +601,8 @@ expensive planets, so the candidates that survive are cheaper per detection.
 it while Secs.~\ref{sec:char} and~\ref{sec:eta} remain open. Across the seven models of
 Table~\ref{tab:variants} --- which span both readings of the occurrence interval, both albedo
 methods, the presence and absence of the $T_{\rm sky}$ term, and a completely different functional
-family for the occurrence law --- the yield ratio spans @@VARALL3RATIO@@ to @@VARBASERATIO@@, a
-range of under 8\%, comfortably inside the 90\% credible interval of any one of them. The ratio
+family for the occurrence law --- the yield ratio spans @@VARALL3RATIO@@ to @@VARALBRATIO@@, inside
+the 68\% interval of the adopted value. The ratio
 is a comparison between two selections evaluated in the same model, and the systematics that
 trouble the absolute yield largely divide out of it.
 
@@ -618,7 +623,7 @@ AYO's own exposure-time calculator (Stark et al. 2025) gives Earth-twin spectra 
 of 37--104~d. The characterization limit is two months. We reproduce the ETC to 0.94--1.02 on
 AYO's own inputs, and we have shown (Sec.~\ref{sec:char}) that no combination of the throughput
 parameters that could absorb the difference does absorb it. Either those stars are characterized
-under conditions more favourable than an Earth twin at maximum elongation, or the completeness
+under conditions more favorable than an Earth twin at maximum elongation, or the completeness
 plotted in Fig.~11 is not gated on characterization, or characterization is charged to the budget
 differently from the way we charge it. Any of the three would be a one-sentence answer, and each
 implies a different correction.
@@ -648,8 +653,8 @@ that matches the mean yield but not the width does not reproduce the statement t
 designed against.
 
 \emph{Second, the agreement we do have is partly contingent on the choices in question.} Our
-headline agreement with Fig.~10 --- mean, median and peak --- holds under the 68\% reading and
-fails under the 86\% one. We cannot simultaneously claim that our model is validated by that
+agreement with the shape of Fig.~10 holds under the 68\% reading and fails under the 86\%
+one. We cannot simultaneously claim that our model is validated by that
 agreement and that the reading which produces it is an open question. Honesty requires reporting
 the agreement as conditional, and Question~2 is the condition.
 
@@ -681,9 +686,11 @@ available to us.
   with no parameter fitted to the published yield, reproduces the Stark et al. (2024) baseline
   $6\,$m exoEarth candidate yield to @@CALUNCALPCTABS@@\% and agrees with @@NAGREE@@ of
   @@NINDEP@@ independent published comparisons.
-\item The realized-yield distribution reproduces the published mean, median and peak. The peak
-  should be computed as an exact Poisson mixture; the mode of a histogram of realized draws is too
-  noisy to support the comparison.
+\item The realized-yield distribution reproduces the shape of the published one (total-variation
+  distance @@VARBASETV@@). The peak should be computed as an exact Poisson mixture; the mode of a
+  histogram of realized draws is too noisy to support the comparison.
+\item Stark's own per-visit albedo test, adopted here, gives an albedo penalty of @@ALBEDOPEN@@\%
+  against the 12\% he reports.
 \item Spectral characterization times remain too steep in target difficulty and aperture. A
   @@DEGPOINTS@@-point factorial design establishes that no member of the throughput-parameter
   family reaches the published characterization times at the published yield.
@@ -694,8 +701,9 @@ available to us.
 \item Both residues reduce to questions of fact that the AYO authors can answer in a sentence, and
   we state them explicitly in Sec.~\ref{sec:discussion}.
 \item For the counterfactual that motivated the work --- a mass-selected sample in a narrowed
-  habitable zone --- the yield ratio is $@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}$, and it is
-  robust at the 8\% level across every model variant spanning both open questions.
+  habitable zone --- the yield ratio is $@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}$ (68\%
+  interval), and it stays between @@VARALL3RATIO@@ and @@VARALBRATIO@@ across every model variant
+  spanning both open questions.
 \end{enumerate}
 
 %======================================================================
@@ -747,7 +755,7 @@ conditional agreement rather than agreement.
 \toprule
 \textbf{Hypothesis} & \textbf{Outcome} & \textbf{Evidence} \\
 \midrule
-Missing revisits & \textbf{Real, a cause} & Single-visit only; modelling up to six visits raised the uncalibrated yield 1.7$\times$. \\
+Missing revisits & \textbf{Real, a cause} & Single-visit only; modeling up to six visits raised the uncalibrated yield 1.7$\times$. \\
 Characterization-time statistic & \textbf{Real, a cause} & A median over all detectable planets, where the budget needs a mean over those counted; $D^{1.11} \to D^{1.88}$. \\
 Over-cap characterization charged & \textbf{Real, a cause} & 15\,000 days charged at 20\,pc for an observation never attempted. \\
 Reconstructed target catalog & \textbf{Real, a cause} & HPIC was reachable; the Gaia stand-in lacked 26--34\% of distant FGK dwarfs and ran hot. \\
@@ -755,7 +763,8 @@ Coronagraph aperture convention & \textbf{Real, the cause} & Curves are in circu
 Collecting area as inscribed circle & \textbf{Real, partial} & Charged the Lyot discard twice. \\
 Characterization at detection phase & \textbf{Real, a cause} & Stark (2019) Sec.~5: the orbit is known, so ``the phase of the planet could be optimized. \\
 Characterization budget under albedo draw & \textbf{Real, a cause} & Stark (2024) Sec.~3.2 fixes it at $A_G = 0.2$; albedo penalty 0.050 $\to$ 0.087. \\
-Constant $T_{\rm sky}$ & \textbf{Real, the cause of $\kappa$} & Stark (2019) Eqs.~5--6 make it a map; with it the uncalibrated yield is @@CALUNCAL@@ and $\kappa$ falls 1.62 $\to$ @@CALFACTOR@@. Characterization times barely move. \\
+Constant $T_{\rm sky}$ & \textbf{Real, the cause of $\kappa$} & Stark (2019) Eqs.~5--6 make it a map; with it the uncalibrated yield is @@CALUNCAL@@ and $\kappa$ falls 1.62 $\to$ @@WIKAPPASKY@@. Characterization times barely move. \\
+Fitted throughput factor $\kappa$ & \textbf{Real, removed} & 22.5 is an output of AYO; once refitted, $\kappa$ turned every tested lever into a near-uniform $1.0 \pm 0.05$ change in exposure times. \\
 One exozodi draw & \textbf{Real, fixed} & Now @@NDRAWS@@ draws with the survey re-optimized per draw; exozodi penalty @@DRAWEXOPEN@@\% (Stark 11.1\%). \\
 Split $\kappa$ (detection vs spectra) & Rejected & A scalar on spectra cannot change the 6/9\,m characterization-time ratio. \\
 Exozodi drawn during calibration & \textbf{Real, a cause} & $\kappa$ fitted to a drawn-exozodi yield cancels the exozodi penalty. \\
@@ -763,7 +772,7 @@ Lognormal exozodi stand-in & \textbf{Real, a cause} & 0.2\% of stars above 100 z
 Pinned LBTI stars omitted & \textbf{Real, partial} & Worth at most 0.47 EEC here. \\
 $\eta_\oplus$ interval read as 86\% & \textbf{Real, the cause of the shape} & Fig.~10 requires $\ln$-width $\sim$0.8; distance @@QEIGHTSIXTV@@ $\to$ @@QSIXEIGHTTV@@. \\
 Published mode ill-determined & \textbf{Rejected} & Stark's 498 runs carry 1000 planet draws each; an earlier bootstrap resampled only 498 yields. \\
-Fig.~4 mean compared with the wrong yield & \textbf{Real, not the cause} & Fig.~4 is sampling only at $A_G = 0.2$; the check is now marked tuned. \\
+Fig.~4 mean compared with the wrong yield & \textbf{Real, not the cause} & Fig.~4 is sampling only at $A_G = 0.2$; the check is independent now that nothing is fitted. \\
 $T_{\rm sky}$ missing; exozodi law & \textbf{Real, not the cause} & Backgrounds 1.48$\times$ too bright; constant-surface-brightness law. Together 1\%. \\
 Contrast floor inside the knee & \textbf{Real, not the cause} & Floor applied universally. \\
 Noise-floor screen & \textbf{Real, not the cause} & Admitted nothing above 4.6\,$L_\odot$. \\
@@ -771,8 +780,8 @@ Screening cap, uniform bias, bandpass choice & Rejected & 1.3\%, destroys 7--9\,
 Two detections for orbits & Rejected & Shifts the curve, does not narrow it. \\
 Equal-slope allocation & Rejected & 0.00\% from an exact optimum. \\
 Blackbody stellar flux & Rejected & @@PHOTMED@@\,mag against measured $V$. \\
-Stark's per-visit albedo test & Rejected & Gives a weaker penalty (3.3\%). \\
-Noise floor, CIC definition, IFS pixels, ordering, dust colour & Rejected & Sec.~\ref{sec:open}. \\
+Re-derived exposures at the drawn albedo & Replaced & Stark's per-visit test, both bounds, is adopted; it contributes @@INTALBSHARE@@\% of the Fig.~10 disagreement and gives a penalty of @@ALBEDOPEN@@\% (published 12\%). \\
+Noise floor, CIC definition, IFS pixels, ordering, dust color & Rejected & Sec.~\ref{sec:char}. \\
 \bottomrule
 \end{tabular}
 \caption{The ledger. The traps that recur --- compensating errors, comparing against the wrong

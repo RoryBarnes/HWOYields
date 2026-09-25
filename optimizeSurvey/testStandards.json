@@ -55,7 +55,7 @@
           "saPath": [
             "fYieldFixedExozodi"
           ],
-          "oValue": 19.10024
+          "oValue": 20.14688
         },
         {
           "saPath": [
@@ -67,7 +67,7 @@
           "saPath": [
             "fYieldBaseline"
           ],
-          "oValue": 16.806844687474086
+          "oValue": 17.731662357824792
         },
         {
           "saPath": [
@@ -106,14 +106,14 @@
             "dictDraws",
             "fYieldDrawnMean"
           ],
-          "oValue": 16.806844687474086
+          "oValue": 17.731662357824792
         },
         {
           "saPath": [
             "dictDraws",
             "fYieldDrawnStd"
           ],
-          "oValue": 0.5484249093225566
+          "oValue": 0.570371337472374
         },
         {
           "saPath": [
@@ -134,17 +134,17 @@
             "dictDraws",
             "fAlbedoPenalty"
           ],
-          "oValue": 0.08635317019156152
+          "oValue": 0.036078609536135064
         },
         {
           "saPath": [
             "dictDraws",
             "iRepresentativeDraw"
           ],
-          "oValue": 165.0
+          "oValue": 14.0
         }
       ],
-      "iBytes": 12179
+      "iBytes": 12180
     }
   }
 }

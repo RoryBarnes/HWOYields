@@ -1,5 +1,6 @@
 {
   "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior (lognormal matched to its quoted interval read at z = 1); other boxes follow by the Gamma-independent ratio from the shape chain.",
+  "sEtaLaw": "lognormal",
   "fEtaIntervalZ": 1.0,
   "fEtaLogNormalMu": -1.3590502684778558,
   "fEtaLogNormalSigma": 0.7612132677222353,

@@ -15,70 +15,70 @@
             "dictBaseline",
             "iYieldMode"
           ],
-          "oValue": 11.0
+          "oValue": 12.0
         },
         {
           "saPath": [
             "dictBaseline",
             "iYieldMedian"
           ],
-          "oValue": 18.0
+          "oValue": 19.0
         },
         {
           "saPath": [
             "dictBaseline",
             "fYieldMean"
           ],
-          "oValue": 21.040069444444445
+          "oValue": 22.445208333333333
         },
         {
           "saPath": [
             "dictBaseline",
             "fProbBelow12"
           ],
-          "oValue": 0.2825
+          "oValue": 0.25972222222222224
         },
         {
           "saPath": [
             "dictBaseline",
             "fProbAtLeast25"
           ],
-          "oValue": 0.3215277777777778
+          "oValue": 0.35138888888888886
         },
         {
           "saPath": [
             "dictBaseline",
             "fTailAboveFigureAxis"
           ],
-          "oValue": 0.05305555555555554
+          "oValue": 0.06965277777777777
         },
         {
           "saPath": [
             "dictBaseline",
             "fShapeDistanceToFig10"
           ],
-          "oValue": 0.03833754525889671
+          "oValue": 0.03713088445206878
         },
         {
           "saPath": [
             "dictBaseline",
             "fYieldRatio"
           ],
-          "oValue": 0.23863778227841975
+          "oValue": 0.23151484477610138
         },
         {
           "saPath": [
             "dictBaseline",
             "fYieldRatioP16"
           ],
-          "oValue": 0.21597086614589142
+          "oValue": 0.21005324257567407
         },
         {
           "saPath": [
             "dictBaseline",
             "fYieldRatioP84"
           ],
-          "oValue": 0.26860078452333475
+          "oValue": 0.25896093030990713
         },
         {
           "saPath": [
@@ -113,7 +113,7 @@
             "dictBaseline",
             "fYieldFixedEta"
           ],
-          "oValue": 16.806844687474086
+          "oValue": 17.731662357824792
         },
         {
           "saPath": [
@@ -127,7 +127,7 @@
             "dictBaseline",
             "fAlbedoPenalty"
           ],
-          "oValue": 0.08635317019156152
+          "oValue": 0.036078609536135064
         },
         {
           "saPath": [
@@ -153,15 +153,15 @@
         {
           "saPath": [
             "dictVariants",
-            "albedoPerVisit",
+            "etaInterval86",
             "iYieldMode"
           ],
-          "oValue": 11.0
+          "oValue": 14.0
         },
         {
           "saPath": [
             "dictVariants",
-            "albedoPerVisit",
+            "etaInterval86",
             "iYieldMedian"
           ],
           "oValue": 19.0
@@ -169,170 +169,10 @@
         {
           "saPath": [
             "dictVariants",
-            "albedoPerVisit",
-            "fYieldMean"
-          ],
-          "oValue": 22.54652777777778
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fProbBelow12"
-          ],
-          "oValue": 0.25993055555555555
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fProbAtLeast25"
-          ],
-          "oValue": 0.35
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fTailAboveFigureAxis"
-          ],
-          "oValue": 0.07291666666666666
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fShapeDistanceToFig10"
-          ],
-          "oValue": 0.034210571907494124
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fYieldRatio"
-          ],
-          "oValue": 0.23162395278149955
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fYieldRatioP16"
-          ],
-          "oValue": 0.21014137363025348
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fYieldRatioP84"
-          ],
-          "oValue": 0.2590551508383536
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fOccurrenceRatio"
-          ],
-          "oValue": 0.20419311247330102
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fEtaCanonical"
-          ],
-          "oValue": 0.25505412554383095
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fEtaRedefined"
-          ],
-          "oValue": 0.052039614383052185
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fYieldPlanningFixedExozodi"
-          ],
-          "oValue": 20.944399999999998
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fYieldFixedEta"
-          ],
-          "oValue": 17.75192813789333
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fExozodiPenalty"
-          ],
-          "oValue": 0.12170600870950465
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "fAlbedoPenalty"
-          ],
-          "oValue": 0.03497692947318942
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "iStarsUsed"
-          ],
-          "oValue": 155.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "bSurveyRerun"
-          ],
-          "oValue": true
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "albedoPerVisit",
-            "bPredictionRerun"
-          ],
-          "oValue": true
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "etaInterval86",
-            "iYieldMode"
-          ],
-          "oValue": 16.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "etaInterval86",
-            "iYieldMedian"
-          ],
-          "oValue": 18.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
             "etaInterval86",
             "fYieldMean"
           ],
-          "oValue": 19.459583333333335
+          "oValue": 20.631666666666668
         },
         {
           "saPath": [
@@ -340,7 +180,7 @@
             "etaInterval86",
             "fProbBelow12"
           ],
-          "oValue": 0.21847222222222223
+          "oValue": 0.18645833333333334
         },
         {
           "saPath": [
@@ -348,7 +188,7 @@
             "etaInterval86",
             "fProbAtLeast25"
           ],
-          "oValue": 0.25743055555555555
+          "oValue": 0.2986111111111111
         },
         {
           "saPath": [
@@ -356,7 +196,7 @@
             "etaInterval86",
             "fTailAboveFigureAxis"
           ],
-          "oValue": 0.011944444444444445
+          "oValue": 0.01840277777777778
         },
         {
           "saPath": [
@@ -364,7 +204,7 @@
             "etaInterval86",
             "fShapeDistanceToFig10"
           ],
-          "oValue": 0.1316238459207428
+          "oValue": 0.13106340909852376
         },
         {
           "saPath": [
@@ -372,7 +212,7 @@
             "etaInterval86",
             "fYieldRatio"
           ],
-          "oValue": 0.23629707483029377
+          "oValue": 0.2292498259736025
         },
         {
           "saPath": [
@@ -380,7 +220,7 @@
             "etaInterval86",
             "fYieldRatioP16"
           ],
-          "oValue": 0.21500303094942408
+          "oValue": 0.2087812523337771
         },
         {
           "saPath": [
@@ -388,7 +228,7 @@
             "etaInterval86",
             "fYieldRatioP84"
           ],
-          "oValue": 0.2605143064706367
+          "oValue": 0.25201760639954873
         },
         {
           "saPath": [
@@ -428,7 +268,7 @@
             "etaInterval86",
             "fYieldFixedEta"
           ],
-          "oValue": 16.806844687474086
+          "oValue": 17.731662357824792
         },
         {
           "saPath": [
@@ -444,7 +284,7 @@
             "etaInterval86",
             "fAlbedoPenalty"
           ],
-          "oValue": 0.08635317019156152
+          "oValue": 0.036078609536135064
         },
         {
           "saPath": [
@@ -476,7 +316,7 @@
             "skyThroughputConstant",
             "iYieldMode"
           ],
-          "oValue": 9.0
+          "oValue": 7.0
         },
         {
           "saPath": [
@@ -484,7 +324,7 @@
             "skyThroughputConstant",
             "iYieldMedian"
           ],
-          "oValue": 15.0
+          "oValue": 16.0
         },
         {
           "saPath": [
@@ -492,7 +332,7 @@
             "skyThroughputConstant",
             "fYieldMean"
           ],
-          "oValue": 17.89326388888889
+          "oValue": 19.170277777777777
         },
         {
           "saPath": [
@@ -500,7 +340,7 @@
             "skyThroughputConstant",
             "fProbBelow12"
           ],
-          "oValue": 0.3680555555555556
+          "oValue": 0.3448611111111111
         },
         {
           "saPath": [
@@ -508,7 +348,7 @@
             "skyThroughputConstant",
             "fProbAtLeast25"
           ],
-          "oValue": 0.23576388888888888
+          "oValue": 0.268125
         },
         {
           "saPath": [
@@ -516,7 +356,7 @@
             "skyThroughputConstant",
             "fTailAboveFigureAxis"
           ],
-          "oValue": 0.02854166666666667
+          "oValue": 0.04416666666666666
         },
         {
           "saPath": [
@@ -524,7 +364,7 @@
             "skyThroughputConstant",
             "fShapeDistanceToFig10"
           ],
-          "oValue": 0.11345752118343996
+          "oValue": 0.08860219520317619
         },
         {
           "saPath": [
@@ -532,7 +372,7 @@
             "skyThroughputConstant",
             "fYieldRatio"
           ],
-          "oValue": 0.2299351193791615
+          "oValue": 0.22254143056819503
         },
         {
           "saPath": [
@@ -540,7 +380,7 @@
             "skyThroughputConstant",
             "fYieldRatioP16"
           ],
-          "oValue": 0.20864710882026957
+          "oValue": 0.20265193871168122
         },
         {
           "saPath": [
@@ -548,7 +388,7 @@
             "skyThroughputConstant",
             "fYieldRatioP84"
           ],
-          "oValue": 0.25691375558332347
+          "oValue": 0.24633758569285472
         },
         {
           "saPath": [
@@ -588,7 +428,7 @@
             "skyThroughputConstant",
             "fYieldFixedEta"
           ],
-          "oValue": 14.05262120856711
+          "oValue": 14.793529854506225
         },
         {
           "saPath": [
@@ -604,7 +444,7 @@
             "skyThroughputConstant",
             "fAlbedoPenalty"
           ],
-          "oValue": 0.07267601703614535
+          "oValue": 0.023783903147403196
         },
         {
           "saPath": [
@@ -626,326 +466,6 @@
           "saPath": [
             "dictVariants",
             "skyThroughputConstant",
-            "bPredictionRerun"
-          ],
-          "oValue": true
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "iYieldMode"
-          ],
-          "oValue": 17.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "iYieldMedian"
-          ],
-          "oValue": 19.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fYieldMean"
-          ],
-          "oValue": 20.639583333333334
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fProbBelow12"
-          ],
-          "oValue": 0.1920138888888889
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fProbAtLeast25"
-          ],
-          "oValue": 0.29618055555555556
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fTailAboveFigureAxis"
-          ],
-          "oValue": 0.018819444444444444
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fShapeDistanceToFig10"
-          ],
-          "oValue": 0.12815775017764106
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fYieldRatio"
-          ],
-          "oValue": 0.22933306856683727
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fYieldRatioP16"
-          ],
-          "oValue": 0.20887807897466407
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fYieldRatioP84"
-          ],
-          "oValue": 0.25212788463416824
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fOccurrenceRatio"
-          ],
-          "oValue": 0.20334323541972582
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fEtaCanonical"
-          ],
-          "oValue": 0.25564927679342464
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fEtaRedefined"
-          ],
-          "oValue": 0.05197086281326746
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fYieldPlanningFixedExozodi"
-          ],
-          "oValue": 20.944399999999998
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fYieldFixedEta"
-          ],
-          "oValue": 17.75192813789333
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fExozodiPenalty"
-          ],
-          "oValue": 0.12170600870950465
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "fAlbedoPenalty"
-          ],
-          "oValue": 0.03497692947318942
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "iStarsUsed"
-          ],
-          "oValue": 155.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "bSurveyRerun"
-          ],
-          "oValue": true
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "paperFaithful",
-            "bPredictionRerun"
-          ],
-          "oValue": true
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "iYieldMode"
-          ],
-          "oValue": 15.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "iYieldMedian"
-          ],
-          "oValue": 16.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fYieldMean"
-          ],
-          "oValue": 17.50701388888889
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fProbBelow12"
-          ],
-          "oValue": 0.2945138888888889
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fProbAtLeast25"
-          ],
-          "oValue": 0.196875
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fTailAboveFigureAxis"
-          ],
-          "oValue": 0.008888888888888889
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fShapeDistanceToFig10"
-          ],
-          "oValue": 0.14905186422485575
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fYieldRatio"
-          ],
-          "oValue": 0.22014576167304906
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fYieldRatioP16"
-          ],
-          "oValue": 0.20122355752882454
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fYieldRatioP84"
-          ],
-          "oValue": 0.24073666217353298
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fOccurrenceRatio"
-          ],
-          "oValue": 0.20334323541972582
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fEtaCanonical"
-          ],
-          "oValue": 0.25564927679342464
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fEtaRedefined"
-          ],
-          "oValue": 0.05197086281326746
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fYieldPlanningFixedExozodi"
-          ],
-          "oValue": 16.885759999999998
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fYieldFixedEta"
-          ],
-          "oValue": 14.805794126105608
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fExozodiPenalty"
-          ],
-          "oValue": 0.10256038626693398
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "fAlbedoPenalty"
-          ],
-          "oValue": 0.022974591274629086
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "iStarsUsed"
-          ],
-          "oValue": 135.0
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
-            "bSurveyRerun"
-          ],
-          "oValue": true
-        },
-        {
-          "saPath": [
-            "dictVariants",
-            "allThreeCombined",
             "bPredictionRerun"
           ],
           "oValue": true
@@ -964,7 +484,7 @@
             "brysonMixtureEta",
             "iYieldMedian"
           ],
-          "oValue": 13.0
+          "oValue": 14.0
         },
         {
           "saPath": [
@@ -972,7 +492,7 @@
             "brysonMixtureEta",
             "fYieldMean"
           ],
-          "oValue": 16.672916666666666
+          "oValue": 17.775347222222223
         },
         {
           "saPath": [
@@ -980,7 +500,7 @@
             "brysonMixtureEta",
             "fProbBelow12"
           ],
-          "oValue": 0.439375
+          "oValue": 0.4136111111111111
         },
         {
           "saPath": [
@@ -988,7 +508,7 @@
             "brysonMixtureEta",
             "fProbAtLeast25"
           ],
-          "oValue": 0.2129861111111111
+          "oValue": 0.2361111111111111
         },
         {
           "saPath": [
@@ -996,7 +516,7 @@
             "brysonMixtureEta",
             "fTailAboveFigureAxis"
           ],
-          "oValue": 0.034513888888888886
+          "oValue": 0.04666666666666666
         },
         {
           "saPath": [
@@ -1004,7 +524,7 @@
             "brysonMixtureEta",
             "fShapeDistanceToFig10"
           ],
-          "oValue": 0.172885095228843
+          "oValue": 0.15458764608025274
         },
         {
           "saPath": [
@@ -1012,7 +532,7 @@
             "brysonMixtureEta",
             "fYieldRatio"
           ],
-          "oValue": 0.23436481634308787
+          "oValue": 0.2278998595124308
         },
         {
           "saPath": [
@@ -1020,7 +540,7 @@
             "brysonMixtureEta",
             "fYieldRatioP16"
           ],
-          "oValue": 0.2124788560932774
+          "oValue": 0.20698195777440853
         },
         {
           "saPath": [
@@ -1028,7 +548,7 @@
             "brysonMixtureEta",
             "fYieldRatioP84"
           ],
-          "oValue": 0.26215036169170824
+          "oValue": 0.25363035182138705
         },
         {
           "saPath": [
@@ -1068,7 +588,7 @@
             "brysonMixtureEta",
             "fYieldFixedEta"
           ],
-          "oValue": 16.806844687474086
+          "oValue": 17.731662357824792
         },
         {
           "saPath": [
@@ -1084,7 +604,7 @@
             "brysonMixtureEta",
             "fAlbedoPenalty"
           ],
-          "oValue": 0.08635317019156152
+          "oValue": 0.036078609536135064
         },
         {
           "saPath": [
@@ -1112,6 +632,486 @@
         },
         {
           "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "iYieldMode"
+          ],
+          "oValue": 11.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "iYieldMedian"
+          ],
+          "oValue": 18.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fYieldMean"
+          ],
+          "oValue": 21.040069444444445
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fProbBelow12"
+          ],
+          "oValue": 0.2825
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fProbAtLeast25"
+          ],
+          "oValue": 0.3215277777777778
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fTailAboveFigureAxis"
+          ],
+          "oValue": 0.05305555555555554
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fShapeDistanceToFig10"
+          ],
+          "oValue": 0.03833754525889671
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fYieldRatio"
+          ],
+          "oValue": 0.23863778227841975
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fYieldRatioP16"
+          ],
+          "oValue": 0.21597086614589142
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fYieldRatioP84"
+          ],
+          "oValue": 0.26860078452333475
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fOccurrenceRatio"
+          ],
+          "oValue": 0.20419311247330102
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fEtaCanonical"
+          ],
+          "oValue": 0.25505412554383095
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fEtaRedefined"
+          ],
+          "oValue": 0.052039614383052185
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fYieldPlanningFixedExozodi"
+          ],
+          "oValue": 20.944399999999998
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fYieldFixedEta"
+          ],
+          "oValue": 16.806844687474086
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fExozodiPenalty"
+          ],
+          "oValue": 0.12170600870950465
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "fAlbedoPenalty"
+          ],
+          "oValue": 0.08635317019156152
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "iStarsUsed"
+          ],
+          "oValue": 155.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "bSurveyRerun"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecompute",
+            "bPredictionRerun"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "iYieldMode"
+          ],
+          "oValue": 16.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "iYieldMedian"
+          ],
+          "oValue": 18.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fYieldMean"
+          ],
+          "oValue": 19.459583333333335
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fProbBelow12"
+          ],
+          "oValue": 0.21847222222222223
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fProbAtLeast25"
+          ],
+          "oValue": 0.25743055555555555
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fTailAboveFigureAxis"
+          ],
+          "oValue": 0.011944444444444445
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fShapeDistanceToFig10"
+          ],
+          "oValue": 0.1316238459207428
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fYieldRatio"
+          ],
+          "oValue": 0.23629707483029377
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fYieldRatioP16"
+          ],
+          "oValue": 0.21500303094942408
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fYieldRatioP84"
+          ],
+          "oValue": 0.2605143064706367
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fOccurrenceRatio"
+          ],
+          "oValue": 0.20334323541972582
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fEtaCanonical"
+          ],
+          "oValue": 0.25564927679342464
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fEtaRedefined"
+          ],
+          "oValue": 0.05197086281326746
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fYieldPlanningFixedExozodi"
+          ],
+          "oValue": 20.944399999999998
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fYieldFixedEta"
+          ],
+          "oValue": 16.806844687474086
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fExozodiPenalty"
+          ],
+          "oValue": 0.12170600870950465
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "fAlbedoPenalty"
+          ],
+          "oValue": 0.08635317019156152
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "iStarsUsed"
+          ],
+          "oValue": 155.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "bSurveyRerun"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "albedoRecomputeEta86",
+            "bPredictionRerun"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "iYieldMode"
+          ],
+          "oValue": 12.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "iYieldMedian"
+          ],
+          "oValue": 16.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fYieldMean"
+          ],
+          "oValue": 17.440694444444443
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fProbBelow12"
+          ],
+          "oValue": 0.2951388888888889
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fProbAtLeast25"
+          ],
+          "oValue": 0.19409722222222223
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fTailAboveFigureAxis"
+          ],
+          "oValue": 0.007430555555555555
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fShapeDistanceToFig10"
+          ],
+          "oValue": 0.14648343057220692
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fYieldRatio"
+          ],
+          "oValue": 0.2200795756125155
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fYieldRatioP16"
+          ],
+          "oValue": 0.20113852594202325
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fYieldRatioP84"
+          ],
+          "oValue": 0.24064813423123252
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fOccurrenceRatio"
+          ],
+          "oValue": 0.20334323541972582
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fEtaCanonical"
+          ],
+          "oValue": 0.25564927679342464
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fEtaRedefined"
+          ],
+          "oValue": 0.05197086281326746
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fYieldPlanningFixedExozodi"
+          ],
+          "oValue": 16.885759999999998
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fYieldFixedEta"
+          ],
+          "oValue": 14.793529854506225
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fExozodiPenalty"
+          ],
+          "oValue": 0.10256038626693398
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "fAlbedoPenalty"
+          ],
+          "oValue": 0.023783903147403196
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "iStarsUsed"
+          ],
+          "oValue": 135.0
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "bSurveyRerun"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "dictVariants",
+            "etaInterval86ConstantSky",
+            "bPredictionRerun"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
             "dictManifests",
             "etaInterval86",
             "fEtaIntervalZ"
@@ -1130,7 +1130,7 @@
         {
           "saPath": [
             "dictManifests",
-            "paperFaithful",
+            "albedoRecomputeEta86",
             "fEtaIntervalZ"
           ],
           "oValue": 1.4758
@@ -1138,7 +1138,7 @@
         {
           "saPath": [
             "dictManifests",
-            "allThreeCombined",
+            "etaInterval86ConstantSky",
             "dictMissionOverrides",
             "bSkyThroughputFollowsCore"
           ],
@@ -1147,7 +1147,7 @@
         {
           "saPath": [
             "dictManifests",
-            "allThreeCombined",
+            "etaInterval86ConstantSky",
             "fEtaIntervalZ"
           ],
           "oValue": 1.4758
@@ -1216,7 +1216,7 @@
           "oValue": 0.32
         }
       ],
-      "iBytes": 8695
+      "iBytes": 8770
     },
     "settingInteractions.json": {
       "sKind": "json",
@@ -1232,233 +1232,233 @@
         {
           "saPath": [
             "fShapeDistanceToFig10",
-            "fBaseline"
+            "fAdopted"
           ],
-          "oValue": 0.03833754525889671
+          "oValue": 0.03713088445206878
         },
         {
           "saPath": [
             "fShapeDistanceToFig10",
-            "fBothChanged"
+            "fAllDocumented"
           ],
-          "oValue": 0.12815775017764106
+          "oValue": 0.13106340909852376
         },
         {
           "saPath": [
             "fShapeDistanceToFig10",
             "fEffectAlbedoMethod"
           ],
-          "oValue": -0.003796534547252168
+          "oValue": -0.0008835488145234847
         },
         {
           "saPath": [
             "fShapeDistanceToFig10",
             "fEffectEtaInterval"
           ],
-          "oValue": 0.09361673946599651
+          "oValue": 0.09360941265415054
         },
         {
           "saPath": [
             "fShapeDistanceToFig10",
             "fInteraction"
           ],
-          "oValue": 0.0006608776083008375
+          "oValue": 0.0006462239846088888
         },
         {
           "saPath": [
             "fShapeDistanceToFig10",
-            "fTotalChange"
+            "fAdoptedToAllDocumented"
           ],
-          "oValue": 0.08982020491874435
+          "oValue": 0.09393252464645499
         },
         {
           "saPath": [
             "iYieldMode",
-            "fBaseline"
+            "fAdopted"
           ],
-          "oValue": 11.0
+          "oValue": 12.0
         },
         {
           "saPath": [
             "iYieldMode",
-            "fBothChanged"
+            "fAllDocumented"
           ],
-          "oValue": 17.0
+          "oValue": 14.0
         },
         {
           "saPath": [
             "iYieldMode",
             "fEffectAlbedoMethod"
           ],
-          "oValue": 0.5
+          "oValue": -0.5
         },
         {
           "saPath": [
             "iYieldMode",
             "fEffectEtaInterval"
           ],
-          "oValue": 5.5
+          "oValue": 3.5
         },
         {
           "saPath": [
             "iYieldMode",
             "fInteraction"
           ],
-          "oValue": 1.0
+          "oValue": -3.0
         },
         {
           "saPath": [
             "iYieldMode",
-            "fTotalChange"
+            "fAdoptedToAllDocumented"
           ],
-          "oValue": 6.0
+          "oValue": 2.0
         },
         {
           "saPath": [
             "fYieldMean",
-            "fBaseline"
+            "fAdopted"
           ],
-          "oValue": 21.040069444444445
+          "oValue": 22.445208333333333
         },
         {
           "saPath": [
             "fYieldMean",
-            "fBothChanged"
+            "fAllDocumented"
           ],
-          "oValue": 20.639583333333334
+          "oValue": 20.631666666666668
         },
         {
           "saPath": [
             "fYieldMean",
             "fEffectAlbedoMethod"
           ],
-          "oValue": 1.3432291666666671
+          "oValue": 1.288611111111111
         },
         {
           "saPath": [
             "fYieldMean",
             "fEffectEtaInterval"
           ],
-          "oValue": -1.7437152777777776
+          "oValue": -1.697013888888888
         },
         {
           "saPath": [
             "fYieldMean",
             "fInteraction"
           ],
-          "oValue": -0.32645833333333485
+          "oValue": -0.23305555555555557
         },
         {
           "saPath": [
             "fYieldMean",
-            "fTotalChange"
+            "fAdoptedToAllDocumented"
           ],
-          "oValue": -0.40048611111111043
+          "oValue": -1.8135416666666657
         },
         {
           "saPath": [
             "fProbBelow12",
-            "fBaseline"
+            "fAdopted"
           ],
-          "oValue": 0.2825
+          "oValue": 0.25972222222222224
         },
         {
           "saPath": [
             "fProbBelow12",
-            "fBothChanged"
+            "fAllDocumented"
           ],
-          "oValue": 0.1920138888888889
+          "oValue": 0.18645833333333334
         },
         {
           "saPath": [
             "fProbBelow12",
             "fEffectAlbedoMethod"
           ],
-          "oValue": -0.024513888888888877
+          "oValue": -0.027395833333333314
         },
         {
           "saPath": [
             "fProbBelow12",
             "fEffectEtaInterval"
           ],
-          "oValue": -0.0659722222222222
+          "oValue": -0.06864583333333332
         },
         {
           "saPath": [
             "fProbBelow12",
             "fInteraction"
           ],
-          "oValue": -0.003888888888888914
+          "oValue": -0.009236111111111167
         },
         {
           "saPath": [
             "fProbBelow12",
-            "fTotalChange"
+            "fAdoptedToAllDocumented"
           ],
-          "oValue": -0.09048611111111107
+          "oValue": -0.0732638888888889
         },
         {
           "saPath": [
             "fYieldRatio",
-            "fBaseline"
+            "fAdopted"
           ],
-          "oValue": 0.23863778227841975
+          "oValue": 0.23151484477610138
         },
         {
           "saPath": [
             "fYieldRatio",
-            "fBothChanged"
+            "fAllDocumented"
           ],
-          "oValue": 0.22933306856683727
+          "oValue": 0.2292498259736025
         },
         {
           "saPath": [
             "fYieldRatio",
             "fEffectAlbedoMethod"
           ],
-          "oValue": -0.00698891788018835
+          "oValue": -0.007085093179504828
         },
         {
           "saPath": [
             "fYieldRatio",
             "fEffectEtaInterval"
           ],
-          "oValue": -0.0023157958313941296
+          "oValue": -0.0023028631253124293
         },
         {
           "saPath": [
             "fYieldRatio",
             "fInteraction"
           ],
-          "oValue": 4.9823233463697214e-05
+          "oValue": 7.568864562709776e-05
         },
         {
           "saPath": [
             "fYieldRatio",
-            "fTotalChange"
+            "fAdoptedToAllDocumented"
           ],
-          "oValue": -0.00930471371158248
+          "oValue": -0.0022650188024988804
         },
         {
           "saPath": [
             "fAlbedoPenalty",
-            "fBaseline"
+            "fAdopted"
           ],
-          "oValue": 0.08635317019156152
+          "oValue": 0.036078609536135064
         },
         {
           "saPath": [
             "fAlbedoPenalty",
-            "fBothChanged"
+            "fAllDocumented"
           ],
-          "oValue": 0.03497692947318942
+          "oValue": 0.036078609536135064
         },
         {
           "saPath": [
             "fAlbedoPenalty",
             "fEffectAlbedoMethod"
           ],
-          "oValue": -0.0513762407183721
+          "oValue": -0.05027456065542646
         },
         {
           "saPath": [
@@ -1477,23 +1477,23 @@
         {
           "saPath": [
             "fAlbedoPenalty",
-            "fTotalChange"
+            "fAdoptedToAllDocumented"
           ],
-          "oValue": -0.0513762407183721
+          "oValue": 0.0
         }
       ],
-      "iBytes": 1472
+      "iBytes": 1546
     },
     "yieldPeakComparison.json": {
       "sKind": "json",
       "saTopLevelKeys": [
-        "albedoPerVisit",
-        "allThreeCombined",
+        "albedoRecompute",
+        "albedoRecomputeEta86",
         "baseline",
         "brysonMixtureEta",
         "etaInterval86",
+        "etaInterval86ConstantSky",
         "listLevelScan",
-        "paperFaithful",
         "published",
         "sLevelScanModel",
         "skyThroughputConstant"
@@ -1504,14 +1504,14 @@
             "baseline",
             "iMode"
           ],
-          "oValue": 11.0
+          "oValue": 12.0
         },
         {
           "saPath": [
             "baseline",
             "iModeP05"
           ],
-          "oValue": 11.0
+          "oValue": 12.0
         },
         {
           "saPath": [
@@ -1529,28 +1529,28 @@
         },
         {
           "saPath": [
-            "albedoPerVisit",
+            "albedoRecompute",
             "iMode"
           ],
-          "oValue": 12.0
+          "oValue": 11.0
         },
         {
           "saPath": [
-            "albedoPerVisit",
+            "albedoRecompute",
             "iModeP05"
           ],
-          "oValue": 12.0
+          "oValue": 11.0
         },
         {
           "saPath": [
-            "albedoPerVisit",
+            "albedoRecompute",
             "iModeP95"
           ],
           "oValue": 12.0
         },
         {
           "saPath": [
-            "albedoPerVisit",
+            "albedoRecompute",
             "fPlateauFraction"
           ],
           "oValue": 0.9
@@ -1565,104 +1565,104 @@
         {
           "saPath": [
             "etaInterval86",
+            "iModeP05"
+          ],
+          "oValue": 15.0
+        },
+        {
+          "saPath": [
+            "etaInterval86",
+            "iModeP95"
+          ],
+          "oValue": 15.0
+        },
+        {
+          "saPath": [
+            "etaInterval86",
+            "fPlateauFraction"
+          ],
+          "oValue": 0.9
+        },
+        {
+          "saPath": [
+            "skyThroughputConstant",
+            "iMode"
+          ],
+          "oValue": 10.0
+        },
+        {
+          "saPath": [
+            "skyThroughputConstant",
+            "iModeP05"
+          ],
+          "oValue": 9.0
+        },
+        {
+          "saPath": [
+            "skyThroughputConstant",
+            "iModeP95"
+          ],
+          "oValue": 10.0
+        },
+        {
+          "saPath": [
+            "skyThroughputConstant",
+            "fPlateauFraction"
+          ],
+          "oValue": 0.9
+        },
+        {
+          "saPath": [
+            "albedoRecomputeEta86",
+            "iMode"
+          ],
+          "oValue": 15.0
+        },
+        {
+          "saPath": [
+            "albedoRecomputeEta86",
             "iModeP05"
           ],
           "oValue": 14.0
         },
         {
           "saPath": [
-            "etaInterval86",
+            "albedoRecomputeEta86",
             "iModeP95"
           ],
           "oValue": 15.0
         },
         {
           "saPath": [
-            "etaInterval86",
+            "albedoRecomputeEta86",
             "fPlateauFraction"
           ],
           "oValue": 0.9
         },
         {
           "saPath": [
-            "skyThroughputConstant",
-            "iMode"
-          ],
-          "oValue": 9.0
-        },
-        {
-          "saPath": [
-            "skyThroughputConstant",
-            "iModeP05"
-          ],
-          "oValue": 9.0
-        },
-        {
-          "saPath": [
-            "skyThroughputConstant",
-            "iModeP95"
-          ],
-          "oValue": 9.0
-        },
-        {
-          "saPath": [
-            "skyThroughputConstant",
-            "fPlateauFraction"
-          ],
-          "oValue": 0.9
-        },
-        {
-          "saPath": [
-            "paperFaithful",
-            "iMode"
-          ],
-          "oValue": 15.0
-        },
-        {
-          "saPath": [
-            "paperFaithful",
-            "iModeP05"
-          ],
-          "oValue": 15.0
-        },
-        {
-          "saPath": [
-            "paperFaithful",
-            "iModeP95"
-          ],
-          "oValue": 16.0
-        },
-        {
-          "saPath": [
-            "paperFaithful",
-            "fPlateauFraction"
-          ],
-          "oValue": 0.9
-        },
-        {
-          "saPath": [
-            "allThreeCombined",
+            "etaInterval86ConstantSky",
             "iMode"
           ],
           "oValue": 12.0
         },
         {
           "saPath": [
-            "allThreeCombined",
+            "etaInterval86ConstantSky",
             "iModeP05"
           ],
           "oValue": 12.0
         },
         {
           "saPath": [
-            "allThreeCombined",
+            "etaInterval86ConstantSky",
             "iModeP95"
           ],
           "oValue": 13.0
         },
         {
           "saPath": [
-            "allThreeCombined",
+            "etaInterval86ConstantSky",
             "fPlateauFraction"
           ],
           "oValue": 0.9
@@ -1686,7 +1686,7 @@
             "brysonMixtureEta",
             "iModeP95"
           ],
-          "oValue": 7.0
+          "oValue": 8.0
         },
         {
           "saPath": [
@@ -1724,7 +1724,7 @@
           "oValue": 0.29918472753240166
         }
       ],
-      "iBytes": 1737
+      "iBytes": 1752
     }
   }
 }

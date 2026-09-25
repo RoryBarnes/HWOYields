@@ -1,0 +1,127 @@
+### computeCompleteness: dataComputeCompleteness.py --target-catalog /workspace/yields/buildTargetCatalog/targetCatalog.csv --mission-parameters /workspace/yields/CompareModelVariants/variants/albedoRecompute/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --out-completeness /workspace/yields/CompareModelVariants/variants/albedoRecompute/completeness.npz --out-summary /workspace/yields/CompareModelVariants/variants/albedoRecompute/completenessSummary.json
+{
+  "iStarsScreened": 1500,
+  "iNumPlanetsPerStar": 3000,
+  "fThroughputCalibration": 1.0,
+  "dictByBox": {
+    "canonical": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 95.92333333333333,
+      "iStarsWithAnyCompleteness": 205,
+      "iStarsWithAnyCompletenessAtZeroZodi": 235,
+      "fMedianTauCharDays": 29.604638310185184
+    },
+    "redefined": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 98.88866666666667,
+      "iStarsWithAnyCompleteness": 161,
+      "iStarsWithAnyCompletenessAtZeroZodi": 188,
+      "fMedianTauCharDays": 28.73560185185185
+    },
+    "hzOnly": {
+      "fMaxCompletenessBest": 1.0,
+      "fSummedMaxCompleteness": 110.17000000000002,
+      "iStarsWithAnyCompleteness": 201,
+      "iStarsWithAnyCompletenessAtZeroZodi": 201,
+      "fMedianTauCharDays": 29.44152488425926
+    }
+  },
+  "iExozodiDraws": 200,
+  "fMedianDrawnZodi": 2.9954122602133157,
+  "fFractionDrawnAbove100Zodi": 0.21446666666666667
+}
+### optimizeSurvey: dataOptimizeSurvey.py --completeness /workspace/yields/CompareModelVariants/variants/albedoRecompute/completeness.npz --mission-parameters /workspace/yields/CompareModelVariants/variants/albedoRecompute/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --box canonical --processes 2 --out-survey /workspace/yields/CompareModelVariants/variants/albedoRecompute/surveyResult.json
+{
+  "sBox": "canonical",
+  "iStarsAvailable": 1500,
+  "fThroughputCalibration": 1.0,
+  "fEtaEarthBaseline": 0.24,
+  "iExozodiDraws": 200,
+  "sBaselineNote": "fYieldBaseline and fYieldPlanningBaseline are means over the exozodi draws (albedo-drawn and planning albedo respectively); the fixed-exozodi survey is reported separately.",
+  "fYieldPlanningFixedExozodi": 20.944399999999998,
+  "fYieldFixedExozodi": 19.10024,
+  "iStarsUsedFixedExozodi": 174,
+  "fYieldBaseline": 16.806844687474086,
+  "fYieldPlanningBaseline": 18.39534067118465,
+  "iStarsUsedBaseline": 155,
+  "fTimeUsedFractionBaseline": 0.9999011341868527,
+  "listEtaScan": [
+    {
+      "fEtaEarth": 0.02,
+      "fYield": 1.4863671001462833,
+      "fYieldPlanning": 1.5955411252679021,
+      "fStarsUsed": 169.335
+    },
+    {
+      "fEtaEarth": 0.06,
+      "fYield": 4.419677473190855,
+      "fYieldPlanning": 4.767551847203875,
+      "fStarsUsed": 167.68
+    },
+    {
+      "fEtaEarth": 0.12,
+      "fYield": 8.709219358278224,
+      "fYieldPlanning": 9.456594221744085,
+      "fStarsUsed": 164.57
+    },
+    {
+      "fEtaEarth": 0.24,
+      "fYield": 16.806844687474086,
+      "fYieldPlanning": 18.39534067118465,
+      "fStarsUsed": 155.285
+    },
+    {
+      "fEtaEarth": 0.4,
+      "fYield": 26.347238624167723,
+      "fYieldPlanning": 28.866806925928195,
+      "fStarsUsed": 138.87
+    },
+    {
+      "fEtaEarth": 0.6,
+      "fYield": 36.35834108550944,
+      "fYieldPlanning": 39.665734482461296,
+      "fStarsUsed": 118.975
+    }
+  ]
+}
+{
+  "fYieldPlanningDrawnMean": 18.39534067118465,
+  "fYieldPlanningDrawnStd": 0.5847247961536176,
+  "fYieldDrawnMean": 16.806844687474086,
+  "fYieldDrawnStd": 0.5484249093225566,
+  "fStarsUsedDrawnMean": 155.285,
+  "fExozodiPenalty": 0.12170600870950465,
+  "fAlbedoPenalty": 0.08635317019156152,
+  "iRepresentativeDraw": 165
+}
+### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/CompareModelVariants/variants/albedoRecompute/completeness.npz --occurrence-posterior /workspace/yields/sampleOccurrencePosterior/occurrencePosterior.npz --mission-parameters /workspace/yields/CompareModelVariants/variants/albedoRecompute/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 2 --out-prediction /workspace/yields/CompareModelVariants/variants/albedoRecompute/yieldPrediction.json --out-samples /workspace/yields/CompareModelVariants/variants/albedoRecompute/yieldSamples.npz
+{
+  "dictYieldRatio": {
+    "fMedian": 0.23863778227841975,
+    "fP16": 0.21597086614589142,
+    "fP84": 0.26860078452333475,
+    "fOccurrenceRatioMedian": 0.20419311247330102
+  },
+  "dictByBox": {
+    "canonical": {
+      "fMeanExpected": 21.0771150200525,
+      "fMedianExpected": 17.80456349620443,
+      "fP16Expected": 8.808658140485266,
+      "fP84Expected": 33.5028502198637,
+      "fP05Expected": 5.333985406047169,
+      "fP95Expected": 49.21280733897415,
+      "fProbabilityAtLeastGoal": 0.3215277777777778,
+      "fProbabilityAtLeastOne": 0.9988888888888889
+    },
+    "redefined": {
+      "fMeanExpected": 5.48196714862923,
+      "fMedianExpected": 4.166842994763914,
+      "fP16Expected": 1.982184874109023,
+      "fP84Expected": 8.741226134309095,
+      "fP05Expected": 1.1787983201793624,
+      "fP95Expected": 14.254615978541867,
+      "fProbabilityAtLeastGoal": 0.010416666666666666,
+      "fProbabilityAtLeastOne": 0.9353472222222222
+    }
+  }
+}

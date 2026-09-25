@@ -35,14 +35,14 @@
             "fig07",
             "fMeanAlbedo"
           ],
-          "oValue": 19.10024
+          "oValue": 20.14688
         },
         {
           "saPath": [
             "fig07",
             "fMeanAlbedoExozodi"
           ],
-          "oValue": 16.806844687474086
+          "oValue": 17.731662357824792
         },
         {
           "saPath": [
@@ -56,14 +56,14 @@
             "fig10",
             "fMeanIncluding"
           ],
-          "oValue": 21.0771150200525
+          "oValue": 22.48718802447316
         },
         {
           "saPath": [
             "fig10",
             "fMeanExcluding"
           ],
-          "oValue": 16.866545665927774
+          "oValue": 17.796415838939794
         },
         {
           "saPath": [
@@ -105,7 +105,7 @@
           "oValue": 2.052534915106237
         }
       ],
-      "iBytes": 323463
+      "iBytes": 323439
     }
   }
 }

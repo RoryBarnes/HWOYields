@@ -1,50 +1,50 @@
 {
  "fShapeDistanceToFig10": {
-  "fBaseline": 0.03833754525889671,
-  "fBothChanged": 0.12815775017764106,
-  "fEffectAlbedoMethod": -0.003796534547252168,
-  "fEffectEtaInterval": 0.09361673946599651,
-  "fInteraction": 0.0006608776083008375,
-  "fTotalChange": 0.08982020491874435
+  "fAdopted": 0.03713088445206878,
+  "fAllDocumented": 0.13106340909852376,
+  "fEffectAlbedoMethod": -0.0008835488145234847,
+  "fEffectEtaInterval": 0.09360941265415054,
+  "fInteraction": 0.0006462239846088888,
+  "fAdoptedToAllDocumented": 0.09393252464645499
  },
  "iYieldMode": {
-  "fBaseline": 11,
-  "fBothChanged": 17,
-  "fEffectAlbedoMethod": 0.5,
-  "fEffectEtaInterval": 5.5,
-  "fInteraction": 1,
-  "fTotalChange": 6
+  "fAdopted": 12,
+  "fAllDocumented": 14,
+  "fEffectAlbedoMethod": -0.5,
+  "fEffectEtaInterval": 3.5,
+  "fInteraction": -3,
+  "fAdoptedToAllDocumented": 2
  },
  "fYieldMean": {
-  "fBaseline": 21.040069444444445,
-  "fBothChanged": 20.639583333333334,
-  "fEffectAlbedoMethod": 1.3432291666666671,
-  "fEffectEtaInterval": -1.7437152777777776,
-  "fInteraction": -0.32645833333333485,
-  "fTotalChange": -0.40048611111111043
+  "fAdopted": 22.445208333333333,
+  "fAllDocumented": 20.631666666666668,
+  "fEffectAlbedoMethod": 1.288611111111111,
+  "fEffectEtaInterval": -1.697013888888888,
+  "fInteraction": -0.23305555555555557,
+  "fAdoptedToAllDocumented": -1.8135416666666657
  },
  "fProbBelow12": {
-  "fBaseline": 0.2825,
-  "fBothChanged": 0.1920138888888889,
-  "fEffectAlbedoMethod": -0.024513888888888877,
-  "fEffectEtaInterval": -0.0659722222222222,
-  "fInteraction": -0.003888888888888914,
-  "fTotalChange": -0.09048611111111107
+  "fAdopted": 0.25972222222222224,
+  "fAllDocumented": 0.18645833333333334,
+  "fEffectAlbedoMethod": -0.027395833333333314,
+  "fEffectEtaInterval": -0.06864583333333332,
+  "fInteraction": -0.009236111111111167,
+  "fAdoptedToAllDocumented": -0.0732638888888889
  },
  "fYieldRatio": {
-  "fBaseline": 0.23863778227841975,
-  "fBothChanged": 0.22933306856683727,
-  "fEffectAlbedoMethod": -0.00698891788018835,
-  "fEffectEtaInterval": -0.0023157958313941296,
-  "fInteraction": 4.9823233463697214e-05,
-  "fTotalChange": -0.00930471371158248
+  "fAdopted": 0.23151484477610138,
+  "fAllDocumented": 0.2292498259736025,
+  "fEffectAlbedoMethod": -0.007085093179504828,
+  "fEffectEtaInterval": -0.0023028631253124293,
+  "fInteraction": 7.568864562709776e-05,
+  "fAdoptedToAllDocumented": -0.0022650188024988804
  },
  "fAlbedoPenalty": {
-  "fBaseline": 0.08635317019156152,
-  "fBothChanged": 0.03497692947318942,
-  "fEffectAlbedoMethod": -0.0513762407183721,
+  "fAdopted": 0.036078609536135064,
+  "fAllDocumented": 0.036078609536135064,
+  "fEffectAlbedoMethod": -0.05027456065542646,
   "fEffectEtaInterval": 0.0,
   "fInteraction": 0.0,
-  "fTotalChange": -0.0513762407183721
+  "fAdoptedToAllDocumented": 0.0
  }
 }

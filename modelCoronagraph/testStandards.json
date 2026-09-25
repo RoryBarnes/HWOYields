@@ -306,6 +306,13 @@
         {
           "saPath": [
             "dictMission",
+            "bAlbedoBrightBound"
+          ],
+          "oValue": true
+        },
+        {
+          "saPath": [
+            "dictMission",
             "dictAlbedoDistribution",
             "fMin"
           ],
@@ -448,7 +455,7 @@
           "oValue": 1.2
         }
       ],
-      "iBytes": 27297
+      "iBytes": 27371
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",

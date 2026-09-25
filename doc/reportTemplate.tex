@@ -19,11 +19,9 @@
   det/.style={circle,draw,thick,double,double distance=1.2pt,minimum size=11mm,inner sep=0pt,
               font=\small},
   dec/.style={rectangle,draw,thick,minimum size=10mm,inner sep=1pt,font=\small},
-  fitted/.style={diamond,draw,thick,minimum size=12mm,inner sep=0pt,font=\small},
   fixed/.style={circle,fill=black,minimum size=4pt,inner sep=0pt},
   flabel/.style={font=\scriptsize,align=center},
   edge/.style={-{Latex[length=2mm]},thick},
-  fitedge/.style={-{Latex[length=2mm]},thick,dashed},
   plate/.style={draw,rounded corners=6pt,inner sep=7pt,thick,gray},
 }
 
@@ -38,98 +36,80 @@ in a Narrowed Habitable Zone\\[0.3em]
 
 \begin{abstract}
 \noindent
-We ask how many exoEarth candidates the baseline Habitable Worlds Observatory (HWO) mission of
-Stark et al.\ (2024) would find if the target population were planets of $0.5$--$2\,M_\oplus$
-(with $R = M^{0.27}$) in a habitable zone of $0.96$--$1.20$~AU scaled by $\sqrt{L_\star}$, rather
-than the canonical $R \le 1.4\,R_\oplus$ planets in $0.95$--$1.67$~AU. Answering it requires
-re-running the survey optimization, because the survey reallocates its time as the expected
-number of detections changes. We rederive the Altruistic Yield Optimization (AYO) model from the
-published equations and parameters, and write it down as a probabilistic graphical model whose
-single decision node is the survey allocation. With the extended-source throughput $T_{\rm sky}$
-treated as a function of separation, as Stark et al.\ (2019) define it, the model reproduces
-Stark's published 22.5 candidates to @@CALUNCALPCTABS@@\% with no fitted parameter; the one
-throughput factor it carries, previously 1.62, is now $\kappa = @@CALFACTOR@@$. Exozodi is a random
-variable of the pipeline, marginalized over @@NDRAWS@@ draws with the survey re-optimized for each.
-The model gives a median canonical yield of @@CANONMED@@ (90\% interval @@CANONP5@@--@@CANONP95@@)
-and a median redefined yield of @@REDEFMED@@ (@@REDEFP5@@--@@REDEFP95@@).
-The yield ratio is $@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}$, larger than the occurrence ratio
-of $@@OCCRATIO@@$ because the redefined box removes the faintest planets. The probability of
-reaching 25 candidates falls from @@CANONP25@@\% to @@REDEFP25@@\%. Of @@NINDEP@@ independent checks
-against the published record, @@NAGREE@@ agree, and nine of Stark's figures are reproduced in
-their own axes beside the originals. The main remaining disagreement is that this model's
-spectral characterization times depend on target difficulty and aperture more steeply than
-Stark's. A per-star table gives every target's Earth zone and classic habitable zone and what the
-survey expects to find in each.
+How many exoEarth candidates (EECs) would the baseline Habitable Worlds Observatory (HWO)
+mission of Stark et al.\ (2024) find if the definition of an exoEarth were changed? Stark's
+canonical definition counts planets smaller than $1.4\,R_\oplus$ in a habitable zone of
+$0.95$--$1.67$~AU, scaled by $\sqrt{L_\star}$. We instead count planets of $0.5$--$2\,M_\oplus$
+(with $R = M^{0.27}$) in a narrower zone of $0.96$--$1.20$~AU, scaled the same way. Because the
+survey redistributes its observing time whenever the number of planets it expects to find changes,
+the answer cannot be obtained by rescaling Stark's yield; the survey optimization must be run
+again.
+
+We rederive the Altruistic Yield Optimization (AYO) model from its published equations and
+parameters, follow Stark's documented methods wherever they are stated, and write the model as a
+probabilistic graphical model whose only decision is how the survey allocates its time. Nothing is
+fitted to Stark's results. The model's expected 6\,m yield is @@CALUNCAL@@, against a published
+22.5. The median canonical yield is @@CANONMED@@ (90\% interval @@CANONP5@@--@@CANONP95@@), and the
+median redefined yield is @@REDEFMED@@ (@@REDEFP5@@--@@REDEFP95@@). Their ratio,
+$@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}$ (68\% interval), exceeds the occurrence ratio of $@@OCCRATIO@@$
+because the narrower zone discards the faintest planets, and it stays between @@VARALL3RATIO@@
+and @@VARALBRATIO@@ across seven model variants. The chance of finding at least 25 candidates falls from @@CANONP25@@\% to
+@@REDEFP25@@\%.
+
+Of @@NINDEP@@ independent comparisons with the published record, @@NAGREE@@ agree. Two
+disagreements remain, and each reduces to a question that only the AYO authors can answer. First,
+the time needed to take a planet's spectrum depends more steeply on target difficulty and on
+aperture than in Stark's model, and a @@DEGPOINTS@@-point study shows that no setting of the
+throughput parameters removes the difference. Second, the published uncertainty interval on
+$\eta_\oplus$ admits two readings, and that single choice accounts for @@INTETASHARE@@\% of the
+remaining disagreement with Stark's yield distribution. Stark's own albedo test, adopted here,
+gives an albedo penalty of @@ALBEDOPEN@@\% rather than the 12\% he reports.
 \end{abstract}
 
 \tableofcontents
 
 %======================================================================
-\section{The question and the answer}
-\label{sec:answer}
+\section{Introduction}
+\label{sec:intro}
 
-The request was to trace the ExoVista/AYO yield chain back to its assumptions about the planet
-population, couple it to a Bayesian sampler, and predict how many planets of
-$0.5$--$2\,M_\oplus$, $R = M^{0.27}$, around FGK stars, the baseline HWO mission would find if the
-habitable zone were $0.96$--$1.20$~AU for the Sun, scaled as $\sqrt{L_\star}$ for other stars.
-The answer is summarized in Table~\ref{tab:answer}.
+Yield estimates for HWO rest on the AYO framework (Stark et al.\ 2014, 2019, 2024). AYO allocates
+exposure time across a target list by an equal-slope rule, so its output responds to a change in
+the planet population in ways a proportionality argument does not capture: when fewer detections
+are expected, characterization time is freed and the survey reallocates it. A question about a
+different planet population therefore requires the survey to be re-optimized.
 
-\begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lrr}
-\toprule
-& \textbf{Canonical box} & \textbf{Redefined box} \\
-\midrule
-Habitable zone (AU, scaled by $\sqrt{L_\star}$) & 0.95--1.67 & 0.96--1.20 \\
-Planet selection & $0.8\,(a/\mathrm{EEID})^{-1/2} < R/R_\oplus \le 1.4$ & $0.5 \le M/M_\oplus \le 2$, $R=M^{0.27}$ \\
-Occurrence $\eta$ (median, 68\%) & $@@ETACMED@@^{+@@ETACUP@@}_{-@@ETACDN@@}$ & $@@ETARMED@@^{+@@ETARUP@@}_{-@@ETARDN@@}$ \\
-Realized yield, median & @@CANONMED@@ & @@REDEFMED@@ \\
-Realized yield, mean & @@CANONMEAN@@ & @@REDEFMEAN@@ \\
-Realized yield, 90\% interval & @@CANONP5@@--@@CANONP95@@ & @@REDEFP5@@--@@REDEFP95@@ \\
-$P(\ge 25$ candidates$)$ & @@CANONP25@@\% & @@REDEFP25@@\% \\
-\midrule
-Occurrence ratio, redefined/canonical & \multicolumn{2}{c}{$@@OCCRATIO@@^{+@@OCCRATIOUP@@}_{-@@OCCRATIODN@@}$} \\
-\textbf{Yield ratio, redefined/canonical} & \multicolumn{2}{c}{$\mathbf{@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}}$} \\
-\bottomrule
-\end{tabular}
-\caption{The answer for the baseline 6\,m (inscribed) LUVOIR-B-like design. Yields are realized
-counts, marginalized over the $\eta_\oplus$ uncertainty, the planet draw, the geometric albedo and
-the survey's re-optimization; they are the quantity Stark et al.\ (2024) plot in Fig.~10 and
-compute $P_{25}$ from.}
-\label{tab:answer}
-\end{table}
-
-The yield ratio is the robust result. It is taken at one aperture, inside one implementation,
-with the same calibration in numerator and denominator. Across the model revisions of the final
-sessions (exozodi, $\eta_\oplus$ width, the separation-dependent $T_{\rm sky}$, and exozodi
-marginalized over draws) it has moved only from 0.246 to 0.241 to @@YRATIO@@, inside its own error
-bar. The absolute yields are conditional on the open problem of Sec.~\ref{sec:open}.
-
-Why the yield ratio exceeds the occurrence ratio (Sec.~\ref{sec:ratio}) is itself a result: the
-redefined box keeps the brighter, closer-in planets, frees characterization time, and loses some
-distant stars, and the first two effects win. A rescaling of Stark's yield by the occurrence ratio
-alone would have been wrong by @@RATIOEXCESS@@\%, in a direction that cannot be predicted without running the
-optimization.
+This report answers one such question. We ask how many planets the baseline HWO mission would find
+around FGK stars if
+\begin{itemize}
+\item planets were selected by mass, $0.5$--$2\,M_\oplus$ with $R = M^{0.27}$ (Chen \& Kipping
+2017), and
+\item the habitable zone were $0.96$--$1.20$~AU for the Sun, scaled as $\sqrt{L_\star}$ for other
+stars.
+\end{itemize}
+Throughout, Stark's selection is called the \emph{canonical box} and ours the \emph{redefined
+box}. AYO's code is not public, so we reimplement the model from the published equations and
+parameter tables (Secs.~\ref{sec:model} and~\ref{sec:nodes}), validate it against every published
+number we can reach (Sec.~\ref{sec:validation}), and then evaluate both boxes
+(Sec.~\ref{sec:results}). Section~\ref{sec:variants} measures how much the answer depends on
+settings that the published record leaves open, and Sec.~\ref{sec:open} describes the one
+discrepancy we cannot remove.
 
 %======================================================================
-\section{The model as a probabilistic graphical model}
-\label{sec:pgm}
+\section{The model}
+\label{sec:model}
 
-\subsection{Why a graphical model}
+\subsection{The model as an influence diagram}
 
-The AYO yield calculation is usually described procedurally: compute completeness, optimize
-exposure times, count planets, then add uncertainty sources one at a time. That description hides
-the structure that decides every number in this report --- which quantities are \emph{random},
-which are \emph{fixed}, which are \emph{fitted}, and, crucially, which random quantities the
-survey planner is allowed to see when it allocates its time. Stark et al.\ (2024, Sec.~3) call
-the last distinction \emph{actionable} versus \emph{static} uncertainty. In a graphical model it
-has a precise meaning, and it is the single most consequential modelling choice after the
-radiometry.
+AYO is usually described as a procedure: compute completeness, optimize exposure times, count
+planets, then add sources of uncertainty one at a time. That description hides the structure that
+determines the result: which quantities are random and which are fixed, and which random
+quantities the survey planner can see when it decides how to spend its time. Stark et al.\ (2024,
+Sec.~3) call the last distinction \emph{actionable} versus \emph{static} uncertainty. A graphical
+model makes it precise.
 
 Figure~\ref{fig:pgm} shows the model as an influence diagram: a directed acyclic graph of random
-variables with one \emph{decision} node, the survey allocation. Every node is implemented by a
-named function in the pipeline, listed in Table~\ref{tab:nodes}.
+variables with a single \emph{decision} node, the survey allocation. Table~\ref{tab:nodes}
+describes each node and the pipeline step that implements it.
 
 \begin{figure}[p]
 \centering
@@ -154,8 +134,6 @@ named function in the pipeline, listed in Table~\ref{tab:nodes}.
   \node[det] (rho) at (2.2,-3.3) {$\rho_{\mathcal{B}}$};
   \node[det] (etaB) at (0.6,-4.8) {$\eta_{\mathcal{B}}$};
   \node[det] (lambda) at (0.6,-7.4) {$\lambda$};
-  \node[fitted] (kappa) at (15.6,-1.6) {$\kappa$};
-  \node[obs] (ypub) at (17.6,-1.6) {$Y^{\rm pub}$};
   % ---- star plate ----
   \node[obs] (s) at (4.6,-3.5) {$\mathbf{s}_i$};
   \node[latent] (z) at (8.4,-3.5) {$z_i$};
@@ -198,7 +176,6 @@ named function in the pipeline, listed in Table~\ref{tab:nodes}.
   \draw[edge] (hBox) to[out=-60,in=110] (C);
   \draw[edge] (shape) to[out=-40,in=150] (C);
   \draw[edge] (hM) to[out=-120,in=40] (C);
-  \draw[edge] (kappa) to[out=-160,in=20] (C);
   \draw[edge] (s) to[out=-120,in=150] (o);
   \draw[edge] (shape) to[out=-100,in=160] (o);
   \draw[edge] (N) -- (o);
@@ -207,11 +184,10 @@ named function in the pipeline, listed in Table~\ref{tab:nodes}.
   \draw[edge] (hA) -- (A);
   \draw[edge] (z) to[out=-60,in=110] (tau);
   \draw[edge] (hM) to[out=-80,in=80] (tau);
-  \draw[edge] (kappa) to[out=-110,in=60] (tau);
   \draw[edge] (tau) -- (D);
   \draw[edge] (a) to[out=-60,in=170] (D);
   \draw[edge] (D) -- (Y);
-  \draw[fitedge] (ypub) -- node[above,font=\scriptsize]{fit} (kappa);\end{tikzpicture}}
+\end{tikzpicture}}
 
 \vspace{0.6em}
 \begin{tikzpicture}[x=1cm,y=1cm]
@@ -219,24 +195,21 @@ named function in the pipeline, listed in Table~\ref{tab:nodes}.
   \node[obs,minimum size=7mm] at (2.6,0) {}; \node[font=\scriptsize,anchor=west] at (3.1,0) {observed};
   \node[det,minimum size=7mm] at (5.4,0) {}; \node[font=\scriptsize,anchor=west] at (5.9,0) {deterministic};
   \node[dec,minimum size=6mm] at (8.4,0) {}; \node[font=\scriptsize,anchor=west] at (8.8,0) {decision};
-  \node[fitted,minimum size=8mm] at (10.9,0) {}; \node[font=\scriptsize,anchor=west] at (11.4,0) {fitted point estimate};
-  \node[fixed] at (14.6,0) {}; \node[font=\scriptsize,anchor=west] at (14.8,0) {fixed};
+  \node[fixed] at (11.0,0) {}; \node[font=\scriptsize,anchor=west] at (11.2,0) {fixed};
 \end{tikzpicture}
-\caption{The yield model as an influence diagram. Outer plate: the $N_\star$ screened HPIC stars;
-inner plate: the $N_i$ planets actually present around star $i$. The survey allocation
-$\mathbf{a}_i = (\tau_i, k_i)$ --- exposure per visit and number of visits --- is the one decision
-node; it is set by the equal-slope multiplier $\lambda$ from the planner's completeness curves
-$C_i$ and the box occurrence rate $\eta_{\mathcal{B}}$. A planet is counted ($D_{ij} = 1$) when
-its detection time at some visit is within the allocation and its spectral characterization time
-is within the two-month cap; $Y = \sum_{ij} D_{ij}$. The throughput factor $\kappa$ is not a random
-variable: it is fitted once, at fixed exozodi, to the published expected yield $Y^{\rm pub} = 22.5$
-(dashed), and comes out at @@CALFACTOR@@, so the edge carries almost no information. Four stars with LBTI-measured exozodi have $z_i$ observed rather than drawn (not shown).
-The edges that decide the uncertainty budget are the ones \emph{into} $\mathbf{a}_i$: $\eta_\oplus$
-and $z_i$ reach it (actionable), $A_{ij}$ and $N_i$ do not (static).}
+\caption{The yield model as an influence diagram. The outer plate runs over the $N_\star$
+screened HPIC stars; the inner plate runs over the $N_i$ planets that actually orbit star $i$. The
+only decision node is the survey allocation $\mathbf{a}_i = (\tau_i, k_i)$: the exposure time per
+visit and the number of visits. It is set by the equal-slope multiplier $\lambda$, which depends on
+the planner's completeness curves $C_i$ and on the occurrence rate in the box,
+$\eta_{\mathcal{B}}$. A planet is counted ($D_{ij} = 1$) if it is detected on some visit within
+its allocated exposure time \emph{and} its spectrum can be taken within the two-month cap; the
+yield is $Y = \sum_{ij} D_{ij}$. Four stars whose exozodi has been measured by LBTI have $z_i$
+observed rather than drawn (not shown). The edges that control the uncertainty budget are those
+\emph{entering} $\mathbf{a}_i$: $\eta_\oplus$ and $z_i$ reach it (they are actionable), while
+$A_{ij}$ and $N_i$ do not (they are static).}
 \label{fig:pgm}
 \end{figure}
-
-\subsection{The nodes}
 
 \begin{table}[htbp]
 \centering
@@ -256,22 +229,22 @@ $\lambda$ & deterministic & equal-slope multiplier closing the two-year budget &
 $\mathbf{a}_i$ & decision & $(\tau_i, k_i)$: the vertex of star $i$'s concave cost envelope at slope $\lambda$ & A05, A07 \\
 $N_i$ & random, per star & $N_i \sim \mathrm{Poisson}(\eta_\mathcal{B})$ & Stark+2024 Sec.~3.1; A07 \\
 $\mathbf{o}_{ij}$ & random, per planet & circular orbit: $a$, $R$ from SAG13 over $\mathcal{B}$; $\cos i \sim \mathcal{U}$; independent epoch per visit & ExoVista/AYO; A04 \\
-$A_{ij}$ & random, per planet & geometric albedo, $\mathcal{U}(0.08, 0.32)$ & Stark+2024 Sec.~3.2; A04 \\
+$A_{ij}$ & random, per planet & geometric albedo, $\mathcal{U}(0.08, 0.32)$, counted by Stark's per-visit flux test & Stark+2024 Sec.~3.2; A02, A04 \\
 $\boldsymbol{\tau}_{ij}$ & deterministic & detection time per visit (two channels in quadrature, S/N 7) and characterization time (R 140, best of nine bandpasses, best orbital phase) & Stark+2019 Eqs.~1--9; A04 \\
 $D_{ij}$ & deterministic & $\mathbb{1}[\min_{v \le k_i}\tau^{\rm det}_{ijv} \le \tau_i \ \wedge\ \tau^{\rm char}_{ij} \le 2\,\mathrm{mo}]$ & Stark+2019 Sec.~3; A04 \\
 $Y$ & deterministic & $\sum_{i,j} D_{ij}$ & A07 \\
-$\kappa$ & fitted & throughput factor on every band, fitted to $Y^{\rm pub}$: @@CALFACTOR@@ & A03 \\
 \bottomrule
 \end{tabular}
-\caption{Every node of Fig.~\ref{fig:pgm}, what it is, and where it comes from.}
+\caption{Every node of Fig.~\ref{fig:pgm}, what it represents, and where it comes from. The
+labels A01--A15 are the pipeline steps (Table~\ref{tab:steps}).}
 \label{tab:nodes}
 \end{table}
 
-\subsection{The joint distribution, and how the pipeline marginalizes it}
+\subsection{The joint distribution, and how it is marginalized}
 \label{sec:joint}
 
-Conditioning on the fixed quantities $(\mathcal{M}, \mathcal{B}, \kappa, \{\mathbf{s}_i\})$, the
-graph factorizes as
+With the fixed quantities $(\mathcal{M}, \mathcal{B}, \{\mathbf{s}_i\})$ held constant, the graph
+factorizes as
 \begin{multline}
 p(\eta_\oplus, \alpha, \beta, \mathbf{z}, \mathbf{N}, \mathbf{o}, \mathbf{A}, Y)
 = p(\eta_\oplus)\,p(\alpha,\beta)\prod_{i} p_z(z_i)\,
@@ -280,211 +253,235 @@ p(\eta_\oplus, \alpha, \beta, \mathbf{z}, \mathbf{N}, \mathbf{o}, \mathbf{A}, Y)
 \cdot \delta\!\Big(Y - \sum_{ij} D_{ij}\Big),
 \label{eq:joint}
 \end{multline}
-with the allocation entering through $D_{ij}$ as the deterministic function
+where the allocation enters $D_{ij}$ through the deterministic function
 \begin{equation}
 \mathbf{a}_i = \mathbf{a}_i\!\left(\lambda(\eta_\mathcal{B}, \mathbf{C}),\ C_i\right),
-\qquad C_i = C_i(\mathbf{s}_i, z_i, \mathcal{M}, \kappa, \mathcal{B}, \alpha, \beta).
+\qquad C_i = C_i(\mathbf{s}_i, z_i, \mathcal{M}, \mathcal{B}, \alpha, \beta).
 \label{eq:alloc}
 \end{equation}
 
-Two properties make this tractable, and the pipeline uses both.
+Two properties make this tractable.
 
-\textbf{Poisson thinning.} Given the allocation, planets are counted independently with a
-probability that depends only on the star. Marginalizing the planet draw inside the plate is then
-exact: if $N_i \sim \mathrm{Poisson}(\eta_\mathcal{B})$ and each planet is counted with
-probability $\bar{C}_i$ --- the completeness at the allocated vertex, averaged over the albedo
-draw --- the counted planets are $\mathrm{Poisson}(\eta_\mathcal{B}\bar{C}_i)$, and the survey
-total is
+\textbf{Poisson thinning.} Once the allocation is fixed, each planet is counted independently,
+with a probability that depends only on its host star, so the planet draw inside the plate can be
+marginalized exactly. If $N_i \sim \mathrm{Poisson}(\eta_\mathcal{B})$ and each planet is counted
+with probability $\bar{C}_i$ (the completeness at the allocated exposure, averaged over albedo),
+then the number of counted planets around star $i$ is
+$\mathrm{Poisson}(\eta_\mathcal{B}\bar{C}_i)$, and the survey total is
 \begin{equation}
 Y \mid \eta_\oplus, \mathbf{z} \ \sim\ \mathrm{Poisson}\!\Big(\Lambda(\eta_\oplus, \mathbf{z})\Big),
 \qquad
 \Lambda = \eta_\mathcal{B} \sum_i \bar{C}_i\!\left(\mathbf{a}_i(\eta_\mathcal{B}, \mathbf{z})\right).
 \label{eq:thinning}
 \end{equation}
-Step A07 evaluates $\Lambda$ on a 24-node grid in $\eta_\oplus$, \emph{re-optimizing the survey
-at every node}, interpolates it, and draws one Poisson count per posterior sample of
-$\eta_\oplus$ (@@POSTSAMPLES@@ samples). This is Stark's construction exactly: his Sec.~3.1 draws
-a Poisson number of planets per star and counts those with a valid visit record.
+Step A07 evaluates $\Lambda$ at 24 values of $\eta_\oplus$, \emph{re-optimizing the survey at
+each one}, interpolates between them, and draws one Poisson count for each of the @@POSTSAMPLES@@
+posterior samples of $\eta_\oplus$. This is Stark's construction: in his Sec.~3.1 he draws a
+Poisson number of planets for each star and counts those with a valid record of visits.
 
-\textbf{Albedo is static, so it enters $\bar{C}_i$ and not $\mathbf{a}_i$.} The planner allocates
-against $C_i$ computed at $A_G = 0.2$; the count is then read from the same planets and orbits
-with $A_{ij}$ drawn. A darker-than-planned planet can fail the fixed allocation; a brighter one
-gains little. This asymmetry is the whole of the albedo penalty, and the graph makes it
-unavoidable: $A_{ij}$ has no path into $\mathbf{a}_i$.
+\textbf{Albedo is static.} The planner allocates time using $C_i$ computed for a fixed albedo,
+$A_G = 0.2$. The yield is then counted from the same planets and orbits with each planet's albedo
+$A_{ij}$ drawn at random, using Stark's per-visit test (Sec.~\ref{sec:albedo}). A planet darker
+than planned may go undetected in the fixed allocation. Because there is no path from $A_{ij}$
+into $\mathbf{a}_i$, the albedo penalty is a consequence of the graph, not an added correction.
 
-\textbf{What is marginalized, and what is not yet.}
+\textbf{What is marginalized.}
 \begin{itemize}
-\item $\eta_\oplus$: marginalized, with the survey re-optimized per value (actionable).
-\item $N_i$, $\mathbf{o}_{ij}$, $A_{ij}$: marginalized exactly by thinning, Eq.~\eqref{eq:thinning}.
-\item $\alpha, \beta$: marginalized for the \emph{ratio} $\rho_\mathcal{B}$; the planet
-population inside each box uses the SAG13 central values.
+\item $\eta_\oplus$: marginalized, with the survey re-optimized for each value, because it is
+actionable.
+\item $N_i$, $\mathbf{o}_{ij}$, $A_{ij}$: marginalized exactly by thinning,
+Eq.~\eqref{eq:thinning}.
+\item $\alpha, \beta$: marginalized for the \emph{ratio} $\rho_\mathcal{B}$; the planet population
+inside each box uses the SAG13 central values.
 \item $\mathbf{z}$: marginalized over @@NDRAWS@@ joint draws (Stark uses 500), with the survey
-\emph{re-optimized for every draw}, because exozodi is actionable. A04 tabulates each star's
-completeness on a 23-level exozodi grid (0--1024 zodis) and each draw interpolates between levels;
-against direct evaluation at the drawn levels this changes the optimized yield by at most
+\emph{re-optimized for every draw}, because exozodi is actionable. Step A04 tabulates each star's
+completeness at 23 exozodi levels (0--1024 zodis), and each draw interpolates between them; against
+direct evaluation at the drawn levels, this changes the optimized yield by at most
 @@GRIDERRPCT@@\%. Each posterior sample of $\eta_\oplus$ is paired with one draw of $\mathbf{z}$.
-Over the draws the fixed-$\eta_\oplus$ yield is @@DRAWMEAN@@ with a draw-to-draw scatter of
-@@DRAWSTD@@.
+At fixed $\eta_\oplus$, the yield averaged over draws is @@DRAWMEAN@@, with a draw-to-draw scatter
+of @@DRAWSTD@@.
 \end{itemize}
 
-\subsection{Actionable and static, stated precisely}
+\subsection{Actionable and static uncertainty}
 
-A source of uncertainty is \emph{actionable} if its node has a directed path into the decision
-node, and \emph{static} if it does not. In Fig.~\ref{fig:pgm}:
+A source of uncertainty is \emph{actionable} if there is a directed path from its node to the
+decision node, and \emph{static} if there is not. In Fig.~\ref{fig:pgm}:
 \begin{itemize}
 \item $\eta_\oplus \to \eta_\mathcal{B} \to \lambda \to \mathbf{a}_i$: actionable. A mission that
-finds more planets must spend more time characterizing them, so the survey that maximizes yield
-depends on $\eta_\oplus$. This is why yield is sub-linear in $\eta_\oplus$ and why the
-redefined yield cannot be obtained by rescaling.
-\item $z_i \to C_i \to \mathbf{a}_i$: actionable. Exozodi is measured on the first visit and the
-survey adapts (Stark et al.\ 2015).
+finds more planets must spend more time characterizing them, so the yield-maximizing survey depends
+on $\eta_\oplus$. This is why yield grows more slowly than $\eta_\oplus$, and why the redefined
+yield cannot be obtained by rescaling.
+\item $z_i \to C_i \to \mathbf{a}_i$: actionable. Exozodi is measured on the first visit, and the
+survey adapts to it (Stark et al.\ 2015).
 \item $A_{ij}$, $N_i$, $\mathbf{o}_{ij}$: static. The planner cannot know which stars host
-planets, where they are, or how dark they are.
+planets, where those planets are, or how dark they are.
 \end{itemize}
-Every observational bias in this problem --- the albedo penalty, the exozodi penalty, the
-difference between Stark's red and purple curves --- is a statement about which of these paths
-exist. Getting a path wrong changes a penalty by a factor of several, as Appendix~\ref{app:ledger}
-records.
+Each observational penalty in this problem (the albedo penalty, the exozodi penalty, the difference
+between Stark's red and purple curves in his Fig.~10) is a statement about which of these paths
+exist.
 
 %======================================================================
-\section{The nodes, specified}
+\section{Model components}
 \label{sec:nodes}
 
-\subsection{Stars: HPIC}
+\subsection{Stars}
 
-The target list is the HWO Preliminary Input Catalog (Tuchow et al.\ 2024), the list Stark et al.\
-(2024) state they use: @@CATROWS@@ dwarfs within 50\,pc, @@CATFGK@@ of them FGK. Stellar photon
-fluxes come from a blackbody at the catalogued $T_{\rm eff}$ and $R_\star$; against HPIC's measured
-$V$ for @@PHOTN@@ stars the median residual is @@PHOTMED@@\,mag over 5300--7300\,K, and the same
-fluxes agree with EXOSIMS's Pickles templates to 0.979. The survey pool is the @@CALSTARS@@ stars
-with the widest habitable zones in $\lambda/D$ after a box-aware noise-floor screen.
+The target list is the HWO Preliminary Input Catalog (HPIC; Tuchow et al.\ 2024), which Stark et
+al.\ (2024) use. It contains @@CATROWS@@ dwarf stars within 50\,pc, @@CATFGK@@ of them FGK. Each
+star's photon flux is computed from a blackbody at its catalogued $T_{\rm eff}$ and $R_\star$.
+Compared with the measured $V$ magnitudes of @@PHOTN@@ stars in HPIC, the median residual between
+5300 and 7300\,K is @@PHOTMED@@\,mag, and the fluxes agree with the Pickles spectral templates used
+by EXOSIMS to a ratio of 0.979. The survey chooses from the @@CALSTARS@@ stars whose habitable
+zones are widest in units of $\lambda/D$, after a noise-floor screen that depends on the box being
+searched.
 
-\subsection{Occurrence: $\eta_\oplus$, and why its width is read as one sigma}
+\subsection{Occurrence: $\eta_\oplus$}
 \label{sec:eta}
 
-Stark et al.\ (2024) Sec.~3.5 derive $\eta_\oplus$ by integrating the Bryson et al.\ (2021) Kepler
-DR25 posteriors over their canonical domain, drawing equally from Bryson's two bounding
-completeness-extrapolation cases, and quote $0.26^{+0.29}_{-0.14}$ as a mean with an 86\% interval.
-Bryson's posterior chains are not published: the paper's repository omits the output directories
-that hold them, and the author's site holds only the completeness contours. The distribution must
-therefore be reconstructed, and the choice is decided by Stark's own Fig.~10.
+Stark et al.\ (2024, Sec.~3.5) derive $\eta_\oplus$ by integrating the Kepler DR25 posteriors of
+Bryson et al.\ (2021) over their canonical domain, drawing equally from Bryson's two bounding cases
+for extrapolating completeness, and quote $0.26^{+0.29}_{-0.14}$ as ``mean and 86\% confidence
+interval''. Bryson's posterior chains are not published, so the distribution must be
+reconstructed.
 
-Holding this model's yield-versus-$\eta_\oplus$ curve at Stark's fixed-$\eta_\oplus$ level (his
-red curve, mean @@FIGREDMEAN@@), the lognormal $\eta_\oplus$ that turns his red curve into his
-purple curve has median @@BESTMEDIAN@@ and $\ln$-width @@BESTSIGMA@@, reproducing the purple curve
-to a total-variation distance of @@BESTTV@@. Reading the quoted interval as 86\%, as the text
-labels it, gives a $\ln$-width of @@QEIGHTSIXSIGMA@@, a distance of @@QEIGHTSIXTV@@, and a peak at
-@@QEIGHTSIXMODE@@ against the published @@FIGMODE@@. Reading it as a one-sigma (68\%) interval
-gives $\ln$-width @@QSIXEIGHTSIGMA@@, a distance of @@QSIXEIGHTTV@@, and a peak at @@QSIXEIGHTMODE@@. Bryson's
-Fig.~14, digitized from its vector source, shows each extrapolation case with a $\ln$-width of about
-0.8, consistent with the figure and not with the 86\% reading. This model therefore reads the
-interval at $z = @@ETAZ@@$ (Table~\ref{tab:nodes}), giving a mean of @@ETAMEAN@@; the text's
-reading remains available as a command-line option.
+We use a lognormal and set its width from Stark's own Fig.~10, which shows the yield distribution
+with $\eta_\oplus$ fixed (red curve, mean @@FIGREDMEAN@@) and with $\eta_\oplus$ uncertain (purple
+curve). Holding this model's yield-versus-$\eta_\oplus$ relation at the level of the red curve,
+the lognormal that best turns the red curve into the purple one has median @@BESTMEDIAN@@ and
+$\ln$-width @@BESTSIGMA@@, reproducing the purple curve to a total-variation distance of
+@@BESTTV@@. Reading the quoted interval as 86\% gives a $\ln$-width of @@QEIGHTSIXSIGMA@@, a
+distance of @@QEIGHTSIXTV@@, and a peak at @@QEIGHTSIXMODE@@ instead of the published @@FIGMODE@@.
+Reading it as a one-sigma (68\%) interval gives a $\ln$-width of @@QSIXEIGHTSIGMA@@, a distance of
+@@QSIXEIGHTTV@@, and a peak at @@QSIXEIGHTMODE@@. Bryson's Fig.~14, digitized from its vector
+source, shows each extrapolation case with a $\ln$-width of about 0.8, consistent with Stark's
+figure and not with the 86\% reading. We therefore read the interval at $z = @@ETAZ@@$
+(Table~\ref{tab:nodes}).
 
-The redefined box enters only through $\rho_\mathcal{B}$, the ratio of SAG13 integrals, which does
-not depend on the normalization $\Gamma$. Its posterior comes from an \texttt{emcee} chain over
-$(\ln\Gamma, \alpha, \beta)$ with SAG13 priors, and is narrow because $\Gamma$ cancels.
+This choice departs from Stark's text in two places: the interval is read as 68\% rather than
+86\%, and the lognormal is centered on 0.26, which makes 0.26 its median, whereas Stark calls 0.26
+the mean (the model's mean $\eta_\oplus$ is @@ETAMEAN@@). Step A15 tests the interval against its
+own source without using the yield model. It mixes Bryson's two cases equally, as Stark describes,
+and rescales the mixture so that its mean is 0.26. That distribution puts @@ETAMASSPCT@@\% of its
+probability inside the quoted $[0.12, 0.55]$, much closer to 68\% than to 86\%; its own 86\%
+interval, $[@@ETAMIX86LO@@, @@ETAMIX86HI@@]$, is far wider than the one printed. Its median,
+@@ETAMIXMEDIAN@@, lies well below its mean, so no lognormal can match the stated mean, interval and
+confidence level at once. The 68\% reading may therefore correct a transposed digit, or it may
+supply a width that stands in for a tail the lognormal lacks; the figure cannot distinguish the
+two. Using the rescaled Bryson mixture itself as the $\eta_\oplus$ law matches Fig.~10 poorly
+(Sec.~\ref{sec:variants}), probably because Bryson's published distribution is for a different
+selection of planets and stars than the one Stark integrated over. We keep the 68\% lognormal and
+treat the reading as an open question.
 
-\subsection{Exozodi: the HOSTS distribution and four measured stars}
+The redefined box enters only through $\rho_\mathcal{B}$, the ratio of the SAG13 integrals over
+the two boxes, which does not depend on the normalization $\Gamma$. Its posterior comes from an
+\texttt{emcee} chain over $(\ln\Gamma, \alpha, \beta)$ with SAG13 priors, and it is narrow because
+$\Gamma$ cancels in the ratio.
+
+\subsection{Exozodiacal dust}
 \label{sec:exozodi}
 
-Each star's exozodi level is drawn from the LBTI HOSTS maximum-likelihood distribution that
-Stark et al.\ (2024) use, digitized from the vector content stream of their Fig.~9 (red): a median
-of @@HOSTSMEDIAN@@ zodis, against Stark's stated three, with @@HOSTSABOVE@@\% of draws above 100
-zodis. The histogram carries @@HOSTSMASS@@ of the implied $10^4 \times 500$ draws; the shortfall is
-renormalized rather than placed off-axis, because doing so is what reproduces the stated median.
-$\epsilon$~Eri (297 zodis), $\theta$~Boo (148), 72~Her (588; ``w~Her'' in HPIC) and 110~Her (235)
-are pinned to their LBTI measurements, as Stark does, whenever levels are drawn.
+Each star's exozodi level is drawn from the LBTI HOSTS maximum-likelihood distribution (Ertel et
+al.\ 2020) that Stark et al.\ (2024) use, digitized from the vector data of their Fig.~9 (red
+curve). One zodi is the dust level of the Solar System's own zodiacal cloud. The distribution has a
+median of @@HOSTSMEDIAN@@ zodis (Stark states three), and @@HOSTSABOVE@@\% of draws lie above 100
+zodis. The digitized histogram accounts for @@HOSTSMASS@@ of the $10^4 \times 500$ draws it
+implies; we renormalize to make up the shortfall, which reproduces the stated median. As Stark
+does, whenever levels are drawn we pin four stars to their LBTI measurements: $\epsilon$~Eri (297
+zodis), $\theta$~Boo (148), 72~Her (588; listed as ``w~Her'' in HPIC) and 110~Her (235).
 
-The heavy tail matters more than the median. A star at hundreds of zodis is effectively removed
-from the survey; the lognormal stand-in this replaced put 0.2\% of stars above 100 zodis and gave
-an exozodi penalty of 0.7\%, against Stark's 11\%. The exozodi surface brightness follows Stark
-(2014) App.~C: a constant habitable-zone optical depth, evaluated at the EEID, with solar colours.
+The heavy tail matters more than the median, because a star with hundreds of zodis is effectively
+removed from the survey. The exozodi surface brightness follows Stark (2014, App.~C): a constant
+optical depth in the habitable zone, evaluated at the Earth-equivalent insolation distance (EEID),
+with solar colors.
 
-\subsection{Radiometry and exposure times: $\boldsymbol{\tau}_{ij}$}
+\subsection{Albedo}
+\label{sec:albedo}
 
-Exposure times follow Stark et al.\ (2019) Eq.~1,
+Planets have geometric albedos drawn uniformly between 0.08 and 0.32 (Stark et al.\ 2024,
+Sec.~3.2). Following Stark, the observation plan is fixed at $A_G = 0.2$, and a planet with a
+drawn albedo is counted only if the fixed plan would have detected it: its albedo-adjusted flux
+must lie inside the range of fluxes the visit actually reached. That range is bounded below by
+the faintest flux the exposure detected and above by the brightest flux the inner working angle
+allowed (``the faintest detected planet flux along the orbit segment \ldots\ is limited by the
+exposure time, while the brightest planet flux along the segment \ldots\ is constrained by the IWA
+of the coronagraph''). Both bounds are applied. Characterization is budgeted at $A_G = 0.2$, as
+Stark (2024, Sec.~3.2) states.
+
+With this test the albedo penalty on the expected yield is @@ALBEDOPEN@@\%, against the 12\% that
+Stark reports. The alternative of re-deriving each drawn-albedo planet's exposure time gives
+@@VARALBALBPEN@@\%, so neither method reproduces the published value here
+(Sec.~\ref{sec:variants}).
+
+\subsection{Radiometry and exposure times}
+\label{sec:radiometry}
+
+Exposure times follow Eq.~1 of Stark et al.\ (2019),
 \begin{equation}
 \tau = (\mathrm{S/N})^2\,\frac{\mathrm{CR_p} + 2\,\mathrm{CR_b}}{\mathrm{CR_p}^2},
 \end{equation}
-with backgrounds from leaked starlight, local zodi, exozodi and the detector (dark current and
-clock-induced charge with the $6.73$ Geiger factor of Stark 2019 Eq.~9). The zodiacal and
-exozodiacal backgrounds carry the extended-source throughput $T_{\rm sky}(r)$ of Stark (2019)
-Eqs.~5--6, reconstructed as $T_{\rm sky}(r) = 0.678\,\Upsilon_{\rm c}(r)/\Upsilon_{\rm c,max}$,
-where $0.678 = \Upsilon_{\rm c,max}/\mathrm{EE}(0.7\,\lambda/D)$ is its large-separation value
-(Sec.~\ref{sec:calibration}). The coronagraph is the
-DMVC6 of Stark et al.\ (2024), digitized from the vector content stream of their coronagraph figure, evaluated in
-\emph{circumscribed} $\lambda/D$ (the figure's convention) with a collecting area normalized to the
-full obscured primary. Detection combines the 450\,nm and 550\,nm channels in quadrature at
-S/N~7 with a $\Delta\mathrm{mag} = 26.5$ noise floor. Characterization is an $R = 140$ IFS spectrum
-at S/N per spectral bin from Stark's Fig.~3, choosing the best of nine bandpasses, with 96 pixels
-per spectral bin at 1\,$\mu$m, taken at the planet's most favourable orbital phase.
+where S/N is the required signal-to-noise ratio, $\mathrm{CR_p}$ is the planet's count rate, and
+$\mathrm{CR_b}$ is the background count rate. The background includes leaked starlight, local
+zodiacal light, exozodiacal light, and detector noise (dark current, and clock-induced charge with
+the Geiger factor of 6.73 from Stark 2019, Eq.~9). Local zodiacal light follows Stark et al.\
+(2014): the Leinert et al.\ (1998) spectrum, scaled by 0.69 to a solar elongation of 135$^\circ$
+and adjusted for each star's ecliptic latitude. This matches the zodi in AYO's exposure-time
+benchmark (Stark et al.\ 2025) to 0.93--1.01.
 
-\subsection{Completeness, counting, and the allocation}
+Both sky backgrounds are multiplied by the extended-source throughput $T_{\rm sky}$ of Stark
+(2019, Eqs.~5--6), ``the instrument's throughput for extended sources'', computed ``by first
+convolving the spatially-dependent PSF at all locations with a normalized uniform background''.
+This is a function of position: background light near the inner working angle (IWA) is attenuated
+by the same focal-plane mask that attenuates a planet there. Stark's map is not published, so we
+reconstruct it as $T_{\rm sky}(r) = 0.678\,\Upsilon_{\rm c}(r)/\Upsilon_{\rm c,max}$, the
+core-throughput curve rescaled to its large-separation value
+$0.678 = \Upsilon_{\rm c,max}/\mathrm{EE}(0.7\,\lambda/D)$. This assumes that the fraction of an
+off-axis PSF falling inside the photometric core does not change with separation, and it omits the
+$\sim\lambda/D$ smoothing of the convolution.
 
-For each star, 1\,200--3\,000 planets are injected over the box and propagated through the
-radiometry at up to six independent visit epochs. $C_i(\tau, k)$ is the fraction of injected
-planets detected within exposure $\tau$ on at least one of $k$ visits \emph{and} characterizable
-inside two months: Stark et al.\ (2019) state that planets failing either limit "did not count
-toward the yield". The survey then maximizes $\sum_i \eta_\mathcal{B} C_i$ subject to a two-year
-budget, charging each star $k(\tau'\tau + t_{\rm oh})$ for detection plus
-$\eta_\mathcal{B} C_i\,(\tau'\bar{\tau}_{\rm char} + t_{\rm oh})$ for characterizing what it
-finds. Pooling every $(k, \tau)$ option onto one concave envelope and sweeping the equal-slope
-multiplier $\lambda$ reproduces an exact dynamic-programming optimum to 0.00\%.
+The coronagraph is the DMVC6 of Stark et al.\ (2024), digitized from the vector data of their
+coronagraph figure. Its curves are evaluated in \emph{circumscribed} $\lambda/D$, the convention
+the figure uses, and the collecting area is the full obscured primary mirror. Detection combines
+the 450\,nm and 550\,nm channels in quadrature and requires S/N~7. The noise floor at
+$\Delta\mathrm{mag} = 26.5$ enters as a systematic term in the exposure-time equation, which
+lengthens exposures as a planet approaches it, rather than as a hard cut. The two-month limits on
+detection and characterization include overheads (Stark et al.\ 2024, Table~2). Characterization
+is an $R = 140$ spectrum from the integral field spectrograph (IFS), at the S/N per spectral bin
+given in Stark's Fig.~3, using whichever of nine bandpasses is best, with 96 pixels per spectral
+bin at 1\,$\mu$m, taken at the planet's most favorable orbital phase.
 
-\subsection{The calibration $\kappa$, and what it was absorbing}
-\label{sec:calibration}
+\textbf{No calibration.} The model contains no throughput factor fitted to Stark's results. His
+22.5 candidates are an output of AYO, not an input, and a scalar fitted to them would absorb any
+error that changes exposure times uniformly: at a refitted factor, every alternative treatment we
+tested changes per-planet exposure times by a nearly uniform $1.0 \pm 0.05$, and the yield's weak
+dependence on throughput (an elasticity of about 0.4) lets a fitted factor cancel it entirely. For
+reference, the factor that would reproduce 22.5 is @@CALFITTED@@; step A03 records it as a
+diagnostic only.
 
-The one input the papers do not publish is the pair of simulated two-dimensional coronagraph maps
-$\Upsilon_c(x,y)$ and $I(x,y)$; the digitized azimuthal averages stand in for them. A single
-throughput factor $\kappa$ absorbs the residual, fitted at $\eta_\oplus = 0.24$ with exozodi
-\emph{fixed} at three zodis, because Stark's 22.5 comes from a fixed-exozodi run that precedes his
-exozodi sampling.
+\subsection{Completeness and the survey allocation}
 
-\textbf{Until this revision $\kappa$ was 1.62}, inside the factor-of-two plausibility gate but far
-from unity, and the open problem below showed it was compensating for something. Stark (2019)
-Eqs.~5--6 write both sky backgrounds with $T_{\rm sky}(x,y)$, ``the instrument's throughput for
-extended sources'', computed ``by first convolving the spatially-dependent PSF at all locations with
-a normalized uniform background''. That is a map: background light near the inner working angle is
-attenuated by the same focal-plane mask that attenuates a planet there. This model had used its
-large-separation value, 0.678, everywhere, charging every planet near the IWA for background the
-mask removes. Reconstructing the map as the core-throughput curve rescaled to that value (which
-assumes the fraction of an off-axis PSF inside the photometric core does not change with
-separation, and omits the $\sim\lambda/D$ smoothing of the convolution) gives:
-
-\begin{center}
-\small
-\begin{tabular}{lrr}
-\toprule
-& $T_{\rm sky}$ constant & $T_{\rm sky}(r)$ \\
-\midrule
-Planning yield at 6\,m with no calibration ($\kappa = 1$), published 22.5 & @@WIUNCALCONST@@ & @@WIUNCALSKY@@ \\
-Fitted $\kappa$ & @@WIKAPPACONST@@ & @@WIKAPPASKY@@ \\
-Mean characterization time, first 18 EECs, 6\,m / 9\,m (d); published 22 / 3.5 & @@WICHARCONST@@ & @@WICHARSKY@@ \\
-\bottomrule
-\end{tabular}
-\end{center}
-(one exozodi seed, 1\,200 planets per star; \texttt{explorations/whatIfCharacterizationTreatment.py}).
-
-The factor was absorbing the constant $T_{\rm sky}$. With the map, the uncalibrated model is
-@@CALUNCAL@@ against 22.5 in the pipeline (@@CALUNCALPCT@@\%), and the fitted factor is
-$\kappa = @@CALFACTOR@@$. This is a single number, and this project has been caught by single
-numbers before, so it is worth stating what it does not fix: the characterization times are
-essentially unchanged, because the old $\kappa$ was speeding up every exposure and the map speeds up
-only those near the IWA, and the two roughly cancel for the easiest targets. A split calibration,
-one factor for detection and one for spectra, cannot repair them either: a scalar on spectra
-rescales the 6\,m and 9\,m times alike and leaves their ratio, which is the discrepancy
-(Sec.~\ref{sec:open}), where it is.
+For each star, 1\,200--3\,000 planets are injected across the box and propagated through the
+radiometry at up to six independent visit times. The completeness $C_i(\tau, k)$ is the fraction
+of injected planets that are detected within exposure $\tau$ on at least one of $k$ visits
+\emph{and} can be characterized within two months; Stark et al.\ (2019) state that planets failing
+either limit ``did not count toward the yield''. The survey then maximizes
+$\sum_i \eta_\mathcal{B} C_i$ within a two-year budget. Each star is charged
+$k(\tau'\tau + t_{\rm oh})$ for detection, plus
+$\eta_\mathcal{B} C_i\,(\tau'\bar{\tau}_{\rm char} + t_{\rm oh})$ for characterizing whatever it
+finds, where $\tau'$ is the time multiplier for wavefront control and $t_{\rm oh}$ is the slew and
+wavefront-control overhead per observation. Pooling every $(k, \tau)$ option into a single concave
+envelope and sweeping the equal-slope multiplier $\lambda$ reproduces an exact
+dynamic-programming optimum to 0.00\%.
 
 %======================================================================
 \section{Validation against the published record}
 \label{sec:validation}
 
-Four separate times in this project an apparent agreement rested on two errors that cancelled, so
-no single number is treated as evidence. Step A09 compares every reachable quantity with the
-published record, tags each check as independent or tuned, and records its source and tolerance.
-Tuned checks (the digitized coronagraph round-trip and the calibrated yield) are excluded from
-Table~\ref{tab:verif}.
+Step A09 compares every quantity it can against the published record and records each check's
+source and tolerance. Checks against quantities that entered the model as inputs (the round trips
+through the digitized coronagraph curves) are labeled \emph{tuned} and excluded, leaving the
+@@NINDEP@@ independent checks of Table~\ref{tab:verif}, of which @@NAGREE@@ agree. The three that
+disagree are the albedo penalty (Sec.~\ref{sec:albedo}) and the characterization times at 6 and
+9\,m (Sec.~\ref{sec:open}).
 
 \begin{table}[htbp]
 \centering
@@ -496,125 +493,158 @@ Table~\ref{tab:verif}.
 @@VERIFTABLE@@
 \bottomrule
 \end{tabular}
-\caption{The @@NINDEP@@ independent checks of step A09, of which @@NAGREE@@ agree. Published values
-from Fig.~10 are digitized from the figure's vector content stream; the fixed-$\eta$ mean is
-Stark's red curve, the median, mode and low tail are his purple curve.}
+\caption{The @@NINDEP@@ independent checks of step A09, of which @@NAGREE@@ agree. Published
+values from Fig.~10 are digitized from the figure's vector data: the fixed-$\eta$ mean comes from
+Stark's red curve, and the median, mode and low tail from his purple curve.}
 \label{tab:verif}
 \end{table}
 
-\subsection{The realized-yield distribution}
+\textbf{The yield level.} The expected 6\,m yield with exozodi and albedo fixed is @@CALUNCAL@@
+against the published 22.5 (@@CALUNCALPCT@@\%). With $\eta_\oplus$ fixed and all other
+uncertainties included, the realized yield has mean @@FIXEDETA@@ against the @@FIGREDMEAN@@ of
+Stark's red curve (@@LEVELPCT@@\%), and the exozodi penalty is @@DRAWEXOPEN@@\% against 11.1\%.
 
-Stark's Fig.~10 purple curve (all astrophysical uncertainties, including $\sigma_{\eta_\oplus}$)
-has its peak at @@FIGMODE@@, median @@FIGMEDIAN@@ and mean @@FIGMEANLINE@@; the red curve
-($\eta_\oplus$ fixed) has mean @@FIGREDMEAN@@. The digitization reproduces three numbers stated in
-his text --- the red mean of 17.3, and $P_{25}$ of 6\% and $\sim$32\% --- so the published curves
-are known to the width of a line. This model's realized distribution has median @@MODELMEDIAN@@,
-@@MODELBELOW@@ of its mass below 12 candidates (published 0.29), a peak at @@MODELMODE@@, and an
-$\eta_\oplus$-fixed mean of @@FIXEDETA@@. The two are drawn side by side in
-Fig.~\ref{fig:pair10}.
+\textbf{The realized-yield distribution.} The purple curve in Stark's Fig.~10, which includes
+every astrophysical uncertainty, peaks at @@FIGMODE@@, with median @@FIGMEDIAN@@ and mean
+@@FIGMEANLINE@@. Our digitization reproduces three numbers quoted in his text (the red-curve mean
+of 17.3, and $P_{25}$ values of 6\% and $\sim$32\%), so the published curves are known to within
+the width of a plotted line. This model's realized distribution has mean @@VARBASEMEAN@@, median
+@@MODELMEDIAN@@, and @@MODELBELOW@@ of its probability below 12 candidates (published 0.29); its
+total-variation distance from the purple curve is @@VARBASETV@@. Its peak is at @@PEAKBASE@@,
+computed from the exact Poisson mixture over the sampled expected yields; the mode of a histogram
+of realized draws (@@MODELMODE@@) is too noisy for this comparison, since bootstrapped it cannot
+distinguish 10 from 16. Scaling the overall yield level by 5--10\% shifts the exact peak by one
+bin, which sets the resolution of this statistic. Figure~\ref{fig:pair10} shows the two
+distributions side by side.
 
-\subsection{The aperture scaling}
-\label{sec:aperture}
+\textbf{The aperture scaling.} With nothing fitted at any aperture, the model gives $P_{25}$
+(including the spread in $\eta_\oplus$) of @@APINCL@@\% at 6, 7, 8 and 9\,m, against a published
+@@APINCLPUB@@\%. The expected yield at $\eta = 0.24$ runs @@APYIELDS@@, scaling as
+$D^{@@APEXPONENT@@}$ against the published $\sim D^{1.9}$.
 
-With $\kappa$ frozen at its 6\,m value, $P_{25}$ including $\sigma_{\eta_\oplus}$ at 6/7/8/9\,m is
-@@APINCL@@\% against a published @@APINCLPUB@@\%, and the expected yield at $\eta = 0.24$ runs
-@@APYIELDS@@, a scaling of $D^{@@APEXPONENT@@}$ against a published $\sim D^{1.9}$. These are
-out-of-sample predictions: nothing was fitted at 7, 8 or 9\,m.
+\textbf{An independent implementation.} EXOSIMS (Savransky \& Garrett 2016) shares no code or
+scheduling method with this pipeline. Given the same FGK stars and optics, its count rates agree
+with ours to ratios of 1.001 (local zodi), 0.975 (exozodi) and 0.979 (star). It cannot be run end
+to end in this environment, because of version incompatibilities that also break its own bundled
+example script.
 
-\subsection{Independent implementation: EXOSIMS}
+\textbf{The published figures.} Nine of the 26 figures in Stark et al.\ (2024) show a quantity
+this model computes under the same assumptions. Appendix~\ref{app:pairs} reproduces each beside the
+original, drawn with the published axes, ranges and line styles and with nothing rescaled.
 
-EXOSIMS shares no code or scheduling method with this pipeline. Fed identical FGK stars and optics,
-its count rates agree to 1.001 (local zodi), 0.975 (exozodi) and 0.979 (stellar). Reading it also
-exposed two missing background terms, each then confirmed against Stark's papers. It cannot be run
-end to end here, because of version incompatibilities that also break its own shipped sample script.
-
-
-%======================================================================
-\section{Side by side with the published figures}
-\label{sec:pairs}
-
-Nine of the 26 figures in Stark et al.\ (2024) show a quantity this model computes under the same
-assumptions. Each is reproduced below next to the original, which is copied unaltered from the
-arXiv e-print source (arXiv:2405.19418, \texttt{ms\_v2}). The model versions are drawn by step A12
-in the published axes, ranges and line styles; nothing is rescaled to improve agreement. Figures
-without a like-for-like counterpart (optical layouts, throughput and QE curves, the design-change
-scenarios of his Sec.~5) are omitted.
-
-@@PAIRFIGURES@@
 %======================================================================
 \section{Results}
 \label{sec:results}
 
+Table~\ref{tab:answer} gives the yields for both boxes.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+& \textbf{Canonical box} & \textbf{Redefined box} \\
+\midrule
+Habitable zone (AU, scaled by $\sqrt{L_\star}$) & 0.95--1.67 & 0.96--1.20 \\
+Planet selection & $0.8\,(a/\mathrm{EEID})^{-1/2} < R/R_\oplus \le 1.4$ & $0.5 \le M/M_\oplus \le 2$, $R=M^{0.27}$ \\
+Occurrence $\eta$ (median, 68\%) & $@@ETACMED@@^{+@@ETACUP@@}_{-@@ETACDN@@}$ & $@@ETARMED@@^{+@@ETARUP@@}_{-@@ETARDN@@}$ \\
+Realized yield, median & @@CANONMED@@ & @@REDEFMED@@ \\
+Realized yield, mean & @@CANONMEAN@@ & @@REDEFMEAN@@ \\
+Realized yield, 90\% interval & @@CANONP5@@--@@CANONP95@@ & @@REDEFP5@@--@@REDEFP95@@ \\
+$P(\ge 25$ candidates$)$ & @@CANONP25@@\% & @@REDEFP25@@\% \\
+\midrule
+Occurrence ratio, redefined/canonical & \multicolumn{2}{c}{$@@OCCRATIO@@^{+@@OCCRATIOUP@@}_{-@@OCCRATIODN@@}$} \\
+\textbf{Yield ratio, redefined/canonical} & \multicolumn{2}{c}{$\mathbf{@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}}$} \\
+\bottomrule
+\end{tabular}
+\caption{Yields for the baseline design, a LUVOIR-B-like telescope 6\,m in inscribed diameter.
+Yields are realized counts of candidates, marginalized over the uncertainty in $\eta_\oplus$, the
+random draw of planets, their geometric albedo, exozodi, and the survey's re-optimization. This is
+the quantity Stark et al.\ (2024) plot in their Fig.~10, and from which they compute $P_{25}$, the
+probability of finding at least 25 candidates. The occurrence rates and both ratios are medians
+with 68\% intervals.}
+\label{tab:answer}
+\end{table}
+
+The yield ratio is the most robust result. It is computed at a single aperture within a single
+implementation, so an error in the absolute throughput appears in both numerator and denominator,
+and it stays between @@VARALL3RATIO@@ and @@VARALBRATIO@@ across the model variants of
+Sec.~\ref{sec:variants}. The absolute
+yields are less secure, because they depend on the characterization-time discrepancy of
+Sec.~\ref{sec:open}.
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figYieldPrediction.pdf}
-\caption{Left: summed completeness against $\eta$; its decline is the characterization burden
-consuming search time, i.e.\ the $\eta_\oplus \to \lambda$ edge of Fig.~\ref{fig:pgm}. Right: the
-realized yield distributions, Eq.~\eqref{eq:thinning} marginalized over $\eta_\oplus$ (heavy), and
-the expected yield $\Lambda$ alone (thin).}
+\caption{Left: summed completeness as a function of $\eta$. It declines because characterizing
+more planets eats into the time available for searching; this is the $\eta_\oplus \to \lambda$
+edge of Fig.~\ref{fig:pgm}. Right: the realized yield distributions from
+Eq.~\eqref{eq:thinning}, marginalized over $\eta_\oplus$ (heavy lines), and the expected yield
+$\Lambda$ alone (thin lines).}
 \label{fig:yieldprediction}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figOccurrencePosterior.pdf}
-\caption{Left: the occurrence rate integrated over each box. Right: their ratio $\rho_\mathcal{B}$,
-tight because $\Gamma$ cancels.}
+\caption{Left: the occurrence rate integrated over each box. Right: their ratio
+$\rho_\mathcal{B}$, which is tightly constrained because $\Gamma$ cancels.}
 \end{figure}
 
 \subsection{Why the yield ratio exceeds the occurrence ratio}
 \label{sec:ratio}
 
-The occurrence ratio $@@OCCRATIO@@$ decomposes into about 0.32 from narrowing the habitable zone
-and 0.63 from the mass selection. The yield ratio, $@@YRATIO@@$, is larger, for three reasons that
-are all visible in Fig.~\ref{fig:pgm}:
+The occurrence ratio, $@@OCCRATIO@@$, splits into two factors: about 0.32 from narrowing the
+habitable zone and about 0.63 from selecting by mass. The yield ratio, $@@YRATIO@@$, is larger, for
+three reasons, each visible as an edge in Fig.~\ref{fig:pgm}:
 \begin{enumerate}
-\item \textbf{Freed characterization time} ($\eta_\mathcal{B} \to \lambda$). Fewer expected
-detections leave more of the budget for searching. Raises the ratio.
-\item \textbf{The faintest planets are removed} ($\mathcal{B} \to \mathbf{o}_{ij}$). Truncating at
-1.20 scaled AU removes planets up to $(1.67/1.20)^2 \approx 1.9$ times fainter than those
-kept. Raises the ratio.
-\item \textbf{Distant stars are lost} ($\mathcal{B} \to C_i$). For distant stars only the outer
-habitable zone clears the inner working angle. Lowers the ratio.
+\item \textbf{Characterization time is freed} ($\eta_\mathcal{B} \to \lambda$). Fewer expected
+detections leave more of the budget for searching. This raises the ratio.
+\item \textbf{The faintest planets are removed} ($\mathcal{B} \to \mathbf{o}_{ij}$). Cutting the
+zone off at 1.20 scaled AU removes planets up to $(1.67/1.20)^2 \approx 1.9$ times fainter than
+those that remain. This also raises the ratio.
+\item \textbf{Distant stars are lost} ($\mathcal{B} \to C_i$). Around distant stars, only the outer
+part of the habitable zone lies outside the inner working angle, and that is the part the
+redefined box drops. This lowers the ratio.
 \end{enumerate}
-The first two win. Under the redefined selection a 6\,m telescope reaches 25 candidates with
-probability @@REDEFP25@@\%: a narrow habitable zone and a mass-selected sample put the decadal
-benchmark out of reach at this aperture for any plausible $\eta_\oplus$.
+The first two effects win. Scaling the canonical yield by the occurrence ratio alone would be
+wrong by @@RATIOEXCESS@@\%. Even so, under the redefined selection a 6\,m telescope reaches 25
+candidates with a probability of only @@REDEFP25@@\%: with a narrow habitable zone and a
+mass-selected sample, the decadal survey's benchmark is out of reach at this aperture for any
+plausible value of $\eta_\oplus$.
 
-%======================================================================
-\section{The Earth zone and the classic habitable zone, star by star}
+\subsection{The Earth zone and the classic habitable zone, star by star}
 \label{sec:earthzone}
 
-The \emph{Earth zone} is this report's redefined box: 0.96--1.20~AU for the Sun, scaled by
-$\sqrt{L_\star}$, holding planets of 0.5--2\,$M_\oplus$. The \emph{classic habitable zone} is
-Stark's canonical box, 0.95--1.67~AU scaled the same way, holding planets up to 1.4\,$R_\oplus$.
-Step A11 tabulates both for every one of the @@EZNSTARS@@ screened stars, in AU, in
-milliarcseconds and in $\lambda/D$ of the 6\,m telescope at 550 and 1000\,nm, together with what
-each zone's own optimized survey expects to find there: each box's survey is re-optimized in every
-exozodi draw at its posterior-median occurrence rate ($\eta = @@EZETAC@@$ and @@EZETAR@@), and a
-star's expected yield is $\eta$ times its completeness averaged over draws. The full table is
-\texttt{TabulateEarthZones/earthZoneTable.csv}; Appendix~\ref{app:stars} lists the
-@@EZNLISTED@@ stars that contribute in either survey.
+In this section, the \emph{Earth zone} is the redefined box and the \emph{classic habitable zone}
+is the canonical box. Step A11 tabulates both zones for each of the @@EZNSTARS@@ screened stars, in
+AU, in milliarcseconds, and in $\lambda/D$ for the 6\,m telescope at 550 and 1000\,nm, together
+with how many candidates each zone's own optimized survey expects to find there. Each zone's survey
+is re-optimized in every exozodi draw at that zone's posterior-median occurrence rate
+($\eta = @@EZETAC@@$ and @@EZETAR@@), and a star's expected yield is $\eta$ times its completeness
+averaged over the draws. The full table is \texttt{TabulateEarthZones/earthZoneTable.csv};
+Appendix~\ref{app:stars} lists the @@EZNLISTED@@ stars that contribute to either survey.
 
-\textbf{Totals.} The Earth zone is a third as wide as the classic zone in scaled AU and holds
-@@EZETARATIO@@ as many candidates per star. Summed over stars the expected yield is
-@@EZYIELDHZ@@ in the classic zone and @@EZYIELDEZ@@ in the Earth zone, a ratio of @@EZYIELDRATIO@@;
-star by star the ratio has median @@EZSTARRATIO@@ (68\% of stars between @@EZSTARRATIOLO@@ and
-@@EZSTARRATIOHI@@). The classic survey observes @@EZNOBSHZ@@ stars in at least half the draws at a
-mean completeness of @@EZCOMPHZ@@; the Earth-zone survey observes @@EZNOBSEZ@@ at @@EZCOMPEZ@@. The
-narrower zone is easier to complete, because its planets sit closer in and are brighter, so the
-survey concentrates on slightly fewer stars and reaches a larger fraction of their candidates. The
-ratio rises from about 0.21 for the faintest, nearest stars to about 0.33 for stars above
-$5\,L_\odot$ (Table~\ref{tab:earthzone}): around distant and luminous stars the classic zone's
-outer planets are too faint to be found, so losing them costs little.
+\textbf{Totals.} Measured in scaled AU, the Earth zone is a third as wide as the classic zone, and
+it holds @@EZETARATIO@@ as many candidates per star. Summed over all stars, the expected yield is
+@@EZYIELDHZ@@ in the classic zone and @@EZYIELDEZ@@ in the Earth zone, a ratio of
+@@EZYIELDRATIO@@. Taken star by star, the ratio has a median of @@EZSTARRATIO@@, with 68\% of stars
+between @@EZSTARRATIOLO@@ and @@EZSTARRATIOHI@@. The classic survey observes @@EZNOBSHZ@@ stars in
+at least half of the draws, reaching a mean completeness of @@EZCOMPHZ@@; the Earth-zone survey
+observes @@EZNOBSEZ@@ stars at @@EZCOMPEZ@@. The narrower zone is easier to complete, because its
+planets orbit closer in and are therefore brighter, so the survey concentrates on slightly fewer
+stars and finds a larger fraction of their candidates. Table~\ref{tab:earthzone} shows how the
+ratio varies with luminosity and distance: around distant and luminous stars the outer planets of
+the classic zone are too faint to find anyway, so losing them costs little.
 
-\textbf{Angle.} The Earth zone sits at the inner edge of the classic zone, so in angle it is the
-harder part of it. With the half-throughput inner working angle at @@EZIWA@@\,$\lambda/D$
-(inscribed), a mean @@EZOUTIWAEZSIX@@\% of the Earth zone lies outside it at 550\,nm against
-@@EZOUTIWAHZSIX@@\% of the classic zone, and at 1000\,nm, where water is sought,
-@@EZOUTIWAEZ@@\% against @@EZOUTIWAHZ@@\%, averaged over the stars either survey observes. The
-coronagraph still passes light inside that angle, which is why the loss in yield is smaller than
-the loss in angle.
+\textbf{Angle.} Because the Earth zone sits at the inner edge of the classic zone, it is the part
+of the classic zone that is harder to reach in angle. Taking the inner working angle as the
+separation where throughput falls to half, @@EZIWA@@\,$\lambda/D$ (inscribed), on average
+@@EZOUTIWAEZSIX@@\% of the Earth zone lies outside it at 550\,nm, compared with
+@@EZOUTIWAHZSIX@@\% of the classic zone. At 1000\,nm, where water is sought, the figures are
+@@EZOUTIWAEZ@@\% and @@EZOUTIWAHZ@@\%. Both are averaged over the stars that either survey
+observes. The coronagraph still passes some light inside the inner working angle, which is why the
+loss in yield is smaller than the loss in angle.
 
 \begin{table}[htbp]
 \centering
@@ -631,204 +661,376 @@ the loss in angle.
 @@EZDISTROWS@@
 \bottomrule
 \end{tabular}
-\caption{Where each zone's yield comes from. ``Observed'' means allocated time in at least half of
-the exozodi draws. Each zone's survey is optimized for its own candidates.}
+\caption{Where each zone's yield comes from, by stellar luminosity and by distance. A star counts
+as observed if it is allocated time in at least half of the exozodi draws. Each zone's survey is
+optimized for its own candidates.}
 \label{tab:earthzone}
 \end{table}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figEarthZones.pdf}
-\caption{Left: each star's expected Earth-zone yield against its classic-zone yield, coloured by
-luminosity. Right: cumulative expected yield with distance for both zones.}
+\caption{Left: each star's expected Earth-zone yield plotted against its classic-zone yield,
+colored by luminosity. Right: cumulative expected yield as a function of distance, for both
+zones.}
 \label{fig:earthzone}
 \end{figure}
 
 %======================================================================
-\section{The open problem: characterization time and the target mix}
+\section{Sensitivity to settings the published record leaves open}
+\label{sec:variants}
+
+Three settings are not fully determined by the published description: the reading of the
+$\eta_\oplus$ interval (Sec.~\ref{sec:eta}), the albedo method (Sec.~\ref{sec:albedo}), and the
+reconstruction of $T_{\rm sky}$ (Sec.~\ref{sec:radiometry}). The adopted model follows Stark's
+documented method for the albedo and uses the sourced $T_{\rm sky}$ term; it departs from his text
+only in the interval reading. Step A14 re-runs the pipeline end to end for six variants, each
+differing from the adopted model in named settings, with every other setting, input file and
+random seed held fixed (Table~\ref{tab:variants}, Fig.~\ref{fig:peaks}).
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model} & \textbf{Peak} & \textbf{Mean} & \textbf{$P(Y<12)$} & \textbf{Albedo pen.} &
+\textbf{Distance} & \textbf{Yield ratio} \\
+\midrule
+Adopted                                      & @@PEAKBASE@@  & @@VARBASEMEAN@@  & @@VARBASEBELOW@@  & @@VARBASEALBPEN@@\%  & @@VARBASETV@@  & @@VARBASERATIO@@ \\
+$\eta_\oplus$ interval read as 86\%          & @@PEAKETA86@@ & @@VARETA86MEAN@@ & @@VARETA86BELOW@@ & @@VARETA86ALBPEN@@\% & @@VARETA86TV@@ & @@VARETA86RATIO@@ \\
+Albedo: exposure re-derived                  & @@PEAKALB@@   & @@VARALBMEAN@@   & @@VARALBBELOW@@   & @@VARALBALBPEN@@\%   & @@VARALBTV@@   & @@VARALBRATIO@@ \\
+Albedo re-derived and 86\% interval          & @@PEAKBOTH@@  & @@VARBOTHMEAN@@  & @@VARBOTHBELOW@@  & @@VARBOTHALBPEN@@\%  & @@VARBOTHTV@@  & @@VARBOTHRATIO@@ \\
+Constant $T_{\rm sky}$                       & @@PEAKSKY@@   & @@VARSKYMEAN@@   & @@VARSKYBELOW@@   & @@VARSKYALBPEN@@\%   & @@VARSKYTV@@   & @@VARSKYRATIO@@ \\
+86\% interval and constant $T_{\rm sky}$     & @@PEAKALL3@@  & @@VARALL3MEAN@@  & @@VARALL3BELOW@@  & @@VARALL3ALBPEN@@\%  & @@VARALL3TV@@  & @@VARALL3RATIO@@ \\
+Rescaled Bryson mixture for $\eta_\oplus$    & @@PEAKBRY@@   & @@VARBRYMEAN@@   & @@VARBRYBELOW@@   & @@VARBRYALBPEN@@\%   & @@VARBRYTV@@   & @@VARBRYRATIO@@ \\
+\midrule
+Stark et al.\ (2024)                         & @@PEAKPUB@@   & 21.0             & 0.29              & 12\%                 & ---            & --- \\
+\bottomrule
+\end{tabular}
+\caption{The adopted model and the six variants of step A14. ``Peak'' is the mode of the exact
+Poisson mixture; the distance is the total-variation distance between the model's realized-yield
+distribution and Stark's Fig.~10 purple curve (smaller is better). The last column is this
+report's main result.}
+\label{tab:variants}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figYieldPeakComparison.pdf}
+\caption{Realized yield distributions for every model of Table~\ref{tab:variants}, against the
+digitized Stark et al.\ (2024) Fig.~10 (heavy black). Each curve is the exact Poisson mixture over
+that model's sampled expected yields. Single-setting variants are drawn faintly; the others carry
+peak markers.}
+\label{fig:peaks}
+\end{figure}
+
+\textbf{The main result does not depend on these settings.} Across all seven models the yield
+ratio lies between @@VARALL3RATIO@@ and @@VARALBRATIO@@, inside the 68\% interval of the adopted
+value.
+
+\textbf{Agreement with Fig.~10 depends on one setting.} The adopted model and the three variants
+that change the albedo method, the interval reading, or both form a complete $2\times2$.
+Decomposing the distance to Fig.~10 over that square, the interval reading contributes
+@@INTETA@@, the albedo method @@INTALB@@, and their interaction @@INTCROSS@@: the interval reading
+accounts for @@INTETASHARE@@\% of the disagreement and the albedo method @@INTALBSHARE@@\%.
+
+\textbf{Following every documented choice worsens the agreement.} With the albedo test already
+Stark's, reading the interval as the stated 86\% gives a model that follows every documented
+choice. It moves the peak from @@PEAKBASE@@ to @@PEAKETA86@@ (published @@PEAKPUB@@) and the
+distance from @@VARBASETV@@ to @@VARETA86TV@@. Either this model is wrong in a way that only the
+68\% reading offsets, or the published text and figure are not mutually consistent and the figure
+is the better guide to what was computed. The test of Sec.~\ref{sec:eta} favors the second, but
+nothing available rules out the first. The rescaled Bryson mixture, which removes both the 68/86
+choice and the mean/median ambiguity, does not resolve it: the three candidate laws bracket Stark's
+curve, with peaks at @@PEAKBRY@@, @@PEAKBASE@@ and @@PEAKETA86@@ against @@PEAKPUB@@, and the
+published information cannot choose among them.
+
+\textbf{The albedo penalty.} The two albedo methods match Fig.~10 about equally well
+(distances @@VARBASETV@@ and @@VARALBTV@@), but they differ in the penalty: @@VARBASEALBPEN@@\% with Stark's per-visit test and
+@@VARALBALBPEN@@\% with re-derived exposures, against his reported 12\%. Stark's described method
+does not reproduce his reported penalty in this model.
+
+%======================================================================
+\section{The characterization-time discrepancy}
 \label{sec:open}
 
-With $\kappa$ explained and exozodi marginalized, the level problem of earlier revisions is gone:
-the fixed-$\eta_\oplus$ yield is @@FIXEDETA@@ against Stark's @@FIGREDMEAN@@ (@@LEVELPCT@@\% high,
-inside the 10\% the researcher set as the target), the exozodi penalty is @@DRAWEXOPEN@@\% against
-11.1\%, and $P_{25}$ agrees at every aperture. What remains is one discrepancy seen three ways.
+The yield level, the exozodi penalty, the aperture scaling of $P_{25}$ and the shape of the
+realized-yield distribution all agree with Stark's (Sec.~\ref{sec:validation}). One discrepancy
+remains, and it appears in two ways.
 
-\textbf{The symptom.} The mean characterization time of the first 18 EECs is @@CHARSIX@@\,d at
-6\,m and @@CHARNINE@@\,d at 9\,m, against Stark's 22 and 3.5 (Sec.~4.1): the easiest targets are
-characterized too fast, by a factor of about two. The shape says where the difference is
-(Fig.~\ref{fig:pair14}): Stark's first 18 EECs include a plateau of 15--50-day spectra at every
-aperture, while this model's individual characterization times fall away steeply, with almost
-none above about 15 days at 9\,m. The peak of the realized
-distribution sits at @@MODELMODE@@ rather than @@FIGMODE@@.
+\textbf{Characterization times.} The mean characterization time of the first 18 EECs is
+@@CHARSIX@@ days at 6\,m and @@CHARNINE@@ days at 9\,m, against Stark's 22 and 3.5 (his
+Sec.~4.1); the ratio between the two apertures is @@CHARRATIO@@ against his 6.2. The distributions
+show where the difference lies (Fig.~\ref{fig:pair14}). At every aperture, Stark's first 18 EECs
+include a plateau of spectra taking 15--50 days, whereas in this model the individual
+characterization times fall away steeply, with almost none above about 15 days at 9\,m.
 
-\textbf{The target mix differs.} Against Stark's Fig.~11 (Fig.~\ref{fig:pair11}), in the same
-characterization-gated completeness and one representative exozodi draw, this model matches the
-nearest stars --- median @@DISTAMOD@@ against @@DISTAPUB@@ inside 6\,pc --- but gives stars at
-10--15\,pc a median of @@DISTBMOD@@ (published @@DISTBPUB@@) and at 15--20\,pc @@DISTCMOD@@
-(@@DISTCPUB@@). By luminosity, stars of $1$--$2\,L_\odot$ get @@LUMAMOD@@ (published @@LUMAPUB@@)
-and stars of $2$--$5\,L_\odot$ get @@LUMBMOD@@ (@@LUMBPUB@@), with @@LUMBZERO@@\% of the latter
-allocated essentially nothing. The survey concentrates on nearby stars instead, and reaches
-Stark's total by completing them more fully.
+\textbf{The target mix.} Compared with Stark's Fig.~11 (our Fig.~\ref{fig:pair11}), using the same
+characterization-gated completeness and one representative exozodi draw, this model agrees for the
+nearest stars: within 6\,pc the median completeness is @@DISTAMOD@@ against a published
+@@DISTAPUB@@. Further out the two diverge: stars at 10--15\,pc have a median of @@DISTBMOD@@
+(published @@DISTBPUB@@), and stars at 15--20\,pc @@DISTCMOD@@ (@@DISTCPUB@@). By luminosity, stars
+of $1$--$2\,L_\odot$ have @@LUMAMOD@@ (published @@LUMAPUB@@), and stars of $2$--$5\,L_\odot$ have
+@@LUMBMOD@@ (@@LUMBPUB@@), with @@LUMBZERO@@\% of the latter allocated essentially no time. This
+model's survey concentrates on nearby stars instead, and reaches Stark's total yield by completing
+them more thoroughly.
 
-\textbf{The cause is characterization cost.} At $R = 140$ near 1\,$\mu$m the characterization
-background is exozodi-dominated, and the exozodi count rate is a surface brightness, nearly the
-same for every star, while the planet dims as $d^{-2}$; characterization time therefore grows
-roughly as $d^4$. For an Earth twin at quadrature the exozodi-to-planet count ratio per spectral
-bin is @@EXOTAUCET@@ at $\tau$~Cet, @@EXOVIR@@ at 61~Vir, @@EXOTETBOO@@ at $\theta$~Boo and
-@@EXOHER@@ at 110~Her, and the characterization times are @@TWINTAUCET@@, @@TWINVIR@@,
-@@TWINTETBOO@@ and @@TWINHER@@ days against a 60-day cap. Distant, luminous targets are priced
-out of the survey while nearby ones are characterized in hours to days.
+\textbf{The mechanism.} At $R = 140$ near 1\,$\mu$m, the background during characterization is
+dominated by exozodi. The exozodi count rate is set by a surface brightness that is nearly the same
+for every star, while the planet dims as $d^{-2}$, so characterization time grows roughly as $d^4$.
+For an Earth twin at quadrature, the ratio of exozodi counts to planet counts per spectral bin is
+@@EXOTAUCET@@ at $\tau$~Cet, @@EXOVIR@@ at 61~Vir, @@EXOTETBOO@@ at $\theta$~Boo and @@EXOHER@@ at
+110~Her, and the corresponding characterization times are @@TWINTAUCET@@, @@TWINVIR@@,
+@@TWINTETBOO@@ and @@TWINHER@@ days, against a 60-day cap. Distant, luminous targets are priced out
+of the survey, while nearby ones are characterized in hours to days.
 
-\textbf{Ruled out, each by direct test.}
+AYO's own exposure-time calculator agrees with these times. The Stark et al.\ (2025) benchmark
+gives Earth-twin water spectra of 37 days at 12.3\,pc and 104 days at 18.2\,pc, for a telescope
+slightly better than the baseline, and given that benchmark's inputs our code reproduces its
+per-observation times to 0.94--1.02. The exposure-time equations are therefore not where the two
+models differ.
+
+\textbf{Explanations ruled out by direct test.}
 \begin{itemize}
-\item \emph{The noise floor}: removing it entirely leaves luminous-star completeness unchanged.
-\item \emph{The detector saturation definition}: Stark (2019) sets $\mathrm{CR_{sat}}$ to ten times
-an Earth twin's core-pixel rate, where this model uses the scene; characterization times change by
-under 1\%.
-\item \emph{IFS pixels}: 96 per spectral bin matches Stark (2024) Table~2. Latouf et al.\ (2026)
-use 6 for a different instrument.
-\item \emph{Detector noise generally}: Stark's Scenario~D (Skipper CCD) gains 1.5$\times$ in
-characterization time, which his text attributes mostly to a 30\% throughput gain; the implied
-detector share, about 12\%, matches this model's.
-\item \emph{The first-18 ordering}: ordering targets by survey priority rather than by
-characterization cost changes the mean by 1\%.
-\item \emph{The Fig.~11 metric}: detection-only completeness fixes the low-luminosity stars but not
-the luminous ones.
-\item \emph{Dust colour}: the zero point is a solar-coloured source normalized at $V$, which is the
+\item \emph{The noise floor.} Removing it entirely leaves the completeness of luminous stars
+unchanged.
+\item \emph{The detector saturation definition.} Stark (2019) sets the saturation rate
+$\mathrm{CR_{sat}}$ to ten times an Earth twin's count rate in its core pixel, whereas this model
+uses the whole scene. Switching definitions changes characterization times by less than 1\%.
+\item \emph{The number of IFS pixels.} Our 96 per spectral bin matches Stark (2024, Table~2).
+\item \emph{Detector noise in general.} Stark's Scenario~D (a Skipper CCD) shortens
+characterization times by a factor of 1.5, which his text attributes mostly to a 30\% gain in
+throughput. The share left for the detector, about 12\%, matches this model's.
+\item \emph{Which targets count as the first 18.} Ordering targets by survey priority rather than
+by characterization cost changes the mean by 1\%.
+\item \emph{The metric used for Fig.~11.} Detection-only completeness fixes the low-luminosity stars
+but not the luminous ones.
+\item \emph{Dust color.} The zero point is a solar-colored source normalized in the $V$ band, the
 treatment Stark (2015) describes.
+\item \emph{Exozodi brightness at the planet's own separation.} Stark (2019, Table~1) notes that it
+``varies with spectral type and planet-star separation''; evaluating it there rather than at the
+EEID leaves the first-18 times essentially unchanged.
+\item \emph{Charging characterization per star.} Budgeting spectra per star, as in Stark et al.\
+(2015), moves the yield with $\eta_\oplus$ fixed the wrong way and leaves the target mix unchanged.
+\item \emph{The orbital phase of the spectrum.} Taking spectra at the detection phase rather than
+the most favorable one lengthens the times only part of the way.
 \end{itemize}
 
-\textbf{Not the calibration.} Before this revision $\kappa = 1.62$ multiplied spectra as well as
-detections, and the obvious suspicion was that it sped up the easy spectra. It did, but removing it
-through the $T_{\rm sky}$ map left the first-18 times unchanged (Sec.~\ref{sec:calibration}), and no
-single factor on spectra can change their 6\,m/9\,m ratio, @@CHARRATIO@@ here against 6.2.
+\textbf{No throughput setting supplies the difference.} Four parameters act on throughput: a
+factor on all bands ($\kappa$), a separate factor on the spectral bands only ($\kappa_c$), the
+normalization of the coronagraph leak term, and the radial shape of $T_{\rm sky}$. Step A13
+evaluates a @@DEGPOINTS@@-point design over that four-parameter box, recording at every point the
+6\,m planning yield, the characterization times at 6 and 9\,m, and the Fig.~11 completeness by
+distance (Fig.~\ref{fig:corner}).
+\begin{itemize}
+\item Across all @@DEGPOINTS@@ points, the first-18 characterization time at 6\,m never exceeds
+@@DEGENVCHARMAX@@ days, against the published 22.
+\item Of the @@DEGGATEN@@ points that reproduce the published 6\,m yield to within 10\%, the
+first-18 time spans only @@DEGGATECHARLO@@--@@DEGGATECHARHI@@ days at 6\,m and
+@@DEGGATECHARNINELO@@--@@DEGGATECHARNINEHI@@ days at 9\,m, overlapping neither published value.
+\item Constrained on the yield alone, the fit gives $\kappa = @@DEGKAPPA@@$ and
+$\kappa_c = @@DEGKAPPAC@@$, with a correlation of @@DEGCORR@@ between their logarithms, and forces
+the 6\,m characterization time to @@DEGCHARSIX@@ days (@@DEGCHARSIXLO@@--@@DEGCHARSIXHI@@).
+\item The singular values of the local sensitivity are @@DEGSVLIST@@. The first is
+@@DEGSVRATIO@@ times the second, so these observables constrain essentially one combination of the
+four parameters: the anticorrelation between $\kappa$ and $\kappa_c$.
+\end{itemize}
+Characterization time can be bought within this family only by giving up yield: when every
+published observable is imposed at once, the fit pushes $\kappa_c$ onto the lower edge of its
+allowed range and the yield falls to about 16.
 
-\textbf{Reading.} The model's characterization time rises with target difficulty more steeply than
-Stark's: nearby targets are cheaper and distant ones dearer. Both ends move the same way under the
-exozodi-limited $d^4$ scaling above, which this model follows closely; Stark's numbers behave as if
-something flattens that dependence. Detector noise, the obvious candidate, is argued against in
-the list above; what remains untested includes how Stark schedules a spectrum against the planet's
-orbit (this model takes the most favourable of 40 phases, which is the cheapest possible choice),
-whether his S/N per spectral bin counts one bin or a band average, and the exozodi surface
-brightness at the planet's own separation: Stark (2019) Table~1 notes that it ``varies with
-spectral type and planet-star separation'', while this model evaluates it at the EEID. Those are
-the next things to test. By
-the standard this project has held to, a fix must move the first-18 times at both apertures, the
-distant targets of Fig.~11 and the peak of Fig.~10 together.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figCalibrationDegeneracyCorner.pdf}
+\caption{Posteriors over the four throughput parameters, from a quadratic emulator of the
+@@DEGPOINTS@@-point design of step A13; the emulator's leave-one-out error is added to the
+tolerance, so emulator error cannot pose as a constraint. Blue: constrained on the published 6\,m
+yield alone. Orange: constrained on the yield, the characterization times at 6 and 9\,m, and the
+Fig.~11 completeness in three distance bins. The $\ln\kappa$--$\ln\kappa_c$ panel shows the
+degeneracy the published numbers leave open; the orange contours run into the lower bound on
+$\kappa_c$ while still failing to reach the published characterization times.}
+\label{fig:corner}
+\end{figure}
 
 %======================================================================
-\section{Limitations}
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Two questions for the AYO authors}
+
+Both remaining disagreements reduce to questions of fact that the published description does not
+settle.
+
+\textbf{Question 1: how does the AYO baseline survey characterize its 10--20\,pc targets within
+the two-month limit?} Stark's Fig.~11 shows habitable-zone completeness of 0.5--0.8 for these
+targets, while AYO's own calculator gives their Earth-twin spectra 37--104 days, and no setting of
+the throughput parameters reconciles the two (Sec.~\ref{sec:open}). Either those stars are
+characterized under conditions more favorable than an Earth twin at maximum elongation, or the
+completeness in Fig.~11 is not gated on characterization, or characterization is charged to the
+budget differently from the way this model charges it. Whether the S/N per spectral bin refers to
+a single bin or to a band average is a further detail the papers leave open.
+
+\textbf{Question 2: is $\eta_\oplus = 0.26$ the mean or the median, and is $[0.12, 0.55]$ an 86\%
+or a 68\% interval?} The text says mean and 86\%. The median-and-68\% reading reproduces Fig.~10,
+and the stated reading does not (Sec.~\ref{sec:variants}); the quoted interval holds
+@@ETAMASSPCT@@\% of its own source distribution.
+
+These questions bear directly on mission design. The characterization budget sets the target mix,
+and the target mix sets which stars need exozodi measurements in advance. The $\eta_\oplus$
+interval sets the width of the yield distribution, and the width sets $P(Y \ge 25)$, the quantity
+the decadal recommendation is written in. Neither discrepancy is known to be an error in AYO; each
+is equally consistent with an error in this reimplementation that has not been found. What the
+evidence supports is narrower: the published description does not determine these two quantities.
+
+\subsection{Limitations}
 
 \begin{itemize}
-\item \textbf{$T_{\rm sky}(r)$ is reconstructed.} Stark's map comes from 2-D PSF simulations that
-are not published; this model scales the azimuthally averaged core-throughput curve, which assumes
-a separation-independent core fraction and omits the convolution's smoothing. It removed the need
-for $\kappa$ (now @@CALFACTOR@@), but a different reconstruction would move the absolute yields.
+\item \textbf{$T_{\rm sky}(r)$ is reconstructed.} Stark's map comes from two-dimensional PSF
+simulations that are not published, and this model rescales the azimuthally averaged
+core-throughput curve instead. The term matters: with a constant $T_{\rm sky}$, the mean realized
+yield falls from @@VARBASEMEAN@@ to @@VARSKYMEAN@@ (Table~\ref{tab:variants}). A different
+reconstruction would shift the absolute yields, though hardly the yield ratio.
 \item \textbf{The coronagraph is azimuthally averaged.} The digitized one-dimensional DMVC6 curves
 stand in for two-dimensional maps.
-\item \textbf{Exozodi draws are interpolated.} @@NDRAWS@@ draws (Stark: 500) evaluated on a
-23-level grid; interpolation changes optimized yields by at most @@GRIDERRPCT@@\%. Stark also draws
-the HOSTS distribution itself from its posterior, which he finds negligible and which is not
-modelled.
-\item \textbf{The $\eta_\oplus$ distribution is reconstructed.} Its width is inferred from Stark's
-Fig.~10 because the Bryson chains are unpublished; the text's 86\% reading is one option away.
-\item \textbf{$\alpha, \beta$ are prior-dominated.} The ratio $\rho_\mathcal{B}$ inherits SAG13's
-shape, not a re-fit to Kepler DR25.
-\item \textbf{The area fill factor (0.785) is unsourced.} It moves the yield by about $\pm$4\%.
+\item \textbf{Exozodi draws are interpolated.} The @@NDRAWS@@ draws (Stark uses 500) are evaluated
+on a 23-level grid, and the interpolation changes optimized yields by at most @@GRIDERRPCT@@\%.
+Stark also draws the HOSTS distribution itself from its posterior; he finds the effect negligible,
+and it is not modeled here.
+\item \textbf{The $\eta_\oplus$ distribution is reconstructed and departs from Stark's text}
+(Sec.~\ref{sec:eta}). It drives @@INTETASHARE@@\% of the remaining disagreement with Fig.~10 but
+barely moves the yield ratio (Table~\ref{tab:variants}). The 86\% reading and the Bryson-mixture
+law are available as options.
+\item \textbf{$\alpha$ and $\beta$ are dominated by their priors.} The ratio $\rho_\mathcal{B}$
+inherits the shape of SAG13 rather than coming from a new fit to Kepler DR25.
+\item \textbf{There is no stray light from binary companions.} AYO includes it; for HIP~77052 it is
+about 10\% of the background.
+\item \textbf{The area fill factor (0.785) has no published source.} It moves the yield by about
+$\pm$4\%.
 \end{itemize}
 
 %======================================================================
-\section{Reproducing this}
+\section{Conclusions}
 
-The project is a twelve-step vaibify pipeline in \texttt{/workspace/yields}. Every step declares its
-inputs and outputs and carries integrity, qualitative and quantitative tests generated from its
-outputs; the physics library carries 78 unit tests. Every number in this report is injected from
-a step or exploration output at build time (\texttt{cd doc \&\& python3 buildReport.py}), so a
-re-run cannot leave a stale claim in print.
+\begin{enumerate}
+\item For a mass-selected planet sample ($0.5$--$2\,M_\oplus$) in a narrowed habitable zone
+($0.96$--$1.20$~AU), the baseline 6\,m HWO mission would find a median of @@REDEFMED@@ candidates,
+against @@CANONMED@@ for the canonical selection. The yield ratio is
+$@@YRATIO@@^{+@@YRATIOUP@@}_{-@@YRATIODN@@}$ (68\% interval), larger than the occurrence ratio because the survey
+reallocates the freed characterization time and the narrower zone drops the faintest planets.
+\item The probability of finding at least 25 candidates falls from @@CANONP25@@\% to
+@@REDEFP25@@\%, which puts the decadal benchmark out of reach at this aperture.
+\item The yield ratio stays between @@VARALL3RATIO@@ and @@VARALBRATIO@@ across seven model variants spanning both readings of
+the $\eta_\oplus$ interval, both albedo methods, the presence or absence of the $T_{\rm sky}$ term,
+and a different functional form for $\eta_\oplus$.
+\item The reimplementation, built from the published description with nothing fitted to Stark's
+results, agrees with @@NAGREE@@ of @@NINDEP@@ independent published comparisons and reproduces the
+shape of the published yield distribution.
+\item Characterization times depend more steeply on target difficulty and aperture than in AYO, and
+no throughput setting removes the difference. The reading of the $\eta_\oplus$ interval accounts
+for @@INTETASHARE@@\% of the remaining disagreement with the published yield distribution. Stark's
+per-visit albedo test gives a penalty of @@ALBEDOPEN@@\% against his reported 12\%.
+\end{enumerate}
+
+%======================================================================
+\section*{Data and code availability}
+
+The analysis is a fifteen-step vaibify pipeline in \texttt{/workspace/yields}. Each step declares
+its inputs and outputs and carries integrity, qualitative and quantitative tests generated from
+those outputs, and the physics library has 91 unit tests. Every number in this report is inserted
+at build time from the output of a pipeline step (\texttt{cd doc \&\& python3 buildReport.py}).
+Table~\ref{tab:steps} maps the steps onto the graphical model.
 
 \begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{llp{8.6cm}}
 \toprule
-\textbf{Step} & \textbf{Name} & \textbf{Nodes of Fig.~\ref{fig:pgm} it implements} \\
+\textbf{Step} & \textbf{Name} & \textbf{Role} \\
 \midrule
 A01 & buildTargetCatalog & $\mathbf{s}_i$: HPIC, @@CATROWS@@ stars \\
-A02 & modelCoronagraph & $\mathcal{M}$, $\mathcal{B}$, $p_z$ (digitized Fig.~9), pinned $z_i$, $p_A$ \\
-A03 & calibrateToStark & $\kappa$, at fixed exozodi \\
+A02 & modelCoronagraph & $\mathcal{M}$, $\mathcal{B}$, $p_z$ (digitized Fig.~9), pinned $z_i$, $p_A$ and the albedo test \\
+A03 & calibrateToStark & the expected 6\,m yield with nothing fitted, and the diagnostic throughput factor \\
 A04 & computeCompleteness & $\mathbf{o}_{ij}$, $A_{ij}$, $\boldsymbol{\tau}_{ij}$, $C_i$ on a grid of $z$; @@NDRAWS@@ draws of $\mathbf{z}$ \\
 A05 & optimizeSurvey & $\lambda$, $\mathbf{a}_i$ at $\eta = 0.24$, at fixed $z$ and per draw \\
 A06 & sampleOccurrencePosterior & $\eta_\oplus$, $\alpha,\beta$, $\rho_\mathcal{B}$ \\
 A07 & predictRedefinedYield & $\mathbf{a}_i(\eta)$ on a grid, $Y$ by Eq.~\eqref{eq:thinning} \\
-A08 & compareApertureScaling & the same at 6--9\,m with $\kappa$ frozen, over draws of $\mathbf{z}$ \\
+A08 & compareApertureScaling & the same at 6--9\,m, over draws of $\mathbf{z}$ \\
 A09 & verifyAgainstPublished & Table~\ref{tab:verif} \\
 A10 & compareTargetCompleteness & per-target comparison with Fig.~11 \\
 A11 & tabulateEarthZones & Sec.~\ref{sec:earthzone}, Appendix~\ref{app:stars} \\
-A12 & comparePublishedFigures & Sec.~\ref{sec:pairs} \\
+A12 & comparePublishedFigures & Appendix~\ref{app:pairs} \\
+A13 & calibrationDegeneracy & the throughput-parameter design of Sec.~\ref{sec:open} \\
+A14 & compareModelVariants & the variants and the $2\times2$ decomposition of Sec.~\ref{sec:variants} \\
+A15 & testOccurrenceIntervalReading & the test of the $\eta_\oplus$ interval against its source (Sec.~\ref{sec:eta}) \\
 \bottomrule
 \end{tabular}
-\caption{Pipeline steps mapped onto the graphical model.}
+\caption{The pipeline steps and their role in the model.}
+\label{tab:steps}
 \end{table}
 
 %======================================================================
 \appendix
-\section{Ledger of hypotheses}
-\label{app:ledger}
+\section{Published figures beside their model counterparts}
+\label{app:pairs}
 
-Every proposed explanation for a disagreement with the published record, with its outcome. A
-defect can be genuine, worth fixing, and irrelevant to the symptom that led to it, so ``real error,
-not the cause'' is kept separate from ``the cause''.
+Each original is copied unaltered from the arXiv source of Stark et al.\ (2024)
+(arXiv:2405.19418, \texttt{ms\_v2}). Step A12 draws the model versions with the published axes,
+ranges and line styles. Figures with no like-for-like counterpart (optical layouts, throughput and
+quantum-efficiency curves, and the design-change scenarios of Stark's Sec.~5) are omitted.
+
+@@PAIRFIGURES@@
+
+\clearpage
+\section{Implementation choices and their effect}
+\label{app:choices}
+
+Each row states a modeling choice, its source where one is published, and what the alternative
+does in this model.
 
 \begin{table}[htbp]
 \centering
 \scriptsize
-\begin{tabular}{p{4.6cm}p{2.6cm}p{8.0cm}}
+\begin{tabular}{p{4.2cm}p{3.6cm}p{7.4cm}}
 \toprule
-\textbf{Hypothesis} & \textbf{Outcome} & \textbf{Evidence} \\
+\textbf{Choice} & \textbf{Source} & \textbf{Effect of the alternative} \\
 \midrule
-Missing revisits & \textbf{Real, a cause} & Single-visit only; modelling up to six visits raised the uncalibrated yield 1.7$\times$. \\
-Characterization-time statistic & \textbf{Real, a cause} & A median over all detectable planets, where the budget needs a mean over those counted; $D^{1.11} \to D^{1.88}$. \\
-Over-cap characterization charged & \textbf{Real, a cause} & 15\,000 days charged at 20\,pc for an observation never attempted. \\
-Reconstructed target catalog & \textbf{Real, a cause} & HPIC was reachable; the Gaia stand-in lacked 26--34\% of distant FGK dwarfs and ran hot. \\
-Coronagraph aperture convention & \textbf{Real, the cause} & Curves are in circumscribed $\lambda/D$; the IWA sat 19\% too far out. Yield 14.7 $\to$ 18.7. \\
-Collecting area as inscribed circle & \textbf{Real, partial} & Charged the Lyot discard twice. \\
-Characterization at detection phase & \textbf{Real, a cause} & Stark (2019) Sec.~5: the orbit is known, so ``the phase of the planet could be optimized. \\
-Characterization budget under albedo draw & \textbf{Real, a cause} & Stark (2024) Sec.~3.2 fixes it at $A_G = 0.2$; albedo penalty 0.050 $\to$ 0.087. \\
-Constant $T_{\rm sky}$ & \textbf{Real, the cause of $\kappa$} & Stark (2019) Eqs.~5--6 make it a map; with it the uncalibrated yield is @@CALUNCAL@@ and $\kappa$ falls 1.62 $\to$ @@CALFACTOR@@. Characterization times barely move. \\
-One exozodi draw & \textbf{Real, fixed} & Now @@NDRAWS@@ draws with the survey re-optimized per draw; exozodi penalty @@DRAWEXOPEN@@\% (Stark 11.1\%). \\
-Split $\kappa$ (detection vs spectra) & Rejected & A scalar on spectra cannot change the 6/9\,m characterization-time ratio. \\
-Exozodi drawn during calibration & \textbf{Real, a cause} & $\kappa$ fitted to a drawn-exozodi yield cancels the exozodi penalty. \\
-Lognormal exozodi stand-in & \textbf{Real, a cause} & 0.2\% of stars above 100 zodis vs 21\% in HOSTS; penalty 0.7\% $\to$ @@DRAWEXOPEN@@\%. \\
-Pinned LBTI stars omitted & \textbf{Real, partial} & Worth at most 0.47 EEC here. \\
-$\eta_\oplus$ interval read as 86\% & \textbf{Real, the cause of the shape} & Fig.~10 requires $\ln$-width $\sim$0.8; distance @@QEIGHTSIXTV@@ $\to$ @@QSIXEIGHTTV@@. \\
-Published mode ill-determined & \textbf{Rejected} & Stark's 498 runs carry 1000 planet draws each; an earlier bootstrap resampled only 498 yields. \\
-Fig.~4 mean compared with the wrong yield & \textbf{Real, not the cause} & Fig.~4 is sampling only at $A_G = 0.2$; the check is now marked tuned. \\
-$T_{\rm sky}$ missing; exozodi law & \textbf{Real, not the cause} & Backgrounds 1.48$\times$ too bright; constant-surface-brightness law. Together 1\%. \\
-Contrast floor inside the knee & \textbf{Real, not the cause} & Floor applied universally. \\
-Noise-floor screen & \textbf{Real, not the cause} & Admitted nothing above 4.6\,$L_\odot$. \\
-Screening cap, uniform bias, bandpass choice & Rejected & 1.3\%, destroys 7--9\,m, 0.01. \\
-Two detections for orbits & Rejected & Shifts the curve, does not narrow it. \\
-Equal-slope allocation & Rejected & 0.00\% from an exact optimum. \\
-Blackbody stellar flux & Rejected & @@PHOTMED@@\,mag against measured $V$. \\
-Stark's per-visit albedo test & Rejected & Gives a weaker penalty (3.3\%). \\
-Noise floor, CIC definition, IFS pixels, ordering, dust colour & Rejected & Sec.~\ref{sec:open}. \\
+Up to six visits per star & Stark et al.\ (2015) & A single visit lowers the yield by a factor of about 1.7. \\
+Characterization budget is the mean time over counted planets & --- & A median over all detectable planets flattens the aperture scaling from $D^{1.88}$ to $D^{1.11}$. \\
+Spectra exceeding the cap are not charged & --- & Charging them costs up to 15\,000 days at 20\,pc for observations never attempted. \\
+Target list is HPIC & Stark et al.\ (2024) & A Gaia-based list misses 26--34\% of distant FGK dwarfs and is biased toward hotter stars. \\
+Coronagraph curves in circumscribed $\lambda/D$ & Stark et al.\ (2024), Sec.~6.1 & Inscribed $\lambda/D$ puts the IWA 19\% too far out and lowers the yield by about 20\%. \\
+Collecting area is the full obscured primary & Stark et al.\ (2019), Sec.~6.2 & An inscribed circle counts light lost at the Lyot stop twice. \\
+Spectra at the most favorable orbital phase & Stark et al.\ (2019), Sec.~5 & Detection-phase spectra lengthen characterization times. \\
+Characterization budgeted at $A_G = 0.2$ & Stark et al.\ (2024), Sec.~3.2 & Budgeting at the drawn albedo lowers the albedo penalty. \\
+Albedo counted by the per-visit flux test, both bounds & Stark et al.\ (2024), Sec.~3.2 & Re-derived exposures give an albedo penalty of @@VARALBALBPEN@@\% instead of @@ALBEDOPEN@@\% (Table~\ref{tab:variants}). \\
+$T_{\rm sky}$ depends on separation & Stark (2019), Eqs.~5--6 & A constant value lowers the mean realized yield to @@VARSKYMEAN@@. \\
+Exozodi from the HOSTS distribution, re-optimized per draw & Stark et al.\ (2024), Sec.~3.3 & A lognormal stand-in puts 0.2\% of stars above 100 zodis (HOSTS: 21\%) and gives a 0.7\% exozodi penalty. \\
+Four stars pinned to LBTI values & Stark et al.\ (2024), Sec.~3.3 & Worth at most 0.47 EEC. \\
+Zodi from Leinert, by ecliptic latitude & Stark et al.\ (2014) & A constant zodi departs from AYO's benchmark by factors of 0.56--1.26. \\
+Noise floor in the exposure-time equation; overheads inside the cap & Stark et al.\ (2019, 2024) & Neither changes the characterization-time discrepancy. \\
+No throughput calibration & --- & The factor that would reproduce 22.5 is @@CALFITTED@@; it would absorb uniform errors in exposure time. \\
+$\eta_\oplus$ interval read as 68\% & Stark et al.\ (2024), Fig.~10 & The stated 86\% raises the distance to Fig.~10 from @@VARBASETV@@ to @@VARETA86TV@@. \\
+Equal-slope allocation & Stark et al.\ (2014) & Within 0.00\% of an exact optimum. \\
+Blackbody stellar flux & --- & Agrees with measured $V$ to @@PHOTMED@@\,mag. \\
+One detection before characterization & Stark et al.\ (2024) & Requiring two lowers the yield by about 8\% and does not narrow its distribution. \\
 \bottomrule
 \end{tabular}
-\caption{The ledger. The traps that recur --- compensating errors, comparing against the wrong
-published curve, biased diagnostic sub-samples, and read-off values --- are documented in
-\texttt{doc/handoffToNextAgent.md}.}
+\caption{Implementation choices. The explanations tested and rejected for the
+characterization-time discrepancy are listed in Sec.~\ref{sec:open}.}
+\label{tab:choices}
 \end{table}
 
 \clearpage
 \section{Every contributing star}
 \label{app:stars}
 
-Stars with an expected yield of at least @@EZLISTMIN@@ EEC in either zone's survey, in order of
-their classic-zone yield. Zone edges are angular separations in milliarcseconds; $C$ is the
-completeness reached, averaged over exozodi draws; $N$ is the expected number of candidates. The
-complete table, with every screened star and every column (AU, $\lambda/D$ at 550 and 1000\,nm,
-time allocated, characterization time, fraction of draws observed), is
-\texttt{TabulateEarthZones/earthZoneTable.csv}.
+This table lists every star with an expected yield of at least @@EZLISTMIN@@ EEC in either
+zone's survey, ordered by its classic-zone yield. Zone edges are angular separations in
+milliarcseconds; $C$ is the completeness reached, averaged over exozodi draws; and $N$ is the
+expected number of candidates. The complete table, covering every screened star with every column
+(AU, $\lambda/D$ at 550 and 1000\,nm, time allocated, characterization time, and the fraction of
+draws in which the star is observed), is \texttt{TabulateEarthZones/earthZoneTable.csv}.
 
 {\scriptsize
 \setlength{\tabcolsep}{3pt}
@@ -845,16 +1047,17 @@ time allocated, characterization time, fraction of draws observed), is
 \section*{References}
 \small
 \begin{itemize}
-\item Stark, C.~C., et al.\ 2014, ApJ 795, 122 --- AYO; exozodi surface brightness (App.~C).
-\item Stark, C.~C., et al.\ 2015, ApJ 808, 149 (arXiv:1506.01723) --- revisits; probabilistic characterization time.
-\item Stark, C.~C., et al.\ 2019, JATIS 5, 024009 (arXiv:1904.11988) --- exposure-time equations.
-\item Stark, C.~C., et al.\ 2024, JATIS 10, 034006 (arXiv:2405.19418) --- HWO baseline; uncertainty budget; Figs.~9--11.
-\item Bryson, S., et al.\ 2021, AJ 161, 36 (arXiv:2010.14812) --- Kepler DR25 $\eta_\oplus$; Fig.~14.
-\item Ertel, S., et al.\ 2020, AJ 159, 177 --- LBTI HOSTS exozodi survey.
-\item Tuchow, N.~W., et al.\ 2024 --- HWO Preliminary Input Catalog.
-\item Latouf, N., et al.\ 2026, arXiv:2609.25540 --- HWO survey strategies; AYO v17 and EXOSIMS.
-\item Kopparapu, R.~K., et al.\ 2013, ApJ 765, 131 --- habitable zone boundaries.
-\item Chen, J., \& Kipping, D.\ 2017, ApJ 834, 17 --- mass--radius relation.
+\item Bryson, S., et al.\ 2021, AJ 161, 36 (arXiv:2010.14812).
+\item Chen, J., \& Kipping, D.\ 2017, ApJ 834, 17.
+\item Ertel, S., et al.\ 2020, AJ 159, 177.
+\item Leinert, C., et al.\ 1998, A\&AS 127, 1.
+\item Savransky, D., \& Garrett, D.\ 2016, JATIS 2, 011006.
+\item Stark, C.~C., et al.\ 2014, ApJ 795, 122.
+\item Stark, C.~C., et al.\ 2015, ApJ 808, 149 (arXiv:1506.01723).
+\item Stark, C.~C., et al.\ 2019, JATIS 5, 024009 (arXiv:1904.11988).
+\item Stark, C.~C., et al.\ 2024, JATIS 10, 034006 (arXiv:2405.19418).
+\item Stark, C.~C., et al.\ 2025, arXiv:2502.18556.
+\item Tuchow, N.~W., et al.\ 2024, the HWO Preliminary Input Catalog.
 \end{itemize}
 
 \end{document}

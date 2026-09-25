@@ -1,0 +1,16 @@
+{
+ "sVariant": "etaInterval86ConstantSky",
+ "sWhy": "the 86% interval with T_sky(r) removed too -- NOT more faithful, since that removes sourced physics",
+ "dictMissionOverrides": {
+  "bSkyThroughputFollowsCore": false
+ },
+ "fEtaIntervalZ": 1.4758,
+ "sEtaLaw": "lognormal",
+ "listStagesRerun": [
+  "completeness",
+  "survey",
+  "occurrence",
+  "prediction"
+ ],
+ "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/etaInterval86ConstantSky/missionParameters.json"
+}

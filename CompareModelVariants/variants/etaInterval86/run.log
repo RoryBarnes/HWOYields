@@ -1,6 +1,7 @@
-### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --eta-interval-z 1.4758 --out-samples /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/occurrencePosterior.npz --out-summary /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/occurrencePosteriorSummary.json
+### sampleOccurrencePosterior: dataSampleOccurrencePosterior.py --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --eta-interval-z 1.4758 --out-samples /workspace/yields/CompareModelVariants/variants/etaInterval86/occurrencePosterior.npz --out-summary /workspace/yields/CompareModelVariants/variants/etaInterval86/occurrencePosteriorSummary.json
 {
   "sEtaNormalisation": "Canonical-box eta sampled directly from the published posterior (lognormal matched to its quoted interval read at z = 1.4758); other boxes follow by the Gamma-independent ratio from the shape chain.",
+  "sEtaLaw": "lognormal",
   "fEtaIntervalZ": 1.4758,
   "fEtaLogNormalMu": -1.3590502684778558,
   "fEtaLogNormalSigma": 0.515797037350749,
@@ -56,34 +57,34 @@
     "fMean": 0.20352045278060632
   }
 }
-### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/computeCompleteness/completeness.npz --occurrence-posterior /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/occurrencePosterior.npz --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 2 --out-prediction /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/yieldPrediction.json --out-samples /workspace/yields/explorations/output/oneVariableExperiments/etaInterval86/yieldSamples.npz
+### predictRedefinedYield: dataPredictRedefinedYield.py --completeness /workspace/yields/computeCompleteness/completeness.npz --occurrence-posterior /workspace/yields/CompareModelVariants/variants/etaInterval86/occurrencePosterior.npz --mission-parameters /workspace/yields/modelCoronagraph/missionParameters.json --calibration-json /workspace/yields/calibrateToStark/calibration.json --processes 2 --out-prediction /workspace/yields/CompareModelVariants/variants/etaInterval86/yieldPrediction.json --out-samples /workspace/yields/CompareModelVariants/variants/etaInterval86/yieldSamples.npz
 {
   "dictYieldRatio": {
-    "fMedian": 0.23629707483029377,
-    "fP16": 0.21500303094942408,
-    "fP84": 0.2605143064706367,
+    "fMedian": 0.2292498259736025,
+    "fP16": 0.2087812523337771,
+    "fP84": 0.25201760639954873,
     "fOccurrenceRatioMedian": 0.20334323541972582
   },
   "dictByBox": {
     "canonical": {
-      "fMeanExpected": 19.47472579475852,
-      "fMedianExpected": 17.845465613060576,
-      "fP16Expected": 11.102551437016025,
-      "fP84Expected": 27.707356069530366,
-      "fP05Expected": 7.933099352547209,
-      "fP95Expected": 36.17323227201007,
-      "fProbabilityAtLeastGoal": 0.25743055555555555,
-      "fProbabilityAtLeastOne": 0.9997916666666666
+      "fMeanExpected": 20.662252461646894,
+      "fMedianExpected": 18.84538389928987,
+      "fP16Expected": 11.657242228103367,
+      "fP84Expected": 29.455263395081918,
+      "fP05Expected": 8.303559349771072,
+      "fP95Expected": 38.83424749769459,
+      "fProbabilityAtLeastGoal": 0.2986111111111111,
+      "fProbabilityAtLeastOne": 0.9999305555555555
     },
     "redefined": {
-      "fMeanExpected": 4.750109832887598,
-      "fMedianExpected": 4.161420226449108,
-      "fP16Expected": 2.5142164127805846,
-      "fP84Expected": 6.897407197121364,
-      "fP05Expected": 1.7656817956277895,
-      "fP95Expected": 9.691480916731146,
+      "fMeanExpected": 4.873313139002176,
+      "fMedianExpected": 4.260705670321806,
+      "fP16Expected": 2.5713585599459727,
+      "fP84Expected": 7.077540792944991,
+      "fP05Expected": 1.8061748795270525,
+      "fP95Expected": 9.965146086742758,
       "fProbabilityAtLeastGoal": 0.0005555555555555556,
-      "fProbabilityAtLeastOne": 0.9582638888888889
+      "fProbabilityAtLeastOne": 0.9597916666666667
     }
   }
 }

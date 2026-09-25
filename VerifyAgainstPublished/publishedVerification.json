@@ -168,10 +168,10 @@
     {
       "sName": "Albedo penalty on expected yield",
       "fPublished": 0.12,
-      "fModel": 0.08635317019156152,
-      "fRelativeDifference": 0.28039024840365395,
+      "fModel": 0.036078609536135064,
+      "fRelativeDifference": 0.6993449205322078,
       "fTolerance": 0.5,
-      "bAgrees": true,
+      "bAgrees": false,
       "bTuned": false,
       "sSource": "Stark+2024 Sec. 3.2 (22.5 -> 19.8)",
       "sNote": ""
@@ -179,8 +179,8 @@
     {
       "sName": "P25 including sigma_eta, 6 m",
       "fPublished": 0.32,
-      "fModel": 0.3215277777777778,
-      "fRelativeDifference": 0.004774305555555608,
+      "fModel": 0.35138888888888886,
+      "fRelativeDifference": 0.09809027777777767,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -190,8 +190,8 @@
     {
       "sName": "Yield-aperture exponent",
       "fPublished": 1.9,
-      "fModel": 1.8022874831356774,
-      "fRelativeDifference": 0.05142764045490657,
+      "fModel": 1.8131604705541493,
+      "fRelativeDifference": 0.04570501549781611,
       "fTolerance": 0.15,
       "bAgrees": true,
       "bTuned": false,
@@ -212,8 +212,8 @@
     {
       "sName": "P25 excluding sigma_eta, 6 m",
       "fPublished": 0.06,
-      "fModel": 0.03770833333333334,
-      "fRelativeDifference": 0.3715277777777777,
+      "fModel": 0.06263888888888888,
+      "fRelativeDifference": 0.04398148148148142,
       "fTolerance": 0.5,
       "bAgrees": true,
       "bTuned": false,
@@ -256,8 +256,8 @@
     {
       "sName": "P25 including sigma_eta at 6 m",
       "fPublished": 0.32,
-      "fModel": 0.3203472222222222,
-      "fRelativeDifference": 0.0010850694444444406,
+      "fModel": 0.3507638888888889,
+      "fRelativeDifference": 0.0961371527777777,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -267,8 +267,8 @@
     {
       "sName": "P25 including sigma_eta at 7 m",
       "fPublished": 0.53,
-      "fModel": 0.4884722222222222,
-      "fRelativeDifference": 0.07835429769392042,
+      "fModel": 0.5270833333333333,
+      "fRelativeDifference": 0.0055031446540880725,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -278,8 +278,8 @@
     {
       "sName": "P25 including sigma_eta at 8 m",
       "fPublished": 0.67,
-      "fModel": 0.6304861111111111,
-      "fRelativeDifference": 0.058975953565505904,
+      "fModel": 0.6572916666666667,
+      "fRelativeDifference": 0.018967661691542268,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -289,8 +289,8 @@
     {
       "sName": "P25 including sigma_eta at 9 m",
       "fPublished": 0.78,
-      "fModel": 0.7284722222222222,
-      "fRelativeDifference": 0.06606125356125364,
+      "fModel": 0.755,
+      "fRelativeDifference": 0.032051282051282076,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -300,8 +300,8 @@
     {
       "sName": "Fixed-eta yield mean (Fig. 10 red)",
       "fPublished": 17.347085112793607,
-      "fModel": 16.806844687474086,
-      "fRelativeDifference": 0.031143008857499023,
+      "fModel": 17.731662357824792,
+      "fRelativeDifference": 0.022169560046001978,
       "fTolerance": 0.1,
       "bAgrees": true,
       "bTuned": false,
@@ -311,8 +311,8 @@
     {
       "sName": "Realized-yield distribution median",
       "fPublished": 18.0,
-      "fModel": 18.0,
-      "fRelativeDifference": 0.0,
+      "fModel": 19.0,
+      "fRelativeDifference": 0.05555555555555555,
       "fTolerance": 0.15,
       "bAgrees": true,
       "bTuned": false,
@@ -322,8 +322,8 @@
     {
       "sName": "Realized-yield fraction below 12 EECs",
       "fPublished": 0.2906507959397014,
-      "fModel": 0.2825,
-      "fRelativeDifference": 0.028043260343909006,
+      "fModel": 0.25972222222222224,
+      "fRelativeDifference": 0.10641145370851009,
       "fTolerance": 0.35,
       "bAgrees": true,
       "bTuned": false,
@@ -333,8 +333,8 @@
     {
       "sName": "Realized-yield distribution mean",
       "fPublished": 21.0,
-      "fModel": 21.040069444444445,
-      "fRelativeDifference": 0.0019080687830687957,
+      "fModel": 22.445208333333333,
+      "fRelativeDifference": 0.06881944444444445,
       "fTolerance": 0.3,
       "bAgrees": true,
       "bTuned": false,
@@ -344,8 +344,8 @@
     {
       "sName": "Realized-yield distribution mode",
       "fPublished": 10.0,
-      "fModel": 12.0,
-      "fRelativeDifference": 0.2,
+      "fModel": 11.0,
+      "fRelativeDifference": 0.1,
       "fTolerance": 0.25,
       "bAgrees": true,
       "bTuned": false,
@@ -377,8 +377,9 @@
   ],
   "iChecks": 34,
   "iIndependent": 24,
-  "iIndependentAgreeing": 22,
+  "iIndependentAgreeing": 21,
   "listDisagreeing": [
+    "Albedo penalty on expected yield",
     "Mean characterization time, first 18 EECs, 6 m (days)",
     "Mean characterization time, first 18 EECs, 9 m (days)"
   ]

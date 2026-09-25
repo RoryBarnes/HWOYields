@@ -86,6 +86,7 @@
         "fEtaModeImplied",
         "fMaxAutocorrSteps",
         "iSamples",
+        "sEtaLaw",
         "sEtaNormalisation"
       ],
       "listNumbers": [
@@ -358,7 +359,7 @@
           "oValue": 0.20439239801265185
         }
       ],
-      "iBytes": 1749
+      "iBytes": 1775
     }
   }
 }

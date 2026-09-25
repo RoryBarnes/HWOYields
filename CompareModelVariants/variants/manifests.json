@@ -1,24 +1,11 @@
 {
  "listVariants": [
   {
-   "sVariant": "albedoPerVisit",
-   "sWhy": "Stark 2024 Sec. 3.2 per-visit flux test vs recomputing at the drawn albedo",
-   "dictMissionOverrides": {
-    "sAlbedoMethod": "perVisitThreshold"
-   },
-   "fEtaIntervalZ": null,
-   "listStagesRerun": [
-    "completeness",
-    "survey",
-    "prediction"
-   ],
-   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/albedoPerVisit/missionParameters.json"
-  },
-  {
    "sVariant": "etaInterval86",
-   "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%",
+   "sWhy": "eta_Earth interval read as the stated 86% vs the adopted 68%; every documented Stark choice followed",
    "dictMissionOverrides": {},
    "fEtaIntervalZ": 1.4758,
+   "sEtaLaw": "lognormal",
    "listStagesRerun": [
     "occurrence",
     "prediction"
@@ -32,43 +19,13 @@
     "bSkyThroughputFollowsCore": false
    },
    "fEtaIntervalZ": null,
+   "sEtaLaw": "lognormal",
    "listStagesRerun": [
     "completeness",
     "survey",
     "prediction"
    ],
-   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/skyThroughputConstant/missionParameters.json"
-  },
-  {
-   "sVariant": "paperFaithful",
-   "sWhy": "every documented Stark choice followed at once: his per-visit albedo test AND his stated 86% eta interval, with the sourced T_sky(r) of Stark 2019 Eqs. 5-6 KEPT",
-   "dictMissionOverrides": {
-    "sAlbedoMethod": "perVisitThreshold"
-   },
-   "fEtaIntervalZ": 1.4758,
-   "listStagesRerun": [
-    "completeness",
-    "survey",
-    "occurrence",
-    "prediction"
-   ],
-   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/paperFaithful/missionParameters.json"
-  },
-  {
-   "sVariant": "allThreeCombined",
-   "sWhy": "all three one-variable changes at once, T_sky(r) removed too -- NOT more faithful, since that removes sourced physics",
-   "dictMissionOverrides": {
-    "sAlbedoMethod": "perVisitThreshold",
-    "bSkyThroughputFollowsCore": false
-   },
-   "fEtaIntervalZ": 1.4758,
-   "listStagesRerun": [
-    "completeness",
-    "survey",
-    "occurrence",
-    "prediction"
-   ],
-   "sMissionParameters": "/workspace/yields/explorations/output/oneVariableExperiments/allThreeCombined/missionParameters.json"
+   "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/skyThroughputConstant/missionParameters.json"
   },
   {
    "sVariant": "brysonMixtureEta",
@@ -81,6 +38,53 @@
     "prediction"
    ],
    "sMissionParameters": "/workspace/yields/modelCoronagraph/missionParameters.json"
+  },
+  {
+   "sVariant": "albedoRecompute",
+   "sWhy": "exposure recomputed at the drawn albedo vs Stark 2024 Sec. 3.2's per-visit flux test",
+   "dictMissionOverrides": {
+    "sAlbedoMethod": "recompute"
+   },
+   "fEtaIntervalZ": null,
+   "sEtaLaw": "lognormal",
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/albedoRecompute/missionParameters.json"
+  },
+  {
+   "sVariant": "albedoRecomputeEta86",
+   "sWhy": "recomputed albedo AND the 86% interval: the fourth corner of the albedo x eta 2x2",
+   "dictMissionOverrides": {
+    "sAlbedoMethod": "recompute"
+   },
+   "fEtaIntervalZ": 1.4758,
+   "sEtaLaw": "lognormal",
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "occurrence",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/albedoRecomputeEta86/missionParameters.json"
+  },
+  {
+   "sVariant": "etaInterval86ConstantSky",
+   "sWhy": "the 86% interval with T_sky(r) removed too -- NOT more faithful, since that removes sourced physics",
+   "dictMissionOverrides": {
+    "bSkyThroughputFollowsCore": false
+   },
+   "fEtaIntervalZ": 1.4758,
+   "sEtaLaw": "lognormal",
+   "listStagesRerun": [
+    "completeness",
+    "survey",
+    "occurrence",
+    "prediction"
+   ],
+   "sMissionParameters": "/workspace/yields/CompareModelVariants/variants/etaInterval86ConstantSky/missionParameters.json"
   }
  ]
 }
