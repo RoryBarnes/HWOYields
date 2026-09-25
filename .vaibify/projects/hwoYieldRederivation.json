@@ -716,5 +716,12 @@
   "iWorkflowSchemaVersion": 13,
   "fTolerance": 1e-06,
   "bAutoArchive": false,
-  "fDefaultWallClockBudgetSeconds": 0.0
+  "fDefaultWallClockBudgetSeconds": 0.0,
+  "dictAiProvenance": {
+    "dictPromptRecord": {
+      "bEnabled": true,
+      "sEnabledAtUtc": "2026-09-25T02:01:17.245933+00:00",
+      "bFirstCaptureReviewed": false
+    }
+  }
 }
