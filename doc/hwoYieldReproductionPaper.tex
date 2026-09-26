@@ -298,13 +298,406 @@ completely, and a whole class of modeling errors becomes invisible. Without it, 
 Secs.~\ref{sec:char} and~\ref{sec:eta} are visible as residues rather than silently rescaled
 away. For reference, the factor that would reproduce 22.5 is 1.20.
 
-One sourced term matters a great deal here. Stark et al. (2019) Eqs.~5--6 multiply the zodiacal
-and exozodiacal backgrounds by an extended-source throughput $T_{\rm sky}(x,y)$, the PSF convolved
-with a uniform background, which the point-source terms do not carry. We reconstruct it as a
-function of separation; replacing it with its large-separation value lowers the mean realized
-yield from 22.4 to 19.2 (Table~\ref{tab:variants}). The term is sourced, but
-its radial shape is not published, so the reconstruction is ours, and our shape is known to differ
-from AYO's in the inner working angles.
+One sourced term matters a great deal here: the extended-source throughput $T_{\rm sky}$ that
+Stark et al.\ (2019) Eqs.~5--6 apply to the zodiacal and exozodiacal backgrounds. Its radial
+shape is not published, so the reconstruction is ours, and it very probably differs from AYO's
+near the inner working angle. Section~\ref{sec:tsky} gives our reconstruction, what AYO's is
+likely to be, and by how much they differ.
+
+%======================================================================
+\section{The model in equations}
+\label{sec:equations}
+%======================================================================
+
+This section states every equation the pipeline evaluates, in the order it evaluates them, with
+each variable defined where it first appears. Table~\ref{tab:params} lists the scalar parameters
+with their values and sources, and Table~\ref{tab:bands} the detection channels and spectral
+bandpasses. Throughout, $D$ is the inscribed diameter by which Stark et al.\ (2024) label the
+design, and $D_{\rm circ} = 7.16$\,m the circumscribed diameter against which the published
+coronagraph curves are plotted.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\begin{tabular}{p{8.2cm}rp{3.6cm}}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Source} \\
+\midrule
+Inscribed diameter $D$ (m) & 6.0 & S24 \\
+Circumscribed / inscribed diameter & 1.194 & LUVOIR-B, 8\,m / 6.7\,m \\
+Area fill factor $f_{\rm fill}$ & 0.785 & none published \\
+Contamination throughput $\tau_{\rm con}$ & 0.95 & S24 \\
+Quantum efficiency $Q$ & 0.90 & S24 \\
+Detective quantum efficiency $q$ & 0.75 & S24 \\
+Dark current $\xi_{\rm DC}$ (counts\,pix$^{-1}$\,s$^{-1}$) & $3.0\times10^{-5}$ & S24 \\
+Read noise (counts\,pix$^{-1}$) & 0 & S24 (photon counting) \\
+Clock-induced charge $\xi_{\rm CIC}$ (counts\,pix$^{-1}$\,frame$^{-1}$) & $1.3\times10^{-3}$ & S24 \\
+Raw-contrast floor $\zeta_{\rm floor}$ & $10^{-10}$ & S19 \\
+Photometric aperture radius $X$ ($\lambda/D$) & 0.7 & S19 \\
+Noise floor $\Delta m_{\rm nf}$ (mag) & 26.5 & S24 \\
+Planning albedo $A_{\rm plan}$ & 0.20 & S24 Sec.~3.2 \\
+Exozodi surface brightness per zodi at $V$ (mag\,arcsec$^{-2}$) & 22.0 & S14 \\
+Survey time $T$ (yr) & 2.0 & S24 \\
+Exposure limit $t_{\rm lim}$, including overheads (d) & 60 & S24 \\
+Slew overhead $t_{\rm slew}$ (h) & 1.0 & S24 \\
+Wavefront-control overhead $t_{\rm WFC}$ (h) & 2.7 & S24 \\
+Wavefront-control time multiplier $\tau'$ & 1.10 & S24 \\
+Maximum visits per star $k_{\max}$ & 6 & S15 \\
+\midrule
+Circumscribed diameter $D_{\rm circ}$ (m) & 7.16 & derived \\
+Collecting area $A = f_{\rm fill}\,\pi D_{\rm circ}^2/4$ (m$^2$) & 31.6 & derived \\
+Longest science exposure $\tau_{\rm cap}$ (d), Eq.~\eqref{eq:cap} & 54.4 & derived \\
+Airy encircled energy in the aperture, ${\rm EE}(X)$ & 0.678 & derived \\
+Peak DMVC6 core throughput $\Upsilon_{c,\max}$ & 0.388 & digitized \\
+\bottomrule
+\end{tabular}
+\caption{Scalar parameters of the baseline mission. S14, S15, S19 and S24 are Stark et al.\
+(2014, 2015, 2019, 2024); S24 values are from its Tables~1 and~2 unless a section is given. The
+DMVC6 core throughput $\Upsilon_c(r)$ and raw contrast $\zeta(r)$ are digitized from Stark et al.\
+(2024) and shown in Fig.~\ref{fig:pair25}.}
+\label{tab:params}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{llrrrrr}
+\toprule
+\textbf{Name} & \textbf{Use} & $\lambda$ \textbf{(nm)} & $\Delta\lambda/\lambda$ & $\tau_b$ &
+\textbf{S/N} & $N_{\rm pix}$ \\
+\midrule
+LW & detection & 550 & 0.20 & 0.34 & 7 & 4 \\
+SW & detection & 450 & 0.20 & 0.15 & 7 & 4 \\
+IFS730 & spectrum & 730 & 1/140 & 0.23 & 17 & 51 \\
+IFS763 & spectrum & 763 & 1/140 & 0.23 & 15 & 56 \\
+IFS779 & spectrum & 779 & 1/140 & 0.23 & 14 & 58 \\
+IFS824 & spectrum & 824 & 1/140 & 0.23 & 13 & 65 \\
+IFS842 & spectrum & 842 & 1/140 & 0.23 & 12 & 68 \\
+IFS917 & spectrum & 917 & 1/140 & 0.23 & 10 & 81 \\
+IFS930 & spectrum & 930 & 1/140 & 0.23 & 9 & 83 \\
+IFS943 & spectrum & 943 & 1/140 & 0.23 & 6 & 85 \\
+IFS1000 & spectrum & 1000 & 1/140 & 0.23 & 5 & 96 \\
+\bottomrule
+\end{tabular}
+\caption{Detection channels and characterization bandpasses. $\tau_b$ is the optical throughput
+of the channel, S/N the required signal-to-noise ratio (per spectral bin for the spectra), and
+$N_{\rm pix}$ the number of detector pixels the signal is spread over. The two detection channels
+observe in parallel and their S/N adds in quadrature; a spectrum uses whichever single bandpass
+is fastest. The spectral bandpasses and their S/N follow Stark et al.\ (2024) Fig.~3.}
+\label{tab:bands}
+\end{table}
+
+\subsection{Stars}
+
+Star $i$ has distance $d_i$, luminosity $L_i$, effective temperature $T_i$, radius $R_{\star,i}$
+and ecliptic latitude $b_i$, all from HPIC. Its photon spectral flux at the telescope is a
+blackbody,
+\begin{equation}
+F_\star(\lambda) = \pi\left(\frac{R_\star}{d}\right)^{2} B_\lambda(T)\,\frac{\lambda}{hc}
+\qquad [\mathrm{photons\ s^{-1}\,m^{-2}\,m^{-1}}],
+\label{eq:starflux}
+\end{equation}
+where $B_\lambda$ is the Planck function. Its Earth-equivalent insolation distance is
+$a_{\rm EEID} = \sqrt{L/L_\odot}$\,AU.
+
+\subsection{Occurrence and the selection boxes}
+
+Planets follow the SAG13 density
+\begin{equation}
+\frac{d^2N}{d\ln R\,d\ln P} = \Gamma\,R^{\alpha}P^{\beta},
+\label{eq:sag13}
+\end{equation}
+with $R$ in Earth radii and $P$ in years. A selection box $\mathcal{B}$ is a range of scaled
+semi-major axis $a' = a/a_{\rm EEID} \in [a'_{\rm in}, a'_{\rm out}]$ and a radius range
+$[R_{\rm lo}(a'), R_{\rm hi}]$. Since $P \propto a^{3/2}$ at the solar-twin reference, the
+occurrence over the box is
+\begin{equation}
+\eta_\mathcal{B} = \frac{3}{2}\,\Gamma\int_{a'_{\rm in}}^{a'_{\rm out}} a'^{\,3\beta/2}
+\int_{R_{\rm lo}(a')}^{R_{\rm hi}} R^{\alpha}\,d\ln R\;d\ln a'.
+\label{eq:etabox}
+\end{equation}
+The canonical box has $a' \in [0.95, 1.67]$, $R_{\rm lo} = 0.8\,a'^{-1/2}$ and $R_{\rm hi} = 1.4$.
+The redefined box has $a' \in [0.96, 1.20]$ and $0.5 \le M/M_\oplus \le 2$ with $R = M^{0.27}$,
+i.e.\ $R \in [0.829, 1.206]$. The ratio $\rho_\mathcal{B} = \eta_\mathcal{B}/\eta_{\rm canon}$
+does not depend on $\Gamma$; it is computed over an \texttt{emcee} chain in
+$(\ln\Gamma, \alpha, \beta)$ with SAG13 priors $\alpha = -0.19 \pm 0.27$ and
+$\beta = 0.26 \pm 0.29$.
+
+The canonical occurrence $\eta_\oplus \equiv \eta_{\rm canon}$ is lognormal,
+\begin{equation}
+\ln\eta_\oplus \sim \mathcal{N}(\mu, \sigma^2), \qquad
+\mu = \tfrac{1}{2}\ln(\eta_{\rm lo}\,\eta_{\rm hi}), \qquad
+\sigma = \frac{\ln(\eta_{\rm hi}/\eta_{\rm lo})}{2z},
+\label{eq:etalaw}
+\end{equation}
+where $[\eta_{\rm lo}, \eta_{\rm hi}] = [0.12, 0.55]$ is the interval quoted by Stark et al.\
+(2024) and $z$ is the number of standard deviations it is taken to span. We adopt $z = 1$
+(a 68\% interval), which gives a median $e^{\mu} = 0.257$, $\sigma = 0.76$ and a mean of
+0.343; Sec.~\ref{sec:eta} explains and tests this choice. The redefined box then has
+$\eta_\mathcal{B} = \rho_\mathcal{B}\,\eta_\oplus$.
+
+\subsection{Injected planets and their geometry}
+
+For each star and box, $N_{\rm inj}$ = 1\,200--3\,000 planets are drawn: $a'$ from a density
+$\propto a'^{\,3\beta/2}\,d\ln a'$ on the box's range, $R$ from $\propto R^{\alpha}\,d\ln R$ on
+its radius range (with $\alpha$ and $\beta$ at their SAG13 central values), $\cos i$ uniform on
+$[-1, 1]$, and, for each of up to $k_{\max}$ visits $v$, an independent orbital angle $\theta_v$
+uniform on $[0, 2\pi)$. Orbits are circular with radius $a = a'\,a_{\rm EEID}$. At visit $v$ the
+projected separation and phase angle $\phi$ are
+\begin{equation}
+s_v = a\sqrt{\cos^2\theta_v + \sin^2\theta_v\cos^2 i}, \qquad
+\cos\phi_v = \sin\theta_v\,\sin i,
+\label{eq:geometry}
+\end{equation}
+and the planet-to-star flux ratio is
+\begin{equation}
+f_v = A\,\Phi(\phi_v)\left(\frac{R_p}{a}\right)^{2}, \qquad
+\Phi(\phi) = \frac{\sin\phi + (\pi - \phi)\cos\phi}{\pi},
+\label{eq:fluxratio}
+\end{equation}
+with $A$ the geometric albedo: $A_{\rm plan} = 0.2$ for planning and a draw from
+$\mathcal{U}(0.08, 0.32)$ for counting (Sec.~\ref{sec:counting}). The separation in the units of
+the coronagraph curves is
+\begin{equation}
+r_v = \frac{s_v/d}{\lambda/D}\cdot\frac{D_{\rm circ}}{D},
+\label{eq:separation}
+\end{equation}
+with $s_v/d$ in radians.
+
+\subsection{Count rates}
+
+For a channel $b$ with central wavelength $\lambda$, bandwidth $\Delta\lambda$, optical throughput
+$\tau_b$ and $N_{\rm pix}$ pixels, the end-to-end throughput is
+$\tau = \tau_b\,\tau_{\rm con}\,Q\,q$ and the stellar count rate is
+$\mathrm{CR}_\star = F_\star(\lambda)\,\Delta\lambda\,A_{\rm tel}\,\tau$, where
+$A_{\rm tel} = 31.6$\,m$^2$ is the collecting area (Table~\ref{tab:params}). The coronagraph
+enters through the core throughput $\Upsilon_c(r)$ and the raw contrast
+$\zeta(r) = \max[\zeta_{\rm DMVC6}(r), \zeta_{\rm floor}]$. With
+$\Omega = \pi(X\lambda/D)^2$ the solid angle of the photometric aperture of radius $X$, the
+count rates are
+\begin{align}
+\mathrm{CR}_p &= \mathrm{CR}_\star\,\Upsilon_c(r)\,f, \label{eq:crp}\\
+\mathrm{CR}_{\rm leak} &= \mathrm{CR}_\star\,\Upsilon_c(r)\,\zeta(r), \label{eq:crleak}\\
+\mathrm{CR}_z &= I_z\,\Delta\lambda\;\Omega\,A_{\rm tel}\,\tau\;T_{\rm sky}(r), \label{eq:crz}\\
+\mathrm{CR}_{ez} &= z\,I_{ez}\,\Delta\lambda\;\Omega\,A_{\rm tel}\,\tau\;T_{\rm sky}(r),
+\label{eq:crez}\\
+\mathrm{CR}_{\rm det} &= N_{\rm pix}\left[\xi_{\rm DC} + 6.73\,\xi_{\rm CIC}\,
+\frac{\mathrm{CR}_p + \mathrm{CR}_{\rm leak} + \mathrm{CR}_z + \mathrm{CR}_{ez}}{N_{\rm pix}}
+\right]. \label{eq:crdet}
+\end{align}
+Here $I_z$ is the local zodiacal surface brightness,
+$I_z = 0.69\,I_{90}(\lambda)\,f_{135}(b)$, with $I_{90}$ the Leinert et al.\ (1998) spectrum at
+$90^\circ$ elongation and $f_{135}(b) = 1.02 - 0.566x - 0.884x^2 + 0.853x^3$, $x = |\sin b|$
+(Stark et al.\ 2014); $z$ is the star's exozodi level in zodis; and
+\begin{equation}
+I_{ez} = F_0(\lambda)\,10^{-0.4\times 22}\;
+\frac{F_\star(\lambda)|_{10\,{\rm pc}}}{F_\odot(\lambda)|_{10\,{\rm pc}}}\;\frac{L_\odot}{L}
+\label{eq:iez}
+\end{equation}
+is the surface brightness of one zodi of exozodiacal dust around that star, held at constant
+habitable-zone optical depth (Stark et al.\ 2014, App.~C). $F_0(\lambda)$ is a solar-colored
+zero point normalized to $10^{11}$ photons\,s$^{-1}$\,m$^{-2}$\,$\mu$m$^{-1}$ at $V$. The
+detector term is Stark et al.\ (2019) Eq.~9: dark current plus clock-induced charge, whose frame
+rate is set by the brightest pixel, with the Geiger factor 6.73. The total background is
+$\mathrm{CR}_b = \mathrm{CR}_{\rm leak} + \mathrm{CR}_z + \mathrm{CR}_{ez} + \mathrm{CR}_{\rm det}$.
+
+\subsection{The extended-source throughput $T_{\rm sky}$}
+\label{sec:tsky}
+
+Only the two sky terms, Eqs.~\eqref{eq:crz} and~\eqref{eq:crez}, carry $T_{\rm sky}$. Stark et
+al.\ (2019, Eqs.~5--6) define it as ``the instrument's throughput for extended sources'',
+computed ``by first convolving the spatially-dependent PSF at all locations with a normalized
+uniform background''. For a uniform background, the light an aperture at $r$ collects is the sum,
+over every point of the sky nearby, of the fraction of that point's light the coronagraph
+delivers into the aperture. $T_{\rm sky}(r)$ therefore counts \emph{all} transmitted light
+landing in the aperture, from the cores and the wings of the PSFs of every nearby point, while
+$\Upsilon_c(r)$ counts only the core of one point source. Stark's DMVC6 map is not published, so
+it has to be reconstructed.
+
+\textbf{Our reconstruction.} Write $\Upsilon_c(r) = T_{\rm tot}(r)\,\epsilon_{\rm core}(r)$, the
+total fraction $T_{\rm tot}$ of an off-axis source's light that the coronagraph transmits times
+the fraction $\epsilon_{\rm core}$ of that light falling inside the photometric aperture. If the
+off-axis PSF keeps the Airy shape at every separation, $\epsilon_{\rm core} = {\rm EE}(X)$, and if
+$T_{\rm tot}$ changes little across one $\lambda/D$, the convolution returns $T_{\rm tot}$ itself.
+Under those two assumptions
+\begin{equation}
+T_{\rm sky}(r) = \frac{\Upsilon_c(r)}{{\rm EE}(X)} = 1.474\,\Upsilon_c(r),
+\label{eq:tsky}
+\end{equation}
+since ${\rm EE}(0.7) = 0.678$. For the DMVC6, $T_{\rm sky}$ therefore rises from 0.08 at
+$2\,\lambda/D$ to 0.572 at the outer edge of the dark hole, in exact proportion to the core
+throughput (Table~\ref{tab:tsky}, Fig.~\ref{fig:tsky}).
+
+\textbf{What AYO probably does.} AYO computes the convolution from its simulated two-dimensional
+off-axis PSFs, and both of our assumptions fail near the inner working angle. There the
+focal-plane mask distorts the off-axis PSF and moves light from its core into its wings, so
+$\epsilon_{\rm core}$ falls below ${\rm EE}(X)$; and the convolution averages $T_{\rm tot}$ over
+about one $\lambda/D$, pulling in light from larger separations where more is transmitted. Both
+raise $T_{\rm sky}/\Upsilon_c$ toward the inner working angle, where Eq.~\eqref{eq:tsky} holds it
+constant. The only AYO values in print are for a different coronagraph, the vortex of the Stark
+et al.\ (2025) exposure-time benchmark. There AYO's $T_{\rm sky}/\Upsilon_c$ rises from
+1.8 at 5.7\,$\lambda/D$ to 3.2 at 2.1\,$\lambda/D$, and
+Eq.~\eqref{eq:tsky} applied to that coronagraph gives only 0.47--0.81 of
+AYO's value. We condense the benchmark into a correction factor linear in the core fraction
+$u = \Upsilon_c/\Upsilon_{c,\max}$,
+\begin{equation}
+T_{\rm sky}^{\rm AYO\text{-}like}(r) = T_{\rm sky}(r)\,\big[F_0 + (F_1 - F_0)\,u\big],
+\qquad F_0 = 2.19,\quad F_1 = 1.08,
+\label{eq:tskyayo}
+\end{equation}
+which fits the benchmark to 6\% rms. Applied to the DMVC6, this AYO-like shape exceeds
+ours by a factor of 2.04 at $2\,\lambda/D$, 1.52 at $5\,\lambda/D$ and 1.26 at
+$10\,\lambda/D$ (Table~\ref{tab:tsky}).
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{rrrrr}
+\toprule
+$r$ ($\lambda/D_{\rm circ}$) & $\Upsilon_c$ & $T_{\rm sky}$, Eq.~\eqref{eq:tsky} &
+$T_{\rm sky}$, AYO-like & \textbf{ratio} \\
+\midrule
+1.5 & 0.016 & 0.023 & 0.050 & 2.15 \\
+2.0 & 0.053 & 0.079 & 0.160 & 2.04 \\
+2.5 & 0.097 & 0.143 & 0.274 & 1.91 \\
+3.0 & 0.134 & 0.197 & 0.357 & 1.81 \\
+3.5 & 0.168 & 0.247 & 0.423 & 1.71 \\
+4.0 & 0.195 & 0.288 & 0.470 & 1.63 \\
+5.0 & 0.235 & 0.347 & 0.527 & 1.52 \\
+7.0 & 0.286 & 0.421 & 0.579 & 1.38 \\
+10.0 & 0.325 & 0.480 & 0.605 & 1.26 \\
+15.0 & 0.357 & 0.527 & 0.616 & 1.17 \\
+20.0 & 0.373 & 0.550 & 0.619 & 1.12 \\
+25.0 & 0.382 & 0.564 & 0.619 & 1.10 \\
+\bottomrule
+\end{tabular}
+\caption{The DMVC6 core throughput and the two reconstructions of its extended-source throughput.
+The last column is the AYO-like value divided by ours.}
+\label{tab:tsky}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figSkyThroughputShapes.pdf}
+\caption{Left: DMVC6 core throughput and the two reconstructions of $T_{\rm sky}$. Right: their
+ratio to the core throughput. Ours (Eq.~\eqref{eq:tsky}) is constant at 1.474; the
+AYO-like shape (Eq.~\eqref{eq:tskyayo}) rises toward the inner working angle, following AYO's own
+values for the vortex coronagraph of the Stark et al.\ (2025) benchmark (points).}
+\label{fig:tsky}
+\end{figure}
+
+\textbf{Why this could matter, and what it does.} $T_{\rm sky}$ multiplies the zodiacal and
+exozodiacal backgrounds, and at $R = 140$ near $1\,\mu$m the exozodiacal term dominates the noise
+of a spectrum. The planets that sit closest to the inner working angle are those around distant
+and luminous stars, which are exactly the targets on which our survey and Stark's disagree
+(Sec.~\ref{sec:char}). A larger $T_{\rm sky}$ near the inner working angle is therefore a natural
+candidate for the characterization-time discrepancy, and the term demonstrably matters for the
+absolute yield: holding $T_{\rm sky}$ at its large-separation value lowers the mean realized yield
+from 22.4 to 19.2 (Table~\ref{tab:variants}). We test the AYO-like shape
+directly in Sec.~\ref{sec:char}, as one of the four parameters of the throughput study, and find
+that it moves the model along the same curve as every other throughput change rather than toward
+Stark's published values (Fig.~\ref{fig:degobs}). A DMVC6 map that departs from ours by more than
+the vortex benchmark suggests cannot be excluded, and it is part of Question~1
+(Sec.~\ref{sec:discussion}).
+
+\subsection{Exposure times}
+
+For each channel $c$ define
+\[
+a_c = \mathrm{CR}_{p,c}^2, \qquad v_c = \mathrm{CR}_{p,c} + 2\,\mathrm{CR}_{b,c}, \qquad
+n_c = \zeta_{\rm nf}\,\mathrm{CR}_{\star,c}\,\Upsilon_c(r), \qquad
+\zeta_{\rm nf} = \frac{10^{-0.4\,\Delta m_{\rm nf}}\sqrt{N_{\rm ch}}}{({\rm S/N})_d},
+\]
+where $n_c$ is the noise-floor rate and $\zeta_{\rm nf}$ the contrast that reaches the detection S/N only in infinite time with all $N_{\rm ch} = 2$
+channels combined. The
+exposure time $t$ that reaches signal-to-noise ${\rm S/N}$ solves
+\begin{equation}
+\sum_c \frac{a_c\,t}{v_c + n_c^2\,t} = ({\rm S/N})^2,
+\label{eq:exptime}
+\end{equation}
+which for a single channel is
+$t = ({\rm S/N})^2\,v/[a - ({\rm S/N})^2 n^2]$, Stark et al.\ (2025) Eq.~1, and without the
+floor ($n = 0$) reduces to Stark et al.\ (2019) Eq.~1. A planet with
+$\sum_c a_c/n_c^2 \le ({\rm S/N})^2$ can never be detected, and $t = \infty$. Detection uses the
+two channels of Table~\ref{tab:bands} at ${\rm S/N} = 7$, giving $t^{\rm det}_{jv}$ for planet $j$
+at visit $v$. A spectrum uses one bandpass $o$ at its own S/N; its time is minimized over the
+bandpasses and over 40 orbital angles $\theta$, because the orbit is known by the time a spectrum
+is taken (Stark et al.\ 2019):
+\begin{equation}
+t^{\rm char}_j = \min_{o,\,\theta}\,t_o(\theta).
+\label{eq:tchar}
+\end{equation}
+The two-month limit applies to the exposure including overheads, so the longest science exposure
+is
+\begin{equation}
+\tau_{\rm cap} = \frac{t_{\rm lim} - t_{\rm slew} - t_{\rm WFC}}{\tau'} = 54.4\ {\rm d}.
+\label{eq:cap}
+\end{equation}
+
+\subsection{Counting, completeness and the albedo test}
+\label{sec:counting}
+
+At planning albedo, planet $j$ counts for a star observed $k$ times with exposure $t$ per visit if
+it is detected on at least one of those visits and its spectrum fits under the cap:
+\begin{equation}
+D_j(t, k) = \mathbb{1}\Big[\min_{v \le k} t^{\rm det}_{jv} \le \min(t, \tau_{\rm cap})\ \wedge\
+t^{\rm char}_j \le \tau_{\rm cap}\Big],
+\label{eq:counted}
+\end{equation}
+and the star's completeness is the counted fraction,
+$C(t, k) = N_{\rm inj}^{-1}\sum_j D_j(t, k)$. The mean characterization time of the counted
+planets, $\bar t_{\rm char}(t, k)$, is what the survey budgets for spectra.
+
+To count planets with drawn albedos we follow Stark et al.\ (2024) Sec.~3.2: the plan stays fixed
+at $A_{\rm plan}$, and a planet with drawn albedo $A_j$ is counted at visit $v$ only if the fixed
+plan would have caught it. Let $\mathcal{S}_v(t)$ be the set of planning-albedo planets detected
+at visit $v$ within exposure $t$. The drawn planet passes at the smallest $t$ for which its flux
+$f_{jv}A_j/A_{\rm plan}$ is at least the faintest flux in $\mathcal{S}_v(t)$ and its separation is
+at least the smallest separation in $\mathcal{S}_v(t)$, and it fails outright if its flux exceeds
+the brightest flux any detectable planet reaches, which the inner working angle bounds. Replacing
+$t^{\rm det}_{jv}$ in Eq.~\eqref{eq:counted} by that threshold gives the completeness actually
+realized, $\bar C(t, k)$. Spectra are budgeted at $A_{\rm plan}$, as Stark states.
+
+\subsection{The survey allocation}
+
+Visiting star $i$ $k$ times with exposure $t$ costs
+\begin{equation}
+c_i(t, k) = k\,(\tau' t + t_{\rm oh}) +
+\eta_\mathcal{B}\,C_i(t, k)\,\big[\tau'\,\bar t_{\rm char,i}(t, k) + t_{\rm oh}\big],
+\qquad t_{\rm oh} = t_{\rm slew} + t_{\rm WFC},
+\label{eq:cost}
+\end{equation}
+detection for every visit plus a spectrum for every expected detection. Pooling all
+$(t, k)$ options for star $i$ gives a set of points $(c_i, C_i)$ whose upper concave envelope
+$\mathcal{E}_i$ is the star's best completeness for any time spent. For a slope $\lambda$, each
+star is allocated the last vertex of $\mathcal{E}_i$ whose incremental return
+$\Delta C_i/\Delta c_i$ is at least $\lambda$, and $\lambda$ is set so that
+$\sum_i c_i = T$. This equal-slope rule maximizes the expected yield
+$Y_{\rm plan} = \eta_\mathcal{B}\sum_i C_i$ under the budget (Stark et al.\ 2014) and matches an
+exact dynamic-programming optimum to 0.00\%.
+
+\subsection{Exozodi, $\eta_\oplus$ and the yield distribution}
+\label{sec:ydist}
+
+Exozodi levels $z_i$ are drawn from the HOSTS distribution, with four stars pinned to their LBTI
+values. Each star's completeness is tabulated at 23 exozodi levels and interpolated to each of
+200 joint draws of $\mathbf{z}$. For each posterior sample $n$ of $\eta_\oplus$, paired with
+one exozodi draw, the survey is re-optimized and the expected yield is
+$\Lambda_n = \eta_{\mathcal{B},n}\sum_i \bar C_i(t_i, k_i)$ at the allocated $(t_i, k_i)$. By
+Poisson thinning the realized yield is Poisson with that mean, so its distribution is the exact
+mixture
+\begin{equation}
+p(Y = y) = \frac{1}{N}\sum_{n=1}^{N} \frac{\Lambda_n^{\,y}\,e^{-\Lambda_n}}{y!}.
+\label{eq:mixture}
+\end{equation}
+We compare it with Stark's digitized Fig.~10 through the total-variation distance
+\begin{equation}
+D_{\rm TV} = \frac{1}{2}\sum_{y=0}^{49}\big|p(y) - q(y)\big|,
+\label{eq:dtv}
+\end{equation}
+where $q$ is the published distribution and both are renormalized over the figure's range
+$0 \le y \le 49$. $D_{\rm TV}$ is the largest difference in probability the two assign to any set
+of outcomes: 0 for identical distributions, 1 for disjoint ones.
 
 %======================================================================
 \section{Agreement with the published record}
@@ -324,8 +717,8 @@ and because they frame the disagreements that follow.
 published 22.5, a difference of 7.0\% with nothing fitted.
 
 \textbf{The realized-yield distribution.} Marginalizing over the occurrence posterior and
-Poisson counting reproduces the shape of the published Fig.~10 to a total-variation distance of
-0.037: mean 22.4 against 21.0, median 19 against 18,
+Poisson counting reproduces the shape of the published Fig.~10 to a total-variation distance
+$D_{\rm TV} = 0.037$ (Eq.~\ref{eq:dtv}): mean 22.4 against 21.0, median 19 against 18,
 $P(Y<12) = 0.26$ against 0.29, and peak 12 against 10. We stress
 that the peak is a fragile statistic and should be computed as the exact Poisson mixture over the
 sampled expected yields rather than as the mode of a histogram of realized draws; the latter
@@ -383,32 +776,70 @@ calibration on the spectral bands only, the normalization of the coronagraph lea
 radial shape of $T_{\rm sky}$. These are the four levers that a reader might reasonably suspect
 we had set wrongly, and they are exactly the family that $\kappa$ used to hide.
 
-We evaluated a 56-point Latin hypercube over that four-parameter box, recording at each
-point the $6\,$m planning yield, the characterization times at 6 and $9\,$m, and the per-distance
-target completeness against Fig.~11 (Fig.~\ref{fig:corner}). The result is negative and it is
-clean:
+The four parameters, and the ranges we allow them, are:
+\begin{itemize}
+\item $\kappa \in [0.6, 3.0]$, a multiplier on the throughput of every band;
+\item $\kappa_c \in [0.4, 2.5]$, an extra multiplier on the spectral bands only, which can slow
+  spectra down without touching detection;
+\item $f_{\rm leak} \in [1, 1.78]$, the normalization of the leaked-starlight term, from our
+  $\zeta\,\Upsilon_c$ to the $\zeta\,{\rm PSF}_{\rm peak}\,\Omega$ of Stark et al.\ (2019)
+  Eq.~4 evaluated for an Airy pattern;
+\item $s_{\rm sky} \in [0, 1]$, which interpolates $T_{\rm sky}$ from our reconstruction
+  ($s_{\rm sky} = 0$, Eq.~\ref{eq:tsky}) to the AYO-like shape ($s_{\rm sky} = 1$,
+  Eq.~\ref{eq:tskyayo}).
+\end{itemize}
+We evaluated a 56-point Latin hypercube over that box, running the full survey at each
+point at 6 and $9\,$m with exozodi fixed at three zodis, and recording the $6\,$m planning yield,
+the mean characterization time of the first eighteen candidates at 6 and $9\,$m, and the median
+target completeness in each distance bin of Fig.~11. Figure~\ref{fig:degobs} shows every point
+against the published values, and Fig.~\ref{fig:corner} the posteriors of an emulator fitted to
+them. Four results follow.
 
 \begin{itemize}
-\item Over all 56 directly evaluated points, the first-eighteen characterization time
-  never exceeds 16.9~d, against the published 22~d. No point in the box reaches it.
-\item Restricting to the 20 points that reproduce the published $6\,$m yield to within
-  10\%, the characterization time spans only 7.0--11.6~d at $6\,$m and
-  0.79--1.49~d at $9\,$m. There is no overlap with the published
-  values at either aperture.
-\item The posterior constrained on the yield alone puts $\kappa = 1.44$,
-  $\kappa_c = 1.07$ with a correlation of -0.79 between their logarithms, and
-  forces the $6\,$m characterization time to
-  9.7~d (6.4--12.7).
-\item The singular values of the local sensitivity are 31.72, 2.31, 1.50, 0.90: a ratio of 13.7
-  between the first and second, meaning these six published observables constrain essentially one
-  combination of the four parameters, and that combination is the $\kappa$--$\kappa_c$
-  anticorrelation.
+\item \textbf{No setting reaches the published characterization time.} This needs no model of the
+  design: all 56 settings were run end to end, and the longest first-eighteen
+  characterization time any of them produces at $6\,$m is 16.9~d, against the
+  published 22~d. Even the settings that slow spectra the most, and in doing so cut the yield to
+  about 10, stay below it (Fig.~\ref{fig:degobs}, top left).
+\item \textbf{At the published yield, spectra are about twice too fast.} A characterization time
+  only means something alongside the yield it comes with, so we keep the 20 points whose
+  $6\,$m yield is within 10\% of 22.5 (the shaded band in Fig.~\ref{fig:degobs}). Their
+  first-eighteen time spans 7.0--11.6~d at $6\,$m and
+  0.79--1.49~d at $9\,$m, against 22 and 3.5~d. Neither range
+  comes near the published value, so matching the yield and matching the spectra are incompatible
+  everywhere in the box.
+\item \textbf{Fitting the yield alone predicts the shortfall.} If the yield is the only constraint,
+  as it is for a calibration factor, the emulator's posterior has $\kappa = 1.39$ and
+  $\kappa_c = 1.12$, strongly anticorrelated (correlation -0.80 between their
+  logarithms), and it predicts a $6\,$m characterization time of 9.7~d
+  (6.4--12.7). A pipeline calibrated to 22.5 would therefore have produced
+  spectra about twice as fast as published without any sign of the problem.
+\item \textbf{The published observables pin down only one combination of parameters.} The
+  singular values of the observables' local sensitivity to the four parameters are 31.72, 2.31, 1.50, 0.90;
+  the first is 13.7 times the second. Physically, all four act mostly as a single
+  efficiency knob: anything that makes the instrument more efficient raises the yield and shortens
+  every characterization time together. That is why the points in each panel of
+  Fig.~\ref{fig:degobs} fall on one narrow curve, whatever their $T_{\rm sky}$ shape. Reaching the
+  published values would require moving off that curve, and no parameter in the box does so.
 \end{itemize}
 
-Characterization time \emph{can} be bought inside this family, but only by surrendering the yield:
-the posterior constrained on every published observable drives $\kappa_c$ onto its prior floor
-trying to slow spectra down, and the yield falls to 16.4. Buying agreement that way is not a
+Characterization time \emph{can} be bought inside this family, but only by giving up yield: when
+every published observable is imposed at once, the posterior pushes $\kappa_c$ onto its lower
+bound trying to slow spectra down, and the yield falls to 16.4. Buying agreement that way is not a
 reproduction.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figCalibrationDegeneracyObservables.pdf}
+\caption{Every one of the 56 settings of the throughput study, plotted as a published
+observable against the $6\,$m planning yield and colored by the $T_{\rm sky}$ shape parameter
+$s_{\rm sky}$. The star marks Stark et al.\ (2024)'s published pair of values; the shaded band is
+the published yield $\pm10\%$. A setting that reproduced Stark would place a point on the star in
+all four panels. Instead, the points in each panel lie on one narrow curve set by the yield, with
+the $T_{\rm sky}$ shape mixed along it, and the characterization times at both apertures and the
+completeness at 10--15\,pc miss the published values at the published yield.}
+\label{fig:degobs}
+\end{figure}
 
 \begin{figure}[htbp]
 \centering
@@ -429,8 +860,10 @@ We can state the disagreement sharply, which is what makes it a question rather 
 Our exposure-time equations reproduce AYO's. Our count rates reproduce AYO's. AYO's own published
 ETC gives Earth-twin spectra at 12--18~pc that take 37--104~d. The two-month cap is stated. And
 yet Stark et al. (2024) Fig.~11 shows those stars reaching habitable-zone completeness of
-0.5--0.8. We cannot construct a survey in which both are true, and we have shown that no setting
-of the parameters that could plausibly absorb the difference makes them both true.
+0.5--0.8. We cannot construct a survey in which both are true. Within the four throughput
+parameters that could plausibly absorb the difference, over the ranges above, no setting makes
+them both true: Fig.~\ref{fig:degobs} shows every setting we ran, and none lands on the published
+values.
 
 The resolution is therefore something about how AYO counts or charges characterization within the
 survey that is not in the papers we have. That is Question~1 (Sec.~\ref{sec:discussion}).
@@ -453,9 +886,14 @@ of Bryson et al. (2021), and is described as having a tail of large $\eta_\oplus
 Propagating this requires two interpretive decisions that the sentence does not settle for a
 reader building a parametric law. Is $0.26$ the mean, as stated, or the center of the quoted
 interval? And is $[0.12, 0.55]$ an 86\% interval, as stated, or the 68\% that is the near-universal
-convention and a digit transposition away? Our pipeline reads the interval at 68\%, giving a
-lognormal $\ln$-width of 0.76, and anchors $0.26$ at the geometric center --- that is, as
-a median. Both of those depart from the text.
+convention and a digit transposition away?
+
+\textbf{What we adopt.} We read $[0.12, 0.55]$ as a \emph{68\%} (one-sigma) interval, not the
+stated 86\%, and we treat its center as the \emph{median}, not the stated mean. Concretely,
+$\eta_\oplus$ is lognormal (Eq.~\ref{eq:etalaw}) with $z = 1$: its median is
+$\sqrt{0.12 \times 0.55} = 0.257$, the geometric center of the interval, its $\ln$-width is
+0.76, and its mean is 0.343, above the stated 0.26. Both choices depart from the
+text.
 
 We flag this prominently because it is the kind of choice that reproductions usually bury. It was
 adopted because it reproduces the published Fig.~10, and a choice adopted because it reproduces
@@ -470,7 +908,8 @@ choose differently: re-deriving each drawn-albedo planet's exposure time instead
 per-visit flux test. The two settings form a complete $2\times2$, which we evaluated end to end
 (Table~\ref{tab:variants}).
 
-The decomposition is unambiguous. On the total-variation distance to the published Fig.~10, the
+The decomposition is unambiguous. On the total-variation distance $D_{\rm TV}$ to the published
+Fig.~10, the
 interval reading is worth +0.0936, the albedo method -0.0009, and the interaction
 +0.0006. \textbf{The interval reading accounts for 99.1\% of the disagreement and
 the albedo method 0.9\%.} The albedo method affects the agreement with Fig.~10 hardly
@@ -482,7 +921,7 @@ at all; it matters only for the albedo penalty (3.6\% with Stark's test,
 \small
 \begin{tabular}{lccccc}
 \toprule
-\textbf{Model} & \textbf{Peak} & \textbf{Mean} & \textbf{$P(Y<12)$} & \textbf{TV to Fig.~10} &
+\textbf{Model} & \textbf{Peak} & \textbf{Mean} & \textbf{$P(Y<12)$} & \textbf{$D_{\rm TV}$ to Fig.~10} &
 \textbf{Yield ratio} \\
 \midrule
 Adopted                              & 12  & 22.4  & 0.26  & 0.037  & 0.2315 \\
@@ -498,7 +937,9 @@ Stark et al. (2024)                    & 10   & 21.0             & 0.29         
 \end{tabular}
 \caption{Seven models, each differing from the adopted one in named settings, evaluated end to
 end with every other setting, input file and random seed held fixed and nothing fitted.
-``Peak'' is the mode of the exact Poisson mixture. The last column is the deliverable of
+``Peak'' is the mode of the exact Poisson mixture (Eq.~\ref{eq:mixture}), and $D_{\rm TV}$ the
+total-variation distance to Stark's purple curve (Eq.~\ref{eq:dtv}; smaller is better). The last
+column is the deliverable of
 Sec.~\ref{sec:result}; it stays between 0.2201 and 0.2386 across the whole
 table.}
 \label{tab:variants}
@@ -582,13 +1023,26 @@ The probability of reaching 25 candidates falls from 35.1\% to 1.20\%.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.62\textwidth]{figYieldZoneDistributions.pdf}
-\caption{EEC yield distributions for the canonical habitable-zone selection and for the narrowed,
-mass-selected Earth zone, marginalized over the occurrence posterior and the exozodi draws and
-including exoplanet sampling uncertainty. Each curve is the exact Poisson mixture over the
-sampled expected yields, so the plotted quantity carries the exoplanet sampling uncertainty that
-Stark et al.\ (2024) call inherent to a blind survey. The yield range follows their Fig.~10; the
-abscissa is labeled in plain English rather than with their ``EEC yield''.}
+\begin{minipage}{0.48\textwidth}\centering\textbf{This work}\\[2pt]
+\includegraphics[width=\linewidth]{figYieldZoneDistributions.pdf}\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}\centering\textbf{Stark et al.\ (2024) Fig.~10}\\[2pt]
+\includegraphics[width=\linewidth]{../ComparePublishedFigures/reference/starkFigure10.pdf}\end{minipage}
+\caption{Left: EEC yield distributions for the canonical habitable-zone selection (pale blue) and
+for the narrowed, mass-selected Earth zone (dark blue), marginalized over the occurrence posterior
+and the exozodi draws and including exoplanet sampling uncertainty. Each curve is the exact Poisson
+mixture over the sampled expected yields. Right: the published distributions for the canonical
+selection, copied unaltered from the arXiv source. Our pale blue curve is the counterpart of
+Stark's purple curve (``Including $\sigma_{\eta_\oplus}$''), not his red one: both describe the
+same selection, the same $6\,$m design and the same sources of uncertainty (the spread in
+$\eta_\oplus$, exozodi, albedo and planet sampling). They should share a broad peak near 10, a mean
+near 21 and a long tail toward high yields; ours peaks at 12 (published 10),
+with mean 22.4 (21.0), median 19 (18), $P(Y<12) = 0.26$ (0.29),
+and a total-variation distance of 0.037 between the two curves. Stark's red curve holds
+$\eta_\oplus$ fixed (``Excluding $\sigma_{\eta_\oplus}$''), which removes most of the spread; its
+counterpart in this model is the fixed-$\eta_\oplus$ distribution, with mean 17.73 against
+his 17.35, and it is not drawn here. The Earth zone has no published counterpart. The
+yield range follows Stark's Fig.~10; our abscissa is labeled in plain English rather than with
+his ``EEC yield''.}
 \label{fig:zones}
 \end{figure}
 
@@ -621,12 +1075,14 @@ within the two-month limit?}
 Stark et al. (2024) Fig.~11 shows habitable-zone completeness of 0.5--0.8 for targets at 10--20~pc.
 AYO's own exposure-time calculator (Stark et al. 2025) gives Earth-twin spectra at those distances
 of 37--104~d. The characterization limit is two months. We reproduce the ETC to 0.94--1.02 on
-AYO's own inputs, and we have shown (Sec.~\ref{sec:char}) that no combination of the throughput
-parameters that could absorb the difference does absorb it. Either those stars are characterized
-under conditions more favorable than an Earth twin at maximum elongation, or the completeness
-plotted in Fig.~11 is not gated on characterization, or characterization is charged to the budget
-differently from the way we charge it. Any of the three would be a one-sentence answer, and each
-implies a different correction.
+AYO's own inputs, and across the four throughput parameters that could absorb the difference,
+including a $T_{\rm sky}$ shaped like AYO's, no setting we ran does (Sec.~\ref{sec:char},
+Fig.~\ref{fig:degobs}). Either those stars are characterized under conditions more favorable than
+an Earth twin at maximum elongation, or the completeness plotted in Fig.~11 is not gated on
+characterization, or characterization is charged to the budget differently from the way we charge
+it, or AYO's DMVC6 $T_{\rm sky}$ map departs from ours by more than its vortex benchmark suggests
+(Sec.~\ref{sec:tsky}). Any of these would be a one-sentence answer, and each implies a different
+correction.
 
 \subsection*{Question 2. In Sec.~3.6, is $\eta_\oplus = 0.26$ the mean or the median, and is
 $[0.12, 0.55]$ an 86\% or a 68\% interval?}
@@ -803,7 +1259,7 @@ count.}
 \includegraphics[width=\linewidth]{../ComparePublishedFigures/reference/starkFigure11.pdf}\end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}\centering\textbf{This model}\\[2pt]
 \includegraphics[width=\linewidth]{figMatchStarkFig11.pdf}\end{minipage}
-\caption{Targets selected in one representative exozodi draw, colored by completeness and plotted over the full input list (gray). Published: 154 targets, summed completeness 77.4, median 0.50. Model (draw 14, the draw with the median yield): 157 targets, summed completeness 77.0, and median 0.09 over the 141 targets that match. The red dashed lines are the noise floor for a 1.4\,$R_\oplus$ planet at the EEID, and the outer edge of the habitable zone at 1.5\,$\lambda/D$ at 1\,$\mu$m. The spectral-type lines are not redrawn.}
+\caption{Targets selected in one representative exozodi draw, colored by completeness and plotted over the full input list (gray). Both panels use Stark's own color scale, read from the color bar embedded in the published figure. Published: 154 targets, summed completeness 77.4, median 0.50. Model (draw 14, the draw with the median yield): 157 targets, summed completeness 77.0, and median 0.09 over the 141 targets that match. The red dashed lines are the noise floor for a 1.4\,$R_\oplus$ planet at the EEID, and the outer edge of the habitable zone at 1.5\,$\lambda/D$ at 1\,$\mu$m. The spectral-type lines are not redrawn.}
 \label{fig:pair11}
 \end{figure}
 
@@ -843,7 +1299,7 @@ count.}
 \includegraphics[width=\linewidth]{../ComparePublishedFigures/reference/starkFigure25.pdf}\end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}\centering\textbf{This model}\\[2pt]
 \includegraphics[width=\linewidth]{figMatchStarkFig25.pdf}\end{minipage}
-\caption{DMVC6 raw contrast (dotted) and core throughput (solid) against separation in circumscribed $\lambda/D$. The model curves are the digitized published ones, so this pair checks the digitization, not the model. The model's contrast is drawn with the $10^{-10}$ floor applied, as the exposure-time calculation uses it; the published curve is the raw simulation. The published figure also shows the PIAA-FPM2.5 coronagraph (red), which is not used here.}
+\caption{DMVC6 raw contrast (dotted) and core throughput (solid) against separation in circumscribed $\lambda/D$. The model curves are the digitized published ones, evaluated exactly as the count rates use them, so this pair checks the digitization, not the model. The model's contrast is drawn with the $10^{-10}$ floor applied, as the exposure-time calculation uses it; the published curve is the raw simulation. The published figure also shows the PIAA-FPM2.5 coronagraph (red), which is not used here.}
 \label{fig:pair25}
 \end{figure}
 

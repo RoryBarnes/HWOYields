@@ -145,7 +145,110 @@ DICT_EXTRA_PATHS = {
     "interactions": "CompareModelVariants/settingInteractions.json",
     "peaks": "CompareModelVariants/yieldPeakComparison.json",
     "etaInterval": "TestOccurrenceIntervalReading/etaIntervalConfidenceLevel.json",
+    "mission": "modelCoronagraph/missionParameters.json",
+    "skyShapes": "CalibrationDegeneracy/skyThroughputShapes.json",
 }
+
+LIST_PARAMETER_ROWS = [
+    ("Inscribed diameter $D$ (m)", "fDiameterM", "{:.1f}", "S24"),
+    ("Circumscribed / inscribed diameter", "fCircumscribedRatio", "{:.3f}", "LUVOIR-B, 8\\,m / 6.7\\,m"),
+    ("Area fill factor $f_{\\rm fill}$", "fApertureFillFactor", "{:.3f}", "none published"),
+    ("Contamination throughput $\\tau_{\\rm con}$", "fContaminationThroughput", "{:.2f}", "S24"),
+    ("Quantum efficiency $Q$", "fQuantumEfficiency", "{:.2f}", "S24"),
+    ("Detective quantum efficiency $q$", "fDetectiveQuantumEfficiency", "{:.2f}", "S24"),
+    ("Dark current $\\xi_{\\rm DC}$ (counts\\,pix$^{-1}$\\,s$^{-1}$)", "fDarkCurrent", "sci", "S24"),
+    ("Read noise (counts\\,pix$^{-1}$)", "fReadNoise", "{:.0f}", "S24 (photon counting)"),
+    ("Clock-induced charge $\\xi_{\\rm CIC}$ (counts\\,pix$^{-1}$\\,frame$^{-1}$)", "fClockInducedCharge", "sci", "S24"),
+    ("Raw-contrast floor $\\zeta_{\\rm floor}$", "fContrastFloor", "sci", "S19"),
+    ("Photometric aperture radius $X$ ($\\lambda/D$)", "fApertureRadiusLamD", "{:.1f}", "S19"),
+    ("Noise floor $\\Delta m_{\\rm nf}$ (mag)", "fNoiseFloorDeltaMag", "{:.1f}", "S24"),
+    ("Planning albedo $A_{\\rm plan}$", "fGeometricAlbedo", "{:.2f}", "S24 Sec.~3.2"),
+    ("Exozodi surface brightness per zodi at $V$ (mag\\,arcsec$^{-2}$)", "fExozodiMagArcsec2", "{:.1f}", "S14"),
+    ("Survey time $T$ (yr)", "fTotalScienceTimeS", "{:.1f}", "S24"),
+    ("Exposure limit $t_{\\rm lim}$, including overheads (d)", "fExposureLimitS", "{:.0f}", "S24"),
+    ("Slew overhead $t_{\\rm slew}$ (h)", "fSlewOverheadS", "{:.1f}", "S24"),
+    ("Wavefront-control overhead $t_{\\rm WFC}$ (h)", "fWavefrontOverheadS", "{:.1f}", "S24"),
+    ("Wavefront-control time multiplier $\\tau'$", "fWavefrontMultiplier", "{:.2f}", "S24"),
+    ("Maximum visits per star $k_{\\max}$", "iMaxVisits", "{:d}", "S15"),
+]
+DICT_PARAMETER_SCALE = {"fTotalScienceTimeS": 1.0 / (365.25 * 86400.0),
+                        "fExposureLimitS": 1.0 / 86400.0, "fSlewOverheadS": 1.0 / 3600.0,
+                        "fWavefrontOverheadS": 1.0 / 3600.0}
+
+
+def fsFormatParameter(fValue, sFormat):
+    """A parameter value for LaTeX: a format string, or "sci" for m x 10^e."""
+    if sFormat != "sci":
+        return sFormat.format(fValue)
+    iExponent = math.floor(math.log10(abs(fValue)))
+    fMantissa = fValue / 10 ** iExponent
+    sMantissa = "" if abs(fMantissa - 1.0) < 1e-9 else f"{fMantissa:.1f}\\times"
+    return f"${sMantissa}10^{{{iExponent}}}$"
+
+
+def fsParameterRows(dictMission):
+    """One table row per scalar mission parameter, formatted from A02's output."""
+    listRows = []
+    for sLabel, sKey, sFormat, sSource in LIST_PARAMETER_ROWS:
+        fValue = dictMission[sKey]
+        if sKey in DICT_PARAMETER_SCALE:
+            fValue = fValue * DICT_PARAMETER_SCALE[sKey]
+        listRows.append(f"{sLabel} & {fsFormatParameter(fValue, sFormat)} & {sSource} \\\\")
+    return "\n".join(listRows)
+
+
+def fsBandRows(dictBands):
+    """Detection channels and characterization bandpasses, one row each."""
+    listRows = []
+    for sKind, listBands in (("detection", dictBands["listBandsDetection"]),
+                             ("spectrum", dictBands["listBandsCharacterization"])):
+        for d in listBands:
+            fWidth = d["fBandwidthFraction"]
+            sWidth = f"{fWidth:.2f}" if fWidth > 0.05 else f"1/{1.0 / fWidth:.0f}"
+            listRows.append(f"{d['sName']} & {sKind} & {d['fLambdaM'] * 1e9:.0f} & {sWidth} & "
+                            f"{d['fOpticalThroughput']:.2f} & {d['fSignalToNoise']:.0f} & "
+                            f"{d['iNumPixels']:d} \\\\")
+    return "\n".join(listRows)
+
+
+def fsSkyRows(listDmvc6):
+    """The T_sky comparison table, one row per separation."""
+    return "\n".join(
+        f"{d['fSepCirc']:.1f} & {d['fUpsilon']:.3f} & {d['fTskyModel']:.3f} & "
+        f"{d['fTskyAyoShaped']:.3f} & {d['fAyoShapedOverModel']:.2f} \\\\"
+        for d in listDmvc6 if d["fUpsilon"] > 0)
+
+
+def ffSkyRatioAt(listDmvc6, fSep):
+    """AYO-like over model T_sky at one tabulated separation."""
+    return next(d["fAyoShapedOverModel"] for d in listDmvc6 if abs(d["fSepCirc"] - fSep) < 1e-6)
+
+
+def fdictModelDefinitionTokens(dictMission, dictBands, dictSky):
+    """Tokens for the equations section: derived geometry, T_sky constants and table rows."""
+    fCirc = dictMission["fDiameterM"] * dictMission["fCircumscribedRatio"]
+    fArea = dictMission["fApertureFillFactor"] * math.pi * (fCirc / 2.0) ** 2
+    fOverhead = dictMission["fSlewOverheadS"] + dictMission["fWavefrontOverheadS"]
+    fCap = (dictMission["fExposureLimitS"] - fOverhead) / dictMission["fWavefrontMultiplier"]
+    dictSum, listRows = dictSky["dictSummary"], dictSky["listDmvc6"]
+    return {"DCIRC": f"{fCirc:.2f}", "AREA": f"{fArea:.1f}", "SCIENCECAP": f"{fCap / 86400:.1f}",
+            "EEAP": f"{dictSum['fAiryEncircledEnergy']:.3f}",
+            "TSKYRATIO": f"{dictSum['fModelTskyOverUpsilon']:.3f}",
+            "UPSMAX": f"{dictSum['fUpsilonMax']:.3f}", "TSKYMAX": f"{dictSum['fTskyMax']:.3f}",
+            "SHAPEFZERO": f"{dictSum['faShapeFactor'][0]:.2f}",
+            "SHAPEFONE": f"{dictSum['faShapeFactor'][1]:.2f}",
+            "SHAPERMS": f"{100 * dictSum['fShapeFitRmsFrac']:.0f}",
+            "OVCSEPLO": f"{dictSum['faOvcSepRange'][0]:.1f}",
+            "OVCSEPHI": f"{dictSum['faOvcSepRange'][1]:.1f}",
+            "OVCRATIOLO": f"{dictSum['faOvcTskyOverCoreRange'][0]:.1f}",
+            "OVCRATIOHI": f"{dictSum['faOvcTskyOverCoreRange'][1]:.1f}",
+            "OVCMETHODLO": f"{dictSum['faOvcModelMethodOverAyoRange'][0]:.2f}",
+            "OVCMETHODHI": f"{dictSum['faOvcModelMethodOverAyoRange'][1]:.2f}",
+            "TSKYTWO": f"{ffSkyRatioAt(listRows, 2.0):.2f}",
+            "TSKYFIVE": f"{ffSkyRatioAt(listRows, 5.0):.2f}",
+            "TSKYTEN": f"{ffSkyRatioAt(listRows, 10.0):.2f}",
+            "PARAMROWS": fsParameterRows(dictMission), "BANDROWS": fsBandRows(dictBands),
+            "TSKYROWS": fsSkyRows(listRows)}
 
 
 def fdictDegeneracyTokens(dictDeg):
@@ -429,7 +532,8 @@ def fdictPairCaptions(dictX, dictResults):
              f"{dictF['fMeanLineIncluding']:.1f} / {dictF['excluding']['dictSummary']['fMeanTruncated']:.1f}, "
              f"model {dictS['fig10']['fMeanIncluding']:.1f} / {dictS['fig10']['fMeanExcluding']:.1f}."),
         11: ("Targets selected in one representative exozodi draw, colored by completeness and "
-             "plotted over the full input list (gray). Published: "
+             "plotted over the full input list (gray). Both panels use Stark's own color scale, "
+             "read from the color bar embedded in the published figure. Published: "
              f"{dictT['iPublishedTargets']} targets, summed completeness "
              f"{dictT['fPublishedSummedCompleteness']:.1f}, median {dictT['fMedianPublished']:.2f}. "
              f"Model (draw {dictX['targets']['iRepresentativeDraw']}, the draw with the median yield): "
@@ -454,8 +558,9 @@ def fdictPairCaptions(dictX, dictResults):
              f"32/53/67/78\\%, model {sP25('fProbability25IncludingSigmaEta')}\\%. Excluding it: "
              f"published 6/49/89/99.5\\%, model {sP25('fProbability25ExcludingSigmaEta')}\\%."),
         25: ("DMVC6 raw contrast (dotted) and core throughput (solid) against separation in "
-             "circumscribed $\\lambda/D$. The model curves are the digitized published ones, so this "
-             "pair checks the digitization, not the model. The model's contrast is drawn with the "
+             "circumscribed $\\lambda/D$. The model curves are the digitized published ones, "
+             "evaluated exactly as the count rates use them, so this pair checks the digitization, "
+             "not the model. The model's contrast is drawn with the "
              "$10^{-10}$ floor applied, as the exposure-time calculation uses it; the published curve "
              "is the raw simulation. The published figure also shows the PIAA-FPM2.5 coronagraph "
              "(red), which is not used here."),
@@ -549,6 +654,9 @@ def main():
     dictSubs = {**fdictSubstitutions(dictResults),
                 **fdictModelTokens(dictExtra, dictResults, sRepoRoot),
                 **fdictDegeneracyTokens(dictExtra["degeneracy"]),
+                **fdictModelDefinitionTokens(dictExtra["mission"]["dictMission"],
+                                             dictExtra["mission"]["dictBands"],
+                                             dictExtra["skyShapes"]),
                 **fdictVariantTokens(dictExtra["variants"], dictExtra["interactions"],
                                      dictExtra["peaks"], dictExtra["etaInterval"])}
     sRendered = fsRenderTemplate(dictArgs["template"], dictSubs)

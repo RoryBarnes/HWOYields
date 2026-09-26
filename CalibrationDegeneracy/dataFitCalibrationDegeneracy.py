@@ -83,7 +83,13 @@ def ffLogPosterior(faTheta, faCoef, faY, faSig, faUse):
 
 
 def faSample(faCoef, faY, faSig, faUse, iSeed, iSteps=4000):
-    """emcee chain, burn-in removed and flattened."""
+    """emcee chain, burn-in removed and flattened.
+
+    emcee draws its proposal moves from numpy's GLOBAL legacy RNG, so seeding only the walker
+    start positions leaves the chain irreproducible from run to run; both are seeded here, as in
+    step A06.
+    """
+    np.random.seed(iSeed)
     rng = np.random.default_rng(iSeed)
     iWalkers = 32
     faStart = FA_LO + rng.random((iWalkers, len(FA_LO))) * (FA_HI - FA_LO)

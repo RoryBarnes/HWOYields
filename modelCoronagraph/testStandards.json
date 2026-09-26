@@ -455,42 +455,50 @@
           "oValue": 1.2
         }
       ],
-      "iBytes": 27371
+      "iBytes": 27377
     },
     "coronagraphCurves.csv": {
       "sKind": "csv",
       "saColumns": [
         "fSeparationLamD",
         "fCoreThroughput",
-        "fRawContrast"
+        "fRawContrast",
+        "fSkyThroughput"
       ],
       "iRows": 200,
       "saFiniteColumns": [
         "fSeparationLamD",
         "fCoreThroughput",
-        "fRawContrast"
+        "fRawContrast",
+        "fSkyThroughput"
       ],
       "dictColumnStats": {
         "fSeparationLamD": {
-          "fMean": 8.784238669063628,
-          "fStd": 9.77272767488254,
+          "fMean": 7.07842390494087,
+          "fStd": 7.4648370457076965,
           "fMin": 0.5,
-          "fMax": 38.39999999999999
+          "fMax": 29.1094
         },
         "fCoreThroughput": {
-          "fMean": 0.22183834530005916,
-          "fStd": 0.1887161522202184,
-          "fMin": 0.0,
-          "fMax": 0.4586938182762129
+          "fMean": 0.1796265278675571,
+          "fStd": 0.14779471676216974,
+          "fMin": 6.544253103724468e-05,
+          "fMax": 0.3872524099279423
         },
         "fRawContrast": {
-          "fMean": 0.04500002983143214,
-          "fStd": 0.2073041179407152,
+          "fMean": 3.9870718226470007e-07,
+          "fStd": 1.2046513712896819e-06,
           "fMin": 1e-10,
-          "fMax": 1.0
+          "fMax": 7.688993689846405e-06
+        },
+        "fSkyThroughput": {
+          "fMean": 0.26474984235452026,
+          "fStd": 0.2178332367058048,
+          "fMin": 9.645512821004991e-05,
+          "fMax": 0.5707676683224925
         }
       },
-      "iBytes": 10366
+      "iBytes": 15507
     }
   }
 }

@@ -8,6 +8,7 @@
         "dictYTicks",
         "iColourBarSamples",
         "iPoints",
+        "listColourBarRgb",
         "listPoints",
         "sSource"
       ],
@@ -88,7 +89,7 @@
           "oValue": 154.0
         }
       ],
-      "iBytes": 22066
+      "iBytes": 38362
     },
     "targetCompletenessComparison.json": {
       "sKind": "json",

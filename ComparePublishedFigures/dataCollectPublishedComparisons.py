@@ -67,8 +67,12 @@ def fdictFigure10(dictSamples):
             "fMeanIncluding": float(np.mean(faIncl)), "fMeanExcluding": float(np.mean(faExcl))}
 
 
-def fdictFigure11(dictTargets, dfCatalog):
-    """Representative-draw completeness per target, over the whole input list in grey."""
+def fdictFigure11(dictTargets, dfCatalog, listColourBarRgb):
+    """Representative-draw completeness per target, over the whole input list in gray.
+
+    listColourBarRgb is Stark's own colour bar, recovered from the published figure by step A10,
+    so the model's panel is drawn in the same colour scale as the original.
+    """
     faC = np.asarray(dictTargets["faCompletenessRepresentative"])
     bUsed = faC > 0
     bList = (dfCatalog["fDistancePc"] <= 40) & (dfCatalog["fLuminosityLsun"] > 0)
@@ -77,7 +81,8 @@ def fdictFigure11(dictTargets, dfCatalog):
             "faCompletenessUsed": faC[bUsed].tolist(),
             "faDistanceAll": dfCatalog.loc[bList, "fDistancePc"].tolist(),
             "faLuminosityAll": dfCatalog.loc[bList, "fLuminosityLsun"].tolist(),
-            "iRepresentativeDraw": dictTargets["iRepresentativeDraw"]}
+            "iRepresentativeDraw": dictTargets["iRepresentativeDraw"],
+            "listColourBarRgb": listColourBarRgb}
 
 
 def fdictAperture(dictAperture):
@@ -106,6 +111,8 @@ def fdictParseArgs():
     p.add_argument("--aperture", required=True)
     p.add_argument("--target-comparison", required=True)
     p.add_argument("--target-catalog", required=True)
+    p.add_argument("--digitised-figure-eleven", required=True,
+                   help="step A10's digitization of Stark's Fig. 11, for its colour bar")
     p.add_argument("--out-json", default="publishedComparisonSeries.json")
     return vars(p.parse_args())
 
@@ -121,7 +128,9 @@ def main():
                "fig09": fdictFigure09(dictNpz["faZodiDraws"], dictLoad["survey"]),
                "fig10": fdictFigure10(np.load(dictArgs["yield_samples"])),
                "fig11": fdictFigure11(dictLoad["target_comparison"],
-                                      pd.read_csv(dictArgs["target_catalog"])),
+                                      pd.read_csv(dictArgs["target_catalog"]),
+                                      json.load(open(dictArgs["digitised_figure_eleven"]))[
+                                          "listColourBarRgb"]),
                **fdictAperture(dictLoad["aperture"]),
                "fig25": {sCol: dfCurves[sCol].tolist() for sCol in dfCurves.columns}}
     with open(dictArgs["out_json"], "w") as oFile:

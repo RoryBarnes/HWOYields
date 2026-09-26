@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Emit the baseline HWO mission parameter set and the parametric DMVC coronagraph curves.
+"""Emit the baseline HWO mission parameter set and the DMVC6 coronagraph curves it uses.
 
 Every value here is transcribed from Stark et al. (2024, JATIS 10, 034006) Tables 1 and 2,
-except the coronagraph core-throughput and contrast profiles. Those are outputs of detailed
-coronagraph simulations that the papers do not distribute, so they are reconstructed from the
-three published anchors for the DMVC: IWA 3.5 lambda/D, ~45 percent core throughput at wide
-separation, and useful throughput down to ~1.5 lambda/D, with contrast floored at 1e-10.
+except the coronagraph core-throughput and contrast profiles. Those come from coronagraph
+simulations the papers do not distribute as data; they are digitized from the vector content
+stream of Stark et al. (2024)'s DMVC6 figure (reference/starkCoronagraphDmvc6.json). The curve
+table written alongside the parameters is evaluated from that digitized table, exactly as the
+count rates use it, together with the extended-source throughput T_sky(r) the model derives
+from it; the parametric curves in yieldlib.coronagraph are only a fallback when the reference
+file is absent.
 """
 
 import argparse
@@ -17,6 +20,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, "..")
+from yieldlib import completeness as cp  # noqa: E402
 from yieldlib import coronagraph as cg  # noqa: E402
 
 F_YEAR_S = 365.25 * 86400.0
@@ -219,16 +223,27 @@ def fdictSelectionBoxes():
 
 
 def fdfCoronagraphCurves(dictMission, iNumPoints):
-    """Tabulate core throughput and raw contrast against separation in lambda/D."""
-    faSep = np.logspace(np.log10(0.5), np.log10(dictMission["fOwaLamD"] * 1.2), iNumPoints)
-    return pd.DataFrame({
-        "fSeparationLamD": faSep,
-        "fCoreThroughput": cg.faCoreThroughput(faSep, fIwaLamD=dictMission["fIwaLamD"],
-                                               fOwaLamD=dictMission["fOwaLamD"],
-                                               fThroughputMax=dictMission["fCoreThroughputMax"]),
-        "fRawContrast": cg.faRawContrast(faSep, fContrastFloor=dictMission["fContrastFloor"],
-                                         fOwaLamD=dictMission["fOwaLamD"]),
-    })
+    """Tabulate the curves the count rates use, against separation in circumscribed lambda/D.
+
+    Core throughput and floored raw contrast come from the digitized table when it is present,
+    as in yieldlib.completeness.fdictCountRates, and T_sky(r) from faSkyThroughputAt, so this
+    file shows what the exposure times actually see rather than the parametric fallback.
+    """
+    dictTable = dictMission.get("dictCoronagraphTable")
+    fOuter = dictTable["fOuterEdgeLamD"] if dictTable else dictMission["fOwaLamD"] * 1.2
+    faSep = np.logspace(np.log10(0.5), np.log10(fOuter), iNumPoints)
+    if dictTable:
+        faUpsilon = cg.faCoreThroughputTable(faSep, dictTable)
+        faZeta = cg.faRawContrastTable(faSep, dictTable, dictMission["fContrastFloor"])
+    else:
+        faUpsilon = cg.faCoreThroughput(faSep, fIwaLamD=dictMission["fIwaLamD"],
+                                        fOwaLamD=dictMission["fOwaLamD"],
+                                        fThroughputMax=dictMission["fCoreThroughputMax"])
+        faZeta = cg.faRawContrast(faSep, fContrastFloor=dictMission["fContrastFloor"],
+                                  fOwaLamD=dictMission["fOwaLamD"])
+    return pd.DataFrame({"fSeparationLamD": faSep, "fCoreThroughput": faUpsilon,
+                         "fRawContrast": faZeta,
+                         "fSkyThroughput": cp.faSkyThroughputAt(faUpsilon, dictMission)})
 
 
 def fdictParseArgs():
@@ -247,15 +262,15 @@ def main():
     dictMission = fdictMissionParameters(dictArgs["diameter_m"], dictArgs["exozodi_level"])
     dictOut = {"dictMission": dictMission, "dictBands": fdictBandParameters(),
                "dictBoxes": fdictSelectionBoxes(),
-               "sProvenance": "Stark et al. 2024 JATIS 10 034006, Tables 1 and 2; coronagraph "
-                              "profiles parametrized from published DMVC anchors."}
+               "sProvenance": "Stark et al. 2024 JATIS 10 034006, Tables 1 and 2; DMVC6 "
+                              "coronagraph curves digitized from the e-print's vector figure."}
     with open(dictArgs["out_parameters"], "w") as oFile:
         json.dump(dictOut, oFile, indent=2)
-    fdfCoronagraphCurves(dictMission, dictArgs["num_points"]).to_csv(
-        dictArgs["out_curves"], index=False)
+    dfCurves = fdfCoronagraphCurves(dictMission, dictArgs["num_points"])
+    dfCurves.to_csv(dictArgs["out_curves"], index=False)
     print(json.dumps({"sWrote": dictArgs["out_parameters"],
-                      "fIwaThroughput": float(cg.faCoreThroughput(dictMission["fIwaLamD"])),
-                      "fPlateauThroughput": float(cg.faCoreThroughput(25.0))}, indent=2))
+                      "fCoreThroughputMax": float(dfCurves["fCoreThroughput"].max()),
+                      "fSkyThroughputMax": float(dfCurves["fSkyThroughput"].max())}, indent=2))
 
 
 if __name__ == "__main__":

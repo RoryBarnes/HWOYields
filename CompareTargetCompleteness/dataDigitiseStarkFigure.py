@@ -138,6 +138,20 @@ def flistColourBar(listPaths):
     return sorted(listBar, key=lambda d: d["faCentre"][0])
 
 
+def flistColourBarRgb(faBarCmyk, iSamples=256):
+    """The colour bar resampled to iSamples RGB triples, from zero to full completeness.
+
+    DeviceCMYK converts to RGB as R = (1 - C)(1 - K) and likewise for G and B, which is how the
+    colours render in the published figure. Plots of this model reuse the list as their colormap,
+    so the two figures share one colour scale.
+    """
+    faCmyk = np.asarray(faBarCmyk, dtype=float)
+    faRgb = (1.0 - faCmyk[:, :3]) * (1.0 - faCmyk[:, 3:4])
+    faPositions = np.linspace(0.0, 1.0, len(faRgb))
+    faOut = np.linspace(0.0, 1.0, iSamples)
+    return [[float(np.interp(f, faPositions, faRgb[:, j])) for j in range(3)] for f in faOut]
+
+
 def faCompletenessFromColour(faBarColours, faColour):
     """Nearest colour along the bar, expressed as a fraction of its length."""
     faPositions = np.linspace(0.0, 1.0, len(faBarColours))
@@ -179,6 +193,7 @@ def main():
     dictOut = {
         "sSource": "Stark et al. (2024) Fig. 11, digitized from the PDF content stream",
         "iColourBarSamples": int(len(faBar)),
+        "listColourBarRgb": flistColourBarRgb(faBar),
         "dictXTicks": {str(k): float(np.mean(v)) for k, v in dictX.items()},
         "dictYTicks": {str(k): float(np.mean(v)) for k, v in dictY.items()},
         "iPoints": len(listPoints), "listPoints": listPoints,

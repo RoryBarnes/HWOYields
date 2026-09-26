@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plot the parametric DMVC core-throughput and raw-contrast profiles against separation."""
+"""Plot the DMVC6 core-throughput, sky-throughput and raw-contrast curves the model uses."""
 
 import argparse
 import sys

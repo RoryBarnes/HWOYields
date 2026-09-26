@@ -32,7 +32,7 @@
           "oValue": 56.0
         }
       ],
-      "iBytes": 5733
+      "iBytes": 5774
     },
     "calibrationDegeneracyChains.npz": {
       "sKind": "npz",
@@ -74,14 +74,14 @@
       },
       "dictArrayStats": {
         "yieldOnly": {
-          "fMean": 0.5800337302723924,
-          "fMin": -0.9156393046887756,
-          "fMax": 1.7818134183417924
+          "fMean": 0.5798750000287222,
+          "fMin": -0.9154024366674222,
+          "fMax": 1.781931181398985
         },
         "all": {
-          "fMean": 0.4246174244866525,
-          "fMin": -0.9162795947380267,
-          "fMax": 1.781987979876384
+          "fMean": 0.4214747007832324,
+          "fMin": -0.9162907134899859,
+          "fMax": 1.7819838734021123
         },
         "faDesignTheta": {
           "fMean": 0.5459354603365636,
@@ -286,7 +286,7 @@
             "ln_kappa",
             "fMean"
           ],
-          "oValue": 0.3622099192594064
+          "oValue": 0.3261124229957253
         },
         {
           "saPath": [
@@ -296,7 +296,7 @@
             "ln_kappa",
             "fStd"
           ],
-          "oValue": 0.40674714757237246
+          "oValue": 0.4054466176752713
         },
         {
           "saPath": [
@@ -306,7 +306,7 @@
             "ln_kappa_c",
             "fMean"
           ],
-          "oValue": 0.07217720726638399
+          "oValue": 0.11121146602628487
         },
         {
           "saPath": [
@@ -316,7 +316,7 @@
             "ln_kappa_c",
             "fStd"
           ],
-          "oValue": 0.4948320170590643
+          "oValue": 0.49412391858412397
         },
         {
           "saPath": [
@@ -326,7 +326,7 @@
             "f_leak",
             "fMean"
           ],
-          "oValue": 1.3910143919633664
+          "oValue": 1.3805497933049327
         },
         {
           "saPath": [
@@ -336,7 +336,7 @@
             "f_leak",
             "fStd"
           ],
-          "oValue": 0.22207390751164183
+          "oValue": 0.2268475015256589
         },
         {
           "saPath": [
@@ -346,7 +346,7 @@
             "s_sky",
             "fMean"
           ],
-          "oValue": 0.49473340260041426
+          "oValue": 0.5016263177879556
         },
         {
           "saPath": [
@@ -356,7 +356,7 @@
             "s_sky",
             "fStd"
           ],
-          "oValue": 0.28638351448091337
+          "oValue": 0.28826966823118993
         },
         {
           "saPath": [
@@ -366,7 +366,7 @@
             "kappa",
             "fMedian"
           ],
-          "oValue": 1.4365004594246626
+          "oValue": 1.3855711301742892
         },
         {
           "saPath": [
@@ -376,7 +376,7 @@
             "kappa",
             "fLnStd"
           ],
-          "oValue": 0.40674714757237246
+          "oValue": 0.4054466176752713
         },
         {
           "saPath": [
@@ -386,7 +386,7 @@
             "kappa_c",
             "fMedian"
           ],
-          "oValue": 1.0748457976740236
+          "oValue": 1.1176312229007288
         },
         {
           "saPath": [
@@ -396,7 +396,7 @@
             "kappa_c",
             "fLnStd"
           ],
-          "oValue": 0.4948320170590643
+          "oValue": 0.49412391858412397
         },
         {
           "saPath": [
@@ -404,7 +404,7 @@
             "yieldOnly",
             "fKappaKappaCCorrelation"
           ],
-          "oValue": -0.7898888454392811
+          "oValue": -0.7978040602282672
         },
         {
           "saPath": [
@@ -414,7 +414,7 @@
             "ln_kappa",
             "fMean"
           ],
-          "oValue": 0.29860306581716894
+          "oValue": 0.30046338801599903
         },
         {
           "saPath": [
@@ -424,7 +424,7 @@
             "ln_kappa",
             "fStd"
           ],
-          "oValue": 0.22468790147174952
+          "oValue": 0.22614875945061674
         },
         {
           "saPath": [
@@ -434,7 +434,7 @@
             "ln_kappa_c",
             "fMean"
           ],
-          "oValue": -0.6836307909563272
+          "oValue": -0.681976788533368
         },
         {
           "saPath": [
@@ -444,7 +444,7 @@
             "ln_kappa_c",
             "fStd"
           ],
-          "oValue": 0.19892371963530694
+          "oValue": 0.1973129324431358
         },
         {
           "saPath": [
@@ -454,7 +454,7 @@
             "f_leak",
             "fMean"
           ],
-          "oValue": 1.416246902983083
+          "oValue": 1.4040295231759077
         },
         {
           "saPath": [
@@ -464,7 +464,7 @@
             "f_leak",
             "fStd"
           ],
-          "oValue": 0.26551621235258704
+          "oValue": 0.26864779734561
         },
         {
           "saPath": [
@@ -474,7 +474,7 @@
             "s_sky",
             "fMean"
           ],
-          "oValue": 0.6672505201026853
+          "oValue": 0.6633826804743961
         },
         {
           "saPath": [
@@ -484,7 +484,7 @@
             "s_sky",
             "fStd"
           ],
-          "oValue": 0.21832461964529837
+          "oValue": 0.220752083875164
         },
         {
           "saPath": [
@@ -494,7 +494,7 @@
             "kappa",
             "fMedian"
           ],
-          "oValue": 1.3479744601268169
+          "oValue": 1.35048446091966
         },
         {
           "saPath": [
@@ -504,7 +504,7 @@
             "kappa",
             "fLnStd"
           ],
-          "oValue": 0.22468790147174952
+          "oValue": 0.22614875945061674
         },
         {
           "saPath": [
@@ -514,7 +514,7 @@
             "kappa_c",
             "fMedian"
           ],
-          "oValue": 0.5047809072091151
+          "oValue": 0.505616506904165
         },
         {
           "saPath": [
@@ -524,7 +524,7 @@
             "kappa_c",
             "fLnStd"
           ],
-          "oValue": 0.19892371963530694
+          "oValue": 0.1973129324431358
         },
         {
           "saPath": [
@@ -532,10 +532,63 @@
             "all",
             "fKappaKappaCCorrelation"
           ],
-          "oValue": -0.9110140225108481
+          "oValue": -0.9137572732603689
         }
       ],
-      "iBytes": 5410
+      "iBytes": 5395
+    },
+    "skyThroughputShapes.json": {
+      "sKind": "json",
+      "saTopLevelKeys": [
+        "dictSummary",
+        "listDmvc6",
+        "listOvc"
+      ],
+      "listNumbers": [
+        {
+          "saPath": [
+            "dictSummary",
+            "fApertureRadiusLamD"
+          ],
+          "oValue": 0.7
+        },
+        {
+          "saPath": [
+            "dictSummary",
+            "fAiryEncircledEnergy"
+          ],
+          "oValue": 0.678476429938808
+        },
+        {
+          "saPath": [
+            "dictSummary",
+            "fModelTskyOverUpsilon"
+          ],
+          "oValue": 1.4738905522336132
+        },
+        {
+          "saPath": [
+            "dictSummary",
+            "fUpsilonMax"
+          ],
+          "oValue": 0.38806
+        },
+        {
+          "saPath": [
+            "dictSummary",
+            "fTskyMax"
+          ],
+          "oValue": 0.5719579676997759
+        },
+        {
+          "saPath": [
+            "dictSummary",
+            "fShapeFitRmsFrac"
+          ],
+          "oValue": 0.06374237777475447
+        }
+      ],
+      "iBytes": 7181
     }
   }
 }

@@ -432,9 +432,10 @@ Both sky backgrounds are multiplied by the extended-source throughput $T_{\rm sk
 convolving the spatially-dependent PSF at all locations with a normalized uniform background''.
 This is a function of position: background light near the inner working angle (IWA) is attenuated
 by the same focal-plane mask that attenuates a planet there. Stark's map is not published, so we
-reconstruct it as $T_{\rm sky}(r) = 0.678\,\Upsilon_{\rm c}(r)/\Upsilon_{\rm c,max}$, the
-core-throughput curve rescaled to its large-separation value
-$0.678 = \Upsilon_{\rm c,max}/\mathrm{EE}(0.7\,\lambda/D)$. This assumes that the fraction of an
+reconstruct it as $T_{\rm sky}(r) = \Upsilon_{\rm c}(r)/\mathrm{EE}(0.7\,\lambda/D)
+= 1.474\,\Upsilon_{\rm c}(r)$, where $\mathrm{EE}(0.7\,\lambda/D) = 0.678$ is the Airy
+encircled energy inside the photometric aperture; it reaches 0.572 at large separation. This
+assumes that the fraction of an
 off-axis PSF falling inside the photometric core does not change with separation, and it omits the
 $\sim\lambda/D$ smoothing of the convolution.
 
@@ -861,8 +862,8 @@ distance (Fig.~\ref{fig:corner}).
 \item Of the 20 points that reproduce the published 6\,m yield to within 10\%, the
 first-18 time spans only 7.0--11.6 days at 6\,m and
 0.79--1.49 days at 9\,m, overlapping neither published value.
-\item Constrained on the yield alone, the fit gives $\kappa = 1.44$ and
-$\kappa_c = 1.07$, with a correlation of -0.79 between their logarithms, and forces
+\item Constrained on the yield alone, the fit gives $\kappa = 1.39$ and
+$\kappa_c = 1.12$, with a correlation of -0.80 between their logarithms, and forces
 the 6\,m characterization time to 9.7 days (6.4--12.7).
 \item The singular values of the local sensitivity are 31.72, 2.31, 1.50, 0.90. The first is
 13.7 times the second, so these observables constrain essentially one combination of the
@@ -1057,7 +1058,7 @@ quantum-efficiency curves, and the design-change scenarios of Stark's Sec.~5) ar
 \includegraphics[width=\linewidth]{../ComparePublishedFigures/reference/starkFigure11.pdf}\end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}\centering\textbf{This model}\\[2pt]
 \includegraphics[width=\linewidth]{figMatchStarkFig11.pdf}\end{minipage}
-\caption{Targets selected in one representative exozodi draw, colored by completeness and plotted over the full input list (gray). Published: 154 targets, summed completeness 77.4, median 0.50. Model (draw 14, the draw with the median yield): 157 targets, summed completeness 77.0, and median 0.09 over the 141 targets that match. The red dashed lines are the noise floor for a 1.4\,$R_\oplus$ planet at the EEID, and the outer edge of the habitable zone at 1.5\,$\lambda/D$ at 1\,$\mu$m. The spectral-type lines are not redrawn.}
+\caption{Targets selected in one representative exozodi draw, colored by completeness and plotted over the full input list (gray). Both panels use Stark's own color scale, read from the color bar embedded in the published figure. Published: 154 targets, summed completeness 77.4, median 0.50. Model (draw 14, the draw with the median yield): 157 targets, summed completeness 77.0, and median 0.09 over the 141 targets that match. The red dashed lines are the noise floor for a 1.4\,$R_\oplus$ planet at the EEID, and the outer edge of the habitable zone at 1.5\,$\lambda/D$ at 1\,$\mu$m. The spectral-type lines are not redrawn.}
 \label{fig:pair11}
 \end{figure}
 
@@ -1097,7 +1098,7 @@ quantum-efficiency curves, and the design-change scenarios of Stark's Sec.~5) ar
 \includegraphics[width=\linewidth]{../ComparePublishedFigures/reference/starkFigure25.pdf}\end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}\centering\textbf{This model}\\[2pt]
 \includegraphics[width=\linewidth]{figMatchStarkFig25.pdf}\end{minipage}
-\caption{DMVC6 raw contrast (dotted) and core throughput (solid) against separation in circumscribed $\lambda/D$. The model curves are the digitized published ones, so this pair checks the digitization, not the model. The model's contrast is drawn with the $10^{-10}$ floor applied, as the exposure-time calculation uses it; the published curve is the raw simulation. The published figure also shows the PIAA-FPM2.5 coronagraph (red), which is not used here.}
+\caption{DMVC6 raw contrast (dotted) and core throughput (solid) against separation in circumscribed $\lambda/D$. The model curves are the digitized published ones, evaluated exactly as the count rates use them, so this pair checks the digitization, not the model. The model's contrast is drawn with the $10^{-10}$ floor applied, as the exposure-time calculation uses it; the published curve is the raw simulation. The published figure also shows the PIAA-FPM2.5 coronagraph (red), which is not used here.}
 \label{fig:pair25}
 \end{figure}
 

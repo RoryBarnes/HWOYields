@@ -432,9 +432,10 @@ Both sky backgrounds are multiplied by the extended-source throughput $T_{\rm sk
 convolving the spatially-dependent PSF at all locations with a normalized uniform background''.
 This is a function of position: background light near the inner working angle (IWA) is attenuated
 by the same focal-plane mask that attenuates a planet there. Stark's map is not published, so we
-reconstruct it as $T_{\rm sky}(r) = 0.678\,\Upsilon_{\rm c}(r)/\Upsilon_{\rm c,max}$, the
-core-throughput curve rescaled to its large-separation value
-$0.678 = \Upsilon_{\rm c,max}/\mathrm{EE}(0.7\,\lambda/D)$. This assumes that the fraction of an
+reconstruct it as $T_{\rm sky}(r) = \Upsilon_{\rm c}(r)/\mathrm{EE}(0.7\,\lambda/D)
+= @@TSKYRATIO@@\,\Upsilon_{\rm c}(r)$, where $\mathrm{EE}(0.7\,\lambda/D) = @@EEAP@@$ is the Airy
+encircled energy inside the photometric aperture; it reaches @@TSKYMAX@@ at large separation. This
+assumes that the fraction of an
 off-axis PSF falling inside the photometric core does not change with separation, and it omits the
 $\sim\lambda/D$ smoothing of the convolution.
 

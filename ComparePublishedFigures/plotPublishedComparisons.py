@@ -16,6 +16,7 @@ import numpy as np
 sys.path.insert(0, "..")
 from yieldlib import plotstyle as ps  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
+from matplotlib.colors import ListedColormap  # noqa: E402
 
 S_PURPLE, S_RED = "#6a1b6f", "#e8202a"
 S_GREEN, S_ORANGE = "#1aa84a", "#f5a300"
@@ -103,15 +104,16 @@ def fnFigure10(dictS, sDir):
 
 
 def fnFigure11(dictS, sDir, fDiameterM=6.0):
-    """Targets in distance-luminosity, coloured by completeness, input list in grey."""
+    """Targets in distance-luminosity, colored by completeness in Stark's own color scale."""
     oFig, oAxes = plt.subplots(figsize=(3.4, 2.9))
     d = dictS["fig11"]
     oAxes.scatter(d["faDistanceAll"], d["faLuminosityAll"], s=1.5, color="#cfcfcf", lw=0)
     faOrder = np.argsort(d["faCompletenessUsed"])
     oScatter = oAxes.scatter(np.asarray(d["faDistanceUsed"])[faOrder],
                              np.asarray(d["faLuminosityUsed"])[faOrder],
-                             c=np.asarray(d["faCompletenessUsed"])[faOrder], cmap="turbo",
-                             vmin=0, vmax=1, s=9, lw=0)
+                             c=np.asarray(d["faCompletenessUsed"])[faOrder],
+                             cmap=ListedColormap(d["listColourBarRgb"]), vmin=0, vmax=1, s=9,
+                             lw=0)
     faD = np.linspace(0.5, 40, 200)
     fLamDArcsec = 1e-6 / fDiameterM * 206264.806
     oAxes.plot(faD, (1.5 * fLamDArcsec * faD / 1.67) ** 2, color=S_RED, ls="--", lw=0.8)
@@ -121,7 +123,7 @@ def fnFigure11(dictS, sDir, fDiameterM=6.0):
     oAxes.set_ylim(1e-3, 40)
     oAxes.set_xlabel("d (pc)")
     oAxes.set_ylabel("L$_{\\rm star}$ (L$_\\odot$)")
-    oFig.colorbar(oScatter, ax=oAxes, label="Completeness")
+    oFig.colorbar(oScatter, ax=oAxes, label="Completeness", ticks=[0.0, 0.33, 0.67, 1.0])
     oAxes.grid(False)
     fnSave(oFig, sDir, 11)
 

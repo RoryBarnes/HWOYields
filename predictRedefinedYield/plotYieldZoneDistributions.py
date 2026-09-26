@@ -11,6 +11,7 @@ import argparse
 import sys
 
 import matplotlib
+import matplotlib.ticker
 import numpy as np
 
 sys.path.insert(0, "..")
@@ -50,6 +51,13 @@ def fnDrawZone(oAxes, faExpected, sBox, iMaxYield):
     oAxes.plot(np.arange(faPmf.size), faPmf, linewidth=2.0, color=DICT_ZONE_COLOUR[sBox])
 
 
+def fnSetFrequencyAxis(oAxes, fMaxFrequency, fTickStep):
+    """Fix the frequency axis to 0..fMaxFrequency with a tick every fTickStep, as Stark's Fig. 10 does."""
+    oAxes.set_ylim(0.0, fMaxFrequency)
+    oAxes.set_yticks(np.arange(0.0, fMaxFrequency + 0.5 * fTickStep, fTickStep))
+    oAxes.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter("%.2f"))
+
+
 def flistLegendHandles(listBoxes):
     """Plain horizontal rules, one per zone, in the order the boxes are drawn."""
     return [Line2D([0], [0], color=DICT_ZONE_COLOUR[s], linewidth=2.0,
@@ -62,6 +70,10 @@ def main():
     p.add_argument("--boxes", default="canonical,redefined")
     p.add_argument("--max-yield", type=int, default=50,
                    help="x-axis limit; 50 matches Stark et al. (2024) Fig. 10")
+    p.add_argument("--max-frequency", type=float, default=0.14,
+                   help="y-axis limit; tall enough for the Earth-zone peak")
+    p.add_argument("--frequency-step", type=float, default=0.02,
+                   help="y tick spacing; 0.02 matches Stark et al. (2024) Fig. 10")
     p.add_argument("--font-scale", type=float, default=1.25)
     p.add_argument("sPlotPath")
     dictArgs = vars(p.parse_args())
@@ -75,6 +87,7 @@ def main():
     oAxes.set_xlim(0, dictArgs["max_yield"])
     ps.fnFinishAxes(oAxes, "Expected Yield", "Frequency")
     oAxes.grid(False)
+    fnSetFrequencyAxis(oAxes, dictArgs["max_frequency"], dictArgs["frequency_step"])
     fnBoxAxes(oAxes)
     oAxes.legend(handles=flistLegendHandles(listBoxes), loc="upper right")
     oFigure.tight_layout()

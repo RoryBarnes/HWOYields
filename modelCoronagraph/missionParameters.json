@@ -1140,5 +1140,5 @@
       "fHzOuterAu": 1.2
     }
   },
-  "sProvenance": "Stark et al. 2024 JATIS 10 034006, Tables 1 and 2; coronagraph profiles parametrized from published DMVC anchors."
+  "sProvenance": "Stark et al. 2024 JATIS 10 034006, Tables 1 and 2; DMVC6 coronagraph curves digitized from the e-print's vector figure."
 }

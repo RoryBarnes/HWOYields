@@ -51,6 +51,11 @@ solar-equivalent, sqrt(L)-scaled).
 - `vaibify-do run-all-tests` runs the tests but does not record per-category results on the
   dashboard; record them with `vaibify-do run-test-category <step> sCategory=<category>`.
 - Size `--processes`/`--workers` from `/sys/fs/cgroup/cpu.max`, not `nproc`.
+- Our T_sky is Upsilon_c / EE(0.7 lambda/D) = 1.474 Upsilon_c (max 0.572 on the DMVC6), not
+  the 0.678 that older text quoted (that came from the parametric fallback's 0.46 peak). A13's
+  `skyThroughputShapes.json` tabulates it against the AYO-like shape; quote it from there.
+- Any emcee run must seed numpy's GLOBAL RNG (`np.random.seed`) as well as the start positions,
+  or its chain differs from run to run (A06 and A13 both had this bug).
 
 ## Documents
 
